@@ -65,7 +65,11 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.details
@@ -117,6 +121,8 @@ nav:
   - Invernadero:
       - Inicio rápido: invernadero/Inicio-rapido.md
       - Arquitectura: invernadero/Arquitectura.md
+      - Diagramas de bloques y datos: invernadero/Diagramas.md
+      - Control PID: invernadero/Control-PID.md
       - Compatibilidad (placas/sensores/buses): invernadero/Compatibilidad.md
       - Hardware y conexiones: invernadero/Hardware-y-Conexiones.md
       - Sensores: invernadero/Sensores.md
