@@ -122,14 +122,18 @@ nav:
       - Inicio rápido: invernadero/Inicio-rapido.md
       - Arquitectura: invernadero/Arquitectura.md
       - Referencia de código (v3.29.0): invernadero/Referencia-de-codigo.md
+      - Referencia API interna: invernadero/Referencia-API-interna.md
+      - Enumeraciones y tipos: invernadero/Enumeraciones-y-tipos.md
       - Diagramas de bloques y datos: invernadero/Diagramas.md
       - Control PID: invernadero/Control-PID.md
       - Compatibilidad (placas/sensores/buses): invernadero/Compatibilidad.md
       - Hardware y conexiones: invernadero/Hardware-y-Conexiones.md
+      - Guía de pines: invernadero/Guia-de-pines.md
       - Sensores: invernadero/Sensores.md
       - Actuadores y salidas: invernadero/Actuadores-y-Salidas.md
       - Materiales (BOM): invernadero/Materiales.md
       - Configuración: invernadero/Configuracion.md
+      - Referencia de configuración (JSON): invernadero/Referencia-configuracion.md
       - Variables modificables: invernadero/Variables-Modificables.md
       - API REST: invernadero/API-REST.md
       - MQTT y WebSocket: invernadero/MQTT-y-WebSocket.md
@@ -138,6 +142,8 @@ nav:
       - Servidor central: invernadero/Servidor-central.md
       - Seguridad: invernadero/Seguridad.md
       - Identidad y estados: invernadero/Identidad-y-Estados.md
+      - Solución de problemas: invernadero/Solucion-de-problemas.md
+      - Preguntas frecuentes (FAQ): invernadero/FAQ.md
       - Decisiones: invernadero/Decisiones.md
       - Compilación y flasheo: invernadero/Compilacion.md
       - Evolución: invernadero/Evolucion.md
