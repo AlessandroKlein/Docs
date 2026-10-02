@@ -899,6 +899,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3-configurabilidad-que-se-puede-cambiar-sin-tocar-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configurabilidad (¿qué se puede cambiar sin tocar código?)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1626,6 +1637,25 @@
 <li>Temperatura 18/24/28 °C · Humedad 55/70/85 % · Suelo 35/55 %.</li>
 <li>Riego automático deshabilitado hasta configuración.</li>
 </ul>
+<h2 id="3-configurabilidad-que-se-puede-cambiar-sin-tocar-codigo">3. Configurabilidad (¿qué se puede cambiar sin tocar código?)</h2>
+<p><strong>Configurable desde la web/API:</strong></p>
+<ul>
+<li>Sensores: habilitar/deshabilitar (sht31, ds18b20, suelo, luz, CO₂, lluvia, viento, tanque, caudal, pH, EC, exterior).</li>
+<li>Actuadores: habilitar + cantidad (bomba, válvulas, ventiladores, extractores, luces, ...).</li>
+<li>Umbrales, calibración, zonas, horarios, reglas.</li>
+<li>Red: WiFi/Ethernet, MQTT, NTP, DNS, servidor central.</li>
+<li>Token de API, canal de actualización, simulación, perfiles Modbus.</li>
+</ul>
+<p><strong>NO configurable (compile-time):</strong></p>
+<ul>
+<li>Mapa de pines (<code>PinMap.hpp</code>).</li>
+<li>Selección del modelo de sensor (drivers compilados).</li>
+<li>Expansores (74HC165/MCP23S17/ADC) y sus pines/CS.</li>
+<li>Direcciones I²C.</li>
+</ul>
+<blockquote>
+<p>Detalle y roadmap en <code>docs/MEJORAS.md</code> §13.</p>
+</blockquote>
 
 
 
