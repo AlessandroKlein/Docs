@@ -32,3 +32,10 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 1. Gateway RS485 (polling multi-esclavo por perfiles Modbus).
 2. HTTP/OTA sobre Ethernet (cliente HTTP propio o ETH nativo).
 3. Integración CAN de aplicación.
+
+## Modularidad (en curso)
+
+- ✅ Pines en NVS + web editable (`/pins`) — v3.18.0/v3.19.0.
+- ✅ Catálogo de sensores editable (`PUT /api/v1/sensors/catalog`) — v3.20.0.
+- ✅ Direcciones I²C desde el catálogo (SHT31/AHT20/ADS1115/BH1750/SCD41) — v3.21.0.
+- ❌ Instanciación del resto de drivers + expansores (74HC165/MCP23S17/ADC).
