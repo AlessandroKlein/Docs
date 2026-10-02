@@ -75,3 +75,8 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 
 - ✅ 74HC165 instanciado desde el catálogo (pines + nº chips en NVS, editables en /pins).
 - ❌ Falta solo: asignación de canales de todos los pools a actuadores.
+
+## v3.29.0
+
+- ✅ Asignación de canales con pool MCP23017 (canales 32..95 → device 0..3 / pin 0..15).
+- ⚠️ Resta (opcional): mapeo de canales configurable por actuador desde la web.
