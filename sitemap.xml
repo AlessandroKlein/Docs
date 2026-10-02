@@ -92,6 +92,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Diagramas/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Enumeraciones-y-tipos/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Enumeraciones-y-tipos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Enumeraciones-y-tipos/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Estacion-meteorologica/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -106,6 +113,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Evolucion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/FAQ/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/FAQ/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/FAQ/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Frontend/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -118,6 +132,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Glosario/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Glosario/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Guia-de-pines/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Guia-de-pines/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-pines/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Hardware-y-Conexiones/</loc>
@@ -176,6 +197,20 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/OTA-y-Actualizacion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Referencia-API-interna/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Referencia-API-interna/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Referencia-API-interna/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Referencia-configuracion/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Referencia-configuracion/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Referencia-configuracion/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Referencia-de-codigo/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -209,6 +244,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Servidor-central/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Servidor-central/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Solucion-de-problemas/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Solucion-de-problemas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Solucion-de-problemas/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Variables-Modificables/</loc>
@@ -323,6 +365,13 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Diagramas/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Enumeraciones-y-tipos/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Enumeraciones-y-tipos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Enumeraciones-y-tipos/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Estacion-meteorologica/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -337,6 +386,13 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Evolucion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/FAQ/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/FAQ/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/FAQ/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Frontend/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -349,6 +405,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Glosario/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Glosario/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-pines/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-pines/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Guia-de-pines/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Hardware-y-Conexiones/</loc>
@@ -400,6 +463,20 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/OTA-y-Actualizacion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Referencia-API-interna/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Referencia-API-interna/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Referencia-API-interna/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Referencia-configuracion/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Referencia-configuracion/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Referencia-configuracion/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Referencia-de-codigo/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -433,6 +510,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Servidor-central/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Servidor-central/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Solucion-de-problemas/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Solucion-de-problemas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Solucion-de-problemas/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Variables-Modificables/</loc>
