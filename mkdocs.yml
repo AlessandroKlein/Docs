@@ -52,6 +52,17 @@ markdown_extensions:
 plugins:
   - search
   - tags
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      languages:
+        - locale: es
+          default: true
+          name: Español
+          build: true
+        - locale: en
+          name: English
+          build: true
 
 nav:
   - Inicio: index.md
