@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -635,6 +637,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1878,23 +1908,36 @@
 <li>Riego automático deshabilitado hasta configuración.</li>
 </ul>
 <h2 id="3-configurabilidad-que-se-puede-cambiar-sin-tocar-codigo">3. Configurabilidad (¿qué se puede cambiar sin tocar código?)</h2>
-<p><strong>Configurable desde la web/API:</strong></p>
+<p><strong>Configurable desde la web/API (v3.29.0 — sin recompilar):</strong></p>
 <ul>
+<li><strong>Pines y direcciones I²C</strong>: <code>GET/PUT /api/v1/pins</code> + formulario <code>/pins</code> (NVS <code>ghpins</code>).</li>
+<li><strong>Catálogo de sensores</strong>: <code>PUT /api/v1/sensors/catalog</code> — <code>enabled</code>, <code>address</code>,
+  <code>zone</code>, <code>bus_index</code>, <code>read_interval_ms</code> por sensor (NVS <code>ghsensors</code>).</li>
+<li><strong>Catálogo de expansores</strong>: <code>PUT /api/v1/hardware</code> — agregar/editar nodos
+  (HC595/HC165/MCP23017/MCP23S17/ADC) con <code>enabled</code>, <code>address</code>, <code>bus_index</code>
+  (NVS <code>ghhw</code>).</li>
 <li>Sensores: habilitar/deshabilitar (sht31, ds18b20, suelo, luz, CO₂, lluvia, viento, tanque, caudal, pH, EC, exterior).</li>
 <li>Actuadores: habilitar + cantidad (bomba, válvulas, ventiladores, extractores, luces, ...).</li>
 <li>Umbrales, calibración, zonas, horarios, reglas.</li>
 <li>Red: WiFi/Ethernet, MQTT, NTP, DNS, servidor central.</li>
 <li>Token de API, canal de actualización, simulación, perfiles Modbus.</li>
 </ul>
-<p><strong>NO configurable (compile-time):</strong></p>
+<p><strong>Bloqueo de pines (PCB fabricada):</strong></p>
 <ul>
-<li>Mapa de pines (<code>PinMap.hpp</code>).</li>
-<li>Catálogo de sensores editable (PUT /api/v1/sensors/catalog); instanciación de drivers aún compile-time.</li>
-<li>Expansores (74HC165/MCP23S17/ADC) y sus pines/CS.</li>
-<li>Direcciones I²C.</li>
+<li><code>GH_PINS_LOCKED = 1</code> en <code>Version.hpp</code> → <code>PUT /api/v1/pins</code> responde <strong>403</strong> y
+  <code>/pins</code> deshabilita el formulario. El catálogo de sensores/actuadores sigue
+  configurable.</li>
+<li><code>GH_PINS_LOCKED = 0</code> (público) → todo editable.</li>
+</ul>
+<p><strong>Todavía requiere recompilar:</strong></p>
+<ul>
+<li>Agregar un <strong>modelo de sensor nuevo</strong> (los drivers están compilados; el catálogo
+  elige entre los soportados).</li>
+<li>Asignar <strong>canales</strong> a actuadores (hoy el <code>ROLE_TABLE</code> tiene canales fijos 0..24).</li>
 </ul>
 <blockquote>
-<p>Detalle y roadmap en <code>docs/MEJORAS.md</code> §13.</p>
+<p>Detalle y roadmap en <code>docs/MEJORAS.md</code> §13 y
+<a href="../Referencia-configuracion/">Referencia de configuración</a>.</p>
 </blockquote>
 
 

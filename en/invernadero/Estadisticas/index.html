@@ -12,17 +12,17 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Servidor-central/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Estadisticas/">
       
       
-        <link rel="prev" href="../OTA-y-Actualizacion/">
+        <link rel="prev" href="../Referencia-de-codigo/">
       
       
-        <link rel="next" href="../Seguridad/">
+        <link rel="next" href="../Referencia-API-interna/">
       
       
         
-          <link rel="alternate" href="../../../invernadero/Servidor-central/" hreflang="es">
+          <link rel="alternate" href="../../../invernadero/Estadisticas/" hreflang="es">
         
           <link rel="alternate" href="./" hreflang="en">
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>Servidor central - AlessandroKlein Docs</title>
+        <title>Estadísticas y métricas - AlessandroKlein Docs</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#servidor-central-multi-proyecto" class="md-skip">
+        <a href="#estadisticas-y-metricas-del-proyecto-v3290" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Servidor central
+              Estadísticas y métricas
             
           </span>
         </div>
@@ -169,7 +169,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../invernadero/Servidor-central/" hreflang="es" class="md-select__link">
+            <a href="../../../invernadero/Estadisticas/" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
@@ -654,10 +654,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Estadisticas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -673,6 +700,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-codigo-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Código fuente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Código fuente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-por-modulo-lineas-cpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribución por módulo (líneas .cpp)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-uso-de-recursos-esp32-particion-8-mb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Uso de recursos (ESP32, partición 8 MB)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-limites-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Límites del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-versiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Versiones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-hitos-del-release-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Hitos del release actual
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1158,37 +1288,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Servidor central
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Servidor-central/" class="md-nav__link">
         
   
   
@@ -1204,92 +1307,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#stack-actual-rama-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Stack actual (rama server)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-resumen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API (resumen)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seguridad" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seguridad
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#store-forward" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Store &amp; Forward
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modelo-multi-proyecto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modelo multi-proyecto
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#puesta-en-marcha" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Puesta en marcha
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1882,7 +1899,14 @@
       
       
       
-        <span class="md-tag">servidor</span>
+        <span class="md-tag">invernadero</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">referencia</span>
       
     
   </nav>
@@ -1892,64 +1916,286 @@
   
 
 
-<h1 id="servidor-central-multi-proyecto">Servidor central (multi-proyecto)</h1>
+<h1 id="estadisticas-y-metricas-del-proyecto-v3290">Estadísticas y métricas del proyecto (v3.29.0)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Backend/Web | <strong>Estado:</strong> Especificación | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Documento de diseño del servidor central unificado para <strong>todos los proyectos</strong>.
-Detalle completo en <a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/SERVIDOR-CENTRAL.md"><code>docs/SERVIDOR-CENTRAL.md</code></a>.</p>
-<h2 id="stack-actual-rama-server">Stack actual (rama <code>server</code>)</h2>
+<p>Todos los números medidos del proyecto en la versión actual.</p>
+<h2 id="1-codigo-fuente">1. Código fuente</h2>
 <table>
 <thead>
 <tr>
-<th>Capa</th>
-<th>Tecnología</th>
+<th>Métrica</th>
+<th style="text-align: right;">Valor</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Frontend</td>
-<td>HTML + CSS + JS (Chart.js, mqtt.js)</td>
+<td>Archivos <code>.cpp</code> (implementación)</td>
+<td style="text-align: right;">48</td>
 </tr>
 <tr>
-<td>Backend / API</td>
-<td>PHP 8.2 + Apache (front controller)</td>
+<td>Archivos <code>.hpp</code> (interfaces)</td>
+<td style="text-align: right;">58</td>
 </tr>
 <tr>
-<td>Base de datos</td>
-<td>PostgreSQL 16</td>
+<td>Líneas <code>.cpp</code></td>
+<td style="text-align: right;">~5.238</td>
 </tr>
 <tr>
-<td>Mensajería</td>
-<td>Mosquitto (MQTT 1883 + WebSocket 9001)</td>
+<td>Líneas <code>.hpp</code></td>
+<td style="text-align: right;">~2.793</td>
 </tr>
 <tr>
-<td>Orquestación</td>
-<td>Docker Compose</td>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>~8.031 líneas</strong></td>
+</tr>
+<tr>
+<td>Módulos (carpetas)</td>
+<td style="text-align: right;">11</td>
 </tr>
 </tbody>
 </table>
-<h2 id="api-resumen">API (resumen)</h2>
-<p><code>POST /api/v1/auth/login</code> (JWT) · <code>GET/POST /api/v1/greenhouses</code> ·
-<code>GET /api/v1/devices</code> · <code>GET /api/v1/devices/{id}</code> ·
-<code>.../{id}/sensors|actuators|alarms|readings|shadow|config|ota</code> ·
-<code>POST /api/v1/firmware/upload</code>.</p>
-<h2 id="seguridad">Seguridad</h2>
-<p>JWT · contraseñas bcrypt · RBAC granular · token de API por dispositivo ·
-<strong>rate limiting por IP</strong> · <strong>CORS configurable</strong> · MQTT con TLS en producción.</p>
-<h2 id="store-forward">Store &amp; Forward</h2>
-<p>Columna <code>sequence</code> en <code>sensor_readings</code> + consulta con <code>after_sequence</code> para
-sincronización incremental (detección de huecos).</p>
-<h2 id="modelo-multi-proyecto">Modelo multi-proyecto</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>projects → devices → sensors/actuators → readings/states/events
+<h3 id="distribucion-por-modulo-lineas-cpp">Distribución por módulo (líneas <code>.cpp</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th style="text-align: right;">Líneas</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sensors</code></td>
+<td style="text-align: right;">1.083</td>
+<td style="text-align: right;">20,7 %</td>
+</tr>
+<tr>
+<td><code>hardware</code></td>
+<td style="text-align: right;">968</td>
+<td style="text-align: right;">18,5 %</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td style="text-align: right;">713</td>
+<td style="text-align: right;">13,6 %</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td style="text-align: right;">681</td>
+<td style="text-align: right;">13,0 %</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td style="text-align: right;">599</td>
+<td style="text-align: right;">11,4 %</td>
+</tr>
+<tr>
+<td><code>core</code></td>
+<td style="text-align: right;">405</td>
+<td style="text-align: right;">7,7 %</td>
+</tr>
+<tr>
+<td><code>main.cpp</code></td>
+<td style="text-align: right;">350</td>
+<td style="text-align: right;">6,7 %</td>
+</tr>
+<tr>
+<td><code>actuators</code></td>
+<td style="text-align: right;">332</td>
+<td style="text-align: right;">6,3 %</td>
+</tr>
+<tr>
+<td><code>network</code></td>
+<td style="text-align: right;">314</td>
+<td style="text-align: right;">6,0 %</td>
+</tr>
+<tr>
+<td><code>control</code></td>
+<td style="text-align: right;">305</td>
+<td style="text-align: right;">5,8 %</td>
+</tr>
+<tr>
+<td><code>storage</code></td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">3,1 %</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-uso-de-recursos-esp32-particion-8-mb">2. Uso de recursos (ESP32, partición 8 MB)</h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Uso</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flash</td>
+<td><strong>38,6 %</strong></td>
+<td>1.291.129 / 3.342.336 bytes</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td><strong>27,2 %</strong></td>
+<td>89.064 / 327.680 bytes</td>
+</tr>
+<tr>
+<td>Tiempo de build</td>
+<td>~27 s</td>
+<td>entorno único <code>esp32doit-devkit-v1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-interfaces">3. Interfaces</h2>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th style="text-align: right;">Cantidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Endpoints REST</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr>
+<td>Páginas web HTML</td>
+<td style="text-align: right;">2 (<code>/</code> y <code>/pins</code>)</td>
+</tr>
+<tr>
+<td>Tópicos MQTT</td>
+<td style="text-align: right;">4 (<code>state</code>, <code>sensors</code>, <code>actuators</code>, <code>weather</code>) + <code>cmd</code></td>
+</tr>
+<tr>
+<td>Namespaces NVS propios</td>
+<td style="text-align: right;">3 (<code>ghpins</code>, <code>ghsensors</code>, <code>ghhw</code>) + config</td>
+</tr>
+<tr>
+<td>Tareas FreeRTOS</td>
+<td style="text-align: right;">2 (+ <code>loop()</code> en núcleo 1)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-limites-del-sistema">4. Límites del sistema</h2>
+<table>
+<thead>
+<tr>
+<th>Límite</th>
+<th>Constante</th>
+<th style="text-align: right;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sensores</td>
+<td><code>MAX_SENSORS</code></td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Zonas de suelo</td>
+<td><code>MAX_SOIL_ZONES</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Actuadores</td>
+<td><code>MAX_ACTUATORS</code></td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr>
+<td>Válvulas</td>
+<td><code>actValves</code></td>
+<td style="text-align: right;">0..8</td>
+</tr>
+<tr>
+<td>Zonas</td>
+<td><code>zoneCount</code></td>
+<td style="text-align: right;">0..8</td>
+</tr>
+<tr>
+<td>Entradas del catálogo</td>
+<td><code>SensorRegistry::MAX_ENTRIES</code></td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Nodos de hardware</td>
+<td><code>HardwareManager::MAX_NODES</code></td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Buses</td>
+<td><code>BusManager::MAX_BUSES</code></td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td>Pool MCP23017</td>
+<td><code>mcpPool[4]</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Pool MCP23S17</td>
+<td><code>spiPool[4]</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Pool ADC</td>
+<td><code>adcPool[4]</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Esclavos del gateway</td>
+<td><code>ModbusGateway::MAX_SLAVES</code></td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Registros históricos</td>
+<td><code>History</code></td>
+<td style="text-align: right;">circular</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-versiones">5. Versiones</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firmware</td>
+<td><code>3.29.0</code></td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td><code>rev0</code></td>
+</tr>
+<tr>
+<td>Perfil</td>
+<td><code>ESP32-GH-V1</code></td>
+</tr>
+<tr>
+<td>Esquema de config</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>Protocolo</td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-hitos-del-release-actual">6. Hitos del release actual</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Modularidad completa:  v3.18.0 → v3.29.0 (12 releases)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Últimos release:       v3.29.0 (asignación de canales, pool MCP23017)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Endpoints nuevos:      /pins, /hardware, /sensors/catalog, /modbus/gateway, /detect
 </span></code></pre></div>
-<p>Aislamiento por <code>project_id</code> + scope JWT + prefijo MQTT <code>{project}/{device_id}/...</code>.</p>
-<h2 id="puesta-en-marcha">Puesta en marcha</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>server
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>php<span class="w"> </span>php<span class="w"> </span>mqtt/worker.php
-</span></code></pre></div>
+<p>Ver <a href="../Referencia-de-codigo/">Referencia de código</a> y
+<a href="../Mejoras/">Mejoras</a>.</p>
 
 
 
@@ -1990,7 +2236,7 @@ sincronización incremental (detección de huecos).</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../OTA-y-Actualizacion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OTA y actualización">
+          <a href="../Referencia-de-codigo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Referencia de código (v3.29.0)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2000,20 +2246,20 @@ sincronización incremental (detección de huecos).</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                OTA y actualización
+                Referencia de código (v3.29.0)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Seguridad/" class="md-footer__link md-footer__link--next" aria-label="Next: Seguridad">
+          <a href="../Referencia-API-interna/" class="md-footer__link md-footer__link--next" aria-label="Next: Referencia API interna">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Seguridad
+                Referencia API interna
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -635,6 +637,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1576,6 +1606,122 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2026-10-02-modularidad-completa-v3180-v3290" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-10-02 — Modularidad completa (v3.18.0 → v3.29.0)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-10-02 — Modularidad completa (v3.18.0 → v3.29.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#includecorepinconfighpp-srccorepinconfigcpp-v3180" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        include/core/PinConfig.hpp + src/core/PinConfig.cpp (v3.18.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#includewebwebassetshpp-v3190" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        include/web/WebAssets.hpp (v3.19.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#includesensorssensorregistryhpp-cpp-v3200-v3230" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        include/sensors/SensorRegistry.hpp + .cpp (v3.20.0 → v3.23.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#srcsensorssensormanagercpp-v3210-v3230" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        src/sensors/SensorManager.cpp (v3.21.0 → v3.23.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#includecoreversionhpp-v3220" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        include/core/Version.hpp (v3.22.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#includehardwarehardwaremanagerhpp-cpp-v3240-v3260" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        include/hardware/HardwareManager.hpp + .cpp (v3.24.0 → v3.26.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#srcmaincpp-v3250-v3290" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        src/main.cpp (v3.25.0 → v3.29.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#includesystemotamanagerhpp-cpp-v3160" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        include/system/OtaManager.hpp + .cpp (v3.16.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#includesensorsmodbusgatewayhpp-cpp-v3170" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        include/sensors/ModbusGateway.hpp + .cpp (v3.17.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1902,6 +2048,92 @@ actualiza en cada commit que cambie comportamiento.</p>
 <li><strong>Cómo:</strong> <code>xSemaphoreTake/Give</code> alrededor de la lectura.</li>
 <li><strong>Impacto:</strong> sin cambio de firma en controladores.</li>
 <li><strong>Referencia:</strong> v3.10.0.</li>
+</ul>
+<h2 id="2026-10-02-modularidad-completa-v3180-v3290">2026-10-02 — Modularidad completa (v3.18.0 → v3.29.0)</h2>
+<h3 id="includecorepinconfighpp-srccorepinconfigcpp-v3180"><code>include/core/PinConfig.hpp</code> + <code>src/core/PinConfig.cpp</code> (v3.18.0)</h3>
+<ul>
+<li><strong>Qué:</strong> nueva estructura <code>PinConfig</code> (pines + direcciones I²C en runtime) y
+  <code>PinConfigManager</code> con persistencia NVS (<code>ghpins</code>).</li>
+<li><strong>Por qué:</strong> permitir configurar el hardware sin recompilar (README §205/§263).</li>
+<li><strong>Cómo:</strong> struct con defaults equivalentes a <code>PinMap</code>, serialización JSON y
+  <code>get/set/reset</code> sobre <code>Preferences</code>.</li>
+<li><strong>Impacto:</strong> <code>SensorManager</code>, <code>BusManager</code>, <code>HardwareManager</code> y <code>main.cpp</code> leen
+  pines de NVS en lugar de <code>PinMap.hpp</code>.</li>
+<li><strong>Referencia:</strong> v3.18.0.</li>
+</ul>
+<h3 id="includewebwebassetshpp-v3190"><code>include/web/WebAssets.hpp</code> (v3.19.0)</h3>
+<ul>
+<li><strong>Qué:</strong> <code>PINS_HTML</code> pasó de tabla de solo lectura a <strong>formulario editable</strong>.</li>
+<li><strong>Por qué:</strong> que el usuario configure los pines desde el navegador.</li>
+<li><strong>Cómo:</strong> formulario con <code>fetch</code> GET/PUT contra <code>/api/v1/pins</code>; deshabilita los
+  inputs si <code>locked</code> (PCB fija).</li>
+<li><strong>Impacto:</strong> requiere sesión de admin o token para guardar.</li>
+<li><strong>Referencia:</strong> v3.19.0.</li>
+</ul>
+<h3 id="includesensorssensorregistryhpp-cpp-v3200-v3230"><code>include/sensors/SensorRegistry.hpp</code> + <code>.cpp</code> (v3.20.0 → v3.23.0)</h3>
+<ul>
+<li><strong>Qué:</strong> <code>fromJson</code>, <code>load</code>, <code>save</code> (NVS <code>ghsensors</code>); <code>buildFromConfig</code> sigue
+  poblando el catálogo desde los flags.</li>
+<li><strong>Por qué:</strong> catálogo de sensores editable y persistido.</li>
+<li><strong>Cómo:</strong> <code>fromJson</code> actualiza solo entradas existentes por <code>id</code> (no permite
+  inyectar drivers inexistentes).</li>
+<li><strong>Impacto:</strong> <code>PUT /api/v1/sensors/catalog</code> (protegido) edita
+  <code>enabled/address/zone/bus_index/read_interval_ms</code>.</li>
+<li><strong>Referencia:</strong> v3.20.0/v3.23.0.</li>
+</ul>
+<h3 id="srcsensorssensormanagercpp-v3210-v3230"><code>src/sensors/SensorManager.cpp</code> (v3.21.0 → v3.23.0)</h3>
+<ul>
+<li><strong>Qué:</strong> las direcciones I²C y el <code>enabled</code> de <strong>todos</strong> los sensores se leen del
+  catálogo (patrón <code>addr(id, def)</code> y <code>on(id, flag)</code>).</li>
+<li><strong>Por qué:</strong> que el catálogo sea la única fuente de verdad del hardware.</li>
+<li><strong>Cómo:</strong> lambdas al inicio de <code>begin()</code> y <code>update()</code> con fallback a <code>PinConfig</code>/
+  <code>SystemConfig</code>.</li>
+<li><strong>Impacto:</strong> cambiar una dirección por web cambia el driver real (tras reinicio).</li>
+<li><strong>Referencia:</strong> v3.21.0/v3.22.0/v3.23.0.</li>
+</ul>
+<h3 id="includecoreversionhpp-v3220"><code>include/core/Version.hpp</code> (v3.22.0)</h3>
+<ul>
+<li><strong>Qué:</strong> nuevo flag <code>GH_PINS_LOCKED</code> (0 = público, 1 = PCB fija).</li>
+<li><strong>Por qué:</strong> proteger el cableado en placas fabricadas sin cerrar el proyecto.</li>
+<li><strong>Cómo:</strong> <code>PUT /api/v1/pins</code> responde 403 y <code>/pins</code> deshabilita el formulario.</li>
+<li><strong>Impacto:</strong> los sensores/actuadores siguen configurables.</li>
+<li><strong>Referencia:</strong> v3.22.0.</li>
+</ul>
+<h3 id="includehardwarehardwaremanagerhpp-cpp-v3240-v3260"><code>include/hardware/HardwareManager.hpp</code> + <code>.cpp</code> (v3.24.0 → v3.26.0)</h3>
+<ul>
+<li><strong>Qué:</strong> catálogo de nodos editable/persistido (NVS <code>ghhw</code>); <code>fromJson</code> permite
+  <strong>agregar</strong> nodos de tipos conocidos (HC595/HC165/MCP23017/MCP23S17/ADC).</li>
+<li><strong>Por qué:</strong> configurar expansores desde la web.</li>
+<li><strong>Cómo:</strong> <code>kind</code> validado con <code>hwKindFromString</code> y <code>bus</code> derivado del tipo.</li>
+<li><strong>Impacto:</strong> <code>PUT /api/v1/hardware</code> protegido; el <code>kind</code> desconocido se ignora.</li>
+<li><strong>Referencia:</strong> v3.24.0/v3.26.0.</li>
+</ul>
+<h3 id="srcmaincpp-v3250-v3290"><code>src/main.cpp</code> (v3.25.0 → v3.29.0)</h3>
+<ul>
+<li><strong>Qué:</strong> pools de expansores instanciados desde el catálogo: <code>mcpPool[4]</code>,
+  <code>spiPool[4]</code>, <code>adcPool[4]</code>, <code>input</code> (74HC165) y <code>SpiManager</code>.</li>
+<li><strong>Por qué:</strong> que el catálogo no sea solo metadatos sino que cree los drivers.</li>
+<li><strong>Cómo:</strong> <code>snapshot()</code> del <code>HardwareManager</code> + bucle por <code>kind</code> + <code>begin()</code> de cada
+  driver; <code>ActuatorManager</code> recibe el pool MCP23017 completo.</li>
+<li><strong>Impacto:</strong> <code>ActuatorManager::writeChannel</code> mapea canales 32..95 a
+  device 0..3 / pin 0..15.</li>
+<li><strong>Referencia:</strong> v3.25.0 – v3.29.0.</li>
+</ul>
+<h3 id="includesystemotamanagerhpp-cpp-v3160"><code>include/system/OtaManager.hpp</code> + <code>.cpp</code> (v3.16.0)</h3>
+<ul>
+<li><strong>Qué:</strong> <code>applyFromUrl(url, sha, Client*)</code> con GET HTTP manual sobre <code>Client*</code>.</li>
+<li><strong>Por qué:</strong> <code>HTTPClient</code> solo acepta <code>WiFiClient</code>; <code>Update</code> es agnóstico.</li>
+<li><strong>Cómo:</strong> parseo de URL + headers, soporte <code>Content-Length</code> y <code>chunked</code>.</li>
+<li><strong>Impacto:</strong> OTA por HTTP funciona sobre WiFi <strong>y</strong> Ethernet (W5500).</li>
+<li><strong>Referencia:</strong> v3.16.0.</li>
+</ul>
+<h3 id="includesensorsmodbusgatewayhpp-cpp-v3170"><code>include/sensors/ModbusGateway.hpp</code> + <code>.cpp</code> (v3.17.0)</h3>
+<ul>
+<li><strong>Qué:</strong> gateway RS485 con polling multi-esclavo por perfiles.</li>
+<li><strong>Por qué:</strong> leer varios esclavos Modbus sin bloquear.</li>
+<li><strong>Cómo:</strong> tabla de esclavos desde <code>ModbusProfileRegistry</code> + <code>tick()</code> con intervalo.</li>
+<li><strong>Impacto:</strong> <code>GET /api/v1/modbus/gateway</code>; conversión de tipos con escala/offset.</li>
+<li><strong>Referencia:</strong> v3.17.0.</li>
 </ul>
 
 

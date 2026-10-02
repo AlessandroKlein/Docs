@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="es" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,35 +12,35 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Servidor-central/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/invernadero/Estadisticas/">
       
       
-        <link rel="prev" href="../OTA-y-Actualizacion/">
+        <link rel="prev" href="../Referencia-de-codigo/">
       
       
-        <link rel="next" href="../Seguridad/">
+        <link rel="next" href="../Referencia-API-interna/">
       
       
         
-          <link rel="alternate" href="../../../invernadero/Servidor-central/" hreflang="es">
+          <link rel="alternate" href="./" hreflang="es">
         
-          <link rel="alternate" href="./" hreflang="en">
+          <link rel="alternate" href="../../en/invernadero/Estadisticas/" hreflang="en">
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Servidor central - AlessandroKlein Docs</title>
+        <title>Estadísticas y métricas - AlessandroKlein Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -59,9 +59,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -86,8 +86,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#servidor-central-multi-proyecto" class="md-skip">
-          Skip to content
+        <a href="#estadisticas-y-metricas-del-proyecto-v3290" class="md-skip">
+          Saltar a contenido
         </a>
       
     </div>
@@ -101,8 +101,8 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../" title="AlessandroKlein Docs" class="md-header__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="AlessandroKlein Docs" class="md-header__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Servidor central
+              Estadísticas y métricas
             
           </span>
         </div>
@@ -162,20 +162,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../invernadero/Servidor-central/" hreflang="es" class="md-select__link">
+            <a href="./" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="./" hreflang="en" class="md-select__link">
+            <a href="../../en/invernadero/Estadisticas/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -196,21 +196,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Buscar">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -223,7 +223,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            Inicializando búsqueda
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -235,7 +235,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/AlessandroKlein/Docs" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -250,7 +250,7 @@
   
     
       
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -260,7 +260,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../" class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -385,9 +385,9 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../" title="AlessandroKlein Docs" class="md-nav__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+    <a href="../.." title="AlessandroKlein Docs" class="md-nav__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -397,7 +397,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/AlessandroKlein/Docs" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -417,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -654,10 +654,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Estadisticas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -673,6 +700,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-codigo-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Código fuente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Código fuente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-por-modulo-lineas-cpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribución por módulo (líneas .cpp)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-uso-de-recursos-esp32-particion-8-mb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Uso de recursos (ESP32, partición 8 MB)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-limites-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Límites del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-versiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Versiones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-hitos-del-release-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Hitos del release actual
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1158,37 +1288,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Servidor central
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Servidor-central/" class="md-nav__link">
         
   
   
@@ -1204,92 +1307,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#stack-actual-rama-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Stack actual (rama server)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-resumen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API (resumen)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seguridad" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seguridad
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#store-forward" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Store &amp; Forward
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modelo-multi-proyecto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modelo multi-proyecto
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#puesta-en-marcha" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Puesta en marcha
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1831,14 +1848,14 @@
   
 
 
-  <nav class="md-path" aria-label="Navigation" >
+  <nav class="md-path" aria-label="Navegación" >
     <ol class="md-path__list">
       
         
   
   
     <li class="md-path__item">
-      <a href="../../" class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Inicio
@@ -1882,7 +1899,14 @@
       
       
       
-        <span class="md-tag">servidor</span>
+        <span class="md-tag">invernadero</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">referencia</span>
       
     
   </nav>
@@ -1892,64 +1916,286 @@
   
 
 
-<h1 id="servidor-central-multi-proyecto">Servidor central (multi-proyecto)</h1>
+<h1 id="estadisticas-y-metricas-del-proyecto-v3290">Estadísticas y métricas del proyecto (v3.29.0)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Backend/Web | <strong>Estado:</strong> Especificación | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Documento de diseño del servidor central unificado para <strong>todos los proyectos</strong>.
-Detalle completo en <a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/SERVIDOR-CENTRAL.md"><code>docs/SERVIDOR-CENTRAL.md</code></a>.</p>
-<h2 id="stack-actual-rama-server">Stack actual (rama <code>server</code>)</h2>
+<p>Todos los números medidos del proyecto en la versión actual.</p>
+<h2 id="1-codigo-fuente">1. Código fuente</h2>
 <table>
 <thead>
 <tr>
-<th>Capa</th>
-<th>Tecnología</th>
+<th>Métrica</th>
+<th style="text-align: right;">Valor</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Frontend</td>
-<td>HTML + CSS + JS (Chart.js, mqtt.js)</td>
+<td>Archivos <code>.cpp</code> (implementación)</td>
+<td style="text-align: right;">48</td>
 </tr>
 <tr>
-<td>Backend / API</td>
-<td>PHP 8.2 + Apache (front controller)</td>
+<td>Archivos <code>.hpp</code> (interfaces)</td>
+<td style="text-align: right;">58</td>
 </tr>
 <tr>
-<td>Base de datos</td>
-<td>PostgreSQL 16</td>
+<td>Líneas <code>.cpp</code></td>
+<td style="text-align: right;">~5.238</td>
 </tr>
 <tr>
-<td>Mensajería</td>
-<td>Mosquitto (MQTT 1883 + WebSocket 9001)</td>
+<td>Líneas <code>.hpp</code></td>
+<td style="text-align: right;">~2.793</td>
 </tr>
 <tr>
-<td>Orquestación</td>
-<td>Docker Compose</td>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>~8.031 líneas</strong></td>
+</tr>
+<tr>
+<td>Módulos (carpetas)</td>
+<td style="text-align: right;">11</td>
 </tr>
 </tbody>
 </table>
-<h2 id="api-resumen">API (resumen)</h2>
-<p><code>POST /api/v1/auth/login</code> (JWT) · <code>GET/POST /api/v1/greenhouses</code> ·
-<code>GET /api/v1/devices</code> · <code>GET /api/v1/devices/{id}</code> ·
-<code>.../{id}/sensors|actuators|alarms|readings|shadow|config|ota</code> ·
-<code>POST /api/v1/firmware/upload</code>.</p>
-<h2 id="seguridad">Seguridad</h2>
-<p>JWT · contraseñas bcrypt · RBAC granular · token de API por dispositivo ·
-<strong>rate limiting por IP</strong> · <strong>CORS configurable</strong> · MQTT con TLS en producción.</p>
-<h2 id="store-forward">Store &amp; Forward</h2>
-<p>Columna <code>sequence</code> en <code>sensor_readings</code> + consulta con <code>after_sequence</code> para
-sincronización incremental (detección de huecos).</p>
-<h2 id="modelo-multi-proyecto">Modelo multi-proyecto</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>projects → devices → sensors/actuators → readings/states/events
+<h3 id="distribucion-por-modulo-lineas-cpp">Distribución por módulo (líneas <code>.cpp</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th style="text-align: right;">Líneas</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sensors</code></td>
+<td style="text-align: right;">1.083</td>
+<td style="text-align: right;">20,7 %</td>
+</tr>
+<tr>
+<td><code>hardware</code></td>
+<td style="text-align: right;">968</td>
+<td style="text-align: right;">18,5 %</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td style="text-align: right;">713</td>
+<td style="text-align: right;">13,6 %</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td style="text-align: right;">681</td>
+<td style="text-align: right;">13,0 %</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td style="text-align: right;">599</td>
+<td style="text-align: right;">11,4 %</td>
+</tr>
+<tr>
+<td><code>core</code></td>
+<td style="text-align: right;">405</td>
+<td style="text-align: right;">7,7 %</td>
+</tr>
+<tr>
+<td><code>main.cpp</code></td>
+<td style="text-align: right;">350</td>
+<td style="text-align: right;">6,7 %</td>
+</tr>
+<tr>
+<td><code>actuators</code></td>
+<td style="text-align: right;">332</td>
+<td style="text-align: right;">6,3 %</td>
+</tr>
+<tr>
+<td><code>network</code></td>
+<td style="text-align: right;">314</td>
+<td style="text-align: right;">6,0 %</td>
+</tr>
+<tr>
+<td><code>control</code></td>
+<td style="text-align: right;">305</td>
+<td style="text-align: right;">5,8 %</td>
+</tr>
+<tr>
+<td><code>storage</code></td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">3,1 %</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-uso-de-recursos-esp32-particion-8-mb">2. Uso de recursos (ESP32, partición 8 MB)</h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Uso</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flash</td>
+<td><strong>38,6 %</strong></td>
+<td>1.291.129 / 3.342.336 bytes</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td><strong>27,2 %</strong></td>
+<td>89.064 / 327.680 bytes</td>
+</tr>
+<tr>
+<td>Tiempo de build</td>
+<td>~27 s</td>
+<td>entorno único <code>esp32doit-devkit-v1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-interfaces">3. Interfaces</h2>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th style="text-align: right;">Cantidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Endpoints REST</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr>
+<td>Páginas web HTML</td>
+<td style="text-align: right;">2 (<code>/</code> y <code>/pins</code>)</td>
+</tr>
+<tr>
+<td>Tópicos MQTT</td>
+<td style="text-align: right;">4 (<code>state</code>, <code>sensors</code>, <code>actuators</code>, <code>weather</code>) + <code>cmd</code></td>
+</tr>
+<tr>
+<td>Namespaces NVS propios</td>
+<td style="text-align: right;">3 (<code>ghpins</code>, <code>ghsensors</code>, <code>ghhw</code>) + config</td>
+</tr>
+<tr>
+<td>Tareas FreeRTOS</td>
+<td style="text-align: right;">2 (+ <code>loop()</code> en núcleo 1)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-limites-del-sistema">4. Límites del sistema</h2>
+<table>
+<thead>
+<tr>
+<th>Límite</th>
+<th>Constante</th>
+<th style="text-align: right;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sensores</td>
+<td><code>MAX_SENSORS</code></td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Zonas de suelo</td>
+<td><code>MAX_SOIL_ZONES</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Actuadores</td>
+<td><code>MAX_ACTUATORS</code></td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr>
+<td>Válvulas</td>
+<td><code>actValves</code></td>
+<td style="text-align: right;">0..8</td>
+</tr>
+<tr>
+<td>Zonas</td>
+<td><code>zoneCount</code></td>
+<td style="text-align: right;">0..8</td>
+</tr>
+<tr>
+<td>Entradas del catálogo</td>
+<td><code>SensorRegistry::MAX_ENTRIES</code></td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Nodos de hardware</td>
+<td><code>HardwareManager::MAX_NODES</code></td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Buses</td>
+<td><code>BusManager::MAX_BUSES</code></td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td>Pool MCP23017</td>
+<td><code>mcpPool[4]</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Pool MCP23S17</td>
+<td><code>spiPool[4]</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Pool ADC</td>
+<td><code>adcPool[4]</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Esclavos del gateway</td>
+<td><code>ModbusGateway::MAX_SLAVES</code></td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Registros históricos</td>
+<td><code>History</code></td>
+<td style="text-align: right;">circular</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-versiones">5. Versiones</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firmware</td>
+<td><code>3.29.0</code></td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td><code>rev0</code></td>
+</tr>
+<tr>
+<td>Perfil</td>
+<td><code>ESP32-GH-V1</code></td>
+</tr>
+<tr>
+<td>Esquema de config</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>Protocolo</td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-hitos-del-release-actual">6. Hitos del release actual</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Modularidad completa:  v3.18.0 → v3.29.0 (12 releases)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Últimos release:       v3.29.0 (asignación de canales, pool MCP23017)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Endpoints nuevos:      /pins, /hardware, /sensors/catalog, /modbus/gateway, /detect
 </span></code></pre></div>
-<p>Aislamiento por <code>project_id</code> + scope JWT + prefijo MQTT <code>{project}/{device_id}/...</code>.</p>
-<h2 id="puesta-en-marcha">Puesta en marcha</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>server
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>php<span class="w"> </span>php<span class="w"> </span>mqtt/worker.php
-</span></code></pre></div>
+<p>Ver <a href="../Referencia-de-codigo/">Referencia de código</a> y
+<a href="../Mejoras/">Mejoras</a>.</p>
 
 
 
@@ -1978,7 +2224,7 @@ sincronización incremental (detección de huecos).</p>
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
+  Volver al principio
 </button>
         
       </main>
@@ -1987,33 +2233,33 @@ sincronización incremental (detección de huecos).</p>
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../OTA-y-Actualizacion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OTA y actualización">
+          <a href="../Referencia-de-codigo/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Referencia de código (v3.29.0)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Previous
+                Anterior
               </span>
               <div class="md-ellipsis">
-                OTA y actualización
+                Referencia de código (v3.29.0)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Seguridad/" class="md-footer__link md-footer__link--next" aria-label="Next: Seguridad">
+          <a href="../Referencia-API-interna/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Referencia API interna">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Next
+                Siguiente
               </span>
               <div class="md-ellipsis">
-                Seguridad
+                Referencia API interna
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2109,14 +2355,14 @@ sincronización incremental (detección de huecos).</p>
 <div class="md-consent__controls">
   
     
-      <button class="md-button md-button--primary">Accept</button>
+      <button class="md-button md-button--primary">Aceptar</button>
     
     
     
   
     
     
-      <button type="reset" class="md-button md-button--primary">Reject</button>
+      <button type="reset" class="md-button md-button--primary">Rechazar</button>
     
     
   
@@ -2129,12 +2375,12 @@ sincronización incremental (detección de huecos).</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
     
   </body>

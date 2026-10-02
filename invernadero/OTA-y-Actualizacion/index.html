@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -635,6 +637,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1222,6 +1252,17 @@
     <span class="md-ellipsis">
       
         6. OTA desde el servidor central
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ota-por-ethernet-w5500-resuelto-en-v3160" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. OTA por Ethernet (W5500) — resuelto en v3.16.0
       
     </span>
   </a>
@@ -1916,7 +1957,7 @@
 <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invernadero"</span><span class="p">,</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stable"</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.15.0"</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.29.0"</span><span class="p">,</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">"firmware_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://.../firmware.bin"</span><span class="p">,</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">"sha256"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">"hardware_profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ESP32-GH-V1"</span><span class="p">,</span>
@@ -1935,9 +1976,47 @@
 <li>Actualizar (<code>POST /api/v1/devices/{id}/ota</code>) → comando MQTT.</li>
 <li>El ESP32 descarga, verifica SHA-256 e instala sin perder NVS ni SPIFFS.</li>
 </ol>
+<h2 id="7-ota-por-ethernet-w5500-resuelto-en-v3160">7. OTA por Ethernet (W5500) — resuelto en v3.16.0</h2>
+<p><code>Update.h</code> es <strong>agnóstico al origen del stream</strong>: recibe bytes por
+<code>Update.write()</code> desde cualquier <code>Client</code>. Por eso <code>OtaManager::applyFromUrl()</code>
+hace un <strong>GET HTTP manual</strong> sobre el <code>Client*</code> activo (WiFi <strong>o</strong> <code>EthernetClient</code>)
+y escribe el binario en la partición OTA.</p>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>Implementación</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP sobre WiFi</td>
+<td>GET manual sobre <code>Client*</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>HTTP sobre Ethernet (W5500)</td>
+<td>GET manual sobre <code>Client*</code></td>
+<td>✅ v3.16.0</td>
+</tr>
+<tr>
+<td>HTTPS sobre WiFi</td>
+<td><code>HTTPClient</code> + <code>WiFiClientSecure</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>HTTPS sobre Ethernet</td>
+<td>requiere TLS (W5500lwIP / ETH nativo)</td>
+<td>❌ pendiente</td>
+</tr>
+</tbody>
+</table>
+<p>Soporta <code>Content-Length</code> y <code>Transfer-Encoding: chunked</code> (necesario para servidores
+como GitHub/S3).</p>
 <blockquote>
-<p>Nota: OTA por <strong>Ethernet (W5500)</strong> está bloqueado (HTTPClient solo acepta
-WiFiClient) — ver <code>docs/MEJORAS.md</code> §10.</p>
+<p>El bloqueo histórico era solo de <code>HTTPClient</code> (acepta únicamente <code>WiFiClient</code>),
+no de <code>Update</code>. Ver <code>docs/MEJORAS.md</code> §10.</p>
 </blockquote>
 
 

@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -635,6 +637,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1415,10 +1445,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#estado" class="md-nav__link">
+  <a href="#estado-v3290" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estado
+        Estado (v3.29.0)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendientes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camino-recorrido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camino recorrido
       
     </span>
   </a>
@@ -1798,7 +1850,7 @@
 
 <h1 id="evolucion-v8-v9-v10">Evolución (V8 / V9 / V10)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
 <p>Objetivo: que el firmware pase de representar <strong>una instalación</strong> a representar
 <strong>una plataforma</strong>.</p>
@@ -1806,7 +1858,7 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>CONFIGURACIÓN  → "qué hardware hay"    (instalación)
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>AUTOMATIZACIÓN → "qué debe hacer"      (comportamiento)
 </span></code></pre></div>
-<h2 id="estado">Estado</h2>
+<h2 id="estado-v3290">Estado (v3.29.0)</h2>
 <table>
 <thead>
 <tr>
@@ -1817,11 +1869,11 @@
 <tbody>
 <tr>
 <td>Firmware de campo</td>
-<td>✅ v3.13.0</td>
+<td>✅ v3.29.0</td>
 </tr>
 <tr>
 <td>Servidor central</td>
-<td>✅ entregado</td>
+<td>✅ entregado (rate limiting + CORS + Store &amp; Forward)</td>
 </tr>
 <tr>
 <td>V8 base + registros REST</td>
@@ -1848,19 +1900,81 @@
 <td>✅</td>
 </tr>
 <tr>
-<td>W5500 (interfaz completa con HTTP/OTA sobre Ethernet)</td>
-<td>⚠️ parcial (MQTT sí; HTTP/OTA pendiente)</td>
+<td>OTA por HTTP sobre Ethernet (W5500)</td>
+<td>✅ v3.16.0</td>
+</tr>
+<tr>
+<td>Gateway RS485 (polling multi-esclavo)</td>
+<td>✅ v3.17.0</td>
 </tr>
 <tr>
 <td>Configuración por capas: merge/migraciones</td>
-<td>❌</td>
+<td>✅ v3.14.0 (schema 2)</td>
 </tr>
 <tr>
-<td>Store &amp; Forward</td>
-<td>❌</td>
+<td>Store &amp; Forward (servidor)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Modularidad completa</strong> (pines/sensores/expansores por web)</td>
+<td>✅ v3.18 → v3.29</td>
 </tr>
 </tbody>
 </table>
+<h2 id="pendientes">Pendientes</h2>
+<table>
+<thead>
+<tr>
+<th>Área</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTPS sobre W5500 (TLS)</td>
+<td>⚠️ requiere <code>W5500lwIP</code> o ETH nativo</td>
+</tr>
+<tr>
+<td>Mapeo de canales configurable por actuador</td>
+<td>❌ pendiente</td>
+</tr>
+<tr>
+<td>Estación meteorológica por Ethernet</td>
+<td>❌ pendiente</td>
+</tr>
+<tr>
+<td>Integración CAN de aplicación</td>
+<td>❌ pendiente</td>
+</tr>
+</tbody>
+</table>
+<h2 id="camino-recorrido">Camino recorrido</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>v3.0  → plataforma base (config, sensores, actuadores, control, red, OTA)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>v3.1  → identidad, estados, Modbus, simulación
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>v3.7  → OTA remota con SHA-256 + rollback
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>v3.8  → V8: registros (capability/module/sensor/actuator)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>v3.9  → partición 8 MB, REST V8, token de API, health, CAN
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>v3.10 → FreeRTOS (SensorTask/ControlTask), V8.1, V8.4, V9, StorageManager
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>v3.11 → Logger, EventBus, Scheduler, config por capas
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>v3.12 → multi-board + página /pins
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>v3.13 → interfaz WiFi/Ethernet (W5500)
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>v3.14 → configuración por capas (migraciones + merge), schema 2
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>v3.15 → autodetección guiada I²C
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>v3.16 → OTA por HTTP sobre Ethernet
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>v3.17 → gateway RS485 (polling multi-esclavo)
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>v3.18 → mapa de pines en NVS (PinConfig)
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>v3.19 → formulario web de pines
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>v3.20 → catálogo de sensores editable
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>v3.21 → direcciones I²C desde el catálogo
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>v3.22 → bloqueo de pines (PCB) + enabled del catálogo
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>v3.23 → el catálogo controla todos los sensores
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>v3.24 → catálogo de expansores
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>v3.25 → MCP23017 desde el catálogo
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>v3.26 → pool MCP23017 + agregar nodos
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>v3.27 → pools SPI (MCP23S17 + ADC)
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>v3.28 → 74HC165 desde el catálogo
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>v3.29 → asignación de canales (pool I²C)
+</span></code></pre></div>
 
 
 

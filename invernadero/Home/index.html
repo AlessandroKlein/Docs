@@ -508,6 +508,8 @@
       
         
       
+        
+      
     
     
     
@@ -626,6 +628,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1709,7 +1739,7 @@
 
 <h1 id="invernadero">Invernadero</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Embebidos (ESP32) | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-02 | <strong>Firmware:</strong> v3.12.0</p>
+<p><strong>Tipo:</strong> Embebidos (ESP32) | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-02 | <strong>Firmware:</strong> v3.29.0</p>
 </blockquote>
 <p>Sistema electrónico modular para supervisión, automatización y control de
 invernaderos mediante <strong>ESP32</strong>, configurable por <strong>interfaz web</strong> sin recompilar
@@ -1719,21 +1749,61 @@ el firmware.</p>
 <li>Firmware único para cualquier instalación (interior/exterior, CO₂, pH, EC, techo…).</li>
 <li>Configuración no volátil (NVS/JSON) editable por API REST y web.</li>
 <li>Autonomía total: el ESP32 controla localmente sin servidor ni Internet.</li>
-<li>API REST, WebSocket, MQTT y OTA con doble partición y rollback.</li>
+<li>API REST (48 endpoints), WebSocket, MQTT y OTA con doble partición y rollback.</li>
 <li>Multiprotocolo: I²C, SPI, 1-Wire, ADC, GPIO, RS485/Modbus RTU, CAN/TWAI.</li>
-<li>Plataforma configurable (V8/V9): registros, módulos, buses, catálogos.</li>
+<li><strong>Modularidad completa (v3.29.0)</strong>: pines, sensores y expansores configurables
+  desde la web sin recompilar.</li>
 </ul>
 <h2 id="repositorio">Repositorio</h2>
 <ul>
 <li>Código: <a href="https://github.com/AlessandroKlein/Invernadero">https://github.com/AlessandroKlein/Invernadero</a></li>
-<li>Especificación: <code>README.md</code> (286 secciones).</li>
+<li>Especificación: <code>README.md</code>.</li>
+<li>Wiki del proyecto: <a href="https://github.com/AlessandroKlein/Invernadero/wiki">https://github.com/AlessandroKlein/Invernadero/wiki</a></li>
 </ul>
-<h2 id="indice">Índice</h2>
+<h2 id="indice-de-la-documentacion">Índice de la documentación</h2>
+<p><strong>Empezar</strong></p>
 <ul>
-<li><a href="../Arquitectura/">Arquitectura</a></li>
-<li><a href="../Hardware-y-Conexiones/">Hardware y conexiones</a></li>
-<li><a href="../Decisiones/">Decisiones</a></li>
-<li><a href="../Registro-de-cambios/">Registro de cambios</a></li>
+<li><a href="../Inicio-rapido/">Inicio rápido</a> · <a href="../Arquitectura/">Arquitectura</a> ·
+  <a href="../Diagramas/">Diagramas</a> · <a href="../Compilacion/">Compilación</a></li>
+</ul>
+<p><strong>Referencia técnica</strong></p>
+<ul>
+<li><a href="../Referencia-de-codigo/">Referencia de código (v3.29.0)</a></li>
+<li><a href="../Referencia-API-interna/">Referencia API interna</a></li>
+<li><a href="../Enumeraciones-y-tipos/">Enumeraciones y tipos</a></li>
+<li><a href="../Referencia-configuracion/">Referencia de configuración (JSON)</a></li>
+<li><a href="../API-REST/">API REST</a> · <a href="../MQTT-y-WebSocket/">MQTT y WebSocket</a></li>
+</ul>
+<p><strong>Hardware</strong></p>
+<ul>
+<li><a href="../Compatibilidad/">Compatibilidad</a> · <a href="../Guia-de-pines/">Guía de pines</a> ·
+  <a href="../Hardware-y-Conexiones/">Hardware y conexiones</a> · <a href="../Materiales/">Materiales</a></li>
+</ul>
+<p><strong>Uso</strong></p>
+<ul>
+<li><a href="../Sensores/">Sensores</a> · <a href="../Actuadores-y-Salidas/">Actuadores</a> ·
+  <a href="../Control-PID/">Control PID</a> · <a href="../Configuracion/">Configuración</a> ·
+  <a href="../Variables-Modificables/">Variables modificables</a></li>
+</ul>
+<p><strong>Operación</strong></p>
+<ul>
+<li><a href="../OTA-y-Actualizacion/">OTA y actualización</a> · <a href="../Seguridad/">Seguridad</a> ·
+  <a href="../Identidad-y-Estados/">Identidad y estados</a> ·
+  <a href="../Estacion-meteorologica/">Estación meteorológica</a> ·
+  <a href="../Servidor-central/">Servidor central</a></li>
+</ul>
+<p><strong>Soporte</strong></p>
+<ul>
+<li><a href="../Solucion-de-problemas/">Solución de problemas</a> · <a href="../FAQ/">FAQ</a> ·
+  <a href="../Glosario/">Glosario</a></li>
+</ul>
+<p><strong>Proyecto</strong></p>
+<ul>
+<li><a href="../Decisiones/">Decisiones</a> · <a href="../Evolucion/">Evolución</a> ·
+  <a href="../Mejoras/">Mejoras</a> · <a href="../CHANGELOG/">CHANGELOG</a> ·
+  <a href="../Registro-de-cambios/">Registro de cambios</a> ·
+  <a href="../Guia-de-desarrollo/">Guía de desarrollo</a> ·
+  <a href="../Frontend/">Frontend</a></li>
 </ul>
 
 

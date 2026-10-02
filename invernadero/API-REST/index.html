@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#api-rest" class="md-skip">
+        <a href="#api-rest-referencia-completa" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -635,6 +637,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1112,10 +1142,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#identidad-red-y-diagnostico" class="md-nav__link">
+  <a href="#automatizacion-reglas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Identidad, red y diagnóstico
+        Automatización (reglas)
       
     </span>
   </a>
@@ -1123,10 +1153,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plataforma-configurable-v8v9" class="md-nav__link">
+  <a href="#modularidad-runtime-v318-v329" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plataforma configurable (V8/V9)
+        Modularidad runtime (v3.18 → v3.29)
       
     </span>
   </a>
@@ -1134,10 +1164,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#token-de-api" class="md-nav__link">
+  <a href="#rs485-modbus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Token de API
+        RS485 / Modbus
       
     </span>
   </a>
@@ -1145,10 +1175,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#autenticacion" class="md-nav__link">
+  <a href="#red" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Autenticación
+        Red
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identidad-y-diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identidad y diagnóstico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OTA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paginas-web-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Páginas web (HTML)
       
     </span>
   </a>
@@ -1880,11 +1954,18 @@
   
 
 
-<h1 id="api-rest">API REST</h1>
+<h1 id="api-rest-referencia-completa">API REST (referencia completa)</h1>
 <blockquote>
 <p><strong>Tipo:</strong> API | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Base: <code>http://&lt;IP&gt;/api/v1/</code> (puerto 80).</p>
+<p>Base: <code>http://&lt;IP&gt;/api/v1/</code> (puerto 80). <strong>48 endpoints</strong> en v3.29.0.</p>
+<div class="admonition info">
+<p class="admonition-title">Autenticación</p>
+<p>Los endpoints de <strong>escritura</strong> requieren <code>Authorization: Bearer &lt;token&gt;</code> o
+<code>X-Auth-Token</code> (sesión de admin o token de API). Los de lectura son abiertos.
+Si no hay autorización, el endpoint responde <code>401</code>; si los pines están
+bloqueados, <code>403</code>.</p>
+</div>
 <h2 id="estado-y-lectura">Estado y lectura</h2>
 <table>
 <thead>
@@ -1903,7 +1984,17 @@
 <tr>
 <td>GET</td>
 <td><code>/sensors</code></td>
-<td>Lista de sensores (con calidad)</td>
+<td>Lista de sensores con calidad</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/actuators</code></td>
+<td>Lista de actuadores (output, fault)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/zones</code></td>
+<td>Zonas configuradas</td>
 </tr>
 <tr>
 <td>GET</td>
@@ -1912,13 +2003,8 @@
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/actuators</code></td>
-<td>Lista de actuadores</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/zones</code></td>
-<td>Zonas</td>
+<td><code>/alarms</code></td>
+<td>Alarmas (severidad ≥ 2)</td>
 </tr>
 <tr>
 <td>GET</td>
@@ -1927,8 +2013,8 @@
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/alarms</code></td>
-<td>Alarmas (severidad ≥ 2)</td>
+<td><code>/logs</code></td>
+<td>Logs estructurados (nivel, módulo, mensaje)</td>
 </tr>
 </tbody>
 </table>
@@ -1945,12 +2031,22 @@
 <tr>
 <td>GET/PUT</td>
 <td><code>/config</code></td>
-<td>Configuración JSON completa (incluye <code>net_interface</code>, <code>eth_*</code>)</td>
+<td>Configuración JSON completa (PUT protegido)</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/config/schema</code></td>
 <td>Esquema descriptivo</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/config/export</code></td>
+<td>Exportar configuración</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/config/import</code></td>
+<td>Importar configuración</td>
 </tr>
 <tr>
 <td>POST</td>
@@ -1962,15 +2058,167 @@
 <td><code>/reset</code></td>
 <td><code>{"level":"network"\|"automation"\|"factory"}</code></td>
 </tr>
+<tr>
+<td>POST</td>
+<td><code>/factory-reset</code></td>
+<td>Reset de fábrica completo</td>
+</tr>
 </tbody>
 </table>
 <h2 id="control-de-actuadores">Control de actuadores</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>POST /api/v1/actuators
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>{"role":"pump","index":0,"output":100}
+<div class="language-http highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">POST /api/v1/actuators</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="err">{"role":"pump","index":0,"output":100}</span>
 </span></code></pre></div>
 <p>Roles: <code>pump</code>, <code>valve</code>, <code>fan</code>, <code>extractor</code>, <code>heater</code>, <code>humidifier</code>, <code>light</code>,
-<code>roof</code>, <code>window</code>, <code>shade</code>, <code>alarm</code>.</p>
-<h2 id="identidad-red-y-diagnostico">Identidad, red y diagnóstico</h2>
+<code>roof</code>, <code>window</code>, <code>shade</code>, <code>alarm</code>. <code>output</code> en % (0..100).</p>
+<h2 id="automatizacion-reglas">Automatización (reglas)</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/automation</code></td>
+<td>Lista de reglas</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/automation</code></td>
+<td>Agrega una regla</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/automation</code></td>
+<td>Borra reglas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="modularidad-runtime-v318-v329">Modularidad runtime (v3.18 → v3.29)</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET/PUT</td>
+<td><code>/pins</code></td>
+<td>Mapa de pines + direcciones I²C (NVS <code>ghpins</code>). PUT → <strong>403</strong> si <code>GH_PINS_LOCKED=1</code></td>
+</tr>
+<tr>
+<td>GET/PUT</td>
+<td><code>/sensors/catalog</code></td>
+<td>Catálogo de sensores: <code>enabled</code>, <code>address</code>, <code>zone</code>, <code>bus_index</code>, <code>read_interval_ms</code> (NVS <code>ghsensors</code>)</td>
+</tr>
+<tr>
+<td>GET/PUT</td>
+<td><code>/hardware</code></td>
+<td>Catálogo de expansores: agregar/editar nodos HC595/HC165/MCP23017/MCP23S17/ADC (NVS <code>ghhw</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/buses</code></td>
+<td>Buses registrados (I²C/SPI/UART/RS485/1-Wire/GPIO/CAN)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/detect</code></td>
+<td>Autodetección I²C: escanea y mapea dirección → tipo de dispositivo</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/actuators/catalog</code></td>
+<td>Catálogo de actuadores</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/modules</code></td>
+<td>Módulos embebidos</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/storage</code></td>
+<td>Almacenamiento (LittleFS/SPIFFS/SD): backend, uso, archivos</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo — leer y escribir pines:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>http://192.168.1.50/api/v1/pins
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># {"locked":0,"pins":{"i2c_sda":21,...}}</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>http://192.168.1.50/api/v1/pins<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer &lt;token&gt;"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"i2c_sda":21,"i2c_scl":22,"onewire":4}'</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># {"ok":true,"restart":true}</span>
+</span></code></pre></div>
+<h2 id="rs485-modbus">RS485 / Modbus</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/rs485</code></td>
+<td>Estadísticas del bus (tx, rx, CRC, timeouts)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/rs485/scan</code></td>
+<td>Escaneo de esclavos (IDs 1..64)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/modbus?slave=1&amp;func=3&amp;reg=0</code></td>
+<td>Lectura puntual de registros</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/modbus/profiles</code></td>
+<td>Perfiles e instancias Modbus</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/modbus/gateway</code></td>
+<td>Gateway RS485: valores y estado por esclavo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="red">Red</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/network</code></td>
+<td>SSID, IP, interfaz (wifi/ethernet), MQTT, NTP, DNS</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/network/scan</code></td>
+<td>Escaneo de redes WiFi</td>
+</tr>
+</tbody>
+</table>
+<h2 id="identidad-y-diagnostico">Identidad y diagnóstico</h2>
 <table>
 <thead>
 <tr>
@@ -1988,98 +2236,48 @@
 <tr>
 <td>GET</td>
 <td><code>/capabilities</code></td>
-<td>Capacidades (<code>WIFI</code>, <code>I2C</code>, <code>SPI</code>, <code>RS485</code>, <code>MODBUS</code>, ...)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/network</code></td>
-<td>SSID, IP, interfaz (wifi/ethernet), MQTT, NTP, DNS</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/rs485</code> + <code>/rs485/scan</code></td>
-<td>Estadísticas y escaneo Modbus</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/modbus?slave=1&amp;func=3&amp;reg=0</code></td>
-<td>Lectura de registros</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/modbus/profiles</code></td>
-<td>Perfiles e instancias Modbus (V9)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/modbus/gateway</code></td>
-<td>Gateway RS485: valores y estado por esclavo</td>
+<td>Capacidades (<code>WIFI</code>, <code>I2C</code>, <code>SPI</code>, <code>RS485</code>, <code>MODBUS</code>, …)</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/diagnostics</code></td>
 <td>WiFi, RSSI, MQTT, heap, uptime</td>
 </tr>
-</tbody>
-</table>
-<h2 id="plataforma-configurable-v8v9">Plataforma configurable (V8/V9)</h2>
-<table>
-<thead>
-<tr>
-<th>Método</th>
-<th>Endpoint</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/modules</code></td>
-<td>Módulos embebidos</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/buses</code></td>
-<td>Buses registrados</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/hardware</code></td>
-<td>Nodos de hardware</td>
-</tr>
-<tr>
-<td>GET/PUT</td>
-<td><code>/sensors/catalog</code></td>
-<td>Catálogo de sensores (PUT protegido edita enabled/address/zone/bus_index)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/actuators/catalog</code></td>
-<td>Catálogo de actuadores</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/storage</code></td>
-<td>Almacenamiento (LittleFS/SPIFFS/SD)</td>
-</tr>
 <tr>
 <td>GET</td>
 <td><code>/health</code></td>
-<td>Health monitor por tareas</td>
+<td>Health monitor por tareas (stack HWM, heartbeat)</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/boot</code></td>
-<td>Contadores de reinicio</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/logs</code></td>
-<td>Logs estructurados</td>
+<td>Contadores de reinicio (boot/watchdog/brownout/panic/ota)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="token-de-api">Token de API</h2>
+<h2 id="ota">OTA</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/ota</code></td>
+<td>Estado de la última actualización</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/firmware</code></td>
+<td>Manifest/versión de firmware</td>
+</tr>
+</tbody>
+</table>
+<h2 id="seguridad">Seguridad</h2>
 <table>
 <thead>
 <tr>
@@ -2091,24 +2289,50 @@
 <tbody>
 <tr>
 <td>POST</td>
+<td><code>/auth/login</code></td>
+<td>Login de administrador (<code>{"user","pass"}</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
 <td><code>/token/rotate</code></td>
-<td>Genera token (se muestra una vez)</td>
+<td>Genera token de API (se muestra una vez)</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/token/revoke</code></td>
-<td>Revoca token</td>
+<td>Revoca el token</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/token/status</code></td>
-<td>Estado (sin revelar el token)</td>
+<td>Estado del token (sin revelarlo)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="autenticacion">Autenticación</h2>
-<p>Los endpoints de escritura requieren <code>Authorization: Bearer &lt;token&gt;</code> o
-<code>X-Auth-Token</code> (sesión de admin o token de API).</p>
+<h2 id="paginas-web-html">Páginas web (HTML)</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/</code></td>
+<td>Dashboard local</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/pins</code></td>
+<td>Formulario de configuración de pines (se deshabilita si <code>GH_PINS_LOCKED=1</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Ver también: <a href="../MQTT-y-WebSocket/">MQTT y WebSocket</a> ·
+<a href="../Seguridad/">Seguridad</a> · <a href="../Solucion-de-problemas/">Solución de problemas</a>.</p>
 
 
 

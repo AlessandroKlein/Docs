@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -635,6 +637,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1026,6 +1056,17 @@
     <span class="md-ellipsis">
       
         6. Entradas de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pools-de-expansores-y-canales-v326-v329" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Pools de expansores y canales (v3.26 → v3.29)
       
     </span>
   </a>
@@ -1930,6 +1971,51 @@
 <h2 id="6-entradas-de-seguridad">6. Entradas de seguridad</h2>
 <p>EMERGENCY_STOP (27), TANK_LOW (32), TANK_HIGH (33), PUMP_FAULT,
 WINDOW_LIMIT_OPEN/CLOSE, ROOF_LIMIT_OPEN/CLOSE.</p>
+<h2 id="7-pools-de-expansores-y-canales-v326-v329">7. Pools de expansores y canales (v3.26 → v3.29)</h2>
+<p>Las salidas no se limitan al 74HC595 ni a un único MCP23017: el firmware
+<strong>instancia pools</strong> desde el catálogo de expansores (<code>PUT /api/v1/hardware</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Pool</th>
+<th>Driver</th>
+<th>Canales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shift</code></td>
+<td>74HC595 (SPI bit-banged)</td>
+<td>0..31 (soft-PWM)</td>
+</tr>
+<tr>
+<td><code>mcpPool[0..3]</code></td>
+<td>MCP23017 (I²C)</td>
+<td>32..95 (device 0..3, pin 0..15)</td>
+</tr>
+<tr>
+<td><code>spiPool[0..3]</code></td>
+<td>MCP23S17 (SPI)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>adcPool[0..3]</code></td>
+<td>ADC SPI (MCP3208)</td>
+<td>entradas analógicas</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>74HC165 (entradas)</td>
+<td>entradas digitales</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mapeo de canales</strong> (<code>ActuatorManager::writeChannel</code>):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>canal  0..31  → 74HC595 setChannelPercent(canal)            [soft-PWM]
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>canal 32..95  → mcpPool[(canal-32)/16]-&gt;digitalWrite((canal-32)%16)
+</span></code></pre></div>
+<p>Para usar un expansor, agregarlo por <code>PUT /api/v1/hardware</code> con su <code>kind</code>
+(MCP23017/MCP23S17/ADC/HC165), <code>address</code> (o CS) y <code>enabled: true</code>.</p>
 
 
 

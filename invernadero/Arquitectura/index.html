@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -681,13 +683,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modulos" class="md-nav__link">
+  <a href="#modulos-v3290" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Módulos
+        Módulos (v3.29.0)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Módulos (v3.29.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistencia-en-nvs-modularidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persistencia en NVS (modularidad)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -726,6 +745,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1867,21 +1914,56 @@
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>         ControlTask (prio 2) → seguridad + controladores + salidas
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Core 1 — loop()               → red, MQTT, API, WebSocket, OTA
 </span></code></pre></div>
-<h2 id="modulos">Módulos</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>core/       Types, PinMap, Version, PlatformTypes, CapabilityRegistry,
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>            ModuleRegistry, EventBus, Scheduler
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>config/     ConfigManager (NVS/JSON + token de API), Defaults
+<h2 id="modulos-v3290">Módulos (v3.29.0)</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>core/       Types, PinConfig (pines en NVS), PinMap (referencia), Version,
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>            PlatformTypes, CapabilityRegistry, ModuleRegistry, EventBus, Scheduler
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>config/     ConfigManager (NVS/JSON + capas + migraciones + token de API), Defaults
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>storage/    History, StorageManager (LittleFS/SPIFFS/SD)
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>hardware/   BusManager, HardwareManager, CanManager, SpiManager, AdcManager,
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            ShiftRegister595/165, Mcp23017/23s17, ModbusRtu
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>sensors/    SHT31/AHT20, DS18B20, ADS1115, BH1750, SCD4x, caudal, tanque,
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            lluvia, viento, pH, EC + SensorManager + registries
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>actuators/  ActuatorManager + ActuatorRegistry
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>control/    Climate, Irrigation, Lighting, Roof, Safety
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>network/    NetworkManager, MqttManager
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>api/        RestApi, WebSocketServer
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>system/     Watchdog, HealthMonitor, BootCounters, Logger, OtaManager, Device
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>hardware/   BusManager, HardwareManager (catálogo + NVS), SpiManager, AdcManager,
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            ShiftRegister595/165, Mcp23017, Mcp23s17, ModbusRtu, CanManager
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>sensors/    SensorManager + SensorRegistry (catálogo en NVS), ModbusProfileRegistry,
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            ModbusGateway (RS485 multi-esclavo) y drivers:
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            SHT31/AHT20, DS18B20, ADS1115, BH1750, SCD4x, caudal, tanque,
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            lluvia, viento, pH, EC
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>actuators/  ActuatorManager (pool MCP23017 + canales) + ActuatorRegistry
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>control/    Climate, Irrigation, Lighting, Roof, Safety, RuleEngine, CalculatedVariables
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>network/    NetworkManager (WiFi/Ethernet), MqttManager, WeatherStation
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>api/        RestApi (48 endpoints), WebSocketServer
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>system/     Device, Watchdog, HealthMonitor, BootCounters, Logger, OtaManager, Diagnostics
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>web/        WebAssets (formularios HTML: dashboard y /pins)
 </span></code></pre></div>
+<h3 id="persistencia-en-nvs-modularidad">Persistencia en NVS (modularidad)</h3>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Contenido</th>
+<th>Endpoint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ghpins</code></td>
+<td>Mapa de pines + direcciones I²C</td>
+<td><code>GET/PUT /api/v1/pins</code></td>
+</tr>
+<tr>
+<td><code>ghsensors</code></td>
+<td>Catálogo de sensores</td>
+<td><code>GET/PUT /api/v1/sensors/catalog</code></td>
+</tr>
+<tr>
+<td><code>ghhw</code></td>
+<td>Catálogo de expansores/nodos</td>
+<td><code>GET/PUT /api/v1/hardware</code></td>
+</tr>
+<tr>
+<td>(config)</td>
+<td><code>SystemConfig</code> completo</td>
+<td><code>GET/PUT /api/v1/config</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="jerarquia-de-control">Jerarquía de control</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>EMERGENCIA → SEGURIDAD → MANUAL → AUTOMÁTICO → PROGRAMACIÓN
 </span></code></pre></div>

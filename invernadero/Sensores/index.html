@@ -516,6 +516,8 @@
       
         
       
+        
+      
     
     
     
@@ -635,6 +637,34 @@
     
   
     Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -1025,6 +1055,17 @@
     <span class="md-ellipsis">
       
         11. Detección automática
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-catalogo-instanciable-v320-v323" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Catálogo instanciable (v3.20 → v3.23)
       
     </span>
   </a>
@@ -1982,6 +2023,24 @@ SIN COMUNICACIÓN / ERROR / VÁLIDO / FUERA DE RANGO</strong>.</p>
 <h2 id="11-deteccion-automatica">11. Detección automática</h2>
 <p>El firmware detecta SHT31, ADS1115, MCP23017, SCD41 y DS18B20. La detección no
 habilita funciones peligrosas: la activación requiere configuración.</p>
+<h2 id="12-catalogo-instanciable-v320-v323">12. Catálogo instanciable (v3.20 → v3.23)</h2>
+<p>Cada sensor del catálogo (<code>SensorRegistry</code>, NVS <code>ghsensors</code>) controla <strong>dos cosas</strong>:</p>
+<ul>
+<li><strong><code>address</code></strong>: la dirección I²C con la que se inicializa el driver.</li>
+<li><strong><code>enabled</code></strong>: si el sensor se <strong>reporta</strong> (si no, queda en <code>enabled: false</code>).</li>
+</ul>
+<p>Se edita con <code>PUT /api/v1/sensors/catalog</code>:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">[</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"temp_interior"</span><span class="p">,</span><span class="w"> </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">,</span><span class="w"> </span><span class="nt">"zone"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"co2"</span><span class="p">,</span><span class="w">          </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"light"</span><span class="p">,</span><span class="w">        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="nt">"read_interval_ms"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>IDs del catálogo: <code>temp_interior</code>, <code>hum_interior</code>, <code>temp_exterior</code>, <code>hum_exterior</code>,
+<code>temp_18b20</code>, <code>soil_0..3</code>, <code>light</code>, <code>co2</code>, <code>tank</code>, <code>flow</code>, <code>rain</code>, <code>wind</code>, <code>ph</code>, <code>ec</code>.</p>
+<blockquote>
+<p><code>GET /api/v1/sensors/catalog</code> devuelve el catálogo con el driver y tipo de cada uno.</p>
+</blockquote>
 
 
 
