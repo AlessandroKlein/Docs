@@ -12,17 +12,17 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Decisiones/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Diagramas/">
       
       
-        <link rel="prev" href="../Identidad-y-Estados/">
+        <link rel="prev" href="../Arquitectura/">
       
       
-        <link rel="next" href="../Compilacion/">
+        <link rel="next" href="../Control-PID/">
       
       
         
-          <link rel="alternate" href="../../../invernadero/Decisiones/" hreflang="es">
+          <link rel="alternate" href="../../../invernadero/Diagramas/" hreflang="es">
         
           <link rel="alternate" href="./" hreflang="en">
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>Decisiones - AlessandroKlein Docs</title>
+        <title>Diagramas de bloques y datos - AlessandroKlein Docs</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#decisiones-de-arquitectura" class="md-skip">
+        <a href="#diagramas-de-bloques-y-flujo-de-datos" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Decisiones
+              Diagramas de bloques y datos
             
           </span>
         </div>
@@ -169,7 +169,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../invernadero/Decisiones/" hreflang="es" class="md-select__link">
+            <a href="../../../invernadero/Diagramas/" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
@@ -608,10 +608,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Diagramas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de bloques y datos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -627,6 +654,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-arquitectura-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Arquitectura del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-flujo-de-datos-telemetria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Flujo de datos (telemetría)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-lazo-de-control-local-sin-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Lazo de control local (sin servidor)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ciclo-de-vida-de-un-dispositivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ciclo de vida de un dispositivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tareas-freertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Tareas FreeRTOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1056,37 +1158,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Decisiones
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Decisiones/" class="md-nav__link">
         
   
   
@@ -1102,59 +1177,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#principio-rector" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Principio rector
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resumen-de-decisiones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resumen de decisiones
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#invariantes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Invariantes
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1578,41 +1600,64 @@
   
 
 
-<h1 id="decisiones-de-arquitectura">Decisiones de arquitectura</h1>
+<h1 id="diagramas-de-bloques-y-flujo-de-datos">Diagramas de bloques y flujo de datos</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Cerrado | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Documento fuente: <a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/DUDAS-Y-DECISIONES.md"><code>docs/DUDAS-Y-DECISIONES.md</code></a>.</p>
-<h2 id="principio-rector">Principio rector</h2>
-<blockquote>
-<p>El servidor administra y coordina. El ESP32 controla y protege.</p>
-</blockquote>
-<h2 id="resumen-de-decisiones">Resumen de decisiones</h2>
-<ol>
-<li><strong>Retención de históricos</strong>: PostgreSQL particionado por mes + agregación progresiva.</li>
-<li><strong>Variables calculadas (VPD)</strong>: cálculo local (automatización) + central (históricos).</li>
-<li><strong>Ubicación</strong>: <code>latitude/longitude/elevation/timezone</code> por invernadero.</li>
-<li><strong>Estación meteorológica</strong>: <code>WeatherManager</code> con adaptadores (Open-Meteo/REST/MQTT/Modbus).</li>
-<li><strong>AP</strong>: SSID único + contraseña aleatoria/persistente (no derivada de MAC).</li>
-<li><strong>Web local</strong>: autenticación obligatoria + hardware avanzado protegido.</li>
-<li><strong>TLS</strong>: preparado en V8; obligatorio para comunicación remota.</li>
-<li><strong>MQTT provisioning</strong>: DISCOVERED → PENDING → COMMISSIONED → ACTIVE (+ BLOCKED/REVOKED).</li>
-<li><strong>Device Shadow</strong>: <code>desired</code> / <code>reported</code> / <code>actual</code>.</li>
-<li><strong>Identidad</strong>: <code>device_id</code>/<code>device_uid</code>/<code>hardware_id</code>/<code>mac_address</code>.</li>
-<li><strong>PCNT</strong>: <code>PulseCounterManager</code> para caudal/lluvia/anemómetro.</li>
-<li><strong>Modbus</strong>: sin autodiscovery universal; perfiles + commissioning.</li>
-<li><strong>CAN/TWAI</strong>: <code>CanManager</code> + transceptor externo SN65HVD23X.</li>
-<li><strong>Sistema de módulos</strong>: <code>ModuleRegistry</code> en firmware/servidor/frontend.</li>
-<li><strong>Token de API</strong>: persistente en NVS para control desde el servidor central.</li>
-</ol>
-<h2 id="invariantes">Invariantes</h2>
-<ol>
-<li>El dispositivo funciona sin servidor.</li>
-<li>El servidor nunca es necesario para una función automática crítica.</li>
-<li>La automatización se ejecuta localmente.</li>
-<li>Las comunicaciones son una capa independiente de la lógica de control.</li>
-<li>El servidor administra; el ESP32 mide, decide, controla y protege.</li>
-</ol>
+<p>Diagramas que explican cómo fluyen los datos y cómo se estructura el sistema.</p>
+<h2 id="1-arquitectura-del-sistema">1. Arquitectura del sistema</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Field["Campo (invernadero)"]
+        SENS["Sensores"] --&gt; ESP["ESP32"]
+        ESP --&gt; ACT["Actuadores"]
+    end
+    subgraph Net["Red"]
+        MQTT["MQTT broker"]
+        HTTP["API REST"]
+    end
+    subgraph Server["Servidor central"]
+        DB[("PostgreSQL")]
+        DASH["Dashboard"]
+    end
+    ESP --&gt;|"telemetría"| MQTT --&gt; DB
+    ESP &lt;--&gt;|"control/config"| HTTP
+    DB --&gt; DASH</code></pre>
+<h2 id="2-flujo-de-datos-telemetria">2. Flujo de datos (telemetría)</h2>
+<pre class="mermaid"><code>sequenceDiagram
+    participant S as Sensor
+    participant E as ESP32
+    participant M as MQTT
+    participant W as Worker
+    participant D as DB
+    S-&gt;&gt;E: lectura (I²C/1-Wire/RS485)
+    E-&gt;&gt;E: validar + calcular (VPD, ...)
+    E-&gt;&gt;M: publish greenhouse/{id}/sensors
+    M-&gt;&gt;W: mensaje
+    W-&gt;&gt;D: INSERT sensor_readings
+    D--&gt;&gt;W: OK</code></pre>
+<h2 id="3-lazo-de-control-local-sin-servidor">3. Lazo de control local (sin servidor)</h2>
+<pre class="mermaid"><code>flowchart LR
+    S["Sensores"] --&gt; C["ControlTask (reglas/safety/PID)"]
+    C --&gt; A["Actuadores"]
+    A --&gt; S</code></pre>
+<h2 id="4-ciclo-de-vida-de-un-dispositivo">4. Ciclo de vida de un dispositivo</h2>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; DISCOVERED
+    DISCOVERED --&gt; PENDING
+    PENDING --&gt; COMMISSIONED
+    COMMISSIONED --&gt; ACTIVE
+    ACTIVE --&gt; BLOCKED
+    BLOCKED --&gt; ACTIVE
+    ACTIVE --&gt; REVOKED
+    REVOKED --&gt; [*]</code></pre>
+<h2 id="5-tareas-freertos">5. Tareas FreeRTOS</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Core0["Núcleo 0"]
+        ST["SensorTask (adquisición)"] --&gt;|"semáforo"| CT["ControlTask (control)"]
+    end
+    subgraph Core1["Núcleo 1"]
+        LOOP["loop() — red, MQTT, API, OTA"]
+    end</code></pre>
 
 
 
@@ -1650,7 +1695,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Identidad-y-Estados/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Identidad y estados">
+          <a href="../Arquitectura/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Arquitectura">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1660,20 +1705,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Identidad y estados
+                Arquitectura
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Compilacion/" class="md-footer__link md-footer__link--next" aria-label="Next: Compilación y flasheo">
+          <a href="../Control-PID/" class="md-footer__link md-footer__link--next" aria-label="Next: Control PID">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Compilación y flasheo
+                Control PID
               </div>
             </div>
             <div class="md-footer__button md-icon">

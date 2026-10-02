@@ -71,11 +71,25 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Configuracion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Control-PID/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Control-PID/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Control-PID/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Decisiones/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Decisiones/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Decisiones/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Diagramas/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Diagramas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Diagramas/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Estacion-meteorologica/</loc>
@@ -281,11 +295,25 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Configuracion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Control-PID/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Control-PID/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Control-PID/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Decisiones/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Decisiones/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Decisiones/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Diagramas/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Diagramas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Diagramas/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Estacion-meteorologica/</loc>

@@ -12,17 +12,17 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Decisiones/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Control-PID/">
       
       
-        <link rel="prev" href="../Identidad-y-Estados/">
+        <link rel="prev" href="../Diagramas/">
       
       
-        <link rel="next" href="../Compilacion/">
+        <link rel="next" href="../Compatibilidad/">
       
       
         
-          <link rel="alternate" href="../../../invernadero/Decisiones/" hreflang="es">
+          <link rel="alternate" href="../../../invernadero/Control-PID/" hreflang="es">
         
           <link rel="alternate" href="./" hreflang="en">
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>Decisiones - AlessandroKlein Docs</title>
+        <title>Control PID - AlessandroKlein Docs</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#decisiones-de-arquitectura" class="md-skip">
+        <a href="#control-pid" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Decisiones
+              Control PID
             
           </span>
         </div>
@@ -169,7 +169,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../invernadero/Decisiones/" hreflang="es" class="md-select__link">
+            <a href="../../../invernadero/Control-PID/" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
@@ -636,10 +636,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Control-PID/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -655,6 +682,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es-un-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Qué es un PID?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-diagrama-de-bloques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Diagrama de bloques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-los-tres-terminos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Los tres términos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Fórmula
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-respuesta-tipica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Respuesta típica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sintonizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sintonización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-aplicacion-en-el-invernadero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Aplicación en el invernadero
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1056,37 +1180,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Decisiones
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Decisiones/" class="md-nav__link">
         
   
   
@@ -1102,59 +1199,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#principio-rector" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Principio rector
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resumen-de-decisiones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resumen de decisiones
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#invariantes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Invariantes
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1578,41 +1622,115 @@
   
 
 
-<h1 id="decisiones-de-arquitectura">Decisiones de arquitectura</h1>
+<h1 id="control-pid">Control PID</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Cerrado | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Documento fuente: <a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/DUDAS-Y-DECISIONES.md"><code>docs/DUDAS-Y-DECISIONES.md</code></a>.</p>
-<h2 id="principio-rector">Principio rector</h2>
+<p>Explicación de los controladores <strong>PID</strong> (Proporcional-Integral-Derivativo) y su
+aplicación en el invernadero.</p>
+<h2 id="1-que-es-un-pid">1. ¿Qué es un PID?</h2>
+<p>Un controlador PID ajusta una <strong>salida</strong> (p. ej., potencia de un ventilador) para
+llevar una <strong>variable medida</strong> (temperatura) al <strong>objetivo</strong> (setpoint), minimizando
+el error:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>error = setpoint − medición
+</span></code></pre></div>
+<h2 id="2-diagrama-de-bloques">2. Diagrama de bloques</h2>
+<pre class="mermaid"><code>flowchart LR
+    SP["Setpoint"] --&gt; ERR["Error e(t)"]
+    PV["Medición (sensor)"] --&gt; ERR
+    ERR --&gt; P["P: Kp·e(t)"]
+    ERR --&gt; I["I: Ki·∫e(t)dt"]
+    ERR --&gt; D["D: Kd·de(t)/dt"]
+    P --&gt; SUM["+"] --&gt; OUT["Salida u(t) → actuador"]
+    I --&gt; SUM
+    D --&gt; SUM
+    OUT --&gt; PLANT["Planta (invernadero)"] --&gt; PV</code></pre>
+<h2 id="3-los-tres-terminos">3. Los tres términos</h2>
+<table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Acción</th>
+<th>Efecto de aumentar el coeficiente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P</strong> (proporcional)</td>
+<td>corrige según el error <strong>actual</strong></td>
+<td>respuesta más rápida, pero tiende a oscilar</td>
+</tr>
+<tr>
+<td><strong>I</strong> (integral)</td>
+<td>acumula el error en el tiempo</td>
+<td>elimina el <strong>error estacionario</strong>, puede sobreoscilar</td>
+</tr>
+<tr>
+<td><strong>D</strong> (derivativo)</td>
+<td>reacciona a la <strong>tendencia</strong></td>
+<td>amortigua oscilaciones, pero amplifica el ruido</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-formula">4. Fórmula</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>u(t) = Kp·e(t) + Ki·∫e(t) dt + Kd·de(t)/dt
+</span></code></pre></div>
+<h2 id="5-respuesta-tipica">5. Respuesta típica</h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "Respuesta"
+    direction TB
+    A["P solo: oscila alrededor del setpoint"] --&gt; B["P + I: llega al setpoint (sin offset)"]
+    B --&gt; C["P + I + D: llega rápido y sin oscilar"]
+    end</code></pre>
+<h2 id="6-sintonizacion">6. Sintonización</h2>
+<ol>
+<li><strong>Manual</strong>: empezar solo con <code>Kp</code>, subir hasta que oscile; bajar a la mitad.
+   Luego subir <code>Ki</code> hasta eliminar el offset; por último <code>Kd</code> para amortiguar.</li>
+<li><strong>Ziegler-Nichols</strong>: llevar el lazo a oscilación sostenida (solo <code>Kp</code>), medir el
+   periodo <code>Tu</code>, y derivar <code>Kp/Ki/Kd</code> de tablas.</li>
+</ol>
+<h2 id="7-aplicacion-en-el-invernadero">7. Aplicación en el invernadero</h2>
+<table>
+<thead>
+<tr>
+<th>Lazo</th>
+<th>Variable</th>
+<th>Salida</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clima</td>
+<td>Temperatura</td>
+<td>Ventilación/calefacción</td>
+<td>PID o histéresis (según inercia)</td>
+</tr>
+<tr>
+<td>Clima</td>
+<td>Humedad</td>
+<td>Humidificador/extractor</td>
+<td>PID o histéresis</td>
+</tr>
+<tr>
+<td>Riego</td>
+<td>Humedad de suelo</td>
+<td>Válvula/bomba</td>
+<td>normalmente histéresis (suelo lento)</td>
+</tr>
+<tr>
+<td>Ventilación</td>
+<td>CO₂</td>
+<td>Extractor</td>
+<td>PID si se mide CO₂</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>El servidor administra y coordina. El ESP32 controla y protege.</p>
+<p>En sistemas con mucha inercia (suelo, temperatura ambiente) la <strong>histéresis</strong>
+suele ser más robusta y simple que un PID; el PID brilla en lazos rápidos o con
+offset por eliminar.</p>
 </blockquote>
-<h2 id="resumen-de-decisiones">Resumen de decisiones</h2>
-<ol>
-<li><strong>Retención de históricos</strong>: PostgreSQL particionado por mes + agregación progresiva.</li>
-<li><strong>Variables calculadas (VPD)</strong>: cálculo local (automatización) + central (históricos).</li>
-<li><strong>Ubicación</strong>: <code>latitude/longitude/elevation/timezone</code> por invernadero.</li>
-<li><strong>Estación meteorológica</strong>: <code>WeatherManager</code> con adaptadores (Open-Meteo/REST/MQTT/Modbus).</li>
-<li><strong>AP</strong>: SSID único + contraseña aleatoria/persistente (no derivada de MAC).</li>
-<li><strong>Web local</strong>: autenticación obligatoria + hardware avanzado protegido.</li>
-<li><strong>TLS</strong>: preparado en V8; obligatorio para comunicación remota.</li>
-<li><strong>MQTT provisioning</strong>: DISCOVERED → PENDING → COMMISSIONED → ACTIVE (+ BLOCKED/REVOKED).</li>
-<li><strong>Device Shadow</strong>: <code>desired</code> / <code>reported</code> / <code>actual</code>.</li>
-<li><strong>Identidad</strong>: <code>device_id</code>/<code>device_uid</code>/<code>hardware_id</code>/<code>mac_address</code>.</li>
-<li><strong>PCNT</strong>: <code>PulseCounterManager</code> para caudal/lluvia/anemómetro.</li>
-<li><strong>Modbus</strong>: sin autodiscovery universal; perfiles + commissioning.</li>
-<li><strong>CAN/TWAI</strong>: <code>CanManager</code> + transceptor externo SN65HVD23X.</li>
-<li><strong>Sistema de módulos</strong>: <code>ModuleRegistry</code> en firmware/servidor/frontend.</li>
-<li><strong>Token de API</strong>: persistente en NVS para control desde el servidor central.</li>
-</ol>
-<h2 id="invariantes">Invariantes</h2>
-<ol>
-<li>El dispositivo funciona sin servidor.</li>
-<li>El servidor nunca es necesario para una función automática crítica.</li>
-<li>La automatización se ejecuta localmente.</li>
-<li>Las comunicaciones son una capa independiente de la lógica de control.</li>
-<li>El servidor administra; el ESP32 mide, decide, controla y protege.</li>
-</ol>
 
 
 
@@ -1650,7 +1768,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Identidad-y-Estados/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Identidad y estados">
+          <a href="../Diagramas/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Diagramas de bloques y datos">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1660,20 +1778,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Identidad y estados
+                Diagramas de bloques y datos
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Compilacion/" class="md-footer__link md-footer__link--next" aria-label="Next: Compilación y flasheo">
+          <a href="../Compatibilidad/" class="md-footer__link md-footer__link--next" aria-label="Next: Compatibilidad (placas/sensores/buses)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Compilación y flasheo
+                Compatibilidad (placas/sensores/buses)
               </div>
             </div>
             <div class="md-footer__button md-icon">
