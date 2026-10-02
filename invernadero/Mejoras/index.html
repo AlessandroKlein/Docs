@@ -1235,6 +1235,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#v3220" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.22.0
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1669,6 +1680,11 @@
 <li>✅ Catálogo de sensores editable (<code>PUT /api/v1/sensors/catalog</code>) — v3.20.0.</li>
 <li>✅ Direcciones I²C desde el catálogo (SHT31/AHT20/ADS1115/BH1750/SCD41) — v3.21.0.</li>
 <li>❌ Instanciación del resto de drivers + expansores (74HC165/MCP23S17/ADC).</li>
+</ul>
+<h2 id="v3220">v3.22.0</h2>
+<ul>
+<li>✅ Bloqueo de pines para PCB fija (<code>GH_PINS_LOCKED</code>: 0 público / 1 PCB). Con PCB, <code>PUT /api/v1/pins</code> → 403 y <code>/pins</code> deshabilita el formulario.</li>
+<li>✅ El <code>enabled</code> del catálogo controla el reporte de los I²C (SHT31/AHT20/ADS1115/BH1750/SCD41).</li>
 </ul>
 
 
