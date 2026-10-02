@@ -38,3 +38,22 @@ El usuario elige con qué interfaz se conecta. Solo una queda activa por arranqu
 
 - Temperatura 18/24/28 °C · Humedad 55/70/85 % · Suelo 35/55 %.
 - Riego automático deshabilitado hasta configuración.
+
+## 3. Configurabilidad (¿qué se puede cambiar sin tocar código?)
+
+**Configurable desde la web/API:**
+
+- Sensores: habilitar/deshabilitar (sht31, ds18b20, suelo, luz, CO₂, lluvia, viento, tanque, caudal, pH, EC, exterior).
+- Actuadores: habilitar + cantidad (bomba, válvulas, ventiladores, extractores, luces, ...).
+- Umbrales, calibración, zonas, horarios, reglas.
+- Red: WiFi/Ethernet, MQTT, NTP, DNS, servidor central.
+- Token de API, canal de actualización, simulación, perfiles Modbus.
+
+**NO configurable (compile-time):**
+
+- Mapa de pines (`PinMap.hpp`).
+- Selección del modelo de sensor (drivers compilados).
+- Expansores (74HC165/MCP23S17/ADC) y sus pines/CS.
+- Direcciones I²C.
+
+> Detalle y roadmap en `docs/MEJORAS.md` §13.
