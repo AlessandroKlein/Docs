@@ -2,10 +2,19 @@ site_name: AlessandroKlein Docs
 site_description: Documentación unificada de los proyectos de AlessandroKlein
 site_url: https://alessandroklein.github.io/Docs/
 site_author: AlessandroKlein
+copyright: "© 2026 AlessandroKlein"
+
+repo_url: https://github.com/AlessandroKlein/Docs
+repo_name: AlessandroKlein/Docs
 
 theme:
   name: material
   language: es
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Roboto
+    code: Roboto Mono
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -22,19 +31,30 @@ theme:
         icon: material/weather-sunny
         name: Cambiar a claro
   features:
+    # Navegación
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
-    - navigation.top
+    - navigation.expand
     - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.path
+    - navigation.tracking
+    # Índice (TOC)
+    - toc.follow
+    - toc.integrate
+    # Búsqueda
     - search.suggest
     - search.highlight
     - search.share
+    # Contenido
     - content.code.copy
-  icon:
-    repo: fontawesome/brands/github
-
-repo_url: https://github.com/AlessandroKlein/Docs
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    # Cabecera
+    - header.autohide
 
 markdown_extensions:
   - admonition
@@ -42,12 +62,22 @@ markdown_extensions:
   - md_in_html
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.keys
+  - pymdownx.critic
 
 plugins:
   - search
@@ -63,6 +93,17 @@ plugins:
         - locale: en
           name: English
           build: true
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AlessandroKlein
+
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/extra.js
 
 nav:
   - Inicio: index.md
