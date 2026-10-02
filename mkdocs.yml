@@ -71,11 +71,21 @@ nav:
       - Arquitectura: invernadero/Arquitectura.md
       - Compatibilidad (placas/sensores/buses): invernadero/Compatibilidad.md
       - Hardware y conexiones: invernadero/Hardware-y-Conexiones.md
+      - Sensores: invernadero/Sensores.md
+      - Actuadores y salidas: invernadero/Actuadores-y-Salidas.md
       - Configuración: invernadero/Configuracion.md
+      - Variables modificables: invernadero/Variables-Modificables.md
       - API REST: invernadero/API-REST.md
+      - MQTT y WebSocket: invernadero/MQTT-y-WebSocket.md
+      - Estación meteorológica: invernadero/Estacion-meteorologica.md
+      - OTA y actualización: invernadero/OTA-y-Actualizacion.md
+      - Servidor central: invernadero/Servidor-central.md
+      - Seguridad: invernadero/Seguridad.md
+      - Identidad y estados: invernadero/Identidad-y-Estados.md
       - Decisiones: invernadero/Decisiones.md
       - Compilación y flasheo: invernadero/Compilacion.md
       - Evolución: invernadero/Evolucion.md
+      - Mejoras y roadmap: invernadero/Mejoras.md
       - Versiones (CHANGELOG): invernadero/CHANGELOG.md
       - Registro de cambios: invernadero/Registro-de-cambios.md
       - Glosario: invernadero/Glosario.md
