@@ -1,34 +1,62 @@
 site_name: AlessandroKlein Docs
 site_description: Documentación unificada de los proyectos de AlessandroKlein
 site_url: https://alessandroklein.github.io/Docs/
+site_author: AlessandroKlein
 
+# --- Color negro/gris (sin verde) ---
 theme:
   name: material
   language: es
-  features:
-    - navigation.sections
-    - navigation.top
-    - search.suggest
-    - search.highlight
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
+      primary: black
+      accent: blue grey
       toggle:
         icon: material/weather-night
         name: Cambiar a oscuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
+      primary: black
+      accent: blue grey
       toggle:
         icon: material/weather-sunny
         name: Cambiar a claro
+  features:
+    - navigation.tabs          # menú superior con categorías
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+repo_url: https://github.com/AlessandroKlein/Docs
 
 markdown_extensions:
   - admonition
-  - pymdownx.highlight
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
   - pymdownx.superfences
-  - pymdownx.tasklist
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+  - tags
+  - optimize
+  - offline
+  - info
 
 nav:
   - Inicio: index.md
