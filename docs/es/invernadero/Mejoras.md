@@ -24,7 +24,7 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 | Configuración por capas (migraciones + merge) | ✅ |
 | Servidor: rate limiting + CORS + Store & Forward | ✅ |
 | Autodetección guiada (`/api/v1/detect`) | ✅ |
-| Gateway RS485 (polling multi-esclavo) | ❌ pendiente |
+| Gateway RS485 (polling multi-esclavo) | ✅ v3.17.0 |
 | HTTP/OTA sobre Ethernet | ⚠️ bloqueado (§10) |
 
 ## Prioridad sugerida

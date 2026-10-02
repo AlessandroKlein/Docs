@@ -51,6 +51,7 @@ Roles: `pump`, `valve`, `fan`, `extractor`, `heater`, `humidifier`, `light`,
 | GET | `/rs485` + `/rs485/scan` | Estadísticas y escaneo Modbus |
 | GET | `/modbus?slave=1&func=3&reg=0` | Lectura de registros |
 | GET | `/modbus/profiles` | Perfiles e instancias Modbus (V9) |
+| GET | `/modbus/gateway` | Gateway RS485: valores y estado por esclavo |
 | GET | `/diagnostics` | WiFi, RSSI, MQTT, heap, uptime |
 
 ## Plataforma configurable (V8/V9)
