@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#arquitectura" class="md-skip">
+        <a href="#architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -450,6 +450,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -593,10 +597,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#niveles" class="md-nav__link">
+  <a href="#layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Niveles
+        Layers
       
     </span>
   </a>
@@ -604,10 +608,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tareas-freertos" class="md-nav__link">
+  <a href="#freertos-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tareas FreeRTOS
+        FreeRTOS tasks
       
     </span>
   </a>
@@ -615,10 +619,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modulos" class="md-nav__link">
+  <a href="#modules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Módulos
+        Modules
       
     </span>
   </a>
@@ -626,10 +630,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jerarquia-de-control" class="md-nav__link">
+  <a href="#control-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jerarquía de control
+        Control hierarchy
       
     </span>
   </a>
@@ -744,6 +748,34 @@
     
   
     Actuadores y salidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Materiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiales (BOM)
   
 
     
@@ -1184,6 +1216,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (guía de estilo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Glosario/" class="md-nav__link">
         
   
@@ -1330,10 +1390,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#niveles" class="md-nav__link">
+  <a href="#layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Niveles
+        Layers
       
     </span>
   </a>
@@ -1341,10 +1401,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tareas-freertos" class="md-nav__link">
+  <a href="#freertos-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tareas FreeRTOS
+        FreeRTOS tasks
       
     </span>
   </a>
@@ -1352,10 +1412,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modulos" class="md-nav__link">
+  <a href="#modules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Módulos
+        Modules
       
     </span>
   </a>
@@ -1363,10 +1423,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jerarquia-de-control" class="md-nav__link">
+  <a href="#control-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jerarquía de control
+        Control hierarchy
       
     </span>
   </a>
@@ -1393,43 +1453,43 @@
   
 
 
-<h1 id="arquitectura">Arquitectura</h1>
+<h1 id="architecture">Architecture</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Embebidos | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Type:</strong> Embedded | <strong>Status:</strong> Stable | <strong>Date:</strong> 2026-10-02</p>
 </blockquote>
-<h2 id="niveles">Niveles</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                SERVIDOR CENTRAL (opcional)
+<h2 id="layers">Layers</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                CENTRAL SERVER (optional)
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                        │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>               HTTPS / MQTT / API
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                        │
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                     ESP32   ← controlador de campo autónomo
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                     ESP32   ← autonomous field controller
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                        │
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          ┌─────────────┼─────────────┐
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      Sensores      Actuadores     Red local
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      Sensors      Actuators     Local network
 </code></pre></div>
-<p>El ESP32 sigue funcionando si el servidor o la red desaparecen.</p>
-<h2 id="tareas-freertos">Tareas FreeRTOS</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Core 0 — SensorTask (prio 3) → leer sensores (slots protegidos)
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>         ControlTask (prio 2) → seguridad + controladores + salidas
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Core 1 — loop()               → red, MQTT, API, WebSocket, OTA
+<p>The ESP32 keeps working if the server or the network disappears.</p>
+<h2 id="freertos-tasks">FreeRTOS tasks</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Core 0 — SensorTask (prio 3) → read sensors (protected slots)
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>         ControlTask (prio 2) → safety + controllers + outputs
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Core 1 — loop()               → network, MQTT, API, WebSocket, OTA
 </code></pre></div>
-<h2 id="modulos">Módulos</h2>
+<h2 id="modules">Modules</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>core/       Types, PinMap, Version, PlatformTypes, CapabilityRegistry,
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>            ModuleRegistry, EventBus, Scheduler
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>config/     ConfigManager (NVS/JSON + token de API), Defaults
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>config/     ConfigManager (NVS/JSON + API token), Defaults
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>storage/    History, StorageManager (LittleFS/SPIFFS/SD)
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>hardware/   BusManager, HardwareManager, CanManager, SpiManager, AdcManager,
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            ShiftRegister595/165, Mcp23017/23s17, ModbusRtu
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>sensors/    SHT31/AHT20, DS18B20, ADS1115, BH1750, SCD4x, caudal, tanque,
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            lluvia, viento, pH, EC + SensorManager + registries
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>sensors/    SHT31/AHT20, DS18B20, ADS1115, BH1750, SCD4x, flow, tank,
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            rain, wind, pH, EC + SensorManager + registries
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>actuators/  ActuatorManager + ActuatorRegistry
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>control/    Climate, Irrigation, Lighting, Roof, Safety
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>network/    NetworkManager, MqttManager
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>network/    NetworkManager (WiFi/Ethernet), MqttManager
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>api/        RestApi, WebSocketServer
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>system/     Watchdog, HealthMonitor, BootCounters, Logger, OtaManager, Device
 </code></pre></div>
-<h2 id="jerarquia-de-control">Jerarquía de control</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>EMERGENCIA → SEGURIDAD → MANUAL → AUTOMÁTICO → PROGRAMACIÓN
+<h2 id="control-hierarchy">Control hierarchy</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>EMERGENCY → SAFETY → MANUAL → AUTOMATIC → SCHEDULE
 </code></pre></div>
 
 
