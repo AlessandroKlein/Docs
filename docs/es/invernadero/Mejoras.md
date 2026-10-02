@@ -44,3 +44,8 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 
 - ✅ Bloqueo de pines para PCB fija (`GH_PINS_LOCKED`: 0 público / 1 PCB). Con PCB, `PUT /api/v1/pins` → 403 y `/pins` deshabilita el formulario.
 - ✅ El `enabled` del catálogo controla el reporte de los I²C (SHT31/AHT20/ADS1115/BH1750/SCD41).
+
+## v3.23.0
+
+- ✅ Paso 2 (catálogo de sensores instanciable) **completo**: dirección y `enabled` de **todos** los sensores (I²C, 1-Wire, pulsos, tanque, pH/EC) se toman del catálogo.
+- ❌ Pendiente: paso 3 — configuración de expansores (74HC165/MCP23S17/ADC).
