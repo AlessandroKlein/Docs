@@ -1636,10 +1636,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-flujo-tras-cada-cambio-de-codigo" class="md-nav__link">
+  <a href="#1-flujo-obligatorio-tras-cada-cambio-de-codigo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Flujo tras cada cambio de código
+        1. Flujo obligatorio tras cada cambio de código
       
     </span>
   </a>
@@ -1647,13 +1647,85 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-documentacion" class="md-nav__link">
+  <a href="#2-documentacion-obligatoria-en-el-repo-docs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Documentación
+        2. Documentación obligatoria en el repo Docs
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Documentación obligatoria en el repo Docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-documentos-que-se-mantienen-siempre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Documentos que se mantienen siempre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-mapa-que-cambio-que-pagina-actualizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Mapa: qué cambió → qué página actualizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-reglas-de-contenido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Reglas de contenido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-navegacion-e-idioma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Navegación e idioma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-verificacion-antes-de-pushear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Verificación antes de pushear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-que-no-hacer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Qué NO hacer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1684,6 +1756,28 @@
     <span class="md-ellipsis">
       
         5. Comunicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-convenciones-relacionadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Convenciones relacionadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-checklist-de-un-ciclo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Checklist de un ciclo completo
       
     </span>
   </a>
@@ -1877,42 +1971,380 @@
 <blockquote>
 <p><strong>Tipo:</strong> Convención | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Reglas que el asistente sigue en todos los proyectos. Documento fuente:
+<p>Reglas que el asistente sigue en <strong>todos</strong> los proyectos. Documento fuente:
 <a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/REGLAS-DE-TRABAJO.md"><code>docs/REGLAS-DE-TRABAJO.md</code></a>.</p>
-<h2 id="1-flujo-tras-cada-cambio-de-codigo">1. Flujo tras cada cambio de código</h2>
+<p>Prioridad: estas reglas mandan sobre cualquier petición que entre en conflicto
+(excepto que el usuario pida lo contrario explícitamente).</p>
+<hr />
+<h2 id="1-flujo-obligatorio-tras-cada-cambio-de-codigo">1. Flujo obligatorio tras cada cambio de código</h2>
+<p>En este orden, <strong>sin omitir pasos</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Paso</th>
+<th>Verificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Compilar y validar</td>
+<td><code>pio run</code> → <strong>SUCCESS</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bump de versión</td>
+<td>ver <a href="../Versionado/">Versionado</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Actualizar <code>firmware_manifest.json</code></td>
+<td><strong>SHA-256 real</strong> del <code>.bin</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Actualizar <code>CHANGELOG.md</code></td>
+<td>formato Keep a Changelog</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Commit convencional</td>
+<td>un cambio lógico = un commit</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Tag + push</td>
+<td><code>v</code> minúscula, SemVer completo</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Release en GitHub</td>
+<td>con artefactos adjuntos</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Actualizar documentación</strong></td>
+<td>wiki del proyecto <strong>+ repo Docs</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Verificar el sitio</td>
+<td><code>python -m mkdocs build</code> → SUCCESS</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Regla de oro:</strong> no se da por terminada una tarea de código sin
+<strong>release + documentación actualizados</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="2-documentacion-obligatoria-en-el-repo-docs">2. Documentación obligatoria en el repo Docs</h2>
+<p>El repositorio <code>AlessandroKlein/Docs</code> es la <strong>documentación unificada</strong> de todos
+los proyectos. Se actualiza en <strong>cada</strong> ciclo de cambios, no "cuando haya tiempo".</p>
+<h3 id="21-documentos-que-se-mantienen-siempre">2.1 Documentos que se mantienen siempre</h3>
+<table>
+<thead>
+<tr>
+<th>Documento</th>
+<th>Ubicación</th>
+<th>Cuándo se actualiza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.md</code></td>
+<td>repo del código</td>
+<td>Cada release (estado, versión, características)</td>
+</tr>
+<tr>
+<td><code>CHANGELOG.md</code></td>
+<td>repo del código <strong>y</strong> Docs</td>
+<td>Cada release</td>
+</tr>
+<tr>
+<td><code>docs/MEJORAS.md</code></td>
+<td>repo del código <strong>y</strong> Docs</td>
+<td>Cuando cambia el estado de un ítem</td>
+</tr>
+<tr>
+<td><code>docs/IMPLEMENTACION.md</code></td>
+<td>repo del código</td>
+<td>Cuando cambia la arquitectura</td>
+</tr>
+<tr>
+<td><code>docs/DUDAS-Y-DECISIONES.md</code></td>
+<td>repo del código</td>
+<td>Con cada decisión nueva</td>
+</tr>
+<tr>
+<td><code>docs/ESTANDAR-DOCUMENTACION.md</code></td>
+<td>repo del código</td>
+<td>Si cambia el estándar</td>
+</tr>
+<tr>
+<td><code>docs/REGLAS-DE-TRABAJO.md</code></td>
+<td>repo del código</td>
+<td>Si cambia una regla</td>
+</tr>
+<tr>
+<td><strong>Wiki del proyecto</strong></td>
+<td><code>Invernadero.wiki</code></td>
+<td>Cada release</td>
+</tr>
+<tr>
+<td><strong>Repo <code>Docs</code></strong></td>
+<td>este repositorio</td>
+<td>Cada release</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-mapa-que-cambio-que-pagina-actualizar">2.2 Mapa: qué cambió → qué página actualizar</h3>
+<p>Esta tabla es <strong>obligatoria</strong>: si tocás el código, buscá la fila y actualizá la
+página correspondiente.</p>
+<table>
+<thead>
+<tr>
+<th>Cambio en el código</th>
+<th>Página del Docs a actualizar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nuevo endpoint REST</strong></td>
+<td><code>API-REST.md</code> + <code>Referencia-de-codigo.md</code></td>
+</tr>
+<tr>
+<td><strong>Endpoint eliminado/renombrado</strong></td>
+<td>idem + revisar <code>Versionado.md</code> (¿MAJOR?)</td>
+</tr>
+<tr>
+<td><strong>Cambio en MQTT/WebSocket</strong></td>
+<td><code>MQTT-y-WebSocket.md</code></td>
+</tr>
+<tr>
+<td><strong>Campo nuevo de configuración</strong></td>
+<td><code>Referencia-configuracion.md</code> + <code>Variables-Modificables.md</code></td>
+</tr>
+<tr>
+<td><strong>Cambio de <code>schema_version</code></strong></td>
+<td><code>Referencia-configuracion.md</code> + <code>Versionado.md</code></td>
+</tr>
+<tr>
+<td><strong>Sensor nuevo</strong></td>
+<td><code>Sensores.md</code> + <code>Compatibilidad.md</code> + <code>Referencia-de-codigo.md</code></td>
+</tr>
+<tr>
+<td><strong>Actuador/rol nuevo</strong></td>
+<td><code>Actuadores-y-Salidas.md</code></td>
+</tr>
+<tr>
+<td><strong>Pin nuevo o cambiado</strong></td>
+<td><code>Guia-de-pines.md</code> + <code>Hardware-y-Conexiones.md</code></td>
+</tr>
+<tr>
+<td><strong>Ficha de conexión nueva</strong></td>
+<td><code>Hardware-y-Conexiones.md</code></td>
+</tr>
+<tr>
+<td><strong>Clase/módulo nuevo</strong></td>
+<td><code>Referencia-API-interna.md</code> + <code>Referencia-de-codigo.md</code></td>
+</tr>
+<tr>
+<td><strong>Enum o valor nuevo</strong></td>
+<td><code>Enumeraciones-y-tipos.md</code></td>
+</tr>
+<tr>
+<td><strong>Nueva limitación o bloqueo</strong></td>
+<td><code>Mejoras.md</code> (+ la página afectada)</td>
+</tr>
+<tr>
+<td><strong>Release nuevo</strong></td>
+<td><code>CHANGELOG.md</code> + <code>Estadisticas.md</code> + <code>Mejoras.md</code> + <code>Evolucion.md</code></td>
+</tr>
+<tr>
+<td><strong>Decisión de arquitectura</strong></td>
+<td><code>Decisiones.md</code> (ADR)</td>
+</tr>
+<tr>
+<td><strong>Cambio de UI/frontend</strong></td>
+<td><code>Frontend.md</code></td>
+</tr>
+<tr>
+<td><strong>Cambio en OTA</strong></td>
+<td><code>OTA-y-Actualizacion.md</code></td>
+</tr>
+<tr>
+<td><strong>Cambio en seguridad/auth</strong></td>
+<td><code>Seguridad.md</code></td>
+</tr>
+<tr>
+<td><strong>Diagrama nuevo</strong></td>
+<td><code>Diagramas.md</code> (Mermaid)</td>
+</tr>
+<tr>
+<td><strong>Convención nueva</strong></td>
+<td><code>Reglas-de-trabajo.md</code> / <code>Versionado.md</code> / <code>Estandar-de-documentacion.md</code></td>
+</tr>
+<tr>
+<td><strong>Cualquier cambio de comportamiento</strong></td>
+<td><code>Registro-de-cambios.md</code> (ficha por archivo)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-reglas-de-contenido">2.3 Reglas de contenido</h3>
 <ol>
-<li>Compilar y validar (<code>pio run</code> → SUCCESS).</li>
-<li>Bump semver (<code>feat</code>→minor, <code>fix</code>→patch, <code>BREAKING</code>→major). Ver
-   <a href="../Versionado/">Versionado</a> para la numeración, <code>v</code>, pre-releases y revisiones.</li>
-<li>Actualizar <code>firmware_manifest.json</code> (SHA-256 real).</li>
-<li>Actualizar <code>CHANGELOG.md</code>.</li>
-<li>Commit convencional (un cambio lógico = un commit).</li>
-<li>Tag + push (<code>v</code> minúscula, SemVer completo).</li>
-<li>Release en GitHub con artefactos.</li>
-<li>Actualizar wiki del proyecto + repo Docs.</li>
+<li><strong>Seguir el <a href="../Estandar-de-documentacion/">Estándar de documentación</a></strong>:
+   frontmatter con tags, cabecera (Tipo/Estado/Fecha), secciones numeradas y
+   cierre con enlaces.</li>
+<li><strong>Verificar cada dato contra el código</strong> antes de escribirlo (defaults, pines,
+   endpoints, enums). <strong>Nunca inventar.</strong></li>
+<li><strong>Tablas completas</strong>: si es una referencia, no debe faltar ninguna entrada ni
+   usar "etc.".</li>
+<li><strong>Citar la versión</strong> a la que aplica el dato (p. ej. "v3.29.0").</li>
+<li><strong>Documentar también lo que falta</strong>: los bloqueos y pendientes van a
+   <code>Mejoras.md</code> con el motivo y la vía de solución.</li>
+<li><strong>Sincronizar</strong>: si el documento existe en el repo del código (<code>docs/…</code>) y en
+   el Docs, se actualizan <strong>los dos</strong> en el mismo ciclo.</li>
 </ol>
-<h2 id="2-documentacion">2. Documentación</h2>
+<h3 id="24-navegacion-e-idioma">2.4 Navegación e idioma</h3>
 <ul>
-<li>Seguir el <a href="../Estandar-de-documentacion/">Estándar de documentación</a>.</li>
-<li>Mantener <code>README.md</code>, <code>CHANGELOG.md</code>, <code>IMPLEMENTACION.md</code>, <code>MEJORAS.md</code>.</li>
-<li>Verificar <code>mkdocs build</code> local antes de pushear al Docs.</li>
+<li>Toda <strong>página nueva</strong> se agrega al <code>nav</code> de <code>mkdocs.yml</code> (si no, queda huérfana).</li>
+<li>El orden del <code>nav</code> es lógico: empezar → referencia → hardware → uso → operación
+  → soporte → proyecto.</li>
+<li>Contenido en <code>docs/es/</code>; las traducciones van a <code>docs/en/</code> con <strong>la misma ruta</strong>.</li>
+<li>Si no hay traducción, <code>fallback_to_default</code> muestra el español (no rompe nada).</li>
 </ul>
+<h3 id="25-verificacion-antes-de-pushear">2.5 Verificación antes de pushear</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>&lt;repo<span class="w"> </span>Docs&gt;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w">     </span><span class="c1"># debe terminar en SUCCESS</span>
+</span></code></pre></div>
+<p>Comprobar que:</p>
+<ul>
+<li>No haya errores ni <em>warnings</em> nuevos.</li>
+<li>No queden páginas fuera del <code>nav</code> (salvo las <code>Home.md</code> huérfanas conocidas).</li>
+<li>Los enlaces internos entre páginas resuelvan.</li>
+</ul>
+<p>Recién después: <code>git add</code> → <code>git commit -m "docs: …"</code> → <code>git push origin main</code>.
+El workflow publica automáticamente en la rama <code>gh-pages</code> (GitHub Pages).</p>
+<div class="admonition warning">
+<p class="admonition-title">No dejar la documentación para después</p>
+<p>El sitio tarda unos minutos en actualizarse tras el push (gh-pages). Si algo
+parece "no actualizado", primero verificá el <strong>archivo en el repositorio</strong>
+(<code>git pull</code> / vista de GitHub) antes de asumir que falta el cambio.</p>
+</div>
+<h3 id="26-que-no-hacer">2.6 Qué NO hacer</h3>
+<table>
+<thead>
+<tr>
+<th>❌ No hacer</th>
+<th>✅ Hacer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Documentar de memoria o "de lo que me acuerdo"</td>
+<td>Leer el fuente y copiar el dato exacto</td>
+</tr>
+<tr>
+<td>Poner "etc." en una tabla de referencia</td>
+<td>Completar todas las entradas</td>
+</tr>
+<tr>
+<td>Actualizar solo la wiki y no el Docs (o al revés)</td>
+<td>Ambos, en el mismo ciclo</td>
+</tr>
+<tr>
+<td>Crear una página sin agregarla al <code>nav</code></td>
+<td>Agregarla siempre</td>
+</tr>
+<tr>
+<td>Pushear al Docs sin compilar</td>
+<td><code>mkdocs build</code> primero</td>
+</tr>
+<tr>
+<td>Duplicar la misma info en dos páginas</td>
+<td>Una página + enlace desde la otra</td>
+</tr>
+<tr>
+<td>Dejar el dato sin versión</td>
+<td>Citar la versión aplicable</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="3-codigo">3. Código</h2>
 <ul>
-<li>Una clase por archivo (<code>.hpp</code>/<code>.cpp</code>).</li>
-<li>Compilar antes de entregar.</li>
-<li>No inventar APIs; verificar con el código real.</li>
-<li>No hardcodear secretos.</li>
+<li><strong>Una clase por archivo</strong>: <code>.hpp</code> en <code>include/&lt;módulo&gt;/</code>, <code>.cpp</code> en <code>src/&lt;módulo&gt;/</code>.</li>
+<li><strong>Compilar antes de entregar</strong>; no entregar código roto.</li>
+<li><strong>No inventar APIs, librerías, flags ni comandos</strong>: verificar contra el código
+  real o la documentación oficial. Ante la duda, preguntar.</li>
+<li><strong>No hardcodear secretos</strong> (tokens, claves): usar NVS o <code>.env</code>.</li>
+<li><strong>No refactorizar</strong> código que no se está tocando (salvo limpieza local &lt; 10 líneas).</li>
+<li>Comentar el <strong>por qué</strong>, no el <strong>qué</strong>. Usar <code>// TODO:</code> / <code>// FIXME:</code> con fecha.</li>
 </ul>
+<hr />
 <h2 id="4-git">4. Git</h2>
 <ul>
-<li>Conventional Commits (<code>feat</code>, <code>fix</code>, <code>docs</code>, <code>chore</code>, ...).</li>
-<li>Confirmar acciones destructivas.</li>
+<li><strong>Conventional Commits</strong> en inglés: <code>feat</code>, <code>fix</code>, <code>docs</code>, <code>refactor</code>, <code>test</code>,
+  <code>chore</code>, <code>style</code>, <code>perf</code>, <code>ci</code>.</li>
+<li>Un commit por cambio lógico; no mezclar funcionalidades independientes.</li>
+<li>No usar <code>push --force</code> en ramas protegidas sin confirmación.</li>
+<li><strong>Acciones destructivas</strong> (borrar archivos/ramas, mover recursos) → pedir
+  confirmación y verificar la ruta absoluta antes de ejecutar.</li>
 </ul>
+<hr />
 <h2 id="5-comunicacion">5. Comunicación</h2>
 <ul>
-<li>Reporte conciso (qué se hizo / validó / falta).</li>
-<li>Ser honesto ante bloqueos.</li>
+<li>Reporte <strong>conciso</strong>: qué se hizo, qué se validó, qué falta.</li>
+<li><strong>Ser honesto ante bloqueos</strong>: detenerse y explicar, no improvisar una solución
+  que no funciona.</li>
+<li>No repetir innecesariamente lo ya hecho; un resumen breve al final basta.</li>
+<li>Avisar cuando un dato <strong>no se pudo verificar</strong> en lugar de asumirlo.</li>
+</ul>
+<hr />
+<h2 id="6-convenciones-relacionadas">6. Convenciones relacionadas</h2>
+<table>
+<thead>
+<tr>
+<th>Documento</th>
+<th>Qué define</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Versionado/">Versionado</a></td>
+<td>Numeración, <code>v</code>, <code>b</code>, <code>rc</code>, <code>rev</code>, <code>schema</code>, MAJOR</td>
+</tr>
+<tr>
+<td><a href="../Estandar-de-documentacion/">Estándar de documentación</a></td>
+<td>Cómo se escribe cada página</td>
+</tr>
+<tr>
+<td><a href="../invernadero/Mejoras/">Mejoras</a></td>
+<td>Roadmap y pendientes</td>
+</tr>
+<tr>
+<td><a href="../invernadero/CHANGELOG/">CHANGELOG</a></td>
+<td>Historial de versiones</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-checklist-de-un-ciclo-completo">7. Checklist de un ciclo completo</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Código compila (<code>pio run</code> → SUCCESS).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Versión bumpeada según <a href="../Versionado/">Versionado</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>firmware_manifest.json</code> con SHA-256 real.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>CHANGELOG.md</code> actualizado.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Commit convencional + tag <code>vX.Y.Z</code> + push.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Release de GitHub con artefactos.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>README.md</code> actualizado.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Páginas del Docs actualizadas según §2.2.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Registro-de-cambios.md</code> con la ficha por archivo.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>mkdocs build</code> en SUCCESS.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Wiki del proyecto actualizada.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Push a <code>AlessandroKlein/Docs</code>.</li>
 </ul>
 
 
