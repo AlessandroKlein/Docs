@@ -50,7 +50,7 @@ MAJOR.MINOR.PATCH[-preRelease][+buildMeta]
 
 | Cambio | Número | Ejemplos del proyecto |
 |--------|:------:|----------------------|
-| Rompe compatibilidad (config, API, protocolo) | **MAJOR** | subir `GH_CONFIG_SCHEMA_VERSION`; renombrar/quitar un endpoint |
+| Rompe compatibilidad (config, API, protocolo) | **MAJOR** | quitar/renombrar un endpoint, cambiar tópicos MQTT → **ver «¿Cuándo pasar a MAJOR?» abajo** |
 | Funcionalidad nueva retrocompatible | **MINOR** | `feat(...)`: nuevo endpoint, nuevo pool, nueva página web |
 | Corrección de errores | **PATCH** | `fix(...)`: bug de lectura, timeout mal calculado |
 | Solo documentación / comentarios | **ninguno** | un commit `docs:` no genera release |
@@ -61,6 +61,97 @@ MAJOR.MINOR.PATCH[-preRelease][+buildMeta]
 - Cambios solo en `docs/`, comentarios, README sin cambio funcional.
 - Reordenar código, renombrar variables internas, formateo.
 - Subir la versión solo porque hubo un commit.
+
+### ¿Cuándo es recomendable pasar a MAJOR? (ej. `3.29.0` → `4.0.0`)
+
+!!! warning "MAJOR no significa «versión importante»"
+    **MAJOR no es** "hice mucho trabajo", "tardé meses", "es un hito", "cambié el
+    PCB" ni "reescribí el firmware". Significa **una sola cosa**: algo que ya
+    funcionaba **dejó de funcionar** para quien depende del firmware.
+    **Si nadie tiene que cambiar nada, no es MAJOR.**
+
+#### 1. ¿Quién "depende" del firmware?
+
+Antes de decidir, preguntate **quién se rompe** con el cambio:
+
+| Dependiente | Qué usa del firmware |
+|-------------|----------------------|
+| **El servidor central** | API REST, tópicos MQTT, JSON de telemetría |
+| **Las instalaciones ya flasheadas** | Su configuración guardada (NVS/JSON) |
+| **El usuario** | Sus pines/cableado, reglas, umbrales, calibración |
+| **Integraciones externas** | Endpoints REST, MQTT, WebSocket |
+
+#### 2. Tabla de decisión
+
+| Cambio | ¿MAJOR? | Por qué |
+|--------|:-------:|---------|
+| Agregar un endpoint nuevo | ❌ MINOR | nadie se rompe |
+| Agregar un campo al JSON de estado | ❌ MINOR | quien lee sigue funcionando |
+| **Quitar o renombrar** un endpoint | ✅ MAJOR | el servidor deja de encontrarlo |
+| **Cambiar el significado** de un campo existente | ✅ MAJOR | errores silenciosos |
+| Cambiar los tópicos MQTT (`greenhouse/...` → otro) | ✅ MAJOR | el servidor deja de recibir |
+| Cambiar el formato de telemetría sin compatibilidad | ✅ MAJOR | el servidor no parsea |
+| Cambiar el formato de config **sin** migración | ✅ MAJOR | el usuario debe reconfigurar a mano |
+| Cambiar el formato de config **con** migración | ❌ MINOR | `migrate()` lo resuelve solo |
+| Cambiar pines por defecto (obligando a recablear) | ✅ MAJOR | instalaciones existentes quedan mal |
+| Agregar un sensor/expansor soportado | ❌ MINOR | es opcional para el usuario |
+| Reordenar/limpiar código interno | ❌ ninguno | el usuario no lo ve |
+| Reescribir un módulo por dentro (misma interfaz) | ❌ ninguno/PATCH | la API externa no cambia |
+
+#### 3. Lo que NO justifica un MAJOR
+
+| Lo que se suele pensar | ¿MAJOR? | Qué usar en su lugar |
+|------------------------|:-------:|----------------------|
+| "Hice muchos cambios" | ❌ | igual sigue MINOR (`3.29.0` → `3.30.0`) |
+| "Tardé meses / es un hito" | ❌ | la **fase** del proyecto (`V10`) |
+| "Cambié el PCB / hardware nuevo" | ❌ | `GH_HW_VERSION` (`rev1`) + **perfil** (`ESP32-GH-V2`) |
+| "Es una generación nueva del invernadero" | ❌ | perfil de hardware + documentación |
+| "Reescribí el firmware de cero" | ❌ | si API y config siguen iguales, no es MAJOR |
+| "Cambié cómo se configura, pero migra solo" | ❌ | `schema_version++` + `migrate()` |
+| "Arreglé muchos bugs" | ❌ | PATCH |
+| "Cambié los valores por defecto" (sin romper) | ❌ | MINOR o ninguno |
+
+#### 4. Cómo EVITAR tener que subir MAJOR (recomendado)
+
+En lugar de romper y saltar a `4.0.0`, el proyecto ya tiene mecanismos para no
+romper:
+
+1. **Versionar la API**: en vez de cambiar `/api/v1/`, agregar `/api/v2/` y
+   mantener `v1` funcionando un tiempo.
+2. **Migrar la config automáticamente**: subir `GH_CONFIG_SCHEMA_VERSION` y
+   agregar la conversión en `ConfigManager::migrate()`.
+3. **Agregar, no quitar**: campos nuevos con default; endpoints nuevos; publicar
+   en el tópico viejo y el nuevo durante la transición.
+4. **Subir `GH_PROTOCOL_VERSION`** cuando cambia el diálogo con el servidor.
+5. **Mantener alias**: si renombrás una clave, aceptar la anterior y traducirla.
+
+> Con estas prácticas el proyecto puede crecer **sin MAJOR** durante mucho tiempo:
+> hoy va por `3.29.0` y **todas** las `3.x` son compatibles entre sí.
+
+#### 5. Casos concretos que SÍ serían `4.0.0`
+
+- Mover el servidor a `/api/v2/` y **eliminar** `/api/v1/` sin convivencia.
+- Cambiar los tópicos de `greenhouse/{device_id}/...` **sin** publicar en ambos.
+- Romper el `firmware_manifest.json` (campos que el servidor necesita).
+- Dejar de soportar `ESP32-GH-V1` (instalaciones que ya no podrían actualizar).
+- **Eliminar** el mapa de pines sin reemplazo, obligando a recablear.
+
+#### 6. Firmware (`3.x`) vs servidor (`0.x`)
+
+| Artefacto | Versión | Qué significa |
+|-----------|---------|---------------|
+| Firmware | `3.29.0` | **estable**: MAJOR = rompe compatibilidad |
+| Servidor | `0.5.0` | **desarrollo inicial**: mientras MAJOR sea `0`, la API puede cambiar sin aviso |
+| Frontend | `1.1.0` | versionado aparte |
+
+Cuando el servidor llegue a **`1.0.0`** empieza a aplicar la misma regla que el
+firmware.
+
+#### 7. Resumen en una frase
+
+> **¿Alguien (el servidor, otra instalación o el usuario) tiene que hacer algo a
+> mano para que siga funcionando?**
+> **Sí → MAJOR. No → MINOR o PATCH.**
 
 ## 4. Pre-releases: `alpha`, `beta` (`b`) y `rc`
 
@@ -225,7 +316,12 @@ Las etiquetas existentes en el repositorio, para referencia histórica:
 |-----------|---------|
 | Se agregó el endpoint `/api/v1/modbus/gateway` | `3.17.0` (MINOR) |
 | Se corrigió que el OTA no cerrara el socket | `3.17.1` (PATCH) |
-| Se cambió el formato del JSON de configuración | `4.0.0` (MAJOR) |
+| Se agregaron 10 features nuevas | `3.30.0` (MINOR — la cantidad no importa) |
+| Se cambió el PCB a la revisión 2 | `3.29.0` + `rev1` (no cambia la versión de firmware) |
+| Se migró la config automáticamente a schema 3 | `3.30.0` (MINOR — migra solo) |
+| Se cambió el formato del JSON **sin** migración | `4.0.0` (MAJOR) |
+| Se eliminó `/api/v1/` sin dejar `/api/v2/` | `4.0.0` (MAJOR) |
+| Se reescribió todo el firmware, misma API | `3.30.0` (MINOR — nadie se rompe) |
 | Beta del próximo release con nueva API | `3.30.0-beta.1` |
 | Candidata final de esa beta | `3.30.0-rc.1` |
 | Release final | `3.30.0` |
