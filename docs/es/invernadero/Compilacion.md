@@ -18,9 +18,14 @@ pio device monitor   # monitor serie (115200)
 `board_build.partitions = partitions/default_8MB.csv` (8 MB, por defecto).
 Alternativas: `default.csv` (4 MB), `default_16MB.csv` (16 MB).
 
-## Memoria (v3.13.0)
+## Memoria (v3.29.0)
 
-RAM ~27 % · Flash ~38 % (partición de 8 MB).
+| Recurso | Uso | Detalle |
+|---------|-----|---------|
+| Flash | **38,6 %** | 1.291.129 / 3.342.336 bytes (partición app de 8 MB) |
+| RAM | **27,2 %** | 89.064 / 327.680 bytes |
+
+Tiempo de compilación típico: ~27 s.
 
 ## Verificación
 

@@ -32,7 +32,7 @@ Por defecto: `default_8MB.csv` (8 MB).
 {
   "project": "Invernadero",
   "channel": "stable",
-  "version": "3.15.0",
+  "version": "3.29.0",
   "firmware_url": "https://.../firmware.bin",
   "sha256": "...",
   "hardware_profile": "ESP32-GH-V1",
@@ -57,5 +57,22 @@ Boot de prueba → Health Check → OK=CONFIRMAR / ERROR=ROLLBACK
 2. Actualizar (`POST /api/v1/devices/{id}/ota`) → comando MQTT.
 3. El ESP32 descarga, verifica SHA-256 e instala sin perder NVS ni SPIFFS.
 
-> Nota: OTA por **Ethernet (W5500)** está bloqueado (HTTPClient solo acepta
-> WiFiClient) — ver `docs/MEJORAS.md` §10.
+## 7. OTA por Ethernet (W5500) — resuelto en v3.16.0
+
+`Update.h` es **agnóstico al origen del stream**: recibe bytes por
+`Update.write()` desde cualquier `Client`. Por eso `OtaManager::applyFromUrl()`
+hace un **GET HTTP manual** sobre el `Client*` activo (WiFi **o** `EthernetClient`)
+y escribe el binario en la partición OTA.
+
+| Caso | Implementación | Estado |
+|------|----------------|--------|
+| HTTP sobre WiFi | GET manual sobre `Client*` | ✅ |
+| HTTP sobre Ethernet (W5500) | GET manual sobre `Client*` | ✅ v3.16.0 |
+| HTTPS sobre WiFi | `HTTPClient` + `WiFiClientSecure` | ✅ |
+| HTTPS sobre Ethernet | requiere TLS (W5500lwIP / ETH nativo) | ❌ pendiente |
+
+Soporta `Content-Length` y `Transfer-Encoding: chunked` (necesario para servidores
+como GitHub/S3).
+
+> El bloqueo histórico era solo de `HTTPClient` (acepta únicamente `WiFiClient`),
+> no de `Update`. Ver `docs/MEJORAS.md` §10.

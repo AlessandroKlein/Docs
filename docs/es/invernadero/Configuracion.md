@@ -41,19 +41,32 @@ El usuario elige con qué interfaz se conecta. Solo una queda activa por arranqu
 
 ## 3. Configurabilidad (¿qué se puede cambiar sin tocar código?)
 
-**Configurable desde la web/API:**
+**Configurable desde la web/API (v3.29.0 — sin recompilar):**
 
+- **Pines y direcciones I²C**: `GET/PUT /api/v1/pins` + formulario `/pins` (NVS `ghpins`).
+- **Catálogo de sensores**: `PUT /api/v1/sensors/catalog` — `enabled`, `address`,
+  `zone`, `bus_index`, `read_interval_ms` por sensor (NVS `ghsensors`).
+- **Catálogo de expansores**: `PUT /api/v1/hardware` — agregar/editar nodos
+  (HC595/HC165/MCP23017/MCP23S17/ADC) con `enabled`, `address`, `bus_index`
+  (NVS `ghhw`).
 - Sensores: habilitar/deshabilitar (sht31, ds18b20, suelo, luz, CO₂, lluvia, viento, tanque, caudal, pH, EC, exterior).
 - Actuadores: habilitar + cantidad (bomba, válvulas, ventiladores, extractores, luces, ...).
 - Umbrales, calibración, zonas, horarios, reglas.
 - Red: WiFi/Ethernet, MQTT, NTP, DNS, servidor central.
 - Token de API, canal de actualización, simulación, perfiles Modbus.
 
-**NO configurable (compile-time):**
+**Bloqueo de pines (PCB fabricada):**
 
-- Mapa de pines (`PinMap.hpp`).
-- Catálogo de sensores editable (PUT /api/v1/sensors/catalog); instanciación de drivers aún compile-time.
-- Expansores (74HC165/MCP23S17/ADC) y sus pines/CS.
-- Direcciones I²C.
+- `GH_PINS_LOCKED = 1` en `Version.hpp` → `PUT /api/v1/pins` responde **403** y
+  `/pins` deshabilita el formulario. El catálogo de sensores/actuadores sigue
+  configurable.
+- `GH_PINS_LOCKED = 0` (público) → todo editable.
 
-> Detalle y roadmap en `docs/MEJORAS.md` §13.
+**Todavía requiere recompilar:**
+
+- Agregar un **modelo de sensor nuevo** (los drivers están compilados; el catálogo
+  elige entre los soportados).
+- Asignar **canales** a actuadores (hoy el `ROLE_TABLE` tiene canales fijos 0..24).
+
+> Detalle y roadmap en `docs/MEJORAS.md` §13 y
+> [Referencia de configuración](Referencia-configuracion.md).

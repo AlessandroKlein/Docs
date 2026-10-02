@@ -28,7 +28,7 @@ Publicación cada 10 s (vía `Scheduler`). El cliente MQTT usa la interfaz activ
 ### Comando OTA (ejemplo)
 
 ```json
-{ "type": "ota", "version": "3.15.0", "url": "http://.../firmware.bin", "sha256": "..." }
+{ "type": "ota", "version": "3.29.0", "url": "http://.../firmware.bin", "sha256": "..." }
 ```
 
 ## 2. WebSocket

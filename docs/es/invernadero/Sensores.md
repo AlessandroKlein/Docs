@@ -64,3 +64,25 @@ SIN COMUNICACIÓN / ERROR / VÁLIDO / FUERA DE RANGO**.
 
 El firmware detecta SHT31, ADS1115, MCP23017, SCD41 y DS18B20. La detección no
 habilita funciones peligrosas: la activación requiere configuración.
+
+## 12. Catálogo instanciable (v3.20 → v3.23)
+
+Cada sensor del catálogo (`SensorRegistry`, NVS `ghsensors`) controla **dos cosas**:
+
+- **`address`**: la dirección I²C con la que se inicializa el driver.
+- **`enabled`**: si el sensor se **reporta** (si no, queda en `enabled: false`).
+
+Se edita con `PUT /api/v1/sensors/catalog`:
+
+```json
+[
+  { "id": "temp_interior", "enabled": true,  "address": 68, "zone": 0 },
+  { "id": "co2",          "enabled": false, "address": 98 },
+  { "id": "light",        "enabled": true,  "address": 35, "read_interval_ms": 10000 }
+]
+```
+
+IDs del catálogo: `temp_interior`, `hum_interior`, `temp_exterior`, `hum_exterior`,
+`temp_18b20`, `soil_0..3`, `light`, `co2`, `tank`, `flow`, `rain`, `wind`, `ph`, `ec`.
+
+> `GET /api/v1/sensors/catalog` devuelve el catálogo con el driver y tipo de cada uno.

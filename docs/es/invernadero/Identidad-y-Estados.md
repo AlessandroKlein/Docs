@@ -12,7 +12,7 @@ tags:
 
 - **UID permanente**: `ESP32-XXXXXX` (24 bits bajos de la MAC).
 - **device_id** (`GH001`) y **greenhouse_id** (`GREENHOUSE-001`).
-- **Perfil de hardware**: `ESP32-GH-V1`; **firmware** `3.15.0`; **hardware** `rev0`.
+- **Perfil de hardware**: `ESP32-GH-V1`; **firmware** `3.29.0`; **hardware** `rev0`.
 - **config_schema** 2, **protocol** 1.
 
 ## 2. Capacidades

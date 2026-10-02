@@ -48,3 +48,26 @@ EMERGENCIA > SEGURIDAD > MANUAL > AUTOMÁTICO > PROGRAMACIÓN
 
 EMERGENCY_STOP (27), TANK_LOW (32), TANK_HIGH (33), PUMP_FAULT,
 WINDOW_LIMIT_OPEN/CLOSE, ROOF_LIMIT_OPEN/CLOSE.
+
+## 7. Pools de expansores y canales (v3.26 → v3.29)
+
+Las salidas no se limitan al 74HC595 ni a un único MCP23017: el firmware
+**instancia pools** desde el catálogo de expansores (`PUT /api/v1/hardware`).
+
+| Pool | Driver | Canales |
+|------|--------|---------|
+| `shift` | 74HC595 (SPI bit-banged) | 0..31 (soft-PWM) |
+| `mcpPool[0..3]` | MCP23017 (I²C) | 32..95 (device 0..3, pin 0..15) |
+| `spiPool[0..3]` | MCP23S17 (SPI) | — |
+| `adcPool[0..3]` | ADC SPI (MCP3208) | entradas analógicas |
+| `input` | 74HC165 (entradas) | entradas digitales |
+
+**Mapeo de canales** (`ActuatorManager::writeChannel`):
+
+```text
+canal  0..31  → 74HC595 setChannelPercent(canal)            [soft-PWM]
+canal 32..95  → mcpPool[(canal-32)/16]->digitalWrite((canal-32)%16)
+```
+
+Para usar un expansor, agregarlo por `PUT /api/v1/hardware` con su `kind`
+(MCP23017/MCP23S17/ADC/HC165), `address` (o CS) y `enabled: true`.
