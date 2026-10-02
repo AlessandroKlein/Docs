@@ -4,6 +4,48 @@
 
 Historial completo de versiones del firmware. Formato [Keep a Changelog](https://keepachangelog.com/es/1.1.0/).
 
+## [3.29.0] - 2026-10-02 — Asignación de canales (pool MCP23017)
+- `ActuatorManager` mapea canales 32..95 → device 0..3 / pin 0..15 del pool I²C.
+
+## [3.28.0] — 74HC165 desde el catálogo
+- `ShiftRegister165` instanciado por nodo `HC165`; pines `hc165_*` en NVS.
+
+## [3.27.0] — Pools SPI
+- `Mcp23s17` y `AdcManager` (MCP3208) instanciados desde el catálogo; `SpiManager` desde NVS.
+
+## [3.26.0] — Pool MCP23017 + agregar nodos
+- Pool de MCP23017 (hasta 4); `PUT /api/v1/hardware` permite agregar nodos.
+
+## [3.25.0] — MCP23017 desde el catálogo
+- El driver MCP23017 se instancia desde el nodo `mcp23017-0` (address + enabled).
+
+## [3.24.0] — Catálogo de expansores
+- `HardwareManager` editable/persistido; `PUT /api/v1/hardware`.
+
+## [3.23.0] — Catálogo controla todo
+- El `enabled` del catálogo controla el reporte de **todos** los sensores.
+
+## [3.22.0] — Bloqueo de pines + catálogo
+- `GH_PINS_LOCKED` (0 público / 1 PCB); `enabled` del catálogo en los I²C.
+
+## [3.21.0] — Direcciones I²C desde el catálogo
+- SHT31/AHT20/ADS1115/BH1750/SCD41 leen su dirección del catálogo.
+
+## [3.20.0] — Catálogo de sensores editable
+- `SensorRegistry` editable/persistido (`PUT /api/v1/sensors/catalog`).
+
+## [3.19.0] — Formulario web de pines
+- Página `/pins` editable (carga/guarda el mapa de pines en NVS).
+
+## [3.18.0] — Mapa de pines en NVS
+- `PinConfig` + `PinConfigManager`; `GET/PUT /api/v1/pins`.
+
+## [3.17.0] — Gateway RS485
+- `ModbusGateway` (polling multi-esclavo por perfiles) + `GET /api/v1/modbus/gateway`.
+
+## [3.16.0] — OTA HTTP sobre Ethernet
+- GET manual sobre `Client*` + `Update.write` (W5500); soporta chunked.
+
 ## [3.15.0] - 2026-10-02
 ### Added
 - Autodetección guiada de dispositivos I²C (`GET /api/v1/detect`).

@@ -121,6 +121,7 @@ nav:
   - Invernadero:
       - Inicio rápido: invernadero/Inicio-rapido.md
       - Arquitectura: invernadero/Arquitectura.md
+      - Referencia de código (v3.29.0): invernadero/Referencia-de-codigo.md
       - Diagramas de bloques y datos: invernadero/Diagramas.md
       - Control PID: invernadero/Control-PID.md
       - Compatibilidad (placas/sensores/buses): invernadero/Compatibilidad.md

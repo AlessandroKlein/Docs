@@ -5,11 +5,11 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-02
+> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-02
 
 Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Invernadero/blob/main/docs/MEJORAS.md).
 
-## Estado
+## Estado (v3.29.0)
 
 | Ítem | Estado |
 |------|--------|
@@ -25,58 +25,34 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 | Servidor: rate limiting + CORS + Store & Forward | ✅ |
 | Autodetección guiada (`/api/v1/detect`) | ✅ |
 | Gateway RS485 (polling multi-esclavo) | ✅ v3.17.0 |
-| HTTP/OTA sobre Ethernet | ⚠️ bloqueado (§10) |
+| OTA por HTTP sobre Ethernet (W5500) | ✅ v3.16.0 |
+| **Modularidad completa (Tasmota-like)** | ✅ v3.18 → v3.29 |
 
-## Prioridad sugerida
+## Modularidad completa (v3.18.0 → v3.29.0)
 
-1. Gateway RS485 (polling multi-esclavo por perfiles Modbus).
-2. HTTP/OTA sobre Ethernet (cliente HTTP propio o ETH nativo).
-3. Integración CAN de aplicación.
+Todo el hardware se configura desde la web **sin recompilar**:
 
-## Modularidad (en curso)
+| Elemento | Versión | Endpoint | Persistencia |
+|----------|---------|----------|--------------|
+| Mapa de pines en NVS | v3.18.0 | `GET/PUT /api/v1/pins` | `ghpins` |
+| Formulario web de pines | v3.19.0 | `/pins` | — |
+| Catálogo de sensores editable | v3.20.0 | `PUT /api/v1/sensors/catalog` | `ghsensors` |
+| Direcciones I²C desde el catálogo | v3.21.0 | idem | — |
+| Bloqueo de pines para PCB fija | v3.22.0 | `GH_PINS_LOCKED` | — |
+| `enabled` del catálogo (todos) | v3.23.0 | idem | — |
+| Catálogo de expansores | v3.24.0 | `PUT /api/v1/hardware` | `ghhw` |
+| MCP23017 desde el catálogo | v3.25.0 | idem | — |
+| Pool MCP23017 + agregar nodos | v3.26.0 | idem | — |
+| Pools SPI (MCP23S17 + ADC) | v3.27.0 | idem | — |
+| 74HC165 desde el catálogo | v3.28.0 | idem | — |
+| Asignación de canales (pool I²C) | v3.29.0 | — | — |
 
-- ✅ Pines en NVS + web editable (`/pins`) — v3.18.0/v3.19.0.
-- ✅ Catálogo de sensores editable (`PUT /api/v1/sensors/catalog`) — v3.20.0.
-- ✅ Direcciones I²C desde el catálogo (SHT31/AHT20/ADS1115/BH1750/SCD41) — v3.21.0.
-- ❌ Instanciación del resto de drivers + expansores (74HC165/MCP23S17/ADC).
+## Pendientes (no bloqueantes)
 
-## v3.22.0
-
-- ✅ Bloqueo de pines para PCB fija (`GH_PINS_LOCKED`: 0 público / 1 PCB). Con PCB, `PUT /api/v1/pins` → 403 y `/pins` deshabilita el formulario.
-- ✅ El `enabled` del catálogo controla el reporte de los I²C (SHT31/AHT20/ADS1115/BH1750/SCD41).
-
-## v3.23.0
-
-- ✅ Paso 2 (catálogo de sensores instanciable) **completo**: dirección y `enabled` de **todos** los sensores (I²C, 1-Wire, pulsos, tanque, pH/EC) se toman del catálogo.
-- ❌ Pendiente: paso 3 — configuración de expansores (74HC165/MCP23S17/ADC).
-
-## v3.24.0
-
-- ✅ Paso 3 (expansores) primer incremento: catálogo de nodos editable y persistido (`PUT /api/v1/hardware` → enabled/address/bus_index).
-- ❌ Pendiente: agregar/instanciar expansores nuevos (74HC165/MCP23S17/ADC) y canales.
-
-## v3.25.0
-
-- ✅ MCP23017 se instancia desde el catálogo de expansores (nodo `mcp23017-0`: address + enabled).
-- ❌ Falta: pool de drivers para agregar expansores (74HC165, múltiples MCP23S17, ADC) + asignación de canales a actuadores.
-
-## v3.26.0
-
-- ✅ Pool de MCP23017 (hasta 4) instanciado desde el catálogo.
-- ✅ `PUT /api/v1/hardware` permite agregar nodos de tipos conocidos (HC595/HC165/MCP23017/MCP23S17/ADC).
-- ❌ Falta: pools 74HC165/MCP23S17/ADC + asignación de canales a actuadores.
-
-## v3.27.0
-
-- ✅ Pools SPI (`Mcp23s17` + `AdcManager` MCP3208, hasta 4 c/u) instanciados desde el catálogo + `SpiManager` desde NVS.
-- ❌ Falta: pool 74HC165 (3 pines) + asignación de canales a actuadores.
-
-## v3.28.0
-
-- ✅ 74HC165 instanciado desde el catálogo (pines + nº chips en NVS, editables en /pins).
-- ❌ Falta solo: asignación de canales de todos los pools a actuadores.
-
-## v3.29.0
-
-- ✅ Asignación de canales con pool MCP23017 (canales 32..95 → device 0..3 / pin 0..15).
-- ⚠️ Resta (opcional): mapeo de canales configurable por actuador desde la web.
+1. **Mapeo de canales configurable por actuador** — hoy el `ROLE_TABLE` tiene
+   canales fijos (0..24); falta que la web elija canal/bus por actuador.
+2. **HTTPS sobre W5500** — la librería `Ethernet` clásica no tiene TLS; requiere
+   `W5500lwIP` o ETH nativo.
+3. **Estación meteorológica por Ethernet** — aplicar el patrón GET manual sobre
+   `Client*` a `WeatherStation` (diferido hasta cerrar la modularidad).
+4. **Integración CAN de aplicación** — tras definir el hardware.
