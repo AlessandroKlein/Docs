@@ -146,6 +146,7 @@ nav:
       - Preguntas frecuentes (FAQ): invernadero/FAQ.md
       - Decisiones: invernadero/Decisiones.md
       - Compilación y flasheo: invernadero/Compilacion.md
+      - Guía de desarrollo (extender): invernadero/Guia-de-desarrollo.md
       - Evolución: invernadero/Evolucion.md
       - Mejoras y roadmap: invernadero/Mejoras.md
       - Versiones (CHANGELOG): invernadero/CHANGELOG.md
