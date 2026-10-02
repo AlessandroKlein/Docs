@@ -8,6 +8,20 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/Estandar-de-documentacion/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/Estandar-de-documentacion/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/Estandar-de-documentacion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/Reglas-de-trabajo/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/Reglas-de-trabajo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/Reglas-de-trabajo/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/API-REST/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -113,6 +127,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Identidad-y-Estados/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Inicio-rapido/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Inicio-rapido/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Inicio-rapido/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/MQTT-y-WebSocket/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -211,6 +232,20 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Home/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/Estandar-de-documentacion/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/Estandar-de-documentacion/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/Estandar-de-documentacion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/Reglas-de-trabajo/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/Reglas-de-trabajo/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/Reglas-de-trabajo/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/API-REST/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -293,6 +328,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Identidad-y-Estados/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Identidad-y-Estados/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Inicio-rapido/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Inicio-rapido/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Inicio-rapido/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/MQTT-y-WebSocket/</loc>
