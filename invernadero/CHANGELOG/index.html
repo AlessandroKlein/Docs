@@ -500,6 +500,8 @@
       
         
       
+        
+      
     
     
     
@@ -591,6 +593,34 @@
     
   
     Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código (v3.29.0)
   
 
     
@@ -1229,6 +1259,160 @@
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3290-2026-10-02-asignacion-de-canales-pool-mcp23017" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.29.0] - 2026-10-02 — Asignación de canales (pool MCP23017)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3280-74hc165-desde-el-catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.28.0] — 74HC165 desde el catálogo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3270-pools-spi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.27.0] — Pools SPI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3260-pool-mcp23017-agregar-nodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.26.0] — Pool MCP23017 + agregar nodos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3250-mcp23017-desde-el-catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.25.0] — MCP23017 desde el catálogo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3240-catalogo-de-expansores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.24.0] — Catálogo de expansores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3230-catalogo-controla-todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.23.0] — Catálogo controla todo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3220-bloqueo-de-pines-catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.22.0] — Bloqueo de pines + catálogo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3210-direcciones-i2c-desde-el-catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.21.0] — Direcciones I²C desde el catálogo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3200-catalogo-de-sensores-editable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.20.0] — Catálogo de sensores editable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3190-formulario-web-de-pines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.19.0] — Formulario web de pines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3180-mapa-de-pines-en-nvs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.18.0] — Mapa de pines en NVS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3170-gateway-rs485" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.17.0] — Gateway RS485
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3160-ota-http-sobre-ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [3.16.0] — OTA HTTP sobre Ethernet
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#3150-2026-10-02" class="md-nav__link">
@@ -2020,6 +2204,62 @@
 <p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
 <p>Historial completo de versiones del firmware. Formato <a href="https://keepachangelog.com/es/1.1.0/">Keep a Changelog</a>.</p>
+<h2 id="3290-2026-10-02-asignacion-de-canales-pool-mcp23017">[3.29.0] - 2026-10-02 — Asignación de canales (pool MCP23017)</h2>
+<ul>
+<li><code>ActuatorManager</code> mapea canales 32..95 → device 0..3 / pin 0..15 del pool I²C.</li>
+</ul>
+<h2 id="3280-74hc165-desde-el-catalogo">[3.28.0] — 74HC165 desde el catálogo</h2>
+<ul>
+<li><code>ShiftRegister165</code> instanciado por nodo <code>HC165</code>; pines <code>hc165_*</code> en NVS.</li>
+</ul>
+<h2 id="3270-pools-spi">[3.27.0] — Pools SPI</h2>
+<ul>
+<li><code>Mcp23s17</code> y <code>AdcManager</code> (MCP3208) instanciados desde el catálogo; <code>SpiManager</code> desde NVS.</li>
+</ul>
+<h2 id="3260-pool-mcp23017-agregar-nodos">[3.26.0] — Pool MCP23017 + agregar nodos</h2>
+<ul>
+<li>Pool de MCP23017 (hasta 4); <code>PUT /api/v1/hardware</code> permite agregar nodos.</li>
+</ul>
+<h2 id="3250-mcp23017-desde-el-catalogo">[3.25.0] — MCP23017 desde el catálogo</h2>
+<ul>
+<li>El driver MCP23017 se instancia desde el nodo <code>mcp23017-0</code> (address + enabled).</li>
+</ul>
+<h2 id="3240-catalogo-de-expansores">[3.24.0] — Catálogo de expansores</h2>
+<ul>
+<li><code>HardwareManager</code> editable/persistido; <code>PUT /api/v1/hardware</code>.</li>
+</ul>
+<h2 id="3230-catalogo-controla-todo">[3.23.0] — Catálogo controla todo</h2>
+<ul>
+<li>El <code>enabled</code> del catálogo controla el reporte de <strong>todos</strong> los sensores.</li>
+</ul>
+<h2 id="3220-bloqueo-de-pines-catalogo">[3.22.0] — Bloqueo de pines + catálogo</h2>
+<ul>
+<li><code>GH_PINS_LOCKED</code> (0 público / 1 PCB); <code>enabled</code> del catálogo en los I²C.</li>
+</ul>
+<h2 id="3210-direcciones-i2c-desde-el-catalogo">[3.21.0] — Direcciones I²C desde el catálogo</h2>
+<ul>
+<li>SHT31/AHT20/ADS1115/BH1750/SCD41 leen su dirección del catálogo.</li>
+</ul>
+<h2 id="3200-catalogo-de-sensores-editable">[3.20.0] — Catálogo de sensores editable</h2>
+<ul>
+<li><code>SensorRegistry</code> editable/persistido (<code>PUT /api/v1/sensors/catalog</code>).</li>
+</ul>
+<h2 id="3190-formulario-web-de-pines">[3.19.0] — Formulario web de pines</h2>
+<ul>
+<li>Página <code>/pins</code> editable (carga/guarda el mapa de pines en NVS).</li>
+</ul>
+<h2 id="3180-mapa-de-pines-en-nvs">[3.18.0] — Mapa de pines en NVS</h2>
+<ul>
+<li><code>PinConfig</code> + <code>PinConfigManager</code>; <code>GET/PUT /api/v1/pins</code>.</li>
+</ul>
+<h2 id="3170-gateway-rs485">[3.17.0] — Gateway RS485</h2>
+<ul>
+<li><code>ModbusGateway</code> (polling multi-esclavo por perfiles) + <code>GET /api/v1/modbus/gateway</code>.</li>
+</ul>
+<h2 id="3160-ota-http-sobre-ethernet">[3.16.0] — OTA HTTP sobre Ethernet</h2>
+<ul>
+<li>GET manual sobre <code>Client*</code> + <code>Update.write</code> (W5500); soporta chunked.</li>
+</ul>
 <h2 id="3150-2026-10-02">[3.15.0] - 2026-10-02</h2>
 <h3 id="added">Added</h3>
 <ul>

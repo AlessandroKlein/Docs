@@ -176,6 +176,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/OTA-y-Actualizacion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Referencia-de-codigo/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Referencia-de-codigo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Referencia-de-codigo/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Registro-de-cambios/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -391,6 +398,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/OTA-y-Actualizacion/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/OTA-y-Actualizacion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Referencia-de-codigo/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Referencia-de-codigo/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Referencia-de-codigo/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Registro-de-cambios/</loc>

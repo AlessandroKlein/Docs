@@ -500,6 +500,8 @@
       
         
       
+        
+      
     
     
     
@@ -591,6 +593,34 @@
     
   
     Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código (v3.29.0)
   
 
     
@@ -1203,10 +1233,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#estado" class="md-nav__link">
+  <a href="#estado-v3290" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estado
+        Estado (v3.29.0)
       
     </span>
   </a>
@@ -1214,10 +1244,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prioridad-sugerida" class="md-nav__link">
+  <a href="#modularidad-completa-v3180-v3290" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prioridad sugerida
+        Modularidad completa (v3.18.0 → v3.29.0)
       
     </span>
   </a>
@@ -1225,98 +1255,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modularidad-en-curso" class="md-nav__link">
+  <a href="#pendientes-no-bloqueantes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modularidad (en curso)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3220" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.22.0
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3230" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.23.0
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3240" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.24.0
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3250" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.25.0
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3260" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.26.0
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3270" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.27.0
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3280" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.28.0
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v3290" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v3.29.0
+        Pendientes (no bloqueantes)
       
     </span>
   </a>
@@ -1679,10 +1621,10 @@
 
 <h1 id="mejoras-y-roadmap">Mejoras y roadmap</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
 <p>Detalle completo en <a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/MEJORAS.md"><code>docs/MEJORAS.md</code></a>.</p>
-<h2 id="estado">Estado</h2>
+<h2 id="estado-v3290">Estado (v3.29.0)</h2>
 <table>
 <thead>
 <tr>
@@ -1740,65 +1682,111 @@
 <td>✅ v3.17.0</td>
 </tr>
 <tr>
-<td>HTTP/OTA sobre Ethernet</td>
-<td>⚠️ bloqueado (§10)</td>
+<td>OTA por HTTP sobre Ethernet (W5500)</td>
+<td>✅ v3.16.0</td>
+</tr>
+<tr>
+<td><strong>Modularidad completa (Tasmota-like)</strong></td>
+<td>✅ v3.18 → v3.29</td>
 </tr>
 </tbody>
 </table>
-<h2 id="prioridad-sugerida">Prioridad sugerida</h2>
+<h2 id="modularidad-completa-v3180-v3290">Modularidad completa (v3.18.0 → v3.29.0)</h2>
+<p>Todo el hardware se configura desde la web <strong>sin recompilar</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Versión</th>
+<th>Endpoint</th>
+<th>Persistencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mapa de pines en NVS</td>
+<td>v3.18.0</td>
+<td><code>GET/PUT /api/v1/pins</code></td>
+<td><code>ghpins</code></td>
+</tr>
+<tr>
+<td>Formulario web de pines</td>
+<td>v3.19.0</td>
+<td><code>/pins</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Catálogo de sensores editable</td>
+<td>v3.20.0</td>
+<td><code>PUT /api/v1/sensors/catalog</code></td>
+<td><code>ghsensors</code></td>
+</tr>
+<tr>
+<td>Direcciones I²C desde el catálogo</td>
+<td>v3.21.0</td>
+<td>idem</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Bloqueo de pines para PCB fija</td>
+<td>v3.22.0</td>
+<td><code>GH_PINS_LOCKED</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>enabled</code> del catálogo (todos)</td>
+<td>v3.23.0</td>
+<td>idem</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Catálogo de expansores</td>
+<td>v3.24.0</td>
+<td><code>PUT /api/v1/hardware</code></td>
+<td><code>ghhw</code></td>
+</tr>
+<tr>
+<td>MCP23017 desde el catálogo</td>
+<td>v3.25.0</td>
+<td>idem</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Pool MCP23017 + agregar nodos</td>
+<td>v3.26.0</td>
+<td>idem</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Pools SPI (MCP23S17 + ADC)</td>
+<td>v3.27.0</td>
+<td>idem</td>
+<td>—</td>
+</tr>
+<tr>
+<td>74HC165 desde el catálogo</td>
+<td>v3.28.0</td>
+<td>idem</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Asignación de canales (pool I²C)</td>
+<td>v3.29.0</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pendientes-no-bloqueantes">Pendientes (no bloqueantes)</h2>
 <ol>
-<li>Gateway RS485 (polling multi-esclavo por perfiles Modbus).</li>
-<li>HTTP/OTA sobre Ethernet (cliente HTTP propio o ETH nativo).</li>
-<li>Integración CAN de aplicación.</li>
+<li><strong>Mapeo de canales configurable por actuador</strong> — hoy el <code>ROLE_TABLE</code> tiene
+   canales fijos (0..24); falta que la web elija canal/bus por actuador.</li>
+<li><strong>HTTPS sobre W5500</strong> — la librería <code>Ethernet</code> clásica no tiene TLS; requiere
+   <code>W5500lwIP</code> o ETH nativo.</li>
+<li><strong>Estación meteorológica por Ethernet</strong> — aplicar el patrón GET manual sobre
+   <code>Client*</code> a <code>WeatherStation</code> (diferido hasta cerrar la modularidad).</li>
+<li><strong>Integración CAN de aplicación</strong> — tras definir el hardware.</li>
 </ol>
-<h2 id="modularidad-en-curso">Modularidad (en curso)</h2>
-<ul>
-<li>✅ Pines en NVS + web editable (<code>/pins</code>) — v3.18.0/v3.19.0.</li>
-<li>✅ Catálogo de sensores editable (<code>PUT /api/v1/sensors/catalog</code>) — v3.20.0.</li>
-<li>✅ Direcciones I²C desde el catálogo (SHT31/AHT20/ADS1115/BH1750/SCD41) — v3.21.0.</li>
-<li>❌ Instanciación del resto de drivers + expansores (74HC165/MCP23S17/ADC).</li>
-</ul>
-<h2 id="v3220">v3.22.0</h2>
-<ul>
-<li>✅ Bloqueo de pines para PCB fija (<code>GH_PINS_LOCKED</code>: 0 público / 1 PCB). Con PCB, <code>PUT /api/v1/pins</code> → 403 y <code>/pins</code> deshabilita el formulario.</li>
-<li>✅ El <code>enabled</code> del catálogo controla el reporte de los I²C (SHT31/AHT20/ADS1115/BH1750/SCD41).</li>
-</ul>
-<h2 id="v3230">v3.23.0</h2>
-<ul>
-<li>✅ Paso 2 (catálogo de sensores instanciable) <strong>completo</strong>: dirección y <code>enabled</code> de <strong>todos</strong> los sensores (I²C, 1-Wire, pulsos, tanque, pH/EC) se toman del catálogo.</li>
-<li>❌ Pendiente: paso 3 — configuración de expansores (74HC165/MCP23S17/ADC).</li>
-</ul>
-<h2 id="v3240">v3.24.0</h2>
-<ul>
-<li>✅ Paso 3 (expansores) primer incremento: catálogo de nodos editable y persistido (<code>PUT /api/v1/hardware</code> → enabled/address/bus_index).</li>
-<li>❌ Pendiente: agregar/instanciar expansores nuevos (74HC165/MCP23S17/ADC) y canales.</li>
-</ul>
-<h2 id="v3250">v3.25.0</h2>
-<ul>
-<li>✅ MCP23017 se instancia desde el catálogo de expansores (nodo <code>mcp23017-0</code>: address + enabled).</li>
-<li>❌ Falta: pool de drivers para agregar expansores (74HC165, múltiples MCP23S17, ADC) + asignación de canales a actuadores.</li>
-</ul>
-<h2 id="v3260">v3.26.0</h2>
-<ul>
-<li>✅ Pool de MCP23017 (hasta 4) instanciado desde el catálogo.</li>
-<li>✅ <code>PUT /api/v1/hardware</code> permite agregar nodos de tipos conocidos (HC595/HC165/MCP23017/MCP23S17/ADC).</li>
-<li>❌ Falta: pools 74HC165/MCP23S17/ADC + asignación de canales a actuadores.</li>
-</ul>
-<h2 id="v3270">v3.27.0</h2>
-<ul>
-<li>✅ Pools SPI (<code>Mcp23s17</code> + <code>AdcManager</code> MCP3208, hasta 4 c/u) instanciados desde el catálogo + <code>SpiManager</code> desde NVS.</li>
-<li>❌ Falta: pool 74HC165 (3 pines) + asignación de canales a actuadores.</li>
-</ul>
-<h2 id="v3280">v3.28.0</h2>
-<ul>
-<li>✅ 74HC165 instanciado desde el catálogo (pines + nº chips en NVS, editables en /pins).</li>
-<li>❌ Falta solo: asignación de canales de todos los pools a actuadores.</li>
-</ul>
-<h2 id="v3290">v3.29.0</h2>
-<ul>
-<li>✅ Asignación de canales con pool MCP23017 (canales 32..95 → device 0..3 / pin 0..15).</li>
-<li>⚠️ Resta (opcional): mapeo de canales configurable por actuador desde la web.</li>
-</ul>
 
 
 

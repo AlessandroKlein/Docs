@@ -12,17 +12,17 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/API-REST/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Referencia-de-codigo/">
       
       
-        <link rel="prev" href="../Variables-Modificables/">
+        <link rel="prev" href="../Arquitectura/">
       
       
-        <link rel="next" href="../MQTT-y-WebSocket/">
+        <link rel="next" href="../Diagramas/">
       
       
         
-          <link rel="alternate" href="../../../invernadero/API-REST/" hreflang="es">
+          <link rel="alternate" href="../../../invernadero/Referencia-de-codigo/" hreflang="es">
         
           <link rel="alternate" href="./" hreflang="en">
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>API REST - AlessandroKlein Docs</title>
+        <title>Referencia de código (v3.29.0) - AlessandroKlein Docs</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#api-rest" class="md-skip">
+        <a href="#referencia-de-codigo-v3290" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              API REST
+              Referencia de código (v3.29.0)
             
           </span>
         </div>
@@ -169,7 +169,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../invernadero/API-REST/" hreflang="es" class="md-select__link">
+            <a href="../../../invernadero/Referencia-de-codigo/" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
@@ -610,10 +610,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Referencia-de-codigo/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -629,6 +656,148 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-metadatos-de-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Metadatos de versión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estructura-del-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Estructura del repositorio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-modulos-y-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Módulos y responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-flujo-de-arranque-srcmaincpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Flujo de arranque (src/main.cpp)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Flujo de arranque (src/main.cpp)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tareas-freertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tareas FreeRTOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modularidad-runtime-v318-v329" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modularidad runtime (v3.18 → v3.29)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Modularidad runtime (v3.18 → v3.29)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pools-de-expansores-v326-v329" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pools de expansores (v3.26 → v3.29)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-rest-48-endpoints-proteccion-por-requireauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. API REST (48 endpoints, protección por requireAuth)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-puntos-de-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Puntos de extensión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-compilacion-y-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Compilación y release
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -890,37 +1059,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API REST
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../API-REST/" class="md-nav__link">
         
   
   
@@ -936,103 +1078,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#estado-y-lectura" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Estado y lectura
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuracion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuración
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#control-de-actuadores" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Control de actuadores
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#identidad-red-y-diagnostico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Identidad, red y diagnóstico
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plataforma-configurable-v8v9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plataforma configurable (V8/V9)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#token-de-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Token de API
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autenticacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Autenticación
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1647,267 +1692,282 @@
                 
                   
 
-  <nav class="md-tags" >
-    
-      
-      
-      
-      
-        <span class="md-tag">api</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">invernadero</span>
-      
-    
-  </nav>
-
 
   
   
 
 
-<h1 id="api-rest">API REST</h1>
+<h1 id="referencia-de-codigo-v3290">Referencia de código (v3.29.0)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> API | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Referencia técnica | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Base: <code>http://&lt;IP&gt;/api/v1/</code> (puerto 80).</p>
-<h2 id="estado-y-lectura">Estado y lectura</h2>
-<table>
-<thead>
-<tr>
-<th>Método</th>
-<th>Endpoint</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td><code>/status</code></td>
-<td>Estado general (temperatura, humedad, suelo, tanque, luz, bomba, ventilador)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/sensors</code></td>
-<td>Lista de sensores (con calidad)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/weather</code></td>
-<td>Estación meteorológica externa</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/actuators</code></td>
-<td>Lista de actuadores</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/zones</code></td>
-<td>Zonas</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/events</code></td>
-<td>Últimos eventos</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/alarms</code></td>
-<td>Alarmas (severidad ≥ 2)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="configuracion">Configuración</h2>
-<table>
-<thead>
-<tr>
-<th>Método</th>
-<th>Endpoint</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET/PUT</td>
-<td><code>/config</code></td>
-<td>Configuración JSON completa (incluye <code>net_interface</code>, <code>eth_*</code>)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/config/schema</code></td>
-<td>Esquema descriptivo</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/config/rollback</code></td>
-<td>Restaura la configuración anterior</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/reset</code></td>
-<td><code>{"level":"network"\|"automation"\|"factory"}</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="control-de-actuadores">Control de actuadores</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>POST /api/v1/actuators
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>{"role":"pump","index":0,"output":100}
+<p>Mapa completo del código del firmware <strong>v3.29.0</strong>: módulos, archivos, clases,
+flujo de arranque y puntos de extensión. Corresponde al tag
+<a href="https://github.com/AlessandroKlein/Invernadero/releases/tag/v3.29.0"><code>v3.29.0</code></a>.</p>
+<h2 id="1-metadatos-de-version">1. Metadatos de versión</h2>
+<p><code>include/core/Version.hpp</code>:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#define GH_FW_VERSION            "3.29.0"   </span><span class="c1">// versión del firmware</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#define GH_HW_VERSION            "rev0"     </span><span class="c1">// revisión de hardware</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#define GH_HW_PROFILE            "ESP32-GH-V1" </span><span class="c1">// perfil de PCB</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#define GH_CONFIG_SCHEMA_VERSION 2          </span><span class="c1">// esquema de configuración</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">#define GH_PROTOCOL_VERSION      1          </span><span class="c1">// versión del protocolo</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#define GH_PINS_LOCKED           0          </span><span class="c1">// 0=público, 1=PCB fija</span>
 </span></code></pre></div>
-<p>Roles: <code>pump</code>, <code>valve</code>, <code>fan</code>, <code>extractor</code>, <code>heater</code>, <code>humidifier</code>, <code>light</code>,
-<code>roof</code>, <code>window</code>, <code>shade</code>, <code>alarm</code>.</p>
-<h2 id="identidad-red-y-diagnostico">Identidad, red y diagnóstico</h2>
+<p><code>GH_PINS_LOCKED</code> es la única línea que cambia entre la compilación <strong>pública</strong>
+(0, los usuarios configuran sus pines) y la de <strong>PCB fabricada</strong> (1, pines
+bloqueados pero sensores/actuadores configurables).</p>
+<h2 id="2-estructura-del-repositorio">2. Estructura del repositorio</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>include/           58 headers (.hpp)  — interfaces de cada clase
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>src/               48 fuentes  (.cpp)  — implementación
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── core/           Tipos, Version, PinMap, PinConfig, PlatformTypes,
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│                   CapabilityRegistry, ModuleRegistry, EventBus, Scheduler
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── config/         ConfigManager, Defaults
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── storage/        History, StorageManager
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├── hardware/       BusManager, HardwareManager, SpiManager, AdcManager,
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│                   ShiftRegister595/165, Mcp23017, Mcp23s17, ModbusRtu, CanManager
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── sensors/        SensorManager, SensorRegistry, ModbusProfileRegistry,
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│                   ModbusGateway + drivers (SHT31/AHT20, DS18B20, ADS1115,
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│                   BH1750, SCD4x, pulsos, ultrasónico, pH, EC)
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>├── actuators/      ActuatorManager, ActuatorRegistry
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>├── control/        Climate/Irrigation/Lighting/Roof/Safety, RuleEngine,
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│                   CalculatedVariables
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>├── network/        NetworkManager (WiFi/Ethernet), MqttManager, WeatherStation
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>├── api/            RestApi, WebSocketServer
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>├── system/         Device, OTA, Watchdog, HealthMonitor, BootCounters,
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│                   Logger, Diagnostics
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>└── web/            WebAssets (HTML embebido)
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>platformio.ini      targets y librerías
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>partitions/         tablas de particiones (default_8MB.csv por defecto)
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>firmware_manifest.json  manifest OTA (versión + SHA-256)
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>docs/              documentación fuente (espejo de esta wiki)
+</span></code></pre></div>
+<p><strong>Tamaño:</strong> ~5.238 líneas de <code>.cpp</code> + ~2.793 líneas de <code>.hpp</code> ≈ <strong>8.000 líneas</strong>.</p>
+<h2 id="3-modulos-y-responsabilidades">3. Módulos y responsabilidades</h2>
 <table>
 <thead>
 <tr>
-<th>Método</th>
-<th>Endpoint</th>
-<th>Descripción</th>
+<th>Módulo</th>
+<th>Archivos clave</th>
+<th>Responsabilidad</th>
+<th style="text-align: right;">Líneas</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>GET</td>
-<td><code>/device</code></td>
-<td>UID, id, perfil, firmware, estado, causa de reinicio</td>
+<td><code>core</code></td>
+<td><code>Types.hpp</code>, <code>PinConfig.hpp</code>, <code>PlatformTypes.hpp</code>, <code>EventBus</code>, <code>Scheduler</code></td>
+<td>Tipos, configuración de pines (NVS), contratos, bus de eventos</td>
+<td style="text-align: right;">405</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/capabilities</code></td>
-<td>Capacidades (<code>WIFI</code>, <code>I2C</code>, <code>SPI</code>, <code>RS485</code>, <code>MODBUS</code>, ...)</td>
+<td><code>config</code></td>
+<td><code>ConfigManager.cpp</code></td>
+<td>Config NVS+JSON, capas, migraciones, token de API</td>
+<td style="text-align: right;">599</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/network</code></td>
-<td>SSID, IP, interfaz (wifi/ethernet), MQTT, NTP, DNS</td>
+<td><code>storage</code></td>
+<td><code>History</code>, <code>StorageManager</code></td>
+<td>Historial circular, LittleFS/SPIFFS/SD</td>
+<td style="text-align: right;">165</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/rs485</code> + <code>/rs485/scan</code></td>
-<td>Estadísticas y escaneo Modbus</td>
+<td><code>hardware</code></td>
+<td><code>BusManager</code>, <code>HardwareManager</code>, <code>SpiManager</code>, <code>AdcManager</code>, <code>ShiftRegister595/165</code>, <code>Mcp23017</code>, <code>Mcp23s17</code>, <code>ModbusRtu</code></td>
+<td>Buses, expansores, pools, RS485</td>
+<td style="text-align: right;">968</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/modbus?slave=1&amp;func=3&amp;reg=0</code></td>
-<td>Lectura de registros</td>
+<td><code>sensors</code></td>
+<td><code>SensorManager</code>, <code>SensorRegistry</code>, <code>ModbusGateway</code>, drivers</td>
+<td>Adquisición, catálogo, gateway Modbus</td>
+<td style="text-align: right;">1083</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/modbus/profiles</code></td>
-<td>Perfiles e instancias Modbus (V9)</td>
+<td><code>actuators</code></td>
+<td><code>ActuatorManager</code>, <code>ActuatorRegistry</code></td>
+<td>Salidas, jerarquía, asignación de canales</td>
+<td style="text-align: right;">332</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/modbus/gateway</code></td>
-<td>Gateway RS485: valores y estado por esclavo</td>
+<td><code>control</code></td>
+<td><code>Climate/Irrigation/Lighting/Roof/Safety</code>, <code>RuleEngine</code></td>
+<td>Lógica de automatización</td>
+<td style="text-align: right;">305</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/diagnostics</code></td>
-<td>WiFi, RSSI, MQTT, heap, uptime</td>
+<td><code>network</code></td>
+<td><code>NetworkManager</code>, <code>MqttManager</code>, <code>WeatherStation</code></td>
+<td>WiFi/Ethernet, MQTT, clima externo</td>
+<td style="text-align: right;">314</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td><code>RestApi</code>, <code>WebSocketServer</code></td>
+<td>REST + WebSocket</td>
+<td style="text-align: right;">681</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td><code>Device</code>, <code>OtaManager</code>, <code>Watchdog</code>, <code>HealthMonitor</code>, <code>BootCounters</code>, <code>Logger</code></td>
+<td>Ciclo de vida, OTA, salud</td>
+<td style="text-align: right;">713</td>
+</tr>
+<tr>
+<td><code>main.cpp</code></td>
+<td>—</td>
+<td>Arranque, tareas, wiring</td>
+<td style="text-align: right;">350</td>
 </tr>
 </tbody>
 </table>
-<h2 id="plataforma-configurable-v8v9">Plataforma configurable (V8/V9)</h2>
+<h2 id="4-flujo-de-arranque-srcmaincpp">4. Flujo de arranque (<code>src/main.cpp</code>)</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>setup():
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  1) ConfigManager.begin()         → NVS + JSON + migraciones (schema 2)
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  2) StorageManager.begin()        → LittleFS/SPIFFS + History
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  3) PinConfigManager.begin()      → pines desde NVS (ghpins)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>     HardwareManager.begin(pins)   → buses + catálogo de nodos (ghhw)
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>     HardwareManager.load()        → aplica ediciones del catálogo
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>     [pools] mcpPool/input/spiPool/adcPool  → instanciados desde el catálogo
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>     ActuatorManager.begin(cfg, &amp;shift, mcpPool, 4)
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  4) SensorManager.begin(cfg, pins, &amp;sensorRegistry) → drivers + direcciones del catálogo
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>     SensorRegistry.load()         → aplica ediciones del catálogo (ghsensors)
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  5) Controladores (clima, riego, luz, techo, seguridad, reglas)
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  6) NetworkManager + MQTT + RestApi + WebSocket + OTA + Watchdog
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  7) Tareas núcleo 0: sensorTask (prio 3) + controlTask (prio 2)
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>loop():                            // núcleo 1
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  ArduinoOTA.handle() · api.handleClient() · ws.loop() · mqtt.loop()
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>  scheduler.tick() · modbusGateway.tick() · EventBus drain · watchdog feed
+</span></code></pre></div>
+<h3 id="tareas-freertos">Tareas FreeRTOS</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>xTaskCreatePinnedToCore(sensorTask,  "sensors", 8192, ..., 3, ..., 0);  // núcleo 0, prio 3
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>xTaskCreatePinnedToCore(controlTask, "control", 8192, ..., 2, ..., 0);  // núcleo 0, prio 2
+</span></code></pre></div>
+<p><code>sensorTask</code> adquiere y publica; <code>controlTask</code> aplica seguridad + controladores;
+<code>loop()</code> (núcleo 1) atiende red/API/OTA. La sincronización es por semáforo
+<code>xSemaphoreCreateMutex()</code> en <code>SensorManager</code> (accesores <code>valueAt</code>).</p>
+<h2 id="5-modularidad-runtime-v318-v329">5. Modularidad runtime (v3.18 → v3.29)</h2>
+<p>Todo el hardware se configura por NVS <strong>sin recompilar</strong>:</p>
 <table>
 <thead>
 <tr>
-<th>Método</th>
+<th>Elemento</th>
 <th>Endpoint</th>
-<th>Descripción</th>
+<th>Persistencia</th>
+<th>Consumidor</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>GET</td>
-<td><code>/modules</code></td>
-<td>Módulos embebidos</td>
+<td>Pines + direcciones I²C</td>
+<td><code>GET/PUT /api/v1/pins</code></td>
+<td>NVS <code>ghpins</code></td>
+<td><code>PinConfig</code> → buses/drivers</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/buses</code></td>
-<td>Buses registrados</td>
+<td>Catálogo de sensores</td>
+<td><code>GET/PUT /api/v1/sensors/catalog</code></td>
+<td>NVS <code>ghsensors</code></td>
+<td><code>SensorRegistry</code> → <code>SensorManager</code></td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/hardware</code></td>
-<td>Nodos de hardware</td>
+<td>Catálogo de expansores</td>
+<td><code>GET/PUT /api/v1/hardware</code></td>
+<td>NVS <code>ghhw</code></td>
+<td><code>HardwareManager</code> → pools</td>
 </tr>
 <tr>
-<td>GET/PUT</td>
-<td><code>/sensors/catalog</code></td>
-<td>Catálogo de sensores (PUT protegido edita enabled/address/zone/bus_index)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/actuators/catalog</code></td>
-<td>Catálogo de actuadores</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/storage</code></td>
-<td>Almacenamiento (LittleFS/SPIFFS/SD)</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/health</code></td>
-<td>Health monitor por tareas</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/boot</code></td>
-<td>Contadores de reinicio</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/logs</code></td>
-<td>Logs estructurados</td>
+<td>Perfiles Modbus</td>
+<td><code>GET /api/v1/modbus/profiles</code></td>
+<td>runtime</td>
+<td><code>ModbusGateway</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="token-de-api">Token de API</h2>
+<h3 id="pools-de-expansores-v326-v329">Pools de expansores (v3.26 → v3.29)</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mcpPool[4]    Mcp23017   I²C   → canales 32..95 (device 0..3, pin 0..15) en ActuatorManager
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>spiPool[4]    Mcp23s17   SPI   → CS desde el nodo del catálogo
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>adcPool[4]    AdcManager SPI   → MCP3208, 8 canales
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>input         ShiftRegister165 → pines + nº chips desde PinConfig (hc165_*)
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>shift         ShiftRegister595 → pines desde PinConfig (hc595_*)
+</span></code></pre></div>
+<p>La asignación de canales vive en <code>ActuatorManager::writeChannel()</code>: canal <code>0..31</code>
+→ 74HC595 (soft-PWM); <code>32..95</code> → pool MCP23017.</p>
+<h2 id="6-api-rest-48-endpoints-proteccion-por-requireauth">6. API REST (48 endpoints, protección por <code>requireAuth</code>)</h2>
 <table>
 <thead>
 <tr>
-<th>Método</th>
-<th>Endpoint</th>
-<th>Descripción</th>
+<th>Grupo</th>
+<th>Endpoints</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>POST</td>
-<td><code>/token/rotate</code></td>
-<td>Genera token (se muestra una vez)</td>
+<td>Sistema</td>
+<td><code>GET /api/v1/status</code>, <code>/device</code>, <code>/diagnostics</code>, <code>/health</code>, <code>/boot</code>, <code>/logs</code>, <code>/events</code>, <code>/capabilities</code>, <code>/modules</code></td>
 </tr>
 <tr>
-<td>POST</td>
-<td><code>/token/revoke</code></td>
-<td>Revoca token</td>
+<td>Config</td>
+<td><code>GET/PUT /api/v1/config</code>, <code>GET /config/export</code>, <code>/config/schema</code>, <code>POST /config/import</code>, <code>/config/rollback</code>, <code>/factory-reset</code>, <code>/reset</code></td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/token/status</code></td>
-<td>Estado (sin revelar el token)</td>
+<td>Red</td>
+<td><code>GET /network</code>, <code>POST /network/scan</code>, <code>GET /weather</code></td>
+</tr>
+<tr>
+<td>Sensores</td>
+<td><code>GET /sensors</code>, <code>GET/PUT /sensors/catalog</code>, <code>GET /modbus</code>, <code>/modbus/profiles</code>, <code>/modbus/gateway</code>, <code>GET/POST /rs485</code>, <code>/rs485/scan</code></td>
+</tr>
+<tr>
+<td>Actuadores</td>
+<td><code>GET/POST /actuators</code>, <code>GET /actuators/catalog</code>, <code>GET /zones</code></td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td><code>GET/PUT /hardware</code>, <code>GET /buses</code>, <code>GET/PUT /pins</code>, <code>GET /detect</code>, <code>GET /storage</code></td>
+</tr>
+<tr>
+<td>Automatización</td>
+<td><code>GET/POST/DELETE /automation</code></td>
+</tr>
+<tr>
+<td>Seguridad</td>
+<td><code>POST /auth/login</code>, <code>GET /token/status</code>, <code>POST /token/rotate</code>, <code>/token/revoke</code></td>
+</tr>
+<tr>
+<td>OTA</td>
+<td><code>GET /ota</code>, <code>GET /firmware</code></td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>GET /</code>, <code>GET /pins</code> (formularios HTML embebidos)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="autenticacion">Autenticación</h2>
-<p>Los endpoints de escritura requieren <code>Authorization: Bearer &lt;token&gt;</code> o
-<code>X-Auth-Token</code> (sesión de admin o token de API).</p>
+<h2 id="7-puntos-de-extension">7. Puntos de extensión</h2>
+<ul>
+<li><strong>Agregar un driver de sensor:</strong> crear la clase en <code>sensors/</code>, instanciarla en
+  <code>SensorManager</code> (patrón <code>on(id, flag)</code> + <code>addr(id, def)</code>) y registrarla en
+  <code>SensorRegistry::buildFromConfig</code>.</li>
+<li><strong>Agregar un expansor:</strong> sumar un pool en <code>main.cpp</code> + rama en el loop del
+  catálogo + mapeo en <code>ActuatorManager::writeChannel</code>.</li>
+<li><strong>Agregar un endpoint:</strong> registrar en <code>RestApi::begin</code> + <code>handleXxx()</code>.</li>
+<li><strong>Nuevo tipo de datos:</strong> extender <code>PlatformTypes.hpp</code> + serialización JSON.</li>
+</ul>
+<h2 id="8-compilacion-y-release">8. Compilación y release</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pio<span class="w"> </span>run<span class="w">                    </span><span class="c1"># build (SUCCESS esperado, ~27 s)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>pio<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>upload<span class="w">          </span><span class="c1"># flasheo</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># release: bump Version.hpp → CHANGELOG → SHA-256 → firmware_manifest.json</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">#          → git tag vX.Y.Z → gh release create</span>
+</span></code></pre></div>
+<p>Ver <a href="../Compilacion/">Compilación y flasheo</a> y <a href="../OTA-y-Actualizacion/">OTA</a>.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -1939,7 +1999,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Variables-Modificables/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Variables modificables">
+          <a href="../Arquitectura/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Arquitectura">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1949,20 +2009,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Variables modificables
+                Arquitectura
               </div>
             </div>
           </a>
         
         
           
-          <a href="../MQTT-y-WebSocket/" class="md-footer__link md-footer__link--next" aria-label="Next: MQTT y WebSocket">
+          <a href="../Diagramas/" class="md-footer__link md-footer__link--next" aria-label="Next: Diagramas de bloques y datos">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                MQTT y WebSocket
+                Diagramas de bloques y datos
               </div>
             </div>
             <div class="md-footer__button md-icon">
