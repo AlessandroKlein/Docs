@@ -3,7 +3,6 @@ site_description: Documentación unificada de los proyectos de AlessandroKlein
 site_url: https://alessandroklein.github.io/Docs/
 site_author: AlessandroKlein
 
-# --- Color negro/gris (sin verde) ---
 theme:
   name: material
   language: es
@@ -23,7 +22,7 @@ theme:
         icon: material/weather-sunny
         name: Cambiar a claro
   features:
-    - navigation.tabs          # menú superior con categorías
+    - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.top
@@ -32,7 +31,6 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
-    - content.tabs.link
   icon:
     repo: fontawesome/brands/github
 
@@ -54,16 +52,6 @@ markdown_extensions:
 plugins:
   - search
   - tags
-  - optimize
-  - offline
-  - info
-  - i18n:
-      default_language: es
-      languages:
-        es: Español
-        en: English
-      material_alternate: true
-      docs_structure: folder
 
 nav:
   - Inicio: index.md
