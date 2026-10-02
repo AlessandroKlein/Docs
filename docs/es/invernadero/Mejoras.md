@@ -70,3 +70,8 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 
 - ✅ Pools SPI (`Mcp23s17` + `AdcManager` MCP3208, hasta 4 c/u) instanciados desde el catálogo + `SpiManager` desde NVS.
 - ❌ Falta: pool 74HC165 (3 pines) + asignación de canales a actuadores.
+
+## v3.28.0
+
+- ✅ 74HC165 instanciado desde el catálogo (pines + nº chips en NVS, editables en /pins).
+- ❌ Falta solo: asignación de canales de todos los pools a actuadores.
