@@ -54,3 +54,8 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 
 - ✅ Paso 3 (expansores) primer incremento: catálogo de nodos editable y persistido (`PUT /api/v1/hardware` → enabled/address/bus_index).
 - ❌ Pendiente: agregar/instanciar expansores nuevos (74HC165/MCP23S17/ADC) y canales.
+
+## v3.25.0
+
+- ✅ MCP23017 se instancia desde el catálogo de expansores (nodo `mcp23017-0`: address + enabled).
+- ❌ Falta: pool de drivers para agregar expansores (74HC165, múltiples MCP23S17, ADC) + asignación de canales a actuadores.
