@@ -1,0 +1,16 @@
+/* Personalización adicional del tema (Material for MkDocs). */
+:root {
+  /* Acento gris oscuro para enlaces y elementos destacados. */
+  --md-primary-fg-color: #1f2937;
+  --md-accent-fg-color: #4b5563;
+}
+
+/* Ancho máximo de contenido más cómodo para lectura. */
+.md-grid {
+  max-width: 72rem;
+}
+
+/* Código con fondo ligeramente contrastado. */
+.md-typeset code {
+  border-radius: 0.25rem;
+}
