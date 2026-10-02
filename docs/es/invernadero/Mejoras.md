@@ -65,3 +65,8 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 - ✅ Pool de MCP23017 (hasta 4) instanciado desde el catálogo.
 - ✅ `PUT /api/v1/hardware` permite agregar nodos de tipos conocidos (HC595/HC165/MCP23017/MCP23S17/ADC).
 - ❌ Falta: pools 74HC165/MCP23S17/ADC + asignación de canales a actuadores.
+
+## v3.27.0
+
+- ✅ Pools SPI (`Mcp23s17` + `AdcManager` MCP3208, hasta 4 c/u) instanciados desde el catálogo + `SpiManager` desde NVS.
+- ❌ Falta: pool 74HC165 (3 pines) + asignación de canales a actuadores.
