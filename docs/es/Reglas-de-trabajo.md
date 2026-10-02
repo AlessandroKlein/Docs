@@ -8,11 +8,12 @@ Reglas que el asistente sigue en todos los proyectos. Documento fuente:
 ## 1. Flujo tras cada cambio de código
 
 1. Compilar y validar (`pio run` → SUCCESS).
-2. Bump semver (`feat`→minor, `fix`→patch, `BREAKING`→major).
+2. Bump semver (`feat`→minor, `fix`→patch, `BREAKING`→major). Ver
+   [Versionado](Versionado.md) para la numeración, `v`, pre-releases y revisiones.
 3. Actualizar `firmware_manifest.json` (SHA-256 real).
 4. Actualizar `CHANGELOG.md`.
 5. Commit convencional (un cambio lógico = un commit).
-6. Tag + push.
+6. Tag + push (`v` minúscula, SemVer completo).
 7. Release en GitHub con artefactos.
 8. Actualizar wiki del proyecto + repo Docs.
 

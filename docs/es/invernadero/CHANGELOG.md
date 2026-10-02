@@ -4,6 +4,10 @@
 
 Historial completo de versiones del firmware. Formato [Keep a Changelog](https://keepachangelog.com/es/1.1.0/).
 
+> Las reglas de numeración (`MAJOR.MINOR.PATCH`, prefijo `v`, pre-releases
+> `alpha`/`beta`/`rc`, revisiones de hardware y esquema de config) están en
+> [Versionado](../Versionado.md).
+
 ## [3.29.0] - 2026-10-02 — Asignación de canales (pool MCP23017)
 - `ActuatorManager` mapea canales 32..95 → device 0..3 / pin 0..15 del pool I²C.
 
