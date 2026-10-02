@@ -1,0 +1,9 @@
+{#-
+  Página 404 personalizada (en el idioma del sitio).
+-#}
+{% extends "main.html" %}
+{% block content %}
+  <h1>404 — Página no encontrada</h1>
+  <p>La página que buscas no existe o fue movida.</p>
+  <p><a href="{{ config.site_url }}">Volver al inicio</a></p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{#-
+  Copyright personalizado: muestra el texto de config.copyright y un enlace al repo.
+-#}
+<div class="md-copyright">
+  {% if config.copyright %}
+    <div class="md-copyright__highlight">
+      {{ config.copyright }}
+    </div>
+  {% endif %}
+  {% if config.repo_url %}
+    <a href="{{ config.repo_url }}" target="_blank" rel="noopener">
+      Documentación versionada en GitHub
+    </a>
+  {% endif %}
+</div>

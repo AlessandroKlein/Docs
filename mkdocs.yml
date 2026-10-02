@@ -10,6 +10,7 @@ repo_name: AlessandroKlein/Docs
 theme:
   name: material
   language: es
+  custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
   font:
@@ -96,6 +97,12 @@ plugins:
 
 extra:
   generator: false
+  consent:
+    title: Cookies
+    description: Usamos cookies para recordar tus preferencias (tema e idioma).
+    actions:
+      - accept
+      - reject
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/AlessandroKlein
