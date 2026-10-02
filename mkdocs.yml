@@ -1,0 +1,42 @@
+site_name: AlessandroKlein Docs
+site_description: Documentación unificada de los proyectos de AlessandroKlein
+site_url: https://alessandroklein.github.io/Docs/
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a claro
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tasklist
+
+nav:
+  - Inicio: index.md
+  - Invernadero:
+      - Home: invernadero/Home.md
+      - Arquitectura: invernadero/Arquitectura.md
+      - Hardware y conexiones: invernadero/Hardware-y-Conexiones.md
+      - Decisiones: invernadero/Decisiones.md
+      - Registro de cambios: invernadero/Registro-de-cambios.md
+  - SEMA:
+      - Home: sema/Home.md
