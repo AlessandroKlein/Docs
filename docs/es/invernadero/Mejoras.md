@@ -59,3 +59,9 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 
 - ✅ MCP23017 se instancia desde el catálogo de expansores (nodo `mcp23017-0`: address + enabled).
 - ❌ Falta: pool de drivers para agregar expansores (74HC165, múltiples MCP23S17, ADC) + asignación de canales a actuadores.
+
+## v3.26.0
+
+- ✅ Pool de MCP23017 (hasta 4) instanciado desde el catálogo.
+- ✅ `PUT /api/v1/hardware` permite agregar nodos de tipos conocidos (HC595/HC165/MCP23017/MCP23S17/ADC).
+- ❌ Falta: pools 74HC165/MCP23S17/ADC + asignación de canales a actuadores.
