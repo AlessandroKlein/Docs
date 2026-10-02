@@ -134,6 +134,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Glosario/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/invernadero/Guia-de-desarrollo/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Guia-de-desarrollo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-desarrollo/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/invernadero/Guia-de-pines/</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>daily</changefreq>
@@ -405,6 +412,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Glosario/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Glosario/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-desarrollo/</loc>
+        <lastmod>2026-10-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-desarrollo/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Guia-de-desarrollo/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-pines/</loc>

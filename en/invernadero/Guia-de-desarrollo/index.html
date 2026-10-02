@@ -12,17 +12,17 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Servidor-central/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/invernadero/Guia-de-desarrollo/">
       
       
-        <link rel="prev" href="../OTA-y-Actualizacion/">
+        <link rel="prev" href="../Compilacion/">
       
       
-        <link rel="next" href="../Seguridad/">
+        <link rel="next" href="../Evolucion/">
       
       
         
-          <link rel="alternate" href="../../../invernadero/Servidor-central/" hreflang="es">
+          <link rel="alternate" href="../../../invernadero/Guia-de-desarrollo/" hreflang="es">
         
           <link rel="alternate" href="./" hreflang="en">
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>Servidor central - AlessandroKlein Docs</title>
+        <title>Guía de desarrollo (extender) - AlessandroKlein Docs</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#servidor-central-multi-proyecto" class="md-skip">
+        <a href="#guia-de-desarrollo-como-extender" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Servidor central
+              Guía de desarrollo (extender)
             
           </span>
         </div>
@@ -169,7 +169,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../invernadero/Servidor-central/" hreflang="es" class="md-select__link">
+            <a href="../../../invernadero/Guia-de-desarrollo/" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
@@ -1128,37 +1128,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Servidor central
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Servidor-central/" class="md-nav__link">
         
   
   
@@ -1174,92 +1147,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#stack-actual-rama-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Stack actual (rama server)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-resumen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API (resumen)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seguridad" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seguridad
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#store-forward" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Store &amp; Forward
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modelo-multi-proyecto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modelo multi-proyecto
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#puesta-en-marcha" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Puesta en marcha
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1437,10 +1324,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1456,6 +1370,125 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Entorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-convenciones-del-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Convenciones del código
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-agregar-un-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Agregar un sensor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-agregar-un-expansor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Agregar un expansor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-agregar-un-endpoint-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Agregar un endpoint REST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-agregar-un-campo-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Agregar un campo de configuración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-agregar-una-regla-de-automatizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Agregar una regla de automatización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-flujo-de-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Flujo de release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-checklist-antes-de-un-prrelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Checklist antes de un PR/release
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1852,7 +1885,14 @@
       
       
       
-        <span class="md-tag">servidor</span>
+        <span class="md-tag">desarrollo</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">invernadero</span>
       
     
   </nav>
@@ -1862,64 +1902,103 @@
   
 
 
-<h1 id="servidor-central-multi-proyecto">Servidor central (multi-proyecto)</h1>
+<h1 id="guia-de-desarrollo-como-extender">Guía de desarrollo (cómo extender)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Backend/Web | <strong>Estado:</strong> Especificación | <strong>Fecha:</strong> 2026-10-02</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Documento de diseño del servidor central unificado para <strong>todos los proyectos</strong>.
-Detalle completo en <a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/SERVIDOR-CENTRAL.md"><code>docs/SERVIDOR-CENTRAL.md</code></a>.</p>
-<h2 id="stack-actual-rama-server">Stack actual (rama <code>server</code>)</h2>
-<table>
-<thead>
-<tr>
-<th>Capa</th>
-<th>Tecnología</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Frontend</td>
-<td>HTML + CSS + JS (Chart.js, mqtt.js)</td>
-</tr>
-<tr>
-<td>Backend / API</td>
-<td>PHP 8.2 + Apache (front controller)</td>
-</tr>
-<tr>
-<td>Base de datos</td>
-<td>PostgreSQL 16</td>
-</tr>
-<tr>
-<td>Mensajería</td>
-<td>Mosquitto (MQTT 1883 + WebSocket 9001)</td>
-</tr>
-<tr>
-<td>Orquestación</td>
-<td>Docker Compose</td>
-</tr>
-</tbody>
-</table>
-<h2 id="api-resumen">API (resumen)</h2>
-<p><code>POST /api/v1/auth/login</code> (JWT) · <code>GET/POST /api/v1/greenhouses</code> ·
-<code>GET /api/v1/devices</code> · <code>GET /api/v1/devices/{id}</code> ·
-<code>.../{id}/sensors|actuators|alarms|readings|shadow|config|ota</code> ·
-<code>POST /api/v1/firmware/upload</code>.</p>
-<h2 id="seguridad">Seguridad</h2>
-<p>JWT · contraseñas bcrypt · RBAC granular · token de API por dispositivo ·
-<strong>rate limiting por IP</strong> · <strong>CORS configurable</strong> · MQTT con TLS en producción.</p>
-<h2 id="store-forward">Store &amp; Forward</h2>
-<p>Columna <code>sequence</code> en <code>sensor_readings</code> + consulta con <code>after_sequence</code> para
-sincronización incremental (detección de huecos).</p>
-<h2 id="modelo-multi-proyecto">Modelo multi-proyecto</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>projects → devices → sensors/actuators → readings/states/events
+<p>Cómo agregar drivers, expansores, endpoints y campos de configuración sin romper
+la arquitectura.</p>
+<h2 id="1-entorno">1. Entorno</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>platformio<span class="w">          </span><span class="c1"># o usar la extensión de VS Code</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pio<span class="w"> </span>run<span class="w">                         </span><span class="c1"># compilar (SUCCESS esperado)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>pio<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>upload<span class="w">               </span><span class="c1"># flashear</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>pio<span class="w"> </span>device<span class="w"> </span>monitor<span class="w">              </span><span class="c1"># monitor serie (115200)</span>
 </span></code></pre></div>
-<p>Aislamiento por <code>project_id</code> + scope JWT + prefijo MQTT <code>{project}/{device_id}/...</code>.</p>
-<h2 id="puesta-en-marcha">Puesta en marcha</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>server
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>php<span class="w"> </span>php<span class="w"> </span>mqtt/worker.php
+<p>Librerías externas declaradas en <code>platformio.ini</code>
+(<code>ArduinoJson</code>, <code>PubSubClient</code>, <code>Ethernet</code>, …).</p>
+<h2 id="2-convenciones-del-codigo">2. Convenciones del código</h2>
+<ul>
+<li><strong>Una clase por archivo</strong>: <code>.hpp</code> en <code>include/&lt;modulo&gt;/</code>, <code>.cpp</code> en <code>src/&lt;modulo&gt;/</code>.</li>
+<li>Namespace único: <code>gh::</code>.</li>
+<li>Comentar el <strong>por qué</strong>, no el <strong>qué</strong>.</li>
+<li>Verificar <code>pio run</code> <strong>antes</strong> de commitear (regla de trabajo).</li>
+<li>No hardcodear pines ni secretos: usar <code>PinConfig</code> / NVS.</li>
+</ul>
+<h2 id="3-agregar-un-sensor">3. Agregar un sensor</h2>
+<ol>
+<li>Crear <code>include/sensors/MiSensor.hpp</code> + <code>src/sensors/MiSensor.cpp</code>.</li>
+<li>Agregar el enumerador en <code>SensorType</code> (<code>core/Types.hpp</code>).</li>
+<li><strong>Instanciarlo</strong> en <code>SensorManager</code> (miembro privado) y en <code>begin()</code> con el
+   patrón de dirección desde el catálogo:
+   <div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">registry_</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">pins_</span><span class="p">.</span><span class="n">i2cAddrX</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">miSensor_</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Wire</span><span class="p">);</span>
+</span></code></pre></div></li>
+<li>En <code>update()</code>, gatear con el catálogo:
+   <div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">on</span><span class="p">(</span><span class="s">"mi_sensor"</span><span class="p">,</span><span class="w"> </span><span class="n">cfg_</span><span class="p">.</span><span class="n">sensorMi</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">setValue</span><span class="p">(...);</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div></li>
+<li>Registrarlo en <code>SensorRegistry::buildFromConfig()</code>.</li>
+<li>Documentar en <a href="../Sensores/">Sensores</a> + <a href="../Compatibilidad/">Compatibilidad</a>.</li>
+</ol>
+<h2 id="4-agregar-un-expansor">4. Agregar un expansor</h2>
+<ol>
+<li>Crear el driver en <code>include/hardware/</code> + <code>src/hardware/</code>.</li>
+<li>Añadir (si hace falta) las constantes en <code>PinConfig</code> + serialización JSON.</li>
+<li>Agregar el <code>HardwareKind</code> correspondiente en <code>PlatformTypes.hpp</code>.</li>
+<li>En <code>main.cpp</code>, sumar un pool y una rama en el bucle del catálogo:
+   <div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nd</span><span class="p">.</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HardwareKind</span><span class="o">::</span><span class="n">MI_EXPANSOR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">poolCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="n">miPool</span><span class="p">[</span><span class="n">poolCount</span><span class="o">++</span><span class="p">].</span><span class="n">begin</span><span class="p">(</span><span class="o">&amp;</span><span class="n">app</span><span class="p">.</span><span class="n">spi</span><span class="p">,</span><span class="w"> </span><span class="n">nd</span><span class="p">.</span><span class="n">address</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
+</span></code></pre></div></li>
+<li>Si es salida, mapear su rango de canales en <code>ActuatorManager::writeChannel()</code>.</li>
+<li>Documentar en <a href="../Referencia-de-codigo/">Referencia de código</a>.</li>
+</ol>
+<h2 id="5-agregar-un-endpoint-rest">5. Agregar un endpoint REST</h2>
+<ol>
+<li>Declarar el handler en <code>include/api/RestApi.hpp</code>.</li>
+<li>Registrar la ruta en <code>RestApi::begin()</code>:
+   <div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">server_</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"/api/v1/mi-recurso"</span><span class="p">,</span><span class="w"> </span><span class="n">HTTP_GET</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">](){</span><span class="w"> </span><span class="n">handleMiRecurso</span><span class="p">();</span><span class="w"> </span><span class="p">});</span>
+</span></code></pre></div></li>
+<li>Implementar el handler (protegido con <code>requireAuth()</code> si escribe):
+   <div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">RestApi::handleMiRecurso</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">requireAuth</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="n">server_</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">"application/json"</span><span class="p">,</span><span class="w"> </span><span class="s">"..."</span><span class="p">);</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+</span></code></pre></div></li>
+<li>Documentar en <a href="../API-REST/">API REST</a>.</li>
+</ol>
+<h2 id="6-agregar-un-campo-de-configuracion">6. Agregar un campo de configuración</h2>
+<ol>
+<li>Sumar el campo en <code>SystemConfig</code> (<code>core/Types.hpp</code>) con su default.</li>
+<li>Serializar/deserializar en <code>ConfigManager::toJson</code> / <code>fromJson</code>.</li>
+<li>Si rompe compatibilidad, subir <code>GH_CONFIG_SCHEMA_VERSION</code> y agregar la
+   migración en <code>ConfigManager::migrate()</code>.</li>
+<li>Documentar en <a href="../Referencia-configuracion/">Referencia de configuración</a>.</li>
+</ol>
+<h2 id="7-agregar-una-regla-de-automatizacion">7. Agregar una regla de automatización</h2>
+<p>Las reglas usan <code>AutomationRule</code> (variable, operador, umbral, acción) y no
+requieren código: se cargan por <code>POST /api/v1/automation</code>.
+Para una <strong>nueva variable</strong> sí hace falta:
+1. Sumar el valor en <code>RuleVariable</code>.
+2. Leerla en <code>RuleEngine::readVariable()</code>.</p>
+<h2 id="8-flujo-de-release">8. Flujo de release</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>1. Bump GH_FW_VERSION en include/core/Version.hpp
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>2. Actualizar CHANGELOG.md
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>3. pio run  (verificar SUCCESS)
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>4. SHA-256 del firmware.bin → firmware_manifest.json
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>5. git commit + git tag -a vX.Y.Z + push --tags
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>6. gh release create vX.Y.Z --notes "..." firmware.bin
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>7. Actualizar wiki + repo Docs
 </span></code></pre></div>
+<p>Ver <a href="../../Reglas-de-trabajo/">Reglas de trabajo</a> y
+<a href="../../Estandar-de-documentacion/">Estándar de documentación</a>.</p>
+<h2 id="9-checklist-antes-de-un-prrelease">9. Checklist antes de un PR/release</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>pio run</code> en SUCCESS.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Versión + CHANGELOG + manifest (SHA-256).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Documentación actualizada (esta wiki + Docs).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sin secretos ni pines hardcodeados.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Comentarios del <em>por qué</em> en código no obvio.</li>
+</ul>
 
 
 
@@ -1960,7 +2039,7 @@ sincronización incremental (detección de huecos).</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../OTA-y-Actualizacion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OTA y actualización">
+          <a href="../Compilacion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Compilación y flasheo">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1970,20 +2049,20 @@ sincronización incremental (detección de huecos).</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                OTA y actualización
+                Compilación y flasheo
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Seguridad/" class="md-footer__link md-footer__link--next" aria-label="Next: Seguridad">
+          <a href="../Evolucion/" class="md-footer__link md-footer__link--next" aria-label="Next: Evolución">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Seguridad
+                Evolución
               </div>
             </div>
             <div class="md-footer__button md-icon">
