@@ -1707,6 +1707,100 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cuando-es-recomendable-pasar-a-major-ej-3290-400" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cuándo es recomendable pasar a MAJOR? (ej. 3.29.0 → 4.0.0)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="¿Cuándo es recomendable pasar a MAJOR? (ej. 3.29.0 → 4.0.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-quien-depende-del-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Quién "depende" del firmware?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tabla-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tabla de decisión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-lo-que-no-justifica-un-major" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Lo que NO justifica un MAJOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-como-evitar-tener-que-subir-major-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cómo EVITAR tener que subir MAJOR (recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-casos-concretos-que-si-serian-400" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Casos concretos que SÍ serían 4.0.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-firmware-3x-vs-servidor-0x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Firmware (3.x) vs servidor (0.x)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-resumen-en-una-frase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Resumen en una frase
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2124,7 +2218,7 @@ Los tags nuevos van <strong>siempre en minúscula</strong>.</p>
 <tr>
 <td>Rompe compatibilidad (config, API, protocolo)</td>
 <td style="text-align: center;"><strong>MAJOR</strong></td>
-<td>subir <code>GH_CONFIG_SCHEMA_VERSION</code>; renombrar/quitar un endpoint</td>
+<td>quitar/renombrar un endpoint, cambiar tópicos MQTT → <strong>ver «¿Cuándo pasar a MAJOR?» abajo</strong></td>
 </tr>
 <tr>
 <td>Funcionalidad nueva retrocompatible</td>
@@ -2154,6 +2248,226 @@ Los tags nuevos van <strong>siempre en minúscula</strong>.</p>
 <li>Reordenar código, renombrar variables internas, formateo.</li>
 <li>Subir la versión solo porque hubo un commit.</li>
 </ul>
+<h3 id="cuando-es-recomendable-pasar-a-major-ej-3290-400">¿Cuándo es recomendable pasar a MAJOR? (ej. <code>3.29.0</code> → <code>4.0.0</code>)</h3>
+<div class="admonition warning">
+<p class="admonition-title">MAJOR no significa «versión importante»</p>
+<p><strong>MAJOR no es</strong> "hice mucho trabajo", "tardé meses", "es un hito", "cambié el
+PCB" ni "reescribí el firmware". Significa <strong>una sola cosa</strong>: algo que ya
+funcionaba <strong>dejó de funcionar</strong> para quien depende del firmware.
+<strong>Si nadie tiene que cambiar nada, no es MAJOR.</strong></p>
+</div>
+<h4 id="1-quien-depende-del-firmware">1. ¿Quién "depende" del firmware?</h4>
+<p>Antes de decidir, preguntate <strong>quién se rompe</strong> con el cambio:</p>
+<table>
+<thead>
+<tr>
+<th>Dependiente</th>
+<th>Qué usa del firmware</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>El servidor central</strong></td>
+<td>API REST, tópicos MQTT, JSON de telemetría</td>
+</tr>
+<tr>
+<td><strong>Las instalaciones ya flasheadas</strong></td>
+<td>Su configuración guardada (NVS/JSON)</td>
+</tr>
+<tr>
+<td><strong>El usuario</strong></td>
+<td>Sus pines/cableado, reglas, umbrales, calibración</td>
+</tr>
+<tr>
+<td><strong>Integraciones externas</strong></td>
+<td>Endpoints REST, MQTT, WebSocket</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-tabla-de-decision">2. Tabla de decisión</h4>
+<table>
+<thead>
+<tr>
+<th>Cambio</th>
+<th style="text-align: center;">¿MAJOR?</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agregar un endpoint nuevo</td>
+<td style="text-align: center;">❌ MINOR</td>
+<td>nadie se rompe</td>
+</tr>
+<tr>
+<td>Agregar un campo al JSON de estado</td>
+<td style="text-align: center;">❌ MINOR</td>
+<td>quien lee sigue funcionando</td>
+</tr>
+<tr>
+<td><strong>Quitar o renombrar</strong> un endpoint</td>
+<td style="text-align: center;">✅ MAJOR</td>
+<td>el servidor deja de encontrarlo</td>
+</tr>
+<tr>
+<td><strong>Cambiar el significado</strong> de un campo existente</td>
+<td style="text-align: center;">✅ MAJOR</td>
+<td>errores silenciosos</td>
+</tr>
+<tr>
+<td>Cambiar los tópicos MQTT (<code>greenhouse/...</code> → otro)</td>
+<td style="text-align: center;">✅ MAJOR</td>
+<td>el servidor deja de recibir</td>
+</tr>
+<tr>
+<td>Cambiar el formato de telemetría sin compatibilidad</td>
+<td style="text-align: center;">✅ MAJOR</td>
+<td>el servidor no parsea</td>
+</tr>
+<tr>
+<td>Cambiar el formato de config <strong>sin</strong> migración</td>
+<td style="text-align: center;">✅ MAJOR</td>
+<td>el usuario debe reconfigurar a mano</td>
+</tr>
+<tr>
+<td>Cambiar el formato de config <strong>con</strong> migración</td>
+<td style="text-align: center;">❌ MINOR</td>
+<td><code>migrate()</code> lo resuelve solo</td>
+</tr>
+<tr>
+<td>Cambiar pines por defecto (obligando a recablear)</td>
+<td style="text-align: center;">✅ MAJOR</td>
+<td>instalaciones existentes quedan mal</td>
+</tr>
+<tr>
+<td>Agregar un sensor/expansor soportado</td>
+<td style="text-align: center;">❌ MINOR</td>
+<td>es opcional para el usuario</td>
+</tr>
+<tr>
+<td>Reordenar/limpiar código interno</td>
+<td style="text-align: center;">❌ ninguno</td>
+<td>el usuario no lo ve</td>
+</tr>
+<tr>
+<td>Reescribir un módulo por dentro (misma interfaz)</td>
+<td style="text-align: center;">❌ ninguno/PATCH</td>
+<td>la API externa no cambia</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-lo-que-no-justifica-un-major">3. Lo que NO justifica un MAJOR</h4>
+<table>
+<thead>
+<tr>
+<th>Lo que se suele pensar</th>
+<th style="text-align: center;">¿MAJOR?</th>
+<th>Qué usar en su lugar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Hice muchos cambios"</td>
+<td style="text-align: center;">❌</td>
+<td>igual sigue MINOR (<code>3.29.0</code> → <code>3.30.0</code>)</td>
+</tr>
+<tr>
+<td>"Tardé meses / es un hito"</td>
+<td style="text-align: center;">❌</td>
+<td>la <strong>fase</strong> del proyecto (<code>V10</code>)</td>
+</tr>
+<tr>
+<td>"Cambié el PCB / hardware nuevo"</td>
+<td style="text-align: center;">❌</td>
+<td><code>GH_HW_VERSION</code> (<code>rev1</code>) + <strong>perfil</strong> (<code>ESP32-GH-V2</code>)</td>
+</tr>
+<tr>
+<td>"Es una generación nueva del invernadero"</td>
+<td style="text-align: center;">❌</td>
+<td>perfil de hardware + documentación</td>
+</tr>
+<tr>
+<td>"Reescribí el firmware de cero"</td>
+<td style="text-align: center;">❌</td>
+<td>si API y config siguen iguales, no es MAJOR</td>
+</tr>
+<tr>
+<td>"Cambié cómo se configura, pero migra solo"</td>
+<td style="text-align: center;">❌</td>
+<td><code>schema_version++</code> + <code>migrate()</code></td>
+</tr>
+<tr>
+<td>"Arreglé muchos bugs"</td>
+<td style="text-align: center;">❌</td>
+<td>PATCH</td>
+</tr>
+<tr>
+<td>"Cambié los valores por defecto" (sin romper)</td>
+<td style="text-align: center;">❌</td>
+<td>MINOR o ninguno</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-como-evitar-tener-que-subir-major-recomendado">4. Cómo EVITAR tener que subir MAJOR (recomendado)</h4>
+<p>En lugar de romper y saltar a <code>4.0.0</code>, el proyecto ya tiene mecanismos para no
+romper:</p>
+<ol>
+<li><strong>Versionar la API</strong>: en vez de cambiar <code>/api/v1/</code>, agregar <code>/api/v2/</code> y
+   mantener <code>v1</code> funcionando un tiempo.</li>
+<li><strong>Migrar la config automáticamente</strong>: subir <code>GH_CONFIG_SCHEMA_VERSION</code> y
+   agregar la conversión en <code>ConfigManager::migrate()</code>.</li>
+<li><strong>Agregar, no quitar</strong>: campos nuevos con default; endpoints nuevos; publicar
+   en el tópico viejo y el nuevo durante la transición.</li>
+<li><strong>Subir <code>GH_PROTOCOL_VERSION</code></strong> cuando cambia el diálogo con el servidor.</li>
+<li><strong>Mantener alias</strong>: si renombrás una clave, aceptar la anterior y traducirla.</li>
+</ol>
+<blockquote>
+<p>Con estas prácticas el proyecto puede crecer <strong>sin MAJOR</strong> durante mucho tiempo:
+hoy va por <code>3.29.0</code> y <strong>todas</strong> las <code>3.x</code> son compatibles entre sí.</p>
+</blockquote>
+<h4 id="5-casos-concretos-que-si-serian-400">5. Casos concretos que SÍ serían <code>4.0.0</code></h4>
+<ul>
+<li>Mover el servidor a <code>/api/v2/</code> y <strong>eliminar</strong> <code>/api/v1/</code> sin convivencia.</li>
+<li>Cambiar los tópicos de <code>greenhouse/{device_id}/...</code> <strong>sin</strong> publicar en ambos.</li>
+<li>Romper el <code>firmware_manifest.json</code> (campos que el servidor necesita).</li>
+<li>Dejar de soportar <code>ESP32-GH-V1</code> (instalaciones que ya no podrían actualizar).</li>
+<li><strong>Eliminar</strong> el mapa de pines sin reemplazo, obligando a recablear.</li>
+</ul>
+<h4 id="6-firmware-3x-vs-servidor-0x">6. Firmware (<code>3.x</code>) vs servidor (<code>0.x</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Artefacto</th>
+<th>Versión</th>
+<th>Qué significa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firmware</td>
+<td><code>3.29.0</code></td>
+<td><strong>estable</strong>: MAJOR = rompe compatibilidad</td>
+</tr>
+<tr>
+<td>Servidor</td>
+<td><code>0.5.0</code></td>
+<td><strong>desarrollo inicial</strong>: mientras MAJOR sea <code>0</code>, la API puede cambiar sin aviso</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><code>1.1.0</code></td>
+<td>versionado aparte</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando el servidor llegue a <strong><code>1.0.0</code></strong> empieza a aplicar la misma regla que el
+firmware.</p>
+<h4 id="7-resumen-en-una-frase">7. Resumen en una frase</h4>
+<blockquote>
+<p><strong>¿Alguien (el servidor, otra instalación o el usuario) tiene que hacer algo a
+mano para que siga funcionando?</strong>
+<strong>Sí → MAJOR. No → MINOR o PATCH.</strong></p>
+</blockquote>
 <h2 id="4-pre-releases-alpha-beta-b-y-rc">4. Pre-releases: <code>alpha</code>, <code>beta</code> (<code>b</code>) y <code>rc</code></h2>
 <p>Cuando la versión <strong>no está lista para uso general</strong>:</p>
 <table>
@@ -2444,8 +2758,28 @@ mayúscula, que <strong>no</strong> son versiones de firmware:</p>
 <td><code>3.17.1</code> (PATCH)</td>
 </tr>
 <tr>
-<td>Se cambió el formato del JSON de configuración</td>
+<td>Se agregaron 10 features nuevas</td>
+<td><code>3.30.0</code> (MINOR — la cantidad no importa)</td>
+</tr>
+<tr>
+<td>Se cambió el PCB a la revisión 2</td>
+<td><code>3.29.0</code> + <code>rev1</code> (no cambia la versión de firmware)</td>
+</tr>
+<tr>
+<td>Se migró la config automáticamente a schema 3</td>
+<td><code>3.30.0</code> (MINOR — migra solo)</td>
+</tr>
+<tr>
+<td>Se cambió el formato del JSON <strong>sin</strong> migración</td>
 <td><code>4.0.0</code> (MAJOR)</td>
+</tr>
+<tr>
+<td>Se eliminó <code>/api/v1/</code> sin dejar <code>/api/v2/</code></td>
+<td><code>4.0.0</code> (MAJOR)</td>
+</tr>
+<tr>
+<td>Se reescribió todo el firmware, misma API</td>
+<td><code>3.30.0</code> (MINOR — nadie se rompe)</td>
 </tr>
 <tr>
 <td>Beta del próximo release con nueva API</td>
