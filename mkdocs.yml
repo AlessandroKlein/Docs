@@ -115,7 +115,6 @@ extra_javascript:
 nav:
   - Inicio: index.md
   - Invernadero:
-      - Home: invernadero/Home.md
       - Arquitectura: invernadero/Arquitectura.md
       - Compatibilidad (placas/sensores/buses): invernadero/Compatibilidad.md
       - Hardware y conexiones: invernadero/Hardware-y-Conexiones.md
