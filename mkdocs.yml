@@ -57,6 +57,13 @@ plugins:
   - optimize
   - offline
   - info
+  - i18n:
+      default_language: es
+      languages:
+        es: Español
+        en: English
+      material_alternate: true
+      docs_structure: folder
 
 nav:
   - Inicio: index.md
