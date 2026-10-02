@@ -52,7 +52,7 @@ El usuario elige con qué interfaz se conecta. Solo una queda activa por arranqu
 **NO configurable (compile-time):**
 
 - Mapa de pines (`PinMap.hpp`).
-- Selección del modelo de sensor (drivers compilados).
+- Catálogo de sensores editable (PUT /api/v1/sensors/catalog); instanciación de drivers aún compile-time.
 - Expansores (74HC165/MCP23S17/ADC) y sus pines/CS.
 - Direcciones I²C.
 

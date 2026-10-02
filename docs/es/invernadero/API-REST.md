@@ -61,7 +61,7 @@ Roles: `pump`, `valve`, `fan`, `extractor`, `heater`, `humidifier`, `light`,
 | GET | `/modules` | Módulos embebidos |
 | GET | `/buses` | Buses registrados |
 | GET | `/hardware` | Nodos de hardware |
-| GET | `/sensors/catalog` | Catálogo de sensores |
+| GET/PUT | `/sensors/catalog` | Catálogo de sensores (PUT protegido edita enabled/address/zone/bus_index) |
 | GET | `/actuators/catalog` | Catálogo de actuadores |
 | GET | `/storage` | Almacenamiento (LittleFS/SPIFFS/SD) |
 | GET | `/health` | Health monitor por tareas |
