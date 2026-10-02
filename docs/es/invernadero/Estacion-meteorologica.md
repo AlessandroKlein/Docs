@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - red
+---
+
 # Estación meteorológica externa
 
 > **Tipo:** Firmware (ESP32) | **Estado:** Estable | **Fecha:** 2026-10-02

@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - hardware
+---
+
 # Compatibilidad de hardware
 
 > **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-02

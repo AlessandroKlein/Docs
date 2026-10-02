@@ -73,6 +73,7 @@ nav:
       - Hardware y conexiones: invernadero/Hardware-y-Conexiones.md
       - Sensores: invernadero/Sensores.md
       - Actuadores y salidas: invernadero/Actuadores-y-Salidas.md
+      - Materiales (BOM): invernadero/Materiales.md
       - Configuración: invernadero/Configuracion.md
       - Variables modificables: invernadero/Variables-Modificables.md
       - API REST: invernadero/API-REST.md
@@ -88,6 +89,7 @@ nav:
       - Mejoras y roadmap: invernadero/Mejoras.md
       - Versiones (CHANGELOG): invernadero/CHANGELOG.md
       - Registro de cambios: invernadero/Registro-de-cambios.md
+      - Frontend (guía de estilo): invernadero/Frontend.md
       - Glosario: invernadero/Glosario.md
   - SEMA:
       - Home: sema/Home.md

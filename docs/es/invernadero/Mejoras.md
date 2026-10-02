@@ -1,3 +1,8 @@
+---
+tags:
+  - roadmap
+---
+
 # Mejoras y roadmap
 
 > **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-02

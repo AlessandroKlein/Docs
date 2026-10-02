@@ -1,3 +1,10 @@
+---
+tags:
+  - invernadero
+  - red
+  - mqtt
+---
+
 # MQTT y WebSocket
 
 > **Tipo:** API/Red | **Estado:** Estable | **Fecha:** 2026-10-02

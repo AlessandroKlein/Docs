@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - arquitectura
+---
+
 # Arquitectura
 
 > **Tipo:** Embebidos | **Estado:** Estable | **Fecha:** 2026-10-02

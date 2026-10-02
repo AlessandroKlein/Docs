@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - actuadores
+---
+
 # Actuadores y salidas
 
 > **Tipo:** Embebidos | **Estado:** Estable | **Fecha:** 2026-10-02

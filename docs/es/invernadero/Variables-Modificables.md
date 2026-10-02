@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - configuracion
+---
+
 # Variables modificables (configuración JSON)
 
 > **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-02

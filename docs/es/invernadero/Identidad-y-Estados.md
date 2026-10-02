@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - sistema
+---
+
 # Identidad y estados
 
 > **Tipo:** Embebidos | **Estado:** Estable | **Fecha:** 2026-10-02

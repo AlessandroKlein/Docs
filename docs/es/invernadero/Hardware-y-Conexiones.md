@@ -1,3 +1,10 @@
+---
+tags:
+  - invernadero
+  - hardware
+  - pines
+---
+
 # Hardware y conexiones
 
 > **Tipo:** Embebidos | **Estado:** Estable | **Fecha:** 2026-10-02

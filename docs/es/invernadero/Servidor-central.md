@@ -1,3 +1,8 @@
+---
+tags:
+  - servidor
+---
+
 # Servidor central (multi-proyecto)
 
 > **Tipo:** Backend/Web | **Estado:** Especificación | **Fecha:** 2026-10-02

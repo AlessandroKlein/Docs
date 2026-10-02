@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - configuracion
+---
+
 # Configuración
 
 > **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-02

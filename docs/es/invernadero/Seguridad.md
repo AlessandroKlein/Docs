@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - seguridad
+---
+
 # Seguridad
 
 > **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-02

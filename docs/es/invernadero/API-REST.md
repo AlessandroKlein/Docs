@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - api
+---
+
 # API REST
 
 > **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-02

@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - ota
+---
+
 # OTA y actualización
 
 > **Tipo:** Embebidos | **Estado:** Estable | **Fecha:** 2026-10-02

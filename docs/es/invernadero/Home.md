@@ -1,3 +1,9 @@
+---
+tags:
+  - invernadero
+  - general
+---
+
 # Invernadero
 
 > **Tipo:** Embebidos (ESP32) | **Estado:** En desarrollo | **Fecha:** 2026-10-02 | **Firmware:** v3.12.0
