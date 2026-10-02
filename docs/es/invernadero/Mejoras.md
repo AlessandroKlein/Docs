@@ -49,3 +49,8 @@ Detalle completo en [`docs/MEJORAS.md`](https://github.com/AlessandroKlein/Inver
 
 - ✅ Paso 2 (catálogo de sensores instanciable) **completo**: dirección y `enabled` de **todos** los sensores (I²C, 1-Wire, pulsos, tanque, pH/EC) se toman del catálogo.
 - ❌ Pendiente: paso 3 — configuración de expansores (74HC165/MCP23S17/ADC).
+
+## v3.24.0
+
+- ✅ Paso 3 (expansores) primer incremento: catálogo de nodos editable y persistido (`PUT /api/v1/hardware` → enabled/address/bus_index).
+- ❌ Pendiente: agregar/instanciar expansores nuevos (74HC165/MCP23S17/ADC) y canales.
