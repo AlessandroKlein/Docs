@@ -12,17 +12,17 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/Estandar-de-documentacion/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/Versionado/">
       
       
-        <link rel="prev" href="../Versionado/">
+        <link rel="prev" href="../Reglas-de-trabajo/">
       
       
-        <link rel="next" href="../sema/Home/">
+        <link rel="next" href="../Estandar-de-documentacion/">
       
       
         
-          <link rel="alternate" href="../../Estandar-de-documentacion/" hreflang="es">
+          <link rel="alternate" href="../../Versionado/" hreflang="es">
         
           <link rel="alternate" href="./" hreflang="en">
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>Estándar de documentación - AlessandroKlein Docs</title>
+        <title>Versionado (numeración) - AlessandroKlein Docs</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#estandar-de-documentacion" class="md-skip">
+        <a href="#versionado-como-numerar-las-versiones" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Estándar de documentación
+              Versionado (numeración)
             
           </span>
         </div>
@@ -169,7 +169,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../Estandar-de-documentacion/" hreflang="es" class="md-select__link">
+            <a href="../../Versionado/" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
@@ -318,9 +318,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../Versionado/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -337,11 +339,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../Estandar-de-documentacion/" class="md-tabs__link">
         
   
   
@@ -1600,33 +1600,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../Versionado/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Versionado (numeración)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -1646,7 +1619,7 @@
   <span class="md-ellipsis">
     
   
-    Estándar de documentación
+    Versionado (numeración)
   
 
     
@@ -1664,7 +1637,7 @@
   <span class="md-ellipsis">
     
   
-    Estándar de documentación
+    Versionado (numeración)
   
 
     
@@ -1690,10 +1663,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#estructura-minima-de-la-wiki" class="md-nav__link">
+  <a href="#1-regla-base-semantic-versioning-200" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estructura mínima de la wiki
+        1. Regla base: Semantic Versioning 2.0.0
       
     </span>
   </a>
@@ -1701,10 +1674,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conexiones-hardware" class="md-nav__link">
+  <a href="#2-el-prefijo-v-regla-clave" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conexiones (hardware)
+        2. El prefijo v — regla clave
       
     </span>
   </a>
@@ -1712,10 +1685,66 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#registro-de-cambios-por-archivo" class="md-nav__link">
+  <a href="#3-que-numero-toca-tabla-de-decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Registro de cambios por archivo
+        3. ¿Qué número toca? (tabla de decisión)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. ¿Qué número toca? (tabla de decisión)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cuando-no-bumpear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo NO bumpear
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pre-releases-alpha-beta-b-y-rc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pre-releases: alpha, beta (b) y rc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Pre-releases: alpha, beta (b) y rc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-b-en-este-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La b en este proyecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-metadatos-de-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Metadatos de build (+)
       
     </span>
   </a>
@@ -1723,10 +1752,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publicacion" class="md-nav__link">
+  <a href="#6-canales-de-actualizacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Publicación
+        6. Canales de actualización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-otras-versiones-del-proyecto-no-confundir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Otras versiones del proyecto (¡no confundir!)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Otras versiones del proyecto (¡no confundir!)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-de-hardware-revn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versión de hardware: revN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esquema-de-configuracion-entero-incremental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Esquema de configuración: entero incremental
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-versiones-por-subsistema-prefijos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Versiones por subsistema (prefijos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Versiones por subsistema (prefijos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0yz-desarrollo-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.y.z = desarrollo inicial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-las-fases-del-proyecto-v8-v81-v9-no-son-versiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Las fases del proyecto (V8, V8.1, V9) NO son versiones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-historial-real-de-etiquetas-y-sus-inconsistencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Historial real de etiquetas (y sus inconsistencias)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-flujo-de-release-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Flujo de release (paso a paso)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ejemplos-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Ejemplos prácticos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-glosario-de-notacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Glosario de notación
       
     </span>
   </a>
@@ -1737,6 +1888,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estandar-de-documentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estándar de documentación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1862,31 +2040,485 @@
   
 
 
-<h1 id="estandar-de-documentacion">Estándar de documentación</h1>
+<h1 id="versionado-como-numerar-las-versiones">Versionado (cómo numerar las versiones)</h1>
 <blockquote>
 <p><strong>Tipo:</strong> Convención | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-02</p>
 </blockquote>
-<p>Estándar reutilizable para documentar cualquier proyecto. Documento fuente:
-<a href="https://github.com/AlessandroKlein/Invernadero/blob/main/docs/ESTANDAR-DOCUMENTACION.md"><code>docs/ESTANDAR-DOCUMENTACION.md</code></a>.</p>
-<h2 id="estructura-minima-de-la-wiki">Estructura mínima de la wiki</h2>
-<p><code>Home</code> · <code>Arquitectura</code> · <code>Hardware-y-Conexiones</code> · <code>Decisiones</code> (ADR) ·
-<code>Registro-de-cambios</code> · <code>Configuracion</code> · <code>API</code> · <code>Compilacion</code> · <code>Glosario</code> ·
-<code>Evolucion</code> · <code>Mejoras</code>.</p>
-<h2 id="conexiones-hardware">Conexiones (hardware)</h2>
-<p>Cada componente con ficha:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Interfaz · pines/dirección · resistencias (pull-up/divisor) ·
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>capacitores (desacople) · tensión · protecciones · estado seguro
+<p>Guía completa de la nomenclatura de versiones del ecosistema: firmware, servidor,
+frontend, hardware, configuración y las <strong>fases del proyecto</strong> (<code>V8</code>, <code>V9</code>).</p>
+<hr />
+<h2 id="1-regla-base-semantic-versioning-200">1. Regla base: Semantic Versioning 2.0.0</h2>
+<p>Toda versión del proyecto sigue <strong>SemVer</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>MAJOR.MINOR.PATCH[-preRelease][+buildMeta]
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  3   .   29   .   0    -beta.1     +build.7
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  │        │        │       │            └── metadatos de build (no afectan orden)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  │        │        │       └── pre-release: alpha / beta / rc
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  │        │        └── PATCH: corrección de errores
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  │        └── MINOR: funcionalidad nueva (retrocompatible)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  └── MAJOR: cambio incompatible
 </span></code></pre></div>
-<h2 id="registro-de-cambios-por-archivo">Registro de cambios por archivo</h2>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gu">### `ruta/al/archivo`</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">-</span><span class="w"> </span><span class="gs">**Qué:**</span> …  ·  <span class="gs">**Por qué:**</span> …  ·  <span class="gs">**Cómo:**</span> …  ·  <span class="gs">**Impacto:**</span> …  ·  <span class="gs">**Referencia:**</span> …
+<p><strong>Se incrementa solo el número que corresponde; los de la derecha vuelven a 0.</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>3.28.5 + feat  → 3.29.0   (MINOR sube, PATCH vuelve a 0)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>3.28.5 + fix   → 3.28.6   (PATCH sube)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>3.28.5 + break → 4.0.0    (MAJOR sube, el resto vuelve a 0)
 </span></code></pre></div>
-<h2 id="publicacion">Publicación</h2>
+<h2 id="2-el-prefijo-v-regla-clave">2. El prefijo <code>v</code> — regla clave</h2>
+<table>
+<thead>
+<tr>
+<th>Contexto</th>
+<th>Formato</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Etiqueta (tag) de Git</strong></td>
+<td><code>v</code> + versión</td>
+<td><code>v3.29.0</code></td>
+</tr>
+<tr>
+<td><strong>Release de GitHub</strong></td>
+<td><code>v</code> + versión</td>
+<td><code>v3.29.0</code></td>
+</tr>
+<tr>
+<td><strong>Variable del firmware</strong></td>
+<td><strong>sin</strong> <code>v</code></td>
+<td><code>GH_FW_VERSION "3.29.0"</code></td>
+</tr>
+<tr>
+<td><strong>Manifest JSON</strong></td>
+<td><strong>sin</strong> <code>v</code></td>
+<td><code>"version": "3.29.0"</code></td>
+</tr>
+<tr>
+<td><strong>CHANGELOG</strong></td>
+<td><code>[</code> versión <code>]</code> sin <code>v</code></td>
+<td><code>## [3.29.0]</code></td>
+</tr>
+<tr>
+<td><strong>README / docs</strong></td>
+<td>se usa <code>v</code> al hablar del release</td>
+<td>"Avance v3.29.0"</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Siempre minúscula</p>
+<p>La convención adoptada es <strong><code>v</code> minúscula</strong>. Históricamente se usó <code>V</code>
+mayúscula (<code>V1.16.0</code>, <code>V2.30</code>) y por eso hay etiquetas mezcladas (ver §9).
+Los tags nuevos van <strong>siempre en minúscula</strong>.</p>
+</div>
+<h2 id="3-que-numero-toca-tabla-de-decision">3. ¿Qué número toca? (tabla de decisión)</h2>
+<table>
+<thead>
+<tr>
+<th>Cambio</th>
+<th style="text-align: center;">Número</th>
+<th>Ejemplos del proyecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rompe compatibilidad (config, API, protocolo)</td>
+<td style="text-align: center;"><strong>MAJOR</strong></td>
+<td>subir <code>GH_CONFIG_SCHEMA_VERSION</code>; renombrar/quitar un endpoint</td>
+</tr>
+<tr>
+<td>Funcionalidad nueva retrocompatible</td>
+<td style="text-align: center;"><strong>MINOR</strong></td>
+<td><code>feat(...)</code>: nuevo endpoint, nuevo pool, nueva página web</td>
+</tr>
+<tr>
+<td>Corrección de errores</td>
+<td style="text-align: center;"><strong>PATCH</strong></td>
+<td><code>fix(...)</code>: bug de lectura, timeout mal calculado</td>
+</tr>
+<tr>
+<td>Solo documentación / comentarios</td>
+<td style="text-align: center;"><strong>ninguno</strong></td>
+<td>un commit <code>docs:</code> no genera release</td>
+</tr>
+<tr>
+<td>Refactor sin cambio de comportamiento</td>
+<td style="text-align: center;"><strong>ninguno</strong> o PATCH</td>
+<td>depende de si el usuario nota algo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cuando-no-bumpear">Cuándo NO bumpear</h3>
 <ul>
-<li><strong>Wiki nativa GitHub</strong> (por repo).</li>
-<li><strong>Docs-as-code</strong>: MkDocs Material + GitHub Pages.</li>
-<li><strong>Repo compartido</strong> con carpeta por proyecto (este repo).</li>
+<li>Cambios solo en <code>docs/</code>, comentarios, README sin cambio funcional.</li>
+<li>Reordenar código, renombrar variables internas, formateo.</li>
+<li>Subir la versión solo porque hubo un commit.</li>
 </ul>
+<h2 id="4-pre-releases-alpha-beta-b-y-rc">4. Pre-releases: <code>alpha</code>, <code>beta</code> (<code>b</code>) y <code>rc</code></h2>
+<p>Cuando la versión <strong>no está lista para uso general</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Notación</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alfa</td>
+<td><code>3.30.0-alpha.1</code></td>
+<td>Experimental, puede romper</td>
+</tr>
+<tr>
+<td>Beta</td>
+<td><code>3.30.0-beta.1</code></td>
+<td>Funcionalmente completa, en pruebas</td>
+</tr>
+<tr>
+<td>Beta corta</td>
+<td><code>3.30.0-b1</code></td>
+<td>Abreviatura aceptada de <code>beta.1</code></td>
+</tr>
+<tr>
+<td>Release candidate</td>
+<td><code>3.30.0-rc.1</code></td>
+<td>Candidata final, solo correcciones</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Orden de precedencia</strong> (de menor a mayor):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>3.30.0-alpha.1 &lt; 3.30.0-alpha.2 &lt; 3.30.0-beta.1 &lt; 3.30.0-rc.1 &lt; 3.30.0
+</span></code></pre></div>
+<blockquote>
+<p>Una pre-release <strong>siempre es menor</strong> que su versión final. <code>3.30.0-beta.1</code> &lt; <code>3.30.0</code>.</p>
+</blockquote>
+<h3 id="la-b-en-este-proyecto">La <code>b</code> en este proyecto</h3>
+<p>La <code>b</code> se interpreta como <strong>beta</strong> (<code>3.30.0-b1</code> = <code>3.30.0-beta.1</code>). En la industria
+también se usa <code>b</code> como <em>build</em> (<code>b7</code>), pero <strong>en este proyecto <code>b</code> = beta</strong>; para
+build se usa el metadato <code>+build.N</code> (§5).</p>
+<h2 id="5-metadatos-de-build">5. Metadatos de build (<code>+</code>)</h2>
+<p>No cambian el orden de versiones; sirven para trazabilidad:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>3.30.0+build.42
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>3.30.0+sha.1a2b3c4
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>3.30.0-beta.1+sha.1a2b3c4
+</span></code></pre></div>
+<p>El <strong>SHA-256 del binario</strong> no va en la versión: va en <code>firmware_manifest.json</code>
+(campo <code>sha256</code>) y en las notas del release.</p>
+<h2 id="6-canales-de-actualizacion">6. Canales de actualización</h2>
+<p>El firmware tiene un canal (<code>update_channel</code>), que se combina con el tipo de versión:</p>
+<table>
+<thead>
+<tr>
+<th>Canal</th>
+<th>Acepta</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stable</code></td>
+<td><code>X.Y.Z</code></td>
+<td>Producción</td>
+</tr>
+<tr>
+<td><code>beta</code></td>
+<td><code>X.Y.Z</code> y <code>-beta.N</code></td>
+<td>Pruebas</td>
+</tr>
+<tr>
+<td><code>development</code></td>
+<td>todo, incluido <code>-alpha.N</code></td>
+<td>Desarrollo</td>
+</tr>
+</tbody>
+</table>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>stable     ← solo versiones finales
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>beta       ← finales + betas
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>development ← todo
+</span></code></pre></div>
+<h2 id="7-otras-versiones-del-proyecto-no-confundir">7. Otras versiones del proyecto (¡no confundir!)</h2>
+<p>El firmware lleva <strong>cuatro</strong> números distintos. No son intercambiables:</p>
+<table>
+<thead>
+<tr>
+<th>Constante</th>
+<th>Ejemplo</th>
+<th>Qué versiona</th>
+<th>Cuándo sube</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GH_FW_VERSION</code></td>
+<td><code>3.29.0</code></td>
+<td>Firmware</td>
+<td>Cada release</td>
+</tr>
+<tr>
+<td><code>GH_HW_VERSION</code></td>
+<td><code>rev0</code></td>
+<td>Revisión del hardware</td>
+<td>Cambio de placa</td>
+</tr>
+<tr>
+<td><code>GH_CONFIG_SCHEMA_VERSION</code></td>
+<td><code>2</code></td>
+<td>Estructura del JSON de config</td>
+<td>Cambio incompatible de config</td>
+</tr>
+<tr>
+<td><code>GH_PROTOCOL_VERSION</code></td>
+<td><code>1</code></td>
+<td>Protocolo con el servidor</td>
+<td>Cambio incompatible de protocolo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="version-de-hardware-revn">Versión de hardware: <code>revN</code></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>rev0  → primera revisión del PCB
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rev1  → corrección de una pista / componente
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>rev2  → rediseño mayor
+</span></code></pre></div>
+<p>Los enteros <strong>no</strong> vuelven a cero: es acumulativa.</p>
+<h3 id="esquema-de-configuracion-entero-incremental">Esquema de configuración: entero incremental</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>schema 1 → estructura original
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>schema 2 → configuración por capas / net_interface / eth_*   (subida en v3.14.0)
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>schema 3 → (cuando haya un cambio incompatible de config)
+</span></code></pre></div>
+<p>Al subir el esquema hay que agregar la migración en
+<code>ConfigManager::migrate()</code>.</p>
+<h2 id="8-versiones-por-subsistema-prefijos">8. Versiones por subsistema (prefijos)</h2>
+<p>Cada artefacto del ecosistema se versiona <strong>de forma independiente</strong> con un prefijo:</p>
+<table>
+<thead>
+<tr>
+<th>Artefacto</th>
+<th>Etiqueta</th>
+<th>Ejemplos reales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firmware del invernadero</td>
+<td><code>vX.Y.Z</code></td>
+<td><code>v3.29.0</code></td>
+</tr>
+<tr>
+<td>Servidor central</td>
+<td><code>server-vX.Y.Z</code></td>
+<td><code>server-v0.1.0</code> … <code>server-v0.5.0</code></td>
+</tr>
+<tr>
+<td>Frontend (preview)</td>
+<td><code>frontend-preview-vX.Y.Z</code></td>
+<td><code>frontend-preview-v1.0.0</code> … <code>v1.1.0</code></td>
+</tr>
+<tr>
+<td>Documentación</td>
+<td><code>vX.Y.Z</code> (repo Docs)</td>
+<td><code>v1.0.0</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Así el servidor puede ir en <code>0.x</code> (inestable) mientras el firmware va en <code>3.x</code>,
+sin confundir al usuario sobre cuál se actualizó.</p>
+</blockquote>
+<h3 id="0yz-desarrollo-inicial"><code>0.y.z</code> = desarrollo inicial</h3>
+<p>Mientras el número <strong>MAJOR sea <code>0</code></strong>, la API puede cambiar en cualquier momento
+(es lo que indica SemVer). El servidor está en <code>0.5.0</code>; el firmware ya en <code>3.x</code>
+(estable).</p>
+<h2 id="9-las-fases-del-proyecto-v8-v81-v9-no-son-versiones">9. Las fases del proyecto (<code>V8</code>, <code>V8.1</code>, <code>V9</code>) NO son versiones</h2>
+<p>Cuidado con la ambigüedad: el proyecto tiene <strong>fases de arquitectura</strong> en
+mayúscula, que <strong>no</strong> son versiones de firmware:</p>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Significado</th>
+<th>Versión de firmware donde se entregó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>V8</code></td>
+<td>Base de la plataforma configurable (registros, buses)</td>
+<td><code>3.8.0</code></td>
+</tr>
+<tr>
+<td><code>V8.1</code></td>
+<td>SpiManager, 74HC165, MCP23S17, ADC</td>
+<td><code>3.10.0</code></td>
+</tr>
+<tr>
+<td><code>V8.4</code></td>
+<td>StorageManager (LittleFS/SPIFFS/SD)</td>
+<td><code>3.10.0</code></td>
+</tr>
+<tr>
+<td><code>V9</code></td>
+<td>Perfiles Modbus, capa CAN, gateway RS485</td>
+<td><code>3.10.0</code> / <code>3.17.0</code></td>
+</tr>
+<tr>
+<td><code>V10</code></td>
+<td>(futuro)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Cómo distinguirlas</p>
+<ul>
+<li><strong>Mayúscula + sin prefijo <code>v</code></strong> → fase del proyecto (<code>V8</code>, <code>V9</code>).</li>
+<li><strong>Minúscula + prefijo <code>v</code></strong> → etiqueta de release (<code>v3.29.0</code>).</li>
+</ul>
+</div>
+<h2 id="10-historial-real-de-etiquetas-y-sus-inconsistencias">10. Historial real de etiquetas (y sus inconsistencias)</h2>
+<p>Las etiquetas existentes en el repositorio, para referencia histórica:</p>
+<table>
+<thead>
+<tr>
+<th>Etiqueta</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>V1.3.0</code>, <code>V1.4.0</code>, <code>V1.16.0</code></td>
+<td><strong>Mayúscula</strong>; convención antigua</td>
+</tr>
+<tr>
+<td><code>V2.00</code>, <code>V2.30</code></td>
+<td>Mayúscula y con <strong>cero relleno</strong> (<code>V2.00</code>) — no es SemVer</td>
+</tr>
+<tr>
+<td><code>v3.0.0</code> … <code>v3.29.0</code></td>
+<td>Convención actual (minúscula, SemVer)</td>
+</tr>
+<tr>
+<td><strong><code>v3.8.0</code> faltante</strong></td>
+<td>El CHANGELOG tiene la entrada 3.8.0 pero <strong>no se creó el tag</strong></td>
+</tr>
+<tr>
+<td><code>server-v0.x</code>, <code>frontend-preview-v1.x</code></td>
+<td>Versionado por subsistema</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reglas adoptadas a partir de ahora:</strong></p>
+<ul>
+<li>✅ Siempre <code>v</code> <strong>minúscula</strong> y SemVer completo (<code>v3.30.0</code>).</li>
+<li>❌ No usar cero relleno (<code>2.00</code> → <code>2.0.0</code>).</li>
+<li>❌ No saltear números: si existe la entrada en el CHANGELOG, <strong>crear el tag</strong>.</li>
+<li>✅ Prefijo de subsistema solo para artefactos distintos (<code>server-v…</code>).</li>
+</ul>
+<h2 id="11-flujo-de-release-paso-a-paso">11. Flujo de release (paso a paso)</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>1. Decidir MAJOR/MINOR/PATCH según §3
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>2. Editar include/core/Version.hpp  →  #define GH_FW_VERSION "X.Y.Z"
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>3. Actualizar CHANGELOG.md          →  ## [X.Y.Z] - AAAA-MM-DD
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>4. pio run                           →  verificar SUCCESS
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>5. Calcular SHA-256 del firmware.bin →  firmware_manifest.json
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>6. git commit -m "feat(...): ..."    →  Conventional Commits
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>7. git tag -a vX.Y.Z -m "Release vX.Y.Z: &lt;resumen&gt;"
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>8. git push origin main --tags
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>9. gh release create vX.Y.Z --title "vX.Y.Z — &lt;título&gt;" --notes "..." firmware.bin
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>10. Actualizar wiki del proyecto + repo Docs
+</span></code></pre></div>
+<h2 id="12-ejemplos-practicos">12. Ejemplos prácticos</h2>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Versión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Se agregó el endpoint <code>/api/v1/modbus/gateway</code></td>
+<td><code>3.17.0</code> (MINOR)</td>
+</tr>
+<tr>
+<td>Se corrigió que el OTA no cerrara el socket</td>
+<td><code>3.17.1</code> (PATCH)</td>
+</tr>
+<tr>
+<td>Se cambió el formato del JSON de configuración</td>
+<td><code>4.0.0</code> (MAJOR)</td>
+</tr>
+<tr>
+<td>Beta del próximo release con nueva API</td>
+<td><code>3.30.0-beta.1</code></td>
+</tr>
+<tr>
+<td>Candidata final de esa beta</td>
+<td><code>3.30.0-rc.1</code></td>
+</tr>
+<tr>
+<td>Release final</td>
+<td><code>3.30.0</code></td>
+</tr>
+<tr>
+<td>Se actualizó solo la documentación</td>
+<td>sin release</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-glosario-de-notacion">13. Glosario de notación</h2>
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X.Y.Z</code></td>
+<td><code>MAJOR.MINOR.PATCH</code></td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td>Prefijo de etiqueta de Git/release (minúscula)</td>
+</tr>
+<tr>
+<td><code>V8</code>, <code>V9</code></td>
+<td>Fase del proyecto (mayúscula, no es versión)</td>
+</tr>
+<tr>
+<td><code>-alpha.N</code></td>
+<td>Pre-release experimental</td>
+</tr>
+<tr>
+<td><code>-beta.N</code> / <code>-bN</code></td>
+<td>Pre-release en pruebas</td>
+</tr>
+<tr>
+<td><code>-rc.N</code></td>
+<td>Release candidate</td>
+</tr>
+<tr>
+<td><code>+build.N</code>, <code>+sha.xxxx</code></td>
+<td>Metadatos de build (no afectan el orden)</td>
+</tr>
+<tr>
+<td><code>revN</code></td>
+<td>Revisión de hardware</td>
+</tr>
+<tr>
+<td><code>schema N</code></td>
+<td>Versión del esquema de configuración</td>
+</tr>
+<tr>
+<td><code>0.y.z</code></td>
+<td>Desarrollo inicial (API inestable)</td>
+</tr>
+</tbody>
+</table>
+<p>Ver también: <a href="../Reglas-de-trabajo/">Reglas de trabajo</a> ·
+<a href="../invernadero/CHANGELOG/">CHANGELOG</a> · <a href="../invernadero/Mejoras/">Mejoras</a> ·
+<a href="../invernadero/Evolucion/">Evolución</a>.</p>
 
 
 
@@ -1924,7 +2556,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Versionado/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Versionado (numeración)">
+          <a href="../Reglas-de-trabajo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Reglas de trabajo">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1934,20 +2566,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Versionado (numeración)
+                Reglas de trabajo
               </div>
             </div>
           </a>
         
         
           
-          <a href="../sema/Home/" class="md-footer__link md-footer__link--next" aria-label="Next: Home">
+          <a href="../Estandar-de-documentacion/" class="md-footer__link md-footer__link--next" aria-label="Next: Estándar de documentación">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Home
+                Estándar de documentación
               </div>
             </div>
             <div class="md-footer__button md-icon">
