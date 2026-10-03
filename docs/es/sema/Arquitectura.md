@@ -6,7 +6,7 @@ tags:
 
 # Arquitectura
 
-> **Tipo:** Concepto | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.3.0
+> **Tipo:** Concepto | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.4.0
 
 Arquitectura de SEMA consolidada a partir del `README.md`. Es la referencia para
 implementar el firmware de forma modular.
@@ -178,3 +178,33 @@ I²C/1-Wire, configuración GPIO/ADC, expansores, RS485/Modbus, CAN, LoRa, Zigbe
 medición energética, almacenamiento, histórico, alarmas, diagnóstico, calibración,
 validación de configuración, backup, importación/exportación, OTA, seguridad,
 watchdog y documentación.
+
+## 12. Definiciones de Fase 1
+
+### Endpoints REST mínimos
+
+```text
+GET  /api/v1/status · /health · /system · /config · /diagnostics
+PUT  /api/v1/config   (transaccional, autenticado)
+POST /api/v1/restart  (autenticado)
+```
+
+### Modelo Canónico
+
+```json
+{
+  "station_id": "SEMA-001",
+  "sensor_id": "TEMP_EXT",
+  "measurement": "temperature",
+  "value": 24.7,
+  "unit": "degC",
+  "timestamp": "2026-09-30T15:00:00Z",
+  "quality": "VALID"
+}
+```
+
+### Storage API
+
+```text
+Storage API → NVS (config) · LittleFS (histórico/eventos/logs) · SD (opcional)
+```
