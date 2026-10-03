@@ -117,7 +117,13 @@ extra_javascript:
   - javascripts/extra.js
 
 nav:
-  - Inicio: index.md
+  - Inicio:
+      - Inicio: index.md
+      - Reglas de trabajo: inicio/Reglas-de-trabajo.md
+      - Estándar de documentación: inicio/Estandar-de-documentacion.md
+      - Versionado: inicio/Versionado.md
+      - Design System: inicio/Design-system.md
+      - Seguridad (SECURITY.md): inicio/Security.md
   - Invernadero:
       - Inicio rápido: invernadero/Inicio-rapido.md
       - Arquitectura: invernadero/Arquitectura.md
@@ -154,12 +160,5 @@ nav:
       - Registro de cambios: invernadero/Registro-de-cambios.md
       - Frontend (guía de estilo): invernadero/Frontend.md
       - Glosario: invernadero/Glosario.md
-  - Inicio de proyecto:
-      - Archivos de arranque: inicio/Inicio-de-proyecto.md
-      - Reglas de trabajo: inicio/Reglas-de-trabajo.md
-      - Estándar de documentación: inicio/Estandar-de-documentacion.md
-      - Versionado: inicio/Versionado.md
-      - Design System: inicio/Design-system.md
-      - Seguridad (SECURITY): inicio/Security.md
   - SEMA:
       - Home: sema/Home.md
