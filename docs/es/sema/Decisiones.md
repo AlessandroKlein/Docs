@@ -6,7 +6,7 @@ tags:
 
 # Decisiones
 
-> **Tipo:** Referencia | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.22.0
+> **Tipo:** Referencia | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.23.0
 
 Resumen de las decisiones de arquitectura (ADR). El registro completo con motivos
 y consecuencias vive en el repo del código:
