@@ -42,7 +42,7 @@ MCP23017 · 74HC595 · 74HC165 · ADS1115
 Viento · Lluvia · Radiación · UV · Rayos
 ```
 
-🔄 (v0.47.0): pluviómetro/anemómetro por PCNT (conteo de pulsos).
+🔄 (v0.48.0): lluvia/viento por PCNT (conteo de pulsos) y UV (VEML6075).
 
 ## Fase 5 — Calidad ambiental
 
