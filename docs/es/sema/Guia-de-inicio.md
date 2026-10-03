@@ -6,7 +6,7 @@ tags:
 
 # Guía de inicio
 
-> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v0.46.0
+> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v0.47.0
 
 Documentación de referencia para **entender y usar SEMA sin conocer el proyecto
 ni el código de antemano**. Se recomienda leer de principio a fin; los apartados
@@ -97,6 +97,7 @@ Consecuencias prácticas:
 | BH1750 | luminosidad (lux) | I²C | 0x23 |
 | DS18B20 | temperatura | 1-Wire | GPIO 4 |
 | ADC (genérico) | tensión/otro | ADC | GPIO configurable |
+| PCNT (genérico) | lluvia/viento (pulsos) | GPIO (PCNT) | pin configurable |
 
 ---
 

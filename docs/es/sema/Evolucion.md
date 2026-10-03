@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.46.0
+> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.47.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
@@ -42,7 +42,7 @@ MCP23017 · 74HC595 · 74HC165 · ADS1115
 Viento · Lluvia · Radiación · UV · Rayos
 ```
 
-⬜ pendiente.
+🔄 (v0.47.0): pluviómetro/anemómetro por PCNT (conteo de pulsos).
 
 ## Fase 5 — Calidad ambiental
 
