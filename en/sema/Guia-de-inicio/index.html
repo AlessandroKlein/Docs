@@ -2432,7 +2432,7 @@
 
 <h1 id="guia-de-inicio">Guía de inicio</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Activa | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.45.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Activa | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.46.0</p>
 </blockquote>
 <p>Documentación de referencia para <strong>entender y usar SEMA sin conocer el proyecto
 ni el código de antemano</strong>. Se recomienda leer de principio a fin; los apartados
@@ -2765,6 +2765,18 @@ Central). Si no hay claves configuradas, se permite (primera configuración).</p
 <td>PUT</td>
 <td><code>/config</code></td>
 <td>Aplica nueva configuración</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/backup</code></td>
+<td>Respaldo (config + metadatos)</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/backup</code></td>
+<td>Restaura un respaldo</td>
 <td style="text-align: center;">✔</td>
 </tr>
 <tr>
