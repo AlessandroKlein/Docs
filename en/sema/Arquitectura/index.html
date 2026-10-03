@@ -2005,6 +2005,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#12-definiciones-de-fase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Definiciones de Fase 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Definiciones de Fase 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-rest-minimos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints REST mínimos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelo-canonico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo Canónico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2137,7 +2187,7 @@
 
 <h1 id="arquitectura">Arquitectura</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Planificación | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.3.0</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Planificación | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.4.0</p>
 </blockquote>
 <p>Arquitectura de SEMA consolidada a partir del <code>README.md</code>. Es la referencia para
 implementar el firmware de forma modular.</p>
@@ -2274,6 +2324,26 @@ I²C/1-Wire, configuración GPIO/ADC, expansores, RS485/Modbus, CAN, LoRa, Zigbe
 medición energética, almacenamiento, histórico, alarmas, diagnóstico, calibración,
 validación de configuración, backup, importación/exportación, OTA, seguridad,
 watchdog y documentación.</p>
+<h2 id="12-definiciones-de-fase-1">12. Definiciones de Fase 1</h2>
+<h3 id="endpoints-rest-minimos">Endpoints REST mínimos</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>GET  /api/v1/status · /health · /system · /config · /diagnostics
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>PUT  /api/v1/config   (transaccional, autenticado)
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>POST /api/v1/restart  (autenticado)
+</span></code></pre></div>
+<h3 id="modelo-canonico">Modelo Canónico</h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">"station_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEMA-001"</span><span class="p">,</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEMP_EXT"</span><span class="p">,</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"temperature"</span><span class="p">,</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">24.7</span><span class="p">,</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degC"</span><span class="p">,</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-30T15:00:00Z"</span><span class="p">,</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nt">"quality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VALID"</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="storage-api">Storage API</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Storage API → NVS (config) · LittleFS (histórico/eventos/logs) · SD (opcional)
+</span></code></pre></div>
 
 
 
