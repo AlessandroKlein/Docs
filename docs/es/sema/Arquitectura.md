@@ -6,7 +6,7 @@ tags:
 
 # Arquitectura
 
-> **Tipo:** Concepto | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.2.0
+> **Tipo:** Concepto | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.3.0
 
 Arquitectura de SEMA consolidada a partir del `README.md`. Es la referencia para
 implementar el firmware de forma modular.
@@ -51,6 +51,28 @@ HARDWARE ≠ CONFIGURACIÓN
         └── Expansores
 ```
 
+## 2.1 Compatibilidad por perfiles (HAL)
+
+La compatibilidad entre variantes de ESP32 **no se resuelve con `#ifdef`
+repartidos**:
+
+```text
+SEMA Application → SEMA Core
+                        ├── Capability Manager
+                        ├── Resource Manager
+                        ├── Runtime Manager
+                        └── Hardware Abstraction Layer (HAL)
+                                        │
+                                        ▼
+                                 Board/Chip Profile
+```
+
+- **Capability Manager** — qué puede hacer la plataforma (ADC, PCNT, PSRAM, SMP,
+  Wi-Fi, 802.15.4, CAN/TWAI, …).
+- **Resource Manager** — asigna y valida recursos detectando conflictos.
+- **Runtime Manager** — tareas y afinidad (`AUTO` por defecto) sobre FreeRTOS.
+- **HAL + Board/Chip Profile** — única frontera con el hardware concreto.
+
 ## 3. Estructura de carpetas
 
 ```text
@@ -82,15 +104,16 @@ SEMA/
 CORE
  ├── Sensor Engine (medición + validación + calibración)
  ├── Configuration (persistencia, esquema versionado, migraciones)
+ ├── Capability / Resource / Runtime Manager + HAL
  ├── Event Bus / Event Manager
  ├── Scheduler (tareas por capacidades)
- ├── Storage (histórico, eventos, logs)
+ ├── Storage API (NVS / Flash / LittleFS / SD / externo)
  ├── Web Server / API / WebSocket
  └── Diagnostics (health, watchdog, observabilidad)
 
-OPTIONAL
+CAPACIDADES / INTERFACES (implementaciones, no módulos que contaminan el Core)
+ ├── MQTT, HTTP, LoRa, Zigbee, RS485, CAN, OTA
  ├── Weather, Air Quality, Lightning, Soil, Energy
- ├── LoRa, Zigbee, RS485, CAN, MQTT, SD, OTA
 ```
 
 ## 5. Ciclo de vida de módulos
