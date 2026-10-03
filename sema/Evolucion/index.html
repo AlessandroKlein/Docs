@@ -2132,19 +2132,19 @@
 
 <h1 id="evolucion">Evolución</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> Planificación | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.34.0</p>
+<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.34.0</p>
 </blockquote>
 <p>Desarrollo incremental de SEMA en 9 fases (<code>README.md</code> §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.</p>
 <h2 id="fase-1-core">Fase 1 — Core</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ESP32 · Web · Configuración · NVS · Diagnóstico
 </span></code></pre></div>
-<p>🔄 en curso (v0.8.0): <code>ConfigManager</code> + NVS, Storage API, <code>CapabilityManager</code>,
-<code>Task</code>, <code>Scheduler</code> y Web/REST <code>/api/v1</code>. Falta diagnóstico, WebSocket y mDNS.</p>
+<p>✅ esencial completa (v0.34.0): ConfigManager+NVS, Storage API, Capability/Runtime
+Manager, Scheduler, Web/REST <code>/api/v1</code>, WebSocket, mDNS, autenticación y OTA.</p>
 <h2 id="fase-2-sensores-basicos">Fase 2 — Sensores básicos</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>DS18B20 · AHT20/AHT21/AHT30 · SHT31/SHT40 · BME280 · BMP280 · BH1750
 </span></code></pre></div>
-<p>🔄 en curso (v0.9.0): Sensor Engine + BME280 (temperatura, humedad, presión).</p>
+<p>🔄 (v0.34.0): BME280, SHT40, DS18B20, BH1750 y AHT20 + detección I²C.</p>
 <h2 id="fase-3-expansion">Fase 3 — Expansión</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>MCP23017 · 74HC595 · 74HC165 · ADS1115
 </span></code></pre></div>
@@ -2164,11 +2164,11 @@ Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.</p>
 <h2 id="fase-7-comunicaciones-remotas">Fase 7 — Comunicaciones remotas</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>LoRa · Zigbee · Ethernet · MQTT · Servidor central
 </span></code></pre></div>
-<p>⬜ pendiente.</p>
+<p>🔄 MQTT listo (publicador); LoRa/Zigbee/Ethernet/Servidor central pendientes.</p>
 <h2 id="fase-8-energia">Fase 8 — Energía</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Panel solar · Batería · Medición energética · Deep Sleep
 </span></code></pre></div>
-<p>⬜ pendiente.</p>
+<p>🔄 (v0.34.0): batería por ADC, perfiles energéticos, deep sleep y wake-up por lluvia.</p>
 <h2 id="fase-9-plataforma-distribuida">Fase 9 — Plataforma distribuida</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Múltiples SEMA · Nodos remotos · Servidor central · Históricos · Mapas · Alertas
 </span></code></pre></div>
