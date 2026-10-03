@@ -1,3 +1,37 @@
+# Versionado (plantilla)
+
+> **Tipo:** Plantilla de arranque | **Estado:** Estable | **Fecha:** 2026-10-03
+
+Numeración de versiones: SemVer, prefijo v, pre-releases (alpha/beta/rc), cuándo cambiar MAJOR, revisión de hardware, esquema de config y fases del proyecto.
+
+## 1. Ruta en el proyecto
+
+```text
+docs/VERSIONADO.md
+```
+
+## 2. Cómo obtenerlo
+
+**Opción A — descarga directa** (crea el archivo listo para usar):
+
+```bash
+# ejecutar desde la raíz del proyecto nuevo
+curl -fsSL https://raw.githubusercontent.com/AlessandroKlein/Invernadero/main/docs/VERSIONADO.md -o docs/VERSIONADO.md
+```
+
+**Opción B — copiar y pegar**: copiá el contenido de la sección 3 y pegalo en
+`docs/VERSIONADO.md`.
+
+## 3. Contenido completo
+````text
+# Versionado (numeración de versiones)
+
+> **Tipo:** Convención transversal | **Estado:** Estable | **Fecha:** 2026-10-03
+>
+> Convención de numeración de versiones para todos los proyectos. Copiar a
+> `docs/VERSIONADO.md` al iniciar un proyecto.
+
+---
 # Versionado (cómo numerar las versiones)
 
 > **Tipo:** Convención | **Estado:** Estable | **Fecha:** 2026-10-02
@@ -345,3 +379,4 @@ Las etiquetas existentes en el repositorio, para referencia histórica:
 Ver también: [Reglas de trabajo](Reglas-de-trabajo.md) ·
 [CHANGELOG](invernadero/CHANGELOG.md) · [Mejoras](invernadero/Mejoras.md) ·
 [Evolución](invernadero/Evolucion.md).
+````

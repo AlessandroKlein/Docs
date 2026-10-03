@@ -106,8 +106,8 @@ Para una **nueva variable** sí hace falta:
 7. Actualizar wiki + repo Docs
 ```
 
-Ver [Reglas de trabajo](../Reglas-de-trabajo.md) y
-[Estándar de documentación](../Estandar-de-documentacion.md).
+Ver [Reglas de trabajo](../inicio/Reglas-de-trabajo.md) y
+[Estándar de documentación](../inicio/Estandar-de-documentacion.md).
 
 ## 9. Checklist antes de un PR/release
 

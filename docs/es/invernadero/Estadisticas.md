@@ -84,7 +84,7 @@ Todos los números medidos del proyecto en la versión actual.
 | Protocolo | `1` |
 
 > La nomenclatura completa (SemVer, `v`, `b`, `rc`, `rev`, `schema`) está en
-> [Versionado](../Versionado.md).
+> [Versionado](../inicio/Versionado.md).
 
 ## 6. Hitos del release actual
 

@@ -154,8 +154,12 @@ nav:
       - Registro de cambios: invernadero/Registro-de-cambios.md
       - Frontend (guía de estilo): invernadero/Frontend.md
       - Glosario: invernadero/Glosario.md
-  - Reglas de trabajo: Reglas-de-trabajo.md
-  - Versionado (numeración): Versionado.md
-  - Estándar de documentación: Estandar-de-documentacion.md
+  - Inicio de proyecto:
+      - Archivos de arranque: inicio/Inicio-de-proyecto.md
+      - Reglas de trabajo: inicio/Reglas-de-trabajo.md
+      - Estándar de documentación: inicio/Estandar-de-documentacion.md
+      - Versionado: inicio/Versionado.md
+      - Design System: inicio/Design-system.md
+      - Seguridad (SECURITY): inicio/Security.md
   - SEMA:
       - Home: sema/Home.md
