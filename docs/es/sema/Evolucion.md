@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.7.0
+> **Tipo:** Roadmap | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.8.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
@@ -17,8 +17,8 @@ Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
 ESP32 · Web · Configuración · NVS · Diagnóstico
 ```
 
-🔄 en curso (v0.6.0): `ConfigManager` + NVS, Storage API, `CapabilityManager` y
-`Task` (abstracción RT). Falta Web/REST, scheduler y diagnóstico.
+🔄 en curso (v0.8.0): `ConfigManager` + NVS, Storage API, `CapabilityManager`,
+`Task`, `Scheduler` y Web/REST `/api/v1`. Falta diagnóstico, WebSocket y mDNS.
 
 ## Fase 2 — Sensores básicos
 
