@@ -1896,6 +1896,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#21-compatibilidad-por-perfiles-hal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Compatibilidad por perfiles (HAL)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#3-estructura-de-carpetas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2126,7 +2137,7 @@
 
 <h1 id="arquitectura">Arquitectura</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Planificación | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.2.0</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Planificación | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.3.0</p>
 </blockquote>
 <p>Arquitectura de SEMA consolidada a partir del <code>README.md</code>. Es la referencia para
 implementar el firmware de forma modular.</p>
@@ -2165,55 +2176,75 @@ implementar el firmware de forma modular.</p>
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        ├── 1-Wire      └── Soil / Energy
 </span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        └── Expansores
 </span></code></pre></div>
+<h2 id="21-compatibilidad-por-perfiles-hal">2.1 Compatibilidad por perfiles (HAL)</h2>
+<p>La compatibilidad entre variantes de ESP32 <strong>no se resuelve con <code>#ifdef</code>
+repartidos</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SEMA Application → SEMA Core
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>                        ├── Capability Manager
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>                        ├── Resource Manager
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>                        ├── Runtime Manager
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>                        └── Hardware Abstraction Layer (HAL)
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>                                        │
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>                                        ▼
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                                 Board/Chip Profile
+</span></code></pre></div>
+<ul>
+<li><strong>Capability Manager</strong> — qué puede hacer la plataforma (ADC, PCNT, PSRAM, SMP,
+  Wi-Fi, 802.15.4, CAN/TWAI, …).</li>
+<li><strong>Resource Manager</strong> — asigna y valida recursos detectando conflictos.</li>
+<li><strong>Runtime Manager</strong> — tareas y afinidad (<code>AUTO</code> por defecto) sobre FreeRTOS.</li>
+<li><strong>HAL + Board/Chip Profile</strong> — única frontera con el hardware concreto.</li>
+</ul>
 <h2 id="3-estructura-de-carpetas">3. Estructura de carpetas</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SEMA/
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── include/core/          ← interfaces y cabeceras del Core
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── src/
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   ├── main.cpp           ← pequeño: initialize → register → start → loop
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   ├── core/              ← registry, event bus, config, health
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   ├── config/            ← configuración persistente (NVS) y validación
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   ├── hardware/          ← GPIO, ADC y periféricos internos
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   ├── buses/             ← I²C, SPI, UART, 1-Wire, RS485, CAN
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   ├── sensors/           ← drivers de sensores (abstracción por magnitud)
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   ├── actuators/         ← salidas digitales/PWM
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   ├── communications/    ← MQTT, HTTP, WebSocket, publicadores externos
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│   ├── storage/           ← LittleFS/SD, histórico, eventos
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   ├── energy/            ← batería/panel, sleep, wake
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│   ├── alarms/            ← alarmas y umbrales
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│   ├── diagnostics/       ← salud, logs, inventario, métricas
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│   ├── web/               ← servidor web local
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│   ├── api/               ← endpoints REST
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│   ├── ota/               ← actualización de firmware
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│   └── modules/           ← módulos opcionales (LoRa, Zigbee, …)
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>└── docs/
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SEMA/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── include/core/          ← interfaces y cabeceras del Core
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── src/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   ├── main.cpp           ← pequeño: initialize → register → start → loop
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│   ├── core/              ← registry, event bus, config, health
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   ├── config/            ← configuración persistente (NVS) y validación
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│   ├── hardware/          ← GPIO, ADC y periféricos internos
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│   ├── buses/             ← I²C, SPI, UART, 1-Wire, RS485, CAN
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│   ├── sensors/           ← drivers de sensores (abstracción por magnitud)
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│   ├── actuators/         ← salidas digitales/PWM
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│   ├── communications/    ← MQTT, HTTP, WebSocket, publicadores externos
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│   ├── storage/           ← LittleFS/SD, histórico, eventos
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│   ├── energy/            ← batería/panel, sleep, wake
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│   ├── alarms/            ← alarmas y umbrales
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│   ├── diagnostics/       ← salud, logs, inventario, métricas
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│   ├── web/               ← servidor web local
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│   ├── api/               ← endpoints REST
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>│   ├── ota/               ← actualización de firmware
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>│   └── modules/           ← módulos opcionales (LoRa, Zigbee, …)
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>└── docs/
 </span></code></pre></div>
 <h2 id="4-modulos-del-core">4. Módulos del Core</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>CORE
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a> ├── Sensor Engine (medición + validación + calibración)
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a> ├── Configuration (persistencia, esquema versionado, migraciones)
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> ├── Event Bus / Event Manager
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a> ├── Scheduler (tareas por capacidades)
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a> ├── Storage (histórico, eventos, logs)
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a> ├── Web Server / API / WebSocket
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a> └── Diagnostics (health, watchdog, observabilidad)
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>OPTIONAL
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a> ├── Weather, Air Quality, Lightning, Soil, Energy
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a> ├── LoRa, Zigbee, RS485, CAN, MQTT, SD, OTA
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>CORE
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a> ├── Sensor Engine (medición + validación + calibración)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a> ├── Configuration (persistencia, esquema versionado, migraciones)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a> ├── Capability / Resource / Runtime Manager + HAL
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a> ├── Event Bus / Event Manager
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a> ├── Scheduler (tareas por capacidades)
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a> ├── Storage API (NVS / Flash / LittleFS / SD / externo)
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a> ├── Web Server / API / WebSocket
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a> └── Diagnostics (health, watchdog, observabilidad)
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>CAPACIDADES / INTERFACES (implementaciones, no módulos que contaminan el Core)
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a> ├── MQTT, HTTP, LoRa, Zigbee, RS485, CAN, OTA
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a> ├── Weather, Air Quality, Lightning, Soil, Energy
 </span></code></pre></div>
 <h2 id="5-ciclo-de-vida-de-modulos">5. Ciclo de vida de módulos</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>AVAILABLE → INSTALLED → CONFIGURED → ENABLED → RUNNING
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>RUNNING   → DISABLED  → UNINSTALLED
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Errores: INSTALL_ERROR · CONFIG_ERROR · RUNTIME_ERROR · UPDATE_ERROR
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>AVAILABLE → INSTALLED → CONFIGURED → ENABLED → RUNNING
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>RUNNING   → DISABLED  → UNINSTALLED
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Errores: INSTALL_ERROR · CONFIG_ERROR · RUNTIME_ERROR · UPDATE_ERROR
 </span></code></pre></div>
 <h2 id="6-flujo-de-datos">6. Flujo de datos</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>MEDIR → VALIDAR → PROCESAR → ALMACENAR → PUBLICAR → SINCRONIZAR → DORMIR
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>                                                                      │
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>                                              DESPERTAR POR EVENTO ←──┘
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>MEDIR → VALIDAR → PROCESAR → ALMACENAR → PUBLICAR → SINCRONIZAR → DORMIR
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                                                                      │
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>                                              DESPERTAR POR EVENTO ←──┘
 </span></code></pre></div>
 <h2 id="7-event-bus">7. Event Bus</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>RAIN_START → Storage, Alarm, MQTT, Webhook, Dashboard, Wake Manager
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>RAIN_START → Storage, Alarm, MQTT, Webhook, Dashboard, Wake Manager
 </span></code></pre></div>
 <p>Eventos: <code>SensorEvent · RainEvent · LightningEvent · BatteryEvent ·
 NetworkEvent · AlarmEvent · SystemEvent · WakeEvent · SleepEvent</code>.</p>
@@ -2221,20 +2252,20 @@ NetworkEvent · AlarmEvent · SystemEvent · WakeEvent · SleepEvent</code>.</p>
 <p>Las tareas se crean <strong>según los módulos habilitados</strong>: sin LoRa no hay tarea
 LoRa, sin SD no hay tarea SD. Esto reduce RAM, CPU y consumo.</p>
 <h2 id="9-prioridades-y-no-bloqueo">9. Prioridades y no bloqueo</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>P1 Core / seguridad / watchdog
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>P2 Adquisición de sensores
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>P3 Procesamiento y almacenamiento
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>P4 Alarmas y eventos
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>P5 API local
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>P6 Comunicación
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>P7 Servicios externos
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>P1 Core / seguridad / watchdog
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>P2 Adquisición de sensores
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>P3 Procesamiento y almacenamiento
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>P4 Alarmas y eventos
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>P5 API local
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>P6 Comunicación
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>P7 Servicios externos
 </span></code></pre></div>
 <p>Ningún servicio externo puede bloquear <code>SensorTask</code>, <code>MeasurementTask</code>,
 <code>StorageTask</code> ni el <code>Watchdog</code>.</p>
 <h2 id="10-niveles-de-visualizacion">10. Niveles de visualización</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Nivel 1 — Estación autónoma (web local, sin servidor)
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Nivel 2 — Estación + servicios externos (MQTT, ThingSpeak, Windy, …)
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Nivel 3 — Sistema centralizado (Servidor Central opcional)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Nivel 1 — Estación autónoma (web local, sin servidor)
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Nivel 2 — Estación + servicios externos (MQTT, ThingSpeak, Windy, …)
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Nivel 3 — Sistema centralizado (Servidor Central opcional)
 </span></code></pre></div>
 <h2 id="11-definition-of-done">11. Definition of Done</h2>
 <p>Una versión funcional requiere, como mínimo: Core, configuración persistente, web
