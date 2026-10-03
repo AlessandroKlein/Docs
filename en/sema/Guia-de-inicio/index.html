@@ -1951,6 +1951,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pines-fijos-para-pcb-personalizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pines fijos para PCB personalizada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sensores-soportados-catalogo-configurable" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2432,7 +2443,7 @@
 
 <h1 id="guia-de-inicio">Guía de inicio</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Activa | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.53.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Activa | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v0.54.0</p>
 </blockquote>
 <p>Documentación de referencia para <strong>entender y usar SEMA sin conocer el proyecto
 ni el código de antemano</strong>. Se recomienda leer de principio a fin; los apartados
@@ -2523,6 +2534,18 @@ alarmas, publicadores, almacenamiento…) que el Core orquesta.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="pines-fijos-para-pcb-personalizada">Pines fijos para PCB personalizada</h3>
+<p>Por defecto, los pines de los sensores son <strong>configurables desde la web</strong> (sección
+<code>sensors</code> de la configuración). Para una <strong>PCB personalizada</strong> podés fijarlos en
+tiempo de compilación y deshabilitar la configuración por web:</p>
+<ol>
+<li>Editá <code>include/core/BoardProfile.hpp</code>.</li>
+<li>Poné <code>SEMA_FIXED_HARDWARE</code> en <code>1</code>.</li>
+<li>Ajustá los pines (<code>SEMA_PIN_I2C_SDA</code>, <code>SEMA_PIN_I2C_SCL</code>, <code>SEMA_PIN_ONEWIRE</code>,
+   <code>SEMA_PIN_BATTERY_ADC</code>) a tu diseño.</li>
+</ol>
+<p>Con <code>SEMA_FIXED_HARDWARE = 1</code>, el catálogo <code>sensors[]</code> de la configuración <strong>se
+ignora</strong> y se usa el catálogo fijo con esos pines (D-0050).</p>
 <h3 id="sensores-soportados-catalogo-configurable">Sensores soportados (catálogo configurable)</h3>
 <table>
 <thead>
