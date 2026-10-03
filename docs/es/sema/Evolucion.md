@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.38.0
+> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.39.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
@@ -26,7 +26,7 @@ Manager, Scheduler, Web/REST `/api/v1`, WebSocket, mDNS, autenticación y OTA.
 DS18B20 · AHT20/AHT21/AHT30 · SHT31/SHT40 · BME280 · BMP280 · BH1750
 ```
 
-🔄 (v0.34.0): BME280, SHT40, DS18B20, BH1750 y AHT20 + detección I²C.
+✅ (v0.39.0): BME280, SHT40, SHT31, DS18B20, BH1750, AHT20 y BMP280 + detección I²C.
 
 ## Fase 3 — Expansión
 
