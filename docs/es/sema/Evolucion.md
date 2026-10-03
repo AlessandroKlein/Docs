@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.8.0
+> **Tipo:** Roadmap | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.9.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
@@ -26,7 +26,7 @@ ESP32 · Web · Configuración · NVS · Diagnóstico
 DS18B20 · AHT20/AHT21/AHT30 · SHT31/SHT40 · BME280 · BMP280 · BH1750
 ```
 
-⬜ pendiente.
+🔄 en curso (v0.9.0): Sensor Engine + BME280 (temperatura, humedad, presión).
 
 ## Fase 3 — Expansión
 
