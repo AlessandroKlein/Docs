@@ -6,7 +6,7 @@ tags:
 
 # Guía de inicio
 
-> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v0.45.0
+> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v0.46.0
 
 Documentación de referencia para **entender y usar SEMA sin conocer el proyecto
 ni el código de antemano**. Se recomienda leer de principio a fin; los apartados
@@ -240,6 +240,8 @@ Central). Si no hay claves configuradas, se permite (primera configuración).
 | GET | `/system` | Info del sistema | — |
 | GET | `/config` | Configuración actual (JSON) | — |
 | PUT | `/config` | Aplica nueva configuración | ✔ |
+| GET | `/backup` | Respaldo (config + metadatos) | — |
+| POST | `/backup` | Restaura un respaldo | ✔ |
 | GET | `/sensors` | Catálogo + mediciones actuales | — |
 | GET | `/history` | Histórico reciente | — |
 | GET | `/alarms` | Solo eventos de alarma | — |
