@@ -162,6 +162,7 @@ nav:
       - Glosario: invernadero/Glosario.md
   - SEMA:
       - Home: sema/Home.md
+      - Guía de inicio: sema/Guia-de-inicio.md
       - Arquitectura: sema/Arquitectura.md
       - Decisiones: sema/Decisiones.md
       - Evolución: sema/Evolucion.md

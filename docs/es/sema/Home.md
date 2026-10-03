@@ -25,11 +25,12 @@ estaciones meteorológicas y ambientales basada en **ESP32**, configurable por
 
 **Empezar**
 
-- [Home](Home.md) · [Arquitectura](Arquitectura.md)
+- [Guía de inicio](Guia-de-inicio.md) · [Arquitectura](Arquitectura.md)
 
-**Proyecto**
+**Referencia**
 
-- [Evolución](Evolucion.md)
+- [Decisiones](Decisiones.md) · [Evolución](Evolucion.md)
 
-> Estado actual: **planificación y arquitectura** (v0.2.0). El desarrollo avanza
-> por fases; ver [Evolución](Evolucion.md).
+> Estado actual: **en desarrollo** (v0.40.0). Si es tu primera vez, empezá por la
+> [Guía de inicio](Guia-de-inicio.md); el avance por fases está en
+> [Evolución](Evolucion.md).
