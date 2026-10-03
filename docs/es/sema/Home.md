@@ -6,7 +6,7 @@ tags:
 
 # SEMA
 
-> **Tipo:** Embebidos (ESP32) | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.53.0
+> **Tipo:** Embebidos (ESP32) | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.54.0
 
 Sistema de Estación Meteorológica Autónoma: plataforma modular para construir
 estaciones meteorológicas y ambientales basada en **ESP32**, configurable por
