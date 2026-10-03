@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.5.0
+> **Tipo:** Roadmap | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v0.6.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
@@ -17,8 +17,8 @@ Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
 ESP32 · Web · Configuración · NVS · Diagnóstico
 ```
 
-🔄 esqueleto del Core iniciado en v0.2.0 (`Module`, `ModuleRegistry`, `EventBus`,
-`SemaCore`).
+🔄 en curso (v0.6.0): `ConfigManager` + NVS, Storage API, `CapabilityManager` y
+`Task` (abstracción RT). Falta Web/REST, scheduler y diagnóstico.
 
 ## Fase 2 — Sensores básicos
 
