@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.42.0
+> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.43.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.

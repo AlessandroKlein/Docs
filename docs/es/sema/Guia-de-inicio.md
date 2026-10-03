@@ -6,7 +6,7 @@ tags:
 
 # Guía de inicio
 
-> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v0.42.0
+> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v0.43.0
 
 Documentación de referencia para **entender y usar SEMA sin conocer el proyecto
 ni el código de antemano**. Se recomienda leer de principio a fin; los apartados
@@ -180,6 +180,12 @@ edita desde la web o la API. Ejemplo completo:
     "api_key": "clave-web-local",
     "server_key": "clave-servidor-central"
   },
+  "publishers": {
+    "webhook_url": "",
+    "mqtt_host": "",
+    "mqtt_port": 1883,
+    "mqtt_topic": "sema/measurement"
+  },
   "energy": { "rain_pin": 0 },
   "sensors": [
     { "id": "EXT",  "model": "BME280",  "sda": 21, "scl": 22 },
@@ -198,6 +204,7 @@ edita desde la web o la API. Ejemplo completo:
 | `system` | Zona horaria y nivel de log |
 | `storage` | Backend y retención del histórico |
 | `security` | Claves de acceso (`api_key`, `server_key`) |
+| `publishers` | Webhook URL y MQTT (host/puerto/topic) |
 | `energy` | Pin del pluviómetro para wake-up |
 | `sensors` | **Catálogo de sensores** (si está vacío, se usa el catálogo por defecto) |
 
