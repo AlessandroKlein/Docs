@@ -316,6 +316,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Evolucion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Guia-de-inicio/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Guia-de-inicio/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Guia-de-inicio/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Home/</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>daily</changefreq>
@@ -636,6 +643,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Evolucion/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Evolucion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Guia-de-inicio/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Guia-de-inicio/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Guia-de-inicio/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Home/</loc>
