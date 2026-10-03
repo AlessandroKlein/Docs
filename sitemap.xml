@@ -302,6 +302,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Arquitectura/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Decisiones/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Decisiones/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Decisiones/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Evolucion/</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>daily</changefreq>
@@ -615,6 +622,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Arquitectura/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Arquitectura/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Decisiones/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Decisiones/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Decisiones/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Evolucion/</loc>
