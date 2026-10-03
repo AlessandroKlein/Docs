@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.48.0
+> **Tipo:** Roadmap | **Estado:** En desarrollo | **Fecha:** 2026-10-03 | **Firmware:** v0.49.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
@@ -50,7 +50,7 @@ Viento · Lluvia · Radiación · UV · Rayos
 CO₂ · PM · CO
 ```
 
-⬜ pendiente.
+🔄 (v0.49.0): CO₂ (SCD30).
 
 ## Fase 6 — Industrial
 
