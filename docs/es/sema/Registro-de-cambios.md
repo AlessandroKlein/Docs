@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.25.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.26.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.26.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/hw/HwProfile.hpp` | perfil de hardware (board + features + pines) |
+| `platformio.ini` | `build_flags` de features y variantes |
+| `SemaCore`/`HttpServer`/managers | compilación condicional `#if SEMA_USE_*` |
 
 ## v1.25.0
 

@@ -6,7 +6,7 @@ tags:
 
 # Control PID
 
-> **Tipo:** Concepto | **Estado:** Futuro | **Firmware:** v1.25.0
+> **Tipo:** Concepto | **Estado:** Futuro | **Firmware:** v1.26.0
 
 Explicación de los controladores **PID** (Proporcional-Integral-Derivativo) y su
 aplicación prevista en SEMA para regular actuadores.
