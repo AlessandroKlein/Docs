@@ -2501,6 +2501,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#shift_register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shift_register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#validacion-y-rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3119,7 +3130,7 @@
 
 <h1 id="referencia-de-configuracion-json-completa">Referencia de configuración (JSON completa)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.16.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.17.0</p>
 </blockquote>
 <p>Referencia <strong>exhaustiva</strong> de cada clave del JSON de configuración de SEMA
 (<code>Config</code>, <code>include/core/ConfigManager.hpp</code>). Editable por <code>PUT /api/v1/config</code>,
@@ -3238,6 +3249,12 @@ por <code>POST /api/v1/backup</code> o por la web. Esquema actual: <strong><code
 <td>array</td>
 <td><code>[]</code></td>
 <td>GPIO standalone (entradas/salidas)</td>
+</tr>
+<tr>
+<td><code>shift_register</code></td>
+<td>objeto</td>
+<td>—</td>
+<td>Shift register (74HC595/74HC165)</td>
 </tr>
 </tbody>
 </table>
@@ -3669,6 +3686,43 @@ por <code>POST /api/v1/backup</code> o por la web. Esquema actual: <strong><code
 <td>int</td>
 <td><code>0</code></td>
 <td><code>0</code> = pin nativo; <code>!= 0</code> = MCP23017 en esa dirección I²C (p. ej. <code>0x20</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="shift_register"><code>shift_register</code></h2>
+<table>
+<thead>
+<tr>
+<th>Clave</th>
+<th>Tipo</th>
+<th>Default</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>enum</td>
+<td><code>"74HC595"</code></td>
+<td><code>74HC595</code> (salida) · <code>74HC165</code> (entrada)</td>
+</tr>
+<tr>
+<td><code>data_pin</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>SER (595) / QH (165)</td>
+</tr>
+<tr>
+<td><code>clock_pin</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>SRCLK (595) / CLK (165)</td>
+</tr>
+<tr>
+<td><code>latch_pin</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>RCLK (595) / SH-LD (165)</td>
 </tr>
 </tbody>
 </table>
