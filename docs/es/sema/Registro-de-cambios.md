@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.32.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.33.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.33.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `src/core/storage/HistoryStore.*` | retención por tiempo (`prune`) |
+| `src/core/web/HttpServer.cpp` | `/api/v1/history?format=csv` + botón CSV |
+| `src/core/SemaCore.cpp` | poda periódica del histórico |
 
 ## v1.32.0
 
