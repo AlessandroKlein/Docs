@@ -2267,6 +2267,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rs485-td501d485h-aislado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RS485 (TD501D485H, aislado)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-twai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAN (TWAI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lora-sx1262patr8-gc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LoRa (SX1262PATR8-GC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zigbee-rf-bm-2652p2-cc2652p2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zigbee (RF-BM-2652P2 / CC2652P2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#diagrama-general" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3113,6 +3157,46 @@
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>PMS5003 VCC ── 5V
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>PMS5003 GND ── GND
 </span></code></pre></div>
+<h2 id="rs485-td501d485h-aislado">RS485 (TD501D485H, aislado)</h2>
+<p>El <strong>TD501D485H</strong> es un transceiver RS485 con <strong>aislamiento galvánico</strong> entre el
+lado lógico y la línea: protege el ESP32 contra descargas/transitorios del bus.
+Es compatible con el driver Modbus (control <code>DE</code>/<code>RE</code>).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ESP32 TX  (GPIO17) ── DI  (TXD)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ESP32 RX  (GPIO16) ── RO  (RXD)
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>ESP32 GPIO(de_re) ──── DE + RE  (juntos, half-duplex)
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>TD501D485H A ──────── A+ (bus RS485)
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>TD501D485H B ──────── B- (bus RS485)
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>TD501D485H VCC ────── 3,3 V
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>TD501D485H GND ────── GND
+</span></code></pre></div>
+<ul>
+<li>Usar la versión <strong>3,3 V</strong> para conectar directo al ESP32.</li>
+<li>Config <code>modbus.de_re</code> = GPIO de <code>DE</code>/<code>RE</code>; si el módulo auto-direcciona, usar <code>0</code>.</li>
+</ul>
+<h2 id="can-twai">CAN (TWAI)</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ESP32 TX (GPIO5) ── TXD (TJA1050)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ESP32 RX (GPIO4) ── RXD (TJA1050)
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>CANH / CANL ──────── bus CAN (terminación 120 Ω en los extremos)
+</span></code></pre></div>
+<h2 id="lora-sx1262patr8-gc">LoRa (SX1262PATR8-GC)</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ESP32 GPIO5  ── NSS  (CS)
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ESP32 GPIO18 ── SCK  (VSPI)
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>ESP32 GPIO23 ── MOSI (VSPI)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>ESP32 GPIO19 ── MISO (VSPI)
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>ESP32 GPIO14 ── NRST
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ESP32 GPIO26 ── DIO1
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>ESP32 GPIO27 ── BUSY
+</span></code></pre></div>
+<h2 id="zigbee-rf-bm-2652p2-cc2652p2">Zigbee (RF-BM-2652P2 / CC2652P2)</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ESP32 TX (GPIO17) ── RX del CC2652P2
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ESP32 RX (GPIO16) ── TX del CC2652P2
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>CC2652P2 GND ─────── GND
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>CC2652P2 VCC ─────── 3,3 V
+</span></code></pre></div>
+<ul>
+<li>El CC2652P2 debe cargar firmware <strong>ZNP</strong> (Zigbee Network Processor).</li>
+<li>Usar pines UART distintos a los de Modbus (Serial2) si ambos están habilitados.</li>
+</ul>
 <h2 id="diagrama-general">Diagrama general</h2>
 <pre class="mermaid"><code>flowchart TB
     ESP["ESP32 (3,3 V)"] --&gt; I2C["I²C: BME280, SHT40, SCD30, …"]
