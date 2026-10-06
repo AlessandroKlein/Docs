@@ -103,11 +103,16 @@ TD501D485H GND ────── GND
 
 ## CAN (TWAI)
 
+Transceiver de la familia **SN65HVD23X** (3,3 V, compatible directo con el ESP32).
+
 ```text
-ESP32 TX (GPIO5) ── TXD (TJA1050)
-ESP32 RX (GPIO4) ── RXD (TJA1050)
+ESP32 TX (GPIO5) ── TXD (SN65HVD23X)
+ESP32 RX (GPIO4) ── RXD (SN65HVD23X)
 CANH / CANL ──────── bus CAN (terminación 120 Ω en los extremos)
 ```
+
+- `SN65HVD230` = con slope-control; `SN65HVD231`/`SN65HVD232` = modos de bajo consumo;
+  `SN65HVD233`/`SN65HVD234` = sin slope-control + protección extendida.
 
 ## LoRa (SX1262PATR8-GC)
 

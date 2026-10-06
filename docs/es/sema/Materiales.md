@@ -58,7 +58,7 @@ Lista de materiales sugerida para una estación meteorológica SEMA completa.
 | Componente | Bus | Cantidad | Notas |
 |------------|-----|----------|-------|
 | **TD501D485H** | RS485 | 1 | Transceiver **aislado** (protección contra descargas de la línea RS485) |
-| TJA1050 / SN65HVD230 | CAN | 1 | Transceiver CAN |
+| **SN65HVD23X** (familia) | CAN | 1 | Transceiver CAN 3,3 V (SN65HVD230/231/232/233/234) |
 | **SX1262PATR8-GC** (Silicontra) | LoRa | 1 | Módulo LoRa 868/915 MHz |
 | **RF-BM-2652P2** (CC2652P2) | Zigbee | 1 | Módulo Zigbee 3.0 (ZNP) |
 
