@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.28.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.29.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.29.0** | Gridstack + veleta WH-SP-WD |
 | **1.28.0** | Unidades + magnitudes derivadas |
 | **1.27.0** | Binarios por board + particiones 4/8/16 MB |
 | **1.26.0** | Perfil de hardware (build_flags) |

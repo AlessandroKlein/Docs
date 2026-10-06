@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.28.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.29.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.29.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `src/core/web/HttpServer.cpp` | dashboard Gridstack + endpoints `/wind/resistors` y `/dashboard/layout` |
+| `src/core/derived/DerivedCalculator.cpp` | veleta por tabla de 8 resistencias |
+| `ConfigManager` | `system.wind_resistors[]`, `wind_rpull`, `dashboard_layout` |
 
 ## v1.28.0
 
