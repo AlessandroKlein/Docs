@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.31.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.32.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.32.0** | Gráficos avanzados + doc |
 | **1.31.0** | Tarjetas añadibles + gráficos |
 | **1.30.0** | Gridstack offline (LittleFS) |
 | **1.29.0** | Gridstack + veleta WH-SP-WD |

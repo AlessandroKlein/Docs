@@ -6,9 +6,16 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.31.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.32.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.32.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `src/core/web/HttpServer.cpp` | gráficos con series, ejes y rangos |
+| `docs/ETHERNET-Y-BUILDFLAGS.md` | documentación Ethernet + build_flags |
 
 ## v1.31.0
 
