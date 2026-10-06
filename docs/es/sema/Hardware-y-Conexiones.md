@@ -62,6 +62,28 @@ Reed switch / hall ── GPIO (PCNT) ── GND
 
 - Un contacto por pulso; `PCNT` cuenta los pulsos y `scale` los convierte a mm.
 
+## Veleta (dirección de viento) — WH-SP-WD
+
+La **WH-SP-WD** es una **red de resistencias pasiva**. Se conecta en serie con una
+resistencia externa de *pull-up* (típicamente **10 kΩ a 3,3 V**) formando un
+**divisor de tensión** que lee un canal ADC.
+
+```text
+VCC (3,3 V) ──[Rpull 10 kΩ]──┬── GPIO (ADC, p. ej. 34)
+                              │
+WH-SP-WD (red R1..R8) ────────┴── GND
+```
+
+- **Divisor**: `V_out = Vcc × Req / (Req + Rpull)`; el firmware calcula
+  `ADC = 4095 × Req / (Req + Rpull)`.
+- Las **16 posiciones** (22,5°) = 8 resistencias directas + 8 en paralelo
+  (`R[i] ∥ R[i+1]`).
+- Config en la web: `system.wind_direction_pin`, `wind_rpull` y
+  `wind_resistors[]` (las 8 resistencias en orden del datasheet: N, NE, E, SE,
+  S, SO, O, NO).
+- ⚠️ Usar **3,3 V** (no 5 V): con 5 V, las posiciones de resistencia alta
+  (O = 120 kΩ, NO = 64,9 kΩ, N = 33 kΩ) superan los 3,3 V y saturan el ADC.
+
 ## Relé (salida)
 
 ```text
