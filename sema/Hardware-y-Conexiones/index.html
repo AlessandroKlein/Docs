@@ -2245,6 +2245,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#veleta-direccion-de-viento-wh-sp-wd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Veleta (dirección de viento) — WH-SP-WD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rele-salida" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3181,32 +3192,51 @@
 <ul>
 <li>Un contacto por pulso; <code>PCNT</code> cuenta los pulsos y <code>scale</code> los convierte a mm.</li>
 </ul>
+<h2 id="veleta-direccion-de-viento-wh-sp-wd">Veleta (dirección de viento) — WH-SP-WD</h2>
+<p>La <strong>WH-SP-WD</strong> es una <strong>red de resistencias pasiva</strong>. Se conecta en serie con una
+resistencia externa de <em>pull-up</em> (típicamente <strong>10 kΩ a 3,3 V</strong>) formando un
+<strong>divisor de tensión</strong> que lee un canal ADC.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>VCC (3,3 V) ──[Rpull 10 kΩ]──┬── GPIO (ADC, p. ej. 34)
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>                              │
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>WH-SP-WD (red R1..R8) ────────┴── GND
+</span></code></pre></div>
+<ul>
+<li><strong>Divisor</strong>: <code>V_out = Vcc × Req / (Req + Rpull)</code>; el firmware calcula
+  <code>ADC = 4095 × Req / (Req + Rpull)</code>.</li>
+<li>Las <strong>16 posiciones</strong> (22,5°) = 8 resistencias directas + 8 en paralelo
+  (<code>R[i] ∥ R[i+1]</code>).</li>
+<li>Config en la web: <code>system.wind_direction_pin</code>, <code>wind_rpull</code> y
+  <code>wind_resistors[]</code> (las 8 resistencias en orden del datasheet: N, NE, E, SE,
+  S, SO, O, NO).</li>
+<li>⚠️ Usar <strong>3,3 V</strong> (no 5 V): con 5 V, las posiciones de resistencia alta
+  (O = 120 kΩ, NO = 64,9 kΩ, N = 33 kΩ) superan los 3,3 V y saturan el ADC.</li>
+</ul>
 <h2 id="rele-salida">Relé (salida)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>GPIO (p. ej. 26) ──[IN del módulo de relé]
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Módulo de relé VCC ── 5V (fuente externa)
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Módulo de relé GND ── GND común
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>GPIO (p. ej. 26) ──[IN del módulo de relé]
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Módulo de relé VCC ── 5V (fuente externa)
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Módulo de relé GND ── GND común
 </span></code></pre></div>
 <ul>
 <li>Usar <strong>módulo de relé</strong> (con transistor + optoacoplador); nunca conectar la bobina
   directa al GPIO.</li>
 </ul>
 <h2 id="uart-pms5003">UART (PMS5003)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>PMS5003 TX ── RX2 (GPIO16)
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>PMS5003 RX ── TX2 (GPIO17)
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>PMS5003 VCC ── 5V
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>PMS5003 GND ── GND
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>PMS5003 TX ── RX2 (GPIO16)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>PMS5003 RX ── TX2 (GPIO17)
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>PMS5003 VCC ── 5V
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>PMS5003 GND ── GND
 </span></code></pre></div>
 <h2 id="rs485-td501d485h-aislado">RS485 (TD501D485H, aislado)</h2>
 <p>El <strong>TD501D485H</strong> es un transceiver RS485 con <strong>aislamiento galvánico</strong> entre el
 lado lógico y la línea: protege el ESP32 contra descargas/transitorios del bus.
 Es compatible con el driver Modbus (control <code>DE</code>/<code>RE</code>).</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ESP32 TX  (GPIO17) ── DI  (TXD)
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ESP32 RX  (GPIO16) ── RO  (RXD)
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>ESP32 GPIO(de_re) ──── DE + RE  (juntos, half-duplex)
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>TD501D485H A ──────── A+ (bus RS485)
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>TD501D485H B ──────── B- (bus RS485)
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>TD501D485H VCC ────── 3,3 V
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>TD501D485H GND ────── GND
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ESP32 TX  (GPIO17) ── DI  (TXD)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ESP32 RX  (GPIO16) ── RO  (RXD)
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ESP32 GPIO(de_re) ──── DE + RE  (juntos, half-duplex)
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>TD501D485H A ──────── A+ (bus RS485)
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>TD501D485H B ──────── B- (bus RS485)
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>TD501D485H VCC ────── 3,3 V
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>TD501D485H GND ────── GND
 </span></code></pre></div>
 <ul>
 <li>Usar la versión <strong>3,3 V</strong> para conectar directo al ESP32.</li>
@@ -3214,28 +3244,28 @@ Es compatible con el driver Modbus (control <code>DE</code>/<code>RE</code>).</p
 </ul>
 <h2 id="can-twai">CAN (TWAI)</h2>
 <p>Transceiver de la familia <strong>SN65HVD23X</strong> (3,3 V, compatible directo con el ESP32).</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ESP32 TX (GPIO5) ── TXD (SN65HVD23X)
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ESP32 RX (GPIO4) ── RXD (SN65HVD23X)
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>CANH / CANL ──────── bus CAN (terminación 120 Ω en los extremos)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ESP32 TX (GPIO5) ── TXD (SN65HVD23X)
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ESP32 RX (GPIO4) ── RXD (SN65HVD23X)
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>CANH / CANL ──────── bus CAN (terminación 120 Ω en los extremos)
 </span></code></pre></div>
 <ul>
 <li><code>SN65HVD230</code> = con slope-control; <code>SN65HVD231</code>/<code>SN65HVD232</code> = modos de bajo consumo;
   <code>SN65HVD233</code>/<code>SN65HVD234</code> = sin slope-control + protección extendida.</li>
 </ul>
 <h2 id="lora-sx1262patr8-gc">LoRa (SX1262PATR8-GC)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ESP32 GPIO5  ── NSS  (CS)
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ESP32 GPIO18 ── SCK  (VSPI)
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>ESP32 GPIO23 ── MOSI (VSPI)
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>ESP32 GPIO19 ── MISO (VSPI)
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>ESP32 GPIO14 ── NRST
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ESP32 GPIO26 ── DIO1
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>ESP32 GPIO27 ── BUSY
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ESP32 GPIO5  ── NSS  (CS)
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ESP32 GPIO18 ── SCK  (VSPI)
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>ESP32 GPIO23 ── MOSI (VSPI)
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>ESP32 GPIO19 ── MISO (VSPI)
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ESP32 GPIO14 ── NRST
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>ESP32 GPIO26 ── DIO1
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>ESP32 GPIO27 ── BUSY
 </span></code></pre></div>
 <h2 id="zigbee-rf-bm-2652p2-cc2652p2">Zigbee (RF-BM-2652P2 / CC2652P2)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ESP32 TX (GPIO17) ── RX del CC2652P2
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ESP32 RX (GPIO16) ── TX del CC2652P2
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>CC2652P2 GND ─────── GND
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>CC2652P2 VCC ─────── 3,3 V
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ESP32 TX (GPIO17) ── RX del CC2652P2
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ESP32 RX (GPIO16) ── TX del CC2652P2
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>CC2652P2 GND ─────── GND
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>CC2652P2 VCC ─────── 3,3 V
 </span></code></pre></div>
 <ul>
 <li>El CC2652P2 debe cargar firmware <strong>ZNP</strong> (Zigbee Network Processor).</li>
@@ -3244,23 +3274,23 @@ Es compatible con el driver Modbus (control <code>DE</code>/<code>RE</code>).</p
 <h2 id="ethernet">Ethernet</h2>
 <h3 id="lan8720a-rmii-nativo-esp32-wroom-y-derivados">LAN8720A (RMII, nativo — ESP32-WROOM y derivados)</h3>
 <p>Los pines RMII de datos son fijos del MAC del ESP32; MDC/MDIO se configuran.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>LAN8720A TXD0 ── GPIO19        LAN8720A RXD0 ── GPIO25
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>LAN8720A TXD1 ── GPIO22        LAN8720A RXD1 ── GPIO26
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>LAN8720A TX_EN ─ GPIO21        LAN8720A CRS_DV ─ GPIO27
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>LAN8720A MDC ─── GPIO23        LAN8720A MDIO ── GPIO18
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>LAN8720A REFCLK ─ GPIO0        (reloj 50 MHz entrando)
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>LAN8720A VCC ─── 3,3 V         LAN8720A GND ── GND
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>LAN8720A TXD0 ── GPIO19        LAN8720A RXD0 ── GPIO25
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>LAN8720A TXD1 ── GPIO22        LAN8720A RXD1 ── GPIO26
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>LAN8720A TX_EN ─ GPIO21        LAN8720A CRS_DV ─ GPIO27
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>LAN8720A MDC ─── GPIO23        LAN8720A MDIO ── GPIO18
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>LAN8720A REFCLK ─ GPIO0        (reloj 50 MHz entrando)
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>LAN8720A VCC ─── 3,3 V         LAN8720A GND ── GND
 </span></code></pre></div>
 <ul>
 <li><code>ethernet</code>: <code>mdc=23</code>, <code>mdio=18</code>, <code>phy_addr=1</code>, <code>power=-1</code> (sin control de PHY).</li>
 </ul>
 <h3 id="w5500-spi-esp32-s3-y-derivados">W5500 (SPI — ESP32-S3 y derivados)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>W5500 SCS  ── GPIO5   (cs)
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>W5500 SCK  ── GPIO12  (sck)
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>W5500 MOSI ── GPIO11  (mosi)
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>W5500 MISO ── GPIO13  (miso)
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>W5500 INT  ── GPIO4   (irq, opcional)
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>W5500 VCC  ── 3,3 V   ·   W5500 GND ── GND
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>W5500 SCS  ── GPIO5   (cs)
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>W5500 SCK  ── GPIO12  (sck)
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>W5500 MOSI ── GPIO11  (mosi)
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>W5500 MISO ── GPIO13  (miso)
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>W5500 INT  ── GPIO4   (irq, opcional)
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>W5500 VCC  ── 3,3 V   ·   W5500 GND ── GND
 </span></code></pre></div>
 <ul>
 <li><code>ethernet</code>: <code>cs=5</code>, <code>rst=-1</code>, <code>irq=4</code>, <code>sck=12</code>, <code>miso=13</code>, <code>mosi=11</code>.</li>
