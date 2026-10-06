@@ -2806,6 +2806,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v1270" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.27.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v1260" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3196,9 +3207,36 @@
 
 <h1 id="registro-de-cambios-por-archivo">Registro de cambios por archivo</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.26.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.27.0</p>
 </blockquote>
 <p>Qué archivos cambiaron en las últimas versiones (para revisión y blame).</p>
+<h2 id="v1270">v1.27.0</h2>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>firmware_manifest.json</code></td>
+<td>multi-chip (un binario + SHA por board)</td>
+</tr>
+<tr>
+<td><code>partitions_{4,8,16}mb.csv</code></td>
+<td>tablas de particiones por tamaño de flash</td>
+</tr>
+<tr>
+<td><code>platformio.ini</code></td>
+<td>env <code>esp32-wroom-32u</code> (16 MB) + particiones por env</td>
+</tr>
+<tr>
+<td><code>HwProfile.hpp</code></td>
+<td><code>SEMA_BOARD_ID</code> + <code>SEMA_FLASH_MB</code> + <code>BOARD_ESP32_WROOM32U</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="v1260">v1.26.0</h2>
 <table>
 <thead>
