@@ -6,9 +6,16 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.17.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.18.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.18.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/core/sensors/CoSensor.hpp` + `.cpp` | nuevo driver CO |
+| `src/core/sensors/SensorFactory.cpp` | registro `"CO"` |
 
 ## v1.17.0
 
