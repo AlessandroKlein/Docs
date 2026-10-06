@@ -295,11 +295,60 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/invernadero/Variables-Modificables/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/API-REST/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/API-REST/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/API-REST/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Actuadores-y-Salidas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Actuadores-y-Salidas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Actuadores-y-Salidas/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Arquitectura/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Arquitectura/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Arquitectura/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/CHANGELOG/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/CHANGELOG/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/CHANGELOG/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Compatibilidad/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Compatibilidad/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Compatibilidad/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Compilacion-y-flasheo/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Compilacion-y-flasheo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Compilacion-y-flasheo/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Configuracion/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Configuracion/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Configuracion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Control-PID/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Control-PID/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Control-PID/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Decisiones/</loc>
@@ -309,11 +358,46 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Decisiones/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Diagramas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Diagramas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Diagramas/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Enumeraciones-y-tipos/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Enumeraciones-y-tipos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Enumeraciones-y-tipos/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Estadisticas-y-metricas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Estadisticas-y-metricas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Estadisticas-y-metricas/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Evolucion/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Evolucion/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Evolucion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/FAQ/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/FAQ/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/FAQ/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Frontend/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Frontend/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Frontend/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Futuro/</loc>
@@ -323,6 +407,20 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Futuro/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Glosario/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Glosario/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Glosario/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Guia-de-desarrollo/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Guia-de-desarrollo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Guia-de-desarrollo/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Guia-de-inicio/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
@@ -330,11 +428,116 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Guia-de-inicio/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Guia-de-pines/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Guia-de-pines/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Guia-de-pines/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Hardware-y-Conexiones/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Hardware-y-Conexiones/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Hardware-y-Conexiones/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/sema/Home/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Home/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Home/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Identidad-y-Estados/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Identidad-y-Estados/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Identidad-y-Estados/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/MQTT-y-WebSocket/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/MQTT-y-WebSocket/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/MQTT-y-WebSocket/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Materiales/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Materiales/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Materiales/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Mejoras-y-roadmap/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Mejoras-y-roadmap/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Mejoras-y-roadmap/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/OTA-y-Actualizacion/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/OTA-y-Actualizacion/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/OTA-y-Actualizacion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Referencia-API-interna/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Referencia-API-interna/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Referencia-API-interna/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Referencia-configuracion/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Referencia-configuracion/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Referencia-configuracion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Referencia-de-codigo/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Referencia-de-codigo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Referencia-de-codigo/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Registro-de-cambios/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Registro-de-cambios/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Registro-de-cambios/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Seguridad/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Seguridad/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Seguridad/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Sensores/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Sensores/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Sensores/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Solucion-de-problemas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Solucion-de-problemas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Solucion-de-problemas/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/sema/Variables-modificables/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Variables-modificables/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Variables-modificables/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/</loc>
@@ -631,11 +834,60 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/invernadero/Variables-Modificables/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/API-REST/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/API-REST/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/API-REST/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Actuadores-y-Salidas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Actuadores-y-Salidas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Actuadores-y-Salidas/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Arquitectura/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Arquitectura/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Arquitectura/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/CHANGELOG/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/CHANGELOG/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/CHANGELOG/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Compatibilidad/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Compatibilidad/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Compatibilidad/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Compilacion-y-flasheo/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Compilacion-y-flasheo/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Compilacion-y-flasheo/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Configuracion/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Configuracion/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Configuracion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Control-PID/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Control-PID/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Control-PID/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Decisiones/</loc>
@@ -645,11 +897,46 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Decisiones/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Diagramas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Diagramas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Diagramas/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Enumeraciones-y-tipos/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Enumeraciones-y-tipos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Enumeraciones-y-tipos/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Estadisticas-y-metricas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Estadisticas-y-metricas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Estadisticas-y-metricas/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Evolucion/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Evolucion/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Evolucion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/FAQ/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/FAQ/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/FAQ/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Frontend/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Frontend/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Frontend/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Futuro/</loc>
@@ -659,6 +946,20 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Futuro/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Glosario/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Glosario/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Glosario/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Guia-de-desarrollo/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Guia-de-desarrollo/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Guia-de-desarrollo/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Guia-de-inicio/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
@@ -666,10 +967,115 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Guia-de-inicio/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Guia-de-pines/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Guia-de-pines/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Guia-de-pines/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Hardware-y-Conexiones/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Hardware-y-Conexiones/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Hardware-y-Conexiones/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/sema/Home/</loc>
         <lastmod>2026-10-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Home/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Home/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Identidad-y-Estados/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Identidad-y-Estados/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Identidad-y-Estados/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/MQTT-y-WebSocket/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/MQTT-y-WebSocket/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/MQTT-y-WebSocket/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Materiales/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Materiales/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Materiales/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Mejoras-y-roadmap/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Mejoras-y-roadmap/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Mejoras-y-roadmap/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/OTA-y-Actualizacion/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/OTA-y-Actualizacion/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/OTA-y-Actualizacion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Referencia-API-interna/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Referencia-API-interna/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Referencia-API-interna/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Referencia-configuracion/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Referencia-configuracion/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Referencia-configuracion/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Referencia-de-codigo/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Referencia-de-codigo/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Referencia-de-codigo/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Registro-de-cambios/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Registro-de-cambios/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Registro-de-cambios/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Seguridad/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Seguridad/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Seguridad/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Sensores/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Sensores/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Sensores/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Solucion-de-problemas/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Solucion-de-problemas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Solucion-de-problemas/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/sema/Variables-modificables/</loc>
+        <lastmod>2026-10-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/sema/Variables-modificables/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/sema/Variables-modificables/"/>
     </url>
 </urlset>
