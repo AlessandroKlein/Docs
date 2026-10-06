@@ -6,7 +6,7 @@ tags:
 
 # Materiales (BOM)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.23.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.24.0
 
 Lista de materiales sugerida para una estación meteorológica SEMA completa.
 
@@ -61,6 +61,8 @@ Lista de materiales sugerida para una estación meteorológica SEMA completa.
 | **SN65HVD23X** (familia) | CAN | 1 | Transceiver CAN 3,3 V (SN65HVD230/231/232/233/234) |
 | **SX1262PATR8-GC** (Silicontra) | LoRa | 1 | Módulo LoRa 868/915 MHz |
 | **RF-BM-2652P2** (CC2652P2) | Zigbee | 1 | Módulo Zigbee 3.0 (ZNP) |
+| **LAN8720A** | Ethernet (RMII) | 1 | PHY nativa (ESP32-WROOM y derivados) |
+| **W5500** | Ethernet (SPI) | 1 | Módulo Ethernet SPI (ESP32-S3 y derivados) |
 
 ## Herramientas
 

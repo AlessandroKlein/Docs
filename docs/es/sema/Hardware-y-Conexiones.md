@@ -6,7 +6,7 @@ tags:
 
 # Hardware y conexiones
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.23.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.24.0
 
 Conexiones sugeridas entre el ESP32 y los sensores/actuadores.
 
@@ -137,6 +137,36 @@ CC2652P2 VCC ─────── 3,3 V
 
 - El CC2652P2 debe cargar firmware **ZNP** (Zigbee Network Processor).
 - Usar pines UART distintos a los de Modbus (Serial2) si ambos están habilitados.
+
+## Ethernet
+
+### LAN8720A (RMII, nativo — ESP32-WROOM y derivados)
+
+Los pines RMII de datos son fijos del MAC del ESP32; MDC/MDIO se configuran.
+
+```text
+LAN8720A TXD0 ── GPIO19        LAN8720A RXD0 ── GPIO25
+LAN8720A TXD1 ── GPIO22        LAN8720A RXD1 ── GPIO26
+LAN8720A TX_EN ─ GPIO21        LAN8720A CRS_DV ─ GPIO27
+LAN8720A MDC ─── GPIO23        LAN8720A MDIO ── GPIO18
+LAN8720A REFCLK ─ GPIO0        (reloj 50 MHz entrando)
+LAN8720A VCC ─── 3,3 V         LAN8720A GND ── GND
+```
+
+- `ethernet`: `mdc=23`, `mdio=18`, `phy_addr=1`, `power=-1` (sin control de PHY).
+
+### W5500 (SPI — ESP32-S3 y derivados)
+
+```text
+W5500 SCS  ── GPIO5   (cs)
+W5500 SCK  ── GPIO18  (VSPI)
+W5500 MOSI ── GPIO23  (VSPI)
+W5500 MISO ── GPIO19  (VSPI)
+W5500 VCC  ── 3,3 V   ·   W5500 GND ── GND
+```
+
+- `ethernet`: `cs=5`, `rst=-1` (sin reset).
+- El W5500 usa su propia pila TCP/IP (no comparte lwIP con el WebServer).
 
 ## Diagrama general
 

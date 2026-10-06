@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.23.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.24.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.24.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/core/EthernetManager.hpp` + `.cpp` | Ethernet LAN8720A (nativo) / W5500 (SPI) |
+| `include/core/ConfigManager.hpp` + `.cpp` | sección `ethernet` |
+| `platformio.ini` | `[env:base]` + `build_flags` (`BOARD_ESP32_WROOM`/`BOARD_ESP32_S3`) |
 
 ## v1.23.0
 

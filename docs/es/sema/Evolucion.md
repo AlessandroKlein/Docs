@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-03 | **Firmware:** v1.23.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-03 | **Firmware:** v1.24.0
 
 Desarrollo incremental de SEMA en 9 fases (`README.md` §104).
 Estado: ✅ hecho · 🔄 en curso · ⬜ pendiente.
@@ -66,7 +66,7 @@ RS485 · Modbus · CAN
 LoRa · Zigbee · Ethernet · MQTT · Servidor central
 ```
 
-🔄 MQTT listo (publicador); LoRa/Zigbee/Ethernet/Servidor central pendientes.
+🔄 MQTT listo (publicador); LoRa/Zigbee/Ethernet listos; Servidor central pendiente.
 
 ## Fase 8 — Energía
 
