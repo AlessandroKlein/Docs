@@ -6,7 +6,7 @@ tags:
 
 # Guía de inicio
 
-> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v1.7.0
+> **Tipo:** Guía | **Estado:** Activa | **Fecha:** 2026-10-03 | **Firmware:** v1.8.0
 
 Documentación de referencia para **entender y usar SEMA sin conocer el proyecto
 ni el código de antemano**. Se recomienda leer de principio a fin; los apartados
@@ -32,7 +32,7 @@ se envía) — **sin recompilar ni tocar código**.
 > configura desde el navegador. Por dentro: módulos independientes (sensores,
 > alarmas, publicadores, almacenamiento…) que el Core orquesta.
 
-### ¿Qué puede hacer hoy (v1.7.0)?
+### ¿Qué puede hacer hoy (v1.8.0)?
 
 - Leer **sensores** de temperatura, humedad, presión, luminosidad y tensión de
   batería por **I²C, 1-Wire y ADC**.
@@ -172,7 +172,7 @@ primera configuración.
 Al arrancar imprime, entre otras cosas:
 
 ```text
-SEMA v1.7.0 (hw rev0, schema 1, protocol 1)
+SEMA v1.8.0 (hw rev0, schema 1, protocol 1)
 Estación: Estación Norte (SEMA-001)
 Web local: http://192.168.1.10/
 mDNS: http://sema-001.local/
@@ -407,7 +407,7 @@ código → pio run (compilar) → bump de versión → CHANGELOG → commit
 ```
 
 - **Versionado SemVer**: `MAJOR.MINOR.PATCH`; tags con prefijo `v` minúscula
-  (`v1.7.0`); en firmware el string es sin `v` (`1.7.0`).
+  (`v1.8.0`); en firmware el string es sin `v` (`1.8.0`).
 - **Conventional Commits** para los mensajes.
 - El `firmware_manifest.json` guarda la versión y el hash SHA-256 del binario.
 
