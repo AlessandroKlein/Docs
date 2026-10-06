@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.20.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.21.0
 
 ## Estado del DoD (Definition of Done)
 
@@ -25,7 +25,7 @@ tags:
 | Configuración GPIO | ✅ |
 | MCP23017 / ADS1115 | ✅ |
 | 74HC595 / 74HC165 | ✅ |
-| RS485 / Modbus / CAN | 🔄 (Modbus) |
+| RS485 / Modbus / CAN | ✅ |
 | LoRa / Zigbee | ⬜ |
 
 ## Próximos pasos (software)
@@ -35,7 +35,6 @@ tags:
 
 ## Próximos pasos (hardware)
 
-- CAN (TWAI).
 - LoRa / LoRaWAN y Zigbee.
 - Panel solar y perfiles de batería LiFePO4/Li-ion.
 

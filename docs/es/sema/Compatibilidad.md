@@ -6,7 +6,7 @@ tags:
 
 # Compatibilidad (placas, sensores, buses)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.20.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.21.0
 
 ## Placas
 
@@ -45,7 +45,7 @@ tags:
 | 1-Wire | ✅ |
 | UART (Serial2) | ✅ |
 | SPI | ⚠️ Declarado en capacidades; sin driver dedicado aún |
-| CAN (TWAI) | ⚠️ Capacidad declarada; driver futuro |
+| CAN (TWAI) | ✅ |
 | RS485/Modbus | ✅ |
 | LoRa / LoRaWAN | ⬜ Futuro |
 | Zigbee / 802.15.4 | ⬜ Futuro |

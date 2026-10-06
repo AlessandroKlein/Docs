@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.20.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.21.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.21.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/core/CanManager.hpp` + `.cpp` | nuevo CAN/TWAI |
+| `include/core/ConfigManager.hpp` + `.cpp` | sección `can` |
+| `src/core/web/HttpServer.*` | `/api/v1/can` GET/POST |
 
 ## v1.20.0
 

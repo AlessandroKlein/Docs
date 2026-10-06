@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.20.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.21.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.21.0** | CAN 2.0 (TWAI) |
 | **1.20.0** | RS485/Modbus RTU |
 | **1.19.0** | Sensor SOLAR (radiación solar) |
 | **1.18.0** | Sensor CO (monóxido de carbono) |
