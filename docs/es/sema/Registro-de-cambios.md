@@ -6,9 +6,15 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.30.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.31.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.31.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `src/core/web/HttpServer.cpp` | catálogo de tarjetas + añadir/eliminar + gráficos |
 
 ## v1.30.0
 
