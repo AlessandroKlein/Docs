@@ -6,9 +6,16 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.24.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.25.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.25.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `src/core/EthernetManager.cpp` | W5500 vía driver ESP-IDF `esp_eth` (integrado a lwIP) |
+| `include/core/ConfigManager.hpp` + `.cpp` | campos `irq`/`sck`/`miso`/`mosi` |
 
 ## v1.24.0
 

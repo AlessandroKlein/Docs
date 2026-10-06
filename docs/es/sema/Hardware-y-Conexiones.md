@@ -6,7 +6,7 @@ tags:
 
 # Hardware y conexiones
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.24.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.25.0
 
 Conexiones sugeridas entre el ESP32 y los sensores/actuadores.
 
@@ -159,14 +159,16 @@ LAN8720A VCC ─── 3,3 V         LAN8720A GND ── GND
 
 ```text
 W5500 SCS  ── GPIO5   (cs)
-W5500 SCK  ── GPIO18  (VSPI)
-W5500 MOSI ── GPIO23  (VSPI)
-W5500 MISO ── GPIO19  (VSPI)
+W5500 SCK  ── GPIO12  (sck)
+W5500 MOSI ── GPIO11  (mosi)
+W5500 MISO ── GPIO13  (miso)
+W5500 INT  ── GPIO4   (irq, opcional)
 W5500 VCC  ── 3,3 V   ·   W5500 GND ── GND
 ```
 
-- `ethernet`: `cs=5`, `rst=-1` (sin reset).
-- El W5500 usa su propia pila TCP/IP (no comparte lwIP con el WebServer).
+- `ethernet`: `cs=5`, `rst=-1`, `irq=4`, `sck=12`, `miso=13`, `mosi=11`.
+- El W5500 se integra a **lwIP** vía driver ESP-IDF (`esp_eth_mac_new_w5500`):
+  el WebServer (REST API + dashboard) sirve sobre Ethernet igual que sobre WiFi.
 
 ## Diagrama general
 
