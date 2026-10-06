@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.29.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.30.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.30.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `data/gridstack-all.min.js` + `gridstack.min.css` | Gridstack servido desde LittleFS |
+| `src/core/web/HttpServer.*` | rutas `/gridstack.min.css` y `/gridstack-all.min.js` |
+| `platformio.ini` | `board_build.filesystem = littlefs` |
 
 ## v1.29.0
 
