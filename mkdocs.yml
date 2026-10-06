@@ -164,6 +164,35 @@ nav:
       - Home: sema/Home.md
       - Guía de inicio: sema/Guia-de-inicio.md
       - Arquitectura: sema/Arquitectura.md
+      - Referencia de código: sema/Referencia-de-codigo.md
+      - Estadísticas y métricas: sema/Estadisticas-y-metricas.md
+      - Referencia API interna: sema/Referencia-API-interna.md
+      - Enumeraciones y tipos: sema/Enumeraciones-y-tipos.md
+      - Diagramas de bloques y datos: sema/Diagramas.md
+      - Control PID: sema/Control-PID.md
+      - Compatibilidad (placas/sensores/buses): sema/Compatibilidad.md
+      - Hardware y conexiones: sema/Hardware-y-Conexiones.md
+      - Guía de pines: sema/Guia-de-pines.md
+      - Sensores: sema/Sensores.md
+      - Actuadores y salidas: sema/Actuadores-y-Salidas.md
+      - Materiales (BOM): sema/Materiales.md
+      - Configuración: sema/Configuracion.md
+      - Referencia de configuración (JSON): sema/Referencia-configuracion.md
+      - Variables modificables: sema/Variables-modificables.md
+      - API REST: sema/API-REST.md
+      - MQTT y WebSocket: sema/MQTT-y-WebSocket.md
+      - OTA y actualización: sema/OTA-y-Actualizacion.md
+      - Seguridad: sema/Seguridad.md
+      - Identidad y estados: sema/Identidad-y-Estados.md
+      - Solución de problemas: sema/Solucion-de-problemas.md
+      - Preguntas frecuentes (FAQ): sema/FAQ.md
       - Decisiones: sema/Decisiones.md
+      - Compilación y flasheo: sema/Compilacion-y-flasheo.md
+      - Guía de desarrollo (extender): sema/Guia-de-desarrollo.md
       - Evolución: sema/Evolucion.md
+      - Mejoras y roadmap: sema/Mejoras-y-roadmap.md
       - Futuro (opcionales): sema/Futuro.md
+      - Versiones (CHANGELOG): sema/CHANGELOG.md
+      - Registro de cambios: sema/Registro-de-cambios.md
+      - Frontend (guía de estilo): sema/Frontend.md
+      - Glosario: sema/Glosario.md
