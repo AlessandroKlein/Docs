@@ -6,7 +6,7 @@ tags:
 
 # Referencia de configuración (JSON completa)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.16.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.17.0
 
 Referencia **exhaustiva** de cada clave del JSON de configuración de SEMA
 (`Config`, `include/core/ConfigManager.hpp`). Editable por `PUT /api/v1/config`,
@@ -62,6 +62,7 @@ por `POST /api/v1/backup` o por la web. Esquema actual: **`schema_version: 1`**.
 | `rules` | array | `[]` | Reglas de alarma (vacío = regla por defecto) |
 | `calibrations` | array | `[]` | Calibración por canal |
 | `gpio` | array | `[]` | GPIO standalone (entradas/salidas) |
+| `shift_register` | objeto | — | Shift register (74HC595/74HC165) |
 
 ## `station`
 
@@ -165,6 +166,15 @@ por `POST /api/v1/backup` o por la web. Esquema actual: **`schema_version: 1`**.
 | `mode` | enum | `"input"` | `output` · `input` · `input_pullup` · `input_pulldown` |
 | `initial` | int | `0` | Estado inicial de las salidas (`0`/`1`) |
 | `expander_addr` | int | `0` | `0` = pin nativo; `!= 0` = MCP23017 en esa dirección I²C (p. ej. `0x20`) |
+
+## `shift_register`
+
+| Clave | Tipo | Default | Descripción |
+|-------|------|---------|-------------|
+| `type` | enum | `"74HC595"` | `74HC595` (salida) · `74HC165` (entrada) |
+| `data_pin` | int | `0` | SER (595) / QH (165) |
+| `clock_pin` | int | `0` | SRCLK (595) / CLK (165) |
+| `latch_pin` | int | `0` | RCLK (595) / SH-LD (165) |
 
 ---
 

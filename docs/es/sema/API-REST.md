@@ -6,7 +6,7 @@ tags:
 
 # API REST (referencia completa)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.16.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.17.0
 
 API HTTP local de SEMA (`include/core/web/HttpServer.hpp`). Puerto **80**.
 Todas las respuestas son JSON salvo el dashboard (HTML).
@@ -31,7 +31,7 @@ Todas las respuestas son JSON salvo el dashboard (HTML).
 ### `GET /api/v1/status`
 
 ```json
-{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.16.0", "uptime_s": 12345 }
+{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.17.0", "uptime_s": 12345 }
 ```
 
 ### `GET /api/v1/health`
@@ -44,7 +44,7 @@ Todas las respuestas son JSON salvo el dashboard (HTML).
 ### `GET /api/v1/system`
 
 ```json
-{ "id": "SEMA-001", "name": "Estación Norte", "firmware": "1.16.0",
+{ "id": "SEMA-001", "name": "Estación Norte", "firmware": "1.17.0",
   "hw": "rev0", "config_schema": 1, "protocol": 1 }
 ```
 
@@ -101,7 +101,7 @@ Igual que `events`, filtrado a `type == alarm`.
 ### `GET /api/v1/diagnostics`
 
 ```json
-{ "firmware": "1.16.0", "hw": "rev0", "uptime_s": 12345, "free_heap": 210000,
+{ "firmware": "1.17.0", "hw": "rev0", "uptime_s": 12345, "free_heap": 210000,
   "reset_reason": 1, "health": "HEALTHY",
   "history": { "entries": 120, "max": 500 },
   "tasks": 2, "modules": 3, "events": 50,
@@ -152,6 +152,22 @@ Escribe una salida.
 
 ```json
 { "pin": 26, "value": 1 }
+```
+
+### `GET /api/v1/shift`
+
+Lee el byte del 74HC165 (o el último valor del 74HC595).
+
+```json
+{ "type": "74HC165", "value": 0 }
+```
+
+### `POST /api/v1/shift` (auth: key o sesión)
+
+Escribe el byte en el 74HC595.
+
+```json
+{ "value": 255 }
 ```
 
 ### `POST /api/v1/restart` (auth: key)

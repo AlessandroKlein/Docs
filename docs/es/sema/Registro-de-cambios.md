@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.16.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.17.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.17.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/core/ShiftRegisterManager.hpp` + `.cpp` | nuevo (74HC595/74HC165) |
+| `include/core/ConfigManager.hpp` + `.cpp` | sección `shift_register` |
+| `src/core/web/HttpServer.*` | `/api/v1/shift` GET/POST |
 
 ## v1.16.0
 

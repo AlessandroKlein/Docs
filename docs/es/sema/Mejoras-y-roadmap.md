@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.16.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.17.0
 
 ## Estado del DoD (Definition of Done)
 
@@ -24,7 +24,7 @@ tags:
 | Hot reload de config | ✅ |
 | Configuración GPIO | ✅ |
 | MCP23017 / ADS1115 | ✅ |
-| 74HC595 / 74HC165 | ⬜ |
+| 74HC595 / 74HC165 | ✅ |
 | RS485 / Modbus / CAN | ⬜ |
 | LoRa / Zigbee | ⬜ |
 
@@ -32,7 +32,6 @@ tags:
 
 1. **TLS/HTTPS** (opcional) — cifrar la web local.
 2. **Control PID** de actuadores.
-3. **74HC595/74HC165** (shift registers).
 
 ## Próximos pasos (hardware)
 

@@ -6,7 +6,7 @@ tags:
 
 # Mejoras opcionales y futuras
 
-> **Tipo:** Catálogo de ideas opcionales | **Fecha:** 2026-10-03 | **Firmware:** v1.16.0
+> **Tipo:** Catálogo de ideas opcionales | **Fecha:** 2026-10-03 | **Firmware:** v1.17.0
 
 Registro de ítems **opcionales** (no forman parte de la Definition of Done §103).
 Sirve para tener todo anotado por si en el futuro se quiere implementar.
@@ -75,12 +75,8 @@ Sirve para tener todo anotado por si en el futuro se quiere implementar.
 
 | Ítem | Nota |
 |------|------|
-| MCP23017 | Expansor I²C de 16 GPIO |
-| ADS1115 | ADC externo 16 bits |
-| 74HC595 / 74HC165 | Shift registers (salidas/entradas) |
 | RS485 / Modbus RTU | Bus industrial |
 | CAN (TWAI) | Bus industrial |
-| GPIO standalone | Entradas/salidas digitales independientes de sensores |
 
 ## 8. Fiabilidad y operación
 

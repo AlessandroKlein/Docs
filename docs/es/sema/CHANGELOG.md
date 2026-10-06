@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.16.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.17.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.17.0** | Shift registers 74HC595/74HC165 |
 | **1.16.0** | Cookie de sesión `SameSite=Strict` (mitiga CSRF) |
 | **1.15.0** | Sensor ADS1115 (ADC externo 16 bits, I²C) |
 | **1.14.0** | Expansor MCP23017 (16 GPIO por I²C) |

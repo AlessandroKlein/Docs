@@ -6,7 +6,7 @@ tags:
 
 # Compatibilidad (placas, sensores, buses)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.16.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.17.0
 
 ## Placas
 
@@ -56,7 +56,7 @@ tags:
 |----------|--------|
 | MCP23017 (16 GPIO) | ✅ |
 | ADS1115 (4 ADC) | ✅ |
-| 74HC595 / 74HC165 | ⬜ Futuro |
+| 74HC595 / 74HC165 | ✅ |
 
 ## Navegador / dashboard
 
