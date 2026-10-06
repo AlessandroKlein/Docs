@@ -2806,6 +2806,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v1240" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.24.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v1230" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3163,9 +3174,32 @@
 
 <h1 id="registro-de-cambios-por-archivo">Registro de cambios por archivo</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.23.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.24.0</p>
 </blockquote>
 <p>Qué archivos cambiaron en las últimas versiones (para revisión y blame).</p>
+<h2 id="v1240">v1.24.0</h2>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include/core/EthernetManager.hpp</code> + <code>.cpp</code></td>
+<td>Ethernet LAN8720A (nativo) / W5500 (SPI)</td>
+</tr>
+<tr>
+<td><code>include/core/ConfigManager.hpp</code> + <code>.cpp</code></td>
+<td>sección <code>ethernet</code></td>
+</tr>
+<tr>
+<td><code>platformio.ini</code></td>
+<td><code>[env:base]</code> + <code>build_flags</code> (<code>BOARD_ESP32_WROOM</code>/<code>BOARD_ESP32_S3</code>)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="v1230">v1.23.0</h2>
 <table>
 <thead>

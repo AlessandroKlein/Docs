@@ -2311,6 +2311,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ethernet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ethernet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lan8720a-rmii-nativo-esp32-wroom-y-derivados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LAN8720A (RMII, nativo — ESP32-WROOM y derivados)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w5500-spi-esp32-s3-y-derivados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W5500 (SPI — ESP32-S3 y derivados)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#diagrama-general" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3097,7 +3136,7 @@
 
 <h1 id="hardware-y-conexiones">Hardware y conexiones</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.23.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.24.0</p>
 </blockquote>
 <p>Conexiones sugeridas entre el ESP32 y los sensores/actuadores.</p>
 <h2 id="alimentacion">Alimentación</h2>
@@ -3201,6 +3240,30 @@ Es compatible con el driver Modbus (control <code>DE</code>/<code>RE</code>).</p
 <ul>
 <li>El CC2652P2 debe cargar firmware <strong>ZNP</strong> (Zigbee Network Processor).</li>
 <li>Usar pines UART distintos a los de Modbus (Serial2) si ambos están habilitados.</li>
+</ul>
+<h2 id="ethernet">Ethernet</h2>
+<h3 id="lan8720a-rmii-nativo-esp32-wroom-y-derivados">LAN8720A (RMII, nativo — ESP32-WROOM y derivados)</h3>
+<p>Los pines RMII de datos son fijos del MAC del ESP32; MDC/MDIO se configuran.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>LAN8720A TXD0 ── GPIO19        LAN8720A RXD0 ── GPIO25
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>LAN8720A TXD1 ── GPIO22        LAN8720A RXD1 ── GPIO26
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>LAN8720A TX_EN ─ GPIO21        LAN8720A CRS_DV ─ GPIO27
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>LAN8720A MDC ─── GPIO23        LAN8720A MDIO ── GPIO18
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>LAN8720A REFCLK ─ GPIO0        (reloj 50 MHz entrando)
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>LAN8720A VCC ─── 3,3 V         LAN8720A GND ── GND
+</span></code></pre></div>
+<ul>
+<li><code>ethernet</code>: <code>mdc=23</code>, <code>mdio=18</code>, <code>phy_addr=1</code>, <code>power=-1</code> (sin control de PHY).</li>
+</ul>
+<h3 id="w5500-spi-esp32-s3-y-derivados">W5500 (SPI — ESP32-S3 y derivados)</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>W5500 SCS  ── GPIO5   (cs)
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>W5500 SCK  ── GPIO18  (VSPI)
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>W5500 MOSI ── GPIO23  (VSPI)
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>W5500 MISO ── GPIO19  (VSPI)
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>W5500 VCC  ── 3,3 V   ·   W5500 GND ── GND
+</span></code></pre></div>
+<ul>
+<li><code>ethernet</code>: <code>cs=5</code>, <code>rst=-1</code> (sin reset).</li>
+<li>El W5500 usa su propia pila TCP/IP (no comparte lwIP con el WebServer).</li>
 </ul>
 <h2 id="diagrama-general">Diagrama general</h2>
 <pre class="mermaid"><code>flowchart TB
