@@ -6,9 +6,18 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.26.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.27.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.27.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `firmware_manifest.json` | multi-chip (un binario + SHA por board) |
+| `partitions_{4,8,16}mb.csv` | tablas de particiones por tamaño de flash |
+| `platformio.ini` | env `esp32-wroom-32u` (16 MB) + particiones por env |
+| `HwProfile.hpp` | `SEMA_BOARD_ID` + `SEMA_FLASH_MB` + `BOARD_ESP32_WROOM32U` |
 
 ## v1.26.0
 
