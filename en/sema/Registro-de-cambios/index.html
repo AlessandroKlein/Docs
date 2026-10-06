@@ -2806,6 +2806,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v1260" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.26.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v1250" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3185,9 +3196,32 @@
 
 <h1 id="registro-de-cambios-por-archivo">Registro de cambios por archivo</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.25.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.26.0</p>
 </blockquote>
 <p>Qué archivos cambiaron en las últimas versiones (para revisión y blame).</p>
+<h2 id="v1260">v1.26.0</h2>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include/hw/HwProfile.hpp</code></td>
+<td>perfil de hardware (board + features + pines)</td>
+</tr>
+<tr>
+<td><code>platformio.ini</code></td>
+<td><code>build_flags</code> de features y variantes</td>
+</tr>
+<tr>
+<td><code>SemaCore</code>/<code>HttpServer</code>/managers</td>
+<td>compilación condicional <code>#if SEMA_USE_*</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="v1250">v1.25.0</h2>
 <table>
 <thead>
