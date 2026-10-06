@@ -6,7 +6,7 @@ tags:
 
 # Compatibilidad (placas, sensores, buses)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.22.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.23.0
 
 ## Placas
 
@@ -48,7 +48,7 @@ tags:
 | CAN (TWAI) | ✅ |
 | RS485/Modbus | ✅ |
 | LoRa (SX1262) | ✅ |
-| Zigbee / 802.15.4 | ⬜ Futuro |
+| Zigbee (CC2652P2) | ✅ |
 
 ## Expansores
 

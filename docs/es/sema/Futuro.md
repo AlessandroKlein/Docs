@@ -6,7 +6,7 @@ tags:
 
 # Mejoras opcionales y futuras
 
-> **Tipo:** Catálogo de ideas opcionales | **Fecha:** 2026-10-03 | **Firmware:** v1.22.0
+> **Tipo:** Catálogo de ideas opcionales | **Fecha:** 2026-10-03 | **Firmware:** v1.23.0
 
 Registro de ítems **opcionales** (no forman parte de la Definition of Done §103).
 Sirve para tener todo anotado por si en el futuro se quiere implementar.
@@ -46,8 +46,8 @@ Sirve para tener todo anotado por si en el futuro se quiere implementar.
 
 | Ítem | Nota |
 |------|------|
-| LoRa / LoRaWAN | Nodos remotos de largo alcance |
-| Zigbee / 802.15.4 | Red de sensores |
+| LoRaWAN (red) | Protocolo de red sobre LoRa |
+| Red Zigbee multi-dispositivo | Sensores/actuadores Zigbee remotos |
 | Ethernet (W5500 / ENC28J60) | Conexión cableada |
 | BLE | Configuración por Bluetooth |
 | CoAP / MQTT-SN | Protocolos ligeros |

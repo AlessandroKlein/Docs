@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.22.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.23.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.23.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/core/ZigbeeManager.hpp` + `.cpp` | nuevo Zigbee (ZNP por UART) |
+| `include/core/ConfigManager.hpp` + `.cpp` | sección `zigbee` |
+| `src/core/web/HttpServer.*` | `/api/v1/zigbee` GET/POST |
 
 ## v1.22.0
 

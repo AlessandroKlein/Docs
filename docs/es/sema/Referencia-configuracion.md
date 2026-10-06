@@ -6,7 +6,7 @@ tags:
 
 # Referencia de configuración (JSON completa)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.22.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.23.0
 
 Referencia **exhaustiva** de cada clave del JSON de configuración de SEMA
 (`Config`, `include/core/ConfigManager.hpp`). Editable por `PUT /api/v1/config`,

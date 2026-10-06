@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.22.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.23.0
 
 ## Estado del DoD (Definition of Done)
 
@@ -26,7 +26,7 @@ tags:
 | MCP23017 / ADS1115 | ✅ |
 | 74HC595 / 74HC165 | ✅ |
 | RS485 / Modbus / CAN | ✅ |
-| LoRa / Zigbee | ⬜ |
+| LoRa / Zigbee | ✅ |
 
 ## Próximos pasos (software)
 
@@ -35,7 +35,7 @@ tags:
 
 ## Próximos pasos (hardware)
 
-- LoRa / LoRaWAN y Zigbee.
+- LoRaWAN (protocolo de red) y red Zigbee multi-dispositivo.
 - Panel solar y perfiles de batería LiFePO4/Li-ion.
 
 ## Catálogo completo de opcionales
