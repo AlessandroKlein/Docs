@@ -6,9 +6,17 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.21.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.22.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.22.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/core/LoraManager.hpp` + `.cpp` | nuevo LoRa SX1262 (RadioLib) |
+| `include/core/ConfigManager.hpp` + `.cpp` | sección `lora` |
+| `src/core/web/HttpServer.*` | `/api/v1/lora` GET/POST |
 
 ## v1.21.0
 

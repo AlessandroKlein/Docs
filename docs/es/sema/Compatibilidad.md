@@ -6,7 +6,7 @@ tags:
 
 # Compatibilidad (placas, sensores, buses)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.21.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.22.0
 
 ## Placas
 
@@ -47,7 +47,7 @@ tags:
 | SPI | ⚠️ Declarado en capacidades; sin driver dedicado aún |
 | CAN (TWAI) | ✅ |
 | RS485/Modbus | ✅ |
-| LoRa / LoRaWAN | ⬜ Futuro |
+| LoRa (SX1262) | ✅ |
 | Zigbee / 802.15.4 | ⬜ Futuro |
 
 ## Expansores
