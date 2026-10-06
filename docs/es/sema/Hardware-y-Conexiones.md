@@ -82,6 +82,57 @@ PMS5003 VCC ── 5V
 PMS5003 GND ── GND
 ```
 
+## RS485 (TD501D485H, aislado)
+
+El **TD501D485H** es un transceiver RS485 con **aislamiento galvánico** entre el
+lado lógico y la línea: protege el ESP32 contra descargas/transitorios del bus.
+Es compatible con el driver Modbus (control `DE`/`RE`).
+
+```text
+ESP32 TX  (GPIO17) ── DI  (TXD)
+ESP32 RX  (GPIO16) ── RO  (RXD)
+ESP32 GPIO(de_re) ──── DE + RE  (juntos, half-duplex)
+TD501D485H A ──────── A+ (bus RS485)
+TD501D485H B ──────── B- (bus RS485)
+TD501D485H VCC ────── 3,3 V
+TD501D485H GND ────── GND
+```
+
+- Usar la versión **3,3 V** para conectar directo al ESP32.
+- Config `modbus.de_re` = GPIO de `DE`/`RE`; si el módulo auto-direcciona, usar `0`.
+
+## CAN (TWAI)
+
+```text
+ESP32 TX (GPIO5) ── TXD (TJA1050)
+ESP32 RX (GPIO4) ── RXD (TJA1050)
+CANH / CANL ──────── bus CAN (terminación 120 Ω en los extremos)
+```
+
+## LoRa (SX1262PATR8-GC)
+
+```text
+ESP32 GPIO5  ── NSS  (CS)
+ESP32 GPIO18 ── SCK  (VSPI)
+ESP32 GPIO23 ── MOSI (VSPI)
+ESP32 GPIO19 ── MISO (VSPI)
+ESP32 GPIO14 ── NRST
+ESP32 GPIO26 ── DIO1
+ESP32 GPIO27 ── BUSY
+```
+
+## Zigbee (RF-BM-2652P2 / CC2652P2)
+
+```text
+ESP32 TX (GPIO17) ── RX del CC2652P2
+ESP32 RX (GPIO16) ── TX del CC2652P2
+CC2652P2 GND ─────── GND
+CC2652P2 VCC ─────── 3,3 V
+```
+
+- El CC2652P2 debe cargar firmware **ZNP** (Zigbee Network Processor).
+- Usar pines UART distintos a los de Modbus (Serial2) si ambos están habilitados.
+
 ## Diagrama general
 
 ```mermaid

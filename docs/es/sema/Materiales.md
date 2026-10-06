@@ -53,6 +53,15 @@ Lista de materiales sugerida para una estación meteorológica SEMA completa.
 | MCP23017 (expansor I²C) | 1 | 16 GPIO extra |
 | Transistor/MOSFET | — | Cargas que superen el pin |
 
+## Buses y comunicación (opcionales)
+
+| Componente | Bus | Cantidad | Notas |
+|------------|-----|----------|-------|
+| **TD501D485H** | RS485 | 1 | Transceiver **aislado** (protección contra descargas de la línea RS485) |
+| TJA1050 / SN65HVD230 | CAN | 1 | Transceiver CAN |
+| **SX1262PATR8-GC** (Silicontra) | LoRa | 1 | Módulo LoRa 868/915 MHz |
+| **RF-BM-2652P2** (CC2652P2) | Zigbee | 1 | Módulo Zigbee 3.0 (ZNP) |
+
 ## Herramientas
 
 - Cable micro-USB.
