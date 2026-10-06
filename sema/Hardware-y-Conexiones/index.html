@@ -3136,7 +3136,7 @@
 
 <h1 id="hardware-y-conexiones">Hardware y conexiones</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.24.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.25.0</p>
 </blockquote>
 <p>Conexiones sugeridas entre el ESP32 y los sensores/actuadores.</p>
 <h2 id="alimentacion">Alimentación</h2>
@@ -3256,14 +3256,16 @@ Es compatible con el driver Modbus (control <code>DE</code>/<code>RE</code>).</p
 </ul>
 <h3 id="w5500-spi-esp32-s3-y-derivados">W5500 (SPI — ESP32-S3 y derivados)</h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>W5500 SCS  ── GPIO5   (cs)
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>W5500 SCK  ── GPIO18  (VSPI)
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>W5500 MOSI ── GPIO23  (VSPI)
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>W5500 MISO ── GPIO19  (VSPI)
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>W5500 VCC  ── 3,3 V   ·   W5500 GND ── GND
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>W5500 SCK  ── GPIO12  (sck)
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>W5500 MOSI ── GPIO11  (mosi)
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>W5500 MISO ── GPIO13  (miso)
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>W5500 INT  ── GPIO4   (irq, opcional)
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>W5500 VCC  ── 3,3 V   ·   W5500 GND ── GND
 </span></code></pre></div>
 <ul>
-<li><code>ethernet</code>: <code>cs=5</code>, <code>rst=-1</code> (sin reset).</li>
-<li>El W5500 usa su propia pila TCP/IP (no comparte lwIP con el WebServer).</li>
+<li><code>ethernet</code>: <code>cs=5</code>, <code>rst=-1</code>, <code>irq=4</code>, <code>sck=12</code>, <code>miso=13</code>, <code>mosi=11</code>.</li>
+<li>El W5500 se integra a <strong>lwIP</strong> vía driver ESP-IDF (<code>esp_eth_mac_new_w5500</code>):
+  el WebServer (REST API + dashboard) sirve sobre Ethernet igual que sobre WiFi.</li>
 </ul>
 <h2 id="diagrama-general">Diagrama general</h2>
 <pre class="mermaid"><code>flowchart TB
