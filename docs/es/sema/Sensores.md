@@ -6,7 +6,7 @@ tags:
 
 # Sensores
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.18.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.19.0
 
 Catálogo de **15 tipos de sensores** soportados por SEMA, en **5 interfaces**.
 
@@ -38,6 +38,7 @@ Catálogo de **15 tipos de sensores** soportados por SEMA, en **5 interfaces**.
 | `AS3935` | 0x03 | lightning_distance | km |
 | `ADS1115` | 0x48 | (canal analógico) | configurable |
 | `CO` | — (ADC) | co | ppm |
+| `SOLAR` | — (ADC) | solar_radiation | W/m2 |
 
 ### Configuración I²C
 

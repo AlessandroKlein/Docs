@@ -6,7 +6,7 @@ tags:
 
 # Enumeraciones y tipos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.18.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.19.0
 
 Enumeraciones y tipos centrales de SEMA, tal como se serializan en la API, eventos
 y configuración.
@@ -107,6 +107,7 @@ Fuente: `include/core/Capability.hpp`.
 | `AS3935` | I²C | lightning_distance |
 | `ADS1115` | I²C | (canal analógico configurable) |
 | `CO` | ADC | co |
+| `SOLAR` | ADC | solar_radiation |
 | `DS18B20` | 1-Wire | temperature (multi-dispositivo) |
 | `ADC` | ADC | (magnitud configurable) |
 | `PCNT` | PCNT | conteo de pulsos (lluvia/viento) |

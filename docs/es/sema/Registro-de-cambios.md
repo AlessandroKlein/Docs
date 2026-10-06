@@ -6,9 +6,16 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.18.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.19.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
+
+## v1.19.0
+
+| Archivo | Cambio |
+|---------|--------|
+| `include/core/sensors/SolarSensor.hpp` + `.cpp` | nuevo driver SOLAR |
+| `src/core/sensors/SensorFactory.cpp` | registro `"SOLAR"` |
 
 ## v1.18.0
 
