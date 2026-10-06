@@ -3174,10 +3174,15 @@ Es compatible con el driver Modbus (control <code>DE</code>/<code>RE</code>).</p
 <li>Config <code>modbus.de_re</code> = GPIO de <code>DE</code>/<code>RE</code>; si el módulo auto-direcciona, usar <code>0</code>.</li>
 </ul>
 <h2 id="can-twai">CAN (TWAI)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ESP32 TX (GPIO5) ── TXD (TJA1050)
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ESP32 RX (GPIO4) ── RXD (TJA1050)
+<p>Transceiver de la familia <strong>SN65HVD23X</strong> (3,3 V, compatible directo con el ESP32).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ESP32 TX (GPIO5) ── TXD (SN65HVD23X)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ESP32 RX (GPIO4) ── RXD (SN65HVD23X)
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>CANH / CANL ──────── bus CAN (terminación 120 Ω en los extremos)
 </span></code></pre></div>
+<ul>
+<li><code>SN65HVD230</code> = con slope-control; <code>SN65HVD231</code>/<code>SN65HVD232</code> = modos de bajo consumo;
+  <code>SN65HVD233</code>/<code>SN65HVD234</code> = sin slope-control + protección extendida.</li>
+</ul>
 <h2 id="lora-sx1262patr8-gc">LoRa (SX1262PATR8-GC)</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ESP32 GPIO5  ── NSS  (CS)
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ESP32 GPIO18 ── SCK  (VSPI)
