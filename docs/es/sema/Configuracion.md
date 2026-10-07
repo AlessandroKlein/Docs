@@ -6,7 +6,7 @@ tags:
 
 # Configuración
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.54.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.55.0
 
 Cómo se configura SEMA.
 
@@ -48,7 +48,7 @@ Al aplicar (`PUT /config`), se re-aplican **sin reinicio**:
 
 ```json
 { "backup_format": "sema-backup", "backup_version": 1,
-  "firmware": "1.54.0", "timestamp": 1720000000,
+  "firmware": "1.55.0", "timestamp": 1720000000,
   "...config completa..." }
 ```
 
