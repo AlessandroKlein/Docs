@@ -7,7 +7,7 @@ tags:
 
 # Referencia de API interna
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.66.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.67.0
 
 Interfaces C++ internas (`include/core/`). Útiles para extender SEMA con módulos,
 sensores o publicadores.
