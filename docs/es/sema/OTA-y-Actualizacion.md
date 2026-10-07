@@ -6,7 +6,7 @@ tags:
 
 # OTA y actualización
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.69.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.70.0
 
 Actualización de firmware por aire (OTA) con particiones A/B y rollback.
 
@@ -53,7 +53,7 @@ curl -X POST http://sema-001.local/api/v1/ota \
 Cada release incluye el SHA-256 del binario:
 
 ```json
-{ "name": "sema", "version": "1.69.0", "firmware": "firmware.bin",
+{ "name": "sema", "version": "1.70.0", "firmware": "firmware.bin",
   "sha256": "bb8f82e3dc2be049a4a6c3bc78b056ae88c0a802dea81d7f088bc25abd217e38",
   "hw_version": "rev0", "config_schema_version": 1, "protocol_version": 1 }
 ```
