@@ -7,7 +7,7 @@ tags:
 
 # Actuadores y salidas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.35.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.36.0
 
 SEMA controla **salidas digitales** (relés, leds, válvulas, sirenas) a través del
 subsistema de **GPIO standalone** (`GpioManager`), con soporte de expansión I²C
