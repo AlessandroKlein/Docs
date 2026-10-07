@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.38.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.39.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.39.0** | Fix parpadeo + escaneo |
 | **1.38.0** | Fix Gridstack |
 | **1.37.0** | Escaneo WiFi + login |
 | **1.36.0** | Fix guardar + red separada |
