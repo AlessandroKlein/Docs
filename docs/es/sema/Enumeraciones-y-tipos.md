@@ -6,7 +6,7 @@ tags:
 
 # Enumeraciones y tipos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.71.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.72.0
 
 Enumeraciones y tipos centrales de SEMA, tal como se serializan en la API, eventos
 y configuración.

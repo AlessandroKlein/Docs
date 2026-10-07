@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.71.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.72.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.72.0** | Paginas por seccion |
 | **1.71.0** | Quitar seccion GPIO |
 | **1.70.0** | Agregacion por niveles |
 | **1.69.0** | Shift register beta (flag) |
