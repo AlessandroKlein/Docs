@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.56.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.57.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.57.0** | DS18B20 un pin + ROM |
 | **1.56.0** | Fuente ADC + DS18B20 |
 | **1.55.0** | Sensores especificos |
 | **1.54.0** | Tooltips sensores |
