@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.68.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.69.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.69.0** | Shift register beta (flag) |
 | **1.68.0** | microSD configurable |
 | **1.67.0** | Watchdog jerarquico |
 | **1.66.0** | Pines por board + SD SPI |
