@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.44.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.45.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.45.0** | Fix guardar + reloj |
 | **1.44.0** | Demo + sensores + mDNS |
 | **1.43.0** | CSS unificado + mDNS |
 | **1.42.0** | Fix auth config + NTP |

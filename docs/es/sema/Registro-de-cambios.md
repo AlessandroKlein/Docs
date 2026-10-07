@@ -6,7 +6,7 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.44.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.45.0
 
 Qué archivos cambiaron en las últimas versiones (para revisión y blame).
 

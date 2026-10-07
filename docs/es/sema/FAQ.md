@@ -6,7 +6,7 @@ tags:
 
 # Preguntas frecuentes (FAQ)
 
-> **Tipo:** Soporte | **Estado:** Estable | **Firmware:** v1.44.0
+> **Tipo:** Soporte | **Estado:** Estable | **Firmware:** v1.45.0
 
 ## ¿Qué es SEMA?
 
