@@ -6,7 +6,7 @@ tags:
 
 # Hardware y conexiones
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.67.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.68.0
 
 Conexiones sugeridas entre el ESP32 y los sensores/actuadores.
 
