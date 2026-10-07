@@ -6,7 +6,7 @@ tags:
 
 # Compatibilidad (placas, sensores, buses)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.72.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.73.0
 
 ## Placas
 
