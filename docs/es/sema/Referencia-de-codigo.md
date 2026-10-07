@@ -7,7 +7,7 @@ tags:
 
 # Referencia de código
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.42.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.43.0
 
 Mapa del código fuente de SEMA (PlatformIO + Arduino framework, ESP32).
 
@@ -89,9 +89,9 @@ SEMA/
 
 ## Versiones (include/core/Version.hpp)
 
-| Macro | Valor (v1.42.0) | Significado |
+| Macro | Valor (v1.43.0) | Significado |
 |-------|-----------------|-------------|
-| `SEMA_FW_VERSION` | `"1.42.0"` | Versión SemVer del firmware (sin `v`) |
+| `SEMA_FW_VERSION` | `"1.43.0"` | Versión SemVer del firmware (sin `v`) |
 | `SEMA_HW_VERSION` | `"rev0"` | Revisión del hardware |
 | `SEMA_CONFIG_SCHEMA_VERSION` | `1` | Esquema de configuración |
 | `SEMA_PROTOCOL_VERSION` | `1` | Protocolo con el Servidor Central |
