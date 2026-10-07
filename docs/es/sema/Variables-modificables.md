@@ -6,7 +6,7 @@ tags:
 
 # Variables modificables (configuración JSON)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.61.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.62.0
 
 Resumen de las variables que se pueden modificar en caliente (`PUT /api/v1/config`)
 y su efecto. Todas viven en el JSON de configuración; ver la referencia completa en
