@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.57.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Firmware:** v1.58.0
 
 ## Estado del DoD (Definition of Done)
 
