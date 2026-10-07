@@ -6,7 +6,7 @@ tags:
 
 # Mejoras opcionales y futuras
 
-> **Tipo:** Catálogo de ideas opcionales | **Fecha:** 2026-10-03 | **Firmware:** v1.59.0
+> **Tipo:** Catálogo de ideas opcionales | **Fecha:** 2026-10-03 | **Firmware:** v1.60.0
 
 Registro de ítems **opcionales** (no forman parte de la Definition of Done §103).
 Sirve para tener todo anotado por si en el futuro se quiere implementar.

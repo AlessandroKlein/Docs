@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.59.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.60.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.60.0** | Canal ADS1115 por sensor |
 | **1.59.0** | ADS1115 canal + magnitud |
 | **1.58.0** | DS18B20 por ROM |
 | **1.57.0** | DS18B20 un pin + ROM |
