@@ -6,7 +6,7 @@ tags:
 
 # Seguridad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.70.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.71.0
 
 Modelo de seguridad de SEMA.
 
