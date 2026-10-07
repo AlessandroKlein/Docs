@@ -6,7 +6,7 @@ tags:
 
 # Frontend (guía de estilo)
 
-> **Tipo:** Guía | **Estado:** Estable | **Firmware:** v1.37.0
+> **Tipo:** Guía | **Estado:** Estable | **Firmware:** v1.38.0
 
 El dashboard web de SEMA es HTML estático embebido en el firmware
 (`HttpServer::kIndexHtml` PROGMEM) + JavaScript vanilla.
