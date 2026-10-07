@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.53.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.54.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.54.0** | Tooltips sensores |
 | **1.53.0** | Switches + expansores |
 | **1.52.0** | Sensores seguros + I2C |
 | **1.51.0** | Config sensores + pines |
