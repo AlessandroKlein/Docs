@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.49.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.50.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.50.0** | Dashboard publico + footer |
 | **1.49.0** | Layout + modo edicion |
 | **1.48.0** | Fix tarjetas + layout |
 | **1.47.0** | Fix dashboard + OTA |
