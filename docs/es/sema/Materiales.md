@@ -6,7 +6,7 @@ tags:
 
 # Materiales (BOM)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.46.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.47.0
 
 Lista de materiales sugerida para una estación meteorológica SEMA completa.
 
