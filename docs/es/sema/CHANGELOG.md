@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.64.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.65.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.65.0** | Zona horaria + fail-safe |
 | **1.64.0** | Registros cascada + tooltips |
 | **1.63.0** | Pines RMII Ethernet |
 | **1.62.0** | MCP23S17 + registro SPI |
