@@ -7,7 +7,7 @@ tags:
 
 # MQTT y WebSocket
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.60.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.61.0
 
 Salidas en tiempo real de SEMA: **MQTT** (hacia un broker) y **WebSocket** (hacia
 el dashboard local).
