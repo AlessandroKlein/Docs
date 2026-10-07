@@ -6,7 +6,7 @@ tags:
 
 # Guía de desarrollo (extender SEMA)
 
-> **Tipo:** Guía | **Estado:** Estable | **Firmware:** v1.40.0
+> **Tipo:** Guía | **Estado:** Estable | **Firmware:** v1.41.0
 
 Cómo extender SEMA con nuevos sensores, publicadores o reglas.
 
