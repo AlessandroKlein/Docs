@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.97.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.98.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.98.0** | Expansores SPI MAX14830/SC18IS602B |
 | **1.97.0** | Reservados visibles + SPI WROOM |
 | **1.96.0** | I2C guardado propio + reinicio |
 | **1.95.0** | SPI + RMII reservados |

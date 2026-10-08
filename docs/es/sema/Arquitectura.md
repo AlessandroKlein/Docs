@@ -6,7 +6,7 @@ tags:
 
 # Arquitectura
 
-> **Tipo:** Concepto | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v1.97.0
+> **Tipo:** Concepto | **Estado:** Planificación | **Fecha:** 2026-10-03 | **Firmware:** v1.98.0
 
 Arquitectura de SEMA consolidada a partir del `README.md`. Es la referencia para
 implementar el firmware de forma modular.
