@@ -6,7 +6,7 @@ tags:
 
 # SEMA
 
-> **Tipo:** Embebidos (ESP32) | **Estado:** Estable | **Fecha:** 2026-10-03 | **Firmware:** v1.83.0
+> **Tipo:** Embebidos (ESP32) | **Estado:** Estable | **Fecha:** 2026-10-03 | **Firmware:** v1.84.0
 
 Sistema de Estación Meteorológica Autónoma: plataforma modular para construir
 estaciones meteorológicas y ambientales basada en **ESP32**, configurable por
@@ -31,6 +31,6 @@ estaciones meteorológicas y ambientales basada en **ESP32**, configurable por
 
 - [Decisiones](Decisiones.md) · [Evolución](Evolucion.md)
 
-> Estado actual: **estable** (v1.83.0). Si es tu primera vez, empezá por la
+> Estado actual: **estable** (v1.84.0). Si es tu primera vez, empezá por la
 > [Guía de inicio](Guia-de-inicio.md); el avance por fases está en
 > [Evolución](Evolucion.md).
