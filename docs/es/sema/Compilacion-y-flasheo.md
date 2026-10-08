@@ -6,7 +6,7 @@ tags:
 
 # Compilación y flasheo
 
-> **Tipo:** Guía | **Estado:** Estable | **Firmware:** v1.85.0
+> **Tipo:** Guía | **Estado:** Estable | **Firmware:** v1.86.0
 
 ## Requisitos
 

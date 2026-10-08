@@ -7,7 +7,7 @@ tags:
 
 # Guía de pines
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.85.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.86.0
 
 Asignación de pines del ESP32 (`esp32doit-devkit-v1`).
 
