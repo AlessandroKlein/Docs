@@ -6,7 +6,7 @@ tags:
 
 # Diagramas de bloques y flujo de datos
 
-> **Tipo:** Concepto | **Estado:** Estable | **Firmware:** v1.82.0
+> **Tipo:** Concepto | **Estado:** Estable | **Firmware:** v1.83.0
 
 ## Arquitectura de alto nivel
 
