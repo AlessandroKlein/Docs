@@ -6,7 +6,7 @@ tags:
 
 # Estadísticas y métricas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.76.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.77.0
 
 Métricas expuestas por SEMA para monitoreo y diagnóstico.
 
