@@ -6,7 +6,7 @@ tags:
 
 # Sensores
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.95.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.96.0
 
 Catálogo de **15 tipos de sensores** soportados por SEMA, en **5 interfaces**.
 
