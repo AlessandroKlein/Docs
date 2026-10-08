@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.102.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.103.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.103.0** | MAX14830 4 puertos UART |
 | **1.102.0** | Eliminar data/ y LittleFS web |
 | **1.101.0** | Bus I2C/UART por expansores |
 | **1.100.0** | Gridstack PROGMEM gzip |
