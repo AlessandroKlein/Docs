@@ -6,7 +6,7 @@ tags:
 
 # Identidad y estados
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.78.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.79.0
 
 Identidad de la estación y estados/máquinas de estado del firmware.
 
@@ -16,7 +16,7 @@ Identidad de la estación y estados/máquinas de estado del firmware.
 |-------|--------|-------------|
 | `station.id` | config | Id lógico (default `"SEMA-001"`) |
 | `station.name` | config | Nombre visible (default `"Estación Norte"`) |
-| `firmware` | `SEMA_FW_VERSION` | `1.78.0` |
+| `firmware` | `SEMA_FW_VERSION` | `1.79.0` |
 | `hw` | `SEMA_HW_VERSION` | `rev0` |
 | `config_schema` | `SEMA_CONFIG_SCHEMA_VERSION` | `1` |
 | `protocol` | `SEMA_PROTOCOL_VERSION` | `1` |
