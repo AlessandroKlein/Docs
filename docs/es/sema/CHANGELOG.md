@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.90.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.91.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.91.0** | MCP23S17 expansor |
 | **1.90.0** | Modales personalizados |
 | **1.89.0** | Pines reservados + defaults |
 | **1.88.0** | CSS pulido + pines deshabilitados |
