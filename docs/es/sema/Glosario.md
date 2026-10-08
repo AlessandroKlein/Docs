@@ -6,7 +6,7 @@ tags:
 
 # Glosario
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.100.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.101.0
 
 | Término | Definición |
 |---------|------------|

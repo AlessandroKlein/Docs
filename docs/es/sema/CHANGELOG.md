@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.100.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.101.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.101.0** | Bus I2C/UART por expansores |
 | **1.100.0** | Gridstack PROGMEM gzip |
 | **1.99.0** | Expansores en Pines de buses |
 | **1.98.0** | Expansores SPI MAX14830/SC18IS602B |

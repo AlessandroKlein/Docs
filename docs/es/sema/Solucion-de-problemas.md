@@ -6,7 +6,7 @@ tags:
 
 # Solución de problemas
 
-> **Tipo:** Soporte | **Estado:** Estable | **Firmware:** v1.100.0
+> **Tipo:** Soporte | **Estado:** Estable | **Firmware:** v1.101.0
 
 ## No conecta a WiFi
 
