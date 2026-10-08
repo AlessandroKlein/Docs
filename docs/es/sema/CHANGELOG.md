@@ -6,7 +6,7 @@ tags:
 
 # Registro de versiones (CHANGELOG)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.79.0
+> **Tipo:** Referencia | **Estado:** Estable | **Firmware:** v1.80.0
 
 Historial de versiones de SEMA (resumen). El changelog completo con enlaces está en
 [`CHANGELOG.md`](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md).
@@ -15,6 +15,7 @@ Historial de versiones de SEMA (resumen). El changelog completo con enlaces est�
 
 | Versión | Resumen |
 |---------|---------|
+| **1.80.0** | Selectores de pines GPIO |
 | **1.79.0** | Demo mas completa |
 | **1.78.0** | Fix conversion unidades demo |
 | **1.77.0** | Nav unificado + titulos |
