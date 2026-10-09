@@ -161,34 +161,67 @@ nav:
       - Frontend (guía de estilo): invernadero/Frontend.md
       - Glosario: invernadero/Glosario.md
   - SEMA:
-      - Home: sema/Home.md
+      - Inicio: sema/Home.md
       - Guía de inicio: sema/Guia-de-inicio.md
+      - Instalación y mantenimiento: sema/Instalacion-y-mantenimiento.md
+      - Compilación y flasheo: sema/Compilacion-y-flasheo.md
+      - Guía de desarrollo (extender): sema/Guia-de-desarrollo.md
       - Arquitectura: sema/Arquitectura.md
+      - Diagramas de bloques y datos: sema/Diagramas.md
+      - Módulos y ciclo de vida: sema/Modulos-y-ciclo-de-vida.md
+      - Tareas y concurrencia: sema/Tareas-y-concurrencia.md
+      - Diagnóstico y salud: sema/Diagnostico-y-salud.md
+      - Rendimiento y memoria: sema/Rendimiento-y-memoria.md
+      - Compatibilidad de versiones: sema/Compatibilidad-de-versiones.md
+      - Pruebas y validación: sema/Pruebas-y-validacion.md
       - Referencia de código: sema/Referencia-de-codigo.md
-      - Estadísticas y métricas: sema/Estadisticas-y-metricas.md
       - Referencia API interna: sema/Referencia-API-interna.md
       - Enumeraciones y tipos: sema/Enumeraciones-y-tipos.md
-      - Diagramas de bloques y datos: sema/Diagramas.md
-      - Control PID: sema/Control-PID.md
+      - Estadísticas y métricas: sema/Estadisticas-y-metricas.md
       - Compatibilidad (placas/sensores/buses): sema/Compatibilidad.md
       - Hardware y conexiones: sema/Hardware-y-Conexiones.md
       - Guía de pines: sema/Guia-de-pines.md
+      - Buses y periféricos: sema/Buses-y-perifericos.md
+      - Expansores de entrada/salida: sema/Expansores-de-entrada-salida.md
       - Sensores: sema/Sensores.md
       - Actuadores y salidas: sema/Actuadores-y-Salidas.md
       - Materiales (BOM): sema/Materiales.md
+      - Control PID (futuro): sema/Control-PID.md
       - Configuración: sema/Configuracion.md
       - Referencia de configuración (JSON): sema/Referencia-configuracion.md
       - Variables modificables: sema/Variables-modificables.md
+      - Alarmas y reglas: sema/Alarmas-y-reglas.md
+      - Calibración: sema/Calibracion.md
+      - Magnitudes derivadas: sema/Magnitudes-derivadas.md
+      - Almacenamiento e histórico: sema/Almacenamiento-e-historico.md
+      - Energía y consumo: sema/Energia-y-consumo.md
       - API REST: sema/API-REST.md
       - MQTT y WebSocket: sema/MQTT-y-WebSocket.md
+      - Conectividad y red: sema/Conectividad-y-red.md
+      - Comunicaciones remotas: sema/Comunicaciones-remotas.md
+      - Backup y restauración: sema/Backup-y-restauracion.md
       - OTA y actualización: sema/OTA-y-Actualizacion.md
       - Seguridad: sema/Seguridad.md
-      - Identidad y estados: sema/Identidad-y-Estados.md
+      - Identidad y estados: sema/Identidad-y-estados.md
       - Solución de problemas: sema/Solucion-de-problemas.md
       - Preguntas frecuentes (FAQ): sema/FAQ.md
-      - Decisiones: sema/Decisiones.md
-      - Compilación y flasheo: sema/Compilacion-y-flasheo.md
-      - Guía de desarrollo (extender): sema/Guia-de-desarrollo.md
+      - Limitaciones y bugs conocidos: sema/Limitaciones-conocidas.md
+      - Decisiones:
+          - Índice de decisiones: sema/Decisiones.md
+          - ADR 0001 · Plataforma configurable: sema/adr/0001-plataforma-configurable-y-separacion-de-capas.md
+          - ADR 0002 · Perfiles de placa y HAL: sema/adr/0002-perfiles-de-placa-capacidades-y-hal.md
+          - ADR 0003 · Modelo canónico de mediciones: sema/adr/0003-modelo-canonico-de-mediciones.md
+          - ADR 0004 · Event bus tipado: sema/adr/0004-event-bus-tipado.md
+          - ADR 0005 · Calibración independiente del driver: sema/adr/0005-calibracion-independiente-del-driver.md
+          - ADR 0006 · Almacenamiento por capas: sema/adr/0006-almacenamiento-por-capas-y-retencion.md
+          - ADR 0007 · Offline-first y publicadores: sema/adr/0007-offline-first-y-publishers-desacoplados.md
+          - ADR 0008 · Runtime FreeRTOS y afinidad: sema/adr/0008-runtime-freertos-y-afinidad-auto.md
+          - ADR 0009 · Configuración transaccional: sema/adr/0009-configuracion-transaccional-y-safe-mode.md
+          - ADR 0010 · API REST v1 y seguridad: sema/adr/0010-api-rest-v1-y-seguridad.md
+          - ADR 0011 · OTA con rollback: sema/adr/0011-ota-con-rollback.md
+          - ADR 0012 · Watchdog y diagnóstico: sema/adr/0012-watchdog-health-y-diagnostico.md
+          - ADR 0013 · Perfiles energéticos y wake: sema/adr/0013-perfiles-energeticos-y-wake-por-lluvia.md
+          - ADR 0014 · Módulos instalables: sema/adr/0014-modulos-instalables-y-descubrimiento.md
       - Evolución: sema/Evolucion.md
       - Mejoras y roadmap: sema/Mejoras-y-roadmap.md
       - Futuro (opcionales): sema/Futuro.md

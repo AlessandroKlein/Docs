@@ -6,94 +6,135 @@ tags:
 
 # Mejoras opcionales y futuras
 
-> **Tipo:** Catálogo de ideas opcionales | **Fecha:** 2026-10-03 | **Firmware:** v1.103.0
+> **Tipo:** Catálogo de ideas opcionales | **Estado:** Catálogo vivo | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
 
-Registro de ítems **opcionales** (no forman parte de la Definition of Done §103).
-Sirve para tener todo anotado por si en el futuro se quiere implementar.
+Registro de ítems **opcionales**: no forman parte de la Definition of Done (§103) ni
+bloquean un release. Cada ítem es una idea, no un compromiso. Los ítems que ya se
+implementaron se retiran del catálogo y pasan al [CHANGELOG](CHANGELOG.md).
 
----
+> ⚠️ **Corrección respecto de `docs/FUTURO.md` del repo de código**: la versión del
+> 2026-10-03 daba por pendientes varios ítems que **ya están en el firmware**
+> (rotación del `EventLog`, agregación del histórico, export CSV, retención por tiempo,
+> tema claro/oscuro, rate limiting, expiración de sesión, gráficos, edición de config
+> desde la UI, páginas por sección, CAN, zona horaria y soporte de microSD). Se listan
+> abajo en §10 para dejar constancia.
 
 ## 1. Seguridad
 
-| Ítem | Nota |
-|------|------|
-| TLS/HTTPS (certificado) | Cifrar la web local y la API |
-| Rate limiting | Limitar intentos de login y de la API |
-| Expiración de sesión (login web) | Tiempo máximo de la cookie |
-| OTA con firma/checksum | Verificar integridad antes de aplicar |
-| Tokens/API keys revocables | Más de una clave por actor, con rotación |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| TLS/HTTPS (certificado) | Cifrar la web local y la API; hoy es HTTP en claro | ⬜ |
+| OTA con firma | Verifica integridad (SHA-256) pero no autenticidad del binario | ⬜ |
+| RBAC (roles/permisos) | Hoy `api_key`/`server_key`/`extra_keys` no tienen roles | ⬜ |
+| Rotación de claves asistida | `extra_keys` permite revocar, pero no hay rotación guiada | ⬜ |
+| Bloqueo por IP tras N intentos | Hoy el rate limit del login es global | ⬜ |
 
 ## 2. Dashboard y web
 
-| Ítem | Nota |
-|------|------|
-| Gráficos de histórico | Visualizar evolución de mediciones |
-| Edición de config desde la UI | Formularios en vez de JSON crudo |
-| Páginas por sección | Sensores, red, alarmas, energía, OTA |
-| Multi-idioma (es/en) | Selección de idioma en la web |
-| Tema claro/oscuro persistente | Guardar preferencia |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| Vistas guardadas del dashboard | Hoy el layout Gridstack es global, no por usuario | ⬜ |
+| Exportar imágenes/PDF del panel | Reporte visual de la estación | ⬜ |
+| Modo kiosco / pantalla completa | Panel permanente en un display | ⬜ |
+| Accesibilidad (contraste, teclado) | Cumplimiento WCAG básico | ⬜ |
 
 ## 3. Almacenamiento y datos
 
-| Ítem | Nota |
-|------|------|
-| Rotación del EventLog (D-0057) | El histórico ya rota; falta el de eventos |
-| Agregación por niveles | Alta resolución reciente + resumen a largo plazo |
-| Export CSV/JSON | Descargar el histórico en un archivo |
-| Retención por tiempo | Descartar por antigüedad, no solo por cantidad |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| Retención por niveles configurable | La agregación horaria existe; falta hacerla configurable | 🔄 |
+| Exportación JSON masiva | Hoy `GET /api/v1/history` devuelve JSON; el CSV ya existe | 🔄 |
+| Descarga de eventos en CSV | Igual que el histórico, para `events`/`alarms` | ⬜ |
+| Réplica a servidor (store & forward) | Enviar histórico pendiente al recuperar enlace | ⬜ |
 
 ## 4. Comunicaciones
 
-| Ítem | Nota |
-|------|------|
-| LoRaWAN (red) | Protocolo de red sobre LoRa |
-| Red Zigbee multi-dispositivo | Sensores/actuadores Zigbee remotos |
-| BLE | Configuración por Bluetooth |
-| CoAP / MQTT-SN | Protocolos ligeros |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| LoRaWAN | Protocolo de red sobre LoRa (hoy LoRa punto a punto) | ⬜ |
+| Red Zigbee multi-dispositivo | Sensores/actuadores Zigbee remotos (hoy ZNP como co-procesador) | ⬜ |
+| BLE | Configuración inicial por Bluetooth | ⬜ |
+| CoAP / MQTT-SN | Protocolos ligeros para redes de muy bajo consumo | ⬜ |
+| Ethernet con PoE | Alimentación por el mismo cable | ⬜ |
 
 ## 5. Sensores adicionales
 
-| Ítem | Nota |
-|------|------|
-| Rayos (AS3935) | Detección de tormentas (SPI/I²C + IRQ) |
-| CO (MQ-7 / MICS-5524) | Monóxido de carbono |
-| Radiación solar (piranómetro) | Salida analógica (ya soportado por `ADC`) |
-| Calidad de aire (SGP30) | eCO₂ / TVOC |
-| Veleta (dirección del viento) | Encoder/ADC (velocidad ya cubierta por PCNT) |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| PT100/PT1000/NTC | Temperatura industrial con acondicionamiento | ⬜ |
+| Sensores Modbus adicionales | pH, EC, NPK, humedad de suelo industrial | 🔄 |
+| Anemómetro ultrasónico | Sin partes móviles | ⬜ |
+| Piranómetro con calibración multipunto | Hoy `SOLAR` usa escala/offset | 🔄 |
+| PMSA003 / SPS30 | Alternativas al PMS5003 por UART | ⬜ |
 
 ## 6. Energía
 
-| Ítem | Nota |
-|------|------|
-| Gestión de panel solar | MPPT, voltaje de carga |
-| Batería LiFePO4 / Li-ion | Curvas de descarga |
-| Perfiles energéticos por horario | Ahorro programado |
-| Wake por RTC (alarmas de hora) | Despertar a horas fijas |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| Gestión de carga / MPPT | Voltaje y corriente de carga del panel solar | ⬜ |
+| Medición de corriente y consumo | Requiere sensor (INA219/ACS712) | ⬜ |
+| Batería LiFePO4 / Li-ion | Curvas de descarga para estimar estado de carga | ⬜ |
+| Perfiles energéticos por horario | Ahorro programado (hoy perfiles por estado) | ⬜ |
+| Wake por RTC (alarmas de hora) | Despertar a horas fijas, no solo por timer/lluvia | ⬜ |
 
 ## 7. Hardware / expansión
 
-| Ítem | Nota |
-|------|------|
-| CAN (TWAI) | Bus industrial |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| PCB propia (rev1) | Hoy los pines fijos existen para la placa `esp32-wroom-32u` en diseño | 🔄 |
+| Driver propio de expansores SPI | MAX14830/SC18IS602B hoy son configuración de bus | 🔄 |
+| Salidas de potencia integradas | Relés/SSR en placa, con protecciones | ⬜ |
 
 ## 8. Fiabilidad y operación
 
-| Ítem | Nota |
-|------|------|
-| Re-aplicar config sin reinicio | Hot reload de sensores/reglas/publicadores |
-| RTC hardware (DS3231) con batería | Hora real sin NTP |
-| Config de respaldo (fail-safe) | Recuperar si la config se corrompe |
-| Watchdog jerárquico por tarea | Un watchdog por cada tarea crítica |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| RTC hardware (DS3231) con batería | Hora válida sin NTP | ⬜ |
+| Config fail-safe con copia previa | Hoy, si la config no valida, se cargan los defaults | 🔄 |
+| Watchdog jerárquico por tarea | Un watchdog por tarea crítica | ⬜ |
+| Rollback automático por arranques fallidos | Contador de arranques fallidos → partición anterior | ⬜ |
+| Log remoto (syslog/MQTT) | Diagnóstico sin acceso físico | ⬜ |
 
 ## 9. Plataforma
 
-| Ítem | Nota |
-|------|------|
-| Multi-estación | Varias SEMA en un dashboard |
-| Zona horaria en timestamps | Hoy los timestamps son UTC |
-| Health por sensor | Estado individual en la API |
+| Ítem | Nota | Estado |
+|------|------|:------:|
+| Multi-estación en un dashboard | Requiere el Servidor Central (fuera de alcance) | ⬜ |
+| Alertas push (Telegram/webhook) | Hoy los eventos se publican por MQTT/HTTP | 🔄 |
+| OTA masivo por flota | Actualizar varias estaciones a la vez | ⬜ |
+| App móvil | Acceso rápido a estado y alarmas | ⬜ |
+
+## 10. Ya implementado (retirado del catálogo)
+
+| Ítem | Dónde se implementó |
+|------|---------------------|
+| Rotación del `EventLog` (D-0057) | `EventLog::rotate()` (conserva las últimas `maxEntries`) |
+| Agregación del histórico por niveles | `HistoryStore::aggregate()` + `readAggregated()`, invocada desde `SemaCore` |
+| Retención del histórico por tiempo | `storage.retention_days` → `HistoryStore::setRetentionSeconds()` |
+| Export CSV del histórico | `GET /api/v1/history?format=csv` (v1.33.0) |
+| Gráficos con series, ejes y rangos | v1.32.0 |
+| Edición de configuración desde la UI | Páginas `/config/*` + formularios del dashboard |
+| Páginas por sección | `/sensors`, `/events`, `/config/network`, `/config/security`, `/config/system`, `/config/wind`, `/config/sensors` |
+| Tema claro/oscuro persistente | v1.34.0 |
+| Rate limiting y expiración de sesión | v1.6.0 / v1.12.0 |
+| CAN (TWAI) | v1.21.0 |
+| Zona horaria configurable | `system.timezone` (default `America/Argentina/Buenos_Aires`) |
+| Soporte de microSD | `storage.sd_enabled` + `HistoryStore::enableSd()` |
+| Health por sensor | Campo `healthy` en el catálogo de `/api/v1/sensors` |
+| Dashboard multi-idioma (es/en) | `system.lang` + `data-i18n` con `toggleLang()` en `HttpServer.cpp` |
+| Layout del dashboard persistente | `system.dashboard_layout` + `/api/v1/dashboard/layout` |
 
 ---
 
-Ver también: [Home](Home.md) · [Guía de inicio](Guia-de-inicio.md) ·
-[Evolución](Evolucion.md).
+## 11. Regla de actualización
+
+Este archivo se actualiza al **retirar** un ítem (cuando se implementa y pasa al
+[CHANGELOG](CHANGELOG.md) y a [Evolución](Evolucion.md)) o al **agregar** ideas nuevas.
+Es docs-only: no requiere release.
+
+---
+
+## Ver también
+
+- [Mejoras y roadmap](Mejoras-y-roadmap.md) · [Evolución](Evolucion.md) · [CHANGELOG](CHANGELOG.md)
+- [Seguridad](Seguridad.md) · [Energía y consumo](Energia-y-consumo.md) · [Almacenamiento e histórico](Almacenamiento-e-historico.md)
