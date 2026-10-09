@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="es" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,19 +12,19 @@
         <meta name="author" content="AlessandroKlein">
       
       
-        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/sema/Identidad-y-Estados/">
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/sema/adr/0011-ota-con-rollback/">
       
       
-        <link rel="prev" href="../Seguridad/">
+        <link rel="prev" href="../0010-api-rest-v1-y-seguridad/">
       
       
-        <link rel="next" href="../Solucion-de-problemas/">
+        <link rel="next" href="../0012-watchdog-health-y-diagnostico/">
       
       
         
-          <link rel="alternate" href="../../../sema/Identidad-y-Estados/" hreflang="es">
+          <link rel="alternate" href="./" hreflang="es">
         
-          <link rel="alternate" href="./" hreflang="en">
+          <link rel="alternate" href="../../../en/sema/adr/0011-ota-con-rollback/" hreflang="en">
         
       
       
@@ -33,7 +33,7 @@
     
     
       
-        <title>Identidad y estados - AlessandroKlein Docs</title>
+        <title>ADR 0011 · OTA con rollback - AlessandroKlein Docs</title>
       
     
     
@@ -86,8 +86,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#identidad-y-estados" class="md-skip">
-          Skip to content
+        <a href="#0011-ota-con-particiones-redundantes-y-rollback" class="md-skip">
+          Saltar a contenido
         </a>
       
     </div>
@@ -101,8 +101,8 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../" title="AlessandroKlein Docs" class="md-header__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="AlessandroKlein Docs" class="md-header__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Identidad y estados
+              ADR 0011 · OTA con rollback
             
           </span>
         </div>
@@ -162,20 +162,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../sema/Identidad-y-Estados/" hreflang="es" class="md-select__link">
+            <a href="./" hreflang="es" class="md-select__link">
               Español
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="./" hreflang="en" class="md-select__link">
+            <a href="../../../en/sema/adr/0011-ota-con-rollback/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -196,21 +196,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Buscar">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -223,7 +223,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            Inicializando búsqueda
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -235,7 +235,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/AlessandroKlein/Docs" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -250,7 +250,7 @@
   
     
       
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -262,7 +262,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../" class="md-tabs__link">
+        <a href="../../.." class="md-tabs__link">
           
   
   
@@ -284,7 +284,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../invernadero/Inicio-rapido/" class="md-tabs__link">
+        <a href="../../../invernadero/Inicio-rapido/" class="md-tabs__link">
           
   
   
@@ -308,7 +308,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../Home/" class="md-tabs__link">
+        <a href="../../Home/" class="md-tabs__link">
           
   
   
@@ -350,9 +350,9 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../" title="AlessandroKlein Docs" class="md-nav__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+    <a href="../../.." title="AlessandroKlein Docs" class="md-nav__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -362,7 +362,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/AlessandroKlein/Docs" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -417,7 +417,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../.." class="md-nav__link ">
               
   
   
@@ -461,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inicio/Reglas-de-trabajo/" class="md-nav__link">
+      <a href="../../../inicio/Reglas-de-trabajo/" class="md-nav__link">
         
   
   
@@ -489,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inicio/Estandar-de-documentacion/" class="md-nav__link">
+      <a href="../../../inicio/Estandar-de-documentacion/" class="md-nav__link">
         
   
   
@@ -517,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inicio/Versionado/" class="md-nav__link">
+      <a href="../../../inicio/Versionado/" class="md-nav__link">
         
   
   
@@ -545,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inicio/Design-system/" class="md-nav__link">
+      <a href="../../../inicio/Design-system/" class="md-nav__link">
         
   
   
@@ -573,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inicio/Security/" class="md-nav__link">
+      <a href="../../../inicio/Security/" class="md-nav__link">
         
   
   
@@ -734,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Inicio-rapido/" class="md-nav__link">
+      <a href="../../../invernadero/Inicio-rapido/" class="md-nav__link">
         
   
   
@@ -762,7 +762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Arquitectura/" class="md-nav__link">
+      <a href="../../../invernadero/Arquitectura/" class="md-nav__link">
         
   
   
@@ -790,7 +790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Referencia-de-codigo/" class="md-nav__link">
+      <a href="../../../invernadero/Referencia-de-codigo/" class="md-nav__link">
         
   
   
@@ -818,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Estadisticas/" class="md-nav__link">
+      <a href="../../../invernadero/Estadisticas/" class="md-nav__link">
         
   
   
@@ -846,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Referencia-API-interna/" class="md-nav__link">
+      <a href="../../../invernadero/Referencia-API-interna/" class="md-nav__link">
         
   
   
@@ -874,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Enumeraciones-y-tipos/" class="md-nav__link">
+      <a href="../../../invernadero/Enumeraciones-y-tipos/" class="md-nav__link">
         
   
   
@@ -902,7 +902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Diagramas/" class="md-nav__link">
+      <a href="../../../invernadero/Diagramas/" class="md-nav__link">
         
   
   
@@ -930,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Control-PID/" class="md-nav__link">
+      <a href="../../../invernadero/Control-PID/" class="md-nav__link">
         
   
   
@@ -958,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Compatibilidad/" class="md-nav__link">
+      <a href="../../../invernadero/Compatibilidad/" class="md-nav__link">
         
   
   
@@ -986,7 +986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Hardware-y-Conexiones/" class="md-nav__link">
+      <a href="../../../invernadero/Hardware-y-Conexiones/" class="md-nav__link">
         
   
   
@@ -1014,7 +1014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Guia-de-pines/" class="md-nav__link">
+      <a href="../../../invernadero/Guia-de-pines/" class="md-nav__link">
         
   
   
@@ -1042,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Sensores/" class="md-nav__link">
+      <a href="../../../invernadero/Sensores/" class="md-nav__link">
         
   
   
@@ -1070,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Actuadores-y-Salidas/" class="md-nav__link">
+      <a href="../../../invernadero/Actuadores-y-Salidas/" class="md-nav__link">
         
   
   
@@ -1098,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Materiales/" class="md-nav__link">
+      <a href="../../../invernadero/Materiales/" class="md-nav__link">
         
   
   
@@ -1126,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Configuracion/" class="md-nav__link">
+      <a href="../../../invernadero/Configuracion/" class="md-nav__link">
         
   
   
@@ -1154,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Referencia-configuracion/" class="md-nav__link">
+      <a href="../../../invernadero/Referencia-configuracion/" class="md-nav__link">
         
   
   
@@ -1182,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Variables-Modificables/" class="md-nav__link">
+      <a href="../../../invernadero/Variables-Modificables/" class="md-nav__link">
         
   
   
@@ -1210,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/API-REST/" class="md-nav__link">
+      <a href="../../../invernadero/API-REST/" class="md-nav__link">
         
   
   
@@ -1238,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/MQTT-y-WebSocket/" class="md-nav__link">
+      <a href="../../../invernadero/MQTT-y-WebSocket/" class="md-nav__link">
         
   
   
@@ -1266,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Estacion-meteorologica/" class="md-nav__link">
+      <a href="../../../invernadero/Estacion-meteorologica/" class="md-nav__link">
         
   
   
@@ -1294,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/OTA-y-Actualizacion/" class="md-nav__link">
+      <a href="../../../invernadero/OTA-y-Actualizacion/" class="md-nav__link">
         
   
   
@@ -1322,7 +1322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Servidor-central/" class="md-nav__link">
+      <a href="../../../invernadero/Servidor-central/" class="md-nav__link">
         
   
   
@@ -1350,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Seguridad/" class="md-nav__link">
+      <a href="../../../invernadero/Seguridad/" class="md-nav__link">
         
   
   
@@ -1378,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Identidad-y-Estados/" class="md-nav__link">
+      <a href="../../../invernadero/Identidad-y-Estados/" class="md-nav__link">
         
   
   
@@ -1406,7 +1406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Solucion-de-problemas/" class="md-nav__link">
+      <a href="../../../invernadero/Solucion-de-problemas/" class="md-nav__link">
         
   
   
@@ -1434,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/FAQ/" class="md-nav__link">
+      <a href="../../../invernadero/FAQ/" class="md-nav__link">
         
   
   
@@ -1462,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Decisiones/" class="md-nav__link">
+      <a href="../../../invernadero/Decisiones/" class="md-nav__link">
         
   
   
@@ -1490,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Compilacion/" class="md-nav__link">
+      <a href="../../../invernadero/Compilacion/" class="md-nav__link">
         
   
   
@@ -1518,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Guia-de-desarrollo/" class="md-nav__link">
+      <a href="../../../invernadero/Guia-de-desarrollo/" class="md-nav__link">
         
   
   
@@ -1546,7 +1546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Evolucion/" class="md-nav__link">
+      <a href="../../../invernadero/Evolucion/" class="md-nav__link">
         
   
   
@@ -1574,7 +1574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Mejoras/" class="md-nav__link">
+      <a href="../../../invernadero/Mejoras/" class="md-nav__link">
         
   
   
@@ -1602,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/CHANGELOG/" class="md-nav__link">
+      <a href="../../../invernadero/CHANGELOG/" class="md-nav__link">
         
   
   
@@ -1630,7 +1630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Registro-de-cambios/" class="md-nav__link">
+      <a href="../../../invernadero/Registro-de-cambios/" class="md-nav__link">
         
   
   
@@ -1658,7 +1658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Frontend/" class="md-nav__link">
+      <a href="../../../invernadero/Frontend/" class="md-nav__link">
         
   
   
@@ -1686,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invernadero/Glosario/" class="md-nav__link">
+      <a href="../../../invernadero/Glosario/" class="md-nav__link">
         
   
   
@@ -1724,6 +1724,42 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -1850,14 +1886,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Home/" class="md-nav__link">
+      <a href="../../Home/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    Inicio
   
 
     
@@ -1878,7 +1914,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Guia-de-inicio/" class="md-nav__link">
+      <a href="../../Guia-de-inicio/" class="md-nav__link">
         
   
   
@@ -1906,7 +1942,91 @@
   
   
     <li class="md-nav__item">
-      <a href="../Arquitectura/" class="md-nav__link">
+      <a href="../../Instalacion-y-mantenimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación y mantenimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compilacion-y-flasheo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Arquitectura/" class="md-nav__link">
         
   
   
@@ -1934,119 +2054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Referencia-de-codigo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Referencia de código
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Estadísticas y métricas
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Referencia-API-interna/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Referencia API interna
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Enumeraciones-y-tipos/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Enumeraciones y tipos
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Diagramas/" class="md-nav__link">
+      <a href="../../Diagramas/" class="md-nav__link">
         
   
   
@@ -2074,14 +2082,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Control-PID/" class="md-nav__link">
+      <a href="../../Modulos-y-ciclo-de-vida/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Control PID
+    Módulos y ciclo de vida
   
 
     
@@ -2102,7 +2110,259 @@
   
   
     <li class="md-nav__item">
-      <a href="../Compatibilidad/" class="md-nav__link">
+      <a href="../../Tareas-y-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tareas y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diagnostico-y-salud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnóstico y salud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendimiento-y-memoria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimiento y memoria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compatibilidad-de-versiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pruebas-y-validacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pruebas y validación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Estadisticas-y-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compatibilidad/" class="md-nav__link">
         
   
   
@@ -2130,7 +2390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Hardware-y-Conexiones/" class="md-nav__link">
+      <a href="../../Hardware-y-Conexiones/" class="md-nav__link">
         
   
   
@@ -2158,7 +2418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Guia-de-pines/" class="md-nav__link">
+      <a href="../../Guia-de-pines/" class="md-nav__link">
         
   
   
@@ -2186,7 +2446,63 @@
   
   
     <li class="md-nav__item">
-      <a href="../Sensores/" class="md-nav__link">
+      <a href="../../Buses-y-perifericos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buses y periféricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Expansores-de-entrada-salida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expansores de entrada/salida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sensores/" class="md-nav__link">
         
   
   
@@ -2214,7 +2530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Actuadores-y-Salidas/" class="md-nav__link">
+      <a href="../../Actuadores-y-Salidas/" class="md-nav__link">
         
   
   
@@ -2242,7 +2558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Materiales/" class="md-nav__link">
+      <a href="../../Materiales/" class="md-nav__link">
         
   
   
@@ -2270,7 +2586,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../Configuracion/" class="md-nav__link">
+      <a href="../../Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID (futuro)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Configuracion/" class="md-nav__link">
         
   
   
@@ -2298,7 +2642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Referencia-configuracion/" class="md-nav__link">
+      <a href="../../Referencia-configuracion/" class="md-nav__link">
         
   
   
@@ -2326,7 +2670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Variables-modificables/" class="md-nav__link">
+      <a href="../../Variables-modificables/" class="md-nav__link">
         
   
   
@@ -2354,7 +2698,147 @@
   
   
     <li class="md-nav__item">
-      <a href="../API-REST/" class="md-nav__link">
+      <a href="../../Alarmas-y-reglas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alarmas y reglas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Calibracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Magnitudes-derivadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitudes derivadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Almacenamiento-e-historico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Almacenamiento e histórico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Energia-y-consumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energía y consumo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-REST/" class="md-nav__link">
         
   
   
@@ -2382,7 +2866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../MQTT-y-WebSocket/" class="md-nav__link">
+      <a href="../../MQTT-y-WebSocket/" class="md-nav__link">
         
   
   
@@ -2410,7 +2894,91 @@
   
   
     <li class="md-nav__item">
-      <a href="../OTA-y-Actualizacion/" class="md-nav__link">
+      <a href="../../Conectividad-y-red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conectividad y red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Comunicaciones-remotas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones remotas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Backup-y-restauracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup y restauración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OTA-y-Actualizacion/" class="md-nav__link">
         
   
   
@@ -2438,7 +3006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Seguridad/" class="md-nav__link">
+      <a href="../../Seguridad/" class="md-nav__link">
         
   
   
@@ -2446,6 +3014,515 @@
     
   
     Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Identidad-y-estados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Solucion-de-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución de problemas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preguntas frecuentes (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Limitaciones-conocidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitaciones y bugs conocidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_46" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_46" id="__nav_3_46_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_46_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Decisiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Índice de decisiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0001-plataforma-configurable-y-separacion-de-capas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001 · Plataforma configurable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0002-perfiles-de-placa-capacidades-y-hal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002 · Perfiles de placa y HAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0003-modelo-canonico-de-mediciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003 · Modelo canónico de mediciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0004-event-bus-tipado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004 · Event bus tipado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0005-calibracion-independiente-del-driver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005 · Calibración independiente del driver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0006-almacenamiento-por-capas-y-retencion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006 · Almacenamiento por capas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0007-offline-first-y-publishers-desacoplados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0007 · Offline-first y publicadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0008-runtime-freertos-y-afinidad-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0008 · Runtime FreeRTOS y afinidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0009-configuracion-transaccional-y-safe-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0009 · Configuración transaccional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0010-api-rest-v1-y-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0010 · API REST v1 y seguridad
   
 
     
@@ -2482,7 +3559,7 @@
   <span class="md-ellipsis">
     
   
-    Identidad y estados
+    ADR 0011 · OTA con rollback
   
 
     
@@ -2500,7 +3577,7 @@
   <span class="md-ellipsis">
     
   
-    Identidad y estados
+    ADR 0011 · OTA con rollback
   
 
     
@@ -2512,7 +3589,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
   
   
@@ -2521,15 +3598,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#identidad" class="md-nav__link">
+  <a href="#contexto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Identidad
+        Contexto
       
     </span>
   </a>
@@ -2537,10 +3614,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#estados-de-salud-healthmonitor" class="md-nav__link">
+  <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estados de salud (HealthMonitor)
+        Decisión
       
     </span>
   </a>
@@ -2548,10 +3625,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#estados-de-energia-energyprofile" class="md-nav__link">
+  <a href="#consecuencias" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estados de energía (EnergyProfile)
+        Consecuencias
       
     </span>
   </a>
@@ -2559,54 +3636,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wake-reasons-deep-sleep" class="md-nav__link">
+  <a href="#ver-tambien" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wake reasons (deep sleep)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#calidad-de-medicion-quality" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Calidad de medición (Quality)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#estado-de-red" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Estado de red
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#estado-de-sensores" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Estado de sensores
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#estados-del-dashboard-sesion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Estados del dashboard (sesión)
+        Ver también
       
     </span>
   </a>
@@ -2629,14 +3662,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Solucion-de-problemas/" class="md-nav__link">
+      <a href="../0012-watchdog-health-y-diagnostico/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Solución de problemas
+    ADR 0012 · Watchdog y diagnóstico
   
 
     
@@ -2657,14 +3690,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../FAQ/" class="md-nav__link">
+      <a href="../0013-perfiles-energeticos-y-wake-por-lluvia/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Preguntas frecuentes (FAQ)
+    ADR 0013 · Perfiles energéticos y wake
   
 
     
@@ -2685,14 +3718,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Decisiones/" class="md-nav__link">
+      <a href="../0014-modulos-instalables-y-descubrimiento/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Decisiones
+    ADR 0014 · Módulos instalables
   
 
     
@@ -2706,29 +3739,9 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Compilación y flasheo
-  
-
-    
-  </span>
-  
-  
-
-      </a>
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2741,35 +3754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Guia-de-desarrollo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Guía de desarrollo (extender)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Evolucion/" class="md-nav__link">
+      <a href="../../Evolucion/" class="md-nav__link">
         
   
   
@@ -2797,7 +3782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Mejoras-y-roadmap/" class="md-nav__link">
+      <a href="../../Mejoras-y-roadmap/" class="md-nav__link">
         
   
   
@@ -2825,7 +3810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Futuro/" class="md-nav__link">
+      <a href="../../Futuro/" class="md-nav__link">
         
   
   
@@ -2853,7 +3838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CHANGELOG/" class="md-nav__link">
+      <a href="../../CHANGELOG/" class="md-nav__link">
         
   
   
@@ -2881,7 +3866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Registro-de-cambios/" class="md-nav__link">
+      <a href="../../Registro-de-cambios/" class="md-nav__link">
         
   
   
@@ -2909,7 +3894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Frontend/" class="md-nav__link">
+      <a href="../../Frontend/" class="md-nav__link">
         
   
   
@@ -2937,7 +3922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Glosario/" class="md-nav__link">
+      <a href="../../Glosario/" class="md-nav__link">
         
   
   
@@ -2983,14 +3968,14 @@
   
 
 
-  <nav class="md-path" aria-label="Navigation" >
+  <nav class="md-path" aria-label="Navegación" >
     <ol class="md-path__list">
       
         
   
   
     <li class="md-path__item">
-      <a href="../../" class="md-path__link">
+      <a href="../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Inicio
@@ -3008,10 +3993,28 @@
     
     
       <li class="md-path__item">
-        <a href="../Home/" class="md-path__link">
+        <a href="../../Home/" class="md-path__link">
           
   <span class="md-ellipsis">
     SEMA
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../Decisiones/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Decisiones
   </span>
 
         </a>
@@ -3034,7 +4037,14 @@
       
       
       
-        <span class="md-tag">identidad</span>
+        <span class="md-tag">adr</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">ota</span>
       
     
       
@@ -3051,103 +4061,56 @@
   
 
 
-<h1 id="identidad-y-estados">Identidad y estados</h1>
+<h1 id="0011-ota-con-particiones-redundantes-y-rollback">0011. OTA con particiones redundantes y rollback</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.103.0</p>
+<p><strong>Tipo:</strong> Convención (ADR) | <strong>Estado:</strong> Aceptada | <strong>Fecha:</strong> 2026-10-03
+<strong>Firmware:</strong> v1.103.0 | <strong>Decisión origen:</strong> D-0031, D-0049</p>
 </blockquote>
-<p>Identidad de la estación y estados/máquinas de estado del firmware.</p>
-<h2 id="identidad">Identidad</h2>
-<table>
-<thead>
-<tr>
-<th>Campo</th>
-<th>Fuente</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>station.id</code></td>
-<td>config</td>
-<td>Id lógico (default <code>"SEMA-001"</code>)</td>
-</tr>
-<tr>
-<td><code>station.name</code></td>
-<td>config</td>
-<td>Nombre visible (default <code>"Estación Norte"</code>)</td>
-</tr>
-<tr>
-<td><code>firmware</code></td>
-<td><code>SEMA_FW_VERSION</code></td>
-<td><code>1.103.0</code></td>
-</tr>
-<tr>
-<td><code>hw</code></td>
-<td><code>SEMA_HW_VERSION</code></td>
-<td><code>rev0</code></td>
-</tr>
-<tr>
-<td><code>config_schema</code></td>
-<td><code>SEMA_CONFIG_SCHEMA_VERSION</code></td>
-<td><code>1</code></td>
-</tr>
-<tr>
-<td><code>protocol</code></td>
-<td><code>SEMA_PROTOCOL_VERSION</code></td>
-<td><code>1</code></td>
-</tr>
-<tr>
-<td><code>network.hostname</code></td>
-<td>config</td>
-<td>host mDNS <code>&lt;hostname&gt;.local</code></td>
-</tr>
-</tbody>
-</table>
-<p>La identidad viaja en las mediciones (<code>station_id</code>), en MQTT/webhook y en
-<code>GET /api/v1/status</code> / <code>/api/v1/system</code>.</p>
-<h2 id="estados-de-salud-healthmonitor">Estados de salud (<code>HealthMonitor</code>)</h2>
-<p><code>HEALTHY</code> → <code>DEGRADED</code> → <code>ERROR</code>, según heartbeat (30 s) y sensores online.</p>
-<h2 id="estados-de-energia-energyprofile">Estados de energía (<code>EnergyProfile</code>)</h2>
-<p><code>Performance</code> · <code>Normal</code> · <code>LowPower</code> · <code>UltraLowPower</code>.</p>
-<h2 id="wake-reasons-deep-sleep">Wake reasons (deep sleep)</h2>
-<p><code>wake_reason</code> (de <code>esp_sleep_get_wakeup_cause()</code>): timer RTC o GPIO de lluvia (<code>ext0</code>).</p>
-<h2 id="calidad-de-medicion-quality">Calidad de medición (<code>Quality</code>)</h2>
-<p><code>VALID</code> · <code>INVALID</code> · <code>STALE</code> · <code>TIMEOUT</code> · <code>OUT_OF_RANGE</code> ·
-<code>CALIBRATION_ERROR</code> · <code>COMMUNICATION_ERROR</code> · <code>SENSOR_DISCONNECTED</code>.</p>
-<h2 id="estado-de-red">Estado de red</h2>
-<table>
-<thead>
-<tr>
-<th>Campo</th>
-<th>Valores</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>network.mode</code></td>
-<td><code>STA</code> · <code>AP</code></td>
-</tr>
-<tr>
-<td><code>connected</code></td>
-<td><code>true</code> · <code>false</code></td>
-</tr>
-<tr>
-<td><code>ip</code></td>
-<td>dirección IP</td>
-</tr>
-<tr>
-<td><code>rssi</code></td>
-<td>dBm</td>
-</tr>
-</tbody>
-</table>
-<h2 id="estado-de-sensores">Estado de sensores</h2>
-<p>Cada sensor del catálogo reporta <code>healthy</code> (true/false) en <code>GET /api/v1/sensors</code>.</p>
-<h2 id="estados-del-dashboard-sesion">Estados del dashboard (sesión)</h2>
+<h2 id="contexto">Contexto</h2>
+<p>Una estación instalada en el campo no se puede descolgar para reflashear por USB. Una
+actualización que falle a mitad de camino, o un firmware que arranque mal, dejaría el
+equipo inaccesible sin visita técnica.</p>
+<h2 id="decision">Decisión</h2>
+<p><strong>OTA con rollback</strong> (D-0031, D-0049) sobre las particiones redundantes de ESP-IDF:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>partitions_4mb.csv
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> nvs      0x9000   0x5000
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> otadata  0xe000   0x2000
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> app0    0x10000  0x1C0000   ← aplicación A
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> app1    0x1D0000 0x1C0000   ← aplicación B
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> spiffs  0x390000 0x70000
+</span></code></pre></div>
 <ul>
-<li><strong>Sin sesión</strong>: se muestra el login.</li>
-<li><strong>Con sesión válida</strong>: se muestra el dashboard (estado, histórico, gráfico, config).</li>
-<li><strong>Sesión expirada</strong> (1 h sin actividad): vuelve al login.</li>
+<li>La actualización se escribe en la partición <strong>libre</strong> (<code>esp_ota_get_next_update_partition</code>)
+  y <code>otadata</code> decide cuál arranca.</li>
+<li>La actualización se <strong>verifica antes de marcar el firmware como válido</strong>: si el
+  cliente envía <code>X-SHA256</code>, el handler recalcula el SHA-256 de la partición escrita y
+  responde <code>400 {"error":"sha256 mismatch"}</code> sin reiniciar cuando no coincide.</li>
+<li>El firmware se arranca recién si la verificación pasa; si no, se conserva la versión
+  anterior.</li>
+</ul>
+<p>Particiones por tamaño de flash: <code>partitions_4mb.csv</code> (WROOM),
+<code>partitions_8mb.csv</code> (S3), <code>partitions_16mb.csv</code> (WROOM-32U).</p>
+<h2 id="consecuencias">Consecuencias</h2>
+<ul>
+<li>✅ Un OTA fallido no deja la estación sin firmware: siempre queda la copia previa.</li>
+<li>✅ El binario y su hash se publican por release: <code>firmware_manifest.json</code> lista
+  <code>board</code>, <code>chip</code>, <code>flash_mb</code>, <code>firmware</code>, <code>sha256</code>, <code>filesystem</code> y
+  <code>filesystem_sha256</code>.</li>
+<li>✅ <code>GET /api/v1/update/check</code> compara <code>SEMA_FW_VERSION</code> contra el <code>version</code> del
+  manifiesto en <code>raw.githubusercontent.com/AlessandroKlein/SEMA/refs/heads/main</code> y
+  devuelve <code>current</code>, <code>latest</code>, <code>update</code> y <code>url</code> del release.</li>
+<li>⚠️ El check de actualización usa <code>WiFiClientSecure::setInsecure()</code> (sin validar
+  certificado); el comentario del código lo justifica porque el OTA real se valida por
+  SHA-256, pero el <strong>manifiesto</strong> puede ser falsificado y mostrar una versión falsa.</li>
+<li>⚠️ <strong>OTA firmado pendiente</strong>: no hay firma criptográfica del binario ni verificación
+  de origen; el SHA-256 es opcional y lo aporta el cliente.</li>
+<li>⚠️ El rollback automático depende del mecanismo de ESP-IDF y del <code>otadata</code>; no hay
+  contador de arranques fallidos propio ni "modo recuperación" explícito.</li>
+</ul>
+<h2 id="ver-tambien">Ver también</h2>
+<ul>
+<li><a href="../../Decisiones/">Decisiones</a> · <a href="../../OTA-y-Actualizacion/">OTA y actualización</a> ·
+  <a href="../../Backup-y-restauracion/">Backup y restauración</a> · <a href="../../Compilacion-y-flasheo/">Compilación y flasheo</a></li>
 </ul>
 
 
@@ -3177,7 +4140,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
+  Volver al principio
 </button>
         
       </main>
@@ -3186,33 +4149,33 @@
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../Seguridad/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seguridad">
+          <a href="../0010-api-rest-v1-y-seguridad/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: ADR 0010 · API REST v1 y seguridad">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Previous
+                Anterior
               </span>
               <div class="md-ellipsis">
-                Seguridad
+                ADR 0010 · API REST v1 y seguridad
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Solucion-de-problemas/" class="md-footer__link md-footer__link--next" aria-label="Next: Solución de problemas">
+          <a href="../0012-watchdog-health-y-diagnostico/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: ADR 0012 · Watchdog y diagnóstico">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Next
+                Siguiente
               </span>
               <div class="md-ellipsis">
-                Solución de problemas
+                ADR 0012 · Watchdog y diagnóstico
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -3308,14 +4271,14 @@
 <div class="md-consent__controls">
   
     
-      <button class="md-button md-button--primary">Accept</button>
+      <button class="md-button md-button--primary">Aceptar</button>
     
     
     
   
     
     
-      <button type="reset" class="md-button md-button--primary">Reject</button>
+      <button type="reset" class="md-button md-button--primary">Rechazar</button>
     
     
   
@@ -3328,7 +4291,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>

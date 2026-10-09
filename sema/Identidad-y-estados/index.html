@@ -1,0 +1,5435 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación unificada de los proyectos de AlessandroKlein">
+      
+      
+        <meta name="author" content="AlessandroKlein">
+      
+      
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/sema/Identidad-y-estados/">
+      
+      
+        <link rel="prev" href="../Seguridad/">
+      
+      
+        <link rel="next" href="../Solucion-de-problemas/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="es">
+        
+          <link rel="alternate" href="../../en/sema/Identidad-y-estados/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Identidad y estados - AlessandroKlein Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue-grey">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#identidad-y-estados" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="AlessandroKlein Docs" class="md-header__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AlessandroKlein Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Identidad y estados
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue-grey"  aria-label="Cambiar a oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue-grey"  aria-label="Cambiar a claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/sema/Identidad-y-estados/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AlessandroKlein/Docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Inicio
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../invernadero/Inicio-rapido/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Invernadero
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Home/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SEMA
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AlessandroKlein Docs" class="md-nav__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AlessandroKlein Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AlessandroKlein/Docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inicio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Reglas-de-trabajo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reglas de trabajo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Estandar-de-documentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estándar de documentación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Versionado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Design-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad (SECURITY.md)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invernadero
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Invernadero
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Inicio-rapido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio rápido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Diagramas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de bloques y datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Compatibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad (placas/sensores/buses)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Hardware-y-Conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware y conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Guia-de-pines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de pines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Sensores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Actuadores-y-Salidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuadores y salidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Materiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de configuración (JSON)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Variables-Modificables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables modificables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/MQTT-y-WebSocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Estacion-meteorologica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estación meteorológica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/OTA-y-Actualizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OTA y actualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Servidor-central/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servidor central
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Identidad-y-Estados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Solucion-de-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución de problemas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preguntas frecuentes (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Decisiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Compilacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Evolucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Mejoras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mejoras y roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versiones (CHANGELOG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Registro-de-cambios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de cambios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (guía de estilo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SEMA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SEMA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-inicio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instalacion-y-mantenimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación y mantenimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagramas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de bloques y datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Modulos-y-ciclo-de-vida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Módulos y ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tareas-y-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tareas y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagnostico-y-salud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnóstico y salud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rendimiento-y-memoria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimiento y memoria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad-de-versiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pruebas-y-validacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pruebas y validación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad (placas/sensores/buses)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hardware-y-Conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware y conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-pines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de pines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Buses-y-perifericos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buses y periféricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Expansores-de-entrada-salida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expansores de entrada/salida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sensores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Actuadores-y-Salidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuadores y salidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Materiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID (futuro)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de configuración (JSON)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Variables-modificables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables modificables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Alarmas-y-reglas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alarmas y reglas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Calibracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Magnitudes-derivadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitudes derivadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Almacenamiento-e-historico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Almacenamiento e histórico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Energia-y-consumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energía y consumo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MQTT-y-WebSocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Conectividad-y-red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conectividad y red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Comunicaciones-remotas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones remotas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Backup-y-restauracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup y restauración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OTA-y-Actualizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OTA y actualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-identidad-de-la-estacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Identidad de la estación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Identidad de la estación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-stationid-en-las-mediciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 station.id en las mediciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-identidad-de-hardware-en-tiempo-de-compilacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Identidad de hardware en tiempo de compilación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-versiones-y-compatibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Versiones y compatibilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-estados-de-salud-healthmonitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Estados de salud (HealthMonitor)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-estados-de-sensores-y-calidad-de-medicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Estados de sensores y calidad de medición
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Estados de sensores y calidad de medición">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-salud-por-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Salud por sensor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-quality-flags-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Quality Flags (Quality)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-deteccion-i2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Detección I²C
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-estados-de-energia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Estados de energía
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Estados de energía">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-perfiles-energyprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Perfiles (EnergyProfile)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-wake-reasons-esp_sleep_wakeup_cause_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Wake reasons (esp_sleep_wakeup_cause_t)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-estados-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Estados de red
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Estados de red">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-wifi-y-ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 WiFi y Ethernet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-estados-del-bus-de-datos-canlorazigbeemodbus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Estados del bus de datos (CAN/LoRa/Zigbee/Modbus)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-estados-de-sesion-y-autenticacion-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Estados de sesión y autenticación (web)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-estados-y-severidades-de-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Estados y severidades de evento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Estados y severidades de evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-reset-reasons-esp_reset_reason" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Reset reasons (esp_reset_reason())
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-estados-de-capacidades-capability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Estados de capacidades (Capability)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-estados-del-dashboard-sesion-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Estados del dashboard (sesión web)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-tareas-modulos-y-eventos-recuento-en-apiv1diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Tareas, módulos y eventos: recuento en /api/v1/diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-pendientes-y-limitaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Pendientes y limitaciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ver-tambien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ver también
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Solucion-de-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución de problemas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preguntas frecuentes (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Limitaciones-conocidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitaciones y bugs conocidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_46" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_46" id="__nav_3_46_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Decisiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Índice de decisiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0001-plataforma-configurable-y-separacion-de-capas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001 · Plataforma configurable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0002-perfiles-de-placa-capacidades-y-hal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002 · Perfiles de placa y HAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0003-modelo-canonico-de-mediciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003 · Modelo canónico de mediciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0004-event-bus-tipado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004 · Event bus tipado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0005-calibracion-independiente-del-driver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005 · Calibración independiente del driver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0006-almacenamiento-por-capas-y-retencion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006 · Almacenamiento por capas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0007-offline-first-y-publishers-desacoplados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0007 · Offline-first y publicadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0008-runtime-freertos-y-afinidad-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0008 · Runtime FreeRTOS y afinidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0009-configuracion-transaccional-y-safe-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0009 · Configuración transaccional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0010-api-rest-v1-y-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0010 · API REST v1 y seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0011-ota-con-rollback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0011 · OTA con rollback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0012-watchdog-health-y-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0012 · Watchdog y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0013-perfiles-energeticos-y-wake-por-lluvia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0013 · Perfiles energéticos y wake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0014-modulos-instalables-y-descubrimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0014 · Módulos instalables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Evolucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mejoras-y-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mejoras y roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Futuro (opcionales)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versiones (CHANGELOG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Registro-de-cambios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de cambios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (guía de estilo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../Home/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    SEMA
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">identidad</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">sema</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="identidad-y-estados">Identidad y estados</h1>
+<blockquote>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable
+<strong>Fecha:</strong> 2026-10-08
+<strong>Firmware:</strong> v1.103.0</p>
+</blockquote>
+<p>Identidad de la estación y <strong>todos</strong> los estados que el firmware expone o maneja:
+salud, calidad de medición, energía, red, sesión web, eventos y capacidades.</p>
+<h2 id="1-identidad-de-la-estacion">1. Identidad de la estación</h2>
+<p>Fuentes: <code>station.id</code> y <code>station.name</code> en la config (<code>include/core/ConfigManager.hpp</code>),
+los <code>#define</code> de <code>include/core/Version.hpp</code> y <code>include/hw/HwProfile.hpp</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Origen</th>
+<th>Default / valor en v1.103.0</th>
+<th>Dónde se ve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>station.id</code></td>
+<td>config <code>station.id</code></td>
+<td><code>"SEMA-001"</code></td>
+<td><code>GET /api/v1/status</code> (<code>station</code>), <code>/api/v1/system</code> (<code>id</code>)</td>
+</tr>
+<tr>
+<td><code>station.name</code></td>
+<td>config <code>station.name</code></td>
+<td><code>"Estación Norte"</code></td>
+<td><code>status</code> (<code>name</code>), <code>system</code> (<code>name</code>)</td>
+</tr>
+<tr>
+<td><code>firmware</code></td>
+<td><code>SEMA_FW_VERSION</code></td>
+<td><code>"1.103.0"</code></td>
+<td><code>status</code>, <code>system</code>, <code>diagnostics</code>, <code>backup</code></td>
+</tr>
+<tr>
+<td><code>hw</code></td>
+<td><code>SEMA_HW_VERSION</code></td>
+<td><code>"rev0"</code></td>
+<td><code>system</code>, <code>diagnostics</code></td>
+</tr>
+<tr>
+<td><code>config_schema</code></td>
+<td><code>SEMA_CONFIG_SCHEMA_VERSION</code></td>
+<td><code>1</code></td>
+<td><code>system</code></td>
+</tr>
+<tr>
+<td><code>protocol</code></td>
+<td><code>SEMA_PROTOCOL_VERSION</code></td>
+<td><code>1</code></td>
+<td><code>system</code> (protocolo con el Servidor Central)</td>
+</tr>
+<tr>
+<td><code>board</code></td>
+<td><code>SEMA_BOARD_ID</code></td>
+<td><code>esp32-wroom-4mb</code> · <code>esp32-wroom32u-16mb</code> · <code>esp32-s3-8mb</code></td>
+<td><code>system</code></td>
+</tr>
+<tr>
+<td><code>flash_mb</code></td>
+<td><code>SEMA_FLASH_MB</code></td>
+<td><code>4</code> · <code>16</code> · <code>8</code></td>
+<td><code>system</code></td>
+</tr>
+<tr>
+<td><code>firmware_file</code></td>
+<td>construido</td>
+<td><code>sema_1.103.0_&lt;board&gt;.bin</code></td>
+<td><code>system</code></td>
+</tr>
+<tr>
+<td><code>network.hostname</code></td>
+<td>config</td>
+<td><code>"sema-001"</code></td>
+<td><code>system</code> (<code>wifi_host</code>), mDNS <code>&lt;hostname&gt;.local</code></td>
+</tr>
+<tr>
+<td><code>restart_count</code></td>
+<td>NVS, clave <code>boots</code></td>
+<td>contador acumulativo</td>
+<td><code>system</code></td>
+</tr>
+</tbody>
+</table>
+<p>La identidad se propaga por: <code>GET /api/v1/status</code>, <code>GET /api/v1/system</code>, el bloque
+<code>station</code> de <code>GET /api/v1/config</code>, los metadatos de <code>GET /api/v1/backup</code>
+(<code>backup_format</code>, <code>backup_version</code>, <code>firmware</code>, <code>timestamp</code>) y el prefijo serial del
+arranque (<code>SEMA v1.103.0 (hw rev0, schema 1, protocol 1)</code>).</p>
+<h3 id="11-stationid-en-las-mediciones">1.1 <code>station.id</code> en las mediciones</h3>
+<p>El Modelo Canónico tiene un campo <code>stationId</code> (<code>Measurement.hpp:29</code>) y los
+publicadores lo emiten como <code>station_id</code>… ⚠️ <strong>pero nadie lo asigna</strong>: en todo el
+repositorio no hay una sola escritura a <code>Measurement::stationId</code> (los únicos usos
+son la declaración, <code>MqttPublisher.cpp:47</code> y <code>HttpPublisher.cpp:20</code>). En v1.103.0 el
+campo viaja <strong>siempre como cadena vacía</strong> (<code>"station_id": ""</code>), tanto en MQTT como
+en el webhook. Tampoco aparece en <code>GET /api/v1/sensors</code> ni en el WebSocket.</p>
+<p>⚠️ <strong>Consecuencia:</strong> un receptor externo no puede distinguir de qué estación viene
+una medición por el payload; hay que inferirlo del topic MQTT o de la URL del
+webhook.</p>
+<h3 id="12-identidad-de-hardware-en-tiempo-de-compilacion">1.2 Identidad de hardware en tiempo de compilación</h3>
+<table>
+<thead>
+<tr>
+<th>Macro</th>
+<th>Dónde</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BOARD_ESP32_WROOM</code> / <code>BOARD_ESP32_WROOM32U</code> / <code>BOARD_ESP32_S3</code></td>
+<td><code>platformio.ini</code> (<code>build_flags</code>)</td>
+<td>Fija <code>SEMA_BOARD_ID</code>, <code>SEMA_FLASH_MB</code> y <code>SEMA_NATIVE_ETH</code>; si no se define ninguna, <code>#error</code></td>
+</tr>
+<tr>
+<td><code>SEMA_NATIVE_ETH</code></td>
+<td><code>HwProfile.hpp</code></td>
+<td><code>1</code> = LAN8720A por RMII; <code>0</code> = W5500 por SPI</td>
+</tr>
+<tr>
+<td><code>SEMA_PINS_FROM_FILE</code></td>
+<td><code>HwProfile.hpp</code> (default <code>0</code>)</td>
+<td><code>1</code> = pines fijos de <code>HwProfile.hpp</code> y la web los ignora; <code>0</code> = pines por web</td>
+</tr>
+<tr>
+<td><code>SEMA_FIXED_HARDWARE</code></td>
+<td><code>include/core/BoardProfile.hpp</code> (default <code>0</code>)</td>
+<td><code>1</code> = se ignora el catálogo <code>sensors[]</code> de la config y se usa el catálogo fijo</td>
+</tr>
+<tr>
+<td><code>SEMA_DEMO</code></td>
+<td><code>HwProfile.hpp</code> (default <code>0</code>)</td>
+<td><code>1</code> = valores ficticios en <code>/api/v1/sensors</code> y <code>/api/v1/history</code> (entorno <code>demo</code>)</td>
+</tr>
+<tr>
+<td><code>SEMA_MODBUS_ISOLATED</code></td>
+<td><code>HwProfile.hpp</code> (default <code>1</code>)</td>
+<td>Transceiver RS485: <code>TD501D485H</code> (aislado) vs <code>SN65HVD75DR</code></td>
+</tr>
+</tbody>
+</table>
+<p>La placa <code>esp32-wroom-32u</code> compila con <code>SEMA_PINS_FROM_FILE=1</code>; las otras tres, con
+<code>0</code>. <code>GET /api/v1/system</code> informa el estado efectivo en <code>board</code>, <code>flash_mb</code>,
+<code>pins_from_file</code>, <code>demo</code> y <code>native_eth</code>.</p>
+<h2 id="2-versiones-y-compatibilidad">2. Versiones y compatibilidad</h2>
+<table>
+<thead>
+<tr>
+<th>Versión</th>
+<th>Valor</th>
+<th>Cambia cuando…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firmware</td>
+<td><code>1.103.0</code> (SemVer, sin prefijo <code>v</code>)</td>
+<td>Cada release</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td><code>rev0</code></td>
+<td>Se revisa el diseño de la PCB</td>
+</tr>
+<tr>
+<td>Esquema de configuración</td>
+<td><code>1</code></td>
+<td>Cambia la forma del JSON de config (se valida: otro valor ⇒ <code>validate()</code> falla ⇒ <code>PUT /api/v1/config</code> devuelve <code>400</code>)</td>
+</tr>
+<tr>
+<td>Protocolo</td>
+<td><code>1</code></td>
+<td>Cambia el contrato con el Servidor Central</td>
+</tr>
+</tbody>
+</table>
+<p>El respaldo es autodescriptivo: <code>backup_format: "sema-backup"</code>,
+<code>backup_version: 1</code>. Ver <a href="../Compatibilidad-de-versiones/">Compatibilidad-de-versiones</a>
+y <a href="../Backup-y-restauracion/">Backup-y-restauracion</a>.</p>
+<h2 id="3-estados-de-salud-healthmonitor">3. Estados de salud (<code>HealthMonitor</code>)</h2>
+<p>Fuente: <code>include/core/HealthMonitor.hpp</code> + <code>src/core/HealthMonitor.cpp</code>.
+Se expone en <code>GET /api/v1/health</code> (<code>status</code>) y <code>GET /api/v1/diagnostics</code> (<code>health</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Condición exacta (evaluada en este orden)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ERROR</code></td>
+<td><code>total &gt; 0 &amp;&amp; online == 0</code> — hay sensores configurados y <strong>ninguno</strong> responde</td>
+</tr>
+<tr>
+<td><code>DEGRADED</code></td>
+<td><code>total &gt; 0 &amp;&amp; online &lt; total</code> — alguno no responde</td>
+</tr>
+<tr>
+<td><code>DEGRADED</code></td>
+<td>Heartbeat vencido: <code>millis() - lastTickMs &gt;= 30000</code> (el latido corre cada 5 s)</td>
+</tr>
+<tr>
+<td><code>DEGRADED</code></td>
+<td>Alguna tarea registrada superó su timeout (watchdog jerárquico)</td>
+</tr>
+<tr>
+<td><code>HEALTHY</code></td>
+<td>Ninguna de las anteriores</td>
+</tr>
+</tbody>
+</table>
+<p>Tareas registradas en v1.103.0 (<code>SemaCore::setup</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Tarea</th>
+<th>Timeout</th>
+<th>Late cada</th>
+<th>Registrada en</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core.heartbeat</code></td>
+<td><strong>30.000 ms</strong></td>
+<td>5.000 ms</td>
+<td><code>SemaCore.cpp:180</code></td>
+</tr>
+<tr>
+<td><code>sensors.read</code></td>
+<td><strong>60.000 ms</strong></td>
+<td>10.000 ms</td>
+<td><code>SemaCore.cpp:181</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>HealthMonitor::kMaxTasks = 10</code>: hasta 10 tareas monitoreadas.</li>
+<li><code>taskHealthy(nombre)</code> devuelve <code>true</code> para una tarea <strong>no registrada</strong> (no se
+  evalúa).</li>
+<li><code>uptime_s</code> de <code>/api/v1/health</code> sale de <code>HealthMonitor</code> (<code>millis() - startMs_</code>), no
+  del reloj NTP.</li>
+<li>Los contadores de sensores se actualizan en cada lectura
+  (<code>health_.setSensorStats(onlineCount, count)</code>).</li>
+<li>El <strong>watchdog de hardware</strong> es independiente: <code>Watchdog::begin(10)</code> configura el
+  TWDT de ESP-IDF con <strong>10 s</strong> y <code>loop()</code> lo alimenta en cada vuelta; si el loop se
+  bloquea más de 10 s, el SoC se reinicia (no pasa por <code>HEALTHY/DEGRADED/ERROR</code>).</li>
+<li>❌ No hay estados intermedios ni contadores de fallos por sensor: <code>health</code> es una
+  foto instantánea, sin histéresis ni promedios.</li>
+</ul>
+<h2 id="4-estados-de-sensores-y-calidad-de-medicion">4. Estados de sensores y calidad de medición</h2>
+<h3 id="41-salud-por-sensor">4.1 Salud por sensor</h3>
+<p>Cada entrada del catálogo de <code>GET /api/v1/sensors</code> lleva <code>healthy</code> (<code>bool</code>) y
+<code>interface</code> (bus usado: <code>I2C</code>, <code>1-Wire</code>, <code>ADC</code>, <code>UART</code>, <code>PCNT</code>, <code>demo</code>…). El
+<code>SensorManager</code> cuenta <code>onlineCount()</code> y <code>count()</code>; la diferencia es
+<code>sensors.error</code> en <code>/api/v1/health</code>.</p>
+<h3 id="42-quality-flags-quality">4.2 Quality Flags (<code>Quality</code>)</h3>
+<p>Ocho estados (<code>include/core/Measurement.hpp</code>), serializados con <code>qualityName()</code> y
+leídos con <code>parseQuality()</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Nombre en JSON</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Valid</code></td>
+<td><code>VALID</code></td>
+<td>Medición válida</td>
+</tr>
+<tr>
+<td><code>Invalid</code></td>
+<td><code>INVALID</code></td>
+<td>Lectura inválida</td>
+</tr>
+<tr>
+<td><code>Stale</code></td>
+<td><code>STALE</code></td>
+<td>Dato viejo (sin actualizar)</td>
+</tr>
+<tr>
+<td><code>Timeout</code></td>
+<td><code>TIMEOUT</code></td>
+<td>El sensor no respondió a tiempo</td>
+</tr>
+<tr>
+<td><code>OutOfRange</code></td>
+<td><code>OUT_OF_RANGE</code></td>
+<td>Fuera del rango de calibración</td>
+</tr>
+<tr>
+<td><code>CalibrationError</code></td>
+<td><code>CALIBRATION_ERROR</code></td>
+<td>Error de calibración</td>
+</tr>
+<tr>
+<td><code>CommunicationError</code></td>
+<td><code>COMMUNICATION_ERROR</code></td>
+<td>Error de bus/comunicación</td>
+</tr>
+<tr>
+<td><code>SensorDisconnected</code></td>
+<td><code>SENSOR_DISCONNECTED</code></td>
+<td>Sensor ausente</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>parseQuality()</code> devuelve <code>Valid</code> para cualquier cadena desconocida <strong>y</strong> para
+  <code>nullptr</code> (no hay estado de error de parseo).</li>
+<li>Los valores por defecto de una <code>Measurement</code> nueva son <code>quality = Valid</code>,
+  <code>sequence = 0</code>, <code>timestamp = 0</code>.</li>
+<li><code>sequence</code> es un contador monotónico <strong>por sensor</strong>; las magnitudes derivadas y la
+  entrada sintética <code>clock</code> publican <code>sequence = 0</code>.</li>
+<li>La calibración por canal (<code>CalibrationSpec</code>: <code>gain</code>, <code>offset</code>, <code>has_range</code>, <code>min</code>,
+  <code>max</code>) se aplica antes de publicar; <code>has_range</code> con <code>min</code>/<code>max</code> es lo que produce
+  <code>OUT_OF_RANGE</code>. Sin calibraciones configuradas, el firmware aplica por defecto
+  <code>gain = 1.0</code>, <code>offset = 0</code>, rango <code>-40…85</code> a <code>EXT:temperature</code> e <code>INT:temperature</code>
+  (<code>SemaCore::applyCalibrations</code>).</li>
+</ul>
+<h3 id="43-deteccion-i2c">4.3 Detección I²C</h3>
+<p>En el arranque se escanea el bus I²C (<code>Wire.begin(SEMA_PIN_I2C_SDA, SEMA_PIN_I2C_SCL)</code>
+→ <code>I2cScanner::scan</code>) y se guardan los dispositivos detectados con una <strong>sugerencia
+de modelo</strong> por dirección. Se exponen en <code>GET /api/v1/diagnostics</code> como
+<code>i2c_devices[]</code> (<code>address</code> en formato <code>"0x%02X"</code>, <code>model</code>). Es una detección
+informativa: no crea sensores ni cambia la config.</p>
+<h2 id="5-estados-de-energia">5. Estados de energía</h2>
+<h3 id="51-perfiles-energyprofile">5.1 Perfiles (<code>EnergyProfile</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Nombre en JSON</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Performance</code></td>
+<td><code>performance</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Normal</code></td>
+<td><code>normal</code></td>
+<td>✅ (<code>profile_ = EnergyProfile::Normal</code>)</td>
+</tr>
+<tr>
+<td><code>LowPower</code></td>
+<td><code>low_power</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>UltraLowPower</code></td>
+<td><code>ultra_low_power</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Se leen en <code>GET /api/v1/energy</code> (<code>profile</code>). ⚠️ <strong>No hay endpoint ni página para
+cambiar el perfil</strong>: solo existe <code>PowerManager::setProfile()</code> como API interna, y
+nadie lo llama. <strong>Los perfiles no alteran ningún comportamiento del firmware</strong> (no
+modifican frecuencias, intervalos de sensores ni WiFi): son una etiqueta de estado.</p>
+<h3 id="52-wake-reasons-esp_sleep_wakeup_cause_t">5.2 Wake reasons (<code>esp_sleep_wakeup_cause_t</code>)</h3>
+<p><code>PowerManager::wakeReason()</code> devuelve el valor crudo de
+<code>esp_sleep_get_wakeup_cause()</code>, que se publica como número en <code>/api/v1/energy</code> y se
+imprime por serial en el arranque (<code>Wake reason: N</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Constante</th>
+<th>Origen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ESP_SLEEP_WAKEUP_UNDEFINED</code></td>
+<td>No vino de deep sleep (arranque, reset, OTA)</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>ESP_SLEEP_WAKEUP_ALL</code></td>
+<td>No es una causa real (se usa para deshabilitar fuentes)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ESP_SLEEP_WAKEUP_EXT0</code></td>
+<td>Señal externa por RTC_IO — <strong>el pluviómetro usa esta</strong> (<code>enableRainWakeup</code> → <code>esp_sleep_enable_ext0_wakeup(pin, 1)</code>), nivel <strong>HIGH</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>ESP_SLEEP_WAKEUP_EXT1</code></td>
+<td>Señal externa por RTC_CNTL</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ESP_SLEEP_WAKEUP_TIMER</code></td>
+<td>Timer RTC — <strong>el que usa <code>PowerManager::sleep(s)</code></strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>ESP_SLEEP_WAKEUP_TOUCHPAD</code></td>
+<td>Touchpad</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>ESP_SLEEP_WAKEUP_ULP</code></td>
+<td>Programa ULP</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>ESP_SLEEP_WAKEUP_GPIO</code></td>
+<td>GPIO (solo light sleep en ESP32/S2/S3)</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>ESP_SLEEP_WAKEUP_UART</code></td>
+<td>UART (solo light sleep)</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>ESP_SLEEP_WAKEUP_WIFI</code></td>
+<td>WiFi (solo light sleep)</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>El deep sleep no está cableado en el runtime:</strong> <code>PowerManager::sleep()</code> existe
+pero <strong>no se llama desde ningún lado</strong> (no hay tarea, ni endpoint, ni lógica de
+ciclo de trabajo). Lo único que corre es <code>enableRainWakeup(config.energy.rainPin)</code>
+en <code>setup()</code> <strong>si <code>energy.rain_pin != 0</code></strong> (default <code>0</code>), que arma la fuente de
+wakeup sin llegar a dormir nunca. En la práctica <code>wake_reason</code> es siempre <code>0</code>
+salvo que se agregue el ciclo de sueño.</p>
+<h2 id="6-estados-de-red">6. Estados de red</h2>
+<h3 id="61-wifi-y-ethernet">6.1 WiFi y Ethernet</h3>
+<table>
+<thead>
+<tr>
+<th>Campo (<code>GET /api/v1/network</code>)</th>
+<th>Valores</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mode</code></td>
+<td><code>"STA"</code> · <code>"AP"</code></td>
+<td><code>"AP"</code> también cuando se pidió STA sin SSID</td>
+</tr>
+<tr>
+<td><code>connected</code></td>
+<td><code>true</code> · <code>false</code></td>
+<td>En AP es <strong>siempre <code>true</code></strong></td>
+</tr>
+<tr>
+<td><code>ip</code></td>
+<td>IPv4 en texto</td>
+<td><code>localIP()</code> o <code>softAPIP()</code></td>
+</tr>
+<tr>
+<td><code>rssi</code></td>
+<td>dBm (negativo)</td>
+<td><strong><code>0</code></strong> en modo AP</td>
+</tr>
+<tr>
+<td><code>ethernet.enabled</code></td>
+<td><code>true</code> · <code>false</code></td>
+<td><code>ethernet.enabled</code> de la config</td>
+</tr>
+<tr>
+<td><code>ethernet.connected</code></td>
+<td><code>true</code> · <code>false</code></td>
+<td><code>ETH.linkUp()</code> (nativo) o IP ≠ 0 (W5500)</td>
+</tr>
+<tr>
+<td><code>ethernet.ip</code></td>
+<td>IPv4 en texto</td>
+<td>Vacío si no hay IP</td>
+</tr>
+</tbody>
+</table>
+<p>Estados adicionales sin campo propio: <code>wifi_mdns</code> y <code>wifi_host</code> en
+<code>GET /api/v1/system</code>; el backoff de reconexión (2 s → 60 s) es interno y no se
+expone. Ver <a href="../Conectividad-y-red/">Conectividad-y-red</a>.</p>
+<h3 id="62-estados-del-bus-de-datos-canlorazigbeemodbus">6.2 Estados del bus de datos (CAN/LoRa/Zigbee/Modbus)</h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Rutas</th>
+<th>Valores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ready</code></td>
+<td><code>/modbus</code>, <code>/can</code>, <code>/lora</code>, <code>/zigbee</code></td>
+<td>El driver/bus se inicializó correctamente</td>
+</tr>
+<tr>
+<td><code>received</code></td>
+<td><code>/can</code>, <code>/lora</code>, <code>/zigbee</code></td>
+<td>Si en esa llamada apareció una trama/paquete/mensaje</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>/modbus</code></td>
+<td>Código de ModbusMaster (<code>0</code> = éxito, <code>0xFF</code> = bus no listo)</td>
+</tr>
+<tr>
+<td><code>src</code></td>
+<td><code>/zigbee</code></td>
+<td>Dirección corta de origen del último <code>AF_INCOMING_MSG</code> (<code>0</code> si no hay)</td>
+</tr>
+</tbody>
+</table>
+<p>No hay estado de error de bus (bus-off, CRC, watchdog del co-procesador) expuesto
+por API. Ver <a href="../Comunicaciones-remotas/">Comunicaciones-remotas</a>.</p>
+<h2 id="7-estados-de-sesion-y-autenticacion-web">7. Estados de sesión y autenticación (web)</h2>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th><code>webAuthed()</code></th>
+<th>Lo que ve el navegador</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>security.password</code> vacío</td>
+<td><code>true</code> (sin login configurado)</td>
+<td>Dashboard completo con <code>window.SEMA_AUTH=true</code></td>
+</tr>
+<tr>
+<td>Sin sesión y con contraseña configurada</td>
+<td><code>false</code></td>
+<td><code>/</code> sirve el <strong>dashboard público</strong> con <code>SEMA_AUTH=false</code> (menú y edición ocultos); <code>/sensors</code>, <code>/events</code> y <code>/config/*</code> sirven el <strong>formulario de login</strong>; la API responde <code>401</code></td>
+</tr>
+<tr>
+<td>Sesión válida (cookie <code>sema_auth</code>)</td>
+<td><code>true</code></td>
+<td>Dashboard completo. Expira a la hora, <strong>deslizante</strong></td>
+</tr>
+<tr>
+<td>Sesión expirada</td>
+<td><code>false</code></td>
+<td>Igual que "sin sesión" (<code>sessionStartMs_ = 0</code>)</td>
+</tr>
+<tr>
+<td><code>POST /login</code> con 5 fallos</td>
+<td>—</td>
+<td>Bloqueo de <strong>60 s</strong> → <code>429</code></td>
+</tr>
+</tbody>
+</table>
+<p>Detalles de estado de la sesión: el token es de 16 hex aleatorios
+(<code>esp_random</code> en <code>begin()</code>), viaja en <code>Cookie: sema_auth=&lt;token&gt;</code> con <code>HttpOnly</code> y
+<code>SameSite=Strict</code>, y <strong>no cambia</strong> al iniciar/cerrar sesión (es el mismo de todo el
+ciclo de arranque). <code>GET /logout</code> limpia la cookie con <code>Max-Age=0</code>. Ver
+<a href="../Seguridad/">Seguridad</a> y <a href="../API-REST/">API-REST</a> §2.</p>
+<h2 id="8-estados-y-severidades-de-evento">8. Estados y severidades de evento</h2>
+<p>Fuente: <code>include/core/EventBus.hpp</code>. La API publica los <strong>nombres</strong>, no los enums:</p>
+<table>
+<thead>
+<tr>
+<th><code>EventType</code></th>
+<th>Nombre</th>
+<th></th>
+<th><code>Severity</code></th>
+<th>Nombre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sensor</code></td>
+<td><code>sensor</code></td>
+<td></td>
+<td><code>Debug</code></td>
+<td><code>DEBUG</code></td>
+</tr>
+<tr>
+<td><code>Rain</code></td>
+<td><code>rain</code></td>
+<td></td>
+<td><code>Info</code></td>
+<td><code>INFO</code></td>
+</tr>
+<tr>
+<td><code>Lightning</code></td>
+<td><code>lightning</code></td>
+<td></td>
+<td><code>Notice</code></td>
+<td><code>NOTICE</code></td>
+</tr>
+<tr>
+<td><code>Battery</code></td>
+<td><code>battery</code></td>
+<td></td>
+<td><code>Warning</code></td>
+<td><code>WARNING</code></td>
+</tr>
+<tr>
+<td><code>Network</code></td>
+<td><code>network</code></td>
+<td></td>
+<td><code>Error</code></td>
+<td><code>ERROR</code></td>
+</tr>
+<tr>
+<td><code>Alarm</code></td>
+<td><code>alarm</code></td>
+<td></td>
+<td><code>Critical</code></td>
+<td><code>CRITICAL</code></td>
+</tr>
+<tr>
+<td><code>System</code></td>
+<td><code>system</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Wake</code></td>
+<td><code>wake</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Sleep</code></td>
+<td><code>sleep</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Eventos que genera el firmware en v1.103.0:</p>
+<table>
+<thead>
+<tr>
+<th>Evento</th>
+<th>Tipo</th>
+<th>Severidad</th>
+<th><code>source</code></th>
+<th><code>value</code></th>
+<th><code>rule</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arranque</td>
+<td><code>system</code></td>
+<td><code>INFO</code></td>
+<td><code>core</code></td>
+<td><code>0</code></td>
+<td><code>boot</code></td>
+</tr>
+<tr>
+<td>Alarma por regla</td>
+<td><code>alarm</code></td>
+<td><code>WARNING</code></td>
+<td><code>sensorId</code> de la medición</td>
+<td><code>valor × 100</code> (entero)</td>
+<td>nombre de la regla</td>
+</tr>
+</tbody>
+</table>
+<p><code>EventLog</code> guarda hasta <strong>100</strong> eventos (buffer circular) y los persiste en
+<code>/events.jsonl</code> (LittleFS). El único suscriptor de alarmas registrado imprime por
+serial (<code>[ALARM] &lt;regla&gt; → &lt;sensor&gt; = &lt;valor×100&gt;</code>). ⚠️ Recordá que el <code>ts</code> de estos
+eventos en la API es <code>millis()</code>, no época (ver <a href="../API-REST/">API-REST</a> §6).</p>
+<h3 id="81-reset-reasons-esp_reset_reason">8.1 Reset reasons (<code>esp_reset_reason()</code>)</h3>
+<p><code>GET /api/v1/system</code> (<code>reset_reason</code>) y <code>/api/v1/diagnostics</code> devuelven el entero.
+La página <code>/config/system</code> lo traduce con esta tabla exacta:</p>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Nombre</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>UNKNOWN</code></td>
+<td>Desconocido</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>POWERON</code></td>
+<td>Encendido / power-on</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>EXTERNAL</code></td>
+<td>Reset externo (<code>ESP_RST_EXT</code>)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>SOFTWARE</code></td>
+<td>Reset por software (<code>ESP.restart()</code>)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>PANIC</code></td>
+<td>Excepción / pánico</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>INT_WDT</code></td>
+<td>Watchdog de interrupción</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>TASK_WDT</code></td>
+<td>Watchdog de tareas (TWDT de 10 s de SEMA)</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>WDT</code></td>
+<td>Otro watchdog</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>DEEPSLEEP</code></td>
+<td>Despertar de deep sleep</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>BROWNOUT</code></td>
+<td>Caída de tensión</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>SDIO</code></td>
+<td>Reset por SDIO</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-estados-de-capacidades-capability">9. Estados de capacidades (<code>Capability</code>)</h2>
+<p><code>GET /api/v1/capabilities</code> recorre el enum y devuelve las activas. Las 16
+capacidades declaradas y su estado real en v1.103.0:</p>
+<table>
+<thead>
+<tr>
+<th>Capacidad</th>
+<th>Nombre JSON</th>
+<th>¿Activa?</th>
+<th></th>
+<th>Capacidad</th>
+<th>Nombre JSON</th>
+<th>¿Activa?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WiFi</code></td>
+<td><code>wifi</code></td>
+<td>✅</td>
+<td></td>
+<td><code>Uart</code></td>
+<td><code>uart</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>Bluetooth</code></td>
+<td><code>bluetooth</code></td>
+<td>✅</td>
+<td></td>
+<td><code>Can</code></td>
+<td><code>can</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>Ethernet</code></td>
+<td><code>ethernet</code></td>
+<td>❌</td>
+<td></td>
+<td><code>Psram</code></td>
+<td><code>psram</code></td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>Adc</code></td>
+<td><code>adc</code></td>
+<td>✅</td>
+<td></td>
+<td><code>RtcGpio</code></td>
+<td><code>rtc_gpio</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>Dac</code></td>
+<td><code>dac</code></td>
+<td>✅</td>
+<td></td>
+<td><code>DeepSleep</code></td>
+<td><code>deep_sleep</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>Pcnt</code></td>
+<td><code>pcnt</code></td>
+<td>✅</td>
+<td></td>
+<td><code>DualCore</code></td>
+<td><code>dual_core</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>LedcPwm</code></td>
+<td><code>ledc_pwm</code></td>
+<td>✅</td>
+<td></td>
+<td><code>Ieee802154</code></td>
+<td><code>ieee802154</code></td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>I2c</code></td>
+<td><code>i2c</code></td>
+<td>✅</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Spi</code></td>
+<td><code>spi</code></td>
+<td>✅</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ La lista se arma <strong>a mano</strong> en <code>SemaCore::setup()</code> con el perfil del ESP32
+clásico: es idéntica en las tres placas (incluida la S3, que tiene W5500 pero
+reporta <code>Ethernet</code> inactivo, y no reporta <code>psram</code> aunque la S3 tenga PSRAM). El
+<code>Wire.begin()</code> tampoco usa los pines de la config: usa <code>SEMA_PIN_I2C_SDA</code>/<code>SCL</code>
+(21/22) del <code>BoardProfile</code>.</p>
+<h2 id="10-estados-del-dashboard-sesion-web">10. Estados del dashboard (sesión web)</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Comportamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>window.SEMA_AUTH</code></td>
+<td>Inyectado por <code>onRoot()</code>: <code>true</code> con sesión (o sin login configurado), <code>false</code> sin sesión</td>
+</tr>
+<tr>
+<td><code>SEMA_AUTH === false</code></td>
+<td>Oculta la barra de navegación y la de edición; muestra solo tema + botón de login</td>
+</tr>
+<tr>
+<td>Layout</td>
+<td>Se guarda en NVS aparte (<code>saveDashboardLayout</code>); si no existe, el JS arma uno por defecto con la primera lectura y lo guarda</td>
+</tr>
+<tr>
+<td>Auto-refresco</td>
+<td><code>/api/v1/status</code>, <code>/api/v1/system</code> y <code>/api/v1/sensors</code> cada <strong>5 s</strong>; gráficos cada <strong>60 s</strong></td>
+</tr>
+<tr>
+<td>Tema e idioma</td>
+<td><code>localStorage</code>: <code>sema_theme</code> (<code>light</code>/<code>dark</code>) y <code>sema_lang</code> (<code>es</code>/<code>en</code>) — del lado del cliente</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-tareas-modulos-y-eventos-recuento-en-apiv1diagnostics">11. Tareas, módulos y eventos: recuento en <code>/api/v1/diagnostics</code></h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Origen</th>
+<th>Valor típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tasks</code></td>
+<td><code>Scheduler::count()</code></td>
+<td><strong>2</strong> (<code>core.heartbeat</code>, <code>sensors.read</code>)</td>
+</tr>
+<tr>
+<td><code>modules</code></td>
+<td><code>ModuleRegistry::count()</code></td>
+<td><strong>0</strong> — <code>modules_.enableAll()</code> no registra ninguno</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td><code>EventLog::events().size()</code></td>
+<td>1 (boot) + alarmas, tope 100</td>
+</tr>
+<tr>
+<td><code>history.entries</code> / <code>history.max</code></td>
+<td><code>HistoryStore::count()</code> / <code>maxEntries()</code></td>
+<td><code>maxEntries</code> = <strong>10000</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-pendientes-y-limitaciones">12. Pendientes y limitaciones</h2>
+<table>
+<thead>
+<tr>
+<th>Tema</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>station_id</code> en mediciones y payloads</td>
+<td>⚠️ Campo siempre vacío</td>
+</tr>
+<tr>
+<td>Endpoint/página para el perfil de energía</td>
+<td>❌ No existe (y los perfiles no cambian comportamiento)</td>
+</tr>
+<tr>
+<td>Ciclo de deep sleep (<code>PowerManager::sleep</code>)</td>
+<td>❌ Definido pero nunca invocado</td>
+</tr>
+<tr>
+<td>Estados de error de bus por API</td>
+<td>❌ No expuestos</td>
+</tr>
+<tr>
+<td>Histéresis / histórico de salud</td>
+<td>❌ <code>health</code> es una foto instantánea</td>
+</tr>
+<tr>
+<td>Refresh del token de sesión</td>
+<td>❌ Fijo por arranque</td>
+</tr>
+<tr>
+<td>Capacidades por placa (Board/Chip Profile)</td>
+<td>⚠️ Lista fija del ESP32 clásico</td>
+</tr>
+<tr>
+<td>Wake por <code>energy.rain_pin</code></td>
+<td>⚠️ Se arma pero nunca se duerme</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ver-tambien">Ver también</h2>
+<ul>
+<li><a href="../API-REST/">API-REST</a> · <a href="../Configuracion/">Configuracion</a> · <a href="../Referencia-configuracion/">Referencia-configuracion</a></li>
+<li><a href="../Diagnostico-y-salud/">Diagnostico-y-salud</a> · <a href="../Enumeraciones-y-tipos/">Enumeraciones-y-tipos</a> · <a href="../Compatibilidad-de-versiones/">Compatibilidad-de-versiones</a></li>
+<li><a href="../Conectividad-y-red/">Conectividad-y-red</a> · <a href="../Comunicaciones-remotas/">Comunicaciones-remotas</a> · <a href="../MQTT-y-WebSocket/">MQTT-y-WebSocket</a></li>
+<li><a href="../Seguridad/">Seguridad</a> · <a href="../Energia-y-consumo/">Energia-y-consumo</a> · <a href="../Alarmas-y-reglas/">Alarmas-y-reglas</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../Seguridad/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Seguridad">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Seguridad
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Solucion-de-problemas/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Solución de problemas">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Solución de problemas
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 AlessandroKlein
+    </div>
+  
+  
+    <a href="https://github.com/AlessandroKlein/Docs" target="_blank" rel="noopener">
+      Documentación versionada en GitHub
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/AlessandroKlein" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+  
+
+<h4>Cookies</h4>
+<p>Usamos cookies para recordar tus preferencias (tema e idioma).</p>
+<input class="md-toggle" type="checkbox" id="__settings" checked>
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Aceptar</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Rechazar</button>
+    
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

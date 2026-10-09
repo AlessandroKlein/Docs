@@ -1,0 +1,5480 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación unificada de los proyectos de AlessandroKlein">
+      
+      
+        <meta name="author" content="AlessandroKlein">
+      
+      
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/sema/Buses-y-perifericos/">
+      
+      
+        <link rel="prev" href="../Guia-de-pines/">
+      
+      
+        <link rel="next" href="../Expansores-de-entrada-salida/">
+      
+      
+        
+          <link rel="alternate" href="../../../sema/Buses-y-perifericos/" hreflang="es">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Buses y periféricos - AlessandroKlein Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue-grey">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#buses-y-perifericos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="AlessandroKlein Docs" class="md-header__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AlessandroKlein Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Buses y periféricos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue-grey"  aria-label="Cambiar a oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue-grey"  aria-label="Cambiar a claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../sema/Buses-y-perifericos/" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AlessandroKlein/Docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AlessandroKlein/Docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Inicio
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../invernadero/Inicio-rapido/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Invernadero
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Home/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SEMA
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="AlessandroKlein Docs" class="md-nav__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AlessandroKlein Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AlessandroKlein/Docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AlessandroKlein/Docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inicio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Reglas-de-trabajo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reglas de trabajo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Estandar-de-documentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estándar de documentación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Versionado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Design-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad (SECURITY.md)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invernadero
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Invernadero
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Inicio-rapido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio rápido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Diagramas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de bloques y datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Compatibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad (placas/sensores/buses)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Hardware-y-Conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware y conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Guia-de-pines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de pines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Sensores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Actuadores-y-Salidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuadores y salidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Materiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de configuración (JSON)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Variables-Modificables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables modificables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/MQTT-y-WebSocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Estacion-meteorologica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estación meteorológica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/OTA-y-Actualizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OTA y actualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Servidor-central/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servidor central
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Identidad-y-Estados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Solucion-de-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución de problemas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preguntas frecuentes (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Decisiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Compilacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Evolucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Mejoras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mejoras y roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versiones (CHANGELOG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Registro-de-cambios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de cambios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (guía de estilo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SEMA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SEMA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-inicio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instalacion-y-mantenimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación y mantenimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagramas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de bloques y datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Modulos-y-ciclo-de-vida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Módulos y ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tareas-y-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tareas y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagnostico-y-salud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnóstico y salud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rendimiento-y-memoria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimiento y memoria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad-de-versiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pruebas-y-validacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pruebas y validación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad (placas/sensores/buses)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hardware-y-Conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware y conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-pines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de pines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buses y periféricos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buses y periféricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-mapa-de-buses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Mapa de buses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-i2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. I²C
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. I²C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-direcciones-i2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Direcciones I²C
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-deteccion-automatica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Detección automática
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-spi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-microsd-historico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 microSD (histórico)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. UART
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-1-wire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 1-Wire
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-adc-interno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. ADC interno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pcnt-contador-de-pulsos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. PCNT (contador de pulsos)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-rs485-modbus-rtu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. RS485 / Modbus RTU
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-can-twai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. CAN / TWAI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-ethernet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Ethernet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Ethernet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-lan8720a-rmii" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 LAN8720A (RMII)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-w5500-spi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 W5500 (SPI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-lora-sx1262" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. LoRa (SX1262)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-zigbee-cc2652p2-znp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Zigbee (CC2652P2 / ZNP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-recursos-compartidos-y-limites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Recursos compartidos y límites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-fichas-de-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Fichas de conexión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Fichas de conexión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-lan8720a-phy-ethernet-rmii" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 LAN8720A (PHY Ethernet RMII)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-w5500-ethernet-spi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 W5500 (Ethernet SPI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143-sx1262-lora-modulo-sx1262patr8-gc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144-rf-bm-2652p2-zigbee-znp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 RF-BM-2652P2 (Zigbee / ZNP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#145-td501d485h-transceiver-rs485-aislado-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 TD501D485H (transceiver RS485 aislado) — default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#146-sn65hvd75dr-transceiver-rs485-sin-aislar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.6 SN65HVD75DR (transceiver RS485 sin aislar)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#147-microsd-spi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.7 microSD (SPI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ver-tambien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ver también
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Expansores-de-entrada-salida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expansores de entrada/salida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sensores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Actuadores-y-Salidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuadores y salidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Materiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID (futuro)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de configuración (JSON)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Variables-modificables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables modificables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Alarmas-y-reglas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alarmas y reglas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Calibracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Magnitudes-derivadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitudes derivadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Almacenamiento-e-historico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Almacenamiento e histórico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Energia-y-consumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energía y consumo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MQTT-y-WebSocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Conectividad-y-red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conectividad y red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Comunicaciones-remotas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones remotas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Backup-y-restauracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup y restauración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OTA-y-Actualizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OTA y actualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Identidad-y-estados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Solucion-de-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución de problemas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preguntas frecuentes (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Limitaciones-conocidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitaciones y bugs conocidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_46" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_46" id="__nav_3_46_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Decisiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Índice de decisiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0001-plataforma-configurable-y-separacion-de-capas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001 · Plataforma configurable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0002-perfiles-de-placa-capacidades-y-hal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002 · Perfiles de placa y HAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0003-modelo-canonico-de-mediciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003 · Modelo canónico de mediciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0004-event-bus-tipado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004 · Event bus tipado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0005-calibracion-independiente-del-driver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005 · Calibración independiente del driver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0006-almacenamiento-por-capas-y-retencion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006 · Almacenamiento por capas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0007-offline-first-y-publishers-desacoplados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0007 · Offline-first y publicadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0008-runtime-freertos-y-afinidad-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0008 · Runtime FreeRTOS y afinidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0009-configuracion-transaccional-y-safe-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0009 · Configuración transaccional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0010-api-rest-v1-y-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0010 · API REST v1 y seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0011-ota-con-rollback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0011 · OTA con rollback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0012-watchdog-health-y-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0012 · Watchdog y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0013-perfiles-energeticos-y-wake-por-lluvia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0013 · Perfiles energéticos y wake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0014-modulos-instalables-y-descubrimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0014 · Módulos instalables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Evolucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mejoras-y-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mejoras y roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Futuro (opcionales)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versiones (CHANGELOG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Registro-de-cambios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de cambios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (guía de estilo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../Home/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    SEMA
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">buses</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">hardware</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">sema</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="buses-y-perifericos">Buses y periféricos</h1>
+<blockquote>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.103.0</p>
+</blockquote>
+<p>Cómo está implementado cada bus de SEMA (I²C, SPI, UART, 1-Wire, ADC, PCNT, RS485/Modbus,
+CAN/TWAI, Ethernet, LoRa y Zigbee), con qué claves JSON se configura, qué recursos del
+ESP32 consume, qué límites tiene y qué falta. Verificado contra <code>include/hw/HwProfile.hpp</code>,
+<code>include/core/ConfigManager.hpp</code>, <code>src/core/ConfigManager.cpp</code>, <code>src/core/SemaCore.cpp</code>,
+los <code>*Manager.cpp</code> de cada bus y <code>src/core/web/HttpServer.cpp</code>.</p>
+<blockquote>
+<p>Los valores eléctricos marcados <strong>(datasheet)</strong> provienen de la hoja de datos del
+fabricante; el repositorio SEMA no los declara. Todo lo demás sale del código.</p>
+</blockquote>
+<h2 id="1-mapa-de-buses">1. Mapa de buses</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ESP32
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── I2C0 "Wire" (compartido) ........ SDA/SCL (default 21/22) → 15 drivers de sensor,
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│                                     ADS1115, MCP23017, AS3935
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── SPI (Arduino: VSPI en WROOM / FSPI en S3)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── CS LoRa .... 10 (SX1262 por RadioLib)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── CS microSD .. 4  (SD.begin)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   └── MOSI/SCK .... 74HC595/74HC165 (bit-banged, latch propio)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── SPI host dedicado (solo S3) ..... W5500: SCK 18, MISO 19, MOSI 21, CS 5
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── UART0 "Serial" .. consola 115200
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── UART1 "Serial1" . Zigbee ZNP (CC2652P2)
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── UART2 "Serial2" . Modbus RTU  **o** PMS5003 (nunca los dos)
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── 1-Wire .......... DS18B20 (un pin, N sondas por ROM)
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── ADC1 ............ veleta, batería, CO, solar (ADC2 no convive con Wi-Fi)
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── PCNT ............ anemómetro, pluviómetro (una sola unidad: PCNT_UNIT_0)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── TWAI ............ CAN 2.0 (125k/250k/500k/1M)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>└── EMAC + RMII ..... LAN8720A (solo ESP32 clásico y WROOM-32U)
+</span></code></pre></div>
+<h2 id="2-i2c">2. I²C</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pines</td>
+<td><code>i2c_sda</code> = 21, <code>i2c_scl</code> = 22 (<code>Config.i2cSda/i2cScl</code>, <code>ConfigManager.hpp:235</code>)</td>
+</tr>
+<tr>
+<td>Inicialización real</td>
+<td><code>Wire.begin(SEMA_PIN_I2C_SDA, SEMA_PIN_I2C_SCL)</code> en <code>src/core/SemaCore.cpp:112</code>: usa las macros de <code>BoardProfile.hpp</code> (21/22), <strong>no</strong> la config</td>
+</tr>
+<tr>
+<td>Objeto</td>
+<td>Un único <code>Wire</code> (I2C0); cada driver I²C vuelve a llamar <code>Wire.begin(sda_, scl_)</code> con los pines de su <code>SensorSpec</code></td>
+</tr>
+<tr>
+<td>Escaneo</td>
+<td><code>I2cScanner::scan()</code> recorre 1..126 al arrancar y publica <code>address</code> + <code>model</code> en <code>GET /api/v1/diagnostics → i2c_devices</code></td>
+</tr>
+<tr>
+<td>Configuración web</td>
+<td>Página <code>/config/sensors</code>, bloque «Pines de buses» → <code>POST /api/v1/config/buses</code> con <code>i2c_sda</code> / <code>i2c_scl</code> (la web reinicia el equipo después de guardar)</td>
+</tr>
+<tr>
+<td>Reloj</td>
+<td>No configurable: se usa el default de la librería <code>Wire</code> (100 kHz nominal)</td>
+</tr>
+<tr>
+<td>Pull-ups</td>
+<td>No hay pull-ups internos activados por SEMA: hacen falta <strong>externos de 4,7 kΩ a 3,3 V</strong> en SDA y SCL (datasheet)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-direcciones-i2c">2.1 Direcciones I²C</h3>
+<table>
+<thead>
+<tr>
+<th>Dispositivo</th>
+<th>Dirección usada por el driver</th>
+<th>Origen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BME280</td>
+<td>0x76 u 0x77</td>
+<td><code>Bme280Sensor.cpp:19</code> (<code>begin(0x76) \|\| begin(0x77)</code>)</td>
+</tr>
+<tr>
+<td>BMP280</td>
+<td>0x76</td>
+<td><code>Bmp280Sensor.cpp:19</code></td>
+</tr>
+<tr>
+<td>SHT31</td>
+<td>0x44</td>
+<td><code>Sht31Sensor.cpp:19</code></td>
+</tr>
+<tr>
+<td>SHT40</td>
+<td>default de la librería (0x44)</td>
+<td><code>Sht40Sensor.cpp:19</code></td>
+</tr>
+<tr>
+<td>AHT20</td>
+<td>default de la librería (0x38)</td>
+<td><code>Aht20Sensor.cpp:19</code></td>
+</tr>
+<tr>
+<td>BH1750</td>
+<td>0x23</td>
+<td><code>Bh1750Sensor.cpp:7</code></td>
+</tr>
+<tr>
+<td>VEML6075</td>
+<td>default de la librería (0x10)</td>
+<td><code>Veml6075Sensor.cpp:19</code></td>
+</tr>
+<tr>
+<td>SCD30</td>
+<td>default de la librería (0x61)</td>
+<td><code>Scd30Sensor.cpp:19</code></td>
+</tr>
+<tr>
+<td>SGP30</td>
+<td>default de la librería (0x58)</td>
+<td><code>Sgp30Sensor.cpp:19</code></td>
+</tr>
+<tr>
+<td>ADS1115</td>
+<td>0x48 (<code>begin()</code> sin dirección)</td>
+<td><code>Ads1115Sensor.cpp:22</code></td>
+</tr>
+<tr>
+<td>AS3935</td>
+<td>0x03</td>
+<td><code>As3935Sensor.cpp:8</code></td>
+</tr>
+<tr>
+<td>MCP23017</td>
+<td><code>gpio[].expander_addr</code> (0x20-0x27)</td>
+<td><code>GpioManager.cpp:26</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong><code>address</code> del JSON no se usa.</strong> El selector «ID» de la web escribe
+<code>sensors[].address</code>, pero <code>SensorFactory::create()</code> solo pasa <code>sda</code>/<code>scl</code> a los drivers
+(<code>src/core/sensors/SensorFactory.cpp</code>): la dirección queda fija en el código. Con dos
+sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlos.</p>
+</blockquote>
+<h3 id="22-deteccion-automatica">2.2 Detección automática</h3>
+<p><code>I2cScanner::modelForAddress()</code> (<code>src/core/sensors/I2cScanner.cpp:21-37</code>) sugiere:
+<code>0x23 BH1750</code> · <code>0x38/0x39 AHT20</code> · <code>0x40 SHT31/HTU21D</code> · <code>0x44/0x45 SHT40/SHT3x</code> ·
+<code>0x5C AM2320</code> · <code>0x61 SCD30</code> · <code>0x62 SCD40/SCD41</code> · <code>0x68 MPU6050/DS3231</code> ·
+<code>0x76/0x77 BME280/BMP280</code> · cualquier otra dirección → cadena vacía («desconocido»).</p>
+<h2 id="3-spi">3. SPI</h2>
+<p>SEMA usa <strong>dos hosts SPI distintos</strong> a propósito (<code>HwProfile.hpp:93-137</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>Entorno</th>
+<th>SCK</th>
+<th>MISO</th>
+<th>MOSI</th>
+<th>Uso</th>
+<th>Driver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPI de Arduino (VSPI en WROOM/WROOM-32U, FSPI en S3)</td>
+<td>devkit-v1 y wroom-32u</td>
+<td>14</td>
+<td>12</td>
+<td>15</td>
+<td>LoRa, microSD, shift registers</td>
+<td>RadioLib / <code>SD</code> / <code>shiftOut</code>-<code>shiftIn</code></td>
+</tr>
+<tr>
+<td>SPI de Arduino (FSPI)</td>
+<td>S3</td>
+<td>12</td>
+<td>13</td>
+<td>11</td>
+<td>LoRa, microSD, shift registers</td>
+<td>RadioLib / <code>SD</code></td>
+</tr>
+<tr>
+<td>SPI3 (host 2)</td>
+<td>S3</td>
+<td>18</td>
+<td>19</td>
+<td>21</td>
+<td>W5500</td>
+<td><code>esp_eth</code> (ESP-IDF)</td>
+</tr>
+<tr>
+<td>SPI2 (host 1)</td>
+<td>WROOM/WROOM-32U</td>
+<td>14</td>
+<td>12</td>
+<td>13</td>
+<td>W5500</td>
+<td>No se usa (esas placas tienen MAC nativa)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Inicialización: <code>SPI.begin(SEMA_SPI_SCK, SEMA_SPI_MISO, SEMA_SPI_MOSI)</code> una sola vez en
+  <code>SemaCore.cpp:128-131</code>, bajo <code>#if SEMA_USE_LORA || SEMA_USE_ETHERNET</code>.</li>
+<li>Los <strong>chip-select</strong> son independientes por dispositivo: LoRa <code>SEMA_CS_LORA</code> = 10,
+  microSD <code>SEMA_PIN_SD_CS</code> = 4, W5500 <code>SEMA_CS_ETHERNET_W5500</code> = 5.</li>
+<li>El W5500 corre a <strong>20 MHz</strong>, modo 0, <code>command_bits=16</code>, <code>address_bits=8</code>,
+  <code>queue_size=20</code> (<code>EthernetManager.cpp:58-64</code>).</li>
+<li><strong>No hay mutex ni arbitraje del bus</strong>: microSD y LoRa comparten MOSI/MISO/SCK y cada
+  librería maneja su CS. Una escritura de histórico en curso puede intercalarse con una
+  recepción LoRa; el firmware no lo serializa.</li>
+<li>Los 74HC595/165 no usan <code>SPI</code>: reutilizan MOSI/SCK como bit-bang con <code>shiftOut</code>/<code>shiftIn</code>
+  (ver <a href="../Expansores-de-entrada-salida/">Expansores de entrada/salida</a>).</li>
+</ul>
+<h3 id="31-microsd-historico">3.1 microSD (histórico)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clave JSON</td>
+<td><code>storage.sd_enabled</code> (bool), <code>storage.sd_cs</code> (default 4)</td>
+</tr>
+<tr>
+<td>Driver</td>
+<td><code>SD.begin(csPin)</code> sobre el bus SPI por defecto (<code>HistoryStore.cpp:38-40</code>)</td>
+</tr>
+<tr>
+<td>Condición</td>
+<td>Solo se monta si <code>storage.sd_enabled</code> es <code>true</code> (<code>SemaCore.cpp:84-89</code>)</td>
+</tr>
+<tr>
+<td>Estado</td>
+<td><code>GET /api/v1/system → sd_enabled</code>, <code>history_available</code> (<code>history.sdEnabled()</code>)</td>
+</tr>
+<tr>
+<td>Sin SD</td>
+<td>El histórico no se guarda y las gráficas quedan vacías a propósito (no se usa flash interna)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-uart">4. UART</h2>
+<table>
+<thead>
+<tr>
+<th>Puerto</th>
+<th>Periférico</th>
+<th>Baudios</th>
+<th>Pines (claves)</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UART0</td>
+<td><code>Serial</code> (consola)</td>
+<td>115200 (<code>SemaCore.cpp:47</code>)</td>
+<td>1 / 3</td>
+<td>El log de arranque y los <code>Serial.printf</code> de diagnóstico</td>
+</tr>
+<tr>
+<td>UART1</td>
+<td><code>Serial1</code> (Zigbee ZNP)</td>
+<td><code>zigbee.baud</code> = 115200</td>
+<td><code>zigbee.rx</code> / <code>zigbee.tx</code></td>
+<td><code>ZigbeeManager.cpp:20</code></td>
+</tr>
+<tr>
+<td>UART2</td>
+<td><code>Serial2</code></td>
+<td><code>modbus.baud</code> = 9600 (Modbus) o 9600 fijo (PMS5003)</td>
+<td><code>modbus.rx</code>/<code>modbus.tx</code> o <code>sensors[].rx</code>/<code>tx</code></td>
+<td><strong>Compartido: Modbus y PMS5003 no pueden coexistir</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>La implementación nativa de UART se limita a <code>Serial1</code> (Zigbee) y <code>Serial2</code>
+  (Modbus / PMS5003). El resto de sensores UART del catálogo es el PMS5003.</li>
+<li><strong>MAX14830</strong>: expansor de 4 UART por SPI. El firmware solo guarda su <code>cs</code>
+  (<code>spi_expanders[].cs</code>) y expone la opción en los selectores de <code>bus</code>/<code>uart</code> de la web;
+  no hay driver que lo inicialice (ver <a href="../Expansores-de-entrada-salida/">Expansores de entrada/salida</a>).</li>
+</ul>
+<h2 id="5-1-wire">5. 1-Wire</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clave JSON</td>
+<td><code>sensors[model=DS18B20].pin</code> (un solo pin para todo el bus)</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>4 (<code>SEMA_PIN_ONEWIRE</code>, <code>BoardProfile.hpp:34</code>)</td>
+</tr>
+<tr>
+<td>Driver</td>
+<td><code>OneWire</code> + <code>DallasTemperature</code> (<code>Ds18b20Sensor.cpp:43-46</code>)</td>
+</tr>
+<tr>
+<td>Varios sensores</td>
+<td>Sí: cada entrada del catálogo lleva su <code>rom</code> (16 hex) o vacío para autodetección</td>
+</tr>
+<tr>
+<td>Resolución/parasitario</td>
+<td>El firmware no cambia resolución ni modo parásito: usa los defaults de la librería</td>
+</tr>
+<tr>
+<td>Pull-up</td>
+<td><strong>4,7 kΩ a 3,3 V</strong> entre DQ y VDD (README §12 lo exige; <code>SemaCore.cpp:286</code> lo comenta)</td>
+</tr>
+<tr>
+<td>Conflicto</td>
+<td>El pin 4 también es <code>sd_cs</code> por defecto y <code>can.rx</code> en el perfil fijo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-adc-interno">6. ADC interno</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claves JSON</td>
+<td><code>sensors[model=ADC\|CO\|SOLAR].pin</code>, <code>system.wind_direction_pin</code>, <code>system.wind_rpull</code></td>
+</tr>
+<tr>
+<td>Resolución</td>
+<td>12 bits: <code>analogReadResolution(12)</code> en <code>AdcSensor::begin()</code></td>
+</tr>
+<tr>
+<td>Escala</td>
+<td><code>valor = raw × scale + offset</code>, con <code>scale</code> y <code>offset</code> por sensor (JSON)</td>
+</tr>
+<tr>
+<td>Batería (catálogo fijo)</td>
+<td>GPIO34, divisor <strong>11:1</strong> para 12 V, escala <code>3,3 × 11 / 4095</code> (<code>SemaCore.cpp:290</code>)</td>
+</tr>
+<tr>
+<td>Veleta</td>
+<td><code>system.wind_direction_pin</code> (0 = deshabilitada), <code>analogRead</code> directo en <code>DerivedCalculator.cpp:218-219</code> y <code>HttpServer.cpp:2214</code></td>
+</tr>
+<tr>
+<td>Red de la veleta</td>
+<td>8 resistencias (<code>system.wind_resistors</code>, N/NE/E/SE/S/SO/O/NO) + pull-up <code>system.wind_rpull</code> = 10 000 Ω</td>
+</tr>
+<tr>
+<td>Límite real</td>
+<td>Con Wi-Fi activo <strong>solo sirve ADC1 (GPIO32-39 en ESP32 clásico, GPIO1-10 en S3)</strong>; ADC2 está tomado por el radio</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-pcnt-contador-de-pulsos">7. PCNT (contador de pulsos)</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clave JSON</td>
+<td><code>sensors[model=PCNT].pin</code>, más <code>channel</code> (<code>wind_speed</code>, <code>rain</code>) y <code>scale</code></td>
+</tr>
+<tr>
+<td>Unidad</td>
+<td><code>PCNT_UNIT_0</code> / <code>PCNT_CHANNEL_0</code> <strong>hardcodeadas</strong> (<code>PcntSensor.cpp:27-28</code>)</td>
+</tr>
+<tr>
+<td>Modo</td>
+<td>Cuenta por flanco ascendente, <code>PCNT_COUNT_INC</code>, sin pin de control</td>
+</tr>
+<tr>
+<td>Rango</td>
+<td><code>counter_l_lim = 0</code>, <code>counter_h_lim = 32767</code>; se lee y se limpia en cada ciclo (10 s)</td>
+</tr>
+<tr>
+<td>Límite</td>
+<td>Dos sensores PCNT simultáneos (anemómetro + pluviómetro) reconfiguran la misma unidad: gana el último <code>begin()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-rs485-modbus-rtu">8. RS485 / Modbus RTU</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claves JSON</td>
+<td><code>modbus{enabled,rx,tx,de_re,uart,uart_port,baud,slave_id,register,count}</code></td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>rx=16</code>, <code>tx=17</code>, <code>de_re=0</code>, <code>baud=9600</code>, <code>slave_id=1</code>, <code>register=0</code>, <code>count=4</code></td>
+</tr>
+<tr>
+<td>Rol</td>
+<td><strong>Maestro</strong> de un único esclavo: <code>readHoldingRegisters(register, count)</code> (<code>ModbusManager.cpp:55</code>)</td>
+</tr>
+<tr>
+<td>Librería</td>
+<td><code>4-20ma/ModbusMaster@^2.0.1</code></td>
+</tr>
+<tr>
+<td>Transceiver</td>
+<td><code>SEMA_MODBUS_ISOLATED=1</code> → <strong>TD501D485H</strong> (aislado); <code>=0</code> → <strong>SN65HVD75DR</strong></td>
+</tr>
+<tr>
+<td>Control DE/RE</td>
+<td>Si <code>de_re != 0</code> se marca OUTPUT y se conmuta LOW→HIGH antes de transmitir y HIGH→LOW después (<code>preTransmission</code>/<code>postTransmission</code>)</td>
+</tr>
+<tr>
+<td>Lectura</td>
+<td><code>GET /api/v1/modbus</code> → <code>{ready, result, values[]}</code> (sin autenticación); <code>result</code> es el código crudo de ModbusMaster</td>
+</tr>
+<tr>
+<td>Config web</td>
+<td>Página <code>/config/sensors</code>, bloque «Pines de buses»; <code>POST /api/v1/config/buses</code> acepta <code>enabled/rx/tx/de_re/uart/uart_port</code>; <code>baud/slave_id/register/count</code> solo por <code>PUT /api/v1/config</code></td>
+</tr>
+<tr>
+<td>Límites</td>
+<td>Un esclavo, solo holding registers, <code>count</code> según el buffer de ModbusMaster (máx. 125 registros por trama Modbus); no hay escritura</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-can-twai">9. CAN / TWAI</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claves JSON</td>
+<td><code>can{enabled,tx,rx,speed}</code></td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>tx=5</code>, <code>rx=4</code>, <code>speed=500000</code></td>
+</tr>
+<tr>
+<td>Velocidades soportadas</td>
+<td>125 000 · 250 000 · 500 000 · 1 000 000 bps (<code>CanManager.cpp:12-19</code>); cualquier otro valor cae a 500 kbps</td>
+</tr>
+<tr>
+<td>Modo</td>
+<td><code>TWAI_MODE_NORMAL</code>, filtro <code>ACCEPT_ALL</code>, sin modo escucha ni filtros por ID</td>
+</tr>
+<tr>
+<td>Endpoints</td>
+<td><code>GET /api/v1/can</code> (recibe una trama, timeout 0), <code>POST /api/v1/can</code> (<code>{id,extd,data[]}</code>, máx. 8 bytes, timeout 1000 ms)</td>
+</tr>
+<tr>
+<td>Requiere</td>
+<td>Transceiver externo (p. ej. SN65HVD230/TCAN332) a 3,3 V + terminación de 120 Ω en los extremos del bus (datasheet)</td>
+</tr>
+<tr>
+<td>Config web</td>
+<td><code>POST /api/v1/config/buses</code> acepta <code>can{enabled,tx,rx}</code>; <code>speed</code> solo por <code>PUT /api/v1/config</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-ethernet">10. Ethernet</h2>
+<p>Dos caminos excluyentes por compilación (<code>EthernetManager.cpp:13-22</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Board</th>
+<th>Chip</th>
+<th>Capa física</th>
+<th>Driver</th>
+<th><code>SEMA_NATIVE_ETH</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>esp32doit-devkit-v1</code>, <code>esp32-wroom-32u</code></td>
+<td>MAC EMAC nativa</td>
+<td>LAN8720A por RMII</td>
+<td><code>ETH.h</code> (Arduino, lwIP)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>esp32-s3-devkitc-1</code></td>
+<td>sin MAC</td>
+<td>W5500 por SPI</td>
+<td><code>esp_eth</code> (ESP-IDF, lwIP)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="101-lan8720a-rmii">10.1 LAN8720A (RMII)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pines fijos del EMAC</td>
+<td>TXD0=19 · TXD1=22 · TX_EN=21 · RXD0=25 · RXD1=26 · CRS_DV=27 · RX_ER=13</td>
+</tr>
+<tr>
+<td>Pines configurables</td>
+<td><code>ethernet.mdc</code> (23), <code>ethernet.mdio</code> (18), <code>ethernet.phy_addr</code> (1), <code>ethernet.power</code> (-1)</td>
+</tr>
+<tr>
+<td>Reloj</td>
+<td>50 MHz entrando por <strong>GPIO0</strong> (<code>ETH_CLOCK_GPIO0_IN</code>, <code>EthernetManager.cpp:39-40</code>)</td>
+</tr>
+<tr>
+<td>Reserva</td>
+<td>Con <code>ethernet.enabled=true</code> el firmware reserva los 10 pines RMII (<code>HttpServer.cpp:1434-1443</code>)</td>
+</tr>
+<tr>
+<td>Estado</td>
+<td><code>GET /api/v1/network → ethernet{enabled,connected,ip}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-w5500-spi">10.2 W5500 (SPI)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claves JSON</td>
+<td><code>ethernet{enabled,mdc,mdio,phy_addr,power,cs,rst,irq,sck,miso,mosi}</code> (por web solo <code>enabled</code> y <code>cs</code>)</td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>cs=5</code>, <code>rst=-1</code>, <code>irq=4</code>, <code>phy_addr=1</code></td>
+</tr>
+<tr>
+<td>Secuencia</td>
+<td><code>spi_bus_initialize(SPI3_HOST)</code> → <code>spi_bus_add_device</code> (20 MHz, modo 0) → <code>esp_eth_mac_new_w5500</code> → <code>esp_eth_phy_new_w5500</code> → <code>esp_eth_driver_install</code> → <code>esp_netif_new</code> + <code>esp_eth_set_default_handlers</code> + <code>esp_netif_attach</code> → <code>esp_eth_start</code> (DHCP)</td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td>Gestionado por lwIP, sin mantenimiento en <code>loop()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-lora-sx1262">11. LoRa (SX1262)</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claves JSON</td>
+<td><code>lora{enabled,cs,rst,dio1,busy,frequency,bandwidth,spreading,coding_rate,tx_power}</code></td>
+</tr>
+<tr>
+<td>Módulo</td>
+<td>Silicontra <strong>SX1262PATR8-GC</strong> (<code>ConfigManager.hpp:172</code>)</td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>cs=10</code>, <code>rst=14</code> (web) / <code>32</code> (parseo), <code>dio1=26</code>, <code>busy=27</code>, <code>frequency=915 MHz</code>, <code>bandwidth=125 kHz</code>, <code>spreading=7</code>, <code>codingRate=5</code> (4/5), <code>txPower=14 dBm</code></td>
+</tr>
+<tr>
+<td>Driver</td>
+<td>RadioLib 6.x: <code>Module(cs, dio1, rst, busy)</code> + <code>SX1262::begin(...)</code> con sync word privada, y <code>startReceive()</code> al terminar</td>
+</tr>
+<tr>
+<td>Bus</td>
+<td>SPI de Arduino (14/12/15 en WROOM; 12/13/11 en S3); CS 10</td>
+</tr>
+<tr>
+<td>Endpoints</td>
+<td><code>GET /api/v1/lora</code> (intenta recibir hasta 64 bytes), <code>POST /api/v1/lora</code> (<code>{data:[...]}</code>, máx. 64 bytes)</td>
+</tr>
+<tr>
+<td>Límites</td>
+<td>No hay configuración de CRC, sync word, preamble ni modo; una sola llamada <code>transmit</code> bloqueante por envío; sin CAD</td>
+</tr>
+<tr>
+<td>Reservas</td>
+<td>En el perfil fijo <code>esp32-wroom-32u</code>, <code>dio1=26</code> y <code>busy=27</code> chocan con RMII RXD1/CRS_DV</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-zigbee-cc2652p2-znp">12. Zigbee (CC2652P2 / ZNP)</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claves JSON</td>
+<td><code>zigbee{enabled,rx,tx,uart,uart_port,baud}</code></td>
+</tr>
+<tr>
+<td>Módulo</td>
+<td><strong>RF-BM-2652P2</strong> (CC2652P2) con firmware ZNP (<code>ConfigManager.hpp:186</code>)</td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>rx=16</code> (header) / <code>18</code> (parseo+web), <code>tx=17</code> (header) / <code>19</code> (parseo+web), <code>baud=115200</code></td>
+</tr>
+<tr>
+<td>Puerto</td>
+<td><code>Serial1</code>, 8N1</td>
+</tr>
+<tr>
+<td>Trama</td>
+<td>ZNP: <code>SOF(0xFE) LEN CMD0 CMD1 payload FCS</code> con FCS = XOR de LEN, CMD0, CMD1 y payload</td>
+</tr>
+<tr>
+<td>Comandos</td>
+<td><code>SYS_RESET</code> (0x4100) al arrancar; <code>AF_DATA_REQUEST</code> (0x2401) para enviar; <code>AF_INCOMING_MSG</code> (0x4481) para recibir</td>
+</tr>
+<tr>
+<td>Endpoints</td>
+<td><code>GET /api/v1/zigbee</code> → <code>{ready,received,src,data[]}</code> (máx. 128 bytes), <code>POST /api/v1/zigbee</code> (<code>{destination,data[]}</code>, máx. 110 bytes)</td>
+</tr>
+<tr>
+<td>Límites</td>
+<td>Envío a un solo endpoint/cluster fijos (src/dst endpoint 1, cluster 0x0001), sin coordinador propio: el módulo debe estar ya en una red</td>
+</tr>
+<tr>
+<td>Reservas</td>
+<td>18/19 son MDIO/TXD0 del RMII en WROOM y el host SPI del W5500 en S3: Zigbee y Ethernet son excluyentes con los defaults</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-recursos-compartidos-y-limites">13. Recursos compartidos y límites</h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Lo usan</th>
+<th>Consecuencia práctica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Wire</code> (I2C0)</td>
+<td>12 drivers I²C + ADS1115 + MCP23017</td>
+<td>Pines efectivos = los del último <code>begin()</code>; sin <code>address</code> por dispositivo</td>
+</tr>
+<tr>
+<td><code>Serial2</code></td>
+<td>Modbus y PMS5003</td>
+<td>Excluyentes entre sí</td>
+</tr>
+<tr>
+<td><code>PCNT_UNIT_0</code></td>
+<td>Anemómetro y pluviómetro</td>
+<td>Excluyentes entre sí (o lectura mezclada)</td>
+</tr>
+<tr>
+<td>Bus SPI de Arduino</td>
+<td>LoRa, microSD, shift registers</td>
+<td>Sin mutex: el orden depende de las tareas</td>
+</tr>
+<tr>
+<td>SPI3 (S3)</td>
+<td>W5500</td>
+<td>Separado del bus de Arduino a propósito (<code>HwProfile.hpp:126-137</code>)</td>
+</tr>
+<tr>
+<td>GPIO0</td>
+<td>RMII REF_CLK / botón BOOT / <code>modbus.de_re</code> fijo en 32U</td>
+<td>Triple uso según la placa</td>
+</tr>
+<tr>
+<td>GPIO4</td>
+<td>1-Wire por defecto, <code>sd_cs</code>, <code>can.rx</code>, <code>ethernet.irq</code> (S3)</td>
+<td>Cuádruple uso: hay que elegir</td>
+</tr>
+<tr>
+<td>GPIO5</td>
+<td><code>can.tx</code>, <code>SEMA_CS_ETHERNET_W5500</code>, <code>mcp23s17_cs</code> en demo</td>
+<td>Elegir según el bus activo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14-fichas-de-conexion">14. Fichas de conexión</h2>
+<h3 id="141-lan8720a-phy-ethernet-rmii">14.1 LAN8720A (PHY Ethernet RMII)</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor / Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaz</td>
+<td>RMII hacia el EMAC del ESP32 (MDC/MDIO para gestión; PHY addr 1)</td>
+</tr>
+<tr>
+<td>Tensión</td>
+<td>3,3 V (datasheet); niveles RMII 3,3 V</td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td>49,9 Ω de terminación en el par TX y en el par RX hacia el RJ45 con transformador (datasheet); strap PHYAD0 para dirección 1</td>
+</tr>
+<tr>
+<td>Capacitor</td>
+<td>100 nF por pin de alimentación + 10 µF de bulk (datasheet)</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>MDC→GPIO23 · MDIO→GPIO18 · TXD0→GPIO19 · TXD1→GPIO22 · TX_EN→GPIO21 · RXD0→GPIO25 · RXD1→GPIO26 · CRS_DV→GPIO27 · RX_ER→GPIO13 · REF_CLK 50 MHz→GPIO0 · <code>ethernet.power</code> = -1 (sin control de alimentación)</td>
+</tr>
+<tr>
+<td>Notas</td>
+<td>El reloj de 50 MHz debe venir de la PHY u oscilador externo; SEMA no controla el reset de la PHY</td>
+</tr>
+</tbody>
+</table>
+<h3 id="142-w5500-ethernet-spi">14.2 W5500 (Ethernet SPI)</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor / Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaz</td>
+<td>SPI, modo 0, 20 MHz, CS dedicado</td>
+</tr>
+<tr>
+<td>Tensión</td>
+<td>3,3 V (datasheet)</td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td>49,9 Ω en TX±/RX± hacia el RJ45 con magnetics; pull-up de 10 kΩ en <code>/RST</code> si se usa reset externo (datasheet)</td>
+</tr>
+<tr>
+<td>Capacitor</td>
+<td>100 nF por alimentación + 10 µF de bulk; cristal de 25 MHz con 2 × 22 pF (datasheet)</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>SCK→GPIO18 · MISO→GPIO19 · MOSI→GPIO21 · CS→GPIO5 · IRQ→GPIO4 · RST = -1</td>
+</tr>
+<tr>
+<td>Notas</td>
+<td>Solo placas sin MAC nativa (S3). El host SPI3 debe ser distinto del SPI de RadioLib</td>
+</tr>
+</tbody>
+</table>
+<h3 id="143-sx1262-lora-modulo-sx1262patr8-gc">14.3 SX1262 (LoRa, módulo SX1262PATR8-GC)</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor / Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaz</td>
+<td>SPI (bus de Arduino) + CS/RST/DIO1/BUSY</td>
+</tr>
+<tr>
+<td>Tensión</td>
+<td>3,3 V (datasheet); el módulo no tolera 5 V en las líneas de control</td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td>Ninguna obligatoria en la placa; la antena debe presentar 50 Ω (datasheet)</td>
+</tr>
+<tr>
+<td>Capacitor</td>
+<td>100 nF + 10 µF junto al pin de alimentación (datasheet); picos de TX de hasta ~120 mA</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>SCK→14 · MISO→12 · MOSI→15 · CS→10 · RST→14 (web) / 32 · DIO1→26 · BUSY→27 (WROOM). En S3: SCK→12, MISO→13, MOSI→11</td>
+</tr>
+<tr>
+<td>Notas</td>
+<td><code>dio1=26</code> y <code>busy=27</code> <strong>no son válidos en ESP32-S3</strong> (flash SPI interna)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="144-rf-bm-2652p2-zigbee-znp">14.4 RF-BM-2652P2 (Zigbee / ZNP)</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor / Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaz</td>
+<td>UART 115200 8N1 (<code>Serial1</code>)</td>
+</tr>
+<tr>
+<td>Tensión</td>
+<td>3,3 V (datasheet)</td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td>Sin resistencias obligatorias; el módulo trae su antena/balun</td>
+</tr>
+<tr>
+<td>Capacitor</td>
+<td>100 nF + 10 µF de desacople (datasheet); picos de TX considerables</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>RX del módulo←TX del ESP32 (GPIO19 por defecto) · TX del módulo→RX del ESP32 (GPIO18 por defecto) · GND común</td>
+</tr>
+<tr>
+<td>Notas</td>
+<td>802.15.4 <strong>no</strong> lo aporta el ESP32: lo aporta este módulo externo. <code>Capability::Ieee802154</code> nunca se declara en el firmware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="145-td501d485h-transceiver-rs485-aislado-default">14.5 TD501D485H (transceiver RS485 aislado) — default</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor / Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaz</td>
+<td>UART (<code>Serial2</code>) + control DE/RE</td>
+</tr>
+<tr>
+<td>Tensión</td>
+<td>Módulo aislado de 5 V en el lado lógico (verificar la hoja de datos del módulo): la lógica del ESP32 es 3,3 V</td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td>120 Ω de terminación en los extremos del bus RS485 (datasheet); polarización de fallo (pull-up/pull-down) si el bus queda sin maestro</td>
+</tr>
+<tr>
+<td>Capacitor</td>
+<td>100 nF + 10 µF en la alimentación del módulo (datasheet)</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>RXD del módulo←GPIO17 (TX del ESP32) · TXD del módulo→GPIO16 (RX del ESP32) · DE/RE→<code>modbus.de_re</code> (0 = sin control)</td>
+</tr>
+<tr>
+<td>Notas</td>
+<td>Aislamiento galvánico ≥ 2,5 kV (datasheet); con <code>de_re = 0</code> el módulo debe autodirigirse o quedar siempre en TX</td>
+</tr>
+</tbody>
+</table>
+<h3 id="146-sn65hvd75dr-transceiver-rs485-sin-aislar">14.6 SN65HVD75DR (transceiver RS485 sin aislar)</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor / Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaz</td>
+<td>UART (<code>Serial2</code>) + DE/RE activo-alto</td>
+</tr>
+<tr>
+<td>Tensión</td>
+<td>3,0-3,6 V; lógica 3,3 V compatible (datasheet)</td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td>120 Ω de terminación en los extremos; pull-up/pull-down de polarización (datasheet)</td>
+</tr>
+<tr>
+<td>Capacitor</td>
+<td>100 nF de desacople (datasheet)</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>RO→GPIO16 · DI→GPIO17 · DE y /RE unidos a <code>modbus.de_re</code> (o a VCC si no se controla)</td>
+</tr>
+<tr>
+<td>Notas</td>
+<td>Se selecciona con <code>-D SEMA_MODBUS_ISOLATED=0</code>; comparte el mismo código de conmutación que el aislado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="147-microsd-spi">14.7 microSD (SPI)</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Valor / Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaz</td>
+<td>SPI (bus de Arduino) + CS</td>
+</tr>
+<tr>
+<td>Tensión</td>
+<td>3,3 V; los módulos con regulador y level-shifter aceptan 5 V, el socket directo <strong>no</strong></td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td>Pull-up de 10 kΩ en CS y en las líneas del bus si el módulo no los trae (datasheet)</td>
+</tr>
+<tr>
+<td>Capacitor</td>
+<td>100 nF + 10 µF junto al socket (datasheet)</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>CS→GPIO4 · SCK→GPIO14 · MISO→GPIO12 · MOSI→GPIO15 (WROOM/WROOM-32U); en S3 CS→4, SCK→12, MISO→13, MOSI→11</td>
+</tr>
+<tr>
+<td>Notas</td>
+<td>El CS por defecto (4) comparte pin con 1-Wire por defecto y con <code>can.rx</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ver-tambien">Ver también</h2>
+<ul>
+<li><a href="../Guia-de-pines/">Guía de pines</a> · <a href="../Expansores-de-entrada-salida/">Expansores de entrada/salida</a> · <a href="../Compatibilidad/">Compatibilidad</a></li>
+<li><a href="../Hardware-y-Conexiones/">Hardware y conexiones</a> · <a href="../Sensores/">Sensores</a> · <a href="../Actuadores-y-Salidas/">Actuadores y salidas</a></li>
+<li><a href="../Conectividad-y-red/">Conectividad y red</a> · <a href="../Comunicaciones-remotas/">Comunicaciones remotas</a> · <a href="../Referencia-configuracion/">Referencia de configuración</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Guia-de-pines/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Guía de pines">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Guía de pines
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Expansores-de-entrada-salida/" class="md-footer__link md-footer__link--next" aria-label="Next: Expansores de entrada/salida">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Expansores de entrada/salida
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 AlessandroKlein
+    </div>
+  
+  
+    <a href="https://github.com/AlessandroKlein/Docs" target="_blank" rel="noopener">
+      Documentación versionada en GitHub
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/AlessandroKlein" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+  
+
+<h4>Cookies</h4>
+<p>Usamos cookies para recordar tus preferencias (tema e idioma).</p>
+<input class="md-toggle" type="checkbox" id="__settings" checked>
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

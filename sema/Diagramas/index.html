@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://alessandroklein.github.io/Docs/sema/Diagramas/">
       
       
-        <link rel="prev" href="../Enumeraciones-y-tipos/">
+        <link rel="prev" href="../Arquitectura/">
       
       
-        <link rel="next" href="../Control-PID/">
+        <link rel="next" href="../Modulos-y-ciclo-de-vida/">
       
       
         
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#diagramas-de-bloques-y-flujo-de-datos" class="md-skip">
+        <a href="#diagramas" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -1795,6 +1795,42 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1857,7 +1893,7 @@
   <span class="md-ellipsis">
     
   
-    Home
+    Inicio
   
 
     
@@ -1906,6 +1942,90 @@
   
   
     <li class="md-nav__item">
+      <a href="../Instalacion-y-mantenimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación y mantenimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Arquitectura/" class="md-nav__link">
         
   
@@ -1914,118 +2034,6 @@
     
   
     Arquitectura
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Referencia-de-codigo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Referencia de código
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Estadísticas y métricas
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Referencia-API-interna/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Referencia API interna
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Enumeraciones-y-tipos/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Enumeraciones y tipos
   
 
     
@@ -2106,10 +2114,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#arquitectura-de-alto-nivel" class="md-nav__link">
+  <a href="#1-arquitectura-de-alto-nivel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Arquitectura de alto nivel
+        1. Arquitectura de alto nivel
       
     </span>
   </a>
@@ -2117,10 +2125,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flujo-de-datos-pipeline" class="md-nav__link">
+  <a href="#2-pipeline-de-datos-ciclo-de-10-s" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flujo de datos (pipeline)
+        2. Pipeline de datos (ciclo de 10 s)
       
     </span>
   </a>
@@ -2128,10 +2136,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ciclo-de-vida-setup-loop" class="md-nav__link">
+  <a href="#3-ciclo-de-arranque-setup-loop" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ciclo de vida (setup → loop)
+        3. Ciclo de arranque (setup → loop)
       
     </span>
   </a>
@@ -2139,10 +2147,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#eventos" class="md-nav__link">
+  <a href="#4-scheduler-y-latidos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Eventos
+        4. Scheduler y latidos
       
     </span>
   </a>
@@ -2150,10 +2158,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#almacenamiento" class="md-nav__link">
+  <a href="#5-bus-de-eventos-estado-real" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Almacenamiento
+        5. Bus de eventos (estado real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-modulos-lo-documentado-vs-lo-implementado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Módulos: lo documentado vs. lo implementado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Almacenamiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-red-y-servicios-expuestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Red y servicios expuestos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ver-tambien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ver también
       
     </span>
   </a>
@@ -2176,14 +2228,266 @@
   
   
     <li class="md-nav__item">
-      <a href="../Control-PID/" class="md-nav__link">
+      <a href="../Modulos-y-ciclo-de-vida/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Control PID
+    Módulos y ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tareas-y-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tareas y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagnostico-y-salud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnóstico y salud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rendimiento-y-memoria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimiento y memoria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad-de-versiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pruebas-y-validacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pruebas y validación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
   
 
     
@@ -2288,6 +2592,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../Buses-y-perifericos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buses y periféricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Expansores-de-entrada-salida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expansores de entrada/salida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Sensores/" class="md-nav__link">
         
   
@@ -2352,6 +2712,34 @@
     
   
     Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID (futuro)
   
 
     
@@ -2456,6 +2844,146 @@
   
   
     <li class="md-nav__item">
+      <a href="../Alarmas-y-reglas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alarmas y reglas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Calibracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Magnitudes-derivadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitudes derivadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Almacenamiento-e-historico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Almacenamiento e histórico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Energia-y-consumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energía y consumo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../API-REST/" class="md-nav__link">
         
   
@@ -2492,6 +3020,90 @@
     
   
     MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Conectividad-y-red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conectividad y red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Comunicaciones-remotas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones remotas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Backup-y-restauracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup y restauración
   
 
     
@@ -2568,7 +3180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Identidad-y-Estados/" class="md-nav__link">
+      <a href="../Identidad-y-estados/" class="md-nav__link">
         
   
   
@@ -2652,8 +3264,89 @@
   
   
     <li class="md-nav__item">
-      <a href="../Decisiones/" class="md-nav__link">
+      <a href="../Limitaciones-conocidas/" class="md-nav__link">
         
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitaciones y bugs conocidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_46" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_46" id="__nav_3_46_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -2667,11 +3360,19 @@
   
   
 
-      </a>
-    </li>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisiones
   
 
-              
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -2680,14 +3381,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
+      <a href="../Decisiones/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Compilación y flasheo
+    Índice de decisiones
   
 
     
@@ -2708,14 +3409,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+      <a href="../adr/0001-plataforma-configurable-y-separacion-de-capas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Guía de desarrollo (extender)
+    ADR 0001 · Plataforma configurable
   
 
     
@@ -2724,6 +3425,378 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0002-perfiles-de-placa-capacidades-y-hal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002 · Perfiles de placa y HAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0003-modelo-canonico-de-mediciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003 · Modelo canónico de mediciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0004-event-bus-tipado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004 · Event bus tipado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0005-calibracion-independiente-del-driver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005 · Calibración independiente del driver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0006-almacenamiento-por-capas-y-retencion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006 · Almacenamiento por capas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0007-offline-first-y-publishers-desacoplados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0007 · Offline-first y publicadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0008-runtime-freertos-y-afinidad-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0008 · Runtime FreeRTOS y afinidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0009-configuracion-transaccional-y-safe-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0009 · Configuración transaccional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0010-api-rest-v1-y-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0010 · API REST v1 y seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0011-ota-con-rollback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0011 · OTA con rollback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0012-watchdog-health-y-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0012 · Watchdog y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0013-perfiles-energeticos-y-wake-por-lluvia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0013 · Perfiles energéticos y wake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0014-modulos-instalables-y-descubrimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0014 · Módulos instalables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3018,87 +4091,260 @@
   
 
 
-<h1 id="diagramas-de-bloques-y-flujo-de-datos">Diagramas de bloques y flujo de datos</h1>
+<h1 id="diagramas">Diagramas</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Firmware:</strong> v1.103.0</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.103.0</p>
 </blockquote>
-<h2 id="arquitectura-de-alto-nivel">Arquitectura de alto nivel</h2>
+<p>Diagramas de la implementación <strong>real</strong> de SEMA. Todos los nodos usan los nombres
+de clase, archivo o clave que existen en el código de v1.103.0; no hay nodos
+inventados. Donde el diseño aspiracional difiere de lo implementado, se indica.</p>
+<h2 id="1-arquitectura-de-alto-nivel">1. Arquitectura de alto nivel</h2>
 <pre class="mermaid"><code>flowchart TB
-    subgraph HW["Hardware"]
-        S["Sensores (I²C, 1-Wire, ADC, PCNT, UART)"]
-        A["Actuadores (GPIO / MCP23017)"]
+    subgraph HW["Hardware (ESP32)"]
+        SENS["Sensores: I2C · 1-Wire · ADC · PCNT · UART"]
+        ACT["GPIO / MCP23017 / SD (SPI)"]
+        SD["microSD (SPI, CS configurable)"]
     end
 
-    subgraph FW["Firmware SEMA"]
-        core["SemaCore"]
-        sensors["SensorManager + SensorFactory"]
-        config["ConfigManager (NVS)"]
-        events["EventBus"]
-        rules["RuleEngine"]
-        derived["DerivedEngine"]
-        history["HistoryStore (LittleFS)"]
-        eventlog["EventLog (LittleFS)"]
-        publishers["PublisherManager"]
-        web["HttpServer + WebSocket"]
-        power["PowerManager"]
-        health["HealthMonitor + Watchdog"]
+    subgraph CORE["SemaCore — src/core/SemaCore.cpp"]
+        SC["SemaCore::setup() / SemaCore::loop()"]
+        SENSORS["SensorManager + SensorFactory + 17 drivers"]
+        DERIV["DerivedEngine (estático) + DerivedCalculator"]
+        STORE["HistoryStore (SD) · EventLog (LittleFS) · NvsStore"]
+        CFG["ConfigManager (schema 1)"]
+        BUS["EventBus + RuleEngine"]
+        PUB["PublisherManager → HttpPublisher · MqttPublisher"]
+        WEB["HttpServer (WebServer :80 + WebSocketsServer :81)"]
+        HEALTH["HealthMonitor + Watchdog (TWDT 10 s)"]
+        SCHED["Scheduler (core.heartbeat 5 s · sensors.read 10 s)"]
+        CAPS["CapabilityManager"]
+    end
+
+    subgraph OPT["Módulos opcionales (compile-time SEMA_USE_*)"]
+        ETH["EthernetManager (LAN8720A RMII / W5500 SPI)"]
+        WIFI["WiFiManager (STA/AP + mDNS + backoff)"]
+        MODBUS["ModbusManager (Serial2 + ModbusMaster)"]
+        CAN["CanManager (TWAI)"]
+        LORA["LoraManager (SX1262 vía RadioLib)"]
+        ZIG["ZigbeeManager (ZNP por Serial1)"]
     end
 
     subgraph EXT["Externo"]
-        dash["Dashboard web"]
-        mqtt["Broker MQTT"]
-        webhook["Webhook HTTP"]
-        central["Servidor Central"]
+        DASH["Dashboard web (navegador)"]
+        MQTTB["Broker MQTT"]
+        HOOK["Webhook HTTP"]
     end
 
-    S --&gt; sensors --&gt; derived --&gt; history
-    sensors --&gt; events
-    events --&gt; rules --&gt; events
-    events --&gt; eventlog
-    history --&gt; web --&gt; dash
-    history --&gt; publishers --&gt; mqtt
-    publishers --&gt; webhook
-    core --&gt; config
-    core --&gt; power
-    core --&gt; health
-    web --&gt; central
-    A &lt;--&gt; web</code></pre>
-<h2 id="flujo-de-datos-pipeline">Flujo de datos (pipeline)</h2>
+    SENS --&gt; SENSORS
+    SC --&gt; CAPS
+    SC --&gt; CFG
+    SC --&gt; SENSORS
+    SC --&gt; STORE
+    SC --&gt; WEB
+    SC --&gt; SCHED
+    SC --&gt; HEALTH
+    SENSORS --&gt; DERIV
+    SCHED --&gt; SENSORS
+    SCHED --&gt; STORE
+    SCHED --&gt; PUB
+    SCHED --&gt; BUS
+    SENSORS --&gt; WEB
+    DERIV --&gt; STORE
+    BUS --&gt; STORE
+    BUS --&gt; WEB
+    CFG --&gt; SENSORS
+    CFG --&gt; OPT
+    CFG --&gt; PUB
+    WEB --&gt; DASH
+    PUB --&gt; MQTTB
+    PUB --&gt; HOOK
+    ACT --&gt; SC
+    SD --&gt; STORE
+    SC -.-&gt;|"composición directa, NO ModuleRegistry"| OPT</code></pre>
+<p>Lectura del diagrama: la flecha punteada final recuerda que los managers
+opcionales son <strong>miembros de <code>SemaCore</code></strong>, no módulos registrados. El
+<code>ModuleRegistry</code> queda vacío en runtime (ver §6).</p>
+<h2 id="2-pipeline-de-datos-ciclo-de-10-s">2. Pipeline de datos (ciclo de 10 s)</h2>
+<p>Nombres reales: <code>SensorManager::readAll()</code>, <code>applyCalibration()</code>,
+<code>DerivedEngine::compute()</code>, <code>HistoryStore::append()</code>,
+<code>HttpServer::broadcastMeasurements()</code>, <code>PublisherManager::publishAll()</code>,
+<code>RuleEngine::evaluate()</code>.</p>
 <pre class="mermaid"><code>flowchart LR
-    MEDIR["1. MEDIR&lt;br/&gt;(sensor.read)"] --&gt;
-    VALIDAR["2. VALIDAR&lt;br/&gt;(quality flags)"] --&gt;
-    PROCESAR["3. PROCESAR&lt;br/&gt;(derivadas, calibración)"] --&gt;
-    ALMACENAR["4. ALMACENAR&lt;br/&gt;(HistoryStore)"] --&gt;
-    PUBLICAR["5. PUBLICAR&lt;br/&gt;(MQTT/webhook/WS)"]</code></pre>
-<h2 id="ciclo-de-vida-setup-loop">Ciclo de vida (setup → loop)</h2>
+    MEDIR["1. MEDIR&lt;br/&gt;Sensor::measure(out,4)&lt;br/&gt;SensorManager::readAll"] --&gt;
+    VALIDAR["2. VALIDAR&lt;br/&gt;Measurement::quality&lt;br/&gt;(8 Quality flags)"] --&gt;
+    CAL["3. CALIBRAR&lt;br/&gt;applyCalibration()&lt;br/&gt;gain · offset · rango"] --&gt;
+    PROC["4. PROCESAR&lt;br/&gt;DerivedEngine::compute&lt;br/&gt;dew_point · heat_index&lt;br/&gt;vapor_pressure · absolute_humidity"] --&gt;
+    ALM["5. ALMACENAR&lt;br/&gt;HistoryStore::append&lt;br/&gt;JSONL en microSD"] --&gt;
+    PUB["6. PUBLICAR&lt;br/&gt;broadcastMeasurements (WS :81)&lt;br/&gt;HttpPublisher · MqttPublisher"] --&gt;
+    RULES["7. EVALUAR&lt;br/&gt;RuleEngine::evaluate&lt;br/&gt;EventBus → EventLog"]</code></pre>
+<p>Detalles verificados que el diagrama no muestra:</p>
+<ul>
+<li>Los pasos 5, 6 y 7 se ejecutan <strong>por cada medición</strong> en un bucle, salvo el
+  broadcast WS, que se hace una vez con el vector completo.</li>
+<li>El paso 2 es informativo: ninguna etapa descarta mediciones por <code>quality</code>.</li>
+<li>El paso 3 solo actúa si hay una <code>Calibration</code> cuya clave sea exactamente
+  <code>sensorId + ":" + channelId</code>.</li>
+<li>El paso 7 publica un <code>Event</code> con <code>type = EventType::Alarm</code>,
+  <code>severity = Severity::Warning</code>, <code>value = (int32_t)(valor * 100)</code> y
+  <code>correlationId = id de la regla</code>.</li>
+</ul>
+<h2 id="3-ciclo-de-arranque-setup-loop">3. Ciclo de arranque (setup → loop)</h2>
 <pre class="mermaid"><code>sequenceDiagram
-    participant B as Boot
-    participant C as SemaCore
-    participant S as Sensors
-    participant W as Web
-    participant P as Publishers
+    autonumber
+    participant BOOT as main.cpp setup()
+    participant SC as SemaCore
+    participant NVS as NvsStore / ConfigManager
+    participant FS as LittleFS / EventLog
+    participant I2C as Wire + I2cScanner
+    participant SEN as SensorManager
+    participant NET as WiFiManager / EthernetManager
+    participant WEB as HttpServer
+    participant PUB as PublisherManager
+    participant HEALTH as HealthMonitor + Watchdog
 
-    B-&gt;&gt;C: setup()
-    C-&gt;&gt;C: config.load() (NVS)
-    C-&gt;&gt;S: applySensors() + beginAll()
-    C-&gt;&gt;C: applyRules/Calibrations/Gpio/Publishers
-    C-&gt;&gt;W: http.begin() (WebServer + WS)
-    C-&gt;&gt;P: registerPublisher(webhook, mqtt)
-    loop loop()
-        C-&gt;&gt;C: watchdog.feed() + scheduler.run()
-        S-&gt;&gt;S: readAll() cada 10 s
-        S-&gt;&gt;W: broadcastMeasurements (WS)
-        S-&gt;&gt;P: publishAll()
+    BOOT-&gt;&gt;SC: SemaCore::instance().setup()
+    SC-&gt;&gt;SC: Serial.begin(115200) + delay(200)
+    SC-&gt;&gt;NVS: store_.begin("sema")
+    SC-&gt;&gt;SC: history_.begin() (no monta nada sin SD)
+    SC-&gt;&gt;FS: eventLog_.begin() → LittleFS.begin(true)
+    SC-&gt;&gt;NVS: leer/incrementar "boots" → restartCount_
+    SC-&gt;&gt;SC: CapabilityManager::set(...) × 13
+    SC-&gt;&gt;NVS: config_.load()
+    SC-&gt;&gt;SC: history_.setRetentionSeconds(retentionDays×86400)
+    SC-&gt;&gt;I2C: Wire.begin(21,22) + I2cScanner::scan()
+    SC-&gt;&gt;SEN: applySensors() → registerSensor + beginAll()
+    SC-&gt;&gt;SC: applyCalibrations() · gpio_.apply() · SPI.begin()
+    SC-&gt;&gt;NET: modbus/can/lora/zigbee/ethernet apply() + wifi_.begin()
+    SC-&gt;&gt;SC: configTzTime(TZ POSIX, ntpServer, "time.nist.gov")
+    SC-&gt;&gt;WEB: http_.begin(*this) → server_.begin() + ws_.begin() :81
+    SC-&gt;&gt;PUB: registerPublisher(webhook, mqtt) + applyPublishers()
+    SC-&gt;&gt;SC: applyRules() + subscribe(Alarm)
+    SC-&gt;&gt;HEALTH: registerTask x2 · watchdog_.begin(10) · health_.begin()
+    SC-&gt;&gt;SC: scheduler_.add x2 · modules_.enableAll() (vacío)
+    SC-&gt;&gt;SC: events_.publish(boot) [EventType::System]
+    SC-&gt;&gt;SC: log final por serial
+
+    loop SemaCore::loop() — siempre en la misma tarea
+        SC-&gt;&gt;HEALTH: watchdog_.feed()
+        SC-&gt;&gt;SC: modules_.loopAll() (sin módulos)
+        SC-&gt;&gt;NET: wifi_.loop() · zigbee_.loop() · ethernet_.loop()
+        SC-&gt;&gt;WEB: http_.loop() → handleClient() + ws_.loop()
+        SC-&gt;&gt;SC: cada 3600 s: history_.aggregate()
+        SC-&gt;&gt;HEALTH: scheduler_.run()
     end</code></pre>
-<h2 id="eventos">Eventos</h2>
-<pre class="mermaid"><code>flowchart LR
-    PUB["EventBus.publish(event)"] --&gt; SUB1["RuleEngine (alarmas)"]
-    PUB --&gt; SUB2["EventLog (JSONL)"]
-    PUB --&gt; SUB3["Serial (log)"]</code></pre>
-<h2 id="almacenamiento">Almacenamiento</h2>
+<h2 id="4-scheduler-y-latidos">4. Scheduler y latidos</h2>
 <pre class="mermaid"><code>flowchart TB
-    NVS["NVS&lt;br/&gt;config (clave=config)"]
-    FS["LittleFS&lt;br/&gt;/history.jsonl (histórico)&lt;br/&gt;/events.jsonl (eventos)"]</code></pre>
+    LOOP["SemaCore::loop() cada ~ms"] --&gt; RUN["Scheduler::run()&lt;br/&gt;(millis() - lastRun &gt;= intervalMs)"]
+    RUN --&gt; HB["task 'core.heartbeat'&lt;br/&gt;cada 5 000 ms"]
+    RUN --&gt; SR["task 'sensors.read'&lt;br/&gt;cada 10 000 ms"]
+    HB --&gt; H1["HealthMonitor::tick()"]
+    HB --&gt; H2["HealthMonitor::taskHeartbeat('core.heartbeat')&lt;br/&gt;timeout 30 000 ms"]
+    SR --&gt; S1["SensorManager::readAll()"]
+    SR --&gt; S2["HealthMonitor::setSensorStats(online, total)"]
+    SR --&gt; S3["taskHeartbeat('sensors.read')&lt;br/&gt;timeout 60 000 ms"]
+    SR --&gt; S4["broadcastMeasurements + append + publishAll + evaluate"]
+    H1 --&gt; STATUS["HealthMonitor::status()"]
+    H2 --&gt; STATUS
+    S3 --&gt; STATUS
+    S2 --&gt; STATUS
+    STATUS --&gt; API["GET /api/v1/health"]</code></pre>
+<p>El intervalo del <code>Scheduler</code> se compara con <code>millis()</code> en cada vuelta del <code>loop()</code>,
+así que la precisión depende de cuánto tarde el resto del <code>loop()</code>. No hay
+temporizadores por hardware ni tareas FreeRTOS propias.</p>
+<h2 id="5-bus-de-eventos-estado-real">5. Bus de eventos (estado real)</h2>
+<p><code>EventBus::publish()</code> recorre sus suscripciones e invoca el handler <strong>en forma
+síncrona</strong>, en la misma tarea que publica. No hay cola ni buffer intermedio.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph EMISORES["Quién publica HOY"]
+        B["SemaCore::setup()&lt;br/&gt;EventType::System, correlationId='boot'"]
+        R["RuleEngine::evaluate()&lt;br/&gt;EventType::Alarm, Severity::Warning"]
+    end
+    BUS["EventBus::publish(event)&lt;br/&gt;(síncrono, sin cola)"]
+    subgraph SUBS["Quiénes están suscritos"]
+        EL["EventLog&lt;br/&gt;suscrito a los 9 EventType&lt;br/&gt;→ deque de 100 + /events.jsonl"]
+        AL["Lambda en SemaCore::setup()&lt;br/&gt;suscrita a EventType::Alarm&lt;br/&gt;→ Serial.print '[ALARM]'"]
+    end
+    B --&gt; BUS
+    R --&gt; BUS
+    BUS --&gt; EL
+    BUS --&gt; AL
+    EL --&gt; API1["GET /api/v1/events"]
+    EL --&gt; API2["GET /api/v1/alarms"]</code></pre>
+<p>⚠️ De los 9 tipos de <code>EventType</code> (<code>Sensor, Rain, Lightning, Battery, Network,
+Alarm, System, Wake, Sleep</code>), <strong>solo dos se emiten</strong>: <code>System</code> (el boot) y <code>Alarm</code>
+(reglas). No hay emisores de <code>Sensor</code>, <code>Rain</code>, <code>Lightning</code>, <code>Battery</code>, <code>Network</code>,
+<code>Wake</code> ni <code>Sleep</code> en el firmware; por eso el diagrama conceptual de versiones
+anteriores ("RAIN_START → Storage, Alarm, MQTT, Webhook, Dashboard, Wake Manager")
+no se corresponde con el código. El campo <code>Event::id</code> se inicializa en 0 y nunca se
+incrementa.</p>
+<h2 id="6-modulos-lo-documentado-vs-lo-implementado">6. Módulos: lo documentado vs. lo implementado</h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph DIS["Diseño documentado (README §53)"]
+        A1["Available"] --&gt; A2["Installed"] --&gt; A3["Configured"] --&gt; A4["Enabled"] --&gt; A5["Running"]
+        A5 --&gt; A6["Disabled"] --&gt; A7["Uninstalled"]
+        A8["InstallError · ConfigError · RuntimeError · UpdateError"]
+    end
+    subgraph IMP["Implementado en v1.103.0"]
+        B1["ModuleRegistry::enableAll()&lt;br/&gt;recorre modules_ (vector vacío)"]
+        B2["cada Module::id() se registra&lt;br/&gt;solo si alguien llama registerModule()"]
+        B3["NO HAY LLAMADAS a registerModule()&lt;br/&gt;en todo el árbol de código"]
+        B1 --&gt; B2 --&gt; B3
+    end
+    DIS -.-&gt;|"el enum ModuleState existe,&lt;br/&gt;el flujo no se ejecuta"| IMP</code></pre>
+<p>Los servicios reales no usan ese flujo: se aplican con <code>apply(cfg)</code> al arrancar y
+con los <code>SemaCore::applyX()</code> en caliente. Ver
+<a href="../Modulos-y-ciclo-de-vida/">Modulos-y-ciclo-de-vida</a>.</p>
+<h2 id="7-almacenamiento">7. Almacenamiento</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph NVS["NVS — namespace 'sema' (Preferences)"]
+        K1["clave 'config'&lt;br/&gt;JSON de configuración (schema 1)&lt;br/&gt;DynamicJsonDocument 16 384 B"]
+        K2["clave 'boots'&lt;br/&gt;contador de reinicios (uint32)"]
+        K3["clave del layout del dashboard&lt;br/&gt;(separada, para no exceder el límite de entrada NVS)"]
+    end
+    subgraph LFS["LittleFS (partición spiffs, 0x70000 = 448 KB)"]
+        F1["/events.jsonl&lt;br/&gt;máx. 100 eventos en RAM&lt;br/&gt;rotación al llegar a 200 líneas"]
+    end
+    subgraph SDC["microSD (SPI, opcional)"]
+        G1["/history.jsonl&lt;br/&gt;histórico crudo, máx. 10 000 entradas&lt;br/&gt;rotación: conserva la mitad más reciente"]
+        G2["/history.jsonl.agg&lt;br/&gt;promedios por bucket de 3 600 s"]
+    end
+    HIST["HistoryStore"] --&gt;|"append/readRecent/prune"| G1
+    HIST --&gt;|"aggregate() cada 3600 s"| G2
+    EL["EventLog"] --&gt; F1
+    CFG["ConfigManager"] --&gt; K1
+    SC["SemaCore (restartCount_)"] --&gt; K2
+    CFG --&gt; K3
+    HIST -.-&gt;|"sin sdEnabled: no guarda NADA"| X["gráficas vacías"]</code></pre>
+<p>Nota: la configuración declara <code>storage.backend</code> con los valores válidos
+<code>"littlefs" | "flash" | "sd"</code> (<code>ConfigManager::validate()</code>), pero el histórico se
+escribe <strong>siempre</strong> en SD a través de <code>HistoryStore</code>; el campo <code>backend</code> no cambia
+el destino del histórico.</p>
+<h2 id="8-red-y-servicios-expuestos">8. Red y servicios expuestos</h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph DEV["ESP32"]
+        WIFI["WiFiManager&lt;br/&gt;STA (DHCP o IP fija) o AP"]
+        MDNS["mDNS: http://&amp;lt;hostname&amp;gt;.local&lt;br/&gt;servicio http/tcp/80"]
+        ETH["EthernetManager&lt;br/&gt;LAN8720A RMII (WROOM/WROOM32U)&lt;br/&gt;W5500 SPI (S3)"]
+        HTTP["HttpServer&lt;br/&gt;WebServer en 80"]
+        WS["WebSocketsServer en 81"]
+        NTP["configTzTime → pool.ntp.org + time.nist.gov"]
+    end
+    BROWSER["Navegador"] --&gt;|"HTTP :80"| HTTP
+    BROWSER --&gt;|"WebSocket :81"| WS
+    MDNS --&gt; BROWSER
+    WIFI --&gt; HTTP
+    ETH --&gt; HTTP
+    NTP --&gt; DEV
+    HTTP --&gt;|"POST"| HOOK["Webhook externo&lt;br/&gt;HttpPublisher, timeout 2 000 ms"]
+    HTTP --&gt;|"MQTT 1883"| MQTTB["Broker MQTT&lt;br/&gt;MqttPublisher"]</code></pre>
+<hr />
+<h2 id="ver-tambien">Ver también</h2>
+<ul>
+<li><a href="../Arquitectura/">Arquitectura</a> · <a href="../Modulos-y-ciclo-de-vida/">Modulos-y-ciclo-de-vida</a></li>
+<li><a href="../Tareas-y-concurrencia/">Tareas-y-concurrencia</a> · <a href="../Rendimiento-y-memoria/">Rendimiento-y-memoria</a></li>
+<li><a href="../Diagnostico-y-salud/">Diagnostico-y-salud</a> · <a href="../Almacenamiento-e-historico/">Almacenamiento-e-historico</a></li>
+<li><a href="../MQTT-y-WebSocket/">MQTT-y-WebSocket</a> · <a href="../API-REST/">API-REST</a></li>
+</ul>
 
 
 
@@ -3139,7 +4385,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../Enumeraciones-y-tipos/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Enumeraciones y tipos">
+          <a href="../Arquitectura/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Arquitectura">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3149,20 +4395,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Enumeraciones y tipos
+                Arquitectura
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Control-PID/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Control PID">
+          <a href="../Modulos-y-ciclo-de-vida/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Módulos y ciclo de vida">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Control PID
+                Módulos y ciclo de vida
               </div>
             </div>
             <div class="md-footer__button md-icon">

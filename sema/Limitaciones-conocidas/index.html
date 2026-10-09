@@ -1,0 +1,4874 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación unificada de los proyectos de AlessandroKlein">
+      
+      
+        <meta name="author" content="AlessandroKlein">
+      
+      
+        <link rel="canonical" href="https://alessandroklein.github.io/Docs/sema/Limitaciones-conocidas/">
+      
+      
+        <link rel="prev" href="../FAQ/">
+      
+      
+        <link rel="next" href="../Decisiones/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="es">
+        
+          <link rel="alternate" href="../../en/sema/Limitaciones-conocidas/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Limitaciones y bugs conocidos - AlessandroKlein Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue-grey">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#limitaciones-y-bugs-conocidos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="AlessandroKlein Docs" class="md-header__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AlessandroKlein Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Limitaciones y bugs conocidos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue-grey"  aria-label="Cambiar a oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue-grey"  aria-label="Cambiar a claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/sema/Limitaciones-conocidas/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AlessandroKlein/Docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Inicio
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../invernadero/Inicio-rapido/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Invernadero
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Home/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SEMA
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AlessandroKlein Docs" class="md-nav__button md-logo" aria-label="AlessandroKlein Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AlessandroKlein Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AlessandroKlein/Docs" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AlessandroKlein/Docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inicio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Reglas-de-trabajo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reglas de trabajo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Estandar-de-documentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estándar de documentación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Versionado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Design-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inicio/Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad (SECURITY.md)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invernadero
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Invernadero
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Inicio-rapido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio rápido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código (v3.29.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Estadisticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Diagramas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de bloques y datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Compatibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad (placas/sensores/buses)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Hardware-y-Conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware y conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Guia-de-pines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de pines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Sensores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Actuadores-y-Salidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuadores y salidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Materiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Referencia-configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de configuración (JSON)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Variables-Modificables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables modificables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/MQTT-y-WebSocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Estacion-meteorologica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estación meteorológica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/OTA-y-Actualizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OTA y actualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Servidor-central/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servidor central
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Identidad-y-Estados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Solucion-de-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución de problemas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preguntas frecuentes (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Decisiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Compilacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Evolucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Mejoras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mejoras y roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versiones (CHANGELOG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Registro-de-cambios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de cambios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (guía de estilo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../invernadero/Glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SEMA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SEMA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-inicio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instalacion-y-mantenimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación y mantenimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagramas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de bloques y datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Modulos-y-ciclo-de-vida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Módulos y ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tareas-y-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tareas y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagnostico-y-salud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnóstico y salud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rendimiento-y-memoria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimiento y memoria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad-de-versiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pruebas-y-validacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pruebas y validación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-API-interna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Enumeraciones-y-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enumeraciones y tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estadísticas y métricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad (placas/sensores/buses)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hardware-y-Conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware y conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-pines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de pines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Buses-y-perifericos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buses y periféricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Expansores-de-entrada-salida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expansores de entrada/salida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sensores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Actuadores-y-Salidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuadores y salidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Materiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID (futuro)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-configuracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de configuración (JSON)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Variables-modificables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables modificables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Alarmas-y-reglas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alarmas y reglas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Calibracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Magnitudes-derivadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitudes derivadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Almacenamiento-e-historico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Almacenamiento e histórico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Energia-y-consumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energía y consumo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MQTT-y-WebSocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Conectividad-y-red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conectividad y red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Comunicaciones-remotas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones remotas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Backup-y-restauracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup y restauración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OTA-y-Actualizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OTA y actualización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Identidad-y-estados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidad y estados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Solucion-de-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución de problemas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FAQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preguntas frecuentes (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitaciones y bugs conocidos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitaciones y bugs conocidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-severidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Severidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-seguridad-y-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Seguridad y autenticación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuracion-que-se-guarda-pero-no-se-aplica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuración que se guarda pero no se aplica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-hardware-y-expansores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Hardware y expansores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-energia-tareas-y-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Energía, tareas y módulos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-almacenamiento-y-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Almacenamiento y datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ota-y-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. OTA y actualización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-calidad-y-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Calidad y pruebas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-documentacion-del-repositorio-de-codigo-desactualizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Documentación del repositorio de código desactualizada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-como-reportar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Cómo reportar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ver-tambien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ver también
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_46" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_46" id="__nav_3_46_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Decisiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Índice de decisiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0001-plataforma-configurable-y-separacion-de-capas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001 · Plataforma configurable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0002-perfiles-de-placa-capacidades-y-hal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002 · Perfiles de placa y HAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0003-modelo-canonico-de-mediciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003 · Modelo canónico de mediciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0004-event-bus-tipado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004 · Event bus tipado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0005-calibracion-independiente-del-driver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005 · Calibración independiente del driver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0006-almacenamiento-por-capas-y-retencion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006 · Almacenamiento por capas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0007-offline-first-y-publishers-desacoplados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0007 · Offline-first y publicadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0008-runtime-freertos-y-afinidad-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0008 · Runtime FreeRTOS y afinidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0009-configuracion-transaccional-y-safe-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0009 · Configuración transaccional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0010-api-rest-v1-y-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0010 · API REST v1 y seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0011-ota-con-rollback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0011 · OTA con rollback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0012-watchdog-health-y-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0012 · Watchdog y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0013-perfiles-energeticos-y-wake-por-lluvia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0013 · Perfiles energéticos y wake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0014-modulos-instalables-y-descubrimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0014 · Módulos instalables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Evolucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mejoras-y-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mejoras y roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Futuro (opcionales)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versiones (CHANGELOG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Registro-de-cambios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de cambios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (guía de estilo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../Home/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    SEMA
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">limitaciones</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">sema</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">soporte</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="limitaciones-y-bugs-conocidos">Limitaciones y bugs conocidos</h1>
+<blockquote>
+<p><strong>Tipo:</strong> Referencia / Soporte | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.103.0</p>
+</blockquote>
+<p>Consolidado de <strong>limitaciones reales</strong> de <code>v1.103.0</code>, verificadas leyendo el código
+(archivo y línea indicados). No es una lista de deseos: son comportamientos que hoy
+sorprenden o que directamente no funcionan como la interfaz sugiere.</p>
+<blockquote>
+<p><strong>Cómo se obtuvo</strong>: auditoría cruzada de todo el firmware contra esta documentación
+el 2026-10-08. <strong>No se probó en hardware</strong>: lo marcado como "deducido del código"
+surge de la lectura, no de una ejecución.</p>
+</blockquote>
+<h2 id="1-severidad">1. Severidad</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nivel</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🔴</td>
+<td>Puede hacer perder datos, funciones o falsa sensación de seguridad</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟠</td>
+<td>Función anunciada que no hace nada, o dato engañoso</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟡</td>
+<td>Molestia / requiere conocer el detalle para no equivocarse</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-seguridad-y-autenticacion">2. Seguridad y autenticación</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nivel</th>
+<th>Limitación</th>
+<th>Evidencia</th>
+<th>Impacto / vía de solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">S1</td>
+<td style="text-align: center;">🔴</td>
+<td><code>webAuthed()</code> devuelve <code>true</code> si <code>security.password</code> está vacía, <strong>aunque haya <code>api_key</code></strong></td>
+<td><code>HttpServer.cpp:1280-1286</code></td>
+<td>Quien llegue a la IP puede leer y escribir configuración. Configurar siempre <code>security.password</code>; documentado en <a href="../Seguridad/">Seguridad</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">S2</td>
+<td style="text-align: center;">🟠</td>
+<td>La UI de OTA <strong>no envía <code>X-API-Key</code></strong>; con contraseña configurada la subida responde <code>401</code> aunque la pantalla diga "Flasheado. Reiniciando…"</td>
+<td><code>HttpServer.cpp</code> (<code>onOtaUpload</code>)</td>
+<td>Usar <code>curl</code> con <code>X-API-Key</code>; corregir el formulario embebido</td>
+</tr>
+<tr>
+<td style="text-align: center;">S3</td>
+<td style="text-align: center;">🟠</td>
+<td>WebSocket en el puerto <strong>81 sin autenticación</strong></td>
+<td><code>HttpServer.hpp</code> (<code>WebSocketsServer ws_{81}</code>)</td>
+<td>Cualquiera en la red puede escuchar las mediciones. Aislar la red o no exponer el puerto</td>
+</tr>
+<tr>
+<td style="text-align: center;">S4</td>
+<td style="text-align: center;">🟠</td>
+<td>HTTP sin TLS y OTA sin firma</td>
+<td><code>HttpServer.cpp</code> (servidor ESP32)</td>
+<td>Tráfico y claves en claro; usar red de confianza/VPN</td>
+</tr>
+<tr>
+<td style="text-align: center;">S5</td>
+<td style="text-align: center;">🟡</td>
+<td><code>extra_keys</code> permite revocar claves, pero no hay roles ni rotación asistida</td>
+<td><code>ConfigManager.hpp:63</code></td>
+<td>RBAC pendiente (ver <a href="../Futuro/">Futuro</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">S6</td>
+<td style="text-align: center;">🟡</td>
+<td><code>GET /api/v1/gpio</code> y <code>GET /api/v1/shift</code> no piden autenticación (los <code>POST</code> sí)</td>
+<td><code>HttpServer.cpp:102-105</code></td>
+<td>Solo lectura de estado de salidas; conviene proteger también</td>
+</tr>
+<tr>
+<td style="text-align: center;">S7</td>
+<td style="text-align: center;">🟠</td>
+<td><code>server_key</code> (pensada para el Servidor Central) da <strong>acceso de escritura a toda la API web</strong>, porque <code>webAuthed()</code> también acepta <code>authorized()</code></td>
+<td><code>HttpServer.cpp:1280-1286</code></td>
+<td>Tratarla como una clave más del equipo, no como una credencial de solo lectura</td>
+</tr>
+<tr>
+<td style="text-align: center;">S8</td>
+<td style="text-align: center;">🟡</td>
+<td>MQTT sin TLS y webhook HTTP sin firma (timeout 2 s)</td>
+<td><code>MqttPublisher.cpp</code>, <code>HttpPublisher.cpp</code></td>
+<td>Usar broker en red local o VPN</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-configuracion-que-se-guarda-pero-no-se-aplica">3. Configuración que se guarda pero no se aplica</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nivel</th>
+<th>Clave / endpoint</th>
+<th>Efecto real</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">C1</td>
+<td style="text-align: center;">🟠</td>
+<td><code>i2c_sda</code> / <code>i2c_scl</code></td>
+<td>El bus se abre con los pines fijos del perfil (21/22): cambiarlos por web no afecta al I²C compartido</td>
+<td><code>SemaCore.cpp:112</code> usa <code>Wire.begin(SEMA_PIN_I2C_SDA, SEMA_PIN_I2C_SCL)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">C2</td>
+<td style="text-align: center;">🟠</td>
+<td><code>sensors[].address</code> (selector «ID»)</td>
+<td>Ningún driver lo lee: las direcciones están fijas en código (BMP280 0x76, SHT40/SHT31 0x44, VEML6075 0x10, SCD30 0x61, SGP30 0x58, AS3935 0x03, ADS1115 0x48)</td>
+<td><code>src/core/sensors/*.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">C3</td>
+<td style="text-align: center;">🟠</td>
+<td><code>sensors[].bus</code> / <code>uart</code> / <code>uart_port</code></td>
+<td>Ningún driver los usa; <strong>y <code>POST /api/v1/config/sensors</code> los descarta</strong> (solo <code>PUT /api/v1/config</code> los conserva)</td>
+<td><code>HttpServer.cpp</code> (<code>onConfigSensors</code>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">C4</td>
+<td style="text-align: center;">🟠</td>
+<td><code>sensors[].dashboard_layout</code> en el backup</td>
+<td><code>serialize()</code> no emite <code>dashboard_layout</code> (vive en la clave NVS <code>layout</code>): restaurar un backup <strong>no</strong> restaura el dashboard</td>
+<td><code>ConfigManager.cpp</code> (<code>serialize</code>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">C5</td>
+<td style="text-align: center;">🟠</td>
+<td><code>POST /api/v1/config/io</code></td>
+<td>La UI envía <code>gpio: []</code> → <strong>borra los GPIO standalone</strong>; además usa <code>latch</code>/<code>expander</code> mientras el JSON completo usa <code>latch_pin</code>/<code>expander_addr</code></td>
+<td><code>HttpServer.cpp</code> (<code>onConfigIo</code>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">C6</td>
+<td style="text-align: center;">🟡</td>
+<td><code>POST /api/v1/config/buses</code></td>
+<td>No aplica varios campos (baud/slave_id/register/count y parámetros de radio) que sí acepta <code>PUT /config</code></td>
+<td><code>HttpServer.cpp</code> (<code>onConfigBuses</code>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">C7</td>
+<td style="text-align: center;">🟡</td>
+<td><code>storage.backend</code></td>
+<td>Solo se valida como cadena: <strong>no selecciona backend</strong> (el histórico siempre va a SD)</td>
+<td><code>ConfigManager.cpp</code>, <code>HistoryStore.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">C8</td>
+<td style="text-align: center;">🟡</td>
+<td><code>system.log_level</code></td>
+<td>Se guarda y no se usa</td>
+<td><code>ConfigManager.hpp:37</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">C9</td>
+<td style="text-align: center;">🟠</td>
+<td>Migración de esquema</td>
+<td>No existe <code>ConfigManager::migrate()</code>; <code>validate()</code> rechaza <code>schemaVersion != 1</code> y <code>load()</code> cae a defaults <strong>sin aviso por API</strong> (solo por serie)</td>
+<td><code>ConfigManager.cpp:48-54</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-hardware-y-expansores">4. Hardware y expansores</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nivel</th>
+<th>Limitación</th>
+<th>Evidencia / impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">H1</td>
+<td style="text-align: center;">🟠</td>
+<td><code>SEMA_USE_SHIFT=0</code> en <strong>todos</strong> los entornos: <code>GET /api/v1/shift</code> responde 200 pero sin efecto (<code>shift_enabled=false</code>) y la web oculta el editor</td>
+<td><code>platformio.ini</code>; sin cascada: <code>writeByte()</code> manda el mismo byte a todos los 74HC595 y <code>readByte()</code> lee solo el primer 74HC165</td>
+</tr>
+<tr>
+<td style="text-align: center;">H2</td>
+<td style="text-align: center;">🟠</td>
+<td>MCP23S17, MAX14830 y SC18IS602B son <strong>solo configuración</strong>: no hay driver que escriba/lea sus pines</td>
+<td><code>ConfigManager.hpp</code> (structs), sin <code>.cpp</code> de driver</td>
+</tr>
+<tr>
+<td style="text-align: center;">H3</td>
+<td style="text-align: center;">🟠</td>
+<td><code>GpioManager::apply()</code> inicializa <strong>una sola</strong> dirección de MCP23017 y escribe todos los pines contra ese chip</td>
+<td><code>GpioManager.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H4</td>
+<td style="text-align: center;">🟠</td>
+<td><code>PCNT_UNIT_0</code>/<code>PCNT_CHANNEL_0</code> están fijos: anemómetro y pluviómetro <strong>se pisan</strong></td>
+<td><code>PcntSensor.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H5</td>
+<td style="text-align: center;">🟠</td>
+<td><code>Serial2</code> se comparte entre Modbus y PMS5003</td>
+<td><code>ModbusManager.cpp</code>, <code>Pms5003Sensor.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H6</td>
+<td style="text-align: center;">🟡</td>
+<td><code>I2cScanner::modelForAddress()</code> no reconoce AS3935 (0x03), ADS1115 (0x48-0x4B), SGP30 (0x58) ni VEML6075 (0x10); asigna 0x5C a AM2320</td>
+<td><code>I2cScanner.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H7</td>
+<td style="text-align: center;">🟡</td>
+<td><code>AdcSensor::model()</code> devuelve <code>ESP32-ADC</code> y <code>PcntSensor::interface()</code> devuelve <code>GPIO</code>: los nombres de la API no coinciden con la configuración (<code>ADC</code>/<code>PCNT</code>)</td>
+<td>Drivers</td>
+</tr>
+<tr>
+<td style="text-align: center;">H8</td>
+<td style="text-align: center;">🟡</td>
+<td><code>PMS5003</code>: el canal <code>pm1</code> publica <code>pm10_env</code> y <code>pm10</code> publica <code>pm100_env</code> (nombres invertidos en el driver)</td>
+<td><code>Pms5003Sensor.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H9</td>
+<td style="text-align: center;">🟡</td>
+<td>El selector de GPIO de la web ofrece 1..39 sin excluir flash (6-11; 26-32 en S3) ni consola (1/3); <code>reserved_pins</code> solo cubre SPI y RMII</td>
+<td><code>HttpServer.cpp</code> (páginas de config)</td>
+</tr>
+<tr>
+<td style="text-align: center;">H10</td>
+<td style="text-align: center;">🟡</td>
+<td>Dos pines fijos del perfil 32U coinciden: <code>SEMA_PIN_MODBUS_DERE = 0</code> = <code>SEMA_PIN_ETH_REF_CLK = 0</code></td>
+<td><code>HwProfile.hpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H11</td>
+<td style="text-align: center;">🟡</td>
+<td><code>lora.rst</code> tiene tres defaults distintos: header 14, <code>ConfigManager.cpp:432</code> 32, web/config 14 (y macro fija 32 en el perfil 32U); en WROOM el 14 pisa <code>SEMA_SPI_SCK</code></td>
+<td><code>HwProfile.hpp</code>, <code>ConfigManager.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H12</td>
+<td style="text-align: center;">🟡</td>
+<td>Zigbee <code>rx/tx</code>: el header declara 16/17 y el parseo/web usan 18/19</td>
+<td><code>ConfigManager.hpp</code> vs <code>ConfigManager.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H13</td>
+<td style="text-align: center;">🟡</td>
+<td>No hay <strong>PWM</strong> implementado (<code>ledc</code>/<code>analogWrite</code> no existen en el firmware); solo la capacidad declarada</td>
+<td><code>SemaCore.cpp:71</code>, ver <a href="../Actuadores-y-Salidas/">Actuadores y salidas</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">H14</td>
+<td style="text-align: center;">🟡</td>
+<td><code>Capability::Ethernet</code>, <code>Psram</code> e <code>Ieee802154</code> nunca se declaran; <code>Dac</code> y <code>Bluetooth</code> se declaran <code>true</code> sin driver</td>
+<td><code>SemaCore.cpp</code> (tabla de capacidades)</td>
+</tr>
+<tr>
+<td style="text-align: center;">H15</td>
+<td style="text-align: center;">🟡</td>
+<td>LoRa <code>cs</code> con dos defaults: 5 (<code>LoraConfig</code>) y 10 (perfil de hardware/<code>buses</code>)</td>
+<td><code>ConfigManager.hpp</code>, <code>HwProfile.hpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H16</td>
+<td style="text-align: center;">🟠</td>
+<td><code>-D SEMA_USE_ETHERNET=0</code> <strong>rompería la compilación</strong>: <code>HttpServer::onNetwork()</code> usa <code>core_-&gt;ethernet()</code> sin guarda de flag</td>
+<td><code>HttpServer.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H17</td>
+<td style="text-align: center;">🟡</td>
+<td>Zonas horarias del <code>&lt;select&gt;</code> que <code>posixTz()</code> no mapea (p. ej. Asia/Tokyo, Australia/Sydney) caen silenciosamente a <code>UTC0</code></td>
+<td><code>HttpServer.cpp</code> / <code>Time.hpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H18</td>
+<td style="text-align: center;">🟡</td>
+<td>Zigbee: el "modo standalone" y el monitoreo IPC del coprocesador (README §426/§427: <code>IPC_TIMEOUT</code>, <code>COPROCESSOR_OFFLINE</code>, reset) <strong>no están implementados</strong>; solo <code>SYS_RESET</code> + <code>AF_DATA_REQUEST</code>/<code>AF_INCOMING_MSG</code></td>
+<td><code>ZigbeeManager.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H19</td>
+<td style="text-align: center;">🟠</td>
+<td>Modbus: <code>values_</code> <strong>no se limpia</strong> al fallar una lectura (quedan datos viejos con <code>result != 0</code>) y no hay tarea de polling (solo lee cuando la API lo pide). CAN: <code>ACCEPT_ALL</code> sin filtros ni recuperación de bus-off; una velocidad no listada cae a 500 kbps en silencio</td>
+<td><code>ModbusManager.cpp</code>, <code>CanManager.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H20</td>
+<td style="text-align: center;">🔴</td>
+<td><strong>Conflicto de pines por defecto</strong>: <code>SEMA_PIN_ONEWIRE = 4</code> y el default de <code>storage.sd_cs_pin = 4</code>. Usar 1-Wire y microSD a la vez (configuración de fábrica) colisiona</td>
+<td><code>HwProfile.hpp</code>, <code>ConfigManager.hpp:55</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H21</td>
+<td style="text-align: center;">🟠</td>
+<td>Varios drivers usan un objeto de librería <code>static</code>: <strong>no se pueden usar dos sensores del mismo modelo</strong> (BME280, SHT40, SHT31, BMP280, ADS1115, SCD30, SGP30, AS3935, PMS5003). <code>PcntSensor</code> fija <code>PCNT_UNIT_0</code>/<code>CHANNEL_0</code>: un solo contador de pulsos por estación (lluvia <strong>o</strong> viento)</td>
+<td><code>src/core/sensors/*.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">H22</td>
+<td style="text-align: center;">🟡</td>
+<td>De los 8 valores de <code>Quality</code> definidos, solo se emiten <code>VALID</code>, <code>COMMUNICATION_ERROR</code> (BMP280, SHT31, BH1750) y <code>SENSOR_DISCONNECTED</code> (BH1750, DS18B20): los otros 5 no se generan nunca</td>
+<td>Drivers</td>
+</tr>
+<tr>
+<td style="text-align: center;">H23</td>
+<td style="text-align: center;">🟡</td>
+<td>Los ADR 0009 y 0011 describen <strong>Safe Mode</strong> y rollback automático del bootloader que no están implementados en el código</td>
+<td><code>ConfigManager.cpp</code>, sin <code>sdkconfig</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-energia-tareas-y-modulos">5. Energía, tareas y módulos</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nivel</th>
+<th>Limitación</th>
+<th>Evidencia / impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">E1</td>
+<td style="text-align: center;">🟠</td>
+<td><code>PowerManager::sleep()</code> y <code>EnergyProfile::setProfile()</code> <strong>no tienen llamadores</strong>: el equipo nunca duerme por firmware y el perfil queda en <code>normal</code></td>
+<td><code>PowerManager.cpp</code>; el deep sleep solo ocurre si algo externo lo invoca</td>
+</tr>
+<tr>
+<td style="text-align: center;">E2</td>
+<td style="text-align: center;">🟡</td>
+<td><code>HistoryStore::prune()</code> y <code>setMaxEntries()</code> nunca se llaman (la retención por tiempo sí se configura, pero la poda depende de la ruta que la invoque)</td>
+<td><code>SemaCore.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">E3</td>
+<td style="text-align: center;">🟠</td>
+<td><code>ModuleRegistry::count()</code> es siempre <strong>0</strong>: ninguna clase deriva de <code>Module</code> (no hay módulos reales)</td>
+<td><code>ModuleRegistry.cpp</code>; coincide con <a href="../Mejoras-y-roadmap/">Mejoras y roadmap</a> 🔄</td>
+</tr>
+<tr>
+<td style="text-align: center;">E4</td>
+<td style="text-align: center;">🟡</td>
+<td>El watchdog es plano (TWDT), no jerárquico por tarea</td>
+<td><code>Watchdog.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">E5</td>
+<td style="text-align: center;">🟡</td>
+<td>Los perfiles energéticos no cambian el comportamiento y <strong>no hay endpoint para cambiarlos</strong> (<code>GET /api/v1/energy</code> es de solo lectura)</td>
+<td><code>PowerManager.cpp</code>, <code>HttpServer.cpp</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-almacenamiento-y-datos">6. Almacenamiento y datos</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nivel</th>
+<th>Limitación</th>
+<th>Evidencia / impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">D1</td>
+<td style="text-align: center;">🔴</td>
+<td>El histórico escribe <strong>solo en microSD</strong>; sin SD, <code>append()</code> devuelve <code>false</code> y no hay histórico ni gráficas</td>
+<td><code>HistoryStore.cpp</code> (<code>&lt;SD.h&gt;</code>); el comentario de <code>HistoryStore.hpp</code> dice "backend LittleFS" y <strong>contradice</strong> al <code>.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">D2</td>
+<td style="text-align: center;">🟡</td>
+<td>El <code>EventLog</code> se evalúa contra la cola RAM (100 entradas) y su <code>ts</code> es <code>millis()</code>, no época</td>
+<td><code>EventLog.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">D3</td>
+<td style="text-align: center;">🟡</td>
+<td>La página <code>/events</code> formatea <code>ts</code> como epoch → en un equipo real sin NTP muestra fechas de 1970</td>
+<td><code>HttpServer.cpp</code> (JS embebido)</td>
+</tr>
+<tr>
+<td style="text-align: center;">D4</td>
+<td style="text-align: center;">🟡</td>
+<td>El backup no incluye el layout del dashboard y <code>backup.timestamp</code> es <code>millis()/1000</code> (uptime), no fecha</td>
+<td><code>HttpServer.cpp</code> (<code>onBackup</code>), <code>ConfigManager.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">D5</td>
+<td style="text-align: center;">🟠</td>
+<td>Las reglas <strong>no accionan salidas</strong>: el <code>RuleEngine</code> solo publica el evento; la automatización es externa</td>
+<td><code>RuleEngine.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">D6</td>
+<td style="text-align: center;">🟠</td>
+<td><code>station_id</code> viaja <strong>siempre vacío</strong>: <code>Measurement::stationId</code> no se asigna en ningún punto del firmware (se publica así por MQTT/webhook)</td>
+<td><code>Measurement.hpp</code>, <code>SemaCore.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">D7</td>
+<td style="text-align: center;">🟡</td>
+<td><code>nowEpoch()</code> devuelve hora <strong>local</strong> (UTC + offset), aunque el comentario de <code>Measurement.hpp</code> diga "epoch seconds UTC"</td>
+<td><code>Time.hpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">D8</td>
+<td style="text-align: center;">🟡</td>
+<td>El dashboard <strong>no consume el WebSocket</strong> (no hay <code>new WebSocket</code> en el firmware): refresca por polling cada 5 s; el WS del puerto 81 queda como interfaz para clientes externos</td>
+<td><code>HttpServer.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">D9</td>
+<td style="text-align: center;">🟠</td>
+<td>Las reglas se evalúan <strong>por lote cada 10 s y sin detección de flanco</strong>: mientras la condición siga siendo verdadera se emite una alarma nueva en cada ciclo (sin histéresis ni cooldown)</td>
+<td><code>RuleEngine.cpp</code>, <code>SemaCore.cpp</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-ota-y-actualizacion">7. OTA y actualización</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nivel</th>
+<th>Limitación</th>
+<th>Evidencia / impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">O1</td>
+<td style="text-align: center;">🔴</td>
+<td><code>X-SHA256</code> se compara contra el SHA-256 de la <strong>partición completa rellenada</strong>, no contra el <code>sha256</code> del <code>.bin</code> del manifiesto: usar el valor del manifiesto devuelve <code>400</code></td>
+<td><code>HttpServer.cpp</code> (<code>otaPartitionSha256</code>, <code>onOtaUpload</code>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">O2</td>
+<td style="text-align: center;">🔴</td>
+<td>Un hash incorrecto <strong>no revierte</strong> el flasheo ya aplicado (<code>Update.end(true)</code> marcó el slot)</td>
+<td><code>HttpServer.cpp</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">O3</td>
+<td style="text-align: center;">🟠</td>
+<td>El rollback automático del bootloader no está configurado de forma verificable (no hay <code>sdkconfig</code> en el repo ni llamada a <code>esp_ota_mark_app_valid_cancel_rollback()</code>)</td>
+<td>Proyecto PlatformIO</td>
+</tr>
+<tr>
+<td style="text-align: center;">O4</td>
+<td style="text-align: center;">🟡</td>
+<td><code>GET /api/v1/update/check</code> compara versiones con <code>!=</code> de cadenas: un <em>downgrade</em> figura como <code>update: true</code>; además usa <code>setInsecure()</code></td>
+<td><code>HttpServer.cpp</code> (<code>onUpdateCheck</code>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">O5</td>
+<td style="text-align: center;">🟡</td>
+<td><code>firmware_manifest.json</code> no tiene entrada para la placa de 16 MB (<code>esp32-wroom32u-16mb</code>, el <code>board_id</code> que reporta <code>GET /api/v1/system</code>)</td>
+<td><code>firmware_manifest.json</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-calidad-y-pruebas">8. Calidad y pruebas</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nivel</th>
+<th>Limitación</th>
+<th>Evidencia / impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Q1</td>
+<td style="text-align: center;">🟠</td>
+<td><strong>No hay tests automatizados</strong>: <code>test/</code> solo contiene un README; sin entorno <code>native</code> ni CI en el repo</td>
+<td><code>test/README</code>; ver <a href="../Pruebas-y-validacion/">Pruebas y validación</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Q2</td>
+<td style="text-align: center;">🟡</td>
+<td>La validación depende de <code>pio run</code> + revisión manual de logs y endpoints</td>
+<td>Idem</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-documentacion-del-repositorio-de-codigo-desactualizada">9. Documentación del repositorio de código desactualizada</h2>
+<p>Estos archivos de <code>SEMA/docs/</code> contradicen al código en <code>v1.103.0</code> (se listan para no
+seguir sus datos a ciegas; este apartado del repo Docs es la versión corregida):</p>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Contradicción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docs/PINES-POR-BOARD.md</code></td>
+<td>§3 da SD SPI 4/23/19/18 (el bus real es CS 4 + <code>SEMA_SPI_*</code>: 15/12/14 en WROOM) y LoRa RST 14; §4 afirma que los 16 pines del MCP23S17 sirven de CS para SD/LoRa (falso)</td>
+</tr>
+<tr>
+<td><code>docs/ETHERNET-Y-BUILDFLAGS.md</code></td>
+<td>§2.2 muestra <code>SEMA_SPI_SCK 18</code> en la rama no-S3 (el real es 14)</td>
+</tr>
+<tr>
+<td><code>docs/VERSIONADO.md</code></td>
+<td>Menciona <code>ConfigManager::migrate()</code> y schema 2 (no existen); usa nombres <code>GH_*</code> y describe <code>update_channel</code> inexistente</td>
+</tr>
+<tr>
+<td><code>docs/CONTINUACION.md</code></td>
+<td>El checklist §4 sigue pidiendo "52 releases" y <code>version: 0.52.0</code> (real: 159 releases, 1.103.0)</td>
+</tr>
+<tr>
+<td><code>docs/FUTURO.md</code></td>
+<td>Da por pendientes ítems ya implementados (rotación del EventLog, agregación, CSV, retención, tema, idiomas, zona horaria, SD)</td>
+</tr>
+<tr>
+<td><code>include/core/storage/HistoryStore.hpp</code></td>
+<td>El comentario de cabecera dice "backend LittleFS" y su <code>.cpp</code> usa microSD</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-como-reportar">10. Cómo reportar</h2>
+<ul>
+<li>Vulnerabilidades: seguir <code>SECURITY.md</code> del repositorio y <strong>no</strong> abrir un issue público
+  con detalles explotables.</li>
+<li>Bugs funcionales: issue en <a href="https://github.com/AlessandroKlein/SEMA/issues">https://github.com/AlessandroKlein/SEMA/issues</a> con la
+  salida de <code>GET /api/v1/diagnostics</code>, la versión (<code>GET /api/v1/system</code>) y el log serie.</li>
+</ul>
+<hr />
+<h2 id="ver-tambien">Ver también</h2>
+<ul>
+<li><a href="../Solucion-de-problemas/">Solución de problemas</a> · <a href="../Pruebas-y-validacion/">Pruebas y validación</a> · <a href="../Seguridad/">Seguridad</a></li>
+<li><a href="../Mejoras-y-roadmap/">Mejoras y roadmap</a> · <a href="../Futuro/">Futuro</a> · <a href="../Referencia-configuracion/">Referencia de configuración</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../FAQ/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Preguntas frecuentes (FAQ)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Preguntas frecuentes (FAQ)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Decisiones/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Índice de decisiones">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Índice de decisiones
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 AlessandroKlein
+    </div>
+  
+  
+    <a href="https://github.com/AlessandroKlein/Docs" target="_blank" rel="noopener">
+      Documentación versionada en GitHub
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/AlessandroKlein" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+  
+
+<h4>Cookies</h4>
+<p>Usamos cookies para recordar tus preferencias (tema e idioma).</p>
+<input class="md-toggle" type="checkbox" id="__settings" checked>
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Aceptar</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Rechazar</button>
+    
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

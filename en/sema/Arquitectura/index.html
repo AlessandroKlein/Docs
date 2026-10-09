@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/sema/Arquitectura/">
       
       
-        <link rel="prev" href="../Guia-de-inicio/">
+        <link rel="prev" href="../Guia-de-desarrollo/">
       
       
-        <link rel="next" href="../Referencia-de-codigo/">
+        <link rel="next" href="../Diagramas/">
       
       
         
@@ -1795,6 +1795,42 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1857,7 +1893,7 @@
   <span class="md-ellipsis">
     
   
-    Home
+    Inicio
   
 
     
@@ -1886,6 +1922,90 @@
     
   
     Guía de inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instalacion-y-mantenimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación y mantenimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de desarrollo (extender)
   
 
     
@@ -1966,10 +2086,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-principios" class="md-nav__link">
+  <a href="#1-que-es-sema-y-que-no" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Principios
+        1. Qué es SEMA (y qué no)
       
     </span>
   </a>
@@ -1977,10 +2097,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-arquitectura-conceptual" class="md-nav__link">
+  <a href="#2-principios-de-diseno" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Arquitectura conceptual
+        2. Principios de diseño
       
     </span>
   </a>
@@ -1988,10 +2108,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#21-compatibilidad-por-perfiles-hal" class="md-nav__link">
+  <a href="#3-capas-reales" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 Compatibilidad por perfiles (HAL)
+        3. Capas reales
       
     </span>
   </a>
@@ -1999,10 +2119,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-estructura-de-carpetas" class="md-nav__link">
+  <a href="#4-estructura-de-carpetas-real" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Estructura de carpetas
+        4. Estructura de carpetas real
       
     </span>
   </a>
@@ -2010,10 +2130,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-modulos-del-core" class="md-nav__link">
+  <a href="#5-secuencia-de-arranque-real" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Módulos del Core
+        5. Secuencia de arranque real
       
     </span>
   </a>
@@ -2021,10 +2141,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-ciclo-de-vida-de-modulos" class="md-nav__link">
+  <a href="#6-frontera-hal-boardprofile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Ciclo de vida de módulos
+        6. Frontera HAL / BoardProfile
       
     </span>
   </a>
@@ -2032,10 +2152,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-flujo-de-datos" class="md-nav__link">
+  <a href="#7-grafo-de-dependencias-entre-servicios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Flujo de datos
+        7. Grafo de dependencias entre servicios
       
     </span>
   </a>
@@ -2043,10 +2163,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-event-bus" class="md-nav__link">
+  <a href="#8-flujo-de-datos-medir-validar-procesar-almacenar-publicar" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Event Bus
+        8. Flujo de datos: MEDIR → VALIDAR → PROCESAR → ALMACENAR → PUBLICAR
       
     </span>
   </a>
@@ -2054,10 +2174,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-scheduler-y-recursos-dinamicos" class="md-nav__link">
+  <a href="#9-que-no-esta-implementado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Scheduler y recursos dinámicos
+        9. Qué no está implementado
       
     </span>
   </a>
@@ -2065,10 +2185,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-prioridades-y-no-bloqueo" class="md-nav__link">
+  <a href="#10-niveles-de-despliegue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. Prioridades y no bloqueo
+        10. Niveles de despliegue
       
     </span>
   </a>
@@ -2076,74 +2196,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-niveles-de-visualizacion" class="md-nav__link">
+  <a href="#ver-tambien" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. Niveles de visualización
+        Ver también
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-definition-of-done" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        11. Definition of Done
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-definiciones-de-fase-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        12. Definiciones de Fase 1
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="12. Definiciones de Fase 1">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#endpoints-rest-minimos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Endpoints REST mínimos
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modelo-canonico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modelo Canónico
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#storage-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Storage API
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2163,14 +2222,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Referencia-de-codigo/" class="md-nav__link">
+      <a href="../Diagramas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Referencia de código
+    Diagramas de bloques y datos
   
 
     
@@ -2191,14 +2250,182 @@
   
   
     <li class="md-nav__item">
-      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
+      <a href="../Modulos-y-ciclo-de-vida/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Estadísticas y métricas
+    Módulos y ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tareas-y-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tareas y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Diagnostico-y-salud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnóstico y salud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rendimiento-y-memoria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimiento y memoria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compatibilidad-de-versiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibilidad de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pruebas-y-validacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pruebas y validación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencia-de-codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia de código
   
 
     
@@ -2275,42 +2502,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Diagramas/" class="md-nav__link">
+      <a href="../Estadisticas-y-metricas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Diagramas de bloques y datos
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Control-PID/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Control PID
+    Estadísticas y métricas
   
 
     
@@ -2415,6 +2614,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../Buses-y-perifericos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buses y periféricos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Expansores-de-entrada-salida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expansores de entrada/salida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Sensores/" class="md-nav__link">
         
   
@@ -2479,6 +2734,34 @@
     
   
     Materiales (BOM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Control-PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control PID (futuro)
   
 
     
@@ -2583,6 +2866,146 @@
   
   
     <li class="md-nav__item">
+      <a href="../Alarmas-y-reglas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alarmas y reglas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Calibracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Magnitudes-derivadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitudes derivadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Almacenamiento-e-historico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Almacenamiento e histórico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Energia-y-consumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energía y consumo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../API-REST/" class="md-nav__link">
         
   
@@ -2619,6 +3042,90 @@
     
   
     MQTT y WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Conectividad-y-red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conectividad y red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Comunicaciones-remotas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones remotas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Backup-y-restauracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup y restauración
   
 
     
@@ -2695,7 +3202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Identidad-y-Estados/" class="md-nav__link">
+      <a href="../Identidad-y-estados/" class="md-nav__link">
         
   
   
@@ -2779,8 +3286,89 @@
   
   
     <li class="md-nav__item">
-      <a href="../Decisiones/" class="md-nav__link">
+      <a href="../Limitaciones-conocidas/" class="md-nav__link">
         
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitaciones y bugs conocidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_46" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_46" id="__nav_3_46_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -2794,11 +3382,19 @@
   
   
 
-      </a>
-    </li>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisiones
   
 
-              
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -2807,14 +3403,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Compilacion-y-flasheo/" class="md-nav__link">
+      <a href="../Decisiones/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Compilación y flasheo
+    Índice de decisiones
   
 
     
@@ -2835,14 +3431,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../Guia-de-desarrollo/" class="md-nav__link">
+      <a href="../adr/0001-plataforma-configurable-y-separacion-de-capas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Guía de desarrollo (extender)
+    ADR 0001 · Plataforma configurable
   
 
     
@@ -2851,6 +3447,378 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0002-perfiles-de-placa-capacidades-y-hal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002 · Perfiles de placa y HAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0003-modelo-canonico-de-mediciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003 · Modelo canónico de mediciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0004-event-bus-tipado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004 · Event bus tipado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0005-calibracion-independiente-del-driver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005 · Calibración independiente del driver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0006-almacenamiento-por-capas-y-retencion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006 · Almacenamiento por capas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0007-offline-first-y-publishers-desacoplados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0007 · Offline-first y publicadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0008-runtime-freertos-y-afinidad-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0008 · Runtime FreeRTOS y afinidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0009-configuracion-transaccional-y-safe-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0009 · Configuración transaccional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0010-api-rest-v1-y-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0010 · API REST v1 y seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0011-ota-con-rollback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0011 · OTA con rollback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0012-watchdog-health-y-diagnostico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0012 · Watchdog y diagnóstico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0013-perfiles-energeticos-y-wake-por-lluvia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0013 · Perfiles energéticos y wake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0014-modulos-instalables-y-descubrimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0014 · Módulos instalables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3147,163 +4115,436 @@
 
 <h1 id="arquitectura">Arquitectura</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Planificación | <strong>Fecha:</strong> 2026-10-03 | <strong>Firmware:</strong> v1.103.0</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.103.0</p>
 </blockquote>
-<p>Arquitectura de SEMA consolidada a partir del <code>README.md</code>. Es la referencia para
-implementar el firmware de forma modular.</p>
-<h2 id="1-principios">1. Principios</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SENSOR ≠ FUNCIÓN
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>GPIO   ≠ SENSOR
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>BUS    ≠ SENSOR
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>MODELO ≠ MAGNITUD
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>HARDWARE ≠ CONFIGURACIÓN
+<p>Este documento describe la arquitectura <strong>tal como está implementada</strong> en el firmware
+v1.103.0 (rama <code>main</code>). Todo lo que figura acá se verificó contra el código en
+<code>src/</code> e <code>include/</code>; lo que es diseño aspiracional y todavía no existe se marca
+explícitamente con ⚠️ o ❌.</p>
+<h2 id="1-que-es-sema-y-que-no">1. Qué es SEMA (y qué no)</h2>
+<p>SEMA es un firmware para ESP32 escrito en C++ con el framework <strong>Arduino</strong>
+(<code>platformio.ini</code>, <code>framework = arduino</code>). Usa APIs del ESP-IDF solo donde la capa
+Arduino no alcanza: TWAI (<code>driver/twai.h</code>), <code>esp_eth</code> (W5500), <code>esp_task_wdt</code>
+(watchdog), <code>Preferences</code> (NVS) y <code>esp_reset_reason()</code>.</p>
+<p>La arquitectura real es <strong>un único binario monolítico, de una sola tarea de
+aplicación</strong>: los servicios son miembros de un objeto central (<code>sema::SemaCore</code>) y
+los orquesta un planificador cooperativo por sondeo. No hay hilos de aplicación, ni
+colas entre servicios, ni comunicación inter-proceso. Ver
+<a href="../Tareas-y-concurrencia/">Tareas-y-concurrencia</a>.</p>
+<h2 id="2-principios-de-diseno">2. Principios de diseño</h2>
+<p>Los cinco principios que ordenan el diseño y que el código respeta:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SENSOR  ≠ FUNCIÓN    Un modelo mide varias magnitudes: el driver devuelve N mediciones.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>GPIO    ≠ SENSOR     Un pin es un recurso asignable desde la configuración.
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>BUS     ≠ SENSOR     I²C/1-Wire/SPI son transporte, no identidad.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>MODELO  ≠ MAGNITUD   BME280/SHT40/SHT31/AHT20/BMP280 son intercambiables porque
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                     todos producen Measurement canónicas.
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>HARDWARE ≠ CONFIG    El hardware aporta capacidades (Capability); la config decide el uso.
 </span></code></pre></div>
+<p>Consecuencias que se ven en el código:</p>
 <ul>
-<li>El hardware define las capacidades; la configuración web define cómo se usan.</li>
-<li>Simple por fuera, modular por dentro.</li>
-<li>El Core nunca depende de módulos opcionales.</li>
-<li>Una falla opcional no detiene la adquisición.</li>
+<li><strong>Magnitud, no modelo.</strong> <code>Sensor::measure()</code> (<code>include/core/sensors/Sensor.hpp</code>)
+  devuelve <code>Measurement</code> (<code>include/core/Measurement.hpp</code>) con <code>sensorId</code>,
+  <code>channelId</code>, <code>measurement</code>, <code>value</code>, <code>unit</code> y <code>quality</code>; nadie aguas abajo
+  pregunta por el modelo físico.</li>
+<li><strong>El núcleo no depende de los módulos opcionales.</strong> Ethernet, LoRa, Modbus, CAN y
+  Zigbee están envueltos en <code>#if SEMA_USE_*</code> (<code>include/hw/HwProfile.hpp</code>). Un fallo
+  de un módulo opcional no detiene la adquisición: <code>HealthMonitor::status()</code> degrada
+  el estado pero el <code>Scheduler</code> sigue corriendo.</li>
+<li><strong>Las capacidades se preguntan, no se deducen del modelo de placa.</strong>
+  <code>CapabilityManager</code> (<code>include/core/Capability.hpp</code>) expone
+  <code>WiFi, Bluetooth, Ethernet, Adc, Dac, Pcnt, LedcPwm, I2c, Spi, Uart, Can, Psram,
+  RtcGpio, DeepSleep, DualCore, Ieee802154</code> y el código consulta
+  <code>caps.has(Capability::X)</code>.</li>
 </ul>
-<h2 id="2-arquitectura-conceptual">2. Arquitectura conceptual</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>                    SEMA CORE
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>                        │
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        ┌───────────────┼────────────────┐
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        │               │                │
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    Hardware         Sensors          Services
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        │               │                ├── Web
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        │               │                ├── API
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        │               │                ├── MQTT
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        │               │                ├── OTA
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        │               │                └── Storage
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        │               │
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        ├── GPIO        ├── Temperature
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        ├── I²C         ├── Humidity
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        ├── SPI         ├── Pressure
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        ├── UART        ├── Light / UV
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        ├── ADC         ├── CO₂ / PM
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        ├── RS485       ├── Wind / Rain
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        ├── CAN         ├── Solar / Lightning
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        ├── 1-Wire      └── Soil / Energy
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        └── Expansores
+<h2 id="3-capas-reales">3. Capas reales</h2>
+<p>La separación efectiva en el código es esta (de abajo hacia arriba):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌─ 4. Aplicación ─── src/main.cpp (18 líneas) → SemaCore::setup() / loop()
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├─ 3. Servicios del núcleo (miembros de SemaCore) ─────────────────────────
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ConfigManager · NvsStore · HistoryStore · EventLog · EventBus · Scheduler
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   Watchdog · HealthMonitor · CapabilityManager · SensorManager
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   DerivedEngine/DerivedCalculator · RuleEngine · GpioManager
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ShiftRegisterManager · PublisherManager(HttpPublisher, MqttPublisher)
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   PowerManager · HttpServer
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├─ 2. Módulos opcionales (compilados condicionalmente) ───────────────────
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   EthernetManager · LoraManager · ModbusManager · CanManager
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ZigbeeManager · WiFiManager
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>└─ 1. HAL / perfil de hardware (compile-time) ────────────────────────────
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    include/hw/HwProfile.hpp (SEMA_USE_*, pines de bus, board) ·
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    include/core/BoardProfile.hpp (SEMA_PIN_* del catálogo fijo) + APIs del core
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    Arduino-ESP32 (Wire, SPI, Serial1/2, Preferences, LittleFS, SD, WiFi,
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    ETH/esp_eth, TWAI, esp_task_wdt)
 </span></code></pre></div>
-<h2 id="21-compatibilidad-por-perfiles-hal">2.1 Compatibilidad por perfiles (HAL)</h2>
-<p>La compatibilidad entre variantes de ESP32 <strong>no se resuelve con <code>#ifdef</code>
-repartidos</strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SEMA Application → SEMA Core
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>                        ├── Capability Manager
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>                        ├── Resource Manager
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>                        ├── Runtime Manager
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>                        └── Hardware Abstraction Layer (HAL)
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>                                        │
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>                                        ▼
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                                 Board/Chip Profile
-</span></code></pre></div>
+<p>Puntos clave de esta separación:</p>
 <ul>
-<li><strong>Capability Manager</strong> — qué puede hacer la plataforma (ADC, PCNT, PSRAM, SMP,
-  Wi-Fi, 802.15.4, CAN/TWAI, …).</li>
-<li><strong>Resource Manager</strong> — asigna y valida recursos detectando conflictos.</li>
-<li><strong>Runtime Manager</strong> — tareas y afinidad (<code>AUTO</code> por defecto) sobre FreeRTOS.</li>
-<li><strong>HAL + Board/Chip Profile</strong> — única frontera con el hardware concreto.</li>
+<li><strong>No hay capa de abstracción propia sobre el hardware.</strong> SEMA no envuelve
+  <code>Wire</code>, <code>SPI</code> ni <code>Serial</code> en interfaces propias: los drivers de sensor llaman
+  directamente a <code>Wire.begin(...)</code> y a las librerías de Adafruit (ver
+  <code>src/core/sensors/Sht40Sensor.cpp</code> o <code>src/core/sensors/Bme280Sensor.cpp</code>). La
+  única abstracción propia de plataforma es <code>CapabilityManager</code>.</li>
+<li><strong>La capa 2 no está registrada como módulos.</strong> <code>EthernetManager</code>, <code>LoraManager</code>,
+  <code>ModbusManager</code>, <code>CanManager</code> y <code>ZigbeeManager</code> son <strong>miembros por composición</strong>
+  de <code>SemaCore</code> (<code>include/core/SemaCore.hpp</code>, líneas 136-150), no implementaciones
+  de <code>sema::Module</code>. Ver <a href="../Modulos-y-ciclo-de-vida/">Modulos-y-ciclo-de-vida</a>.</li>
+<li><strong><code>sema::Task</code> (Runtime Manager) existe pero no se usa.</strong> La clase está en
+  <code>include/core/runtime/Task.hpp</code> / <code>src/core/runtime/Task.cpp</code> y envuelve
+  <code>xTaskCreate</code>, pero no hay ninguna instanciación en el firmware (verificado por
+  búsqueda de <code>new Task</code>/<code>Task(</code> en todo el árbol). ❌ No hay Runtime Manager activo.</li>
 </ul>
-<h2 id="3-estructura-de-carpetas">3. Estructura de carpetas</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SEMA/
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── include/core/          ← interfaces y cabeceras del Core
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── src/
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   ├── main.cpp           ← pequeño: initialize → register → start → loop
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│   ├── core/              ← registry, event bus, config, health
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   ├── config/            ← configuración persistente (NVS) y validación
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│   ├── hardware/          ← GPIO, ADC y periféricos internos
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│   ├── buses/             ← I²C, SPI, UART, 1-Wire, RS485, CAN
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│   ├── sensors/           ← drivers de sensores (abstracción por magnitud)
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│   ├── actuators/         ← salidas digitales/PWM
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│   ├── communications/    ← MQTT, HTTP, WebSocket, publicadores externos
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│   ├── storage/           ← LittleFS/SD, histórico, eventos
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│   ├── energy/            ← batería/panel, sleep, wake
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│   ├── alarms/            ← alarmas y umbrales
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│   ├── diagnostics/       ← salud, logs, inventario, métricas
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│   ├── web/               ← servidor web local
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│   ├── api/               ← endpoints REST
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>│   ├── ota/               ← actualización de firmware
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>│   └── modules/           ← módulos opcionales (LoRa, Zigbee, …)
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>└── docs/
+<h2 id="4-estructura-de-carpetas-real">4. Estructura de carpetas real</h2>
+<p>Verificada con <code>Get-ChildItem -Recurse -Directory</code> sobre el repo. La estructura
+<strong>no coincide</strong> con la que describían versiones anteriores de esta página.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SEMA/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── src/
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── main.cpp                  ← 18 líneas: setup() y loop() delegan en SemaCore
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   └── core/
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│       ├── SemaCore.cpp          ← orquestador (392 líneas)
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│       ├── (raíz)                ← CapabilityManager · ConfigManager · EventBus ·
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│       │                           GpioManager · HealthMonitor · PowerManager ·
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│       │                           Scheduler · ShiftRegisterManager · Watchdog ·
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│       │                           ModbusManager · CanManager · LoraManager ·
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│       │                           ZigbeeManager · EthernetManager · Calibration
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│       ├── alarms/               ← RuleEngine.cpp
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│       ├── derived/              ← DerivedCalculator.cpp · DerivedEngine.cpp
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│       ├── events/               ← EventLog.cpp
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│       ├── network/              ← WiFiManager.cpp
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│       ├── publishers/           ← HttpPublisher.cpp · MqttPublisher.cpp · PublisherManager.cpp
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│       ├── runtime/              ← Task.cpp (abstracción sin uso)
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│       ├── sensors/              ← SensorFactory.cpp · SensorManager.cpp · I2cScanner.cpp
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│       │                           + 17 drivers *Sensor.cpp
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│       ├── storage/              ← HistoryStore.cpp · NvsStore.cpp
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>│       └── web/                  ← HttpServer.cpp (2637 líneas) + assets gzip
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>├── include/
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>│   ├── hw/HwProfile.hpp          ← perfil de hardware (compile-time)
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>│   └── core/                     ← cabeceras espejo de src/core/ + Module.hpp ·
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>│                                    ModuleRegistry.hpp · Capability.hpp · Version.hpp ·
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>│                                    BoardProfile.hpp · Measurement.hpp · Time.hpp
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>├── lib/  · test/                 ← solo un README placeholder cada uno
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>├── docs/                         ← GUIA.md · IMPLEMENTACION.md · PINES-POR-BOARD.md · …
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>├── platformio.ini · partitions_4mb.csv · partitions_8mb.csv · partitions_16mb.csv
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>└── CHANGELOG.md · README.md · DESIGN-SYSTEM.md · SECURITY.md · firmware_manifest.json
 </span></code></pre></div>
-<h2 id="4-modulos-del-core">4. Módulos del Core</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>CORE
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a> ├── Sensor Engine (medición + validación + calibración)
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a> ├── Configuration (persistencia, esquema versionado, migraciones)
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a> ├── Capability / Resource / Runtime Manager + HAL
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a> ├── Event Bus / Event Manager
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a> ├── Scheduler (tareas por capacidades)
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a> ├── Storage API (NVS / Flash / LittleFS / SD / externo)
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a> ├── Web Server / API / WebSocket
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a> └── Diagnostics (health, watchdog, observabilidad)
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>CAPACIDADES / INTERFACES (implementaciones, no módulos que contaminan el Core)
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a> ├── MQTT, HTTP, LoRa, Zigbee, RS485, CAN, OTA
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a> ├── Weather, Air Quality, Lightning, Soil, Energy
+<p><strong>No existen</strong> (pese a figurar en versiones previas de esta página) las carpetas
+<code>src/config/</code>, <code>src/hardware/</code>, <code>src/buses/</code>, <code>src/actuators/</code>,
+<code>src/communications/</code>, <code>src/energy/</code>, <code>src/diagnostics/</code>, <code>src/api/</code>, <code>src/ota/</code>
+ni <code>src/modules/</code>. Las cabeceras viven en <code>include/core/</code> (no todo en
+<code>include/core/</code> plano: hay subcarpetas <code>alarms/</code>, <code>derived/</code>, <code>events/</code>,
+<code>network/</code>, <code>publishers/</code>, <code>runtime/</code>, <code>sensors/</code>, <code>storage/</code>, <code>web/</code>).</p>
+<h2 id="5-secuencia-de-arranque-real">5. Secuencia de arranque real</h2>
+<p><code>void setup()</code> en <code>src/main.cpp</code> llama a <code>sema::SemaCore::instance().setup()</code>.
+<code>SemaCore::setup()</code> (<code>src/core/SemaCore.cpp</code>, líneas 46-225) ejecuta, <strong>en este
+orden exacto</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Paso</th>
+<th>Código</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>Serial.begin(115200)</code> + <code>delay(200)</code></td>
+<td>SemaCore.cpp:47</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Almacenamiento base: <code>store_.begin("sema")</code> (NVS) → <code>history_.begin()</code> → <code>eventLog_.begin()</code> (monta LittleFS)</td>
+<td>SemaCore.cpp:50-52</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Contador de reinicios persistido (<code>boots</code>), leído e incrementado</td>
+<td>SemaCore.cpp:55-61</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Declarar 13 capacidades del ESP32 clásico</td>
+<td>SemaCore.cpp:65-78</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>config_.load()</code> → <code>history_.setRetentionSeconds(retentionDays × 86400)</code> → <code>history_.enableSd(sdCsPin)</code> si <code>storage.sdEnabled</code></td>
+<td>SemaCore.cpp:80-89</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Banner por serial (versión, HW, schema, protocolo, estación, wake reason, capacidades)</td>
+<td>SemaCore.cpp:91-109</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>Wire.begin(SDA, SCL)</code> + <code>I2cScanner::scan()</code> → <code>detectedDevices_</code></td>
+<td>SemaCore.cpp:112-117</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>applySensors()</code> → <code>derived_.configure()</code> → <code>applyCalibrations()</code> → <code>gpio_.apply()</code> y <code>shift_.apply()</code> (si <code>SEMA_USE_SHIFT</code>)</td>
+<td>SemaCore.cpp:119-126</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>SPI.begin(SCK, MISO, MOSI)</code> una sola vez; luego <code>modbus_.apply()</code> → <code>can_.apply()</code> → <code>lora_.apply()</code> → <code>zigbee_.apply()</code> → <code>ethernet_.apply()</code></td>
+<td>SemaCore.cpp:129-147</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>wifi_.begin(...)</code> (STA o AP + mDNS) → <code>configTzTime(...)</code> con la TZ POSIX mapeada desde IANA</td>
+<td>SemaCore.cpp:149-162</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>http_.begin(*this)</code>: registra rutas y hace <code>server_.begin()</code> + <code>ws_.begin()</code> (puerto 81)</td>
+<td>SemaCore.cpp:164</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Registrar publicadores (webhook, MQTT) → <code>applyPublishers()</code> → <code>applyRules()</code></td>
+<td>SemaCore.cpp:167-171</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Suscribir el log de alarma a <code>EventType::Alarm</code> (solo imprime por serial)</td>
+<td>SemaCore.cpp:174-176</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Registrar 2 tareas en <code>HealthMonitor</code> (30 s y 60 s) y 2 en el <code>Scheduler</code> (5 s y 10 s)</td>
+<td>SemaCore.cpp:180-198</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>modules_.enableAll()</code> — <strong>no hay módulos registrados</strong></td>
+<td>SemaCore.cpp:200</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>watchdog_.begin(10)</code> → <code>health_.begin()</code> → publicar el evento <code>boot</code> (<code>EventType::System</code>) → reporte final por serial</td>
+<td>SemaCore.cpp:203-224</td>
+</tr>
+</tbody>
+</table>
+<p>Después, <code>loop()</code> (<code>src/core/SemaCore.cpp</code>, líneas 366-390) repite:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>watchdog_.feed()          → alimenta el TWDT
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>modules_.loopAll()        → itera (lista vacía hoy)
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>wifi_.loop()              → backoff de reconexión 2 s → 4 s → … → 60 s
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>http_.loop()              → server_.handleClient() + ws_.loop()
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>zigbee_.loop()            → parseo de tramas ZNP (si SEMA_USE_ZIGBEE)
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>ethernet_.loop()          → vacío (lwIP gestiona DHCP solo)
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>cada 3600 s: history_.aggregate(3600, now - retentionDays*86400)
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>scheduler_.run()          → heartbeats y lectura de sensores
 </span></code></pre></div>
-<h2 id="5-ciclo-de-vida-de-modulos">5. Ciclo de vida de módulos</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>AVAILABLE → INSTALLED → CONFIGURED → ENABLED → RUNNING
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>RUNNING   → DISABLED  → UNINSTALLED
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Errores: INSTALL_ERROR · CONFIG_ERROR · RUNTIME_ERROR · UPDATE_ERROR
+<p>Detalle importante: el <code>Scheduler</code> corre <strong>al final</strong> de <code>loop()</code>, y el web server
+<strong>antes</strong>. Como todo ocurre en la misma tarea, una petición HTTP lenta retrasa la
+lectura de sensores, no al revés.</p>
+<h2 id="6-frontera-hal-boardprofile">6. Frontera HAL / BoardProfile</h2>
+<p>Hay <strong>dos</strong> archivos que definen el hardware, y cumplen roles distintos:</p>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Cuándo actúa</th>
+<th>Qué define</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include/hw/HwProfile.hpp</code></td>
+<td>Compile-time, por <code>build_flags</code> de <code>platformio.ini</code></td>
+<td>Board (<code>BOARD_ESP32_WROOM</code>, <code>BOARD_ESP32_WROOM32U</code>, <code>BOARD_ESP32_S3</code>), features (<code>SEMA_USE_ETHERNET/LORA/MODBUS/CAN/ZIGBEE/SHIFT</code>), variante de transceiver RS485, pines del bus SPI y de los chip-select, <code>SEMA_PINS_FROM_FILE</code>, <code>SEMA_DEMO</code></td>
+</tr>
+<tr>
+<td><code>include/core/BoardProfile.hpp</code></td>
+<td>Runtime</td>
+<td>Pines del <strong>catálogo fijo</strong> de sensores (<code>SEMA_PIN_I2C_SDA=21</code>, <code>SEMA_PIN_I2C_SCL=22</code>, <code>SEMA_PIN_ONEWIRE=4</code>, <code>SEMA_PIN_BATTERY_ADC=34</code>) y el interruptor <code>SEMA_FIXED_HARDWARE</code> (0 por defecto)</td>
+</tr>
+</tbody>
+</table>
+<p><code>HwProfile.hpp</code> aborta la compilación con <code>#error</code> si no se definió ninguna board
+(líneas 28-30) y deriva de ella tres datos de identidad que se exponen por API:
+<code>SEMA_BOARD_ID</code> (<code>"esp32-wroom-4mb"</code>, <code>"esp32-wroom32u-16mb"</code>, <code>"esp32-s3-8mb"</code>),
+<code>SEMA_FLASH_MB</code> (4/16/8) y <code>SEMA_NATIVE_ETH</code> (1/1/0). La convivencia entre los dos
+perfiles se resuelve en <code>SemaCore::applySensors()</code> (líneas 280-313):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>if (SEMA_FIXED_HARDWARE == 1 || config.sensors está vacío):
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>      catálogo fijo de BoardProfile.hpp (BME280 "EXT", SHT40 "INT", DS18B20 "SOIL",
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>      BH1750 "LUX", AHT20 "AUX", AdcSensor "BATT" con escala 3.3*11/4095 y offset 0)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>else:
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>      config.sensors[] → SensorFactory::create(spec) por cada entrada habilitada
 </span></code></pre></div>
-<h2 id="6-flujo-de-datos">6. Flujo de datos</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>MEDIR → VALIDAR → PROCESAR → ALMACENAR → PUBLICAR → SINCRONIZAR → DORMIR
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                                                                      │
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>                                              DESPERTAR POR EVENTO ←──┘
+<p>Con <code>SEMA_FIXED_HARDWARE = 1</code> la configuración <code>sensors[]</code> de la web <strong>se ignora
+por completo</strong>; con el valor por defecto (0) los <code>SEMA_PIN_*</code> de <code>BoardProfile.hpp</code>
+quedan solo como fallback. Los dos interruptores son <strong>independientes y
+complementarios</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Interruptor</th>
+<th>Archivo</th>
+<th>Qué fija</th>
+<th>Qué pisa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEMA_PINS_FROM_FILE=1</code></td>
+<td><code>HwProfile.hpp</code></td>
+<td>Pines de los <strong>buses</strong>: CAN (TX/RX), Modbus (RX/TX/DE-RE), Zigbee (RX/TX), LoRa (CS/RST/DIO1/BUSY) y Ethernet (MDC/MDIO/PHY/power/CS/RST/IRQ/SCK/MISO/MOSI)</td>
+<td>Al final de <code>ConfigManager::parseInto()</code> se llama <code>applyHwProfile(c)</code> (<code>ConfigManager.cpp:459</code>), que sobrescribe esos pines con los de <code>HwProfile.hpp</code> e <strong>ignora lo que venga de la web</strong></td>
+</tr>
+<tr>
+<td><code>SEMA_FIXED_HARDWARE=1</code></td>
+<td><code>BoardProfile.hpp</code></td>
+<td>Pines del <strong>catálogo de sensores</strong> (SDA, SCL, 1-Wire, ADC de batería) y qué catálogo se usa</td>
+<td><code>applySensors()</code> ignora <code>config.sensors[]</code> por completo</td>
+</tr>
+</tbody>
+</table>
+<p>Con ambos en 0 (default de <code>esp32doit-devkit-v1</code> y <code>esp32-s3-devkitc-1</code>) todos los
+pines son configurables desde la web; el entorno <code>esp32-wroom-32u</code> usa
+<code>SEMA_PINS_FROM_FILE=1</code> para congelar los pines de bus de la PCB futura.
+⚠️ <code>SEMA_PINS_FROM_FILE</code> <strong>no</strong> fija los pines I²C de los sensores (<code>i2c_sda</code> /
+<code>i2c_scl</code> siguen tomándose del JSON), y <code>SEMA_FIXED_HARDWARE</code> no está definido en
+<code>platformio.ini</code>, así que su valor por defecto (0) rige en todos los entornos.</p>
+<h2 id="7-grafo-de-dependencias-entre-servicios">7. Grafo de dependencias entre servicios</h2>
+<p>Dependencias verificadas por construcción (<code>include/core/SemaCore.hpp</code>, líneas
+38-44 y 122-158):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SemaCore
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a> ├── NvsStore ──────────► ConfigManager (inyectado por constructor)
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a> ├── EventBus ◄────────── RuleEngine (recibe el bus), EventLog (se suscribe a
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a> │                       los 9 tipos de EventType)
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a> ├── ConfigManager ─────► casi todos (HistoryStore, sensores, buses, publicadores,
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a> │                       reglas, calibraciones, GPIO, scheduler…)
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a> ├── SensorManager ─────► drivers Sensor* (registrados por SensorFactory)
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a> │                       y DerivedEngine (estático, se llama desde readAll())
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a> ├── HistoryStore ──────► SD (SPI) — NUNCA LittleFS para el histórico
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a> ├── EventLog ──────────► LittleFS (JSONL en /events.jsonl)
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a> ├── HttpServer ────────► SemaCore* (referencia al core; usa todos los servicios)
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a> ├── PublisherManager ──► HttpPublisher (HTTPClient) + MqttPublisher (PubSubClient)
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a> ├── HealthMonitor ◄──── Scheduler (heartbeat) + HistoryStore/SensorManager (stats)
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a> └── Watchdog ──────────► esp_task_wdt
 </span></code></pre></div>
-<h2 id="7-event-bus">7. Event Bus</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>RAIN_START → Storage, Alarm, MQTT, Webhook, Dashboard, Wake Manager
+<p>Reglas de dependencia que el código respeta:</p>
+<ul>
+<li><code>HttpServer</code> es el único servicio que tiene un puntero al <code>SemaCore</code> completo;
+  el resto recibe solo lo que necesita.</li>
+<li><code>SensorManager</code> <strong>no</strong> conoce <code>HistoryStore</code>, <code>HttpServer</code> ni los publicadores:
+  es <code>SemaCore</code> quien, en la tarea del scheduler, encadena
+  <code>sensors_.readAll()</code> → <code>history_.append()</code> → <code>publishers_.publishAll()</code> →
+  <code>rules_.evaluate()</code>.</li>
+<li><code>RuleEngine</code> solo habla por <code>EventBus</code>; nunca llama a un publicador.</li>
+</ul>
+<h2 id="8-flujo-de-datos-medir-validar-procesar-almacenar-publicar">8. Flujo de datos: MEDIR → VALIDAR → PROCESAR → ALMACENAR → PUBLICAR</h2>
+<p>La cadena real está en el callback <code>sensors.read</code> del <code>Scheduler</code>
+(<code>src/core/SemaCore.cpp</code>, líneas 188-198) más <code>SensorManager::readAll()</code>
+(<code>src/core/sensors/SensorManager.cpp</code>, líneas 21-42). Cada 10 000 ms:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>1. MEDIR      sensors_.readAll()
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>              └── por cada Sensor::healthy(): sensor-&gt;measure(buffer[4], 4)
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>                  → hasta 4 Measurement por sensor en un buffer de pila
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>2. VALIDAR    por cada medición: clave = sensorId + ":" + channelId
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>   CALIBRAR     ├── si hay Calibration para esa clave: applyCalibration(m, cal)
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                └── el driver ya pobló Measurement::quality con uno de los 8 flags
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                    (Valid, Invalid, Stale, Timeout, OutOfRange, CalibrationError,
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>                     CommunicationError, SensorDisconnected)
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>              ⚠️ Nadie aguas abajo descarta por quality: las mediciones no válidas se
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>                 almacenan y se publican igual. El filtro es informativo.
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>3. PROCESAR   DerivedEngine::compute(measurements_)  [estático, dentro de readAll]
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>              └── agrega 4 mediciones con sensorId "DERIVED": dew_point (degC) ·
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>                  heat_index (degC) · vapor_pressure (hPa) · absolute_humidity (g/m3)
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>              └── requiere un sensor que aporte "temperature" y "humidity" con el mismo id
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>              Aparte, DerivedCalculator (no estático) calcula QNH, VPD, AQI, altitud, tasa
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>              de lluvia, sensación térmica y dirección de viento, y convierte unidades
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>              métrico↔imperial. Se invoca desde HttpServer al servir /api/v1/sensors y
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>              /api/v1/dashboard; NO forma parte de la cadena de almacenamiento.
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>4. ALMACENAR  por cada medición: history_.append(m) → SD, JSONL, máx. 10 000 entradas
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>              ⚠️ Un open/write/close por medición; sin SD habilitada devuelve false y no
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>                 guarda nada (por diseño, para no gastar flash interna)
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>5. PUBLICAR   http_.broadcastMeasurements(measurements) → WebSocket puerto 81 (si hay clientes)
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>              por cada medición: publishers_.publishAll(m)
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>                ├── HttpPublisher: POST JSON con timeout de 2000 ms (solo si hay URL)
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>                └── MqttPublisher: publish MQTT, reconecta si hace falta (solo si hay host)
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>6. EVALUAR    rules_.evaluate(measurements) → EventBus.publish(EventType::Alarm)
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>   ALARMAS    └── EventLog lo persiste en LittleFS y el suscriptor de SemaCore lo imprime
 </span></code></pre></div>
-<p>Eventos: <code>SensorEvent · RainEvent · LightningEvent · BatteryEvent ·
-NetworkEvent · AlarmEvent · SystemEvent · WakeEvent · SleepEvent</code>.</p>
-<h2 id="8-scheduler-y-recursos-dinamicos">8. Scheduler y recursos dinámicos</h2>
-<p>Las tareas se crean <strong>según los módulos habilitados</strong>: sin LoRa no hay tarea
-LoRa, sin SD no hay tarea SD. Esto reduce RAM, CPU y consumo.</p>
-<h2 id="9-prioridades-y-no-bloqueo">9. Prioridades y no bloqueo</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>P1 Core / seguridad / watchdog
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>P2 Adquisición de sensores
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>P3 Procesamiento y almacenamiento
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>P4 Alarmas y eventos
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>P5 API local
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>P6 Comunicación
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>P7 Servicios externos
+<p>No hay etapas de SINCRONIZAR ni DORMIR dentro del ciclo: el <code>PowerManager</code> existe
+(<code>sleep()</code>, <code>enableRainWakeup()</code>, <code>wakeReason()</code>), pero solo se usa para leer el
+wake reason al arrancar y habilitar el despertar por lluvia. ❌ El ciclo de
+adquisición no duerme el SoC entre muestras.</p>
+<h2 id="9-que-no-esta-implementado">9. Qué no está implementado</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Estado</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runtime Manager con tareas propias y afinidad</td>
+<td>❌ No implementado</td>
+<td><code>include/core/runtime/Task.hpp</code> no se instancia en ningún lado</td>
+</tr>
+<tr>
+<td>Resource Manager (asignación y validación de recursos)</td>
+<td>❌ No existe</td>
+<td>No hay archivo ni clase con ese rol en <code>src/</code> ni <code>include/</code></td>
+</tr>
+<tr>
+<td>Registro efectivo de módulos en <code>ModuleRegistry</code></td>
+<td>❌ No implementado</td>
+<td><code>registerModule()</code> nunca se llama; <code>modules_.count() == 0</code></td>
+</tr>
+<tr>
+<td>Ciclo de vida <code>Available → … → Running</code> aplicado a servicios reales</td>
+<td>❌ No implementado</td>
+<td>Los managers se aplican con <code>apply(cfg)</code>, no con <code>install/configure/enable/start</code></td>
+</tr>
+<tr>
+<td>Histórico en LittleFS</td>
+<td>❌ Descartado</td>
+<td><code>HistoryStore</code> escribe solo en SD; sin SD no hay histórico</td>
+</tr>
+<tr>
+<td>Tareas FreeRTOS de aplicación (SensorTask, StorageTask, …)</td>
+<td>❌ No existen</td>
+<td>Ver <a href="../Tareas-y-concurrencia/">Tareas-y-concurrencia</a></td>
+</tr>
+<tr>
+<td>WebSocket en <code>/ws</code></td>
+<td>⚠️ Parcial</td>
+<td>El servidor WS escucha en el puerto <strong>81</strong>, no en la ruta <code>/ws</code>. <code>IMPLEMENTACION.md</code> §13.5 lo documenta como <code>/ws</code></td>
+</tr>
+<tr>
+<td>Deep sleep con wake por timer/lluvia</td>
+<td>⚠️ Parcial</td>
+<td>API presente en <code>PowerManager</code>; no hay llamada a <code>sleep()</code> en el ciclo normal</td>
+</tr>
+<tr>
+<td>Sensores máximos / límites de catálogo</td>
+<td>⚠️ Sin límite</td>
+<td><code>ConfigManager::validate()</code> no limita la cantidad de <code>sensors[]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-niveles-de-despliegue">10. Niveles de despliegue</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Nivel 1 — Estación autónoma: web local en el propio ESP32 (implementado)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Nivel 2 — Estación + servicios externos: MQTT y webhook HTTP (implementado)
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Nivel 3 — Servidor Central: SEMA_PROTOCOL_VERSION=1 y `serverKey` en la config,
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>          pero no hay cliente del servidor central en el código ❌
 </span></code></pre></div>
-<p>Ningún servicio externo puede bloquear <code>SensorTask</code>, <code>MeasurementTask</code>,
-<code>StorageTask</code> ni el <code>Watchdog</code>.</p>
-<h2 id="10-niveles-de-visualizacion">10. Niveles de visualización</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Nivel 1 — Estación autónoma (web local, sin servidor)
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Nivel 2 — Estación + servicios externos (MQTT, ThingSpeak, Windy, …)
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Nivel 3 — Sistema centralizado (Servidor Central opcional)
-</span></code></pre></div>
-<h2 id="11-definition-of-done">11. Definition of Done</h2>
-<p>Una versión funcional requiere, como mínimo: Core, configuración persistente, web
-local, API, dashboard modular, sistema de módulos y sensores, catálogo, detección
-I²C/1-Wire, configuración GPIO/ADC, expansores, RS485/Modbus, CAN, LoRa, Zigbee,
-medición energética, almacenamiento, histórico, alarmas, diagnóstico, calibración,
-validación de configuración, backup, importación/exportación, OTA, seguridad,
-watchdog y documentación.</p>
-<h2 id="12-definiciones-de-fase-1">12. Definiciones de Fase 1</h2>
-<h3 id="endpoints-rest-minimos">Endpoints REST mínimos</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>GET  /api/v1/status · /health · /system · /config · /diagnostics
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>PUT  /api/v1/config   (transaccional, autenticado)
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>POST /api/v1/restart  (autenticado)
-</span></code></pre></div>
-<h3 id="modelo-canonico">Modelo Canónico</h3>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">"station_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEMA-001"</span><span class="p">,</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEMP_EXT"</span><span class="p">,</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"temperature"</span><span class="p">,</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">24.7</span><span class="p">,</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degC"</span><span class="p">,</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-30T15:00:00Z"</span><span class="p">,</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nt">"quality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VALID"</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="storage-api">Storage API</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Storage API → NVS (config) · LittleFS (histórico/eventos/logs) · SD (opcional)
-</span></code></pre></div>
+<hr />
+<h2 id="ver-tambien">Ver también</h2>
+<ul>
+<li><a href="../Diagramas/">Diagramas</a> · <a href="../Modulos-y-ciclo-de-vida/">Modulos-y-ciclo-de-vida</a></li>
+<li><a href="../Tareas-y-concurrencia/">Tareas-y-concurrencia</a> · <a href="../Rendimiento-y-memoria/">Rendimiento-y-memoria</a></li>
+<li><a href="../Diagnostico-y-salud/">Diagnostico-y-salud</a> · <a href="../Referencia-de-codigo/">Referencia-de-codigo</a></li>
+<li><a href="../Hardware-y-Conexiones/">Hardware-y-Conexiones</a> · <a href="../Guia-de-pines/">Guia-de-pines</a></li>
+</ul>
 
 
 
@@ -3344,7 +4585,7 @@ watchdog y documentación.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Guia-de-inicio/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Guía de inicio">
+          <a href="../Guia-de-desarrollo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Guía de desarrollo (extender)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3354,20 +4595,20 @@ watchdog y documentación.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Guía de inicio
+                Guía de desarrollo (extender)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Referencia-de-codigo/" class="md-footer__link md-footer__link--next" aria-label="Next: Referencia de código">
+          <a href="../Diagramas/" class="md-footer__link md-footer__link--next" aria-label="Next: Diagramas de bloques y datos">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Referencia de código
+                Diagramas de bloques y datos
               </div>
             </div>
             <div class="md-footer__button md-icon">
