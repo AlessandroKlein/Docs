@@ -229,3 +229,34 @@ nav:
       - Registro de cambios: sema/Registro-de-cambios.md
       - Frontend (guía de estilo): sema/Frontend.md
       - Glosario: sema/Glosario.md
+  - Webs:
+      - Inicio: webs/index.md
+      - Arquitectura:
+          - Visión general: webs/architecture/overview.md
+          - Monorepo: webs/architecture/monorepo.md
+          - Sistema de bloques: webs/architecture/block-system.md
+          - Autenticación y RBAC: webs/architecture/auth-rbac.md
+          - Configuración y temas: webs/architecture/settings-theming.md
+          - Internacionalización: webs/architecture/i18n.md
+          - Escalabilidad: webs/architecture/scalability.md
+      - API:
+          - Resumen: webs/api/overview.md
+          - Flujo de autenticación: webs/api/auth-flow.md
+          - WebSocket: webs/api/websocket.md
+      - Guías:
+          - Inicio rápido: webs/guides/getting-started.md
+          - Instalación: webs/guides/instalacion.md
+          - Crear un bloque: webs/guides/crear-un-bloque.md
+          - Configuración desde la UI: webs/guides/configuracion-desde-ui.md
+          - Roles y permisos: webs/guides/roles-permisos.md
+          - Despliegue: webs/guides/despliegue.md
+          - App móvil: webs/guides/mobile-app.md
+          - Email: webs/guides/email.md
+          - Idiomas: webs/guides/idiomas.md
+          - API tokens: webs/guides/api-tokens.md
+          - Seguridad: webs/guides/seguridad.md
+      - Decisiones (ADR):
+          - ADR 0001 · Stack: webs/adr/0001-stack.md
+          - ADR 0002 · Monorepo: webs/adr/0002-monorepo.md
+          - ADR 0003 · Sistema de bloques: webs/adr/0003-block-system.md
+          - ADR 0004 · Autenticación: webs/adr/0004-auth.md
