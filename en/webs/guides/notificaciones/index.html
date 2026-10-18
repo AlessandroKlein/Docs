@@ -5059,6 +5059,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2fa-por-sms-otp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2FA por SMS (OTP)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5398,6 +5409,10 @@ Configurá en <strong>Bloques → Twilio</strong>: <code>accountSid</code>, <cod
 <p>Para <strong>OTP/2FA por SMS</strong>, se puede emitir <code>notification.sent</code> y verificar el
 código en el flujo de 2FA (queda como integración futura).</p>
 </blockquote>
+<h2 id="2fa-por-sms-otp">2FA por SMS (OTP)</h2>
+<p>El bloque Twilio habilita <strong>2FA por SMS</strong>: en <strong>Mi cuenta → 2FA por SMS</strong> se
+configura el teléfono (se envía un OTP y se verifica). Al iniciar sesión, si el
+SMS 2FA está activo, se envía el código y se valida con <code>smsCode</code>.</p>
 
 
 
