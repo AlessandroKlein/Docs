@@ -16,8 +16,20 @@ docs/
 │   └── Registro-de-cambios.md
 ├── sema/
 │   └── Home.md
+├── webs/               ← plataforma Webs (Node.js + Fastify + React)
+│   ├── index.md
+│   ├── architecture/
+│   ├── api/
+│   ├── guides/
+│   └── adr/
 └── (futuros proyectos)/
 ```
+
+## Proyectos
+
+- **Invernadero** — `docs/es/invernadero/`
+- **SEMA** — `docs/es/sema/`
+- **Webs** — `docs/es/webs/` (plataforma web modular: Fastify + React + bloques/plugins)
 
 ## Cómo funciona
 
