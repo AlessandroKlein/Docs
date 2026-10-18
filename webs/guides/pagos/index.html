@@ -4950,6 +4950,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#panel-de-pagos-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Panel de pagos (admin)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tienda-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tienda demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#proveedores-bloques" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5348,10 +5370,26 @@ que se registra como proveedor. El usuario activa solo las pasarelas que usa.</p
 </tr>
 <tr>
 <td><code>GET /payments</code> / <code>GET /payments/:id</code></td>
-<td>Lista/consulta de transacciones.</td>
+<td>Lista/consulta de transacciones (filtros <code>status</code>, <code>provider</code>).</td>
+</tr>
+<tr>
+<td><code>GET /payments/summary</code></td>
+<td>Resumen de conciliación (totales por estado + recaudado).</td>
+</tr>
+<tr>
+<td><code>POST /payments/:id/refund</code></td>
+<td>Reembolso (marca <code>refunded</code> y emite <code>payment.refunded</code>).</td>
 </tr>
 </tbody>
 </table>
+<h2 id="panel-de-pagos-admin">Panel de pagos (admin)</h2>
+<p>En <strong>Pagos</strong> se ve el resumen (total, aprobados, recaudado, pendientes, rechazados,
+reembolsados) y el listado con filtros; desde cada fila se puede <strong>reembolsar</strong> un
+pago aprobado o <strong>marcar pagado</strong> uno pendiente (contra entrega).</p>
+<h2 id="tienda-demo">Tienda demo</h2>
+<p>La ruta pública <strong><code>/store</code></strong> incluye un carrito y un checkout que integra los
+bloques de pasarela: elegís el proveedor y se crea la transacción con
+<code>POST /payments/checkout</code>.</p>
 <h2 id="proveedores-bloques">Proveedores (bloques)</h2>
 <table>
 <thead>
