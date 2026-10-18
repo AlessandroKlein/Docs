@@ -848,6 +848,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/architecture/monorepo/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/architecture/nucleo-plugins/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/architecture/nucleo-plugins/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/architecture/nucleo-plugins/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/webs/architecture/overview/</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>daily</changefreq>
@@ -1819,6 +1826,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/architecture/monorepo/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/architecture/monorepo/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/architecture/nucleo-plugins/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/architecture/nucleo-plugins/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/architecture/nucleo-plugins/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/architecture/overview/</loc>
