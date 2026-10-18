@@ -5163,10 +5163,14 @@ la API REST de Webs de forma segura, <strong>sin usar credenciales de usuario</s
 <strong>permisos acotados</strong> (scopes). Se gestionan en <strong>API Tokens</strong> del panel.</p>
 <h2 id="como-se-crean">Cómo se crean</h2>
 <ol>
-<li>En el panel, <strong>API Tokens → Crear token</strong>.</li>
-<li>Elegí un nombre, los permisos (scopes) y una caducidad opcional.</li>
+<li>En el panel, <strong>API Tokens → Crear token</strong> (cualquier usuario puede crear sus
+   propios tokens).</li>
+<li>Elegí nombre, permisos (scopes), caducidad y un <strong>límite de peticiones/minuto</strong>
+   opcional.</li>
 <li>El token JWT se muestra <strong>una sola vez</strong>: copialo y guardalo seguro.</li>
 </ol>
+<p>Los <strong>scopes</strong> no pueden exceder los permisos que el propio usuario tiene (un
+usuario no puede concederse más de lo que ya puede hacer).</p>
 <h2 id="como-se-usan">Cómo se usan</h2>
 <p>El cliente envía el token en la cabecera <code>Authorization</code>:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer &lt;API_TOKEN&gt;"</span><span class="w"> </span>https://tudominio.com/api/v1/content
@@ -5175,10 +5179,12 @@ la API REST de Webs de forma segura, <strong>sin usar credenciales de usuario</s
 <ul>
 <li>El token es un <strong>JWT</strong> firmado con <code>JWT_SECRET</code> y payload
   <code>{ sub, type: 'api_token', tokenId, scopes }</code>.</li>
-<li>En cada petición, <code>authenticate</code> verifica la firma + expiración y consulta la
-  base de datos para confirmar que el token <strong>no fue revocado</strong> y sigue vigente.</li>
+<li>En cada petición, <code>authenticate</code> verifica la firma + expiración, consulta la
+  base de datos para confirmar que el token <strong>no fue revocado</strong> y sigue vigente,
+  y aplica el <strong>rate limit</strong> del token si está configurado.</li>
 <li>El titular solo obtiene los <strong>scopes</strong> del token (no los permisos del usuario).</li>
-<li>La revocación es inmediata (marca <code>revokedAt</code>).</li>
+<li>La revocación es inmediata (marca <code>revokedAt</code>). Se registran <code>requestCount</code> y
+  <code>lastUsedAt</code>.</li>
 </ul>
 <h2 id="endpoints">Endpoints</h2>
 <table>
@@ -5186,7 +5192,6 @@ la API REST de Webs de forma segura, <strong>sin usar credenciales de usuario</s
 <tr>
 <th>Método</th>
 <th>Ruta</th>
-<th>Permiso</th>
 <th>Descripción</th>
 </tr>
 </thead>
@@ -5194,27 +5199,20 @@ la API REST de Webs de forma segura, <strong>sin usar credenciales de usuario</s
 <tr>
 <td>GET</td>
 <td><code>/api/v1/api-tokens</code></td>
-<td><code>apiToken.read</code></td>
-<td>Listar tokens (sin el secreto).</td>
+<td>Listar tus tokens (sin el secreto).</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/api/v1/api-tokens</code></td>
-<td><code>apiToken.write</code></td>
 <td>Crear token (devuelve el JWT una vez).</td>
 </tr>
 <tr>
 <td>DELETE</td>
 <td><code>/api/v1/api-tokens/:id</code></td>
-<td><code>apiToken.write</code></td>
 <td>Revocar token.</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>Los tokens de API usan el mismo esquema de permisos que el resto del sistema;
-el JWT de acceso de usuario sigue siendo la vía para el panel y la app web.</p>
-</blockquote>
 
 
 

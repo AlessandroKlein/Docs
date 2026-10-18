@@ -4777,6 +4777,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#programacion-de-campanas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de campañas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-de-apertura-y-clics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking de apertura y clics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eventos-desde-bloques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eventos desde bloques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#permisos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5229,11 +5262,37 @@ a <code>sent</code> o <code>failed</code>. Esto permite reintentos y evita satur
 <p>Para producción con alto volumen, la cola en memoria se puede sustituir por
 una cola externa (BullMQ/Redis), manteniendo la misma tabla y endpoints.</p>
 </blockquote>
+<h2 id="programacion-de-campanas">Programación de campañas</h2>
+<p>Una campaña puede <strong>programarse</strong> para una fecha/hora futura (botón "Programar").
+Un programador en segundo plano envía las campañas cuya fecha ya se cumplió.
+Se puede <strong>cancelar</strong> antes de que se ejecute.</p>
+<h2 id="tracking-de-apertura-y-clics">Tracking de apertura y clics</h2>
+<ul>
+<li><strong>Apertura</strong>: cada correo incluye un pixel de 1×1 (<code>/api/v1/public/email/open/:id</code>)
+  que registra la primera apertura.</li>
+<li><strong>Clics</strong>: los enlaces se reescriben para pasar por
+  <code>/api/v1/public/email/click/:id?url=...</code>, que cuenta el clic y redirige.</li>
+<li>Las campañas muestran <strong>aperturas y clics</strong> junto a enviados/total.</li>
+</ul>
+<h2 id="eventos-desde-bloques">Eventos desde bloques</h2>
+<p>Los bloques pueden emitir eventos de negocio (ej. <code>order.created</code>) que disparan
+automatizaciones. El bloque declara sus eventos en <code>block.json</code> (<code>"events"</code>), y
+se listan automáticamente en el selector de eventos de las automatizaciones.</p>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// dentro del register de un bloque</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nx">fastify</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/order'</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">fastify</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'order.created'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">'cliente@ejemplo.com'</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nx">order</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">'123'</span><span class="p">,</span><span class="w"> </span><span class="nx">total</span><span class="o">:</span><span class="w"> </span><span class="kt">99</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>El bloque de ejemplo (<code>@webs/block-example</code>) incluye un endpoint <code>POST
+/api/v1/blocks/example/order</code> que emite <code>order.created</code>.</p>
 <h2 id="permisos">Permisos</h2>
 <ul>
 <li><code>email.read</code> — ver plantillas/campañas/automatizaciones.</li>
 <li><code>email.write</code> — crear/editar.</li>
-<li><code>email.send</code> — enviar campañas.</li>
+<li><code>email.send</code> — enviar/programar campañas.</li>
 </ul>
 
 

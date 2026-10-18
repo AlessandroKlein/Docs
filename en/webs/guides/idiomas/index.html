@@ -5188,10 +5188,21 @@ descarga los recursos de esos idiomas, evitando peso innecesario.</p>
    <strong>Ajustes → Traducciones</strong>).</li>
 </ol>
 <h2 id="mismo-patron-para-modulosbloques">Mismo patrón para módulos/bloques</h2>
-<p>El mecanismo es extensible a <strong>módulos y bloques</strong>: un bloque puede aportar sus
-propias traducciones (por idioma) y el endpoint las incluirá solo si el idioma
-está habilitado y el bloque está instalado. Así, ni idiomas ni módulos no usados
-añaden peso al cliente.</p>
+<p>Los bloques aportan sus propias traducciones declarándolas en <code>block.json</code>
+(campo <code>translations</code>: locale → clave → texto). Al instalarse, el backend las
+registra y <code>/public/i18n</code> las incluye en un <strong>namespace propio (el id del
+bloque)</strong>, solo si el idioma está habilitado <strong>y</strong> el bloque está instalado. Así,
+ni idiomas ni módulos no usados añaden peso al cliente.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example"</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">"es"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"greeting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"¡Hola!"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"greeting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello!"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>En el <code>mount</code> del bloque, <code>i18n.t('greeting')</code> resuelve automáticamente en su
+propio namespace.</p>
 
 
 

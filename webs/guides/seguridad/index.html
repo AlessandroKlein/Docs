@@ -5192,6 +5192,9 @@ aplicadas (organizadas por categoría) y cómo activar las opcionales.</p>
   sensibles (documentos, teléfonos, direcciones) antes de guardarlas. Requiere
   la variable <code>ENCRYPTION_KEY</code> (<code>openssl rand -hex 32</code>).</li>
 </ul>
+<p>Aplicado automáticamente a campos marcados como secretos en el esquema de
+  ajustes (ej. la <strong>contraseña SMTP</strong>, vía <code>x-ui.secret</code>): se cifran al guardar y
+  se descifran al leer.</p>
 <div class="language-ts highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">encrypt</span><span class="p">,</span><span class="w"> </span><span class="nx">decrypt</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'../lib/crypto'</span><span class="p">;</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">await</span><span class="w"> </span><span class="nx">prisma</span><span class="p">.</span><span class="nx">cliente</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">telefono</span><span class="o">:</span><span class="w"> </span><span class="kt">encrypt</span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">telefono</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
 </span></code></pre></div>
@@ -5212,6 +5215,8 @@ aplicadas (organizadas por categoría) y cómo activar las opcionales.</p>
 <li><strong>Rate limiting global</strong> (<code>@fastify/rate-limit</code>).</li>
 <li><strong>Rate limiting específico</strong> en endpoints sensibles: login (10/15 min),
   registro, recuperación y restablecimiento de contraseña (5/15 min).</li>
+<li><strong>Bloqueo de cuenta</strong>: tras 5 intentos fallidos de login, la cuenta se bloquea
+  temporalmente (15 min), además del rate limit por IP.</li>
 <li><strong>WAF</strong>: en producción, activá Cloudflare (Managed Rules, anti-bot) delante del
   servidor.</li>
 </ul>
@@ -5225,7 +5230,8 @@ aplicadas (organizadas por categoría) y cómo activar las opcionales.</p>
 <ul>
 <li><strong>Cookies</strong>: <code>HttpOnly</code> + <code>SameSite=Lax</code> + <code>Secure</code> (configurable).</li>
 <li><strong>Tokens</strong>: JWT de acceso (15 min) + refresh token opaco hasheado con rotación.</li>
-<li><strong>2FA / TOTP</strong>: autenticación de dos factores con Google Authenticator/Authy.
+<li><strong>2FA / TOTP</strong>: autenticación de dos factores con Google Authenticator/Authy,
+  con <strong>códigos de respaldo</strong> (de un solo uso). Activá en <strong>Mi cuenta</strong>.
   Activá en el panel (<code>POST /auth/2fa/setup</code>, <code>/confirm</code>, <code>/disable</code>); el login
   exige el código cuando está habilitado.</li>
 <li><strong>API tokens (JWT)</strong> con scopes acotados y revocables.</li>
