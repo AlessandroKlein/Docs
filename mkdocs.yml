@@ -233,6 +233,7 @@ nav:
       - Inicio: webs/index.md
       - Arquitectura:
           - Visión general: webs/architecture/overview.md
+          - Núcleo vs plugins: webs/architecture/nucleo-plugins.md
           - Monorepo: webs/architecture/monorepo.md
           - Sistema de bloques: webs/architecture/block-system.md
           - Autenticación y RBAC: webs/architecture/auth-rbac.md
