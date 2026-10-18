@@ -257,6 +257,7 @@ nav:
           - Seguridad: webs/guides/seguridad.md
           - Marketplace de bloques: webs/guides/marketplace-de-bloques.md
           - Plantillas: webs/guides/plantillas.md
+          - Pagos: webs/guides/pagos.md
           - Bloque Mercado Pago: webs/guides/bloque-mercadopago.md
       - Decisiones (ADR):
           - ADR 0001 · Stack: webs/adr/0001-stack.md
