@@ -883,6 +883,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/api-tokens/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/archivos/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/archivos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/archivos/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/bloque-mercadopago/</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>daily</changefreq>
@@ -951,6 +958,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/mobile-app/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/mobile-app/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/notificaciones/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/notificaciones/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/notificaciones/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/pagos/</loc>
@@ -1863,6 +1877,13 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/api-tokens/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/archivos/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/archivos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/archivos/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/bloque-mercadopago/</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>daily</changefreq>
@@ -1931,6 +1952,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/mobile-app/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/mobile-app/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/notificaciones/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/notificaciones/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/notificaciones/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/pagos/</loc>
