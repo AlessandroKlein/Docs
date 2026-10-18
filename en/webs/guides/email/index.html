@@ -4422,6 +4422,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -4799,6 +4805,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reportes-y-exportacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reportes y exportación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#eventos-desde-bloques" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4900,6 +4917,90 @@
     
   
     Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketplace-de-bloques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace de bloques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plantillas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantillas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bloque-mercadopago/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque Mercado Pago
   
 
     
@@ -5273,6 +5374,16 @@ Se puede <strong>cancelar</strong> antes de que se ejecute.</p>
 <li><strong>Clics</strong>: los enlaces se reescriben para pasar por
   <code>/api/v1/public/email/click/:id?url=...</code>, que cuenta el clic y redirige.</li>
 <li>Las campañas muestran <strong>aperturas y clics</strong> junto a enviados/total.</li>
+</ul>
+<h2 id="reportes-y-exportacion">Reportes y exportación</h2>
+<ul>
+<li><strong>Reporte</strong>: <code>GET /email/campaigns/:id/report</code> devuelve tasas de apertura/clic,
+  clics únicos/totales y el detalle por destinatario. En la UI, el botón
+  "Reporte" muestra un gráfico de barras.</li>
+<li><strong>Exportar</strong>: <code>GET /email/campaigns/:id/export</code> descarga un <strong>CSV</strong> con la lista
+  de destinatarios (email, estado, apertura, clics). Con <code>?format=json</code> devuelve
+  JSON y con <code>?format=xlsx</code> genera un Excel.</li>
+<li><strong>Serie temporal</strong>: el reporte incluye <code>timeSeries</code> (aperturas/clics por día).</li>
 </ul>
 <h2 id="eventos-desde-bloques">Eventos desde bloques</h2>
 <p>Los bloques pueden emitir eventos de negocio (ej. <code>order.created</code>) que disparan

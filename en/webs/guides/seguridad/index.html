@@ -18,7 +18,7 @@
         <link rel="prev" href="../api-tokens/">
       
       
-        <link rel="next" href="../../adr/0001-stack/">
+        <link rel="next" href="../marketplace-de-bloques/">
       
       
         
@@ -4422,6 +4422,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -4891,6 +4897,90 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketplace-de-bloques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace de bloques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plantillas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantillas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bloque-mercadopago/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque Mercado Pago
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5231,7 +5321,10 @@ aplicadas (organizadas por categoría) y cómo activar las opcionales.</p>
 <li><strong>Cookies</strong>: <code>HttpOnly</code> + <code>SameSite=Lax</code> + <code>Secure</code> (configurable).</li>
 <li><strong>Tokens</strong>: JWT de acceso (15 min) + refresh token opaco hasheado con rotación.</li>
 <li><strong>2FA / TOTP</strong>: autenticación de dos factores con Google Authenticator/Authy,
-  con <strong>códigos de respaldo</strong> (de un solo uso). Activá en <strong>Mi cuenta</strong>.
+  con <strong>códigos de respaldo</strong> (de un solo uso). Activá en <strong>Mi cuenta</strong>.</li>
+<li><strong>2FA obligatoria para admins</strong>: activando <code>require2FAForAdmin</code> en
+  <strong>Ajustes → Seguridad</strong>, los roles <code>super_admin</code>/<code>admin</code> deben tener 2FA o una
+  passkey para iniciar sesión (con flujo de activación forzada).
   Activá en el panel (<code>POST /auth/2fa/setup</code>, <code>/confirm</code>, <code>/disable</code>); el login
   exige el código cuando está habilitado.</li>
 <li><strong>API tokens (JWT)</strong> con scopes acotados y revocables.</li>
@@ -5297,13 +5390,13 @@ aplicadas (organizadas por categoría) y cómo activar las opcionales.</p>
         
         
           
-          <a href="../../adr/0001-stack/" class="md-footer__link md-footer__link--next" aria-label="Next: ADR 0001 · Stack">
+          <a href="../marketplace-de-bloques/" class="md-footer__link md-footer__link--next" aria-label="Next: Marketplace de bloques">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ADR 0001 · Stack
+                Marketplace de bloques
               </div>
             </div>
             <div class="md-footer__button md-icon">

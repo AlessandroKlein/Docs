@@ -876,6 +876,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/api-tokens/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/bloque-mercadopago/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/bloque-mercadopago/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/bloque-mercadopago/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/configuracion-desde-ui/</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>daily</changefreq>
@@ -925,11 +932,25 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/instalacion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/marketplace-de-bloques/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/marketplace-de-bloques/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/marketplace-de-bloques/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/mobile-app/</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/mobile-app/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/mobile-app/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/plantillas/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/plantillas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/plantillas/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/roles-permisos/</loc>
@@ -1821,6 +1842,13 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/api-tokens/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/bloque-mercadopago/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/bloque-mercadopago/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/bloque-mercadopago/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/configuracion-desde-ui/</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>daily</changefreq>
@@ -1870,11 +1898,25 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/instalacion/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/marketplace-de-bloques/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/marketplace-de-bloques/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/marketplace-de-bloques/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/mobile-app/</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/mobile-app/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/mobile-app/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/plantillas/</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/plantillas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/plantillas/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/roles-permisos/</loc>
