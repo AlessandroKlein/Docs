@@ -244,6 +244,12 @@ nav:
           - Resumen: webs/api/overview.md
           - Flujo de autenticación: webs/api/auth-flow.md
           - WebSocket: webs/api/websocket.md
+      - Bloques:
+          - Índice: webs/bloques/index.md
+          - Contenido y social: webs/bloques/contenido-social.md
+          - Operaciones: webs/bloques/operaciones.md
+          - Comercio: webs/bloques/comercio.md
+          - Plataforma: webs/bloques/plataforma.md
       - Guías:
           - Inicio rápido: webs/guides/getting-started.md
           - Instalación: webs/guides/instalacion.md
@@ -261,8 +267,10 @@ nav:
           - Marketplace de bloques: webs/guides/marketplace-de-bloques.md
           - Categorías de bloques: webs/guides/bloques-categorias.md
           - Plantillas: webs/guides/plantillas.md
+          - Gimnasio multi-tenant: webs/gym.md
           - Pagos: webs/guides/pagos.md
           - Bloque Mercado Pago: webs/guides/bloque-mercadopago.md
+          - Integraciones de terceros: webs/integraciones.md
           - Archivos y multimedia: webs/guides/archivos.md
           - Notificaciones: webs/guides/notificaciones.md
           - Cookies y persistencia: webs/guides/cookies.md
