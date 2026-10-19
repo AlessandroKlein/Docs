@@ -27,6 +27,20 @@ Este directorio describe la *arquitectura* del sistema. Para guías operativas (
 | [ADR-0003 — Sistema de bloques](adr/0003-block-system.md) | Manifiesto + SDK + slots. |
 | [ADR-0004 — Autenticación](adr/0004-auth.md) | JWT + refresh token opaco + RBAC. |
 
+### Guías
+
+| Documento | Contenido |
+|-----------|-----------|
+| [Inicio rápido](guides/getting-started.md) | Arranque y primeros pasos. |
+| [Configuración desde la UI](guides/configuracion-desde-ui.md) | Ajustes del sitio sin tocar código. |
+| [Footer y copyright](guides/footer-y-copyright.md) | Copyright (año en curso vs rango), enlaces legales, contacto y redes sociales. |
+| [Contenido](guides/contenido.md) | CRUD de artículos en `/admin/content` (draft/published/scheduled, localizados). |
+| [Categorías de bloques](guides/bloques-categorias.md) | Categorías del catálogo de bloques y submenús. |
+| [Marketplace de bloques](guides/marketplace-de-bloques.md) | Instalar y actualizar bloques desde la UI. |
+
+La lista completa de guías está en el directorio `guides/` y en la navegación
+lateral de la documentación.
+
 ## Convenciones de este repositorio de documentación
 
 - Las rutas se expresan en formato POSIX relativas a la raíz del monorepo (por ejemplo, `apps/api/src/app.ts`).

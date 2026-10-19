@@ -249,6 +249,8 @@ nav:
           - Instalación: webs/guides/instalacion.md
           - Crear un bloque: webs/guides/crear-un-bloque.md
           - Configuración desde la UI: webs/guides/configuracion-desde-ui.md
+          - Contenido: webs/guides/contenido.md
+          - Footer y copyright: webs/guides/footer-y-copyright.md
           - Roles y permisos: webs/guides/roles-permisos.md
           - Despliegue: webs/guides/despliegue.md
           - App móvil: webs/guides/mobile-app.md
@@ -257,6 +259,7 @@ nav:
           - API tokens: webs/guides/api-tokens.md
           - Seguridad: webs/guides/seguridad.md
           - Marketplace de bloques: webs/guides/marketplace-de-bloques.md
+          - Categorías de bloques: webs/guides/bloques-categorias.md
           - Plantillas: webs/guides/plantillas.md
           - Pagos: webs/guides/pagos.md
           - Bloque Mercado Pago: webs/guides/bloque-mercadopago.md
