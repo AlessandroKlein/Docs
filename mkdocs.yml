@@ -262,6 +262,7 @@ nav:
           - Bloque Mercado Pago: webs/guides/bloque-mercadopago.md
           - Archivos y multimedia: webs/guides/archivos.md
           - Notificaciones: webs/guides/notificaciones.md
+          - Cookies y persistencia: webs/guides/cookies.md
       - Decisiones (ADR):
           - ADR 0001 · Stack: webs/adr/0001-stack.md
           - ADR 0002 · Monorepo: webs/adr/0002-monorepo.md
