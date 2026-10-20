@@ -190,7 +190,7 @@ Contenido resumido de la plantilla:
 
 > La aplicación es *best-effort*: si algún bloque no está disponible, se omite con
 > una advertencia y el resto se aplica igual. Los cambios de `config` de bloques
-> ya cargados toman efecto al reiniciar la API. Ver [Plantillas](../guides/plantillas.md).
+> ya cargados toman efecto al reiniciar la API. Ver [Plantillas](guides/plantillas.md).
 
 ---
 
