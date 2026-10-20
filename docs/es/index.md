@@ -8,6 +8,7 @@ Documentación unificada de los proyectos. Seleccioná un proyecto en el menú.
 |----------|-------------|
 | [Invernadero](invernadero/Home.md) | Plataforma modular de automatización de invernadero (ESP32) |
 | [SEMA](sema/Home.md) | Sistema de Estación Meteorológica Autónoma |
+| [PicoReflex](picoreflex/Home.md) | Juego de reacción rápida (Raspberry Pi Pico W) |
 
 ---
 
