@@ -5,7 +5,8 @@ La plataforma **Webs** se extiende con **bloques**: paquetes autocontenidos (con
 expone su API bajo el prefijo `/api/v1/blocks/<id>` y se configura desde
 **Bloques → Instalar/Configurar** en el panel de administración.
 
-En el monorepo hay **37 bloques** (`blocks/*`). La tabla siguiente los lista con
+En el monorepo hay **38 paquetes** (`blocks/*`): 37 bloques funcionales y 1 bloque
+de ejemplo. La tabla siguiente los lista con
 su `id`, nombre, `category` (campo del manifiesto `block.json`) y una descripción
 de una línea. Los bloques sin `category` declarada se agrupan en la UI bajo
 `otros`.
@@ -32,6 +33,7 @@ de una línea. Los bloques sin `category` declarada se agrupan en la UI bajo
 | `inventario` | Inventario | `negocio` | Control de inventario con ajustes de stock y alertas de stock bajo. |
 | `afiliados` | Afiliados | `marketing` | Afiliados y referidos. |
 | `organizaciones` | Organizaciones y membresías | `negocio` | Organizaciones multi-tenant, planes de membresía y asistencia por QR. |
+| `suscripciones` | Suscripciones | `negocio` | Planes de suscripción con vencimiento y pago. |
 | `social-login` | Login social | `auth` | Inicio de sesión con redes sociales. |
 | `register` | Registro | `auth` | Registro público orquestado sobre el núcleo de auth. |
 | `seo` | SEO | `seo` | Sitemap, robots.txt y etiquetas meta. |
