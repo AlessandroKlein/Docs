@@ -6188,6 +6188,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#047-2026-10-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.4.7] - 2026-10-20
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.4.7] - 2026-10-20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#046-2026-10-20" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6200,7 +6228,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#documentado" class="md-nav__link">
+  <a href="#documentado_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Documentado
@@ -6228,7 +6256,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#documentado_1" class="md-nav__link">
+  <a href="#documentado_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Documentado
@@ -6440,7 +6468,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#documentado_2" class="md-nav__link">
+  <a href="#documentado_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Documentado
@@ -6725,7 +6753,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#documentado_3" class="md-nav__link">
+  <a href="#documentado_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         Documentado
@@ -6764,7 +6792,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#documentado_4" class="md-nav__link">
+  <a href="#documentado_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         Documentado
@@ -7140,8 +7168,17 @@
 <p>Todas las versiones notables de PicoReflex se documentan en este archivo.
 El formato sigue <a href="https://keepachangelog.com/">Keep a Changelog</a> y el versionado
 sigue <a href="https://semver.org/">Semantic Versioning</a> (SemVer).</p>
-<h2 id="046-2026-10-20">[0.4.6] - 2026-10-20</h2>
+<h2 id="047-2026-10-20">[0.4.7] - 2026-10-20</h2>
 <h3 id="documentado">Documentado</h3>
+<ul>
+<li><strong>Docs (wiki) completo y en verde</strong>: actualizado <code>AlessandroKlein/Docs</code> con la
+  navegación completa (agregados <code>Esquematico</code> y <code>Freertos</code>), portada <code>Home.md</code>
+  corregida (firmware v0.4.6, batería ADC0/GPIO26 en vez de VSYS/3, AP WPA2+DHCP)
+  y enlaces rotos corregidos (<code>pin_defs.hpp</code>, <code>web_server.hpp</code> → GitHub,
+  <code>FREERTOS.md</code> → <code>Freertos.md</code>). El build de MkDocs pasa en verde.</li>
+</ul>
+<h2 id="046-2026-10-20">[0.4.6] - 2026-10-20</h2>
+<h3 id="documentado_1">Documentado</h3>
 <ul>
 <li><strong>Esquemático / diagrama circuital</strong> (<code>docs/ESQUEMATICO.md</code> + <code>docs/esquematico.svg</code>):
   diagrama de bloques, tabla de conexiones, detalle por subsistema (LEDs con
@@ -7149,7 +7186,7 @@ sigue <a href="https://semver.org/">Semantic Versioning</a> (SemVer).</p>
   10 k/22 k, alimentación) y mapa de pines completo.</li>
 </ul>
 <h2 id="045-2026-10-20">[0.4.5] - 2026-10-20</h2>
-<h3 id="documentado_1">Documentado</h3>
+<h3 id="documentado_2">Documentado</h3>
 <ul>
 <li><strong>Código</strong>: encabezados Doxygen y comentarios "qué + por qué" completados en todo
   el código, especialmente en <code>dhcpserver.h/.c</code> (protocolo DORA, opciones RFC 2132,
@@ -7223,7 +7260,7 @@ sigue <a href="https://semver.org/">Semantic Versioning</a> (SemVer).</p>
   nuevo (CSS + contenido) mide ~4.4 KB, por lo que la página se truncaba y
   quedaba vacía. Se amplió a 8192 B.</li>
 </ul>
-<h3 id="documentado_2">Documentado</h3>
+<h3 id="documentado_3">Documentado</h3>
 <ul>
 <li><code>COMPILAR.md</code>: explicación de <strong>qué es la fuente 5x7</strong>, por qué se regenera con
   <code>tools/gen_font.py</code> y cómo funciona su formato (95 glifos × 5 bytes, bit 0 = fila
@@ -7315,7 +7352,7 @@ sigue <a href="https://semver.org/">Semantic Versioning</a> (SemVer).</p>
 <li><strong>Diagnóstico por USB</strong>: <code>printf</code> del estado de red (STA/AP, IP, credenciales)
   para depurar la conexión.</li>
 </ul>
-<h3 id="documentado_3">Documentado</h3>
+<h3 id="documentado_4">Documentado</h3>
 <ul>
 <li><code>COMPILAR.md</code>: nueva sección "Solución de problemas del AP" (forzar AP, esperar
   10 s, alimentación por USB, LED indicador).</li>
@@ -7327,7 +7364,7 @@ sigue <a href="https://semver.org/">Semantic Versioning</a> (SemVer).</p>
   <code>WPA2_MIXED_PSK</code> para mejorar la compatibilidad con más clientes (algunos
   teléfonos no se conectaban con la clave <code>12345678</code>).</li>
 </ul>
-<h3 id="documentado_4">Documentado</h3>
+<h3 id="documentado_5">Documentado</h3>
 <ul>
 <li>Credenciales del AP (<code>PicoW-ReactionGame</code> / <code>12345678</code> / IP <code>192.168.4.1</code>)
   documentadas en <code>COMPILAR.md</code> (sección "Usar") y <code>DECISIONES.md</code>.</li>
