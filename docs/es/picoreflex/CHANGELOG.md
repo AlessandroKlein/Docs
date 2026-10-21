@@ -4,6 +4,54 @@ Todas las versiones notables de PicoReflex se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/) y el versionado
 sigue [Semantic Versioning](https://semver.org/) (SemVer).
 
+## [0.4.5] - 2026-10-20
+
+### Documentado
+- **Código**: encabezados Doxygen y comentarios "qué + por qué" completados en todo
+  el código, especialmente en `dhcpserver.h/.c` (protocolo DORA, opciones RFC 2132,
+  campos del mensaje BOOTP) y corrección de comentarios obsoletos en `web_ui`.
+- **Wiki/Docs**: actualizados a v0.4.4 (AP WPA2, DHCP, stack del Core 1, `url_decode`
+  corta en `&`, `/player` y escaneo retirados). Nuevas decisiones §24–§26 y
+  dificultades del informe.
+
+## [0.4.4] - 2026-10-20
+
+### Cambiado
+- **AP con clave WPA2 de nuevo**: el Access Point vuelve a `WPA2` con clave
+  `12345678` (`AP_OPEN 0`). El fallo histórico del AP era el DHCP (faltaba),
+  no el WPA2; con DHCP ya funciona con clave.
+
+## [0.4.3] - 2026-10-20
+
+### Corregido (causa raíz del guardado de Wi-Fi)
+- **`url_decode` no se detenía en `&`**: al guardar, el SSID capturaba toda la
+  query restante (`"ssid&pass=..."`) y la contraseña quedaba "sola" → el SSID
+  guardado era inválido y la reconexión fallaba. Ahora `url_decode` corta en `&`.
+
+### Eliminado
+- Botón **"Buscar redes"** (y su JavaScript/datalist): el escaneo del CYW43 no
+  devolvía redes de forma fiable, así que se quitó de `/wifi`.
+
+## [0.4.2] - 2026-10-20
+
+### Corregido (causa raíz del reinicio al guardar/escanear)
+- **Stack del Core 1 insuficiente**: el servidor web corría con 2 KB de stack
+  (`PICO_CORE1_STACK_SIZE` = 0x800 por defecto) y desbordaba al reconectar o
+  escanear. Se amplió a 4 KB (`0x1000`).
+- **Truncado de SSID/contraseña largos**: el buffer `path[128]` recortaba la query
+  (SSID + contraseña URL-encoded ~300 B). Se amplió a `1024` B y los buffers de
+  petición ahora son estáticos (no consumen stack).
+
+## [0.4.1] - 2026-10-20
+
+### Corregido
+- **Reinicio al guardar Wi-Fi**: al guardar credenciales, la escritura a Flash
+  (Core 0) y la reconexión `cyw43_arch_deinit/init` (Core 1) corrían a la vez y
+  crasheaban. Ahora la reconexión **espera** (`g_persist_done`) a que termine la
+  persistencia antes de tocar el CYW43.
+- **Diagnóstico del escaneo**: `wifi_scan_now()` imprime por serial el resultado
+  (`rc` y cantidad de redes) para depurar el botón "Buscar redes".
+
 ## [0.4.0] - 2026-10-20
 
 ### Añadido
