@@ -7,8 +7,8 @@ tags:
 
 # PicoReflex — Juego de Reacción Rápida Avanzado
 
-> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-20 | **Firmware:** v0.4.6
-> **Hardware:** Raspberry Pi Pico W (RP2040 + CYW43439) · **Plataforma:** Pico C/C++ SDK 2.3.0
+> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-20 | **Firmware:** v0.5.1
+> **Hardware:** Raspberry Pi Pico W (RP2040 + CYW43439) · **Plataforma:** Pico C/C++ SDK 2.3.0 · **RTOS:** FreeRTOS (SMP)
 
 ## 1. Resumen ejecutivo
 
@@ -59,10 +59,11 @@ LEDs (2..6) · Pulsadores (7..11) · Buzzer (16, PWM) · SSD1306 (14/15, I2C1)
 | [Referencia API](API.md) | Endpoints HTTP del panel web |
 | [Informe técnico](Informe.md) | Límites, solución, conclusión y análisis del ADC |
 | [Seguridad](Seguridad.md) | Auditoría de seguridad y hardening |
-| [FreeRTOS](Freertos.md) | Análisis de la migración a FreeRTOS (revertida) |
+| [FreeRTOS](Freertos.md) | Integración de FreeRTOS (SMP) y su análisis |
 | [Mejoras y roadmap](Mejoras-y-roadmap.md) | Hoja de ruta de versiones futuras |
 | [Dudas](Dudas.md) | Consultas técnicas y su resolución |
 | [CHANGELOG](CHANGELOG.md) | Historial de versiones (SemVer) |
+| [Referencias](Referencias.md) | URLs oficiales del SDK y ejemplos de pico-examples |
 
 ## 4. Repositorio de código
 
