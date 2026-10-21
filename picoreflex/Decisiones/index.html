@@ -5763,6 +5763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5854,6 +5858,34 @@
     
   
     Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquemático y diagrama circuital
   
 
     
@@ -6050,10 +6082,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-medicion-de-bateria-adc-vsys-y-conflicto-con-el-wi-fi" class="md-nav__link">
+  <a href="#9-medicion-de-bateria-adc-divisor-resistivo-externo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. Medición de batería (ADC + VSYS) y conflicto con el Wi-Fi
+        9. Medición de batería (ADC + divisor resistivo externo)
       
     </span>
   </a>
@@ -6120,6 +6152,127 @@
     <span class="md-ellipsis">
       
         15. Captive portal (DNS en modo Access Point)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-disparador-de-inicio-dos-botones-simultaneos-cuenta-regresiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Disparador de inicio: dos botones simultáneos + cuenta regresiva
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-separacion-frontend-backend-de-la-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Separación frontend / backend de la web
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-oled-deshabilitable-oled_enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. OLED deshabilitable (oled_enabled)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-wi-fi-configurable-desde-la-web-y-persistido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Wi-Fi configurable desde la web y persistido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-historial-de-tiempos-de-reaccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Historial de tiempos de reacción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-servidor-dhcp-en-modo-access-point-fix-de-conecta-y-se-desconecta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Servidor DHCP en modo Access Point (fix de "conecta y se desconecta")
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-dormant-condicionado-al-estado-del-wi-fi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. DORMANT condicionado al estado del Wi-Fi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-freertos-analisis-hecho-integracion-revertida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. FreeRTOS: análisis hecho, integración revertida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-stack-del-core-1-ampliado-a-4-kb-fix-de-hard-fault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Stack del Core 1 ampliado a 4 KB (fix de hard fault)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-url_decode-corta-en-fix-del-guardado-de-wi-fi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. url_decode corta en &amp; (fix del guardado de Wi-Fi)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-escaneo-de-redes-wi-fi-retirado-del-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Escaneo de redes Wi-Fi: retirado del frontend
       
     </span>
   </a>
@@ -6206,6 +6359,34 @@
     
   
     Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FreeRTOS
   
 
     
@@ -6439,8 +6620,8 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
 </tr>
 <tr>
 <td>Batería (ADC)</td>
-<td>GPIO 29 (ADC3)</td>
-<td>VSYS/3</td>
+<td>GPIO 26 (ADC0)</td>
+<td>Divisor externo 10k/22k</td>
 </tr>
 <tr>
 <td>LED onboard</td>
@@ -6528,8 +6709,9 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
   usar el driver CYW43 y lwIP desde <strong>ambos núcleos</strong> con servicio en segundo
   plano automático.</li>
 <li><strong>Conectividad:</strong> STA (10 s de timeout) → si falla, SoftAP
-  (<code>PicoW-ReactionGame</code>, IP <code>192.168.4.1</code>). El LED onboard queda fijo en STA y
-  parpadea en AP.</li>
+  (<code>PicoW-ReactionGame</code> / clave <code>12345678</code>, IP <code>192.168.4.1</code>, <strong>WPA2 mixto</strong>,
+  <strong>canal 1 fijo</strong>). El LED onboard queda fijo en STA y parpadea en AP. El DHCP del
+  AP lo provee el servidor integrado (ver §21).</li>
 <li><strong>Referencia:</strong></li>
 <li><a href="https://www.raspberrypi.com/documentation/pico-sdk/networking.html#pico_cyw43_arch">pico_cyw43_arch</a></li>
 <li><code>cyw43_arch_wifi_connect_timeout_ms</code>, <code>cyw43_arch_enable_ap_mode</code> en
@@ -6545,27 +6727,29 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
   de un RTOS. Las callbacks corren en contexto de IRQ de baja prioridad que
   <code>pico_cyw43_arch_lwip_threadsafe_background</code> atiende automáticamente.</li>
 <li><strong>Configuración lwIP:</strong> <code>lwipopts.h</code> con <code>MEM_SIZE=16000</code>, <code>PBUF_POOL_SIZE=32</code>
-  y <code>TCP_SND_BUF=(8*TCP_MSS)</code> para acomodar la página HTML (~2 KB).</li>
+  y <code>TCP_SND_BUF=(8*TCP_MSS)</code>. El buffer de respuesta HTTP es <code>g_body[8192]</code>
+  (la Home con el CSS nuevo mide ~4.4 KB) y el <strong>stack del Core 1 se amplió a
+  4 KB</strong> (<code>PICO_CORE1_STACK_SIZE=0x1000</code>), ver §24.</li>
 <li><strong>Referencia:</strong></li>
 <li><a href="https://www.nongnu.org/lwip/2_1_x/group__tcp__raw.html">lwIP raw TCP API</a></li>
 <li><a href="https://www.raspberrypi.com/documentation/pico-sdk/networking.html">Networking (pico-sdk)</a></li>
 </ul>
 <hr />
-<h2 id="9-medicion-de-bateria-adc-vsys-y-conflicto-con-el-wi-fi">9. Medición de batería (ADC + VSYS) y conflicto con el Wi-Fi</h2>
+<h2 id="9-medicion-de-bateria-adc-divisor-resistivo-externo">9. Medición de batería (ADC + divisor resistivo externo)</h2>
 <ul>
-<li><strong>Decisión:</strong> Se lee <code>ADC3</code> (GPIO29) que en la Pico W mide <strong>VSYS/3</strong> (divisor
-  resistivo interno 3:1). La lectura se envuelve entre
-  <code>cyw43_arch_lwip_begin()</code> / <code>cyw43_arch_lwip_end()</code>.</li>
-<li><strong>Por qué:</strong> En la Pico W, <code>GPIO29</code> es <strong>también</strong> el reloj SPI (<code>WL_CLK</code>) del
-  chip CYW43439. El header de la placa <code>boards/pico_w.h</code> define
-  <code>CYW43_USES_VSYS_PIN 1</code> y recomienda proteger el uso del GPIO con
-  <code>cyw43_thread_enter/exit</code> (equivalentes a <code>cyw43_arch_lwip_begin/end</code>).</li>
-<li><strong>Conversión:</strong> <code>VSYS = 3 · (adc/4095) · 3.3 V</code>. Porcentaje por curva LiPo 1S
-  (4.2 V = 100 %, 3.7 V = 50 %, 3.0 V = 0 %).</li>
+<li><strong>Decisión:</strong> Se mide la batería con un <strong>divisor resistivo EXTERNO</strong> en
+  <strong>GPIO26 (ADC0)</strong> — libre en la Pico W — con <code>R1 = 10 kΩ</code> (batería → pin ADC) y
+  <code>R2 = 22 kΩ</code> (pin ADC → GND).</li>
+<li><strong>Por qué:</strong> usar GPIO29 (ADC3) en la Pico W no es viable para un divisor
+  externo: ese pin está ocupado por el SPI del Wi-Fi (<code>WL_CLK</code>) y por el divisor
+  interno VSYS/3. GPIO26 evita ese conflicto por completo (no se necesita el lock
+  del CYW43).</li>
+<li><strong>Conversión:</strong> <code>Vpin = adc/4095 · 3.3 V</code>, y
+  <code>Vbat = Vpin · (R1 + R2) / R2 = Vpin · 32 / 22</code>. Porcentaje por curva LiPo 1S
+  (4.2 V = 100 %, 3.7 V = 50 %, 3.0 V = 0 %). Con 4.2 V en batería, el pin recibe
+  2.89 V (&lt; 3.3 V de referencia, sin recorte).</li>
 <li><strong>Referencia:</strong></li>
 <li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_adc">hardware_adc</a></li>
-<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/networking.html#pico_cyw43_arch">pico_cyw43_arch</a></li>
-<li>Board header <code>boards/pico_w.h</code> (comentarios sobre <code>CYW43_USES_VSYS_PIN</code>)</li>
 </ul>
 <hr />
 <h2 id="10-almacenamiento-no-volatil-flash">10. Almacenamiento no volátil (Flash)</h2>
@@ -6645,10 +6829,157 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
 <li><strong>Por qué:</strong> los dispositivos modernos validan la conexión con un "captive
   portal check" (resuelven un dominio de prueba). Responder el DNS con la IP
   local captura ese chequeo y muestra la web embebida. Es el complemento natural
-  del DHCP que el CYW43 ya provee en modo AP.</li>
+  del <strong>servidor DHCP integrado</strong> (<code>src/dhcpserver.c</code>, ver §21) que asigna IP a
+  los clientes del AP.</li>
 <li><strong>Referencia:</strong></li>
 <li><a href="https://www.nongnu.org/lwip/2_1_x/group__udp__raw.html">lwIP raw UDP API</a></li>
 <li>Formato DNS: RFC 1035.</li>
+</ul>
+<hr />
+<h2 id="16-disparador-de-inicio-dos-botones-simultaneos-cuenta-regresiva">16. Disparador de inicio: dos botones simultáneos + cuenta regresiva</h2>
+<ul>
+<li><strong>Decisión:</strong> la ronda <strong>no</strong> arranca con un solo botón. Se requiere presionar
+  <strong>dos botones a la vez</strong> (disparador de inicio) y, tras eso, se ejecuta una
+  <strong>cuenta regresiva</strong> de <code>start_delay_s</code> segundos (configurable vía web, por
+  defecto 3 s, límite 10 s) con <em>beeps</em>, antes de encender el primer LED. El
+  inicio desde la web (<code>/start</code>) pasa por la misma cuenta regresiva.</li>
+<li><strong>Por qué:</strong> evita arranques accidentales por una pulsación suelta y da al
+  jugador un "3, 2, 1" audible para prepararse, lo que hace la medición más
+  justa y reproducible en competencias estandarizadas.</li>
+<li><strong>Referencia:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_gpio">hardware_gpio</a>
+    (lectura de múltiples pulsadores simultáneos)</li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_timer">hardware_timer</a>
+    (temporización de la cuenta regresiva)</li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_pwm">hardware_pwm</a>
+    (beeps del buzzer)</li>
+</ul>
+<hr />
+<h2 id="17-separacion-frontend-backend-de-la-web">17. Separación frontend / backend de la web</h2>
+<ul>
+<li><strong>Decisión:</strong> la web se separa en dos módulos: el <strong>backend</strong> de ruteo y parseo
+  en <code>src/web_server.cpp</code> (lwIP + <code>handle_config</code>) y el <strong>frontend</strong> en
+  <code>src/web_ui.cpp</code> / <code>include/web_ui.hpp</code>, con la interfaz pura
+  <code>web_ui::render(path, out, len)</code> que <strong>solo lee</strong> el estado y produce HTML, sin
+  modificar nada.</li>
+<li><strong>Por qué:</strong> desacopla la lógica de red (qué ruta, qué parámetro) de la
+  presentación (HTML), lo que facilita mantener cada página y reutilizar el
+  escape de HTML (<code>web_ui::html_escape</code>) en un único lugar. Cada página tiene su
+  formulario y su ruta propios (<code>/</code>, <code>/seed</code>, <code>/game</code>, <code>/display</code>, <code>/wifi</code>).
+  La página <code>/player</code> fue eliminada en v0.4.0 (sin multijugador).</li>
+<li><strong>Referencia:</strong></li>
+<li><a href="https://www.nongnu.org/lwip/2_1_x/group__tcp__raw.html">lwIP raw TCP API</a>
+    (backend HTTP)</li>
+<li>Módulos <code>web_server</code> / <code>web_ui</code> en <code>include/</code> y <code>src/</code>.</li>
+</ul>
+<hr />
+<h2 id="18-oled-deshabilitable-oled_enabled">18. OLED deshabilitable (<code>oled_enabled</code>)</h2>
+<ul>
+<li><strong>Decisión:</strong> el display se puede apagar/encender desde la web (<code>/display</code>,
+  campo <code>oled_enabled</code> en <code>GameConfig</code>) con <code>display::set_power(false)</code>, que envía
+  el comando SSD1306 <strong>0xAE</strong> (display off); para encenderlo, <strong>0xAF</strong>.</li>
+<li><strong>Por qué:</strong> toda la información también está disponible en la web, así que el
+  OLED puede apagarse para <strong>ahorrar energía</strong> (especialmente útil alimentado por
+  batería) sin perder funcionalidad.</li>
+<li><strong>Referencia:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_i2c">hardware_i2c</a></li>
+<li>Datasheet SSD1306 (Solomon Systech) — comandos 0xAE / 0xAF.</li>
+</ul>
+<hr />
+<h2 id="19-wi-fi-configurable-desde-la-web-y-persistido">19. Wi-Fi configurable desde la web y persistido</h2>
+<ul>
+<li><strong>Decisión:</strong> las credenciales STA se guardan en <code>GameConfig</code>
+  (<code>wifi_ssid[33]</code> / <code>wifi_password[65]</code>, con defaults <code>WIFI_SSID_DEFAULT</code> /
+  <code>WIFI_PASSWORD_DEFAULT</code>), se editan desde <code>/wifi</code>, se <strong>persisten en Flash</strong>
+  (<code>PersistentData</code> v2) y se aplican re-conectando automáticamente (bandera
+  <code>g_wifi_reconnect</code> en el bucle del Core 1).</li>
+<li><strong>Por qué:</strong> permite cambiar de red <strong>sin recompilar ni flashear</strong>; el
+  dispositivo queda configurable en campo (mismo criterio que el resto de la
+  configuración).</li>
+<li><strong>Referencia:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/networking.html#pico_cyw43_arch">pico_cyw43_arch / cyw43_arch_wifi_connect_timeout_ms</a></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_flash">hardware_flash</a></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/runtime.html#pico_flash">pico_flash / flash_safe_execute</a></li>
+</ul>
+<hr />
+<h2 id="20-historial-de-tiempos-de-reaccion">20. Historial de tiempos de reacción</h2>
+<ul>
+<li><strong>Decisión:</strong> <code>GameStats</code> guarda un <strong>historial de los últimos 20 tiempos</strong>
+  (<code>history[20]</code> en ms, <code>history[0]</code> = más reciente, más <code>history_count</code>), que la
+  página Home muestra como tabla.</li>
+<li><strong>Por qué:</strong> además del promedio y el mejor tiempo, el usuario puede ver la
+  evolución de sus reacciones y detectar tendencias (fatiga, mejora), enriqueciendo
+  el panel sin tocar el motor del juego.</li>
+<li><strong>Referencia:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/runtime.html#pico_sync">pico_sync (critical_section)</a>
+    para proteger el acceso al historial entre núcleos.</li>
+</ul>
+<h2 id="21-servidor-dhcp-en-modo-access-point-fix-de-conecta-y-se-desconecta">21. Servidor DHCP en modo Access Point (fix de "conecta y se desconecta")</h2>
+<ul>
+<li><strong>Decisión:</strong> se integró un <strong>servidor DHCP</strong> (<code>src/dhcpserver.c</code>, código MIT de
+  MicroPython vía <a href="https://github.com/raspberrypi/pico-examples/tree/master/pico_w/wifi/access_point">pico-examples</a>)
+  que asigna IPs <code>192.168.4.16</code>–<code>192.168.4.23</code> a los clientes del AP.</li>
+<li><strong>Por qué (causa raíz):</strong> el CYW43 <strong>no trae servidor DHCP en modo AP</strong> (la opción
+  <code>CYW43_NETUTILS</code> está desactivada por defecto). Sin DHCP, el teléfono se asociaba
+  a <code>PicoW-ReactionGame</code> pero <strong>nunca recibía IP</strong>, por eso "conectaba y se
+  desconectaba". El ejemplo oficial lo deja explícito: <code>dhcp_server_init(...)</code>.</li>
+<li><strong>Nota de seguridad:</strong> entre v0.2.5 y v0.4.3 el AP se dejó <strong>abierto</strong> (sin
+  clave) para esquivar un problema de compatibilidad WPA2 con algunos teléfonos.
+  En <strong>v0.4.4 se volvió a WPA2</strong> (clave <code>12345678</code>): el problema real era el DHCP
+  (ya resuelto), no la autenticación. Se controla con <code>AP_OPEN</code> en
+  <code>src/web_server.cpp</code>.</li>
+</ul>
+<h2 id="22-dormant-condicionado-al-estado-del-wi-fi">22. DORMANT condicionado al estado del Wi-Fi</h2>
+<ul>
+<li><strong>Decisión:</strong> el modo DORMANT (bajo consumo, &lt; 2 mA) <strong>solo se activa si el Wi-Fi
+  está apagado</strong> (sin STA ni AP). Si la red está activa, el dispositivo permanece
+  despierto.</li>
+<li><strong>Por qué:</strong> el DORMANT apaga el Wi-Fi (handshake <code>g_sleep_request</code>/<code>g_sleep_ready</code>
+  → <code>cyw43_arch_deinit</code>), dejando el servidor web inaccesible ("tardó demasiado en
+  responder"). Como la web de configuración necesita la red siempre viva, se evitó
+  el conflicto condicionando el sueño al estado de red.</li>
+</ul>
+<h2 id="23-freertos-analisis-hecho-integracion-revertida">23. FreeRTOS: análisis hecho, integración revertida</h2>
+<ul>
+<li><strong>Decisión:</strong> se analizó e intentó FreeRTOS (SMP, 2 núcleos) en v0.3.0, pero
+  <strong>rompía el arranque del Wi-Fi</strong>, así que se revirtió en v0.3.1 al dual-core
+  manual (<code>multicore_launch_core1</code>). El análisis completo queda en
+  <a href="../Freertos/"><code>Freertos.md</code></a>.</li>
+<li><strong>Por qué (causa):</strong> con <code>pico_cyw43_arch_lwip_sys_freertos</code>, <code>cyw43_arch_init()</code>
+  debe ejecutarse en <code>main()</code> <strong>antes</strong> de <code>vTaskStartScheduler()</code> (y no dentro de
+  una tarea, como quedó en el primer intento). Pendiente re-integrarlo con esa
+  corrección y verificarlo en hardware.</li>
+</ul>
+<h2 id="24-stack-del-core-1-ampliado-a-4-kb-fix-de-hard-fault">24. Stack del Core 1 ampliado a 4 KB (fix de <em>hard fault</em>)</h2>
+<ul>
+<li><strong>Decisión:</strong> <code>PICO_CORE1_STACK_SIZE</code> se sube de 2 KB (0x800, valor por defecto)
+  a <strong>4 KB</strong> (0x1000) con <code>add_compile_definitions(PICO_CORE1_STACK_SIZE=0x1000)</code>
+  en <code>CMakeLists.txt</code>.</li>
+<li><strong>Por qué:</strong> el Core 1 aloja el servidor web (<code>cyw43_arch</code> + lwIP + HTTP). Con
+  2 KB, al reconectar el Wi-Fi (<code>cyw43_arch_deinit/init</code>) o al escanear, el stack
+  <strong>desbordaba</strong> y el dispositivo se reiniciaba solo (<em>hard fault</em>). 4 KB es el
+  máximo que cabe en <code>SCRATCH_X</code> junto al stack del Core 0.</li>
+<li><strong>Referencia:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/runtime.html#pico_multicore">pico_multicore (PICO_CORE1_STACK_SIZE)</a></li>
+</ul>
+<h2 id="25-url_decode-corta-en-fix-del-guardado-de-wi-fi">25. <code>url_decode</code> corta en <code>&amp;</code> (fix del guardado de Wi-Fi)</h2>
+<ul>
+<li><strong>Decisión:</strong> <code>url_decode()</code> (en <code>src/web_server.cpp</code>) se modifica para que
+  <strong>termine en <code>&amp;</code></strong> (separador de parámetros), no solo en <code>\0</code>.</li>
+<li><strong>Por qué:</strong> antes copiaba el valor de un parámetro hasta el final de la query,
+  así que al guardar <code>ssid=MiRed&amp;pass=clave</code>, el SSID quedaba como
+  <code>"MiRed&amp;pass=clave"</code> (todo junto) y la reconexión fallaba. Ahora cada parámetro
+  se decodifica solo hasta su propio <code>&amp;</code>.</li>
+<li><strong>Referencia:</strong> formato de query string (RFC 3986, separador <code>&amp;</code>).</li>
+</ul>
+<h2 id="26-escaneo-de-redes-wi-fi-retirado-del-frontend">26. Escaneo de redes Wi-Fi: retirado del frontend</h2>
+<ul>
+<li><strong>Decisión:</strong> el endpoint <code>/scan</code> (backend) se mantiene <strong>reservado/interno</strong>,
+  pero el <strong>botón "Buscar redes"</strong> (y su JavaScript/datalist) se <strong>elimina</strong> de
+  <code>/wifi</code> en v0.4.3.</li>
+<li><strong>Por qué:</strong> el escaneo del CYW43 (<code>cyw43_wifi_scan</code>) no devolvía redes de forma
+  fiable en el modo <em>threadsafe background</em> (y menos en modo AP), así que no
+  aportaba valor. Se prefiere que el usuario escriba el SSID a mano.</li>
 </ul>
 
 

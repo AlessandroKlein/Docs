@@ -18,7 +18,7 @@
         <link rel="prev" href="../Home/">
       
       
-        <link rel="next" href="../Arquitectura/">
+        <link rel="next" href="../Esquematico/">
       
       
         
@@ -5763,6 +5763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5986,6 +5990,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Usar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#credenciales-del-access-point-modo-respaldo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credenciales del Access Point (modo respaldo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solucion-de-problemas-del-ap-no-conecta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solución de problemas del AP (no conecta)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6008,12 +6040,90 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Regenerar la fuente 5x7 (opcional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-la-fuente-5x7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es la fuente 5x7?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-hay-que-regenerarla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué hay que "regenerarla"?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona-el-formato" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo funciona el formato
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquemático y diagrama circuital
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -6146,6 +6256,34 @@
     
   
     Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FreeRTOS
   
 
     
@@ -6327,11 +6465,15 @@
 <li>Una Raspberry Pi <strong>Pico W</strong>.</li>
 </ul>
 <h2 id="configurar-las-credenciales-wi-fi-sta">Configurar las credenciales Wi-Fi (STA)</h2>
-<p>Editar <code>include/web_server.hpp</code> y definir:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#define WIFI_SSID     "TU_RED_WIFI"</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#define WIFI_PASSWORD "TU_PASSWORD"</span>
-</span></code></pre></div>
-<p>Si la conexión a esta red falla en 10 s, el dispositivo pasa automáticamente a
+<p>Hay dos formas de definir la red Wi-Fi:</p>
+<ol>
+<li><strong>Por defecto (compilación):</strong> editar <code>include/config.hpp</code> y definir
+   <code>WIFI_SSID_DEFAULT</code> / <code>WIFI_PASSWORD_DEFAULT</code>.</li>
+<li><strong>En caliente (recomendado):</strong> desde la web, en la página <code>/wifi</code>, ingresar
+   SSID y contraseña. Se persisten en Flash y el dispositivo se re-conecta solo;
+   no hace falta recompilar.</li>
+</ol>
+<p>Si la conexión a la red falla en 10 s, el dispositivo pasa automáticamente a
 modo <strong>Access Point</strong> (<code>PicoW-ReactionGame</code> / <code>12345678</code>, IP <code>192.168.4.1</code>).</p>
 <h2 id="compilar">Compilar</h2>
 <h3 id="opcion-a-visual-studio-code-recomendado">Opción A — Visual Studio Code (recomendado)</h3>
@@ -6342,35 +6484,130 @@ modo <strong>Access Point</strong> (<code>PicoW-ReactionGame</code> / <code>1234
 <li>Se genera <code>build/PicoReflex.uf2</code>.</li>
 </ol>
 <h3 id="opcion-b-linea-de-comandos">Opción B — Línea de comandos</h3>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">$env:PICO_SDK_PATH</span> <span class="p">=</span> <span class="s2">"$env:USERPROFILE\.pico-sdk\sdk\2.3.0"</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">$env:PICO_TOOLCHAIN_PATH</span> <span class="p">=</span> <span class="s2">"$env:USERPROFILE\.pico-sdk\toolchain\15_2_Rel1"</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">cmake</span> <span class="n">-G</span> <span class="n">Ninja</span> <span class="n">-B</span> <span class="n">build</span> <span class="n">-S</span> <span class="p">.</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="n">build</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$env:PICO_SDK_PATH</span> <span class="p">=</span> <span class="s2">"$env:USERPROFILE\.pico-sdk\sdk\2.3.0"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">$env:PICO_TOOLCHAIN_PATH</span> <span class="p">=</span> <span class="s2">"$env:USERPROFILE\.pico-sdk\toolchain\15_2_Rel1"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">cmake</span> <span class="n">-G</span> <span class="n">Ninja</span> <span class="n">-B</span> <span class="n">build</span> <span class="n">-S</span> <span class="p">.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="n">build</span>
 </span></code></pre></div>
+<blockquote>
+<p><strong>Stack del Core 1 (importante):</strong> el servidor web corre en el Core 1 y necesita
+<strong>4 KB</strong> de stack (<code>PICO_CORE1_STACK_SIZE=0x1000</code>). Ya está definido en
+<code>CMakeLists.txt</code> con <code>add_compile_definitions(PICO_CORE1_STACK_SIZE=0x1000)</code>; el
+valor por defecto del SDK es 2 KB y provocaba <em>hard fault</em> al reconectar/escanear.</p>
+</blockquote>
 <h2 id="flashear">Flashear</h2>
 <ol>
 <li>Mantener pulsado <strong>BOOTSEL</strong> y conectar el USB (o reconectar). La Pico aparece
    como unidad de almacenamiento USB (<code>RPI-RP2</code>).</li>
 <li>Copiar <code>build/PicoReflex.uf2</code> a la unidad, o usar:
-   <div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">picotool</span> <span class="n">load</span> <span class="n">build</span><span class="p">/</span><span class="n">PicoReflex</span><span class="p">.</span><span class="n">uf2</span> <span class="o">-f</span>
+   <div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">picotool</span> <span class="n">load</span> <span class="n">build</span><span class="p">/</span><span class="n">PicoReflex</span><span class="p">.</span><span class="n">uf2</span> <span class="o">-f</span>
 </span></code></pre></div></li>
 </ol>
 <h2 id="usar">Usar</h2>
+<h3 id="credenciales-del-access-point-modo-respaldo">Credenciales del Access Point (modo respaldo)</h3>
+<p>Cuando la Pico W no logra conectarse a la red STA, levanta su propio Access Point:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Red (SSID)</strong></td>
+<td><code>PicoW-ReactionGame</code></td>
+</tr>
+<tr>
+<td><strong>Seguridad</strong></td>
+<td><strong>WPA2</strong> (clave <code>12345678</code>)</td>
+</tr>
+<tr>
+<td><strong>IP del panel</strong></td>
+<td><code>192.168.4.1</code></td>
+</tr>
+<tr>
+<td><strong>Canal</strong></td>
+<td><code>1</code> (fijo)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>El AP usa <strong>WPA2</strong> con clave <code>12345678</code> y canal fijo 1. El <strong>servidor DHCP
+integrado</strong> (<code>src/dhcpserver.c</code>) asigna IPs <code>192.168.4.16</code>–<code>192.168.4.23</code> a los
+clientes; sin ese DHCP el teléfono se asociaba pero nunca recibía IP.</p>
+</blockquote>
 <ol>
 <li>Conectar a la red <code>PicoW-ReactionGame</code> (si quedó en AP) o a la IP que se
    muestre en el display (modo STA).</li>
 <li>Abrir <code>http://192.168.4.1</code> (AP) o la IP del dispositivo (STA). En modo AP,
    cualquier URL que abras redirige automáticamente a la página (captive portal).</li>
-<li>Desde la web: configurar semilla/dificultad/modo/velocidad/nombre, iniciar,
-   detener y reiniciar estadísticas.</li>
-<li>Físicamente: presionar un botón para iniciar una ronda.</li>
+<li>Desde la web (páginas separadas): semilla (<code>/seed</code>), juego (<code>/game</code>), OLED
+   (<code>/display</code>) y Wi-Fi (<code>/wifi</code>, con "Mostrar contraseña"), más los controles
+   iniciar, detener y reiniciar.</li>
+<li>Físicamente: <strong>presionar dos botones a la vez</strong> para iniciar la ronda; hay una
+   <strong>cuenta regresiva</strong> configurable (por defecto 3 s) antes del primer LED.
+   También se puede iniciar desde <code>/start</code>.</li>
+<li>El <strong>OLED se puede apagar</strong> desde <code>/display</code> (toda la info sigue en la web).</li>
+</ol>
+<h3 id="solucion-de-problemas-del-ap-no-conecta">Solución de problemas del AP (no conecta)</h3>
+<ol>
+<li><strong>Forzar modo AP:</strong> mantené presionado el <strong>botón 0</strong> mientras conectás la
+   alimentación (o reiniciás). La Pico salta el intento de STA y arranca directo
+   en <code>PicoW-ReactionGame</code>. Esto descarta el caso "quedó en STA".</li>
+<li><strong>Ver el estado por USB:</strong> conectá el USB (no BOOTSEL) y abrí un monitor serie
+   a 115200 baud. El firmware imprime:</li>
+<li><code>[game] Boton 0 presionado al arrancar -&gt; forzando modo AP</code></li>
+<li><code>[web] Intentando STA: ...</code> o <code>[web] STA omitido (forzar AP)</code></li>
+<li><code>[web] Modo AP: PicoW-ReactionGame / clave 12345678 / IP 192.168.4.1</code></li>
+<li><code>[web] Conectado a STA, IP ...</code></li>
+<li><strong>Esperar:</strong> si no se fuerza AP, la Pico intenta STA durante <strong>10 s</strong> antes de
+   levantar el AP. Esperá ~12-15 s desde el encendido.</li>
+<li><strong>Alimentación:</strong> para probar, alimentá por <strong>USB</strong> (estable 5 V). Una batería
+   débil o un <em>boost</em> insuficiente puede dejar el Wi-Fi sin corriente suficiente
+   (el CYW43 necesita ~100-150 mA).</li>
+<li><strong>LED onboard:</strong> fijo = conectado a STA; parpadeo = modo AP; apagado = Wi-Fi
+   sin inicializar.</li>
 </ol>
 <h2 id="depurar-printf-por-usb">Depurar (printf por USB)</h2>
 <p>El programa usa <code>stdio</code> por USB. Conectar el USB (no en modo BOOTSEL) y abrir el
-puerto serie (por ejemplo, PuTTY / <code>minicom</code>) a 115200 baud.</p>
+puerto serie (por ejemplo, PuTTY / <code>minicom</code>) a 115200 baud. Ver el estado de red
+y las credenciales del AP en tiempo real.</p>
 <h2 id="regenerar-la-fuente-5x7-opcional">Regenerar la fuente 5x7 (opcional)</h2>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">python</span> <span class="n">tools</span><span class="p">\</span><span class="n">gen_font</span><span class="p">.</span><span class="n">py</span>   <span class="c"># regenera include/font5x7.hpp</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">python</span> <span class="n">tools</span><span class="p">\</span><span class="n">gen_font</span><span class="p">.</span><span class="n">py</span>   <span class="c"># regenera include/font5x7.hpp</span>
 </span></code></pre></div>
+<h3 id="que-es-la-fuente-5x7">¿Qué es la fuente 5x7?</h3>
+<p>Es la <strong>tipografía de mapa de bits</strong> que usa el display OLED (SSD1306) para
+dibujar texto. Cada carácter ocupa una celda de <strong>5 columnas × 7 filas</strong> de
+píxeles. Es la fuente clásica de los OLED monocromos: compacta, legible y fácil
+de almacenar.</p>
+<h3 id="por-que-hay-que-regenerarla">¿Por qué hay que "regenerarla"?</h3>
+<p>Los glifos (las letras/dígitos) están definidos <strong>como ASCII-art</strong> dentro de
+<code>tools/gen_font.py</code> (cada carácter son 7 líneas de 5 caracteres, <code>#</code> = píxel
+encendido). El firmware <strong>no entiende ASCII-art</strong>: necesita un array de bytes.
+El script traduce ese dibujo a un array C++ (<code>include/font5x7.hpp</code>):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>'0': [".###.", "#...#", "#..##", "#.#.#", "##..#", "#...#", ".###."]
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  → {0x0E, 0x11, 0x13, 0x15, 0x19, 0x11, 0x0E}
+</span></code></pre></div>
+<p>Solo hay que ejecutar el script <strong>si se modifica un glifo o se agrega un carácter
+nuevo</strong> (por ejemplo, un símbolo que falte). El archivo <code>font5x7.hpp</code> está marcado
+como "NO EDITAR A MANO": cualquier cambio se hace en <code>gen_font.py</code> y se regenera.</p>
+<h3 id="como-funciona-el-formato">Cómo funciona el formato</h3>
+<ul>
+<li><code>FONT5X7[95][5]</code>: <strong>95 glifos</strong> (ASCII imprimible <code>0x20</code>..<code>0x7E</code>), <strong>5 bytes cada
+  uno</strong>.</li>
+<li>Cada byte es <strong>una columna</strong> del carácter; el <strong>bit 0 es la fila superior</strong>
+  (por eso el OLED dibuja "apaisado" los 5 bytes).</li>
+<li>Se indexa por <code>carácter - 0x20</code>: <code>FONT5X7['A' - 0x20]</code>.</li>
+<li>El driver (<code>src/display_driver.cpp</code>) recorre esos 5 bytes y setea/limpia los
+  píxeles correspondientes en el framebuffer de 128×64.</li>
+</ul>
+<h3 id="referencia">Referencia</h3>
+<ul>
+<li><code>tools/gen_font.py</code> — generador (ASCII-art → array C++).</li>
+<li><code>include/font5x7.hpp</code> — salida generada (no editar a mano).</li>
+<li><code>src/display_driver.cpp</code> — consumo de la fuente (<code>draw_char_5x7</code>).</li>
+</ul>
 
 
 
@@ -6425,13 +6662,13 @@ puerto serie (por ejemplo, PuTTY / <code>minicom</code>) a 115200 baud.</p>
         
         
           
-          <a href="../Arquitectura/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Arquitectura">
+          <a href="../Esquematico/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Esquemático y diagrama circuital">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Arquitectura
+                Esquemático y diagrama circuital
               </div>
             </div>
             <div class="md-footer__button md-icon">

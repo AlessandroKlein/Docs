@@ -5763,6 +5763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5965,6 +5969,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../Esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquemático y diagrama circuital
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Arquitectura/" class="md-nav__link">
         
   
@@ -6085,6 +6117,34 @@
     
   
     Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FreeRTOS
   
 
     
@@ -6284,7 +6344,7 @@
 
 <h1 id="picoreflex-juego-de-reaccion-rapida-avanzado">PicoReflex — Juego de Reacción Rápida Avanzado</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía (portada) | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-20 | <strong>Firmware:</strong> v0.1.1
+<p><strong>Tipo:</strong> Guía (portada) | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-20 | <strong>Firmware:</strong> v0.4.6
 <strong>Hardware:</strong> Raspberry Pi Pico W (RP2040 + CYW43439) · <strong>Plataforma:</strong> Pico C/C++ SDK 2.3.0</p>
 </blockquote>
 <h2 id="1-resumen-ejecutivo">1. Resumen ejecutivo</h2>
@@ -6299,10 +6359,13 @@ configuración, medición de batería y conectividad Wi-Fi redundante.</p>
 <li><strong>PRNG determinista por semilla</strong> (<code>xorshift32</code>) para competencias repetibles,
   o modo aleatorio con <code>pico_rand</code>.</li>
 <li><strong>Servidor web embebido</strong> (lwIP) con <strong>Station (STA)</strong> y respaldo <strong>SoftAP</strong>
-  (<code>PicoW-ReactionGame</code>, <code>192.168.4.1</code>) + <strong>captive portal</strong> (DNS).</li>
-<li><strong>Medición de batería</strong> por ADC (VSYS/3) con porcentaje y alerta de baja.</li>
+  (<code>PicoW-ReactionGame</code>, WPA2 <code>12345678</code>, <code>192.168.4.1</code>) + <strong>captive portal</strong> (DNS)</li>
+<li><strong>servidor DHCP</strong> (asigna <code>192.168.4.16</code>–<code>192.168.4.23</code>).</li>
+<li><strong>Medición de batería</strong> por ADC0 (GPIO26) con divisor externo 10 kΩ/22 kΩ,
+  porcentaje y alerta de batería baja.</li>
 <li><strong>Doble núcleo</strong>: Core 0 (juego/IRQ/DMA/PWM/Flash) y Core 1 (red/display).</li>
-<li><strong>Modo DORMANT</strong> (&lt; 2 mA) y <strong>almacenamiento no volátil</strong> de récords en Flash.</li>
+<li><strong>Modo DORMANT</strong> (&lt; 2 mA, solo sin red activa) y <strong>almacenamiento no volátil</strong>
+  de récords/ranking/credenciales en Flash.</li>
 </ul>
 <h2 id="2-que-es">2. ¿Qué es?</h2>
 <p>Es el trabajo práctico final de <strong>Microprocesadores</strong> (UNL — Tecnicatura en
@@ -6314,8 +6377,8 @@ multinúcleo, Wi-Fi y pila TCP/IP.</p>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>          ▼
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   PicoReflex — Core 0 (juego)  ⇄ estado compartido ⇄  Core 1 (red + display)
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>          │                                                 │
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>          ├── ADC3 (GPIO29) → VSYS/3 (batería)              ├── cyw43_arch + lwIP
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          └── Flash (récords/ranking/semilla)               └── HTTP + DNS captive portal
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>          ├── ADC0 (GPIO26) → divisor 10k/22k (batería)     ├── cyw43_arch + lwIP
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          └── Flash (récords/ranking/semilla/Wi-Fi)         └── HTTP + DNS + DHCP (AP)
 </span></code></pre></div>
 <h2 id="3-guias-del-proyecto">3. Guías del proyecto</h2>
 <table>
@@ -6329,6 +6392,10 @@ multinúcleo, Wi-Fi y pila TCP/IP.</p>
 <tr>
 <td><a href="../Compilacion/">Compilación y flasheo</a></td>
 <td>Cómo compilar, flashear y usar</td>
+</tr>
+<tr>
+<td><a href="../Esquematico/">Esquemático y diagrama circuital</a></td>
+<td>Conexiones, pines, componentes y cálculos</td>
 </tr>
 <tr>
 <td><a href="../Arquitectura/">Arquitectura</a></td>
@@ -6349,6 +6416,10 @@ multinúcleo, Wi-Fi y pila TCP/IP.</p>
 <tr>
 <td><a href="../Seguridad/">Seguridad</a></td>
 <td>Auditoría de seguridad y hardening</td>
+</tr>
+<tr>
+<td><a href="../Freertos/">FreeRTOS</a></td>
+<td>Análisis de la migración a FreeRTOS (revertida)</td>
 </tr>
 <tr>
 <td><a href="../Mejoras-y-roadmap/">Mejoras y roadmap</a></td>

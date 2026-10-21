@@ -18,7 +18,7 @@
         <link rel="prev" href="../Informe/">
       
       
-        <link rel="next" href="../Mejoras-y-roadmap/">
+        <link rel="next" href="../Freertos/">
       
       
         
@@ -5763,6 +5763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5854,6 +5858,34 @@
     
   
     Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquemático y diagrama circuital
   
 
     
@@ -6046,10 +6078,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-superficie-de-ataque" class="md-nav__link">
+  <a href="#1-resumen-ejecutivo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Superficie de ataque
+        1. Resumen ejecutivo
       
     </span>
   </a>
@@ -6057,22 +6089,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-hallazgos-y-estado" class="md-nav__link">
+  <a href="#2-superficie-de-ataque" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Hallazgos y estado
+        2. Superficie de ataque
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Hallazgos y estado">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-hallazgos-detallados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Hallazgos detallados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Hallazgos detallados">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-corregido-desborde-de-bufer-en-la-respuesta-dns" class="md-nav__link">
+  <a href="#31-resuelto-xss-por-campos-de-texto-nombre" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 ✅ Corregido — Desborde de búfer en la respuesta DNS
+        3.1 ✅ Resuelto — XSS por campos de texto (nombre)
       
     </span>
   </a>
@@ -6080,10 +6123,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-aceptado-sin-autenticacion-en-la-interfaz-web" class="md-nav__link">
+  <a href="#32-endpoints-sin-autenticacion-ni-rate-limiting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 ⚠️ Aceptado — Sin autenticación en la interfaz web
+        3.2 🟠 Endpoints sin autenticación ni rate-limiting
       
     </span>
   </a>
@@ -6091,10 +6134,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-aceptado-http-sin-cifrado-sin-tls" class="md-nav__link">
+  <a href="#33-credenciales-wi-fi-sta-en-texto-plano-parcialmente-resuelto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3 ⚠️ Aceptado — HTTP sin cifrado (sin TLS)
+        3.3 🟠 Credenciales Wi-Fi (STA) en texto plano (parcialmente resuelto)
       
     </span>
   </a>
@@ -6102,10 +6145,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-aceptado-contrasena-de-ap-por-defecto-fija" class="md-nav__link">
+  <a href="#34-contrasena-del-access-point-por-defecto-12345678" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.4 ⚠️ Aceptado — Contraseña de AP por defecto fija
+        3.4 🟠 Contraseña del Access Point por defecto 12345678
       
     </span>
   </a>
@@ -6113,10 +6156,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-correcto-validacion-de-entrada-en-el-parser-http" class="md-nav__link">
+  <a href="#35-http-sin-tls-texto-plano" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.5 ✅ Correcto — Validación de entrada en el parser HTTP
+        3.5 🟡 HTTP sin TLS (texto plano)
       
     </span>
   </a>
@@ -6124,10 +6167,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#26-correcto-sin-inyeccion-de-comandos-path-traversal" class="md-nav__link">
+  <a href="#36-captive-portal-dns-riesgos-y-mitigaciones" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.6 ✅ Correcto — Sin inyección de comandos / path traversal
+        3.6 🟡 Captive portal DNS — riesgos y mitigaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-validacion-de-entradas-apply_config-y-url_decode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 🟡 Validación de entradas — apply_config() y url_decode()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-debug-de-lwip-y-printf-de-depuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 🟢 Debug de lwIP y printf de depuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-datos-en-flash-sin-cifrar-lectura-fisica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 🟡 Datos en Flash sin cifrar (lectura física)
       
     </span>
   </a>
@@ -6140,21 +6216,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-recomendaciones-para-produccion-fuera-del-alcance-del-tp" class="md-nav__link">
+  <a href="#4-recomendaciones-priorizadas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Recomendaciones para producción (fuera del alcance del TP)
+        4. Recomendaciones priorizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Recomendaciones priorizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esfuerzo-bajo-rapidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Esfuerzo bajo (rápidas)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#4-notas-de-hardening-ya-aplicadas-en-el-codigo" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#esfuerzo-medio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Notas de hardening ya aplicadas en el código
+        Esfuerzo medio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esfuerzo-alto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Esfuerzo alto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Referencias
       
     </span>
   </a>
@@ -6165,6 +6280,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FreeRTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -6331,12 +6474,79 @@
 
 <h1 id="auditoria-de-seguridad-picoreflex">Auditoría de Seguridad — PicoReflex</h1>
 <blockquote>
-<p>Revisión de seguridad del firmware y de los servicios de red (HTTP + DNS).
-Contexto: el dispositivo opera en una red de acceso local (SoftAP propio o Wi-Fi
-de confianza), <strong>no</strong> expuesto directamente a internet. Aun así se aplican
-prácticas de codificación defensiva.</p>
+<p><strong>Alcance:</strong> firmware C/C++ (Pico SDK 2.3.0) de un juego de reacción en Raspberry
+Pi Pico W, con servidor web lwIP (HTTP + DNS captive portal) y conectividad
+Wi-Fi STA/SoftAP. <strong>Fecha:</strong> 2026-10-20 · <strong>Firmware auditado:</strong> v0.4.4 (revisado)</p>
+<p><strong>Modelo de amenaza:</strong> el dispositivo opera en una red local (SoftAP propio o
+Wi-Fi de confianza), no expuesto directamente a internet. Aun así se audita con
+criterio de defensa en profundidad, porque el SoftAP (y el modo STA en redes
+ajenas) amplía la superficie a terceros en la misma red o con acceso físico.</p>
+<p><strong>Cambios de estado desde v0.1.1 (auditoría original):</strong>
+- ✅ XSS por <code>name</code> <strong>resuelto</strong> (<code>html_escape</code>) y la página <code>/player</code> <strong>eliminada</strong>.
+- ✅ <code>smin</code>/<code>smax</code> acotados y ordenados (clamp 50..60000 ms).
+- ✅ Credenciales STA ya no son solo macros: se configuran desde la web y se
+  persisten en Flash (siguen en texto plano, ver 3.3).
+- 🔄 AP volvió a <strong>WPA2</strong> (clave <code>12345678</code> por defecto, ver 3.4).</p>
 </blockquote>
-<h2 id="1-superficie-de-ataque">1. Superficie de ataque</h2>
+<hr />
+<h2 id="1-resumen-ejecutivo">1. Resumen ejecutivo</h2>
+<table>
+<thead>
+<tr>
+<th>Severidad</th>
+<th>Hallazgo</th>
+<th>Ubicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 Alta</td>
+<td>Reflected/Stored XSS vía parámetro <code>name</code> sin escapar</td>
+<td><code>web_server.cpp:268</code></td>
+</tr>
+<tr>
+<td>🟠 Media</td>
+<td>Endpoints sin autenticación ni rate-limiting</td>
+<td><code>web_server.cpp:329-335</code></td>
+</tr>
+<tr>
+<td>🟠 Media</td>
+<td>Credenciales Wi-Fi (STA) compiladas en el firmware</td>
+<td><code>web_server.hpp:30,33</code></td>
+</tr>
+<tr>
+<td>🟠 Media</td>
+<td>Contraseña del AP por defecto <code>12345678</code></td>
+<td><code>web_server.cpp:54</code></td>
+</tr>
+<tr>
+<td>🟡 Baja</td>
+<td>Sin TLS (HTTP plano) en el panel web</td>
+<td><code>web_server.cpp</code></td>
+</tr>
+<tr>
+<td>🟡 Baja</td>
+<td><code>smin</code>/<code>smax</code> sin cota superior ni <code>smin ≤ smax</code></td>
+<td><code>web_server.cpp:165-168</code></td>
+</tr>
+<tr>
+<td>🟡 Baja</td>
+<td>Flash sin cifrar + checksum no criptográfico</td>
+<td><code>flash_storage.cpp</code></td>
+</tr>
+<tr>
+<td>🟢 Info</td>
+<td>Debug de lwIP habilitado en builds sin <code>NDEBUG</code></td>
+<td><code>lwipopts.h:57-61</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lo positivo (ya correcto):</strong> todos los buffers de parseo HTTP/DNS están
+acotados, <code>strtol</code> (no <code>atoi</code>), <code>vsnprintf</code>/<code>snprintf</code> con límite, <code>static_assert</code>
+de tamaño de <code>PersistentData</code>, y validación de rango en <code>difficulty</code>/<code>mode</code>. El
+desborde de búfer del DNS fue corregido (búfer <code>resp[160]</code> + chequeo defensivo).</p>
+<hr />
+<h2 id="2-superficie-de-ataque">2. Superficie de ataque</h2>
 <table>
 <thead>
 <tr>
@@ -6348,79 +6558,241 @@ prácticas de codificación defensiva.</p>
 <tbody>
 <tr>
 <td>Servidor web</td>
-<td>HTTP (puerto 80)</td>
-<td>Configuración sin autenticar, sin cifrado</td>
+<td>HTTP TCP :80</td>
+<td>Config/estadísticas sin cifrar, sin auth</td>
 </tr>
 <tr>
 <td>Captive portal</td>
-<td>DNS UDP (puerto 53)</td>
-<td>Parsing de paquetes no confiables</td>
+<td>DNS UDP :53</td>
+<td>Responder a consultas no confiables</td>
 </tr>
 <tr>
 <td>Access Point</td>
 <td>Wi-Fi WPA2</td>
-<td>Contraseña por defecto fija</td>
+<td>Contraseña por defecto conocida</td>
+</tr>
+<tr>
+<td>Flash (XIP)</td>
+<td>Lectura física</td>
+<td>Récords/nombre/semilla sin cifrar</td>
+</tr>
+<tr>
+<td>USB stdio</td>
+<td>CDC serial</td>
+<td><code>printf</code> de depuración legible por puerto</td>
 </tr>
 </tbody>
 </table>
-<h2 id="2-hallazgos-y-estado">2. Hallazgos y estado</h2>
-<h3 id="21-corregido-desborde-de-bufer-en-la-respuesta-dns">2.1 ✅ Corregido — Desborde de búfer en la respuesta DNS</h3>
+<hr />
+<h2 id="3-hallazgos-detallados">3. Hallazgos detallados</h2>
+<h3 id="31-resuelto-xss-por-campos-de-texto-nombre">3.1 ✅ Resuelto — XSS por campos de texto (nombre)</h3>
 <ul>
-<li><strong>Archivo:</strong> <code>src/captive_portal.cpp</code>.</li>
-<li><strong>Problema:</strong> el búfer de respuesta <code>resp[128]</code> podía desbordarse. El tamaño
-  máximo real de la respuesta es <code>12 (header) + 116 (question) + 16 (answer) =
-  144</code> bytes; un atacante enviando una consulta DNS de 128 bytes con un QNAME
-  largo podía escribir hasta ~148 bytes.</li>
-<li><strong>Solución:</strong> se amplió el búfer a <code>resp[160]</code> y se añadió una comprobación
-  defensiva <code>if (qend + 16 &gt; sizeof(resp)) return;</code> antes de copiar.</li>
+<li><strong>Estado:</strong> <strong>RESUELTO</strong> en v0.1.3. Se agregó <code>html_escape()</code> (<code>web_ui.cpp</code>) para
+  escapar <code>&lt; &gt; &amp; " '</code> en los campos controlados por el usuario (nombre, SSID,
+  contraseña). Además, la página <code>/player</code> (que exponía el campo <code>name</code>) fue
+  <strong>eliminada</strong> en v0.4.0; el campo interno <code>user_name</code> ya no es editable por web.</li>
+<li><strong>Historial (v0.1.1):</strong> <code>web_server.cpp</code> guardaba <code>name</code> en <code>cfg.user_name</code> y lo
+  inyectaba en el HTML sin escapar, permitiendo XSS almacenado (CWE-79). El escape
+  de salida y la eliminación de la ruta cierran el vector.</li>
 </ul>
-<h3 id="22-aceptado-sin-autenticacion-en-la-interfaz-web">2.2 ⚠️ Aceptado — Sin autenticación en la interfaz web</h3>
+<h3 id="32-endpoints-sin-autenticacion-ni-rate-limiting">3.2 🟠 Endpoints sin autenticación ni rate-limiting</h3>
 <ul>
-<li><strong>Situación:</strong> <code>GET /start</code>, <code>/stop</code>, <code>/reset</code> y <code>/config</code> no requieren
-  credenciales. Cualquier dispositivo conectado al AP puede controlar el juego.</li>
-<li><strong>Evaluación:</strong> aceptable para el alcance del TP (red local de confianza). Se
-  documenta como mejora futura (PIN/token en la URL o sesión).</li>
+<li><strong>Código:</strong> <code>web_server.cpp:329-335</code> — <code>/start</code>, <code>/stop</code>, <code>/reset</code> y <code>/config</code>
+  ejecutan acciones (encolar eventos de control, cambiar configuración) sin
+  verificar identidad ni limitar la frecuencia.</li>
+<li><strong>Impacto:</strong> cualquiera en la red (AP o STA) puede reiniciar el juego, detener
+  una ronda o dejar la configuración inservible (DoS lógico). No hay límite de
+  conexiones simultáneas ni de peticiones/segundo.</li>
+<li><strong>Mitigación:</strong> token/PIN (header <code>Authorization</code> o cookie) para los verbos de
+  control, y un contador simple de peticiones por ventana de tiempo.</li>
 </ul>
-<h3 id="23-aceptado-http-sin-cifrado-sin-tls">2.3 ⚠️ Aceptado — HTTP sin cifrado (sin TLS)</h3>
+<h3 id="33-credenciales-wi-fi-sta-en-texto-plano-parcialmente-resuelto">3.3 🟠 Credenciales Wi-Fi (STA) en texto plano (parcialmente resuelto)</h3>
 <ul>
-<li><strong>Situación:</strong> la página y los parámetros viajan en claro. En modo STA, un
-  observador en la red podría leer la configuración.</li>
-<li><strong>Evaluación:</strong> aceptable para el alcance. Mejora futura: HTTPS con mbedTLS
-  (la Pico W incluye <code>pico_mbedtls</code>).</li>
+<li><strong>Estado (v0.4.x):</strong> ya <strong>no</strong> es necesario recompilar: el SSID/password se
+  editan desde <code>/wifi</code> y se <strong>persisten en Flash</strong> (configurables desde el AP).</li>
+<li><strong>Código:</strong> los <em>defaults</em> siguen siendo macros (<code>WIFI_SSID_DEFAULT</code> /
+  <code>WIFI_PASSWORD_DEFAULT</code> en <code>include/config.hpp</code>) y las credenciales se guardan
+  <strong>en texto plano</strong> en el sector Flash.</li>
+<li><strong>Impacto:</strong> las credenciales de la red del usuario quedan en claro en la Flash,
+  extraíbles con un volcado físico. CWE-798 / CWE-311 (sin cifrado).</li>
+<li><strong>Mitigación:</strong> cifrar el campo en Flash (AES de <code>pico_mbedtls</code>) con clave
+  derivada del RUID, o al menos evitar exponerlas en el binario.</li>
 </ul>
-<h3 id="24-aceptado-contrasena-de-ap-por-defecto-fija">2.4 ⚠️ Aceptado — Contraseña de AP por defecto fija</h3>
+<h3 id="34-contrasena-del-access-point-por-defecto-12345678">3.4 🟠 Contraseña del Access Point por defecto <code>12345678</code></h3>
 <ul>
-<li><strong>Situación:</strong> <code>PicoW-ReactionGame</code> / <code>12345678</code> está compilada en el código.</li>
-<li><strong>Evaluación:</strong> aceptable como respaldo de configuración. Mejora futura:
-  contraseña configurable vía web y persistida en Flash.</li>
+<li><strong>Código:</strong> <code>web_server.cpp</code> — <code>AP_PASSWORD "12345678"</code> fija (WPA2, canal 1).
+  Entre v0.2.5 y v0.4.3 el AP estuvo <strong>abierto</strong> (sin clave) por un falso positivo
+  de compatibilidad; en v0.4.4 volvió a <strong>WPA2</strong>.</li>
+<li><strong>Impacto:</strong> cualquier persona conoce la clave del AP de respaldo; si el
+  dispositivo queda en modo AP, entra sin autenticación. CWE-521 (contraseña
+  débil/por defecto).</li>
+<li><strong>Mitigación:</strong> derivar la clave de un identificador único (Flash RUID) o
+  permitir cambiarla desde la web y persistirla.</li>
 </ul>
-<h3 id="25-correcto-validacion-de-entrada-en-el-parser-http">2.5 ✅ Correcto — Validación de entrada en el parser HTTP</h3>
+<h3 id="35-http-sin-tls-texto-plano">3.5 🟡 HTTP sin TLS (texto plano)</h3>
 <ul>
-<li><code>get_int_param()</code> usa <code>strtol</code> (sin <code>atoi</code>), y los valores se acotan a los
-  rangos válidos de los <code>enum</code> (modo, dificultad) antes de usarse.</li>
-<li><code>url_decode()</code> respeta el tamaño del búfer (<code>i &lt; n - 1</code>).</li>
-<li><code>request[512]</code>, <code>path[128]</code> y <code>g_body[2048]</code> se llenan con tamaños acotados y
-  <code>snprintf</code>/Builder con límite.</li>
+<li><strong>Código:</strong> el servidor usa la API raw TCP de lwIP en <code>HTTP_PORT 80</code>
+  (<code>web_server.cpp:363-369</code>) sin capa TLS.</li>
+<li><strong>Impacto:</strong> configuración (semilla, nombre, parámetros) y estadísticas viajan
+  en claro; en modo STA un observador en la red puede leerlas o inyectarlas
+  (MITM). CWE-311.</li>
+<li><strong>Mitigación:</strong> <code>pico_mbedtls</code> (incluido en el SDK) con certificado
+  autofirmado; aceptable aviso de seguridad en el navegador la primera vez.</li>
 </ul>
-<h3 id="26-correcto-sin-inyeccion-de-comandos-path-traversal">2.6 ✅ Correcto — Sin inyección de comandos / path traversal</h3>
+<h3 id="36-captive-portal-dns-riesgos-y-mitigaciones">3.6 🟡 Captive portal DNS — riesgos y mitigaciones</h3>
 <ul>
-<li>Las rutas se comparan con literales fijos (<code>/start</code>, <code>/stop</code>, <code>/reset</code>); no hay
-  acceso a sistema de archivos ni ejecución de comandos.</li>
+<li><strong>Código:</strong> <code>captive_portal.cpp</code> — responde <strong>a toda</strong> consulta DNS en el
+  puerto 53 con un registro A a <code>192.168.4.1</code>.</li>
+<li><strong>Análisis:</strong></li>
+<li><strong>Parsing:</strong> el bucle de QNAME está acotado por <code>qlen</code> (<code>captive_portal.cpp:52-59</code>)
+    y la respuesta se protege con <code>if (qend + 16 &gt; sizeof(resp))</code> (<code>:70</code>). ✅ sin
+    desborde tras la corrección.</li>
+<li><strong>Amplificación:</strong> la respuesta (~40-50 B) no es mayor que la consulta, así
+    que no es vector de amplificación DDoS. ✅</li>
+<li><strong>Riesgo residual:</strong> responde a consultas de <strong>cualquier tipo</strong> (no solo A) y
+    a <strong>cualquier cliente</strong>; no filtra por puerto origen ni valida <code>QR</code>/<code>QTYPE</code>.
+    Es aceptable para el captive portal, pero conviene responder solo a consultas
+    con <code>QR=0</code> y <code>QTYPE=A</code>/<code>AAAA</code> y descartar el resto.</li>
+<li><strong>Mitigación:</strong> validar <code>query[2]</code>/<code>query[3]</code> (flags) y <code>QTYPE</code> antes de
+  responder; limitar el tamaño de QNAME eco.</li>
 </ul>
-<h2 id="3-recomendaciones-para-produccion-fuera-del-alcance-del-tp">3. Recomendaciones para producción (fuera del alcance del TP)</h2>
+<h3 id="37-validacion-de-entradas-apply_config-y-url_decode">3.7 🟡 Validación de entradas — <code>apply_config()</code> y <code>url_decode()</code></h3>
+<p>Revisión punto por punto (<code>web_server.cpp:151-178</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Validación actual</th>
+<th>Hallazgo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seed</code></td>
+<td>Ninguna (cast a <code>uint32_t</code>)</td>
+<td>Aceptable (cualquier u32 es válido). <code>strtol</code> devuelve <code>LONG</code>, así que valores &gt; <code>INT_MAX</code> quedan limitados; no es un problema de seguridad.</td>
+</tr>
+<tr>
+<td><code>difficulty</code></td>
+<td>Rango <code>0..DIFF_COUNT</code> ✅</td>
+<td>Correcto.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>Rango <code>0..MODE_COUNT</code> ✅</td>
+<td>Correcto.</td>
+</tr>
+<tr>
+<td><code>smin</code></td>
+<td>Solo <code>&gt; 0</code></td>
+<td>⚠️ Sin cota superior.</td>
+</tr>
+<tr>
+<td><code>smax</code></td>
+<td>Solo <code>&gt; 0 &amp;&amp; &gt;= smin</code></td>
+<td>⚠️ Sin cota superior, y <strong>no garantiza <code>smin ≤ smax</code></strong>.</td>
+</tr>
+<tr>
+<td><code>round</code></td>
+<td>Solo <code>&gt; 0</code></td>
+<td>⚠️ Sin cota superior (ronda "infinita" en modo TIMED).</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>url_decode</code> acotado a 15 chars ✅</td>
+<td>⚠️ <strong>No se escapa HTML al mostrarlo</strong> (ver 3.1).</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong><code>smin</code>/<code>smax</code> — posible underflow:</strong> si el usuario envía <code>smin=2000&amp;smax=500</code>,
+  <code>smin</code> queda en 2000 y <code>smax</code> <strong>no se actualiza</strong> (500 &lt; 2000). En
+  <code>game_logic.cpp</code> se calcula
+  <code>span = stimulus_max_ms - stimulus_min_ms + 1</code> → resta <strong>sin signo</strong> que
+  <em>wraps</em> a un valor enorme, y <code>delay_ms = smin + next_range(span)</code> produce un
+  retardo arbitrario/errático (DoS lógico del juego, no corrupción de memoria).
+  <strong>Mitigación:</strong> forzar <code>smax = max(smax, smin)</code> y acotar ambos a un rango
+  sensato (p. ej. 50..10000 ms).</li>
+<li><strong><code>url_decode()</code></strong> (<code>web_server.cpp:103-118</code>): correcto en cuanto a límites —
+  comprueba <code>src[1]</code>/<code>src[2]</code> antes de leer, escribe como máximo <code>n-1</code> chars y
+  termina con <code>\0</code>. ✅ No hay desborde. El problema está <strong>aguas abajo</strong> (falta de
+  escape HTML), no en el decodificador.</li>
+<li><strong><code>get_int_param()</code></strong> (<code>:89-93</code>): usa <code>strtol</code> (correcto, sin <code>atoi</code>). ✅</li>
+<li><strong><code>find_param()</code></strong> (<code>:74-86</code>): no valida límite de longitud de la query, pero
+  <code>query</code> siempre apunta dentro de <code>path[128]</code>, así que está acotado. ✅</li>
+<li><strong><code>http_recv()</code></strong> (<code>:296-354</code>): <code>request[512]</code> y <code>path[128]</code> con copia acotada y
+  <code>\0</code> final. ✅</li>
+</ul>
+<h3 id="38-debug-de-lwip-y-printf-de-depuracion">3.8 🟢 Debug de lwIP y <code>printf</code> de depuración</h3>
+<ul>
+<li><strong>Código:</strong> <code>lwipopts.h:57-61</code>:</li>
+</ul>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#ifndef NDEBUG</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#define LWIP_DEBUG            1</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#define LWIP_STATS            1</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#define LWIP_STATS_DISPLAY    1</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">#endif</span>
+</span></code></pre></div>
+<ul>
+<li><strong>Impacto:</strong> en builds sin <code>NDEBUG</code> (debug), lwIP emite trazas por stdio y
+  <code>LWIP_STATS_DISPLAY</code> expone contadores internos; aumenta tamaño/uso de RAM y
+  puede filtrar detalles internos por el puerto USB serial. En <em>Release</em> (que
+  define <code>NDEBUG</code>) queda deshabilitado.</li>
+<li><strong>Recomendación:</strong> asegurar que la entrega se compila en <code>Release</code> (build type),
+  y no conectar el USB serial en entornos no confiables.</li>
+</ul>
+<h3 id="39-datos-en-flash-sin-cifrar-lectura-fisica">3.9 🟡 Datos en Flash sin cifrar (lectura física)</h3>
+<ul>
+<li><strong>Código:</strong> <code>flash_storage.cpp</code> — <code>PersistentData</code> (ranking, <code>user_name</code>,
+  <code>last_seed</code>, <code>best_time_us</code>) se guarda en claro en el sector <code>0x1FF000</code>.</li>
+<li><strong>Checksum:</strong> <code>update_checksum()</code> es una <strong>suma simple de bytes</strong>
+  (<code>flash_storage.cpp:47-56</code>): detecta corrupción accidental pero <strong>no</strong> es un
+  MAC criptográfico; quien tenga acceso de escritura a la Flash puede alterar los
+  datos y recalcular la suma (CWE-345).</li>
+<li><strong>Impacto:</strong> los datos (récords + nombre) son de <strong>baja sensibilidad</strong>; el
+  riesgo real es la exposición de credenciales si en el futuro se persisten en
+  Flash sin cifrar (ver 3.3).</li>
+<li><strong>Mitigación:</strong> para datos sensibles futuros, cifrar (AES-GCM de <code>pico_mbedtls</code>)
+  o al menos usar un hash con clave derivada del RUID de la Flash.</li>
+</ul>
+<hr />
+<h2 id="4-recomendaciones-priorizadas">4. Recomendaciones priorizadas</h2>
+<h3 id="esfuerzo-bajo-rapidas">Esfuerzo bajo (rápidas)</h3>
 <ol>
-<li>Autenticación mínima (PIN) en el panel web.</li>
-<li>HTTPS (mbedTLS) para el panel en modo STA.</li>
-<li>Contraseña de AP aleatoria/configurable persistida en Flash.</li>
-<li>Límite de tasa (rate limiting) en el servidor HTTP.</li>
-<li>Firmado/verificación de firmware (secure boot) si se distribuye comercialmente.</li>
+<li><strong>Escapar HTML de <code>user_name</code></strong> al renderizar (<code>web_server.cpp:268</code>). Cierra el XSS.</li>
+<li><strong>Acotar y ordenar <code>smin</code>/<code>smax</code>/<code>round</code></strong> en <code>apply_config</code> (p. ej.
+   <code>smin = clamp(smin, 50, 10000); smax = clamp(smax, smin, 10000);</code>).</li>
+<li><strong>Responder solo a consultas DNS válidas</strong> en el captive portal (validar <code>QR</code>
+   y <code>QTYPE</code>).</li>
+<li><strong>Compilar siempre en <code>Release</code></strong> (deja <code>NDEBUG</code>, apaga debug de lwIP).</li>
 </ol>
-<h2 id="4-notas-de-hardening-ya-aplicadas-en-el-codigo">4. Notas de hardening ya aplicadas en el código</h2>
+<h3 id="esfuerzo-medio">Esfuerzo medio</h3>
+<ol>
+<li><strong>Contraseña del AP configurable</strong>, derivada del Flash RUID o editable por web
+   y persistida; eliminar <code>12345678</code>.</li>
+<li><strong>Autenticación mínima (PIN/token)</strong> en los endpoints de control
+   (<code>/start</code>, <code>/stop</code>, <code>/reset</code>, <code>/config</code>).</li>
+<li><strong>Mover credenciales STA a Flash</strong> (configurables desde el AP) en lugar de
+   macros de compilación.</li>
+</ol>
+<h3 id="esfuerzo-alto">Esfuerzo alto</h3>
+<ol>
+<li><strong>HTTPS con <code>pico_mbedtls</code></strong> para el panel web (certificado autofirmado o
+   precargado). Ref: <a href="https://www.raspberrypi.com/documentation/pico-sdk/third_party.html">mbedTLS en Pico SDK</a>.</li>
+<li><strong>Rate-limiting</strong> y límite de conexiones concurrentes en el servidor lwIP.</li>
+<li><strong>Cifrado/autenticación de los datos en Flash</strong> (AES-GCM) si se almacenan
+    datos sensibles; <strong>secure boot / firmware firmado</strong> si se comercializa.</li>
+</ol>
+<hr />
+<h2 id="5-referencias">5. Referencias</h2>
 <ul>
-<li><strong>Buffers acotados</strong> en todos los parsers (HTTP y DNS).</li>
-<li><strong><code>snprintf</code> / Builder con límite</strong> para toda salida formateada.</li>
-<li><strong>Estructuras con <code>static_assert</code></strong> (<code>PersistentData ≤ FLASH_PAGE_SIZE</code>).</li>
-<li><strong>Checksum</strong> en los datos persistentes de Flash (detecta corrupción).</li>
+<li><a href="https://owasp.org/www-project-internet-of-things/">OWASP Internet of Things (IoT) Project / Top 10</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/79.html">CWE-79 — Cross-site Scripting</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/798.html">CWE-798 — Hard-coded Credentials</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/521.html">CWE-521 — Weak Password Requirements</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/311.html">CWE-311 — Missing Encryption of Sensitive Data</a></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/third_party.html">mbedTLS (Pico SDK, third_party)</a></li>
+<li><a href="https://www.nongnu.org/lwip/2_1_x/">lwIP TCP/UDP raw API</a></li>
 </ul>
 
 
@@ -6476,13 +6848,13 @@ prácticas de codificación defensiva.</p>
         
         
           
-          <a href="../Mejoras-y-roadmap/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Mejoras y roadmap">
+          <a href="../Freertos/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: FreeRTOS">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Mejoras y roadmap
+                FreeRTOS
               </div>
             </div>
             <div class="md-footer__button md-icon">

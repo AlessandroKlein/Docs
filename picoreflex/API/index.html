@@ -5763,6 +5763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5854,6 +5858,34 @@
     
   
     Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquemático y diagrama circuital
   
 
     
@@ -6009,25 +6041,53 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parametros-de-get-config" class="md-nav__link">
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paginas-de-configuracion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parámetros de GET /config
+        Páginas de configuración
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Parámetros de GET /config">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas-de-control-devuelven-el-home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rutas de control (devuelven el Home)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parámetros
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parámetros">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ejemplo" class="md-nav__link">
+  <a href="#ejemplos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ejemplo
+        Ejemplos
       
     </span>
   </a>
@@ -6124,6 +6184,34 @@
     
   
     Seguridad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FreeRTOS
   
 
     
@@ -6300,55 +6388,93 @@
 <blockquote>
 <p>Documenta los endpoints del servidor web embebido (lwIP, puerto 80). Es una API
 de control local; ver <code>docs/SEGURIDAD.md</code> para el modelo de confianza.</p>
+<p>En v0.2.0 el frontend (generación de HTML) está separado del backend (ruteo y
+parseo): el backend en <code>src/web_server.cpp</code> y la presentación en
+<code>src/web_ui.cpp</code> (<code>web_ui::render</code>).</p>
 </blockquote>
 <h2 id="base">Base</h2>
 <ul>
 <li><strong>Modo AP:</strong> <code>http://192.168.4.1</code></li>
 <li><strong>Modo STA:</strong> la IP que asigna el DHCP (visible en el display).</li>
 <li><strong>Método:</strong> todos los endpoints usan <code>GET</code> (sin cuerpo).</li>
+<li><strong>Codificación:</strong> los parámetros de texto van <em>URL-encoded</em> (espacio = <code>+</code> o <code>%20</code>).</li>
 </ul>
 <h2 id="endpoints">Endpoints</h2>
+<h3 id="paginas-de-configuracion">Páginas de configuración</h3>
 <table>
 <thead>
 <tr>
-<th>Método y ruta</th>
-<th>Efecto</th>
+<th>Ruta</th>
+<th>Contenido</th>
 <th>Parámetros (query string)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>GET /</code></td>
-<td>Página HTML de control + estadísticas</td>
+<td>Home: red, batería, resumen de stats y tabla de tiempos de reacción</td>
 <td>—</td>
 </tr>
 <tr>
-<td><code>GET /config</code></td>
-<td>Aplica configuración y devuelve la página</td>
-<td>ver tabla de parámetros</td>
+<td><code>GET /seed</code></td>
+<td>Semilla del PRNG</td>
+<td><code>seed</code></td>
 </tr>
+<tr>
+<td><code>GET /game</code></td>
+<td>Dificultad, modo, velocidad, duración de ronda, cuenta regresiva</td>
+<td><code>difficulty</code>, <code>mode</code>, <code>smin</code>, <code>smax</code>, <code>round</code>, <code>delay</code></td>
+</tr>
+<tr>
+<td><code>GET /display</code></td>
+<td>Habilitar/deshabilitar el OLED</td>
+<td><code>oled</code></td>
+</tr>
+<tr>
+<td><code>GET /wifi</code></td>
+<td>Credenciales Wi-Fi (SSID/password)</td>
+<td><code>ssid</code>, <code>pass</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="rutas-de-control-devuelven-el-home">Rutas de control (devuelven el Home)</h3>
+<table>
+<thead>
+<tr>
+<th>Ruta</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>GET /start</code></td>
-<td>Inicia una ronda (<code>START_ROUND</code>)</td>
-<td>—</td>
+<td>Inicia la cuenta regresiva y luego la ronda (<code>START_ROUND</code>)</td>
 </tr>
 <tr>
 <td><code>GET /stop</code></td>
 <td>Detiene la ronda (<code>STOP_ROUND</code>)</td>
-<td>—</td>
 </tr>
 <tr>
 <td><code>GET /reset</code></td>
 <td>Reinicia estadísticas (<code>RESET_STATS</code>)</td>
-<td>—</td>
 </tr>
 </tbody>
 </table>
-<h2 id="parametros-de-get-config">Parámetros de <code>GET /config</code></h2>
+<blockquote>
+<p><strong>Rutas retiradas/reservadas:</strong>
+- <code>GET /player</code> — <strong>eliminada</strong> en v0.4.0 (no había modo multijugador; el campo
+  interno <code>user_name</code> queda con el valor por defecto "JUGADOR").
+- <code>GET /scan</code> — <strong>reservada/interna</strong> (v0.4.0): devolvía un array JSON de SSIDs
+  detectados, pero el botón "Buscar redes" del frontend se <strong>eliminó</strong> en v0.4.3
+  porque el escaneo del CYW43 no era fiable. El endpoint sigue en el backend sin
+  uso visible (solo documentado, no expuesto en la interfaz).</p>
+</blockquote>
+<h2 id="parametros">Parámetros</h2>
 <table>
 <thead>
 <tr>
 <th>Parámetro</th>
+<th>Ruta</th>
 <th>Tipo</th>
 <th>Rango / valores</th>
 <th>Descripción</th>
@@ -6357,71 +6483,115 @@ de control local; ver <code>docs/SEGURIDAD.md</code> para el modelo de confianza
 <tbody>
 <tr>
 <td><code>seed</code></td>
+<td><code>/seed</code></td>
 <td>entero</td>
 <td>0..2³²-1 (0 = aleatoria)</td>
 <td>Semilla del PRNG</td>
 </tr>
 <tr>
 <td><code>difficulty</code></td>
+<td><code>/game</code></td>
 <td>entero</td>
 <td>0=EASY, 1=NORMAL, 2=HARD</td>
 <td>Dificultad (tolerancia 1000/500/250 ms)</td>
 </tr>
 <tr>
 <td><code>mode</code></td>
+<td><code>/game</code></td>
 <td>entero</td>
 <td>0=FREE_PLAY, 1=TIMED, 2=SUDDEN_DEATH</td>
 <td>Modo de juego</td>
 </tr>
 <tr>
 <td><code>smin</code></td>
+<td><code>/game</code></td>
 <td>entero</td>
-<td>&gt; 0</td>
-<td>Intervalo mínimo entre estímulos (ms)</td>
+<td>50..60000 ms</td>
+<td>Intervalo mínimo entre estímulos</td>
 </tr>
 <tr>
 <td><code>smax</code></td>
+<td><code>/game</code></td>
 <td>entero</td>
-<td>≥ <code>smin</code></td>
-<td>Intervalo máximo entre estímulos (ms)</td>
+<td>≥ <code>smin</code>, ≤ 60000 ms</td>
+<td>Intervalo máximo entre estímulos</td>
 </tr>
 <tr>
 <td><code>round</code></td>
+<td><code>/game</code></td>
 <td>entero</td>
-<td>&gt; 0</td>
-<td>Duración de ronda (s), solo TIMED</td>
+<td>1..3600 s</td>
+<td>Duración de ronda (solo TIMED)</td>
 </tr>
 <tr>
-<td><code>name</code></td>
+<td><code>delay</code></td>
+<td><code>/game</code></td>
+<td>entero</td>
+<td>0..10 s</td>
+<td>Cuenta regresiva antes de arrancar</td>
+</tr>
+<tr>
+<td><code>oled</code></td>
+<td><code>/display</code></td>
+<td>entero</td>
+<td>0 = apagado, 1 = encendido</td>
+<td>Habilita/deshabilita el OLED</td>
+</tr>
+<tr>
+<td><code>ssid</code></td>
+<td><code>/wifi</code></td>
 <td>texto</td>
-<td>≤ 15 chars</td>
-<td>Nombre del jugador (URL-encoded)</td>
+<td>≤ 32 chars</td>
+<td>SSID de la red Wi-Fi (STA)</td>
+</tr>
+<tr>
+<td><code>pass</code></td>
+<td><code>/wifi</code></td>
+<td>texto</td>
+<td>≤ 64 chars</td>
+<td>Contraseña de la red Wi-Fi (STA)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="ejemplo">Ejemplo</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>GET /config?seed=12345&amp;difficulty=2&amp;mode=1&amp;smin=400&amp;smax=900&amp;round=30&amp;name=Leo
+<blockquote>
+<p>Los valores numéricos fuera de rango se acotan automáticamente (<code>smin</code>/<code>smax</code> a
+50..60000 ms con <code>smin ≤ smax</code>, <code>round</code> a 1..3600 s, <code>delay</code> a 0..10 s). Los
+<code>enum</code> (<code>difficulty</code>, <code>mode</code>) se ignoran si no corresponden a un valor válido.</p>
+</blockquote>
+<h3 id="ejemplos">Ejemplos</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>GET /seed?seed=12345
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>GET /game?difficulty=2&amp;mode=1&amp;smin=400&amp;smax=900&amp;round=30&amp;delay=3
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>GET /display?oled=0
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>GET /wifi?ssid=MiRed&amp;pass=clave123
 </span></code></pre></div>
 <h2 id="respuesta">Respuesta</h2>
 <ul>
 <li>Código HTTP: <code>200 OK</code> (siempre, mientras el servidor esté activo).</li>
 <li><code>Content-Type: text/html; charset=utf-8</code>.</li>
 <li><code>Connection: close</code> (una conexión por petición).</li>
-<li>El cuerpo es la página HTML con los valores ya actualizados.</li>
+<li>El cuerpo es la página HTML solicitada con los valores ya actualizados.
+  Si la ruta no se reconoce, se devuelve el Home (<code>/</code>).</li>
 </ul>
 <h2 id="semantica-de-control-interna">Semántica de control (interna)</h2>
 <p>Los endpoints de control encolan eventos en la cola <code>queue_t</code> del estado
 compartido (<code>control_send</code>), que el Core 0 consume en su bucle:</p>
 <ul>
-<li><code>/start</code> → <code>ControlEvent::START_ROUND</code></li>
+<li><code>/start</code> → <code>ControlEvent::START_ROUND</code> (pasa por la cuenta regresiva)</li>
 <li><code>/stop</code> → <code>ControlEvent::STOP_ROUND</code></li>
 <li><code>/reset</code> → <code>ControlEvent::RESET_STATS</code></li>
 </ul>
+<p>Las páginas de configuración aplican sus parámetros con <code>config_set()</code> y envían
+<code>ControlEvent::CONFIG_CHANGED</code> para que el Core 0 persista en Flash. Si cambió el
+Wi-Fi, se activa además <code>g_wifi_reconnect</code> para reconectar en el bucle del Core 1.</p>
 <h2 id="versionado-cambios-de-contrato">Versionado / cambios de contrato</h2>
 <ul>
-<li><strong>v0.1.0:</strong> endpoints y parámetros actuales (estables).</li>
+<li><strong>v0.4.0:</strong> eliminada <code>GET /player</code>; ruta <code>GET /scan</code> (SSIDs en JSON) reservada.</li>
+<li><strong>v0.4.3:</strong> frontend de <code>/scan</code> (botón "Buscar redes") eliminado; <code>/scan</code> queda
+  como endpoint interno sin uso visible.</li>
+<li><strong>v0.2.0:</strong> separación frontend/backend; rutas por página (<code>/seed</code>, <code>/game</code>,
+  <code>/display</code>, <code>/wifi</code>, <code>/player</code>); nuevos parámetros <code>delay</code>, <code>oled</code>, <code>ssid</code>, <code>pass</code>.</li>
+<li><strong>v0.1.x:</strong> ruta única <code>GET /config</code> (quedó <strong>reemplazada</strong> por las rutas por página).</li>
 <li>Cambios futuros se documentarán aquí y en <code>CHANGELOG.md</code> (SemVer).</li>
-<li>No hay eliminación/deprecación planificada de endpoints.</li>
 </ul>
 
 

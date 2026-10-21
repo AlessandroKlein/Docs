@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/picoreflex/Mejoras-y-roadmap/">
       
       
-        <link rel="prev" href="../Seguridad/">
+        <link rel="prev" href="../Freertos/">
       
       
         <link rel="next" href="../Dudas/">
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mejoras-futuras-picoreflex" class="md-skip">
+        <a href="#hoja-de-ruta-de-mejoras-picoreflex" class="md-skip">
           Skip to content
         </a>
       
@@ -5763,6 +5763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5854,6 +5858,34 @@
     
   
     Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquemático y diagrama circuital
   
 
     
@@ -6011,6 +6043,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../Freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FreeRTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -6074,10 +6134,209 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prioridad-alta" class="md-nav__link">
+  <a href="#1-mejoras-de-funcionalidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prioridad alta
+        1. Mejoras de funcionalidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Mejoras de funcionalidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-p0-watchdog-timer-reinicio-automatico-ante-cuelgues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 [P0] Watchdog timer — reinicio automático ante cuelgues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-p0-credenciales-wi-fi-configurables-desde-la-web-persistidas-en-flash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 [P0] Credenciales Wi-Fi configurables desde la web (persistidas en Flash)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-p0-re-conexion-wi-fi-en-caliente-manejo-de-caida-del-enlace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 [P0] Re-conexión Wi-Fi en caliente (manejo de caída del enlace)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-p1-hostname-mdns-picoreflexlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 [P1] Hostname mDNS (picoreflex.local)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-p1-ota-actualizacion-de-firmware-por-aire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 [P1] OTA (actualización de firmware por aire)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-p1-soporte-de-display-sh1106" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 [P1] Soporte de display SH1106
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-p1-calibracion-de-la-curva-de-descarga-de-la-bateria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 [P1] Calibración de la curva de descarga de la batería
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-p2-mas-modos-de-juego" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 [P2] Más modos de juego
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-p2-autonomia-estimada-en-el-panel-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 [P2] Autonomía estimada en el panel web
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deuda-tecnica-robustez" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Deuda técnica / robustez
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Deuda técnica / robustez">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-p1-debounce-por-hardware-pio-vs-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 [P1] Debounce por hardware (PIO) vs software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-p0-persistencia-de-la-configuracion-de-red-en-flash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 [P0] Persistencia de la configuración de red en Flash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-p0-manejo-de-error-de-conexion-wi-fi-en-caliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 [P0] Manejo de error de conexión Wi-Fi en caliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-p1-manejo-de-ausencia-del-display-i2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 [P1] Manejo de ausencia del display I2C
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-p2-reentrancia-concurrencia-de-flash_safe_execute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 [P2] Reentrancia / concurrencia de flash_safe_execute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-p2-tamano-de-la-imagen-y-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 [P2] Tamaño de la imagen y memoria
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-resumen-por-prioridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Resumen por prioridad
       
     </span>
   </a>
@@ -6085,32 +6344,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prioridad-media" class="md-nav__link">
+  <a href="#4-referencias-principales" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prioridad media
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prioridad-baja-ideas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prioridad baja / ideas
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#investigacion-adicional-sugerida" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Investigación adicional sugerida
+        4. Referencias principales
       
     </span>
   </a>
@@ -6252,81 +6489,329 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">mejoras</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">picoreflex</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">roadmap</span>
+      
+    
+  </nav>
+
 
   
   
 
 
-<h1 id="mejoras-futuras-picoreflex">Mejoras Futuras — PicoReflex</h1>
+<h1 id="hoja-de-ruta-de-mejoras-picoreflex">Hoja de Ruta de Mejoras — PicoReflex</h1>
 <blockquote>
-<p>Hoja de ruta propuesta (resultado de la investigación). Ordenadas por
-valor/esfuerzo. No forman parte de la versión 0.1.x.</p>
+<p><strong>Tipo:</strong> Planificación | <strong>Estado:</strong> Propuesta | <strong>Fecha:</strong> 2026-10-20 | <strong>Base:</strong> v0.4.4</p>
+<p>Prioridades: <strong>P0</strong> imprescindible para operación real · <strong>P1</strong> valor alto ·
+<strong>P2</strong> deseable · <strong>P3</strong> opcional/investigación.</p>
+<p><strong>Completado desde la base original (v0.1.1) hasta v0.4.4:</strong>
+- Credenciales Wi-Fi configurables desde la web y <strong>persistidas en Flash</strong> (1.2 y 2.2).
+- Re-conexión Wi-Fi en caliente al cambiar credenciales (1.3, parcial).
+- <strong>Servidor DHCP del AP</strong> (fix "conecta y se desconecta") — <code>src/dhcpserver.c</code>.
+- <strong>AP con WPA2</strong> (clave <code>12345678</code>, canal 1) y <strong>captive portal</strong>.
+- <strong>Stack del Core 1 = 4 KB</strong> (fix de <em>hard fault</em> al guardar/escanear).
+- <strong>Buffer HTTP 8192 B</strong> (la Home con CSS mide ~4.4 KB).
+- Frontend con CSS moderno; <code>/player</code> eliminado; botón "Buscar redes" eliminado.
+- FreeRTOS analizado y revertido (ver <code>docs/FREERTOS.md</code>).</p>
 </blockquote>
-<h2 id="prioridad-alta">Prioridad alta</h2>
-<ol>
-<li><strong>Credenciales Wi-Fi configurables vía web (STA)</strong></li>
-<li>Hoy <code>WIFI_SSID</code>/<code>WIFI_PASSWORD</code> son macros en <code>web_server.hpp</code>.</li>
-<li>Almacenar SSID/password en Flash (como el resto de la config) y permitir
-     editarlos desde el panel web. Evita recompilar.</li>
-<li>
-<p>Referencia: <code>hardware_flash</code> + <code>pico_cyw43_arch</code>.</p>
-</li>
-<li>
-<p><strong>Autenticación mínima del panel web</strong></p>
-</li>
-<li>
-<p>PIN/token en la URL o campo de sesión, para que un tercero en el AP no
-     controle el juego (ver <code>docs/SEGURIDAD.md</code> §2.2).</p>
-</li>
-<li>
-<p><strong>Compatibilidad SH1106</strong></p>
-</li>
-<li>El display SH1106 (RAM 132×64) usa un desfase de 2 px de columna respecto
-     del SSD1306. Añadir <code>#define</code> de controlador y ajustar <code>column address</code>.</li>
-</ol>
-<h2 id="prioridad-media">Prioridad media</h2>
-<ol>
-<li><strong>HTTPS (TLS) con mbedTLS</strong></li>
-<li>La Pico W incluye <code>pico_mbedtls</code>. Permitiría cifrar el panel en modo STA.</li>
-<li>
-<p>Referencia: <a href="https://www.raspberrypi.com/documentation/pico-sdk/third_party.html">pico_mbedtls</a>.</p>
-</li>
-<li>
-<p><strong>mDNS / hostname local</strong></p>
-</li>
-<li>
-<p>Publicar <code>picoreflex.local</code> para no depender de recordar la IP (lwIP tiene
-     soporte mDNS; ver <code>lwip/apps/mdns</code>).</p>
-</li>
-<li>
-<p><strong>OTA (actualización por aire)</strong></p>
-</li>
-<li>Actualizar el firmware desde la web (doble imagen en Flash + bootloader).</li>
-<li>
-<p>Referencia: <code>pico_bootsel_via_double_reset</code>, particionado de Flash.</p>
-</li>
-<li>
-<p><strong>Ranking persistente con más entradas y edición desde la web</strong></p>
-</li>
-<li>Hoy el ranking guarda 5 récords; ampliar a N y permitir ver/borrar desde la
-     web.</li>
-</ol>
-<h2 id="prioridad-baja-ideas">Prioridad baja / ideas</h2>
-<ol>
-<li><strong>Modo multijugador / duelo</strong> (2 Pico W conectadas por Wi-Fi).</li>
-<li><strong>Gráficos en el OLED</strong> (barras, animación de "tiempo de reacción").</li>
-<li><strong>Registro de eventos (DMA log) exportable</strong> por USB/HTTP para análisis.</li>
-<li><strong>Ajuste fino de la curva de descarga</strong> de la batería (calibración por
-    voltaje vs. porcentaje medidos).</li>
-<li><strong>Perfil de consumo por componente</strong> con mediciones reales para el informe.</li>
-</ol>
-<h2 id="investigacion-adicional-sugerida">Investigación adicional sugerida</h2>
+<p>Esta hoja de ruta surge del análisis del código actual (módulos <code>game_logic</code>,
+<code>web_server</code>, <code>battery_monitor</code>, <code>display_driver</code>, <code>flash_storage</code>, <code>audio</code>,
+<code>captive_portal</code>, <code>dhcpserver</code>, <code>main</code>, <code>shared_state</code>) y de la documentación
+oficial del <a href="https://www.raspberrypi.com/documentation/pico-sdk/index_doxygen.html">Pico SDK</a>
+y <a href="https://github.com/raspberrypi/pico-examples">pico-examples</a>.</p>
+<hr />
+<h2 id="1-mejoras-de-funcionalidad">1. Mejoras de funcionalidad</h2>
+<h3 id="11-p0-watchdog-timer-reinicio-automatico-ante-cuelgues">1.1 [P0] Watchdog timer — reinicio automático ante cuelgues</h3>
 <ul>
-<li>Comparar <code>pico_rand</code> vs <code>xorshift32</code> en calidad estadística para secuencias
-  largas (test diehard/TestU01) si se requieren competencias muy exigentes.</li>
-<li>Evaluar <code>pico_low_power</code> Pstate (RP2350) si se migra a Pico 2 W.</li>
-<li>Evaluar Bluetooth (CYW43439 tiene BT) como alternativa al Wi-Fi para
-  configuración de corto alcance.</li>
+<li><strong>Qué:</strong> habilitar <code>hardware_watchdog</code> para que, si el firmware se cuelga
+  (p. ej. un bucle de la pila lwIP, una IRQ que no retorna o un deadlock entre
+  núcleos), la Pico W se reinicie sola. Hoy <strong>no hay watchdog</strong>: un cuelgue deja
+  el dispositivo muerto hasta un <em>power-cycle</em> manual.</li>
+<li><strong>Cómo:</strong> <code>watchdog_enable(timeout_ms, true)</code> al arrancar y <code>watchdog_update()</code>
+  periódicamente en los bucles de ambos núcleos (o en el bucle del Core 0 que
+  siempre corre). Conviene además leer el motivo del último arranque con
+  <code>watchdog_enable_caused_reboot()</code> para distinguir un reinicio por watchdog.</li>
+<li><strong>Por qué:</strong> es la red de seguridad estándar en sistemas embebidos autónomos;
+  sin supervisión, un bug en el entorno de red puede dejar el juego inoperable.</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_watchdog">hardware_watchdog (Pico SDK)</a></li>
+<li><a href="https://sourcevu.sysprogs.com/rp2040/picosdk/files/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h">hardware/watchdog.h</a></li>
+<li>Ejemplo <a href="https://github.com/raspberrypi/pico-examples/tree/master/watchdog">pico-examples · clocks/watchdog</a></li>
+</ul>
+<h3 id="12-p0-credenciales-wi-fi-configurables-desde-la-web-persistidas-en-flash">1.2 [P0] Credenciales Wi-Fi configurables desde la web (persistidas en Flash)</h3>
+<ul>
+<li><strong>Qué:</strong> hoy <code>WIFI_SSID</code>/<code>WIFI_PASSWORD</code> son macros de compilación en
+  <a href="https://github.com/AlessandroKlein/PicoReflex/blob/main/include/web_server.hpp"><code>include/web_server.hpp</code></a>. Hay que guardarlas en
+  Flash (junto a <code>PersistentData</code>) y permitir editarlas desde el panel web
+  (endpoint <code>/config</code>).</li>
+<li><strong>Cómo:</strong> ampliar <code>PersistentData</code> con <code>ssid[]</code>/<code>password[]</code>, añadir campos al
+  formulario HTML y usar esas credenciales en <code>cyw43_arch_wifi_connect_timeout_ms</code>.
+  Reutilizar <code>flash_safe_execute()</code> ya implementado en <code>flash_storage.cpp</code>.</li>
+<li><strong>Por qué:</strong> evita recompilar/flashear para cambiar de red, y convierte al
+  dispositivo en configurable en campo (mismo criterio que el resto de la config).</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_flash">hardware_flash</a></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/networking.html#pico_cyw43_arch">pico_cyw43_arch</a></li>
+</ul>
+<h3 id="13-p0-re-conexion-wi-fi-en-caliente-manejo-de-caida-del-enlace">1.3 [P0] Re-conexión Wi-Fi en caliente (manejo de caída del enlace)</h3>
+<ul>
+<li><strong>Qué:</strong> la conexión STA solo se intenta en <code>network_up()</code> (arranque y despertar
+  de DORMANT). Si el AP se apaga o se pierde el enlace <strong>durante</strong> la operación,
+  no hay re-intento: la web y el display siguen mostrando una IP que ya no sirve.</li>
+<li><strong>Cómo:</strong> en el bucle del Core 1, consultar <code>cyw43_wifi_link_status(&amp;cyw43_state,
+  CYW43_ITF_STA)</code>; si es distinto de <code>CYW43_LINK_JOIN</code>, re-intentar conexión con
+  <em>backoff</em>, o degradar a SoftAP tras N intentos (captive portal ya listo).</li>
+<li><strong>Por qué:</strong> robustez de la conectividad "redundante" que ya promete el diseño
+  (STA → AP), pero hoy solo funciona en el arranque.</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://github.com/georgerobotics/cyw43-driver/issues/62">cyw43_wifi_link_status / CYW43_LINK_JOIN</a></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/networking.html#pico_cyw43_arch">pico_cyw43_arch</a></li>
+</ul>
+<h3 id="14-p1-hostname-mdns-picoreflexlocal">1.4 [P1] Hostname mDNS (<code>picoreflex.local</code>)</h3>
+<ul>
+<li><strong>Qué:</strong> publicar el nombre <code>picoreflex.local</code> para acceder al panel sin saber
+  la IP (muy útil en modo STA, donde el DHCP asigna una IP variable).</li>
+<li><strong>Cómo:</strong> habilitar <code>LWIP_MDNS_RESPONDER</code> en <code>lwipopts.h</code> y registrar el
+  hostname con <code>mdns_resp_add_netif()</code> / <code>mdns_resp_add_service()</code>
+  (<code>lwip/apps/mdns</code>).</li>
+<li><strong>Por qué:</strong> mejora la experiencia de uso (abrir <code>http://picoreflex.local</code> en
+  vez de leer la IP en el display).</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://www.nongnu.org/lwip/2_1_x/group__mdns.html">lwIP mDNS responder</a></li>
+<li>Ejemplo <a href="https://github.com/raspberrypi/pico-examples/tree/master/pico_w/wifi">pico-examples · pico_w/mdns</a></li>
+</ul>
+<h3 id="15-p1-ota-actualizacion-de-firmware-por-aire">1.5 [P1] OTA (actualización de firmware por aire)</h3>
+<ul>
+<li><strong>Qué:</strong> permitir actualizar el <code>.uf2</code>/firmware desde la web, sin cable USB.</li>
+<li><strong>Cómo:</strong> particionar la Flash en dos imágenes (A/B) + bootloader de arranque.
+  Opciones estudiadas: <a href="https://github.com/sidecartridge/rp2-booster-bootloader">rp2-booster-bootloader</a>
+  (bootloader de segundo nivel para RP2040/Pico W) o
+  <a href="https://github.com/JZimnol/pico_fota_bootloader">pico_fota_bootloader</a>.
+  Requiere además publicar el binario por HTTP y verificar integridad (CRC/hash)
+  antes de conmutar imagen.</li>
+<li><strong>Por qué:</strong> evita el ciclo BOOTSEL+arrastrar <code>.uf2</code> en cada actualización;
+  habilitaría distribución en campo.</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/runtime.html#pico_bootsel_via_double_reset">pico_bootsel_via_double_reset (Pico SDK)</a></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_flash">hardware_flash</a></li>
+</ul>
+<h3 id="16-p1-soporte-de-display-sh1106">1.6 [P1] Soporte de display SH1106</h3>
+<ul>
+<li><strong>Qué:</strong> el driver actual (<code>display_driver.cpp</code>) apunta a <strong>SSD1306</strong> (RAM
+  128×64). Muchos OLED "128×64" económicos son en realidad <strong>SH1106</strong> (RAM
+  132×64), que necesita un <strong>desfase de 2 píxeles</strong> en la columna inicial.</li>
+<li><strong>Cómo:</strong> añadir una flag de controlador y, para SH1106, usar <code>column address</code>
+  con <em>offset</em> +2 (p. ej. <code>0x21, 0x02, 0x7F</code> en vez de <code>0x21, 0x00, 0x7F</code>) y
+  <code>0xDA, 0x12</code> → <code>0xDA, 0x02</code>. Detección automática es difícil por I2C (misma
+  dirección); suele fijarse por configuración.</li>
+<li><strong>Por qué:</strong> amplía la compatibilidad de hardware sin cambiar el resto del
+  sistema.</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://pcbsync.com/sh1106-vs-ssd1306/">SH1106 vs SSD1306</a></li>
+<li><a href="https://docs.rs/oled-i2c/latest/src/oled_i2c/lib.rs.html">oled-i2c (comparación de controladores)</a></li>
+</ul>
+<h3 id="17-p1-calibracion-de-la-curva-de-descarga-de-la-bateria">1.7 [P1] Calibración de la curva de descarga de la batería</h3>
+<ul>
+<li><strong>Qué:</strong> <code>battery_monitor.cpp</code> usa una curva <strong>fija</strong> (4.2 V=100 %, 3.7 V=50 %,
+  3.0 V=0 %) e ignora la caída de tensión por carga (el Wi-Fi drena corriente y
+  el divisor VSYS/3 se lee bajo carga, lo que subestima el porcentaje).</li>
+<li><strong>Cómo:</strong> añadir parámetros de calibración (pendiente/offset o tabla por
+  tramos) configurables desde la web, y muestrear el ADC en reposo (radio en
+  pausa) o con corrección por corriente estimada. Guardar la tabla en Flash.</li>
+<li><strong>Por qué:</strong> mejora la exactitud del "% de batería" y de la alerta de batería
+  baja, que hoy es solo orientativa.</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_adc">hardware_adc</a></li>
+</ul>
+<h3 id="18-p2-mas-modos-de-juego">1.8 [P2] Más modos de juego</h3>
+<ul>
+<li><strong>Qué:</strong> añadir variantes como <strong>"Simon dice"</strong> (secuencia creciente de LEDs a
+  memorizar), <strong>modo duelo</strong> (dos Pico W por Wi-Fi), o <strong>reacción por niveles</strong>
+  (la velocidad entre estímulos aumenta con los aciertos).</li>
+<li><strong>Cómo:</strong> el motor ya está aislado en <code>game_logic.cpp</code> con un <code>enum GameMode</code>;
+  agregar valores y ramas en la máquina de estados, más campos en <code>GameConfig</code>.</li>
+<li><strong>Por qué:</strong> enriquece el juego sin tocar la infraestructura (red, display,
+  persistencia).</li>
+</ul>
+<h3 id="19-p2-autonomia-estimada-en-el-panel-web">1.9 [P2] Autonomía estimada en el panel web</h3>
+<ul>
+<li><strong>Qué:</strong> mostrar "autonomía estimada" (horas restantes) junto al % de batería,
+  usando el consumo medido/estimado (100–120 mA en juego, &lt; 1.5 mA en dormant).</li>
+<li><strong>Cómo:</strong> derivar de <code>battery_pct</code> + capacidad configurada (mAh) en el estado
+  compartido; presentarlo en <code>build_page()</code>.</li>
+<li><strong>Por qué:</strong> hace tangible el dato de batería para el usuario.</li>
+</ul>
+<hr />
+<h2 id="2-deuda-tecnica-robustez">2. Deuda técnica / robustez</h2>
+<h3 id="21-p1-debounce-por-hardware-pio-vs-software">2.1 [P1] Debounce por hardware (PIO) vs software</h3>
+<ul>
+<li><strong>Situación:</strong> el debounce es <strong>software</strong>, dentro de la IRQ GPIO
+  (<code>BUTTON_DEBOUNCE_US = 5000 µs</code> en <code>pin_defs.hpp</code>, chequeo de <code>g_last_edge_us</code>
+  en <code>game_logic.cpp</code>). Es simple pero consume CPU en la IRQ y no filtra todo
+  tipo de rebote (p. ej. ruido corto).</li>
+<li><strong>Propuesta:</strong> un programa <strong>PIO</strong> que muestree el pin y emita el evento de
+  flanco ya "limpio", liberando a la CPU. Como alternativa, mantener el software
+  pero mover el filtrado fuera de la IRQ (a una tarea/cola).</li>
+<li><strong>Referencias:</strong></li>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_pio">hardware_pio</a></li>
+<li><a href="https://forums.raspberrypi.com/viewtopic.php?t=399763">PIO debounce (Raspberry Pi Forums)</a></li>
+</ul>
+<h3 id="22-p0-persistencia-de-la-configuracion-de-red-en-flash">2.2 [P0] Persistencia de la configuración de red en Flash</h3>
+<ul>
+<li><strong>Situación:</strong> Flash persiste solo récords/nombre/semilla (<code>flash_storage.cpp</code>).
+  La config de red (SSID/password) es de compilación (ver 1.2).</li>
+<li><strong>Propuesta:</strong> unificar la persistencia: ampliar <code>PersistentData</code> para incluir
+  SSID/password y la tabla de calibración de batería, con <code>version</code> para migrar
+  estructuras (ya existe el campo <code>version</code>).</li>
+<li><strong>Referencias:</strong> <a href="https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#hardware_flash">hardware_flash</a></li>
+</ul>
+<h3 id="23-p0-manejo-de-error-de-conexion-wi-fi-en-caliente">2.3 [P0] Manejo de error de conexión Wi-Fi en caliente</h3>
+<ul>
+<li><strong>Situación:</strong> <code>network_up()</code> bloquea 10 s en <code>cyw43_arch_wifi_connect_timeout_ms</code>
+  solo al arrancar; no hay re-intento posterior (ver 1.3).</li>
+<li><strong>Propuesta:</strong> máquina de estados de red (conectando → conectado → caído →
+  reintento → AP) en el Core 1, con <em>backoff</em> exponencial y degradación a AP.</li>
+</ul>
+<h3 id="24-p1-manejo-de-ausencia-del-display-i2c">2.4 [P1] Manejo de ausencia del display I2C</h3>
+<ul>
+<li><strong>Situación:</strong> <code>display::init()</code> retorna <code>false</code> si no hay ACK, pero
+  <code>refresh_display()</code> lo intenta en cada ciclo (el escáner I2C con NACK es
+  inofensivo, pero repetir <code>show()</code> sobre un bus sin dispositivo es ruido).</li>
+<li><strong>Propuesta:</strong> registrar <code>g_ready == false</code> una sola vez y saltear <code>show()</code>
+  permanentemente (o reintentar con <em>backoff</em>).</li>
+</ul>
+<h3 id="25-p2-reentrancia-concurrencia-de-flash_safe_execute">2.5 [P2] Reentrancia / concurrencia de <code>flash_safe_execute</code></h3>
+<ul>
+<li><strong>Situación:</strong> <code>flash_safe_execute</code> ya bloquea al otro núcleo y deshabilita IRQs
+  (correcto), pero si en el futuro ambos núcleos escriben Flash, hay que
+  serializarlos explícitamente (hoy solo escribe el Core 0).</li>
+<li><strong>Propuesta:</strong> una <code>critical_section</code>/<code>mutex</code> global para las escrituras a
+  Flash, y documentar el contrato en <code>flash_storage</code>.</li>
+</ul>
+<h3 id="26-p2-tamano-de-la-imagen-y-memoria">2.6 [P2] Tamaño de la imagen y memoria</h3>
+<ul>
+<li><strong>Situación:</strong> <code>text</code> ~356 KB / <code>bss</code> ~82 KB (versión 0.1.1). Queda margen, pero
+  el búfer HTML (<code>g_body[8192]</code>, ampliado en v0.3.3) y el framebuffer OLED (1 KB)
+  son estáticos.</li>
+<li><strong>Propuesta:</strong> si se añade OTA (doble imagen), revisar el particionado de la
+  Flash de 2 MB y el presupuesto de RAM de 264 KB.</li>
+</ul>
+<hr />
+<h2 id="3-resumen-por-prioridad">3. Resumen por prioridad</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Mejora</th>
+<th>Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Watchdog timer</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Credenciales Wi-Fi desde la web</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Re-conexión Wi-Fi en caliente</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Persistencia de config de red en Flash</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Manejo de error de conexión (estados de red)</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>mDNS <code>picoreflex.local</code></td>
+<td>P1</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>OTA por aire</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>Soporte SH1106</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>Calibración de batería</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>Debounce por PIO</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Manejo de ausencia del display</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>Más modos de juego</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>Autonomía estimada en la web</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Reentrancia de Flash</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>Tamaño de imagen / memoria</td>
+<td>P2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-referencias-principales">4. Referencias principales</h2>
+<ul>
+<li><a href="https://www.raspberrypi.com/documentation/pico-sdk/index_doxygen.html">Índice Doxygen del Pico SDK</a></li>
+<li><a href="https://github.com/raspberrypi/pico-examples">pico-examples (Raspberry Pi)</a></li>
+<li><a href="https://www.nongnu.org/lwip/2_1_x/">lwIP (mDNS, raw API)</a></li>
+<li><a href="https://github.com/sidecartridge/rp2-booster-bootloader">rp2-booster-bootloader (OTA)</a></li>
+<li><a href="https://github.com/JZimnol/pico_fota_bootloader">pico_fota_bootloader (OTA)</a></li>
 </ul>
 
 
@@ -6334,6 +6819,9 @@ valor/esfuerzo. No forman parte de la versión 0.1.x.</p>
 
 
 
+
+  
+  
 
 
 
@@ -6365,7 +6853,7 @@ valor/esfuerzo. No forman parte de la versión 0.1.x.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Seguridad/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seguridad">
+          <a href="../Freertos/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FreeRTOS">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6375,7 +6863,7 @@ valor/esfuerzo. No forman parte de la versión 0.1.x.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Seguridad
+                FreeRTOS
               </div>
             </div>
           </a>

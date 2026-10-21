@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://alessandroklein.github.io/Docs/en/picoreflex/Arquitectura/">
       
       
-        <link rel="prev" href="../Compilacion/">
+        <link rel="prev" href="../Esquematico/">
       
       
         <link rel="next" href="../Decisiones/">
@@ -5763,6 +5763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5854,6 +5858,34 @@
     
   
     Compilación y flasheo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Esquematico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquemático y diagrama circuital
   
 
     
@@ -6149,6 +6181,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../Freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FreeRTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Mejoras-y-roadmap/" class="md-nav__link">
         
   
@@ -6317,18 +6377,20 @@ batería, almacenamiento no volátil y doble núcleo.</p>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>             +------------+-----------+              +---------+-----------+
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>             |        Core 0 (juego)   |              |   Core 1 (red/UI)   |
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>             +------------------------+              +---------------------+
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>             | game_logic  (motor)    |   estado     | web_server (HTTP)   |
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>             | audio       (buzzer)   |  compartido  | display_driver      |
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>             | flash_storage (récords)|&lt;------------&gt;| battery_monitor     |
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>             |   |   |   |            | critical_sect| cyw43_arch / lwIP   |
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>             +---+---+---+------------+   + queue    +---------------------+
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                 |   |   |                 |
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>       +---------+   |   +---------+       |
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>       v             v             v       v
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    GPIO 2..6    GPIO 7..11    GPIO 16   GPIO 14/15
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>     (LEDs)     (pulsadores)   (buzzer)   (I2C1 SSD1306)
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                          \      /
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                           ADC3 (GPIO29) -&gt; VSYS/3 (batería)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>             | game_logic  (motor)    |   estado     | web_server (backend) |
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>             | audio       (buzzer)   |  compartido  | web_ui     (frontend)|
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>             | flash_storage (récords)|&lt;------------&gt;| display_driver      |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>             |   |   |   |            | critical_sect| battery_monitor     |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>             |                        |   + queue    | cyw43_arch / lwIP   |
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>             |                        |              | captive_portal      |
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>             +---+---+---+------------+              +---------------------+
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                 |   |   |                 |
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>       +---------+   |   +---------+       |
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>       v             v             v       v
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    GPIO 2..6    GPIO 7..11    GPIO 16   GPIO 14/15
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>     (LEDs)     (pulsadores)   (buzzer)   (I2C1 SSD1306)
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                          \      /
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                           ADC0 (GPIO26) -&gt; divisor externo 10k/22k (batería)
 </span></code></pre></div>
 <h2 id="3-estructura-de-archivos">3. Estructura de archivos</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PicoReflex/
@@ -6343,50 +6405,60 @@ batería, almacenamiento no volátil y doble núcleo.</p>
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ├── display_driver.hpp    # OLED SSD1306
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   ├── battery_monitor.hpp   # ADC batería
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── flash_storage.hpp     # Persistencia en Flash
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── web_server.hpp        # Servidor HTTP + Wi-Fi
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── captive_portal.hpp    # Servidor DNS (captive portal, modo AP)
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   └── font5x7.hpp           # Fuente 5x7 (generada por tools/gen_font.py)
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>├── src/
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   ├── main.cpp              # Arranque de ambos núcleos
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   ├── shared_state.cpp      # critical_section + queues
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── game_logic.cpp        # Motor (Core 0)
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   ├── audio.cpp
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   ├── display_driver.cpp
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   ├── battery_monitor.cpp
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── flash_storage.cpp
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── web_server.cpp        # HTTP + Wi-Fi + display (Core 1)
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   └── captive_portal.cpp    # DNS 53 -&gt; 192.168.4.1 (captive portal)
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>├── tools/
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   └── gen_font.py           # Generador de la fuente 5x7
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>└── docs/
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    ├── DUDAS.md
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    ├── DECISIONES.md
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    ├── ARQUITECTURA.md
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    └── INFORME.md
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── web_server.hpp        # Servidor HTTP + Wi-Fi (backend)
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── web_ui.hpp            # Frontend: generación de las páginas HTML
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   ├── captive_portal.hpp    # Servidor DNS (captive portal, modo AP)
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   ├── dhcpserver.h          # Servidor DHCP del AP (MicroPython/pico-examples)
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   └── font5x7.hpp           # Fuente 5x7 (generada por tools/gen_font.py)
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>├── src/
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── main.cpp              # Arranque de ambos núcleos
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   ├── shared_state.cpp      # critical_section + queues
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   ├── game_logic.cpp        # Motor (Core 0)
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   ├── audio.cpp
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── display_driver.cpp
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── battery_monitor.cpp
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   ├── flash_storage.cpp
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│   ├── web_server.cpp        # HTTP + Wi-Fi + display (backend, Core 1)
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   ├── web_ui.cpp            # HTML de las páginas (frontend)
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│   ├── captive_portal.cpp    # DNS 53 -&gt; 192.168.4.1 (captive portal)
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>│   └── dhcpserver.c          # DHCP del AP: IPs 192.168.4.16..23
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>├── tools/
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>│   └── gen_font.py           # Generador de la fuente 5x7
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>└── docs/
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    ├── DUDAS.md
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    ├── DECISIONES.md
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    ├── ARQUITECTURA.md
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    └── INFORME.md
 </span></code></pre></div>
 <h2 id="4-flujo-del-juego-core-0">4. Flujo del juego (Core 0)</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>        +--------+
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        | IDLE   |&lt;-----------------------------------------+
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        +---+----+                                          |
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            | pulsación / START_ROUND (web)                 |
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            | 2 botones simultáneos / START_ROUND (web)      |
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>            v                                               |
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   +----------------+  presenta LED + t0=time_us_32()       |
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>   | ROUND (activa) |----------------------------------+    |
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   +----------------+                                  |    |
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        |            espera pulsación o timeout        |    |
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        v                                             v    |
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   +------------------------------+                   |    |
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   | evalúa resultado             |                   |    |
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>   | hit / miss / timeout         |                   |    |
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>   +-------------+----------------+                   |    |
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>                 | stats_record + audio + flash       |    |
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>                 |                                    |    |
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>                 |   (SUDDEN_DEATH y fallo)           |    |
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>                 |   (TIMED y fin de tiempo)          +----+
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>                 |   (STOP_ROUND)
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   +-------------------+  cuenta regresiva (start_delay_s)  |
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>   | CUENTA REGRESIVA  |  beeps "3-2-1"                     |
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   +---------+---------+                                    |
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>             v                                              |
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   +----------------+  presenta LED + t0=time_us_32()       |
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   | ROUND (activa) |----------------------------------+    |
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   +----------------+                                  |    |
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        |            espera pulsación o timeout        |    |
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        v                                             v    |
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>   +------------------------------+                   |    |
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>   | evalúa resultado             |                   |    |
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>   | hit / miss / timeout         |                   |    |
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>   +-------------+----------------+                   |    |
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>                 | stats_record + audio + flash       |    |
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>                 |                                    |    |
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>                 |   (SUDDEN_DEATH y fallo)           |    |
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>                 |   (TIMED y fin de tiempo)          +----+
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>                 |   (STOP_ROUND)
 </span></code></pre></div>
 <p>La medición de reacción usa la IRQ GPIO + <code>time_us_32()</code> (µs); el DMA mantiene
-un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4–§5).</p>
+un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4–§5). El
+inicio requiere <strong>dos botones simultáneos</strong> y pasa por una <strong>cuenta regresiva</strong>
+configurable (<code>start_delay_s</code>, ver DECISIONES.md §16).</p>
 <h2 id="5-flujo-de-red-core-1">5. Flujo de red (Core 1)</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cyw43_arch_init()
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>      |
@@ -6395,15 +6467,16 @@ un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4�
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      |
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>      +-- ¿conectado?
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>            |-- SÍ -&gt; STA (LED fijo) + DHCP -&gt; IP
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            |-- NO -&gt; disable_sta + enable_ap_mode("PicoW-ReactionGame")
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            |         IP 192.168.4.1 (LED parpadea)
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            |-- NO -&gt; disable_sta + enable_ap_mode("PicoW-ReactionGame", WPA2)
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            |         IP 192.168.4.1 (canal 1, LED parpadea)
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>            |         captive::init()  -&gt; DNS puerto 53 -&gt; 192.168.4.1
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>      |
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>      v
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>http_server_init()  (lwIP raw API, puerto 80)
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>      |
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>      v
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>bucle: refresca display + muestrea batería (~1 Hz)
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>            |         ap_dhcp_start()  -&gt; DHCP IPs 192.168.4.16..23
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>      |
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>      v
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>http_server_init()  (lwIP raw API, puerto 80)
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>      |
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>      v
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>bucle: refresca display + muestrea batería (~1 Hz)
 </span></code></pre></div>
 <p>Rutas HTTP:</p>
 <table>
@@ -6416,15 +6489,27 @@ un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4�
 <tbody>
 <tr>
 <td><code>GET /</code></td>
-<td>Página de control + estadísticas</td>
+<td>Home: red, batería, stats y tabla de tiempos</td>
 </tr>
 <tr>
-<td><code>GET /config?seed=..&amp;difficulty=..&amp;mode=..&amp;smin=..&amp;smax=..&amp;round=..&amp;name=..</code></td>
-<td>Aplica configuración</td>
+<td><code>GET /seed?seed=..</code></td>
+<td>Semilla del PRNG</td>
+</tr>
+<tr>
+<td><code>GET /game?difficulty=..&amp;mode=..&amp;smin=..&amp;smax=..&amp;round=..&amp;delay=..</code></td>
+<td>Dificultad/modo/velocidad/ronda/cuenta regresiva</td>
+</tr>
+<tr>
+<td><code>GET /display?oled=..</code></td>
+<td>Habilita/deshabilita el OLED</td>
+</tr>
+<tr>
+<td><code>GET /wifi?ssid=..&amp;pass=..</code></td>
+<td>Credenciales Wi-Fi (persistidas + reconexión, "Mostrar contraseña")</td>
 </tr>
 <tr>
 <td><code>GET /start</code></td>
-<td><code>control_send(START_ROUND)</code></td>
+<td><code>control_send(START_ROUND)</code> (con cuenta regresiva)</td>
 </tr>
 <tr>
 <td><code>GET /stop</code></td>
@@ -6436,6 +6521,11 @@ un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4�
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>Eliminada <code>GET /player</code> (v0.4.0). La ruta <code>GET /scan</code> quedó reservada/interna
+(sin uso visible; ver <code>docs/API.md</code>).</p>
+<p>Ver <code>docs/API.md</code> para el detalle de parámetros y rangos.</p>
+</blockquote>
 <h2 id="6-sincronizacion-inter-nucleo">6. Sincronización inter-núcleo</h2>
 <ul>
 <li><code>critical_section_t</code> (<code>pico/sync.h</code>): protege <code>GameConfig</code>, <code>GameStats</code> y
@@ -6477,8 +6567,8 @@ un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4�
 </tr>
 <tr>
 <td>Batería</td>
-<td>29 (ADC3)</td>
-<td>VSYS/3, divisor 3:1 interno</td>
+<td>26 (ADC0)</td>
+<td>Divisor externo 10 kΩ/22 kΩ</td>
 </tr>
 <tr>
 <td>LED onboard</td>
@@ -6488,8 +6578,7 @@ un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4�
 </tbody>
 </table>
 <blockquote>
-<p>La medición de VSYS en la Pico W comparte GPIO29 con el SPI del Wi-Fi; ver
-DECISIONES.md §9 y DUDAS.md §1.</p>
+<p>La batería se mide con un divisor externo en GPIO26; ver DECISIONES.md §9.</p>
 </blockquote>
 <h2 id="8-estimacion-de-consumo">8. Estimación de consumo</h2>
 <table>
@@ -6562,7 +6651,7 @@ DECISIONES.md §9 y DUDAS.md §1.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Compilacion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Compilación y flasheo">
+          <a href="../Esquematico/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Esquemático y diagrama circuital">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6572,7 +6661,7 @@ DECISIONES.md §9 y DUDAS.md §1.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Compilación y flasheo
+                Esquemático y diagrama circuital
               </div>
             </div>
           </a>
