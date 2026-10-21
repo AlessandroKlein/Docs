@@ -6238,10 +6238,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#23-freertos-analisis-hecho-integracion-revertida" class="md-nav__link">
+  <a href="#23-freertos-integrado-smp-2-nucleos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        23. FreeRTOS: análisis hecho, integración revertida
+        23. FreeRTOS: integrado (SMP, 2 núcleos)
       
     </span>
   </a>
@@ -6275,6 +6275,28 @@
     <span class="md-ellipsis">
       
         26. Escaneo de redes Wi-Fi: retirado del frontend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-modo-simon-dice-secuencia-de-memoria-creciente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Modo Simón Dice (secuencia de memoria creciente)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-leds-abstraccion-gpio-ws2812-neopixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. LEDs: abstracción GPIO / WS2812 (NeoPixel)
       
     </span>
   </a>
@@ -6969,16 +6991,14 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
   responder"). Como la web de configuración necesita la red siempre viva, se evitó
   el conflicto condicionando el sueño al estado de red.</li>
 </ul>
-<h2 id="23-freertos-analisis-hecho-integracion-revertida">23. FreeRTOS: análisis hecho, integración revertida</h2>
+<h2 id="23-freertos-integrado-smp-2-nucleos">23. FreeRTOS: integrado (SMP, 2 núcleos)</h2>
 <ul>
-<li><strong>Decisión:</strong> se analizó e intentó FreeRTOS (SMP, 2 núcleos) en v0.3.0, pero
-  <strong>rompía el arranque del Wi-Fi</strong>, así que se revirtió en v0.3.1 al dual-core
-  manual (<code>multicore_launch_core1</code>). El análisis completo queda en
-  <a href="../Freertos/"><code>Freertos.md</code></a>.</li>
-<li><strong>Por qué (causa):</strong> con <code>pico_cyw43_arch_lwip_sys_freertos</code>, <code>cyw43_arch_init()</code>
-  debe ejecutarse en <code>main()</code> <strong>antes</strong> de <code>vTaskStartScheduler()</code> (y no dentro de
-  una tarea, como quedó en el primer intento). Pendiente re-integrarlo con esa
-  corrección y verificarlo en hardware.</li>
+<li><strong>Decisión:</strong> se integró <strong>FreeRTOS SMP</strong> en v0.5.0 (<code>game_task</code> + <code>network_task</code>
+  con <code>vTaskStartScheduler()</code>). El primer intento (v0.3.0) falló y se revirtió; la
+  causa real fue el stack/patrón, no la ubicación de <code>cyw43_arch_init()</code>.</li>
+<li><strong>Patrón correcto:</strong> <code>cyw43_arch_init()</code> se llama <strong>dentro de la tarea de red</strong>
+  (<code>web::init()</code>), como en los ejemplos oficiales <code>pico_w/wifi/freertos</code> (NO en
+  <code>main()</code> antes del scheduler). Ver <a href="../Freertos/"><code>Freertos.md</code></a>.</li>
 </ul>
 <h2 id="24-stack-del-core-1-ampliado-a-4-kb-fix-de-hard-fault">24. Stack del Core 1 ampliado a 4 KB (fix de <em>hard fault</em>)</h2>
 <ul>
@@ -7010,6 +7030,31 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
 <li><strong>Por qué:</strong> el escaneo del CYW43 (<code>cyw43_wifi_scan</code>) no devolvía redes de forma
   fiable en el modo <em>threadsafe background</em> (y menos en modo AP), así que no
   aportaba valor. Se prefiere que el usuario escriba el SSID a mano.</li>
+</ul>
+<h2 id="27-modo-simon-dice-secuencia-de-memoria-creciente">27. Modo Simón Dice (secuencia de memoria creciente)</h2>
+<ul>
+<li><strong>Decisión:</strong> se agrega <code>GameMode::SIMON_SAYS</code> (v0.6.0): una <strong>secuencia de LEDs
+  que crece</strong> (validación clásica de "Simon Says").</li>
+<li>Correcto: se agrega un elemento aleatorio al final y se repite la secuencia.</li>
+<li>Incorrecto (o timeout): Game Over + señal de error + reinicio a longitud 1.</li>
+<li><strong>Velocidad según dificultad:</strong> la presentación va de 700 ms (Fácil) a 300 ms
+  (Difícil); cada LED tiene su <strong>tono</strong> (escala pentatónica).</li>
+<li><strong>Semilla determinista:</strong> la secuencia la genera el mismo <code>xorshift32</code> sembrado
+  con la semilla, así que <strong>una misma semilla produce siempre la misma secuencia</strong>
+  (útil para practicar/aprender patrones y medir progreso). Con <code>seed=0</code> es
+  aleatoria (entropía del hardware).</li>
+<li><strong>Referencia:</strong> el juego clásico "Simon Says" (secuencia + memoria + velocidad).</li>
+</ul>
+<h2 id="28-leds-abstraccion-gpio-ws2812-neopixel">28. LEDs: abstracción GPIO / WS2812 (NeoPixel)</h2>
+<ul>
+<li><strong>Decisión:</strong> se crea el módulo <code>led_driver</code> con DOS implementaciones
+  seleccionables en compilación con la macro <code>PICOREFLEX_WS2812</code>:</li>
+<li><code>0</code> (por defecto): 5 LEDs GPIO con resistencia (encendido simple).</li>
+<li><code>1</code>: WS2812 (NeoPixel) por <strong>PIO</strong> en GPIO28, con color por LED y <strong>efectos de
+    luces</strong> al ganar (verde) y perder (rojo).</li>
+<li><strong>Por qué:</strong> permite reemplazar los LEDs discretos por una tira direccionable sin
+  tocar el motor del juego (la interfaz <code>led::</code> es la misma). Referencia del PIO:
+  <a href="https://github.com/raspberrypi/pico-examples/tree/master/pio/ws2812">pico-examples/pio/ws2812</a>.</li>
 </ul>
 
 

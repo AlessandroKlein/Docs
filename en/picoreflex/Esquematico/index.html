@@ -6509,6 +6509,12 @@ cálculos de dimensionamiento. Es el "Diagrama circuital" que pide la consigna
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Alternativa WS2812 (NeoPixel):</strong> en lugar de los 5 LEDs GPIO, se puede usar una
+tira de LEDs direccionables <strong>WS2812</strong> en <strong>GPIO28</strong> (controlada por PIO). Se
+habilita con la macro <code>PICOREFLEX_WS2812 1</code> en <code>include/config.hpp</code>. Permite color
+por LED y efectos de luces al ganar/perder. Ver <code>docs/DECISIONES.md</code> §28.</p>
+</blockquote>
 <hr />
 <h2 id="3-detalle-por-subsistema">3. Detalle por subsistema</h2>
 <h3 id="31-leds-indicadores-gpio-26">3.1 LEDs indicadores (GPIO 2..6)</h3>
