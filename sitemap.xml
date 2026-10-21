@@ -372,6 +372,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/picoreflex/Mejoras-y-roadmap/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/picoreflex/Referencias/</loc>
+        <lastmod>2026-10-21</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/picoreflex/Referencias/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/picoreflex/Referencias/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/picoreflex/Seguridad/</loc>
         <lastmod>2026-10-21</lastmod>
         <changefreq>daily</changefreq>
@@ -1560,6 +1567,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/picoreflex/Mejoras-y-roadmap/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/picoreflex/Mejoras-y-roadmap/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/picoreflex/Referencias/</loc>
+        <lastmod>2026-10-21</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/picoreflex/Referencias/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/picoreflex/Referencias/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/picoreflex/Seguridad/</loc>

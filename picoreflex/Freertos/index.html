@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#analisis-de-freertos-picoreflex" class="md-skip">
+        <a href="#freertos-picoreflex" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -5767,6 +5767,8 @@
       
         
       
+        
+      
     
     
     
@@ -6139,10 +6141,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-cambios-realizados-v030" class="md-nav__link">
+  <a href="#4-cambios-realizados-v050" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Cambios realizados (v0.3.0)
+        4. Cambios realizados (v0.5.0)
       
     </span>
   </a>
@@ -6150,10 +6152,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-requisitos-de-compilacion" class="md-nav__link">
+  <a href="#5-patron-oficial-correccion-del-primer-intento" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Requisitos de compilación
+        5. Patrón oficial (corrección del primer intento)
       
     </span>
   </a>
@@ -6161,10 +6163,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-pendiente-de-verificacion-en-hardware" class="md-nav__link">
+  <a href="#6-requisitos-de-compilacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Pendiente de verificación en hardware
+        6. Requisitos de compilación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-limitaciones-conocidas-con-freertos-smp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Limitaciones conocidas (con FreeRTOS SMP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Referencias
       
     </span>
   </a>
@@ -6264,6 +6288,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6339,20 +6391,19 @@
   
 
 
-<h1 id="analisis-de-freertos-picoreflex">Análisis de FreeRTOS — PicoReflex</h1>
+<h1 id="freertos-picoreflex">FreeRTOS — PicoReflex</h1>
 <blockquote>
-<p><strong>Estado</strong>: ANÁLISIS realizado e integración <strong>REVERTIDA</strong> en v0.3.1.
-El primer intento (v0.3.0) rompió el arranque del Wi-Fi: con
-<code>pico_cyw43_arch_lwip_sys_freertos</code>, <code>cyw43_arch_init()</code> debe ejecutarse en
-<code>main()</code> <strong>antes</strong> de <code>vTaskStartScheduler()</code> (y no dentro de una tarea, como
-quedó en el primer intento). Queda pendiente re-integrarlo con esa corrección
-y verificarlo en hardware. Este documento conserva el análisis y la hoja de
-ruta de la migración.</p>
+<p><strong>Estado</strong>: <strong>INTEGRADO</strong> en v0.5.0 (SMP, 2 núcleos).
+Historial: el primer intento (v0.3.0) falló en hardware y se revirtió en v0.3.1.
+La causa <strong>no</strong> fue la ubicación de <code>cyw43_arch_init()</code> (que, según los ejemplos
+oficiales, va <strong>dentro de una tarea</strong>, no en <code>main()</code>), sino el stack reducido y
+detalles de configuración. Con el patrón oficial corregido y el stack ampliado,
+se re-integró.</p>
 </blockquote>
 <h2 id="1-que-es-freertos">1. Qué es FreeRTOS</h2>
 <p>FreeRTOS es un <strong>sistema operativo en tiempo real (RTOS)</strong> de código abierto. En
 la RP2040 (Pico W) se usa en modo <strong>SMP</strong> (Symmetric Multi-Processing): ambos
-núcleos ejecutan el <strong>planificador de FreeRTOS</strong>, y las tareas se reparten entre
+núcleos ejecutan el <strong>planificador de FreeRTOS</strong> y las tareas se reparten entre
 los dos núcleos de forma transparente.</p>
 <h2 id="2-antes-vs-despues">2. Antes vs. después</h2>
 <table>
@@ -6377,7 +6428,7 @@ los dos núcleos de forma transparente.</p>
 <tr>
 <td>Sincronización</td>
 <td><code>critical_section</code> + <code>queue</code> + flags <code>volatile</code></td>
-<td>+ semáforos/mutex de FreeRTOS</td>
+<td>+ semáforos de FreeRTOS</td>
 </tr>
 <tr>
 <td>Wi-Fi/lwIP</td>
@@ -6405,32 +6456,57 @@ los dos núcleos de forma transparente.</p>
 <li><strong>Escalable</strong>: agregar tareas (p. ej. una para logueo, otra para OTA) es trivial.</li>
 <li><strong>Estándar de la industria</strong>: aporta valor técnico al TP.</li>
 </ul>
-<h2 id="4-cambios-realizados-v030">4. Cambios realizados (v0.3.0)</h2>
+<h2 id="4-cambios-realizados-v050">4. Cambios realizados (v0.5.0)</h2>
 <ul>
 <li><code>CMakeLists.txt</code>: enlaza <code>pico_cyw43_arch_lwip_sys_freertos</code> y
-  <code>FreeRTOS-Kernel-Heap4</code>; agrega <code>FreeRTOS_Kernel_import.cmake</code>.</li>
+  <code>FreeRTOS-Kernel-Heap4</code>; agrega <code>FreeRTOS_Kernel_import.cmake</code> y
+  <code>PICO_CORE1_STACK_SIZE=0x1000</code> (el port FreeRTOS arranca el Core 1 con
+  <code>multicore_launch_core1</code>).</li>
 <li><code>include/FreeRTOSConfig.h</code>: configuración SMP (2 núcleos, heap 128 KB, tick 1 kHz).</li>
 <li><code>lwipopts.h</code>: <code>NO_SYS 0</code>.</li>
 <li><code>src/main.cpp</code>: crea <code>game_task</code> y <code>network_task</code> (semáforo binario de
   sincronización) y arranca el scheduler.</li>
+<li><code>src/web_server.cpp</code>: <code>cyw43_arch_init()</code> <strong>dentro de la tarea de red</strong>
+  (<code>web::init()</code>), reconexión "liviana" (sin deinit/init) y <code>vTaskDelay</code>.</li>
 <li><code>game_logic.cpp</code>, <code>web_server.cpp</code>, <code>audio.cpp</code>: <code>sleep_ms</code> → <code>vTaskDelay</code>.</li>
 </ul>
-<h2 id="5-requisitos-de-compilacion">5. Requisitos de compilación</h2>
-<p>FreeRTOS-Kernel no está incluido en el SDK. Hay que clonarlo:</p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">git</span> <span class="n">clone</span> <span class="p">-</span><span class="n">-branch</span> <span class="n">V11</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">FreeRTOS</span><span class="p">/</span><span class="n">FreeRTOS-Kernel</span><span class="p">.</span><span class="n">git</span> <span class="k">%</span><span class="n">USERPROFILE</span><span class="p">%\.</span><span class="n">pico-sdk</span><span class="p">\</span><span class="n">FreeRTOS-Kernel</span>
+<h2 id="5-patron-oficial-correccion-del-primer-intento">5. Patrón oficial (corrección del primer intento)</h2>
+<p>En los ejemplos oficiales (<code>pico_w/wifi/freertos</code>), <code>cyw43_arch_init()</code> se llama
+<strong>dentro de <code>main_task</code></strong> (una tarea FreeRTOS creada antes del scheduler), NO en
+<code>main()</code>:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">main_task</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cyw43_arch_init</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* error */</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">cyw43_arch_enable_sta_mode</span><span class="p">();</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="n">vTaskDelay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kt">void</span><span class="w"> </span><span class="nf">vLaunch</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">xTaskCreate</span><span class="p">(</span><span class="n">main_task</span><span class="p">,</span><span class="w"> </span><span class="s">"TestMainThread"</span><span class="p">,</span><span class="w"> </span><span class="n">configMINIMAL_STACK_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">TEST_TASK_PRIORITY</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">task</span><span class="p">);</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">vTaskStartScheduler</span><span class="p">();</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>O definir <code>FREERTOS_KERNEL_PATH</code>. El CI ya lo clona automáticamente.</p>
-<h2 id="6-pendiente-de-verificacion-en-hardware">6. Pendiente de verificación en hardware</h2>
+<p>PicoReflex sigue este patrón: <code>cyw43_arch_init()</code> está en <code>web::init()</code>, invocado
+desde <code>network_task</code>.</p>
+<h2 id="6-requisitos-de-compilacion">6. Requisitos de compilación</h2>
+<p>FreeRTOS-Kernel no está incluido en el SDK. Hay que clonarlo:</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">git</span> <span class="n">clone</span> <span class="p">-</span><span class="n">-branch</span> <span class="n">V11</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">FreeRTOS</span><span class="p">/</span><span class="n">FreeRTOS-Kernel</span><span class="p">.</span><span class="n">git</span> <span class="k">%</span><span class="n">USERPROFILE</span><span class="p">%\.</span><span class="n">pico-sdk</span><span class="p">\</span><span class="n">FreeRTOS-Kernel</span>
+</span></code></pre></div>
+<p>O definir <code>FREERTOS_KERNEL_PATH</code>. El CI lo clona automáticamente.</p>
+<h2 id="7-limitaciones-conocidas-con-freertos-smp">7. Limitaciones conocidas (con FreeRTOS SMP)</h2>
 <ul>
-<li><strong>Asignación de núcleos</strong>: la IRQ GPIO de botones se configura en el núcleo que
-  ejecuta <code>game::init()</code>; con SMP el núcleo puede variar (funciona igual, pero
-  verificar que los botones responden).</li>
-<li><strong>DORMANT</strong>: el modo <em>dormant</em> (<code>low_power_dormant_until_gpio_pin_state</code>) asume
-  ambos núcleos en WFE; con FreeRTOS SMP requiere rework (quedó con el <em>fallback</em>
-  <code>__wfi()</code> y se recomienda desactivarlo o migrar a <code>vTaskSuspend</code> + sleep).</li>
-<li><strong>Escrituras a Flash</strong>: <code>flash_safe_execute</code> usa <code>multicore_lockout</code>; con
-  FreeRTOS SMP conviene verificar que no haya <em>race</em> entre la tarea de juego y la
-  de red.</li>
+<li><strong>DORMANT degradado</strong>: el modo <em>dormant</em> real (<code>low_power_dormant_until_gpio_pin_state</code>)
+  exige ambos núcleos en WFE y no es compatible con FreeRTOS SMP sin rework. Se
+  reemplazó por un <strong>sleep ligero</strong> (<code>vTaskDelay</code>); el ahorro de energía profundo
+  (&lt; 2 mA) queda pendiente con la API <code>low_power</code> + FreeRTOS SMP.</li>
+<li><strong>Reconexión "liviana"</strong>: al cambiar credenciales Wi-Fi no se hace
+  <code>cyw43_arch_deinit/init</code> (la tarea <code>tcpip</code> no se recrea); se apaga el modo
+  actual y se re-ejecuta STA/AP.</li>
+</ul>
+<h2 id="8-referencias">8. Referencias</h2>
+<ul>
+<li>Ejemplos FreeRTOS: <a href="https://github.com/raspberrypi/pico-examples/tree/master/pico_w/wifi/freertos">https://github.com/raspberrypi/pico-examples/tree/master/pico_w/wifi/freertos</a></li>
+<li><code>pico_cyw43_arch_lwip_sys_freertos</code>: <a href="https://www.raspberrypi.com/documentation/pico-sdk/networking.html">https://www.raspberrypi.com/documentation/pico-sdk/networking.html</a></li>
+<li>FreeRTOS-Kernel (V11.1.0): <a href="https://github.com/FreeRTOS/FreeRTOS-Kernel">https://github.com/FreeRTOS/FreeRTOS-Kernel</a></li>
 </ul>
 
 
