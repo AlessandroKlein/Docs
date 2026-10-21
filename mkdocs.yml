@@ -287,11 +287,13 @@ nav:
   - PicoReflex:
       - Inicio: picoreflex/Home.md
       - Compilación y flasheo: picoreflex/Compilacion.md
+      - Esquemático y diagrama circuital: picoreflex/Esquematico.md
       - Arquitectura: picoreflex/Arquitectura.md
       - Decisiones: picoreflex/Decisiones.md
       - Referencia API: picoreflex/API.md
       - Informe técnico: picoreflex/Informe.md
       - Seguridad: picoreflex/Seguridad.md
+      - FreeRTOS: picoreflex/Freertos.md
       - Mejoras y roadmap: picoreflex/Mejoras-y-roadmap.md
       - Dudas: picoreflex/Dudas.md
       - Versiones (CHANGELOG): picoreflex/CHANGELOG.md

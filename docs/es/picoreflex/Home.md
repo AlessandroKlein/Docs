@@ -7,7 +7,7 @@ tags:
 
 # PicoReflex — Juego de Reacción Rápida Avanzado
 
-> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-20 | **Firmware:** v0.1.1
+> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-20 | **Firmware:** v0.4.6
 > **Hardware:** Raspberry Pi Pico W (RP2040 + CYW43439) · **Plataforma:** Pico C/C++ SDK 2.3.0
 
 ## 1. Resumen ejecutivo
@@ -23,10 +23,13 @@ configuración, medición de batería y conectividad Wi-Fi redundante.
 - **PRNG determinista por semilla** (`xorshift32`) para competencias repetibles,
   o modo aleatorio con `pico_rand`.
 - **Servidor web embebido** (lwIP) con **Station (STA)** y respaldo **SoftAP**
-  (`PicoW-ReactionGame`, `192.168.4.1`) + **captive portal** (DNS).
-- **Medición de batería** por ADC (VSYS/3) con porcentaje y alerta de baja.
+  (`PicoW-ReactionGame`, WPA2 `12345678`, `192.168.4.1`) + **captive portal** (DNS)
+  + **servidor DHCP** (asigna `192.168.4.16`–`192.168.4.23`).
+- **Medición de batería** por ADC0 (GPIO26) con divisor externo 10 kΩ/22 kΩ,
+  porcentaje y alerta de batería baja.
 - **Doble núcleo**: Core 0 (juego/IRQ/DMA/PWM/Flash) y Core 1 (red/display).
-- **Modo DORMANT** (< 2 mA) y **almacenamiento no volátil** de récords en Flash.
+- **Modo DORMANT** (< 2 mA, solo sin red activa) y **almacenamiento no volátil**
+  de récords/ranking/credenciales en Flash.
 
 ## 2. ¿Qué es?
 
@@ -41,8 +44,8 @@ LEDs (2..6) · Pulsadores (7..11) · Buzzer (16, PWM) · SSD1306 (14/15, I2C1)
           ▼
    PicoReflex — Core 0 (juego)  ⇄ estado compartido ⇄  Core 1 (red + display)
           │                                                 │
-          ├── ADC3 (GPIO29) → VSYS/3 (batería)              ├── cyw43_arch + lwIP
-          └── Flash (récords/ranking/semilla)               └── HTTP + DNS captive portal
+          ├── ADC0 (GPIO26) → divisor 10k/22k (batería)     ├── cyw43_arch + lwIP
+          └── Flash (récords/ranking/semilla/Wi-Fi)         └── HTTP + DNS + DHCP (AP)
 ```
 
 ## 3. Guías del proyecto
@@ -50,11 +53,13 @@ LEDs (2..6) · Pulsadores (7..11) · Buzzer (16, PWM) · SSD1306 (14/15, I2C1)
 | Documento | Contenido |
 |---|---|
 | [Compilación y flasheo](Compilacion.md) | Cómo compilar, flashear y usar |
+| [Esquemático y diagrama circuital](Esquematico.md) | Conexiones, pines, componentes y cálculos |
 | [Arquitectura](Arquitectura.md) | Bloques, flujos, pines y sincronización |
 | [Decisiones](Decisiones.md) | Cada decisión vinculada a la documentación oficial |
 | [Referencia API](API.md) | Endpoints HTTP del panel web |
 | [Informe técnico](Informe.md) | Límites, solución, conclusión y análisis del ADC |
 | [Seguridad](Seguridad.md) | Auditoría de seguridad y hardening |
+| [FreeRTOS](Freertos.md) | Análisis de la migración a FreeRTOS (revertida) |
 | [Mejoras y roadmap](Mejoras-y-roadmap.md) | Hoja de ruta de versiones futuras |
 | [Dudas](Dudas.md) | Consultas técnicas y su resolución |
 | [CHANGELOG](CHANGELOG.md) | Historial de versiones (SemVer) |
