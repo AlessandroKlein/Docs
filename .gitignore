@@ -1,2 +1,16 @@
+# --- Salida de MkDocs ---
 site/
 .cache/
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+
+# --- Basura de sistema operativo ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Temporales y locks ---
+*.tmp
+~$*
