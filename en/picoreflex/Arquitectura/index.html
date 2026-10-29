@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,10 +37,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -6001,10 +6001,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-flujo-del-juego-core-0" class="md-nav__link">
+  <a href="#4-flujo-del-juego-game_task" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Flujo del juego (Core 0)
+        4. Flujo del juego (game_task)
       
     </span>
   </a>
@@ -6012,10 +6012,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-flujo-de-red-core-1" class="md-nav__link">
+  <a href="#5-flujo-de-red-network_task" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Flujo de red (Core 1)
+        5. Flujo de red (network_task)
       
     </span>
   </a>
@@ -6023,10 +6023,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-sincronizacion-inter-nucleo" class="md-nav__link">
+  <a href="#6-sincronizacion-inter-tarea" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Sincronización inter-núcleo
+        6. Sincronización inter-tarea
       
     </span>
   </a>
@@ -6049,6 +6049,17 @@
     <span class="md-ellipsis">
       
         8. Estimación de consumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-actualizacion-ota-ab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Actualización OTA (A/B)
       
     </span>
   </a>
@@ -6393,177 +6404,115 @@
 
 <h1 id="arquitectura-del-proyecto-picoreflex">Arquitectura del Proyecto — PicoReflex</h1>
 <h2 id="1-vision-general">1. Visión general</h2>
-<p>PicoReflex es un <strong>dispositivo de entrenamiento de reflejos</strong> sobre Raspberry Pi
-Pico W (RP2040). Consta de 5 LEDs y 5 pulsadores: el usuario debe presionar el
-botón que corresponde al LED encendido en el menor tiempo posible. El sistema
-añade control por semilla determinista, servidor web embebido, medición de
-batería, almacenamiento no volátil y doble núcleo.</p>
+<p>PicoReflex es un <strong>dispositivo de entrenamiento de reflejos</strong> construido sobre la
+<strong>Raspberry Pi Pico W</strong> (RP2040 + radio inalámbrica CYW43439), programado en
+<strong>C/C++ con el Pico SDK oficial 2.3.0</strong> (toolchain <code>arm-none-eabi</code>, CMake +
+Ninja). <strong>No usa Arduino ni MicroPython.</strong></p>
+<p>Consta de 5 LEDs y 5 pulsadores: se enciende un LED y el jugador debe presionar
+el botón correspondiente en el menor tiempo posible. El firmware añade semilla
+determinista (secuencias reproducibles), servidor web embebido, medición de
+batería, FreeRTOS SMP, watchdog, mDNS, actualización OTA A/B y autenticación por
+PIN.</p>
 <h2 id="2-diagrama-de-bloques">2. Diagrama de bloques</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                        +--------------------------------------------+
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                        |              Raspberry Pi Pico W            |
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                        |                (RP2040 + CYW43439)          |
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                        |         Raspberry Pi Pico W                |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                        |         (RP2040 + CYW43439)                |
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                        +--------------------------------------------+
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                          |                                    |
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>             +------------+-----------+              +---------+-----------+
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>             |        Core 0 (juego)   |              |   Core 1 (red/UI)   |
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>             +------------------------+              +---------------------+
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>             | game_logic  (motor)    |   estado     | web_server (backend) |
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>             | audio       (buzzer)   |  compartido  | web_ui     (frontend)|
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>             | flash_storage (récords)|&lt;------------&gt;| display_driver      |
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>             |   |   |   |            | critical_sect| battery_monitor     |
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>             |                        |   + queue    | cyw43_arch / lwIP   |
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>             |                        |              | captive_portal      |
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>             +---+---+---+------------+              +---------------------+
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                 |   |   |                 |
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>       +---------+   |   +---------+       |
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>       v             v             v       v
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    GPIO 2..6    GPIO 7..11    GPIO 16   GPIO 14/15
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>     (LEDs)     (pulsadores)   (buzzer)   (I2C1 SSD1306)
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                          \      /
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                           ADC0 (GPIO26) -&gt; divisor externo 10k/22k (batería)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                          |                                   |
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>             +------------+-----------+            +----------+------------+
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>             |   game_task (juego)    |            | network_task (red/UI) |
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>             +------------------------+            +-----------------------+
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>             | game_logic  (motor)    |  estado    | web_server (HTTP)     |
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>             | audio       (buzzer)   | compartido | web_ui    (HTML/CSS)  |
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>             | led_driver  (LEDs)     |  critical  | display_driver (OLED) |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>             | button_debounce (PIO)  | _section + | battery_monitor (ADC) |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>             | flash_storage (Flash)  |  queue     | cyw43_arch / lwIP     |
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>             +---+---+---+------------+            | captive_portal (DNS)  |
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                 |   |   |             |           | mDNS + DHCP + OTA     |
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                 v   v   v             v           +-----------------------+
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>             GPIO 2..6  GPIO 7..11   GPIO 16            |              |
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>              (LEDs)   (pulsadores)  (buzzer)      GPIO 14/15     CYW43 Wi-Fi
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                                        |        (STA/SoftAP)
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                                                   I2C1 0x3C
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                                               SSD1306/SH1106
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        Batería LiPo 1S ── 10k/22k ── ADC0 (GPIO26)  ← divisor resistivo
 </span></code></pre></div>
+<p>El juego y la red corren como <strong>dos tareas de FreeRTOS (SMP)</strong> que el scheduler
+reparte entre los dos núcleos del RP2040: <code>game_task</code> y <code>network_task</code>. No hay
+afinidad fija de núcleo (equivalen conceptualmente al antiguo Core 0/Core 1 del
+firmware pre-FreeRTOS).</p>
 <h2 id="3-estructura-de-archivos">3. Estructura de archivos</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PicoReflex/
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── CMakeLists.txt            # Build system (Pico SDK)
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── lwipopts.h                # Configuración de lwIP
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── pico_sdk_import.cmake     # Import del SDK (VS Code extension)
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── include/
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── pin_defs.hpp          # Mapa de pines
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── config.hpp            # Config/estadísticas + estado compartido (API)
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── game_logic.hpp        # Motor del juego + PRNG
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   ├── audio.hpp             # Buzzer PWM
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ├── display_driver.hpp    # OLED SSD1306
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   ├── battery_monitor.hpp   # ADC batería
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── flash_storage.hpp     # Persistencia en Flash
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── web_server.hpp        # Servidor HTTP + Wi-Fi (backend)
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── web_ui.hpp            # Frontend: generación de las páginas HTML
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   ├── captive_portal.hpp    # Servidor DNS (captive portal, modo AP)
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   ├── dhcpserver.h          # Servidor DHCP del AP (MicroPython/pico-examples)
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   └── font5x7.hpp           # Fuente 5x7 (generada por tools/gen_font.py)
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>├── src/
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── main.cpp              # Arranque de ambos núcleos
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   ├── shared_state.cpp      # critical_section + queues
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   ├── game_logic.cpp        # Motor (Core 0)
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   ├── audio.cpp
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── display_driver.cpp
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── battery_monitor.cpp
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   ├── flash_storage.cpp
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│   ├── web_server.cpp        # HTTP + Wi-Fi + display (backend, Core 1)
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   ├── web_ui.cpp            # HTML de las páginas (frontend)
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│   ├── captive_portal.cpp    # DNS 53 -&gt; 192.168.4.1 (captive portal)
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>│   └── dhcpserver.c          # DHCP del AP: IPs 192.168.4.16..23
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>├── tools/
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>│   └── gen_font.py           # Generador de la fuente 5x7
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>└── docs/
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    ├── DUDAS.md
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    ├── DECISIONES.md
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    ├── ARQUITECTURA.md
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    └── INFORME.md
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── CMakeLists.txt               # Build (Pico SDK 2.3.0, PICO_BOARD=pico_w)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── lwipopts.h                   # lwIP: NO_SYS=0, LWIP_MDNS_RESPONDER, LWIP_IGMP
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── FreeRTOS_Kernel_import.cmake # Integración FreeRTOS SMP
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── ws2812.pio                   # PIO: tira NeoPixel (GPIO28)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── button_debounce.pio          # PIO: debounce por hardware (una SM por botón)
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├── linker/
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   └── pico_flash_region.ld     # Mapa de Flash para OTA A/B (bootloader+app+staging)
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── include/
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ├── pin_defs.hpp             # Mapa de pines (ver docs/Idea.md §4)
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   ├── config.hpp               # Config/estadísticas + API de estado compartido
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── game_logic.hpp           # Motor del juego + PRNG (xorshift)
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── audio.hpp                # Buzzer PWM
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── display_driver.hpp       # OLED SSD1306/SH1106 (I2C1)
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   ├── battery_monitor.hpp      # ADC batería + calibración (BatteryCalibration)
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   ├── flash_storage.hpp        # Persistencia en Flash + metadatos OTA
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   ├── web_server.hpp           # Servidor HTTP + Wi-Fi (network_task)
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   ├── captive_portal.hpp       # DNS 53 → 192.168.4.1 (modo AP)
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── led_driver.hpp           # LEDs GPIO o WS2812 (PIO)
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   ├── ota.h                    # Metadatos OTA (CRC32, slots A/B)
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   └── font5x7.hpp              # Fuente 5x7 (generada por tools/gen_font.py)
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── src/
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── main.cpp                 # Arranque FreeRTOS + watchdog + lanzar tareas
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── shared_state.cpp         # critical_section + queue (estado compartido)
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   ├── game_logic.cpp           # Motor del juego (game_task)
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│   ├── audio.cpp                # Buzzer
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   ├── display_driver.cpp       # OLED SSD1306/SH1106
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│   ├── battery_monitor.cpp      # ADC + curva de descarga
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>│   ├── flash_storage.cpp        # Flash (récords, config, OTA, clave AP)
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>│   ├── web_server.cpp           # HTTP + Wi-Fi + display + mDNS + OTA (network_task)
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>│   ├── web_ui.cpp               # Frontend HTML/CSS embebido
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>│   ├── captive_portal.cpp       # DNS captive portal
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>│   ├── dhcpserver.c             # DHCP del AP
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>│   ├── led_driver.cpp           # GPIO o WS2812 (PIO)
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>│   ├── ota.c                    # CRC32 + metadatos (compartido con bootloader)
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>│   └── bootloader.c             # Bootloader de segundo nivel (OTA A/B)
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>└── docs/                        # Documentación técnica (este sitio la refleja)
 </span></code></pre></div>
-<h2 id="4-flujo-del-juego-core-0">4. Flujo del juego (Core 0)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>        +--------+
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        | IDLE   |&lt;-----------------------------------------+
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        +---+----+                                          |
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            | 2 botones simultáneos / START_ROUND (web)      |
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>            v                                               |
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   +-------------------+  cuenta regresiva (start_delay_s)  |
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>   | CUENTA REGRESIVA  |  beeps "3-2-1"                     |
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   +---------+---------+                                    |
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>             v                                              |
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   +----------------+  presenta LED + t0=time_us_32()       |
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   | ROUND (activa) |----------------------------------+    |
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   +----------------+                                  |    |
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        |            espera pulsación o timeout        |    |
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        v                                             v    |
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>   +------------------------------+                   |    |
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>   | evalúa resultado             |                   |    |
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>   | hit / miss / timeout         |                   |    |
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>   +-------------+----------------+                   |    |
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>                 | stats_record + audio + flash       |    |
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>                 |                                    |    |
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>                 |   (SUDDEN_DEATH y fallo)           |    |
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>                 |   (TIMED y fin de tiempo)          +----+
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>                 |   (STOP_ROUND)
-</span></code></pre></div>
-<p>La medición de reacción usa la IRQ GPIO + <code>time_us_32()</code> (µs); el DMA mantiene
-un <em>trace</em> hardware de los estados de los botones (ver DECISIONES.md §4–§5). El
-inicio requiere <strong>dos botones simultáneos</strong> y pasa por una <strong>cuenta regresiva</strong>
-configurable (<code>start_delay_s</code>, ver DECISIONES.md §16).</p>
-<h2 id="5-flujo-de-red-core-1">5. Flujo de red (Core 1)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cyw43_arch_init()
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>      |
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>      +-- cyw43_arch_enable_sta_mode()
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>      |     cyw43_arch_wifi_connect_timeout_ms(10 s)
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      |
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>      +-- ¿conectado?
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>            |-- SÍ -&gt; STA (LED fijo) + DHCP -&gt; IP
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            |-- NO -&gt; disable_sta + enable_ap_mode("PicoW-ReactionGame", WPA2)
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            |         IP 192.168.4.1 (canal 1, LED parpadea)
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>            |         captive::init()  -&gt; DNS puerto 53 -&gt; 192.168.4.1
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>            |         ap_dhcp_start()  -&gt; DHCP IPs 192.168.4.16..23
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>      |
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>      v
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>http_server_init()  (lwIP raw API, puerto 80)
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>      |
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>      v
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>bucle: refresca display + muestrea batería (~1 Hz)
-</span></code></pre></div>
-<p>Rutas HTTP:</p>
-<table>
-<thead>
-<tr>
-<th>Ruta</th>
-<th>Efecto</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GET /</code></td>
-<td>Home: red, batería, stats y tabla de tiempos</td>
-</tr>
-<tr>
-<td><code>GET /seed?seed=..</code></td>
-<td>Semilla del PRNG</td>
-</tr>
-<tr>
-<td><code>GET /game?difficulty=..&amp;mode=..&amp;smin=..&amp;smax=..&amp;round=..&amp;delay=..</code></td>
-<td>Dificultad/modo/velocidad/ronda/cuenta regresiva</td>
-</tr>
-<tr>
-<td><code>GET /display?oled=..</code></td>
-<td>Habilita/deshabilita el OLED</td>
-</tr>
-<tr>
-<td><code>GET /wifi?ssid=..&amp;pass=..</code></td>
-<td>Credenciales Wi-Fi (persistidas + reconexión, "Mostrar contraseña")</td>
-</tr>
-<tr>
-<td><code>GET /start</code></td>
-<td><code>control_send(START_ROUND)</code> (con cuenta regresiva)</td>
-</tr>
-<tr>
-<td><code>GET /stop</code></td>
-<td><code>control_send(STOP_ROUND)</code></td>
-</tr>
-<tr>
-<td><code>GET /reset</code></td>
-<td><code>control_send(RESET_STATS)</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>Eliminada <code>GET /player</code> (v0.4.0). La ruta <code>GET /scan</code> quedó reservada/interna
-(sin uso visible; ver <code>docs/API.md</code>).</p>
-<p>Ver <code>docs/API.md</code> para el detalle de parámetros y rangos.</p>
-</blockquote>
-<h2 id="6-sincronizacion-inter-nucleo">6. Sincronización inter-núcleo</h2>
+<h2 id="4-flujo-del-juego-game_task">4. Flujo del juego (<code>game_task</code>)</h2>
+<ol>
+<li><code>game_logic_init()</code> prepara el PRNG (semilla determinista si <code>seed != 0</code>).</li>
+<li>Bucle de <code>game_logic_run()</code>:</li>
+<li>Procesa eventos de control (<code>START_ROUND</code>, <code>STOP_ROUND</code>, <code>CONFIG_CHANGED</code>…).</li>
+<li>Enciende un LED al azar y mide el tiempo de reacción (microsegundos).</li>
+<li>Registra el resultado en <code>stats_record()</code> (historial de 20 reacciones).</li>
+<li>Alimenta el watchdog (<code>watchdog_update()</code>).</li>
+<li>Los pulsadores se leen por <strong>PIO</strong> (<code>button_debounce.pio</code>): cada botón tiene
+   una máquina de estados que notifica al CPU por IRQ sin latencia de rebote.</li>
+</ol>
+<h2 id="5-flujo-de-red-network_task">5. Flujo de red (<code>network_task</code>)</h2>
+<ol>
+<li><code>web::init()</code> ejecuta <code>cyw43_arch_init()</code> (modo <code>sys_freertos</code>, <code>NO_SYS=0</code>)
+   y arranca el display, la batería y lwIP.</li>
+<li><code>web::run()</code>:</li>
+<li>Modo <strong>STA</strong>: conecta a la red configurada; si cae el enlace,
+     <code>sta_link_watchdog()</code> reintenta y, tras agotar los reintentos, pasa a <strong>AP</strong>.</li>
+<li>Modo <strong>AP</strong>: levanta SoftAP WPA2 + DHCP (<code>dhcpserver.c</code>) + DNS captive
+     portal (<code>captive_portal.cpp</code>) + mDNS.</li>
+<li>En STA anuncia <code>picoreflex.local</code> por <strong>mDNS</strong> (lwIP <code>mdns</code>).</li>
+<li>Sirve el panel web (HTTP :80) con autenticación <strong>PIN</strong> y <strong>rate-limiting</strong>.</li>
+<li>Recibe <code>POST /ota/upload</code> y graba la imagen candidata en el slot de staging.</li>
+</ol>
+<h2 id="6-sincronizacion-inter-tarea">6. Sincronización inter-tarea</h2>
 <ul>
-<li><code>critical_section_t</code> (<code>pico/sync.h</code>): protege <code>GameConfig</code>, <code>GameStats</code> y
-  <code>SystemStatus</code>. Accesos muy cortos (copiar/guardar struct).</li>
-<li><code>queue_t</code> (<code>pico/util/queue.h</code>): cola de eventos de control Core1→Core0
-  (<code>START_ROUND</code>, <code>STOP_ROUND</code>, <code>RESET_STATS</code>).</li>
-<li><code>volatile bool g_round_active</code>: flag de estado de ronda (Core 0 escribe,
-  Core 1 lee para el display).</li>
+<li><code>shared_state.cpp</code> protege <code>GameConfig</code>/<code>GameStats</code>/<code>SystemStatus</code> con un
+  <code>critical_section_t</code> (accesos muy cortos).</li>
+<li>Los eventos de control viajan de <code>network_task</code> a <code>game_task</code> por una
+  <code>queue_t</code> (<code>pico/util/queue.h</code>).</li>
+<li>Flags <code>volatile bool</code> para el protocolo de dormancia (<code>g_sleep_request</code>,
+  <code>g_sleep_ready</code>) y la persistencia (<code>g_persist_done</code>).</li>
 </ul>
 <h2 id="7-esquema-de-hardware-resumen">7. Esquema de hardware (resumen)</h2>
 <table>
@@ -6578,17 +6527,17 @@ configurable (<code>start_delay_s</code>, ver DECISIONES.md §16).</p>
 <tr>
 <td>LED 0..4</td>
 <td>2..6</td>
-<td>Ánodo por GPIO (con resistencia ~220–470 Ω)</td>
+<td>Ánodo por GPIO con resistencia ~220–470 Ω</td>
 </tr>
 <tr>
 <td>Botón 0..4</td>
 <td>7..11</td>
-<td>Pull-up interno, cierra a GND al pulsar</td>
+<td>Pull-up interno, debounce por PIO</td>
 </tr>
 <tr>
-<td>SSD1306 SDA/SCL</td>
-<td>14/15</td>
-<td>I2C1, 400 kHz, dirección 0x3C</td>
+<td>OLED SDA / SCL</td>
+<td>14 / 15</td>
+<td>I2C1 400 kHz, 0x3C/0x3D (SSD1306 0.96" / SH1106 1.3")</td>
 </tr>
 <tr>
 <td>Buzzer pasivo</td>
@@ -6598,52 +6547,45 @@ configurable (<code>start_delay_s</code>, ver DECISIONES.md §16).</p>
 <tr>
 <td>Batería</td>
 <td>26 (ADC0)</td>
-<td>Divisor externo 10 kΩ/22 kΩ</td>
+<td>Divisor externo 10 k / 22 k (no VSYS/3)</td>
 </tr>
 <tr>
 <td>LED onboard</td>
 <td>CYW43</td>
-<td>Estado de red (fijo=STA, blink=AP)</td>
+<td>Estado de red (fijo = STA, parpadeo = AP)</td>
+</tr>
+<tr>
+<td>NeoPixel (opcional)</td>
+<td>28</td>
+<td><code>PICOREFLEX_WS2812=1</code> (PIO)</td>
 </tr>
 </tbody>
 </table>
+<p>El <strong>display OLED</strong> soporta dos controladores, ambos 128×64 por I2C1 en
+<code>0x3C</code>/<code>0x3D</code>: <strong>SSD1306</strong> (0.96") y <strong>SH1106</strong> (1.3"). El controlador se
+selecciona en runtime desde <code>/display</code> (<code>?controller=0|1</code>) y se <strong>persiste en
+Flash</strong>; la macro <code>PICOREFLEX_DISPLAY_CONTROLLER</code> solo fija el valor por defecto.</p>
 <blockquote>
-<p>La batería se mide con un divisor externo en GPIO26; ver DECISIONES.md §9.</p>
+<p><strong>Referencia:</strong> <a href="https://pip-assets.raspberrypi.com/categories/686-raspberry-pi-pico-w/documents/RP-008315-DS-1-PicoW-A4-Pinout.pdf">Pinout oficial Raspberry Pi Pico W (A4, RP-008315-DS-1)</a></p>
 </blockquote>
 <h2 id="8-estimacion-de-consumo">8. Estimación de consumo</h2>
-<table>
-<thead>
-<tr>
-<th>Estado</th>
-<th>Consumo estimado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Wi-Fi activo (STA/AP) + CPU dual-core (125 MHz)</td>
-<td>~70–90 mA</td>
-</tr>
-<tr>
-<td>5 LEDs + OLED + buzzer (promedio)</td>
-<td>~20–35 mA</td>
-</tr>
-<tr>
-<td><strong>Total en juego</strong></td>
-<td>~100–120 mA</td>
-</tr>
-<tr>
-<td><strong>Dormant (sueño profundo)</strong></td>
-<td><strong>&lt; 1.5 mA</strong></td>
-</tr>
-</tbody>
-</table>
 <ul>
-<li>Autonomía con LiPo 1S de 1800 mAh (descarga útil 85%): ~13.9 h
-  (<code>1800 mAh · 0.85 / 110 mA</code>).</li>
-<li>El modo <em>idle</em> implementa <strong>DORMANT</strong> (no <em>sleep</em>): apaga el Wi-Fi y entra en
-  <code>low_power_dormant_until_gpio_pin_state(DORMANT_CLOCK_SOURCE_ROSC)</code>, con
-  consumo &lt; 1.5 mA (ver DECISIONES.md §13).</li>
+<li><strong>Activo (STA + juego):</strong> el Wi-Fi domina el consumo (~60–90 mA con la radio
+  encendida); el OLED y los LEDs suman unos pocos mA.</li>
+<li><strong>Dormancia (configurable):</strong> tras <code>idle_sleep_min</code> minutos de inactividad
+  (1..60, por defecto 3) y con el Wi-Fi apagado, <code>game_task</code> pide dormir,
+  <code>network_task</code> apaga el Wi-Fi (<code>cyw43_arch_deinit</code>) y el RP2040 entra en modo
+  <strong>DORMANT</strong> (&lt; 2 mA). Un pulsador lo despierta. Configurable desde <code>/display</code>
+  (Habilitar/Deshabilitar + minutos); <code>sleep_enabled=false</code> desactiva el sueño.</li>
+<li><strong>Batería:</strong> la lectura del ADC se convierte a % con una <strong>curva de descarga
+  calibrable</strong> (3 puntos + compensación de carga), editable desde <code>/battery</code>.</li>
 </ul>
+<h2 id="9-actualizacion-ota-ab">9. Actualización OTA (A/B)</h2>
+<p>El mapa de Flash reserva un <strong>bootloader de segundo nivel</strong> en <code>0x10000000</code>, el
+<strong>slot de aplicación</strong> en <code>0x10010000</code> (896 KB) y un <strong>slot de staging</strong> en
+<code>0x100F0000</code>. <code>POST /ota/upload</code> recibe el binario (CRC32 verificado), lo graba
+en staging y el commit cambia el puntero de arranque; si el arranque falla, hay
+<strong>rollback</strong> automático a la imagen anterior. Ver <code>Compilacion.md</code>.</p>
 
 
 
@@ -6820,10 +6762,10 @@ configurable (<code>start_delay_s</code>, ver DECISIONES.md §16).</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../../javascripts/extra.js"></script>
       

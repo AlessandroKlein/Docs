@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,10 +37,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -6164,10 +6164,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-medicion-de-bateria-resuelto-divisor-externo" class="md-nav__link">
+  <a href="#1-medicion-de-bateria-vsys-y-conflicto-con-el-wi-fi-gpio29-adc3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Medición de batería — ✅ RESUELTO (divisor externo)
+        1. Medición de batería (VSYS) y conflicto con el Wi-Fi (GPIO29 / ADC3)
       
     </span>
   </a>
@@ -6230,10 +6230,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-credenciales-wi-fi-resuelto-web-flash" class="md-nav__link">
+  <a href="#7-credenciales-wi-fi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Credenciales Wi-Fi — ✅ RESUELTO (web + Flash)
+        7. Credenciales Wi-Fi
       
     </span>
   </a>
@@ -6398,18 +6398,27 @@ Se actualiza a medida que se resuelven o se confirman con la cátedra / datashee
 <p><strong>Estado tras la revisión de cátedra:</strong> los puntos §1, §2, §4, §5, §6 y §8 quedan
 validados; §3 (DORMANT) y §4 (escáner I2C) fueron implementados en el código.
 Ver <code>git log</code> para el historial.</p>
+<p>⚠️ <strong>Nota (v0.7.0):</strong> el punto §1 (batería por VSYS/3, GPIO29) quedó obsoleto:
+desde v0.4.6 la batería se mide por <strong>ADC0 (GPIO26)</strong> con divisor externo
+10 k/22 k. Ver <code>Arquitectura.md</code>.</p>
 </blockquote>
 <hr />
-<h2 id="1-medicion-de-bateria-resuelto-divisor-externo">1. Medición de batería — ✅ RESUELTO (divisor externo)</h2>
+<h2 id="1-medicion-de-bateria-vsys-y-conflicto-con-el-wi-fi-gpio29-adc3">1. Medición de batería (VSYS) y conflicto con el Wi-Fi (GPIO29 / ADC3)</h2>
 <ul>
-<li><strong>Duda inicial:</strong> en la Pico W, <code>GPIO29</code> (ADC3) mide <code>VSYS/3</code> (divisor interno
-  3:1) y además es el reloj SPI (<code>WL_CLK</code>) del CYW43439, por lo que había conflicto.</li>
-<li><strong>Resolución final:</strong> se descartó GPIO29 y se usa un <strong>divisor resistivo externo</strong>
-  en <strong>GPIO26 (ADC0)</strong> — libre en la Pico W — con <code>R1 = 10 kΩ</code> (batería → pin ADC)
-  y <code>R2 = 22 kΩ</code> (pin ADC → GND). Conversión: <code>Vbat = Vpin · (R1+R2)/R2 = Vpin · 32/22</code>.
-  Sin conflicto con el Wi-Fi y sin necesidad del lock del CYW43.</li>
-<li><strong>Verificación en hardware pendiente:</strong> confirmar el pin exacto y calibrar el
-  porcentaje con una medición real.</li>
+<li><strong>Duda:</strong> En la Raspberry Pi Pico W, el pin <code>GPIO29</code> (ADC3) se usa <strong>tanto</strong> para
+  medir <code>VSYS/3</code> (divisor resistivo interno 3:1) <strong>como</strong> para el reloj SPI
+  (<code>WL_CLK</code>) del chip inalámbrico CYW43439.</li>
+<li><strong>Resolución (confirmada en el SDK):</strong> El header de la placa
+  <a href="https://github.com/raspberrypi/pico-sdk/blob/master/src/boards/include/boards/pico_w.h"><code>boards/pico_w.h</code></a>
+  define <code>CYW43_USES_VSYS_PIN 1</code> y <code>PICO_VSYS_PIN 29</code>, y el propio comentario indica que,
+  para usar el GPIO de VSYS, hay que <strong>garantizar que el CYW43 no lo esté usando</strong>,
+  envolviendo la lectura entre <code>cyw43_thread_enter()</code> / <code>cyw43_thread_exit()</code>
+  (equivalentes a <code>cyw43_arch_lwip_begin()</code> / <code>cyw43_arch_lwip_end()</code>).</li>
+<li><strong>Impacto en el código:</strong> la lectura del ADC de batería se hace con esa protección,
+  y se documenta como decisión (ver <code>battery_monitor.cpp</code>).</li>
+<li><strong>Pendiente de confirmación con la cátedra:</strong> si la lectura del ADC debe hacerse
+  con el Wi-Fi en pausa (bloqueando brevemente la radio) o si se acepta un muestreo
+  con la radio inactiva.</li>
 </ul>
 <h2 id="2-motor-prng-determinista-semilla-fija">2. Motor PRNG determinista (semilla fija)</h2>
 <ul>
@@ -6436,9 +6445,6 @@ Ver <code>git log</code> para el historial.</p>
      <code>low_power_dormant_until_gpio_pin_state(DORMANT_CLOCK_SOURCE_ROSC)</code>.</li>
 <li>Al despertar, el SDK restaura los relojes; Core 1 re-inicializa con
      <code>cyw43_arch_init()</code>.</li>
-<li><strong>Actualización (v0.3.2):</strong> el DORMANT <strong>solo se activa si no hay red activa</strong>
-  (ni STA ni AP). Si el Wi-Fi está activo, el dispositivo permanece despierto para
-  no dejar la web inaccesible.</li>
 <li><strong>Pendiente de verificación en hardware:</strong> ciclo <code>cyw43_arch_deinit()</code> →
   dormant → <code>cyw43_arch_init()</code> con el modo <em>threadsafe background</em>, y confirmar
   el consumo real (&lt; 1.5 mA) con un multímetro.</li>
@@ -6472,14 +6478,12 @@ Ver <code>git log</code> para el historial.</p>
   <code>0x1FF000</code>, alineado a 4096). Se documenta cómo adaptarlo al tamaño real de Flash.</li>
 <li><strong>Pendiente:</strong> confirmar el tamaño de Flash de la placa del alumno (2 MB estándar).</li>
 </ul>
-<h2 id="7-credenciales-wi-fi-resuelto-web-flash">7. Credenciales Wi-Fi — ✅ RESUELTO (web + Flash)</h2>
+<h2 id="7-credenciales-wi-fi">7. Credenciales Wi-Fi</h2>
 <ul>
 <li><strong>Duda:</strong> ¿Cómo se configuran SSID/password de la red STA si el dispositivo es móvil?</li>
-<li><strong>Resolución:</strong> desde la web, en <code>/wifi</code> (SSID + contraseña + "Mostrar contraseña"),
-  se <strong>persisten en Flash</strong> y el dispositivo <strong>se re-conecta solo</strong> (sin recompilar).
-  El AP de respaldo (<code>PicoW-ReactionGame</code>, WPA2 <code>12345678</code>, IP <code>192.168.4.1</code>, con
-  <strong>DHCP propio</strong>) permite configurarlo sin recompilar. Nota: en v0.4.3 se corrigió
-  que <code>url_decode</code> cortara en <code>&amp;</code> (antes corrompía el SSID dejando <code>ssid&amp;pass=...</code>).</li>
+<li><strong>Resolución:</strong> valores por defecto en <code>config.hpp</code> (<code>WIFI_SSID</code> / <code>WIFI_PASSWORD</code>),
+  configurables en tiempo de compilación y (a futuro) vía web. El modo AP de respaldo
+  (<code>PicoW-ReactionGame</code>, IP <code>192.168.4.1</code>) permite configurarlo sin recompilar.</li>
 </ul>
 <h2 id="8-autonomia-consumo-validado">8. Autonomía / consumo — ✅ VALIDADO</h2>
 <ul>
@@ -6694,10 +6698,10 @@ Ver <code>git log</code> para el historial.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
       

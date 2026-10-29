@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,10 +37,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5973,6 +5973,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#opciones-de-compilacion-macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opciones de compilación (macros)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#flashear" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5980,6 +5991,45 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizacion-por-aire-ota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actualización por aire (OTA)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualización por aire (OTA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapa-de-la-flash-2-mb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapa de la Flash (2 MB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de actualización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6493,6 +6543,9 @@
   (instala automáticamente el SDK, el toolchain <code>arm-none-eabi-gcc</code>, CMake, Ninja
   y <code>picotool</code> en <code>~/.pico-sdk</code>).</li>
 <li>Una Raspberry Pi <strong>Pico W</strong>.</li>
+<li><strong>Placa y toolchain:</strong> <code>PICO_BOARD=pico_w</code> (fijado en <code>CMakeLists.txt</code>) con el
+  toolchain oficial <code>arm-none-eabi-gcc</code> del <strong>Pico SDK 2.3.0</strong> (C/C++). No se usa
+  Arduino ni MicroPython.</li>
 <li><strong>FreeRTOS-Kernel</strong> (obligatorio desde v0.5.0): el proyecto usa FreeRTOS SMP,
   que no viene incluido en el SDK. Clonarlo una vez:</li>
 </ul>
@@ -6510,7 +6563,9 @@
    no hace falta recompilar.</li>
 </ol>
 <p>Si la conexión a la red falla en 10 s, el dispositivo pasa automáticamente a
-modo <strong>Access Point</strong> (<code>PicoW-ReactionGame</code> / <code>12345678</code>, IP <code>192.168.4.1</code>).</p>
+modo <strong>Access Point</strong> (<code>PicoW-ReactionGame</code>, IP <code>192.168.4.1</code>). La clave del AP
+es <strong>fija <code>12345678</code></strong> por defecto (igual para cualquier placa) y se puede cambiar
+desde <code>/wifi</code> (ver "Credenciales del Access Point" más abajo).</p>
 <h2 id="compilar">Compilar</h2>
 <h3 id="opcion-a-visual-studio-code-recomendado">Opción A — Visual Studio Code (recomendado)</h3>
 <ol>
@@ -6526,19 +6581,126 @@ modo <strong>Access Point</strong> (<code>PicoW-ReactionGame</code> / <code>1234
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="n">build</span>
 </span></code></pre></div>
 <blockquote>
-<p><strong>Stack del Core 1 (importante):</strong> el servidor web corre en el Core 1 y necesita
-<strong>4 KB</strong> de stack (<code>PICO_CORE1_STACK_SIZE=0x1000</code>). Ya está definido en
-<code>CMakeLists.txt</code> con <code>add_compile_definitions(PICO_CORE1_STACK_SIZE=0x1000)</code>; el
-valor por defecto del SDK es 2 KB y provocaba <em>hard fault</em> al reconectar/escanear.</p>
+<p><strong>Stack de la tarea de red (importante):</strong> el servidor web corre en la tarea de
+red (<code>network_task</code>) y necesita <strong>4 KB</strong> de stack (<code>PICO_CORE1_STACK_SIZE=0x1000</code>).
+Ya está definido en <code>CMakeLists.txt</code> con
+<code>add_compile_definitions(PICO_CORE1_STACK_SIZE=0x1000)</code>; el valor por defecto
+del SDK es 2 KB y provocaba <em>hard fault</em> al reconectar/escanear.</p>
 </blockquote>
+<h2 id="opciones-de-compilacion-macros">Opciones de compilación (macros)</h2>
+<p>El firmware se compila con el <strong>Pico SDK oficial (C/C++)</strong> y el toolchain
+<code>arm-none-eabi-gcc</code> para la placa <strong>Raspberry Pi Pico W</strong> (<code>PICO_BOARD=pico_w</code>,
+fijado en <code>CMakeLists.txt</code>). Estas macros seleccionan variantes de hardware y
+seguridad (se definen por <code>#ifndef</code> en <code>include/config.hpp</code>, salvo <code>WEB_PIN</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Macro</th>
+<th>Valor por defecto</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PICOREFLEX_WS2812</code></td>
+<td><code>0</code></td>
+<td><code>1</code> = LEDs direccionables WS2812 (NeoPixel) en GPIO28 por PIO; <code>0</code> = 5 LEDs GPIO 2..6</td>
+</tr>
+<tr>
+<td><code>PICOREFLEX_DISPLAY_CONTROLLER</code></td>
+<td><code>0</code></td>
+<td>Solo fija el controlador <strong>por defecto</strong> (<code>0</code> = SSD1306, <code>1</code> = SH1106); se elige en runtime desde <code>/display</code> y se persiste en Flash</td>
+</tr>
+<tr>
+<td><code>WEB_PIN</code></td>
+<td><code>"1234"</code></td>
+<td>PIN de autenticación del panel web (endpoints de control)</td>
+</tr>
+<tr>
+<td><code>WIFI_SSID_DEFAULT</code> / <code>WIFI_PASSWORD_DEFAULT</code></td>
+<td><code>""</code></td>
+<td>Credenciales STA iniciales (editables desde <code>/wifi</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c"># Ejemplo: activar WS2812 y cambiar el PIN</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">cmake</span> <span class="n">-B</span> <span class="n">build</span> <span class="n">-S</span> <span class="p">.</span> <span class="n">-DCMAKE_CXX_FLAGS</span><span class="p">=</span><span class="s2">"-DPICOREFLEX_WS2812=1 -DWEB_PIN=\"</span><span class="n">9876</span><span class="p">\</span><span class="s2">""</span>
+</span></code></pre></div>
 <h2 id="flashear">Flashear</h2>
+<p>La primera vez (o tras un borrado total de la Flash) hay que grabar <strong>dos</strong>
+imágenes: el <strong>bootloader</strong> de segundo nivel y la <strong>aplicación</strong>. A partir de ahí,
+las actualizaciones se hacen <strong>por aire</strong> (ver
+<a href="#actualizacion-por-aire-ota">Actualización por aire (OTA)</a>), sin USB.</p>
 <ol>
 <li>Mantener pulsado <strong>BOOTSEL</strong> y conectar el USB (o reconectar). La Pico aparece
    como unidad de almacenamiento USB (<code>RPI-RP2</code>).</li>
-<li>Copiar <code>build/PicoReflex.uf2</code> a la unidad, o usar:
-   <div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">picotool</span> <span class="n">load</span> <span class="n">build</span><span class="p">/</span><span class="n">PicoReflex</span><span class="p">.</span><span class="n">uf2</span> <span class="o">-f</span>
-</span></code></pre></div></li>
+<li>Grabar el <strong>bootloader</strong> y luego la <strong>aplicación</strong> (en este orden):
+   <div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">picotool</span> <span class="n">load</span> <span class="n">build</span><span class="p">/</span><span class="n">PicoReflex_bootloader</span><span class="p">.</span><span class="n">uf2</span> <span class="o">-f</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">picotool</span> <span class="n">load</span> <span class="n">build</span><span class="p">/</span><span class="n">PicoReflex</span><span class="p">.</span><span class="n">uf2</span> <span class="o">-f</span>
+</span></code></pre></div>
+   (O copiar cada <code>.uf2</code> a la unidad <code>RPI-RP2</code>, reiniciando en BOOTSEL entre uno
+   y otro.)</li>
 </ol>
+<h2 id="actualizacion-por-aire-ota">Actualización por aire (OTA)</h2>
+<p>El firmware se puede actualizar desde la web <strong>sin USB</strong>, con verificación de
+integridad (CRC32) y <em>rollback</em> automático a la imagen anterior si la verificación
+falla.</p>
+<h3 id="mapa-de-la-flash-2-mb">Mapa de la Flash (2 MB)</h3>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Tamaño</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x000000</code></td>
+<td>64 KB</td>
+<td>Bootloader de segundo nivel</td>
+</tr>
+<tr>
+<td><code>0x010000</code></td>
+<td>896 KB</td>
+<td>Slot de aplicación (imagen en ejecución)</td>
+</tr>
+<tr>
+<td><code>0x0F0000</code></td>
+<td>896 KB</td>
+<td>Slot de <em>staging</em> (imagen descargada, aún no conmutada)</td>
+</tr>
+<tr>
+<td><code>0x1E0000</code></td>
+<td>4 KB</td>
+<td>Metadatos OTA (estado de commit + CRC)</td>
+</tr>
+<tr>
+<td><code>0x1FF000</code></td>
+<td>4 KB</td>
+<td>Datos persistentes (récords/ajustes)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flujo-de-actualizacion">Flujo de actualización</h3>
+<ol>
+<li>Abrir la web en la página <strong>OTA</strong> (<code>/ota</code>).</li>
+<li>Seleccionar <code>build/PicoReflex.bin</code> (la imagen de aplicación) y pulsar
+   <strong>Actualizar</strong>. El navegador calcula el CRC32 y lo envía en la cabecera
+   <code>X-CRC32</code>.</li>
+<li>La Pico descarga el binario al slot de <em>staging</em> sector a sector, calculando el
+   CRC32 en caliente. Si el CRC no coincide, <strong>rechaza</strong> la actualización y sigue
+   con la imagen actual.</li>
+<li>Si el CRC coincide, escribe los metadatos de <em>commit</em> y se <strong>reinicia</strong>.</li>
+<li>El bootloader verifica de nuevo el CRC del <em>staging</em> y, si es correcto, lo copia
+   al slot de aplicación y arranca la nueva imagen. Si algo falla, arranca la
+   imagen anterior (<strong>rollback</strong>).</li>
+</ol>
+<blockquote>
+<p>La imagen que se sube es el binario de <strong>aplicación</strong> (<code>build/PicoReflex.bin</code>),
+enlazado en <code>0x10010000</code>. El bootloader no se actualiza por OTA (es estable y
+pequeño); si se modifica, se reflashea por USB.</p>
+</blockquote>
 <h2 id="usar">Usar</h2>
 <h3 id="credenciales-del-access-point-modo-respaldo">Credenciales del Access Point (modo respaldo)</h3>
 <p>Cuando la Pico W no logra conectarse a la red STA, levanta su propio Access Point:</p>
@@ -6556,7 +6718,7 @@ valor por defecto del SDK es 2 KB y provocaba <em>hard fault</em> al reconectar/
 </tr>
 <tr>
 <td><strong>Seguridad</strong></td>
-<td><strong>WPA2</strong> (clave <code>12345678</code>)</td>
+<td><strong>WPA2</strong> (clave por defecto <code>12345678</code>, configurable desde <code>/wifi</code>)</td>
 </tr>
 <tr>
 <td><strong>IP del panel</strong></td>
@@ -6569,9 +6731,12 @@ valor por defecto del SDK es 2 KB y provocaba <em>hard fault</em> al reconectar/
 </tbody>
 </table>
 <blockquote>
-<p>El AP usa <strong>WPA2</strong> con clave <code>12345678</code> y canal fijo 1. El <strong>servidor DHCP
-integrado</strong> (<code>src/dhcpserver.c</code>) asigna IPs <code>192.168.4.16</code>–<code>192.168.4.23</code> a los
-clientes; sin ese DHCP el teléfono se asociaba pero nunca recibía IP.</p>
+<p>El AP usa <strong>WPA2</strong> con canal fijo 1. La clave por defecto es <strong>fija <code>12345678</code></strong>
+(igual para cualquier placa) y se muestra en el display al entrar en modo AP
+(<code>PASS:xxxx</code>); se puede cambiar desde <code>/wifi</code> (8..15 caracteres) y se persiste
+en Flash. El <strong>servidor DHCP integrado</strong>
+(<code>src/dhcpserver.c</code>) asigna IPs <code>192.168.4.16</code>–<code>192.168.4.23</code> a los clientes; sin
+ese DHCP el teléfono se asociaba pero nunca recibía IP.</p>
 </blockquote>
 <ol>
 <li>Conectar a la red <code>PicoW-ReactionGame</code> (si quedó en AP) o a la IP que se
@@ -6610,10 +6775,10 @@ clientes; sin ese DHCP el teléfono se asociaba pero nunca recibía IP.</p>
 puerto serie (por ejemplo, PuTTY / <code>minicom</code>) a 115200 baud. Ver el estado de red
 y las credenciales del AP en tiempo real.</p>
 <h2 id="regenerar-la-fuente-5x7-opcional">Regenerar la fuente 5x7 (opcional)</h2>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">python</span> <span class="n">tools</span><span class="p">\</span><span class="n">gen_font</span><span class="p">.</span><span class="n">py</span>   <span class="c"># regenera include/font5x7.hpp</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">python</span> <span class="n">tools</span><span class="p">\</span><span class="n">gen_font</span><span class="p">.</span><span class="n">py</span>   <span class="c"># regenera include/font5x7.hpp</span>
 </span></code></pre></div>
 <h3 id="que-es-la-fuente-5x7">¿Qué es la fuente 5x7?</h3>
-<p>Es la <strong>tipografía de mapa de bits</strong> que usa el display OLED (SSD1306) para
+<p>Es la <strong>tipografía de mapa de bits</strong> que usa el display OLED (SSD1306/SH1106) para
 dibujar texto. Cada carácter ocupa una celda de <strong>5 columnas × 7 filas</strong> de
 píxeles. Es la fuente clásica de los OLED monocromos: compacta, legible y fácil
 de almacenar.</p>
@@ -6622,8 +6787,8 @@ de almacenar.</p>
 <code>tools/gen_font.py</code> (cada carácter son 7 líneas de 5 caracteres, <code>#</code> = píxel
 encendido). El firmware <strong>no entiende ASCII-art</strong>: necesita un array de bytes.
 El script traduce ese dibujo a un array C++ (<code>include/font5x7.hpp</code>):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>'0': [".###.", "#...#", "#..##", "#.#.#", "##..#", "#...#", ".###."]
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  → {0x0E, 0x11, 0x13, 0x15, 0x19, 0x11, 0x0E}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>'0': [".###.", "#...#", "#..##", "#.#.#", "##..#", "#...#", ".###."]
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  → {0x0E, 0x11, 0x13, 0x15, 0x19, 0x11, 0x0E}
 </span></code></pre></div>
 <p>Solo hay que ejecutar el script <strong>si se modifica un glifo o se agrega un carácter
 nuevo</strong> (por ejemplo, un símbolo que falte). El archivo <code>font5x7.hpp</code> está marcado
@@ -6820,10 +6985,10 @@ como "NO EDITAR A MANO": cualquier cambio se hace en <code>gen_font.py</code> y 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../../javascripts/extra.js"></script>
       

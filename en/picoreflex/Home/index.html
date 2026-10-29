@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,10 +37,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -6374,41 +6374,52 @@
 
 <h1 id="picoreflex-juego-de-reaccion-rapida-avanzado">PicoReflex — Juego de Reacción Rápida Avanzado</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía (portada) | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-20 | <strong>Firmware:</strong> v0.5.1
-<strong>Hardware:</strong> Raspberry Pi Pico W (RP2040 + CYW43439) · <strong>Plataforma:</strong> Pico C/C++ SDK 2.3.0 · <strong>RTOS:</strong> FreeRTOS (SMP)</p>
+<p><strong>Tipo:</strong> Guía (portada) | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-29 | <strong>Firmware:</strong> v0.9.5
+<strong>Hardware:</strong> Raspberry Pi Pico W (RP2040 + CYW43439) · <strong>Plataforma:</strong> Pico SDK (oficial) 2.3.0 — C/C++</p>
 </blockquote>
 <h2 id="1-resumen-ejecutivo">1. Resumen ejecutivo</h2>
-<p><strong>PicoReflex</strong> es un <strong>dispositivo de entrenamiento de reflejos</strong> basado en la
-Raspberry Pi Pico W. El usuario debe presionar el botón que corresponde al LED
-encendido en el menor tiempo posible. Combina medición de reacción en
+<p><strong>PicoReflex</strong> es un <strong>dispositivo de entrenamiento de reflejos</strong> sobre la
+<strong>Raspberry Pi Pico W</strong>, programado en <strong>C/C++ con el Pico SDK oficial</strong> (no
+Arduino ni MicroPython). El usuario debe presionar el botón que corresponde al
+LED encendido en el menor tiempo posible. Combina medición de reacción en
 microsegundos, control por semilla determinista, un servidor web embebido de
-configuración, medición de batería y conectividad Wi-Fi redundante.</p>
+configuración, medición de batería, conectividad Wi-Fi redundante y actualización
+por aire (OTA).</p>
 <ul>
-<li><strong>5 LEDs + 5 pulsadores</strong> con temporización de reacción en µs (IRQ GPIO +
-  <code>time_us_32</code>).</li>
+<li><strong>5 LEDs + 5 pulsadores</strong> con temporización de reacción en µs y <strong>debounce por
+  PIO</strong> (una state machine por botón).</li>
 <li><strong>PRNG determinista por semilla</strong> (<code>xorshift32</code>) para competencias repetibles,
-  o modo aleatorio con <code>pico_rand</code>.</li>
+  o modo aleatorio con <code>pico_rand</code>. Modos: libre, contrarreloj, muerte súbita y
+  <strong>Simón Dice</strong>.</li>
+<li><strong>FreeRTOS (SMP, 2 núcleos)</strong>: <code>game_task</code> (juego) + <code>network_task</code> (red/display).</li>
 <li><strong>Servidor web embebido</strong> (lwIP) con <strong>Station (STA)</strong> y respaldo <strong>SoftAP</strong>
-  (<code>PicoW-ReactionGame</code>, WPA2 <code>12345678</code>, <code>192.168.4.1</code>) + <strong>captive portal</strong> (DNS)</li>
-<li><strong>servidor DHCP</strong> (asigna <code>192.168.4.16</code>–<code>192.168.4.23</code>).</li>
-<li><strong>Medición de batería</strong> por ADC0 (GPIO26) con divisor externo 10 kΩ/22 kΩ,
-  porcentaje y alerta de batería baja.</li>
-<li><strong>Doble núcleo</strong>: Core 0 (juego/IRQ/DMA/PWM/Flash) y Core 1 (red/display).</li>
-<li><strong>Modo DORMANT</strong> (&lt; 2 mA, solo sin red activa) y <strong>almacenamiento no volátil</strong>
-  de récords/ranking/credenciales en Flash.</li>
+  (<code>PicoW-ReactionGame</code>, <code>192.168.4.1</code>) + <strong>captive portal</strong> (DNS) + <strong>mDNS</strong>
+  (<code>picoreflex.local</code> en STA).</li>
+<li><strong>Autenticación por PIN</strong> y <strong>rate-limiting</strong> en los endpoints de control; clave
+  del AP <strong><code>12345678</code> por defecto</strong> (editable desde <code>/wifi</code>, persistida en Flash).</li>
+<li><strong>Medición de batería</strong> por ADC (GPIO26/ADC0, divisor externo 10 k/22 k) con
+  curva de descarga <strong>calibrable</strong>.</li>
+<li><strong>OTA A/B</strong> con bootloader de segundo nivel y <em>rollback</em> automático.</li>
+<li><strong>Watchdog hardware</strong> (reinicio automático ante cuelgues), <strong>modo DORMANT
+  configurable</strong> (&lt; 2 mA, desde <code>/display</code>) y <strong>almacenamiento no volátil</strong> en Flash.</li>
+<li><strong>Configuración de juego persistente</strong> (v0.9.5): modo, dificultad, semilla y
+  tiempos de estímulo se guardan en Flash y se restauran al arrancar; la ronda
+  arranca con <strong>cualquier botón</strong>.</li>
 </ul>
 <h2 id="2-que-es">2. ¿Qué es?</h2>
 <p>Es el trabajo práctico final de <strong>Microprocesadores</strong> (UNL — Tecnicatura en
 Automatización y Robótica). Implementa en C++ una aplicación completa sobre el
-RP2040: GPIO, interrupciones, temporizadores, DMA, PWM, I2C, ADC, Flash,
-multinúcleo, Wi-Fi y pila TCP/IP.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>LEDs (2..6) · Pulsadores (7..11) · Buzzer (16, PWM) · SSD1306 (14/15, I2C1)
+RP2040 con el <strong>Pico SDK oficial 2.3.0</strong> (C/C++, toolchain <code>arm-none-eabi</code>):
+GPIO, interrupciones, PIO, temporizadores, DMA, PWM, I2C, ADC, Flash, FreeRTOS
+SMP, Wi-Fi y pila TCP/IP.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>LEDs (2..6) · Pulsadores (7..11, debounce PIO) · Buzzer (16, PWM) · SSD1306/SH1106 (14/15, I2C1)
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>          │
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>          ▼
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   PicoReflex — Core 0 (juego)  ⇄ estado compartido ⇄  Core 1 (red + display)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   PicoReflex — game_task (juego)  ⇄ estado compartido ⇄  network_task (red + display)
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>          │                                                 │
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>          ├── ADC0 (GPIO26) → divisor 10k/22k (batería)     ├── cyw43_arch + lwIP
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          └── Flash (récords/ranking/semilla/Wi-Fi)         └── HTTP + DNS + DHCP (AP)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>          ├── ADC0 (GPIO26) → divisor 10k/22k (batería)     ├── cyw43_arch + lwIP (sys_freertos)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          ├── Watchdog hardware                             ├── HTTP + DNS captive portal + mDNS
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          └── Flash (récords/config + OTA A/B)              └── OTA (bootloader A/B + staging)
 </span></code></pre></div>
 <h2 id="3-guias-del-proyecto">3. Guías del proyecto</h2>
 <table>
@@ -6422,10 +6433,6 @@ multinúcleo, Wi-Fi y pila TCP/IP.</p>
 <tr>
 <td><a href="../Compilacion/">Compilación y flasheo</a></td>
 <td>Cómo compilar, flashear y usar</td>
-</tr>
-<tr>
-<td><a href="../Esquematico/">Esquemático y diagrama circuital</a></td>
-<td>Conexiones, pines, componentes y cálculos</td>
 </tr>
 <tr>
 <td><a href="../Arquitectura/">Arquitectura</a></td>
@@ -6448,10 +6455,6 @@ multinúcleo, Wi-Fi y pila TCP/IP.</p>
 <td>Auditoría de seguridad y hardening</td>
 </tr>
 <tr>
-<td><a href="../Freertos/">FreeRTOS</a></td>
-<td>Integración de FreeRTOS (SMP) y su análisis</td>
-</tr>
-<tr>
 <td><a href="../Mejoras-y-roadmap/">Mejoras y roadmap</a></td>
 <td>Hoja de ruta de versiones futuras</td>
 </tr>
@@ -6462,10 +6465,6 @@ multinúcleo, Wi-Fi y pila TCP/IP.</p>
 <tr>
 <td><a href="../CHANGELOG/">CHANGELOG</a></td>
 <td>Historial de versiones (SemVer)</td>
-</tr>
-<tr>
-<td><a href="../Referencias/">Referencias</a></td>
-<td>URLs oficiales del SDK y ejemplos de pico-examples</td>
 </tr>
 </tbody>
 </table>
@@ -6652,10 +6651,10 @@ multinúcleo, Wi-Fi y pila TCP/IP.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../../javascripts/extra.js"></script>
       

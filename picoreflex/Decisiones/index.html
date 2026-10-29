@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,10 +37,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -6303,6 +6303,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#decisiones-recientes-v09x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisiones recientes (v0.9.x)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -7056,6 +7067,24 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
   tocar el motor del juego (la interfaz <code>led::</code> es la misma). Referencia del PIO:
   <a href="https://github.com/raspberrypi/pico-examples/tree/master/pio/ws2812">pico-examples/pio/ws2812</a>.</li>
 </ul>
+<hr />
+<h2 id="decisiones-recientes-v09x">Decisiones recientes (v0.9.x)</h2>
+<blockquote>
+<p>Este documento es un <strong>registro histórico congelado</strong> (decisiones §1–§28, hasta
+v0.6.1). Las decisiones §29 en adelante viven en el repositorio:
+<a href="https://github.com/AlessandroKlein/PicoReflex/blob/main/docs/DECISIONES.md"><code>docs/DECISIONES.md</code></a>.
+Resumen de las decisiones nuevas de v0.9.x:</p>
+</blockquote>
+<ul>
+<li><strong>Display OLED en negro</strong> — doble charge-pump (SSD1306 + SH1106) + auto-test
+  <code>0xA5</code> al arrancar (conclusión de hardware: no alimentar el OLED desde VBUS 5 V).</li>
+<li><strong>Persistencia del modo/dificultad del juego en Flash</strong> — <code>game_mode</code>,
+  <code>game_difficulty</code>, <code>seed</code>, <code>round_seconds</code>, <code>stimulus_min_ms</code> y
+  <code>stimulus_max_ms</code>; <code>PERSISTENT_VERSION</code> 6→7 (resetea la config en el primer
+  arranque).</li>
+<li><strong>Disparador de inicio con cualquier botón</strong> — reemplaza el arranque con dos
+  botones simultáneos (<code>two_buttons_pressed()</code> eliminada).</li>
+</ul>
 
 
 
@@ -7232,10 +7261,10 @@ Doxygen (índice) y a las páginas temáticas oficiales.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
       

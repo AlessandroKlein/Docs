@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,10 +37,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -6457,6 +6457,12 @@
 <p><strong>Materia:</strong> Microprocesadores
 <strong>Institución:</strong> Universidad Nacional del Litoral — Tecnicatura en Automatización y Robótica
 <strong>Plataforma:</strong> Raspberry Pi Pico W — Raspberry Pi Pico C/C++ SDK</p>
+<blockquote>
+<p>⚠️ <strong>Nota (v0.7.0):</strong> este informe documenta el firmware original (doble núcleo
+con <code>multicore_launch_core1</code> y batería por VSYS/3). Desde v0.5.0 el firmware usa
+<strong>FreeRTOS SMP</strong> y desde v0.4.6 la batería se mide por <strong>ADC0 (GPIO26)</strong>. El
+estado actual está en <code>Arquitectura.md</code> y <code>Compilacion.md</code>.</p>
+</blockquote>
 <hr />
 <h2 id="1-informe-tecnico">1. Informe Técnico</h2>
 <h3 id="a-limites-conceptuales-del-circuito-y-la-logica">a. Límites conceptuales del circuito y la lógica</h3>
@@ -6476,26 +6482,16 @@ las siguientes características concretas:</p>
   ronda). Tres dificultades (1000 / 500 / 250 ms de tolerancia).</li>
 <li><strong>Feedback sonoro</strong> mediante un buzzer pasivo (PWM): tono de acierto, de fallo,
   de timeout, cuenta regresiva y melodía de <em>game over</em>.</li>
-<li><strong>Servidor web embebido</strong> (lwIP) con <strong>páginas separadas</strong>: Home (red, batería,
-  estadísticas y tabla de tiempos), semilla (<code>/seed</code>), juego (<code>/game</code>), display
-  (<code>/display</code>) y Wi-Fi (<code>/wifi</code>, con "Mostrar contraseña"). El frontend (HTML) está
-  separado del backend (ruteo/parseo). La página <code>/player</code> se eliminó (v0.4.0).</li>
-<li><strong>Disparador de inicio con dos botones simultáneos</strong> y <strong>cuenta regresiva</strong>
-  configurable (<code>start_delay_s</code>, por defecto 3 s, límite 10 s) antes de arrancar.</li>
-<li><strong>Wi-Fi configurable desde la web</strong>: SSID/password se editan en <code>/wifi</code>, se
-  persisten en Flash y se re-conecta automáticamente (sin recompilar).</li>
-<li><strong>OLED deshabilitable</strong> desde la web (<code>/display</code>) para ahorrar energía; toda la
-  información sigue disponible en la web.</li>
-<li><strong>Historial de tiempos de reacción</strong> (últimos 20) mostrado como tabla en el Home.</li>
+<li><strong>Servidor web embebido</strong> (lwIP) que permite configurar semilla, dificultad,
+  modo, velocidad entre estímulos, duración de ronda y nombre, además de ver
+  estadísticas (promedio, mejor tiempo, tasa de acierto) y el nivel de batería.</li>
 <li><strong>Conectividad redundante:</strong> Station (STA) con <em>timeout</em> de 10 s y respaldo en
-  Access Point (<code>PicoW-ReactionGame</code>, WPA2 clave <code>12345678</code>, IP <code>192.168.4.1</code>,
-  canal 1) con <strong>servidor DHCP propio</strong> (IPs <code>192.168.4.16</code>–<code>192.168.4.23</code>) y
-  <strong>captive portal</strong> (servidor DNS en puerto 53 que redirige toda consulta a
-  <code>192.168.4.1</code>).</li>
-<li><strong>Medición de batería</strong> por ADC con divisor resistivo externo (10 kΩ/22 kΩ) en
-  GPIO26, con estimación de porcentaje y alerta de batería baja (&lt; 15 %).</li>
-<li><strong>Almacenamiento no volátil</strong> en Flash (récords/ranking, semilla, credenciales
-  Wi-Fi y preferencias).</li>
+  Access Point (<code>PicoW-ReactionGame</code>, IP <code>192.168.4.1</code>) con <strong>captive portal</strong>
+  (servidor DNS en puerto 53 que redirige toda consulta a <code>192.168.4.1</code>).</li>
+<li><strong>Medición de batería</strong> por ADC (VSYS/3) con estimación de porcentaje y alerta
+  de batería baja (&lt; 15 %).</li>
+<li><strong>Almacenamiento no volátil</strong> en Flash (récords/ranking, nombre y última
+  semilla).</li>
 <li><strong>Doble núcleo:</strong> Core 0 (juego) y Core 1 (red + display).</li>
 <li><strong>Display OLED SSD1306</strong> (I2C1) para mostrar tiempo, semilla, modo, batería y
   dirección IP.</li>
@@ -6504,9 +6500,8 @@ las siguientes características concretas:</p>
 completo (solo tonos PWM), ni <em>datalogging</em> a nube, ni carga de batería (se asume
 alimentación externa o módulo TP4056 + boost). El modo de ultra-bajo consumo
 <em>DORMANT</em> (&lt; 1.5 mA) está <strong>implementado</strong> con un protocolo dual-core (apagado
-del Wi-Fi + <code>low_power_dormant_until_gpio_pin_state</code>) y <strong>solo se activa cuando
-no hay red activa</strong> (ni STA ni AP, ver v0.3.2); queda pendiente su verificación de
-consumo en hardware (ver <code>docs/DECISIONES.md</code> §13 y §22).</p>
+del Wi-Fi + <code>low_power_dormant_until_gpio_pin_state</code>); queda pendiente su
+verificación de consumo en hardware (ver <code>docs/DECISIONES.md</code> §13).</p>
 <h3 id="b-descripcion-de-la-solucion-propuesta">b. Descripción de la solución propuesta</h3>
 <h4 id="circuito">Circuito</h4>
 <ul>
@@ -6514,8 +6509,7 @@ consumo en hardware (ver <code>docs/DECISIONES.md</code> §13 y §22).</p>
 <li>Pulsadores entre GPIO 7–11 y GND (pull-up interno de la RP2040).</li>
 <li>Display SSD1306 a I2C1 (SDA=GPIO14, SCL=GPIO15) con pull-ups de 4.7 kΩ.</li>
 <li>Buzzer pasivo a GPIO16 (PWM).</li>
-<li>Medición de batería en GPIO26 (ADC0) mediante divisor externo 10 kΩ/22 kΩ
-  (R1 entre batería y pin, R2 entre pin y GND).</li>
+<li>Medición de batería en GPIO29 (ADC3), que en la Pico W mide VSYS/3.</li>
 <li>LED onboard controlado por el CYW43 (estado de red).</li>
 </ul>
 <h4 id="software">Software</h4>
@@ -6523,22 +6517,18 @@ consumo en hardware (ver <code>docs/DECISIONES.md</code> §13 y §22).</p>
 y el Pico SDK. Los puntos clave son:</p>
 <ul>
 <li><code>main.cpp</code> arranca el Core 1 con <code>multicore_launch_core1()</code>.</li>
-<li><code>game_logic.cpp</code> (Core 0) implementa el PRNG, la máquina de estados del juego,
-  el <strong>disparador de dos botones + cuenta regresiva</strong> y la temporización con IRQ +
-  <code>time_us_32()</code>; usa DMA (buffer en anillo rítmado por PWM) como <em>trace</em> hardware
-  de los pulsadores.</li>
-<li><code>web_server.cpp</code> (Core 1) gestiona <code>cyw43_arch</code> (STA/AP, reconexión) y es el
-  <strong>backend</strong> HTTP (ruteo/parseo) con la API raw de lwIP; <code>web_ui.cpp</code> es el
-  <strong>frontend</strong> que genera las páginas HTML (<code>web_ui::render</code>).</li>
-<li><code>battery_monitor.cpp</code> lee el ADC (GPIO26/ADC0) y aplica el factor del divisor
-  externo <code>×32/22</code>.</li>
-<li><code>flash_storage.cpp</code> persiste récords y configuración (Wi-Fi, OLED, cuenta
-  regresiva) con <code>flash_safe_execute()</code> (estructura <code>PersistentData</code> v2).</li>
-<li><code>display_driver.cpp</code> dibuja texto 5×7 en el SSD1306 y permite apagarlo
-  (<code>set_power</code>).</li>
+<li><code>game_logic.cpp</code> (Core 0) implementa el PRNG, la máquina de estados del juego y
+  la temporización con IRQ + <code>time_us_32()</code>; usa DMA (buffer en anillo rítmado
+  por PWM) como <em>trace</em> hardware de los pulsadores.</li>
+<li><code>web_server.cpp</code> (Core 1) gestiona <code>cyw43_arch</code> (STA/AP) y sirve HTTP con la
+  API raw de lwIP.</li>
+<li><code>battery_monitor.cpp</code> lee el ADC protegiendo la lectura con
+  <code>cyw43_arch_lwip_begin/end()</code> (GPIO29 compartido con el SPI del Wi-Fi).</li>
+<li><code>flash_storage.cpp</code> persiste récords con <code>flash_safe_execute()</code>.</li>
+<li><code>display_driver.cpp</code> dibuja texto 5×7 en el SSD1306.</li>
 <li><code>audio.cpp</code> genera tonos PWM.</li>
-<li><code>shared_state.cpp</code> sincroniza configuración/estadísticas/historial entre núcleos
-  con <code>critical_section</code> + <code>queue</code>.</li>
+<li><code>shared_state.cpp</code> sincroniza configuración/estadísticas entre núcleos con
+  <code>critical_section</code> + <code>queue</code>.</li>
 </ul>
 <p>Cada decisión está documentada y vinculada a la documentación oficial en
 <code>docs/DECISIONES.md</code>.</p>
@@ -6548,9 +6538,9 @@ y el Pico SDK. Los puntos clave son:</p>
 Wi-Fi/lwIP) en un dispositivo funcional y reproducible.</p>
 <p><strong>Dificultades encontradas:</strong></p>
 <ol>
-<li><strong>GPIO29 ocupado en la Pico W</strong> por el SPI del Wi-Fi y el divisor interno VSYS/3:
-   se resolvió midiendo la batería con un divisor externo en GPIO26 (ADC0), que
-   evita el conflicto por completo.</li>
+<li><strong>GPIO29 compartido</strong> entre el ADC (VSYS/3) y el SPI del CYW43 en la Pico W:
+   obligó a proteger cada lectura del ADC con el <em>lock</em> del CYW43, y a mover la
+   medición de batería al Core 1 (que es quien inicializa el Wi-Fi).</li>
 <li><strong>PRNG determinista:</strong> <code>pico_rand</code> no permite fijar semilla, por lo que se
    implementó un <code>xorshift32</code> propio para el modo determinista.</li>
 <li><strong>Escritura segura en Flash con dos núcleos:</strong> se resolvió con
@@ -6561,15 +6551,6 @@ Wi-Fi/lwIP) en un dispositivo funcional y reproducible.</p>
    pendiente de verificación de consumo en hardware.</li>
 <li><strong>Comunicación inter-núcleo:</strong> se evitó el uso de los FIFOs crudos y se usó
    <code>queue_t</code> + <code>critical_section</code>, siguiendo la recomendación del SDK.</li>
-<li><strong>El AP "conectaba y se desconectaba":</strong> el CYW43 no trae servidor DHCP en
-   modo AP; se integró <code>src/dhcpserver.c</code> (MicroPython/pico-examples, MIT), que
-   asigna IPs <code>192.168.4.16</code>–<code>192.168.4.23</code> a los clientes.</li>
-<li><strong>Reinicio al guardar/escanear Wi-Fi:</strong> el Core 1 (servidor web) corría con
-   2 KB de stack y desbordaba (<em>hard fault</em>); se amplió a 4 KB con
-   <code>PICO_CORE1_STACK_SIZE=0x1000</code>.</li>
-<li><strong>SSID corrupto al guardar:</strong> <code>url_decode()</code> copiaba el valor hasta el final de
-   la query, dejando <code>ssid&amp;pass=...</code> en el campo SSID; se corrigió para que corte
-   en el separador <code>&amp;</code>.</li>
 </ol>
 <hr />
 <h2 id="2-analisis-de-periferico-adc-medicion-de-bateria">2. Análisis de Periférico: ADC (medición de batería)</h2>
@@ -6577,35 +6558,33 @@ Wi-Fi/lwIP) en un dispositivo funcional y reproducible.</p>
 <p>La RP2040 dispone de un <strong>ADC SAR</strong> (aproximaciones sucesivas) de <strong>12 bits</strong>
 (0–4095) con 5 entradas multiplexadas: 4 en los pines GPIO 26–29 (ADC0–ADC3) y
 una interna para el sensor de temperatura. Su tensión de referencia es de 3.3 V.</p>
-<p>En la <strong>Pico W</strong>, la batería se mide con un <strong>divisor resistivo externo</strong> en
-<strong>GPIO26 (ADC0)</strong>: <code>R1 = 10 kΩ</code> (batería → pin ADC) y <code>R2 = 22 kΩ</code> (pin ADC → GND).
-Se eligió GPIO26 porque está libre; GPIO29 (ADC3) está ocupado por el SPI del
-Wi-Fi y por el divisor interno VSYS/3.</p>
+<p>En la <strong>Pico W</strong>, el pin <strong>GPIO29 (ADC3)</strong> está conectado a <strong>VSYS a través de un
+divisor resistivo interno 3:1</strong>, de modo que la tensión medida en el pin es
+<code>VSYS/3</code>. Esto permite monitorizar una batería LiPo/Li-Ion de 1 celda
+(3.0–4.2 V) conectada a VSYS.</p>
 <h3 id="configuracion-sdk">Configuración (SDK)</h3>
 <ul>
 <li><code>adc_init()</code>: habilita el ADC y configura su reloj (~500 kS/s con reloj
   independiente de 48 MHz).</li>
-<li><code>adc_gpio_init(26)</code>: configura GPIO26 como entrada analógica (función NULL,
-  pulls y receptor digital deshabilitados).</li>
-<li><code>adc_select_input(0)</code>: selecciona la entrada ADC0 (GPIO26).</li>
+<li><code>adc_select_input(3)</code>: selecciona la entrada ADC3 (GPIO29).</li>
 <li><code>adc_read()</code>: inicia una conversión y devuelve el valor (0–4095).</li>
+<li><strong>Particularidad Pico W:</strong> GPIO29 también es <code>WL_CLK</code> (SPI del CYW43439). Para
+  no chocar con la radio, la lectura se envuelve entre <code>cyw43_arch_lwip_begin()</code> y
+  <code>cyw43_arch_lwip_end()</code> (ver <code>battery_monitor.cpp</code>).</li>
 </ul>
 <h3 id="conversion-tension-porcentaje">Conversión tensión → porcentaje</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Vpin = adc · 3300 / 4095              (mV)
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Vbat = Vpin · (R1 + R2) / R2
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     = Vpin · 32 / 22                 (divisor 10k/22k)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Vpin = adc · 3300 / 4095        (mV)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>VSYS = 3 · Vpin                 (divisor 3:1)
 </span></code></pre></div>
-<p>Con una batería a 4.2 V, el pin recibe <code>4.2 · 22/32 ≈ 2.89 V</code>, por debajo de la
-referencia de 3.3 V (sin recorte). El porcentaje se obtiene por interpolación
-lineal de la curva de descarga de una celda LiPo: 4200 mV → 100 %, 3700 mV →
-50 %, 3000 mV → 0 %. Se promedian 16 muestras para reducir ruido. Se genera alerta
-por batería baja (&lt; 15 %).</p>
+<p>El porcentaje se obtiene por interpolación lineal de la curva de descarga de una
+celda LiPo: 4200 mV → 100 %, 3700 mV → 50 %, 3000 mV → 0 %. Se promedian 16
+muestras para reducir ruido. Se genera alerta por batería baja (&lt; 15 %).</p>
 <h3 id="caracteristicas-relevantes">Características relevantes</h3>
 <ul>
-<li>Resolución: 12 bits (1 LSB ≈ 0.8 mV en el pin; ≈ 1.17 mV sobre Vbat tras ×32/22).</li>
-<li>Entradas compartidas con GPIO; se usa ADC0 (GPIO26), libre en la Pico W.</li>
+<li>Resolución: 12 bits (1 LSB ≈ 0.8 mV; sobre VSYS ≈ 2.4 mV por LSB tras el ×3).</li>
+<li>Entradas compartidas con GPIO; en Pico W, ADC3 compartido con el Wi-Fi.</li>
 <li>Posibilidad de muestreo por <em>round-robin</em> y DMA (no usado en la medición, que
-  es por <em>polling</em> simple).</li>
+  es por <em>polling</em> protegido).</li>
 </ul>
 <hr />
 <h2 id="3-exposicion">3. Exposición</h2>
@@ -6789,10 +6768,10 @@ núcleos.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../../javascripts/extra.js"></script>
       

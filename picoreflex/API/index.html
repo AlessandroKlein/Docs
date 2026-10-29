@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,10 +37,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#referencia-de-api-http-picoreflex" class="md-skip">
+        <a href="#api-http-picoreflex" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -6024,10 +6024,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#base" class="md-nav__link">
+  <a href="#autenticacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base
+        Autenticación
       
     </span>
   </a>
@@ -6042,34 +6042,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#paginas-de-configuracion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Páginas de configuración
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rutas-de-control-devuelven-el-home" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rutas de control (devuelven el Home)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -6086,10 +6058,54 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ejemplos" class="md-nav__link">
+  <a href="#game" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ejemplos
+        /game
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wifi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /wifi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#battery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /battery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /display
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otaupload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ota/upload
       
     </span>
   </a>
@@ -6102,32 +6118,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#respuesta" class="md-nav__link">
+  <a href="#notas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Respuesta
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#semantica-de-control-interna" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Semántica de control (interna)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#versionado-cambios-de-contrato" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versionado / cambios de contrato
+        Notas
       
     </span>
   </a>
@@ -6414,214 +6408,252 @@
   
 
 
-<h1 id="referencia-de-api-http-picoreflex">Referencia de API HTTP — PicoReflex</h1>
-<blockquote>
-<p>Documenta los endpoints del servidor web embebido (lwIP, puerto 80). Es una API
-de control local; ver <code>docs/SEGURIDAD.md</code> para el modelo de confianza.</p>
-<p>En v0.2.0 el frontend (generación de HTML) está separado del backend (ruteo y
-parseo): el backend en <code>src/web_server.cpp</code> y la presentación en
-<code>src/web_ui.cpp</code> (<code>web_ui::render</code>).</p>
-</blockquote>
-<h2 id="base">Base</h2>
+<h1 id="api-http-picoreflex">API HTTP — PicoReflex</h1>
+<p>El panel web escucha en <strong>HTTP :80</strong>. Los endpoints de control/configuración
+exigen <strong>autenticación por PIN</strong> (ver la sección <strong>Autenticación</strong> más abajo).</p>
+<h2 id="autenticacion">Autenticación</h2>
 <ul>
-<li><strong>Modo AP:</strong> <code>http://192.168.4.1</code></li>
-<li><strong>Modo STA:</strong> la IP que asigna el DHCP (visible en el display).</li>
-<li><strong>Método:</strong> todos los endpoints usan <code>GET</code> (sin cuerpo).</li>
-<li><strong>Codificación:</strong> los parámetros de texto van <em>URL-encoded</em> (espacio = <code>+</code> o <code>%20</code>).</li>
+<li>PIN por defecto: <code>1234</code> (macro <code>WEB_PIN</code>, sobrescribible con <code>-DWEB_PIN=...</code>).</li>
+<li>Dos formas de autenticarse:</li>
+<li><strong>Cookie:</strong> <code>POST /login</code> con <code>pin=&lt;PIN&gt;</code> → establece la cookie <code>pr_auth</code>
+    (token FNV-1a).</li>
+<li><strong>Cabecera:</strong> <code>Authorization: Bearer &lt;PIN&gt;</code> en cada petición.</li>
+<li>Sin sesión válida, los endpoints protegidos devuelven <code>401</code> (o el formulario
+  de login en el navegador).</li>
+<li><strong>Rate-limiting:</strong> 60 peticiones/s globales y 5 intentos/s en el login.</li>
 </ul>
 <h2 id="endpoints">Endpoints</h2>
-<h3 id="paginas-de-configuracion">Páginas de configuración</h3>
 <table>
 <thead>
 <tr>
+<th>Método</th>
 <th>Ruta</th>
-<th>Contenido</th>
-<th>Parámetros (query string)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GET /</code></td>
-<td>Home: red, batería, resumen de stats y tabla de tiempos de reacción</td>
-<td>—</td>
-</tr>
-<tr>
-<td><code>GET /seed</code></td>
-<td>Semilla del PRNG</td>
-<td><code>seed</code></td>
-</tr>
-<tr>
-<td><code>GET /game</code></td>
-<td>Dificultad, modo, velocidad, duración de ronda, cuenta regresiva</td>
-<td><code>difficulty</code>, <code>mode</code>, <code>smin</code>, <code>smax</code>, <code>round</code>, <code>delay</code></td>
-</tr>
-<tr>
-<td><code>GET /display</code></td>
-<td>Habilitar/deshabilitar el OLED</td>
-<td><code>oled</code></td>
-</tr>
-<tr>
-<td><code>GET /wifi</code></td>
-<td>Credenciales Wi-Fi (SSID/password)</td>
-<td><code>ssid</code>, <code>pass</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="rutas-de-control-devuelven-el-home">Rutas de control (devuelven el Home)</h3>
-<table>
-<thead>
-<tr>
-<th>Ruta</th>
-<th>Efecto</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GET /start</code></td>
-<td>Inicia la cuenta regresiva y luego la ronda (<code>START_ROUND</code>)</td>
-</tr>
-<tr>
-<td><code>GET /stop</code></td>
-<td>Detiene la ronda (<code>STOP_ROUND</code>)</td>
-</tr>
-<tr>
-<td><code>GET /reset</code></td>
-<td>Reinicia estadísticas (<code>RESET_STATS</code>)</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>Rutas retiradas/reservadas:</strong>
-- <code>GET /player</code> — <strong>eliminada</strong> en v0.4.0 (no había modo multijugador; el campo
-  interno <code>user_name</code> queda con el valor por defecto "JUGADOR").
-- <code>GET /scan</code> — <strong>reservada/interna</strong> (v0.4.0): devolvía un array JSON de SSIDs
-  detectados, pero el botón "Buscar redes" del frontend se <strong>eliminó</strong> en v0.4.3
-  porque el escaneo del CYW43 no era fiable. El endpoint sigue en el backend sin
-  uso visible (solo documentado, no expuesto en la interfaz).</p>
-</blockquote>
-<h2 id="parametros">Parámetros</h2>
-<table>
-<thead>
-<tr>
-<th>Parámetro</th>
-<th>Ruta</th>
-<th>Tipo</th>
-<th>Rango / valores</th>
+<th>Auth</th>
 <th>Descripción</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>seed</code></td>
+<td>GET</td>
+<td><code>/</code></td>
+<td>—</td>
+<td>Panel principal (HTML/CSS embebido)</td>
+</tr>
+<tr>
+<td>GET/POST</td>
+<td><code>/login</code></td>
+<td>—</td>
+<td>Formulario de PIN; establece <code>pr_auth</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/logout</code></td>
+<td>—</td>
+<td>Borra la sesión</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/status</code></td>
+<td>✅</td>
+<td>JSON con estadísticas, estado del sistema y configuración</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/start</code></td>
+<td>✅</td>
+<td>Inicia una ronda</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/stop</code></td>
+<td>✅</td>
+<td>Detiene la ronda</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/reset</code></td>
+<td>✅</td>
+<td>Reinicia estadísticas</td>
+</tr>
+<tr>
+<td>POST</td>
 <td><code>/seed</code></td>
-<td>entero</td>
-<td>0..2³²-1 (0 = aleatoria)</td>
-<td>Semilla del PRNG</td>
+<td>✅</td>
+<td>Fija la semilla del PRNG</td>
 </tr>
 <tr>
-<td><code>difficulty</code></td>
+<td>POST</td>
 <td><code>/game</code></td>
-<td>entero</td>
-<td>0=EASY, 1=NORMAL, 2=HARD</td>
-<td>Dificultad (tolerancia 1000/500/250 ms)</td>
+<td>✅</td>
+<td>Modo, dificultad, estímulos, duración, cuenta regresiva</td>
 </tr>
 <tr>
-<td><code>mode</code></td>
-<td><code>/game</code></td>
-<td>entero</td>
-<td>0=FREE_PLAY, 1=TIMED, 2=SUDDEN_DEATH</td>
-<td>Modo de juego</td>
-</tr>
-<tr>
-<td><code>smin</code></td>
-<td><code>/game</code></td>
-<td>entero</td>
-<td>50..60000 ms</td>
-<td>Intervalo mínimo entre estímulos</td>
-</tr>
-<tr>
-<td><code>smax</code></td>
-<td><code>/game</code></td>
-<td>entero</td>
-<td>≥ <code>smin</code>, ≤ 60000 ms</td>
-<td>Intervalo máximo entre estímulos</td>
-</tr>
-<tr>
-<td><code>round</code></td>
-<td><code>/game</code></td>
-<td>entero</td>
-<td>1..3600 s</td>
-<td>Duración de ronda (solo TIMED)</td>
-</tr>
-<tr>
-<td><code>delay</code></td>
-<td><code>/game</code></td>
-<td>entero</td>
-<td>0..10 s</td>
-<td>Cuenta regresiva antes de arrancar</td>
-</tr>
-<tr>
-<td><code>oled</code></td>
+<td>POST</td>
 <td><code>/display</code></td>
-<td>entero</td>
-<td>0 = apagado, 1 = encendido</td>
-<td>Habilita/deshabilita el OLED</td>
+<td>✅</td>
+<td>OLED encendido/apagado + controlador SSD1306/SH1106</td>
 </tr>
 <tr>
-<td><code>ssid</code></td>
+<td>POST</td>
 <td><code>/wifi</code></td>
-<td>texto</td>
-<td>≤ 32 chars</td>
-<td>SSID de la red Wi-Fi (STA)</td>
+<td>✅</td>
+<td>SSID/contraseña (STA) + clave del AP</td>
 </tr>
 <tr>
-<td><code>pass</code></td>
-<td><code>/wifi</code></td>
-<td>texto</td>
-<td>≤ 64 chars</td>
-<td>Contraseña de la red Wi-Fi (STA)</td>
+<td>POST</td>
+<td><code>/battery</code></td>
+<td>✅</td>
+<td>Calibración de la curva de descarga</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/config</code></td>
+<td>✅</td>
+<td>Aplica parámetros (compatibilidad)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/ota</code></td>
+<td>✅</td>
+<td>Página de actualización de firmware</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/ota/upload</code></td>
+<td>✅</td>
+<td>Sube el binario <code>.uf2</code>/<code>.bin</code> (streaming + CRC32)</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>Los valores numéricos fuera de rango se acotan automáticamente (<code>smin</code>/<code>smax</code> a
-50..60000 ms con <code>smin ≤ smax</code>, <code>round</code> a 1..3600 s, <code>delay</code> a 0..10 s). Los
-<code>enum</code> (<code>difficulty</code>, <code>mode</code>) se ignoran si no corresponden a un valor válido.</p>
-</blockquote>
-<h3 id="ejemplos">Ejemplos</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>GET /seed?seed=12345
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>GET /game?difficulty=2&amp;mode=1&amp;smin=400&amp;smax=900&amp;round=30&amp;delay=3
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>GET /display?oled=0
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>GET /wifi?ssid=MiRed&amp;pass=clave123
-</span></code></pre></div>
-<h2 id="respuesta">Respuesta</h2>
+<h2 id="parametros">Parámetros</h2>
+<h3 id="game"><code>/game</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Valores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mode</code></td>
+<td><code>0</code> = Free Play, <code>1</code> = Contrarreloj, <code>2</code> = Muerte súbita, <code>3</code> = Simón Dice</td>
+</tr>
+<tr>
+<td><code>difficulty</code></td>
+<td><code>0</code> = Fácil (1000 ms), <code>1</code> = Normal (500 ms), <code>2</code> = Difícil (250 ms)</td>
+</tr>
+<tr>
+<td><code>stimulus_min_ms</code> / <code>stimulus_max_ms</code></td>
+<td>Rango entre estímulos (clamp 50..60000 ms)</td>
+</tr>
+<tr>
+<td><code>round_seconds</code></td>
+<td>Duración de la ronda (modo Contrarreloj)</td>
+</tr>
+<tr>
+<td><code>start_delay_s</code></td>
+<td>Cuenta regresiva inicial (segundos)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="wifi"><code>/wifi</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssid</code></td>
+<td>SSID de la red STA (0..32 caracteres)</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>Contraseña STA (0..64 caracteres)</td>
+</tr>
+<tr>
+<td><code>ap_pass</code></td>
+<td>Clave del AP de respaldo (8..15 caracteres; vacío = <code>12345678</code> por defecto)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="battery"><code>/battery</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vfull</code></td>
+<td>Tensión (mV) con 100 % de carga</td>
+</tr>
+<tr>
+<td><code>vmid</code></td>
+<td>Tensión (mV) con 50 % de carga (inflexión)</td>
+</tr>
+<tr>
+<td><code>vempty</code></td>
+<td>Tensión (mV) con 0 % de carga (corte)</td>
+</tr>
+<tr>
+<td><code>loadcomp</code></td>
+<td>Compensación por carga (mV) sumada a la lectura</td>
+</tr>
+</tbody>
+</table>
+<h3 id="display"><code>/display</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>oled</code></td>
+<td><code>1</code> = encendido, <code>0</code> = apagado</td>
+</tr>
+<tr>
+<td><code>controller</code></td>
+<td><code>0</code> = SSD1306 (0.96"), <code>1</code> = SH1106 (1.3"); se persiste en Flash</td>
+</tr>
+</tbody>
+</table>
+<h3 id="otaupload"><code>/ota/upload</code></h3>
+<table>
+<thead>
+<tr>
+<th>Cabecera</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X-CRC32</code></td>
+<td>CRC32 del binario (hex, opcional)</td>
+</tr>
+<tr>
+<td><code>Content-Length</code></td>
+<td>Tamaño total del binario</td>
+</tr>
+</tbody>
+</table>
+<p>El binario se escribe por streaming en el slot de <strong>staging</strong>; al terminar, un
+commit lo promueve a aplicación activa (ver <code>Arquitectura.md</code> §9).</p>
+<h2 id="notas">Notas</h2>
 <ul>
-<li>Código HTTP: <code>200 OK</code> (siempre, mientras el servidor esté activo).</li>
-<li><code>Content-Type: text/html; charset=utf-8</code>.</li>
-<li><code>Connection: close</code> (una conexión por petición).</li>
-<li>El cuerpo es la página HTML solicitada con los valores ya actualizados.
-  Si la ruta no se reconoce, se devuelve el Home (<code>/</code>).</li>
-</ul>
-<h2 id="semantica-de-control-interna">Semántica de control (interna)</h2>
-<p>Los endpoints de control encolan eventos en la cola <code>queue_t</code> del estado
-compartido (<code>control_send</code>), que el Core 0 consume en su bucle:</p>
-<ul>
-<li><code>/start</code> → <code>ControlEvent::START_ROUND</code> (pasa por la cuenta regresiva)</li>
-<li><code>/stop</code> → <code>ControlEvent::STOP_ROUND</code></li>
-<li><code>/reset</code> → <code>ControlEvent::RESET_STATS</code></li>
-</ul>
-<p>Las páginas de configuración aplican sus parámetros con <code>config_set()</code> y envían
-<code>ControlEvent::CONFIG_CHANGED</code> para que el Core 0 persista en Flash. Si cambió el
-Wi-Fi, se activa además <code>g_wifi_reconnect</code> para reconectar en el bucle del Core 1.</p>
-<h2 id="versionado-cambios-de-contrato">Versionado / cambios de contrato</h2>
-<ul>
-<li><strong>v0.4.0:</strong> eliminada <code>GET /player</code>; ruta <code>GET /scan</code> (SSIDs en JSON) reservada.</li>
-<li><strong>v0.4.3:</strong> frontend de <code>/scan</code> (botón "Buscar redes") eliminado; <code>/scan</code> queda
-  como endpoint interno sin uso visible.</li>
-<li><strong>v0.2.0:</strong> separación frontend/backend; rutas por página (<code>/seed</code>, <code>/game</code>,
-  <code>/display</code>, <code>/wifi</code>, <code>/player</code>); nuevos parámetros <code>delay</code>, <code>oled</code>, <code>ssid</code>, <code>pass</code>.</li>
-<li><strong>v0.1.x:</strong> ruta única <code>GET /config</code> (quedó <strong>reemplazada</strong> por las rutas por página).</li>
-<li>Cambios futuros se documentarán aquí y en <code>CHANGELOG.md</code> (SemVer).</li>
+<li><code>/config</code> se mantiene por compatibilidad; los parámetros individuales
+  (<code>seed</code>, <code>mode</code>, <code>difficulty</code>, <code>smin</code>, <code>smax</code>, <code>round</code>, <code>name</code>) se aplican
+  igual que sus rutas dedicadas.</li>
+<li>Todos los valores numéricos se parsean con <code>strtol</code> (sin <code>atoi</code>) y se validan
+  por rango.</li>
 </ul>
 
 
@@ -6799,10 +6831,10 @@ Wi-Fi, se activa además <code>g_wifi_reconnect</code> para reconectar en el buc
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
       
