@@ -6147,10 +6147,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#completado-en-v091v095" class="md-nav__link">
+  <a href="#completado-en-v091v096" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ✅ Completado en v0.9.1–v0.9.5
+        ✅ Completado en v0.9.1–v0.9.6
       
     </span>
   </a>
@@ -6402,7 +6402,7 @@
 
 <h1 id="hoja-de-ruta-de-mejoras-picoreflex">Hoja de Ruta de Mejoras — PicoReflex</h1>
 <blockquote>
-<p><strong>Base:</strong> v0.9.5 · <strong>Fecha:</strong> 2026-10-29</p>
+<p><strong>Base:</strong> v0.9.6 · <strong>Fecha:</strong> 2026-10-29</p>
 <p>La hoja de ruta completa (con "qué / cómo / por qué" y referencias oficiales del
 Pico SDK) vive en el repositorio:
 <a href="https://github.com/AlessandroKlein/PicoReflex/blob/main/docs/ROADMAP.md"><code>docs/ROADMAP.md</code></a>.
@@ -6430,7 +6430,7 @@ Esta página resume el estado y lo pendiente.</p>
 <li><strong>Fix bootloader "USB no reconocido"</strong> (v0.9.0) — <code>jump_to_app()</code> con IRQ habilitadas.</li>
 <li><strong>Clave del AP fija <code>12345678</code></strong> (v0.9.0) — revert del RUID, editable desde <code>/wifi</code>.</li>
 </ul>
-<h2 id="completado-en-v091v095">✅ Completado en v0.9.1–v0.9.5</h2>
+<h2 id="completado-en-v091v096">✅ Completado en v0.9.1–v0.9.6</h2>
 <ul>
 <li><strong>Reconexión AP→STA en caliente</strong> (v0.9.2) — delay de asentamiento de 200 ms + fix spam "STA activa".</li>
 <li><strong>PANIC Wi-Fi <code>MEMP_SYS_TIMEOUT</code></strong> (v0.9.4) — <code>MEMP_NUM_SYS_TIMEOUT 32</code> en <code>lwipopts.h</code>.</li>
@@ -6439,6 +6439,7 @@ Esta página resume el estado y lo pendiente.</p>
 <li><strong>Simón Dice acelera la secuencia</strong> (v0.9.5) — cada vez más rápido a medida que crece.</li>
 <li><strong>Persistencia del modo/dificultad del juego</strong> (v0.9.5) — <code>game_mode</code>/<code>game_difficulty</code>/<code>seed</code>/<code>round_seconds</code>/<code>stimulus_*</code> en Flash (<code>PERSISTENT_VERSION</code> 7).</li>
 <li><strong>Arranque con cualquier botón</strong> (v0.9.5) — reemplaza el disparador de dos botones simultáneos.</li>
+<li><strong>Modo por defecto Simón Dice</strong> (v0.9.6) — <code>GameConfig.mode</code> por defecto = <code>SIMON_SAYS</code>; sigue seleccionable desde <code>/game</code> (sin cambio de <code>PERSISTENT_VERSION</code>).</li>
 </ul>
 <h2 id="pendiente">Pendiente</h2>
 <h3 id="p2-deseable">P2 (deseable)</h3>

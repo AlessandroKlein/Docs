@@ -6447,6 +6447,11 @@ los dos núcleos de forma transparente.</p>
 </tr>
 </tbody>
 </table>
+<p><strong>Flujos de ejecución:</strong></p>
+<p><strong><code>game_task</code></strong> (juego — equivale al Core 0):</p>
+<p><img alt="Flujo del juego (game_task / Core 0)" src="../../../picoreflex/img/Flujo%20del%20juego%20%28Core%200%29.svg" /></p>
+<p><strong><code>network_task</code></strong> (red — equivale al Core 1):</p>
+<p><img alt="Flujo de red (network_task / Core 1)" src="../../../picoreflex/img/Flujo%20de%20red%20%28Core%201%29.svg" /></p>
 <h2 id="3-beneficios">3. Beneficios</h2>
 <ul>
 <li><strong>Planificación real</strong>: cada tarea cede el núcleo al bloquearse (sin WFE que
