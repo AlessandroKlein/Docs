@@ -25,6 +25,16 @@ los dos núcleos de forma transparente.
 | Retardos | `sleep_ms` (bloquea el núcleo en WFE) | `vTaskDelay` (cede el núcleo) |
 | lwIP | `NO_SYS=1` | `NO_SYS=0` |
 
+**Flujos de ejecución:**
+
+**`game_task`** (juego — equivale al Core 0):
+
+![Flujo del juego (game_task / Core 0)](img/Flujo%20del%20juego%20(Core%200).svg)
+
+**`network_task`** (red — equivale al Core 1):
+
+![Flujo de red (network_task / Core 1)](img/Flujo%20de%20red%20(Core%201).svg)
+
 ## 3. Beneficios
 
 - **Planificación real**: cada tarea cede el núcleo al bloquearse (sin WFE que

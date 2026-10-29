@@ -7,7 +7,7 @@ tags:
 
 # Hoja de Ruta de Mejoras — PicoReflex
 
-> **Base:** v0.9.5 · **Fecha:** 2026-10-29
+> **Base:** v0.9.6 · **Fecha:** 2026-10-29
 
 > La hoja de ruta completa (con "qué / cómo / por qué" y referencias oficiales del
 > Pico SDK) vive en el repositorio:
@@ -36,7 +36,7 @@ tags:
 - **Fix bootloader "USB no reconocido"** (v0.9.0) — `jump_to_app()` con IRQ habilitadas.
 - **Clave del AP fija `12345678`** (v0.9.0) — revert del RUID, editable desde `/wifi`.
 
-## ✅ Completado en v0.9.1–v0.9.5
+## ✅ Completado en v0.9.1–v0.9.6
 
 - **Reconexión AP→STA en caliente** (v0.9.2) — delay de asentamiento de 200 ms + fix spam "STA activa".
 - **PANIC Wi-Fi `MEMP_SYS_TIMEOUT`** (v0.9.4) — `MEMP_NUM_SYS_TIMEOUT 32` en `lwipopts.h`.
@@ -45,6 +45,7 @@ tags:
 - **Simón Dice acelera la secuencia** (v0.9.5) — cada vez más rápido a medida que crece.
 - **Persistencia del modo/dificultad del juego** (v0.9.5) — `game_mode`/`game_difficulty`/`seed`/`round_seconds`/`stimulus_*` en Flash (`PERSISTENT_VERSION` 7).
 - **Arranque con cualquier botón** (v0.9.5) — reemplaza el disparador de dos botones simultáneos.
+- **Modo por defecto Simón Dice** (v0.9.6) — `GameConfig.mode` por defecto = `SIMON_SAYS`; sigue seleccionable desde `/game` (sin cambio de `PERSISTENT_VERSION`).
 
 ## Pendiente
 

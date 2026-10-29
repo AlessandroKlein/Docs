@@ -7,7 +7,7 @@ tags:
 
 # PicoReflex — Juego de Reacción Rápida Avanzado
 
-> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-29 | **Firmware:** v0.9.5
+> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-29 | **Firmware:** v0.9.6
 > **Hardware:** Raspberry Pi Pico W (RP2040 + CYW43439) · **Plataforma:** Pico SDK (oficial) 2.3.0 — C/C++
 
 ## 1. Resumen ejecutivo
@@ -47,6 +47,8 @@ Automatización y Robótica). Implementa en C++ una aplicación completa sobre e
 RP2040 con el **Pico SDK oficial 2.3.0** (C/C++, toolchain `arm-none-eabi`):
 GPIO, interrupciones, PIO, temporizadores, DMA, PWM, I2C, ADC, Flash, FreeRTOS
 SMP, Wi-Fi y pila TCP/IP.
+
+![Qué es PicoReflex](img/Qu%C3%A9%20es.svg)
 
 ```text
 LEDs (2..6) · Pulsadores (7..11, debounce PIO) · Buzzer (16, PWM) · SSD1306/SH1106 (14/15, I2C1)

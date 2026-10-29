@@ -41,6 +41,8 @@ PIN.
         Batería LiPo 1S ── 10k/22k ── ADC0 (GPIO26)  ← divisor resistivo
 ```
 
+![Diagrama de bloques del sistema](img/Diagrama%20de%20bloques.svg)
+
 El juego y la red corren como **dos tareas de FreeRTOS (SMP)** que el scheduler
 reparte entre los dos núcleos del RP2040: `game_task` y `network_task`. No hay
 afinidad fija de núcleo (equivalen conceptualmente al antiguo Core 0/Core 1 del
