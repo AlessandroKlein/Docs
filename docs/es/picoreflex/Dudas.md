@@ -6,19 +6,29 @@
 > **Estado tras la revisión de cátedra:** los puntos §1, §2, §4, §5, §6 y §8 quedan
 > validados; §3 (DORMANT) y §4 (escáner I2C) fueron implementados en el código.
 > Ver `git log` para el historial.
+>
+> ⚠️ **Nota (v0.7.0):** el punto §1 (batería por VSYS/3, GPIO29) quedó obsoleto:
+> desde v0.4.6 la batería se mide por **ADC0 (GPIO26)** con divisor externo
+> 10 k/22 k. Ver `Arquitectura.md`.
 
 ---
 
-## 1. Medición de batería — ✅ RESUELTO (divisor externo)
+## 1. Medición de batería (VSYS) y conflicto con el Wi-Fi (GPIO29 / ADC3)
 
-- **Duda inicial:** en la Pico W, `GPIO29` (ADC3) mide `VSYS/3` (divisor interno
-  3:1) y además es el reloj SPI (`WL_CLK`) del CYW43439, por lo que había conflicto.
-- **Resolución final:** se descartó GPIO29 y se usa un **divisor resistivo externo**
-  en **GPIO26 (ADC0)** — libre en la Pico W — con `R1 = 10 kΩ` (batería → pin ADC)
-  y `R2 = 22 kΩ` (pin ADC → GND). Conversión: `Vbat = Vpin · (R1+R2)/R2 = Vpin · 32/22`.
-  Sin conflicto con el Wi-Fi y sin necesidad del lock del CYW43.
-- **Verificación en hardware pendiente:** confirmar el pin exacto y calibrar el
-  porcentaje con una medición real.
+- **Duda:** En la Raspberry Pi Pico W, el pin `GPIO29` (ADC3) se usa **tanto** para
+  medir `VSYS/3` (divisor resistivo interno 3:1) **como** para el reloj SPI
+  (`WL_CLK`) del chip inalámbrico CYW43439.
+- **Resolución (confirmada en el SDK):** El header de la placa
+  [`boards/pico_w.h`](https://github.com/raspberrypi/pico-sdk/blob/master/src/boards/include/boards/pico_w.h)
+  define `CYW43_USES_VSYS_PIN 1` y `PICO_VSYS_PIN 29`, y el propio comentario indica que,
+  para usar el GPIO de VSYS, hay que **garantizar que el CYW43 no lo esté usando**,
+  envolviendo la lectura entre `cyw43_thread_enter()` / `cyw43_thread_exit()`
+  (equivalentes a `cyw43_arch_lwip_begin()` / `cyw43_arch_lwip_end()`).
+- **Impacto en el código:** la lectura del ADC de batería se hace con esa protección,
+  y se documenta como decisión (ver `battery_monitor.cpp`).
+- **Pendiente de confirmación con la cátedra:** si la lectura del ADC debe hacerse
+  con el Wi-Fi en pausa (bloqueando brevemente la radio) o si se acepta un muestreo
+  con la radio inactiva.
 
 ## 2. Motor PRNG determinista (semilla fija)
 
@@ -45,9 +55,6 @@
      `low_power_dormant_until_gpio_pin_state(DORMANT_CLOCK_SOURCE_ROSC)`.
   4. Al despertar, el SDK restaura los relojes; Core 1 re-inicializa con
      `cyw43_arch_init()`.
-- **Actualización (v0.3.2):** el DORMANT **solo se activa si no hay red activa**
-  (ni STA ni AP). Si el Wi-Fi está activo, el dispositivo permanece despierto para
-  no dejar la web inaccesible.
 - **Pendiente de verificación en hardware:** ciclo `cyw43_arch_deinit()` →
   dormant → `cyw43_arch_init()` con el modo *threadsafe background*, y confirmar
   el consumo real (< 1.5 mA) con un multímetro.
@@ -81,14 +88,12 @@
   `0x1FF000`, alineado a 4096). Se documenta cómo adaptarlo al tamaño real de Flash.
 - **Pendiente:** confirmar el tamaño de Flash de la placa del alumno (2 MB estándar).
 
-## 7. Credenciales Wi-Fi — ✅ RESUELTO (web + Flash)
+## 7. Credenciales Wi-Fi
 
 - **Duda:** ¿Cómo se configuran SSID/password de la red STA si el dispositivo es móvil?
-- **Resolución:** desde la web, en `/wifi` (SSID + contraseña + "Mostrar contraseña"),
-  se **persisten en Flash** y el dispositivo **se re-conecta solo** (sin recompilar).
-  El AP de respaldo (`PicoW-ReactionGame`, WPA2 `12345678`, IP `192.168.4.1`, con
-  **DHCP propio**) permite configurarlo sin recompilar. Nota: en v0.4.3 se corrigió
-  que `url_decode` cortara en `&` (antes corrompía el SSID dejando `ssid&pass=...`).
+- **Resolución:** valores por defecto en `config.hpp` (`WIFI_SSID` / `WIFI_PASSWORD`),
+  configurables en tiempo de compilación y (a futuro) vía web. El modo AP de respaldo
+  (`PicoW-ReactionGame`, IP `192.168.4.1`) permite configurarlo sin recompilar.
 
 ## 8. Autonomía / consumo — ✅ VALIDADO
 

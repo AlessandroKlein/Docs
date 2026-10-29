@@ -430,4 +430,22 @@ Documentación oficial de referencia (carpeta raíz):
   tocar el motor del juego (la interfaz `led::` es la misma). Referencia del PIO:
   [pico-examples/pio/ws2812](https://github.com/raspberrypi/pico-examples/tree/master/pio/ws2812).
 
+---
+
+## Decisiones recientes (v0.9.x)
+
+> Este documento es un **registro histórico congelado** (decisiones §1–§28, hasta
+> v0.6.1). Las decisiones §29 en adelante viven en el repositorio:
+> [`docs/DECISIONES.md`](https://github.com/AlessandroKlein/PicoReflex/blob/main/docs/DECISIONES.md).
+> Resumen de las decisiones nuevas de v0.9.x:
+
+- **Display OLED en negro** — doble charge-pump (SSD1306 + SH1106) + auto-test
+  `0xA5` al arrancar (conclusión de hardware: no alimentar el OLED desde VBUS 5 V).
+- **Persistencia del modo/dificultad del juego en Flash** — `game_mode`,
+  `game_difficulty`, `seed`, `round_seconds`, `stimulus_min_ms` y
+  `stimulus_max_ms`; `PERSISTENT_VERSION` 6→7 (resetea la config en el primer
+  arranque).
+- **Disparador de inicio con cualquier botón** — reemplaza el arranque con dos
+  botones simultáneos (`two_buttons_pressed()` eliminada).
+
 

@@ -4,6 +4,244 @@ Todas las versiones notables de PicoReflex se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/) y el versionado
 sigue [Semantic Versioning](https://semver.org/) (SemVer).
 
+## [0.9.6] - 2026-10-29
+
+### Cambiado
+- **Modo por defecto de fábrica = Simón Dice (`SIMON_SAYS`)**: al instalar, el
+  firmware arranca en Simón Dice en lugar de Entrenamiento libre. Sigue siendo
+  seleccionable desde `/game` (y persistido en Flash); solo cambia el valor por
+  defecto de `GameConfig.mode` y de `PersistentData.game_mode` (ver
+  `docs/DECISIONES.md` §36). Sin cambios de `PERSISTENT_VERSION` (sigue 7): quien
+  ya tenga otro modo persistido lo conserva y puede cambiarlo desde `/game`.
+
+## [0.9.5] - 2026-10-29
+
+### Arreglado
+- **Rutas protegidas redirigen a `/login`** y **`tcp_recved()` en GET (lwIP)**: acceder
+  a una ruta protegida sin autenticar ahora redirige a la página de login (antes 401
+  sin página), y las respuestas GET cierran correctamente la ventana de recepción.
+- **Crash al navegar rápido + use-after-free al abortar OTA**: doble free / acceso a
+  buffer liberado al cancelar una actualización por aire y al navegar entre páginas.
+- **SH1106 en blanco**: el direccionamiento horizontal dejaba el panel en blanco; se
+  cambia a addressing por página (`0xB0`/columna) y `COM 0x12`.
+- **No escribir Flash al solo ver una página de config**: visitar `/display` (u otra
+  página de config) disparaba una escritura de Flash innecesaria (crash); ahora solo
+  se persiste al enviar un formulario.
+- **Reinicio al guardar configuración (modo AP):** `flash_safe_execute()` corría en el
+  Core 1 (red) bajo FreeRTOS SMP, donde `__wfe()` no tiene wakeup periódico → el
+  timeout de la zona segura nunca se re-evalúa → cuelgue → watchdog (8 s) → Flash a
+  medio borrar → checksum inválido → reset de fábrica → sin credenciales → modo AP.
+  Se fija la afinidad de tareas: `game_task` → Core 0 (escribe Flash),
+  `network_task` → Core 1 (ver `docs/FREERTOS.md` §7).
+- **Display OLED en negro:** el init mandaba una sola fuente de tensión por chip; si
+  el panel real era el otro controlador, su comando de bomba se ignoraba y el panel
+  no encendía. Ambas secuencias ahora mandan charge-pump + DC-DC, con pre-carga y
+  VCOM corregidos (ver `docs/DECISIONES.md` §33).
+- **Modo/dificultad del juego se perdían al reiniciar**: el firmware volvía a
+  `FREE_PLAY`/`NORMAL` al reiniciar. Ahora `game_mode`, `game_difficulty`, `seed`,
+  `round_seconds`, `stimulus_min_ms` y `stimulus_max_ms` se persisten en Flash y se
+  restauran al arrancar (ver `docs/DECISIONES.md` §34).
+
+### Añadido
+- **Auto-test del display (0xA5):** destello blanco de ~1 s al arrancar + log serial
+  `[display] self-test: all-on rc=… (ACK/NACK)` para separar panel muerto de
+  problema de RAM/direccionamiento.
+- **Log de diagnóstico de display:** `[display] controlador=SSD1306|SH1106, init=OK`.
+- **Reintentos STA al arrancar:** hasta 4 intentos antes de degradar a AP (en
+  runtime ya existía reintento + backoff).
+- **Botón "Comprobar actualizaciones" en `/ota`:** consulta la API de GitHub desde el
+  navegador (el Pico W no puede hacer HTTPS), compara la última release con la
+  versión del firmware y ofrece el enlace de descarga.
+- **Simón Dice acelera la secuencia**: a medida que la secuencia crece, el tiempo de
+  reproducción entre notas se acorta (cada vez más rápido).
+
+### Cambiado
+- **Disparador de inicio con cualquier botón**: arrancar una ronda ya no requiere dos
+  botones simultáneos; cualquier pulsación inicia la cuenta regresiva
+  (`two_buttons_pressed()` eliminada; ver `docs/DECISIONES.md` §35).
+- **`PersistentData` versión 7** (persistencia de modo/dificultad): el primer arranque
+  tras la actualización **resetea la configuración persistida** (semántica de
+  migración de `flash::load()`).
+
+### Documentado
+- **Informe Word + documentación del display OLED** (decisión 33, aviso VBUS): el
+  informe en Word y la guía del diagnóstico del display, incluido el aviso de NO
+  alimentar el OLED desde VBUS (5 V).
+- **Dirección I2C aclarada**: `0x3C` (7-bit) equivale a `0x78` en la notación 8-bit
+  que usan algunos fabricantes; documentado en `docs/ESQUEMATICO.md` §3.3.
+- **`Schematic.svg` + `Pinout.svg`**: se reemplaza `docs/img/esquematico.svg` por
+  `docs/img/Schematic.svg` y se añade `docs/img/Pinout.svg`.
+
+## [0.9.4] - 2026-10-28
+
+### Arreglado
+- **PANIC de Wi-Fi al asociarse a la red** (`sys_timeout: pool MEMP_SYS_TIMEOUT is
+  empty`): `lwipopts.h` usaba el default de lwIP (`MEMP_NUM_SYS_TIMEOUT = 9`),
+  insuficiente para mDNS + keepalive TCP + renovación DHCP; al asociarse el pool
+  de timeouts del sistema se agotaba y lwIP panicaba. Ahora define
+  `MEMP_NUM_SYS_TIMEOUT 32`.
+
+## [0.9.3] - 2026-10-28
+
+### Añadido
+- **Log de IP de origen en cada conexión HTTP**: `http_accept` (`src/web_server.cpp`)
+  imprime `[web] conn desde <ip>:<port>` por cada conexión TCP entrante. Es el
+  separador definitivo para diagnosticar la web por STA: si conectando por STA
+  NO aparece el log, el SYN nunca llegó al Pico (el router lo dropea por
+  aislamiento de clientes); si aparece pero la página no carga, el firmware
+  recibió y respondió (la respuesta se pierde en el router).
+
+## [0.9.2] - 2026-10-28
+
+### Arreglado
+- **Reconexión en caliente AP→STA fallaba**: al conmutar del Access Point al modo
+  STA sin reiniciar, `cyw43_arch_disable_ap_mode()`/`disable_sta_mode()` solo
+  encolan el "link down" en el firmware CYW43 (es asíncrono); el `join` STA se
+  lanzaba con la radio aún cerrando el modo anterior y el primer `connect` fallaba.
+  Se añade un delay de asentamiento de 200 ms (`vTaskDelay`) en el handler
+  `g_wifi_reconnect` antes de `network_up()` (en frío no ocurría porque el chip
+  arranca limpio).
+- **Spam "STA activa" cada segundo**: `sta_refresh_ip()` publicaba la IP en cada
+  tick del watchdog de enlace aunque no hubiera cambiado. Ahora solo publica
+  cuando la IP aparece por primera vez o cambia (nueva `g_last_sta_ip`); si la IP
+  es 0 (DHCP en curso) o no varió, no imprime ni actualiza.
+
+### Documentado
+- `docs/COMPILAR.md`: nueva sección "Solución de problemas del STA (no carga
+  `http://<IP>`)" — el HTTP escucha en `0.0.0.0:80` y no hay firewall en lwIP, así
+  que la causa casi siempre es aislamiento entre clientes del router/AP
+  (guest/corporativa/"AP isolation"); cómo confirmarlo y la alternativa mDNS
+  `picoreflex.local`.
+
+## [0.9.1] - 2026-10-28
+
+### Arreglado
+- **Página `/login` inalcanzable**: un `GET /login` sin `?pin=` caía en la rama de
+  validación y devolvía `401 PIN incorrecto`, dejando `render_login` como código
+  muerto y bloqueando el acceso a todas las páginas de configuración (no se podía
+  autenticar). Ahora `src/web_server.cpp` solo valida el PIN (y consume el limitador
+  anti fuerza bruta) cuando el parámetro `pin` está presente y no vacío; un `GET`
+  plano de `/login` cae al render final y muestra el formulario
+  (`web_ui::render("/login")` → `render_login`).
+
+## [0.9.0] - 2026-10-28
+
+### Añadido
+- **Modo dormir configurable**: `GameConfig::sleep_enabled` (bool, por defecto
+  `true`) e `idle_sleep_min` (minutos, 1..60, por defecto 3) en `include/config.hpp`;
+  card "Modo dormir (ahorro de energía)" en `/display` (Habilitar/Deshabilitar +
+  campo Inactividad). El protocolo de dormancia (`src/game_logic.cpp`) respeta estos
+  valores (antes era un umbral fijo de 3 min) y solo dormita con el Wi-Fi apagado;
+  `sleep_enabled=false` desactiva el sueño. Persistido en Flash
+  (`PersistentData::sleep_enabled`/`idle_sleep_min`).
+
+### Arreglado
+- **Cuelgue en `cyw43_arch_init()`**: `lwipopts.h` no definía `TCPIP_THREAD_STACKSIZE`
+  (default lwIP `0`) y la tarea `tcpip_thread` nunca se creaba. Se añade el bloque
+  `#if !NO_SYS` con `TCPIP_THREAD_STACKSIZE 2560` (y `DEFAULT_THREAD_STACKSIZE`,
+  `TCPIP_MBOX_SIZE`, `*_RECVMBOX_SIZE`); de vuelta a `pico_cyw43_arch_lwip_sys_freertos`
+  (ver `docs/DECISIONES.md` §30).
+- **"USB no reconocido" tras el bootloader**: `jump_to_app()` saltaba con IRQ
+  enmascaradas (`cpsid i`); ahora replica un reset limpio (limpia NVIC/SysTick,
+  fija VTOR, `cpsie i`) antes del salto (ver `docs/DECISIONES.md` §31).
+- **Reset por watchdog al conectar un cliente al AP**: `src/web_server.cpp`
+  (`ap_dhcp_start`/`ap_dhcp_stop`/`http_server_init`) y `src/captive_portal.cpp`
+  (`captive::init`/`stop`) usaban la API raw de lwIP (`udp_new`/`udp_bind`/`udp_recv`/
+  `udp_remove`) sin `cyw43_arch_lwip_begin()`/`cyw43_arch_lwip_end()`, lo que bajo
+  `NO_SYS=0` disparaba una aserción de lwIP y el watchdog reiniciaba el firmware al
+  conectar un cliente al AP. Ahora están envueltos en begin/end y
+  `TCPIP_THREAD_STACKSIZE` sube a 2560.
+
+### Cambiado
+- **Clave del AP vuelve a ser FIJA `12345678`** (`AP_PASSWORD_DEFAULT` en
+  `include/config.hpp`), igual para cualquier placa, editable desde `/wifi`
+  (8..15 chars) y persistida en Flash. Se revierte la derivación del RUID de v0.7.0
+  (a petición del usuario).
+- `PersistentData` versión 6 (modo dormir): el primer arranque tras la actualización
+  **resetea la configuración persistida**.
+
+### Documentado
+- `docs/DECISIONES.md`: §7 (clave del AP por defecto) y nueva §32 (modo dormir).
+- `SECURITY.md`, `docs/SEGURIDAD.md` (§3.4), `docs/COMPILAR.md`, `docs/API.md` y
+  `docs/ROADMAP.md`: corregido "derivada del RUID" → clave fija `12345678`.
+- `README.md`: nota de modo dormir y clave del AP.
+
+## [0.8.1] - 2026-10-22
+
+### Arreglado
+- **Bootloader no arrancaba la app**: *off-by-one* en la validación del MSP al saltar
+  a la aplicación (`src/bootloader.c:44`) rechazaba el valor legítimo
+  `__StackTop = 0x20042000` (tope exacto de la SRAM de 264 KB), por lo que el
+  bootloader descartaba la imagen y volvía a modo bootloader. La cota ahora es
+  `msp <= 0x20042000u` (tope incluido).
+
+### Documentado
+- Referencia al [pinout oficial de la Raspberry Pi Pico W (A4, RP-008315-DS-1)](https://pip-assets.raspberrypi.com/categories/686-raspberry-pi-pico-w/documents/RP-008315-DS-1-PicoW-A4-Pinout.pdf)
+  en `docs/ESQUEMATICO.md` y `docs/ARQUITECTURA.md`.
+
+## [0.8.0] - 2026-10-22
+
+### Añadido
+- **Soporte de display SH1106 1.3" (runtime)**: dos controladores OLED 128×64 por I2C
+  (SSD1306 0.96" y SH1106 1.3") con secuencias de init separadas; selección en
+  runtime desde `/display` (`?controller=0|1`) persistida en Flash. La macro
+  `PICOREFLEX_DISPLAY_CONTROLLER` solo fija el valor por defecto.
+
+### Cambiado
+- `PersistentData` versión 5 (controlador de display): el primer arranque tras la
+  actualización resetea la configuración persistida.
+
+### Arreglado
+- **Linker script autocontenido**: en Windows el driver g++ descarta las flags `-L`
+  cuando los objetos se pasan por fichero de respuesta (`@rsp`), por lo que `ld`
+  no resolvía los `INCLUDE` del linker script del SDK (`memmap_default.incl`).
+  Nuevo `tools/generate_linker_script.py` genera un linker script autocontenido por
+  target (ver `docs/DECISIONES.md` §29).
+
+### Documentado
+- `docs/API.md` (`/display` + parámetro `controller`) y `docs/COMPILAR.md`:
+  soporte SH1106 con selección en runtime y persistencia (macro solo como valor
+  por defecto).
+
+## [0.7.0] - 2026-10-21
+
+### Añadido
+- **Watchdog hardware** (`hardware_watchdog`): `watchdog_enable(8000 ms,
+  pause_on_debug=true)` al arrancar y `watchdog_update()` en ambos bucles de
+  tarea; diagnóstico del último reinicio (`watchdog_caused_reboot()`).
+- **Debounce de pulsadores por PIO** (`button_debounce.pio`): una state machine por
+  botón que filtra el rebote en hardware (~5 ms de lockout) y notifica el flanco.
+- **Soporte de display SH1106**: `display::init(Controller)` con offset de columna
+  +2; selección por macro `PICOREFLEX_DISPLAY_CONTROLLER`.
+- **Calibración de la curva de batería** (`BatteryCalibration`): 3 puntos (mV) +
+  compensación de carga, configurable desde `/battery` y persistida en Flash.
+- **Reconexión Wi-Fi en caliente (STA→AP)**: `sta_link_watchdog()` vigila el enlace
+  cada 1 s; reintenta con backoff exponencial (1..15 s) y degrada a SoftAP tras 3 fallos.
+- **mDNS `picoreflex.local`** (solo STA): `mdns_resp_add_netif()` + servicio `_http`
+  (`pico_lwip_mdns`, `LWIP_MDNS_RESPONDER=1`, `LWIP_IGMP=1`).
+- **Autenticación PIN + rate-limiting**: cookie `pr_auth` / `Authorization: Bearer`,
+  PIN de compilación `WEB_PIN` (por defecto `1234`), límite global 60 req/s y 5 login/s.
+- **Contraseña del AP configurable**: sin clave por defecto conocida; se deriva del
+  RUID de la Flash (única por placa) o se configura desde `/wifi` (8..15 chars) y se persiste.
+- **OTA A/B con bootloader de segundo nivel**: partición A/B + staging + metadatos;
+  `POST /ota/upload` con CRC32 y *rollback* automático.
+- **CI endurecido**: análisis estático `cppcheck` (falla el CI ante error/warning) y
+  reporte de tamaño (`cmake --build build --target size` → `build/size-report.txt`).
+
+### Cambiado
+- `PersistentData` versión 3 (clave del AP) y 4 (calibración de batería): el primer
+  arranque tras la actualización **resetea la configuración persistida** (récords,
+  Wi-Fi, OLED y cuenta regresiva vuelven a sus valores por defecto).
+
+### Documentado
+- `docs/SEGURIDAD.md`: §3.2 (PIN + rate-limit) y §3.4 (clave del AP) resueltos;
+  hallazgos `12345678` y "sin autenticación" cerrados.
+- `docs/ROADMAP.md`: base actualizada a v0.7.0; ítems 1.1/1.3/1.4/1.5/1.6/1.7 y
+  2.1/2.2/2.3 marcados como completados.
+- `docs/API.md` (endpoints `/wifi`, `/battery`, `/ota` + autenticación PIN) y
+  `docs/COMPILAR.md` (macros `PICOREFLEX_WS2812`/`PICOREFLEX_DISPLAY_CONTROLLER`/`WEB_PIN`);
+  sitio MkDocs de `Docs.git` reescrito a v0.7.0.
+
 ## [0.6.1] - 2026-10-20
 
 ### Documentado
@@ -63,7 +301,7 @@ sigue [Semantic Versioning](https://semver.org/) (SemVer).
 ## [0.4.6] - 2026-10-20
 
 ### Documentado
-- **Esquemático / diagrama circuital** (`docs/ESQUEMATICO.md` + `docs/esquematico.svg`):
+- **Esquemático / diagrama circuital** (`docs/ESQUEMATICO.md` + `docs/img/esquematico.svg`):
   diagrama de bloques, tabla de conexiones, detalle por subsistema (LEDs con
   cálculo de resistencia, pulsadores, I2C, buzzer con driver, divisor de batería
   10 k/22 k, alimentación) y mapa de pines completo.

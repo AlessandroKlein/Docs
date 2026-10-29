@@ -4,6 +4,11 @@
 **Institución:** Universidad Nacional del Litoral — Tecnicatura en Automatización y Robótica
 **Plataforma:** Raspberry Pi Pico W — Raspberry Pi Pico C/C++ SDK
 
+> ⚠️ **Nota (v0.7.0):** este informe documenta el firmware original (doble núcleo
+> con `multicore_launch_core1` y batería por VSYS/3). Desde v0.5.0 el firmware usa
+> **FreeRTOS SMP** y desde v0.4.6 la batería se mide por **ADC0 (GPIO26)**. El
+> estado actual está en `Arquitectura.md` y `Compilacion.md`.
+
 ---
 
 ## 1. Informe Técnico
@@ -26,26 +31,16 @@ las siguientes características concretas:
   ronda). Tres dificultades (1000 / 500 / 250 ms de tolerancia).
 - **Feedback sonoro** mediante un buzzer pasivo (PWM): tono de acierto, de fallo,
   de timeout, cuenta regresiva y melodía de *game over*.
-- **Servidor web embebido** (lwIP) con **páginas separadas**: Home (red, batería,
-  estadísticas y tabla de tiempos), semilla (`/seed`), juego (`/game`), display
-  (`/display`) y Wi-Fi (`/wifi`, con "Mostrar contraseña"). El frontend (HTML) está
-  separado del backend (ruteo/parseo). La página `/player` se eliminó (v0.4.0).
-- **Disparador de inicio con dos botones simultáneos** y **cuenta regresiva**
-  configurable (`start_delay_s`, por defecto 3 s, límite 10 s) antes de arrancar.
-- **Wi-Fi configurable desde la web**: SSID/password se editan en `/wifi`, se
-  persisten en Flash y se re-conecta automáticamente (sin recompilar).
-- **OLED deshabilitable** desde la web (`/display`) para ahorrar energía; toda la
-  información sigue disponible en la web.
-- **Historial de tiempos de reacción** (últimos 20) mostrado como tabla en el Home.
+- **Servidor web embebido** (lwIP) que permite configurar semilla, dificultad,
+  modo, velocidad entre estímulos, duración de ronda y nombre, además de ver
+  estadísticas (promedio, mejor tiempo, tasa de acierto) y el nivel de batería.
 - **Conectividad redundante:** Station (STA) con *timeout* de 10 s y respaldo en
-  Access Point (`PicoW-ReactionGame`, WPA2 clave `12345678`, IP `192.168.4.1`,
-  canal 1) con **servidor DHCP propio** (IPs `192.168.4.16`–`192.168.4.23`) y
-  **captive portal** (servidor DNS en puerto 53 que redirige toda consulta a
-  `192.168.4.1`).
-- **Medición de batería** por ADC con divisor resistivo externo (10 kΩ/22 kΩ) en
-  GPIO26, con estimación de porcentaje y alerta de batería baja (< 15 %).
-- **Almacenamiento no volátil** en Flash (récords/ranking, semilla, credenciales
-  Wi-Fi y preferencias).
+  Access Point (`PicoW-ReactionGame`, IP `192.168.4.1`) con **captive portal**
+  (servidor DNS en puerto 53 que redirige toda consulta a `192.168.4.1`).
+- **Medición de batería** por ADC (VSYS/3) con estimación de porcentaje y alerta
+  de batería baja (< 15 %).
+- **Almacenamiento no volátil** en Flash (récords/ranking, nombre y última
+  semilla).
 - **Doble núcleo:** Core 0 (juego) y Core 1 (red + display).
 - **Display OLED SSD1306** (I2C1) para mostrar tiempo, semilla, modo, batería y
   dirección IP.
@@ -54,9 +49,8 @@ las siguientes características concretas:
 completo (solo tonos PWM), ni *datalogging* a nube, ni carga de batería (se asume
 alimentación externa o módulo TP4056 + boost). El modo de ultra-bajo consumo
 *DORMANT* (< 1.5 mA) está **implementado** con un protocolo dual-core (apagado
-del Wi-Fi + `low_power_dormant_until_gpio_pin_state`) y **solo se activa cuando
-no hay red activa** (ni STA ni AP, ver v0.3.2); queda pendiente su verificación de
-consumo en hardware (ver `docs/DECISIONES.md` §13 y §22).
+del Wi-Fi + `low_power_dormant_until_gpio_pin_state`); queda pendiente su
+verificación de consumo en hardware (ver `docs/DECISIONES.md` §13).
 
 ### b. Descripción de la solución propuesta
 
@@ -66,8 +60,7 @@ consumo en hardware (ver `docs/DECISIONES.md` §13 y §22).
 - Pulsadores entre GPIO 7–11 y GND (pull-up interno de la RP2040).
 - Display SSD1306 a I2C1 (SDA=GPIO14, SCL=GPIO15) con pull-ups de 4.7 kΩ.
 - Buzzer pasivo a GPIO16 (PWM).
-- Medición de batería en GPIO26 (ADC0) mediante divisor externo 10 kΩ/22 kΩ
-  (R1 entre batería y pin, R2 entre pin y GND).
+- Medición de batería en GPIO29 (ADC3), que en la Pico W mide VSYS/3.
 - LED onboard controlado por el CYW43 (estado de red).
 
 #### Software
@@ -76,22 +69,18 @@ El código está organizado en módulos (`include/` + `src/`), compilados con CM
 y el Pico SDK. Los puntos clave son:
 
 - `main.cpp` arranca el Core 1 con `multicore_launch_core1()`.
-- `game_logic.cpp` (Core 0) implementa el PRNG, la máquina de estados del juego,
-  el **disparador de dos botones + cuenta regresiva** y la temporización con IRQ +
-  `time_us_32()`; usa DMA (buffer en anillo rítmado por PWM) como *trace* hardware
-  de los pulsadores.
-- `web_server.cpp` (Core 1) gestiona `cyw43_arch` (STA/AP, reconexión) y es el
-  **backend** HTTP (ruteo/parseo) con la API raw de lwIP; `web_ui.cpp` es el
-  **frontend** que genera las páginas HTML (`web_ui::render`).
-- `battery_monitor.cpp` lee el ADC (GPIO26/ADC0) y aplica el factor del divisor
-  externo `×32/22`.
-- `flash_storage.cpp` persiste récords y configuración (Wi-Fi, OLED, cuenta
-  regresiva) con `flash_safe_execute()` (estructura `PersistentData` v2).
-- `display_driver.cpp` dibuja texto 5×7 en el SSD1306 y permite apagarlo
-  (`set_power`).
+- `game_logic.cpp` (Core 0) implementa el PRNG, la máquina de estados del juego y
+  la temporización con IRQ + `time_us_32()`; usa DMA (buffer en anillo rítmado
+  por PWM) como *trace* hardware de los pulsadores.
+- `web_server.cpp` (Core 1) gestiona `cyw43_arch` (STA/AP) y sirve HTTP con la
+  API raw de lwIP.
+- `battery_monitor.cpp` lee el ADC protegiendo la lectura con
+  `cyw43_arch_lwip_begin/end()` (GPIO29 compartido con el SPI del Wi-Fi).
+- `flash_storage.cpp` persiste récords con `flash_safe_execute()`.
+- `display_driver.cpp` dibuja texto 5×7 en el SSD1306.
 - `audio.cpp` genera tonos PWM.
-- `shared_state.cpp` sincroniza configuración/estadísticas/historial entre núcleos
-  con `critical_section` + `queue`.
+- `shared_state.cpp` sincroniza configuración/estadísticas entre núcleos con
+  `critical_section` + `queue`.
 
 Cada decisión está documentada y vinculada a la documentación oficial en
 `docs/DECISIONES.md`.
@@ -104,9 +93,9 @@ Wi-Fi/lwIP) en un dispositivo funcional y reproducible.
 
 **Dificultades encontradas:**
 
-1. **GPIO29 ocupado en la Pico W** por el SPI del Wi-Fi y el divisor interno VSYS/3:
-   se resolvió midiendo la batería con un divisor externo en GPIO26 (ADC0), que
-   evita el conflicto por completo.
+1. **GPIO29 compartido** entre el ADC (VSYS/3) y el SPI del CYW43 en la Pico W:
+   obligó a proteger cada lectura del ADC con el *lock* del CYW43, y a mover la
+   medición de batería al Core 1 (que es quien inicializa el Wi-Fi).
 2. **PRNG determinista:** `pico_rand` no permite fijar semilla, por lo que se
    implementó un `xorshift32` propio para el modo determinista.
 3. **Escritura segura en Flash con dos núcleos:** se resolvió con
@@ -117,15 +106,6 @@ Wi-Fi/lwIP) en un dispositivo funcional y reproducible.
    pendiente de verificación de consumo en hardware.
 5. **Comunicación inter-núcleo:** se evitó el uso de los FIFOs crudos y se usó
    `queue_t` + `critical_section`, siguiendo la recomendación del SDK.
-6. **El AP "conectaba y se desconectaba":** el CYW43 no trae servidor DHCP en
-   modo AP; se integró `src/dhcpserver.c` (MicroPython/pico-examples, MIT), que
-   asigna IPs `192.168.4.16`–`192.168.4.23` a los clientes.
-7. **Reinicio al guardar/escanear Wi-Fi:** el Core 1 (servidor web) corría con
-   2 KB de stack y desbordaba (*hard fault*); se amplió a 4 KB con
-   `PICO_CORE1_STACK_SIZE=0x1000`.
-8. **SSID corrupto al guardar:** `url_decode()` copiaba el valor hasta el final de
-   la query, dejando `ssid&pass=...` en el campo SSID; se corrigió para que corte
-   en el separador `&`.
 
 ---
 
@@ -137,40 +117,38 @@ La RP2040 dispone de un **ADC SAR** (aproximaciones sucesivas) de **12 bits**
 (0–4095) con 5 entradas multiplexadas: 4 en los pines GPIO 26–29 (ADC0–ADC3) y
 una interna para el sensor de temperatura. Su tensión de referencia es de 3.3 V.
 
-En la **Pico W**, la batería se mide con un **divisor resistivo externo** en
-**GPIO26 (ADC0)**: `R1 = 10 kΩ` (batería → pin ADC) y `R2 = 22 kΩ` (pin ADC → GND).
-Se eligió GPIO26 porque está libre; GPIO29 (ADC3) está ocupado por el SPI del
-Wi-Fi y por el divisor interno VSYS/3.
+En la **Pico W**, el pin **GPIO29 (ADC3)** está conectado a **VSYS a través de un
+divisor resistivo interno 3:1**, de modo que la tensión medida en el pin es
+`VSYS/3`. Esto permite monitorizar una batería LiPo/Li-Ion de 1 celda
+(3.0–4.2 V) conectada a VSYS.
 
 ### Configuración (SDK)
 
 - `adc_init()`: habilita el ADC y configura su reloj (~500 kS/s con reloj
   independiente de 48 MHz).
-- `adc_gpio_init(26)`: configura GPIO26 como entrada analógica (función NULL,
-  pulls y receptor digital deshabilitados).
-- `adc_select_input(0)`: selecciona la entrada ADC0 (GPIO26).
+- `adc_select_input(3)`: selecciona la entrada ADC3 (GPIO29).
 - `adc_read()`: inicia una conversión y devuelve el valor (0–4095).
+- **Particularidad Pico W:** GPIO29 también es `WL_CLK` (SPI del CYW43439). Para
+  no chocar con la radio, la lectura se envuelve entre `cyw43_arch_lwip_begin()` y
+  `cyw43_arch_lwip_end()` (ver `battery_monitor.cpp`).
 
 ### Conversión tensión → porcentaje
 
 ```
-Vpin = adc · 3300 / 4095              (mV)
-Vbat = Vpin · (R1 + R2) / R2
-     = Vpin · 32 / 22                 (divisor 10k/22k)
+Vpin = adc · 3300 / 4095        (mV)
+VSYS = 3 · Vpin                 (divisor 3:1)
 ```
 
-Con una batería a 4.2 V, el pin recibe `4.2 · 22/32 ≈ 2.89 V`, por debajo de la
-referencia de 3.3 V (sin recorte). El porcentaje se obtiene por interpolación
-lineal de la curva de descarga de una celda LiPo: 4200 mV → 100 %, 3700 mV →
-50 %, 3000 mV → 0 %. Se promedian 16 muestras para reducir ruido. Se genera alerta
-por batería baja (< 15 %).
+El porcentaje se obtiene por interpolación lineal de la curva de descarga de una
+celda LiPo: 4200 mV → 100 %, 3700 mV → 50 %, 3000 mV → 0 %. Se promedian 16
+muestras para reducir ruido. Se genera alerta por batería baja (< 15 %).
 
 ### Características relevantes
 
-- Resolución: 12 bits (1 LSB ≈ 0.8 mV en el pin; ≈ 1.17 mV sobre Vbat tras ×32/22).
-- Entradas compartidas con GPIO; se usa ADC0 (GPIO26), libre en la Pico W.
+- Resolución: 12 bits (1 LSB ≈ 0.8 mV; sobre VSYS ≈ 2.4 mV por LSB tras el ×3).
+- Entradas compartidas con GPIO; en Pico W, ADC3 compartido con el Wi-Fi.
 - Posibilidad de muestreo por *round-robin* y DMA (no usado en la medición, que
-  es por *polling* simple).
+  es por *polling* protegido).
 
 ---
 
