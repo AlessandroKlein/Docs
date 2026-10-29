@@ -7,7 +7,7 @@ tags:
 
 # PicoReflex — Juego de Reacción Rápida Avanzado
 
-> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-29 | **Firmware:** v0.9.6
+> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-29 | **Firmware:** v0.9.7
 > **Hardware:** Raspberry Pi Pico W (RP2040 + CYW43439) · **Plataforma:** Pico SDK (oficial) 2.3.0 — C/C++
 
 ## 1. Resumen ejecutivo
