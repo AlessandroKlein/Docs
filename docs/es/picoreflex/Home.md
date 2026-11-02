@@ -21,7 +21,9 @@ configuración, medición de batería, conectividad Wi-Fi redundante y actualiza
 por aire (OTA).
 
 - **5 LEDs + 5 pulsadores** con temporización de reacción en µs y **debounce por
-  PIO** (una state machine por botón).
+  PIO** (una state machine por botón). Correspondencia por índice: LED 1↔P1
+  (GPIO2↔GPIO7), LED 2↔P2 (GPIO3↔GPIO8), LED 3↔P3 (GPIO4↔GPIO9), LED 4↔P4
+  (GPIO5↔GPIO10), LED 5↔P5 (GPIO6↔GPIO11).
 - **PRNG determinista por semilla** (`xorshift32`) para competencias repetibles,
   o modo aleatorio con `pico_rand`. Modos: libre, contrarreloj, muerte súbita y
   **Simón Dice**.

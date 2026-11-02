@@ -135,6 +135,11 @@ PicoReflex/
 | LED onboard           | CYW43          | Estado de red (fijo = STA, parpadeo = AP)       |
 | NeoPixel (opcional)   | 28             | `PICOREFLEX_WS2812=1` (PIO)                     |
 
+> **Correspondencia pulsador ↔ LED (mismo índice):** LED 1↔P1 (GPIO2↔GPIO7),
+> LED 2↔P2 (GPIO3↔GPIO8), LED 3↔P3 (GPIO4↔GPIO9), LED 4↔P4 (GPIO5↔GPIO10),
+> LED 5↔P5 (GPIO6↔GPIO11). `LED_PINS`/`BUTTON_PINS` en `include/pin_defs.hpp:36` y
+> `:43`; el motor valida `btn == expected` (`src/game_logic.cpp:489`).
+
 El **display OLED** soporta dos controladores, ambos 128×64 por I2C1 en
 `0x3C`/`0x3D`: **SSD1306** (0.96") y **SH1106** (1.3"). El controlador se
 selecciona en runtime desde `/display` (`?controller=0|1`) y se **persiste en
