@@ -6471,7 +6471,9 @@ las siguientes características concretas:</p>
 <ul>
 <li><strong>5 LEDs indicadores</strong> (GPIO 2–6) y <strong>5 pulsadores</strong> (GPIO 7–11, con pull-up
   interno y detección por flanco de bajada). Cada LED tiene un botón asociado
-  uno a uno.</li>
+  <strong>uno a uno por índice</strong>: LED 1↔P1 (GPIO2↔GPIO7), LED 2↔P2 (GPIO3↔GPIO8),
+  LED 3↔P3 (GPIO4↔GPIO9), LED 4↔P4 (GPIO5↔GPIO10), LED 5↔P5 (GPIO6↔GPIO11)
+  (<code>include/pin_defs.hpp:36</code> y <code>:43</code>; <code>src/game_logic.cpp:489</code>).</li>
 <li><strong>Medición del tiempo de reacción</strong> con resolución de <strong>microsegundos</strong>
   (<code>time_us_32()</code> capturado en la interrupción GPIO).</li>
 <li><strong>Generación determinista por semilla:</strong> con una semilla fija, la secuencia de

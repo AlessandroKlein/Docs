@@ -6511,6 +6511,10 @@ cálculos de dimensionamiento. Es el "Diagrama circuital" que pide la consigna
 </tbody>
 </table>
 <blockquote>
+<p><strong>Correspondencia pulsador ↔ LED (mismo índice):</strong> LED 1↔P1 (GPIO2↔GPIO7),
+LED 2↔P2 (GPIO3↔GPIO8), LED 3↔P3 (GPIO4↔GPIO9), LED 4↔P4 (GPIO5↔GPIO10),
+LED 5↔P5 (GPIO6↔GPIO11). <code>LED_PINS</code>/<code>BUTTON_PINS</code> en <code>include/pin_defs.hpp:36</code> y
+<code>:43</code>; el motor valida <code>btn == expected</code> (<code>src/game_logic.cpp:489</code>).</p>
 <p><strong>Alternativa WS2812 (NeoPixel):</strong> en lugar de los 5 LEDs GPIO, se puede usar una
 tira de LEDs direccionables <strong>WS2812</strong> en <strong>GPIO28</strong> (controlada por PIO). Se
 habilita con la macro <code>PICOREFLEX_WS2812 1</code> en <code>include/config.hpp</code>. Permite color
