@@ -1604,6 +1604,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/inventario-completo/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/iot-eventos-alarmas/</loc>
+        <lastmod>2026-11-05</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/iot-eventos-alarmas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/iot-eventos-alarmas/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/marketplace-de-plugins/</loc>
         <lastmod>2026-11-05</lastmod>
         <changefreq>daily</changefreq>
@@ -3436,6 +3443,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/inventario-completo/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/inventario-completo/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/iot-eventos-alarmas/</loc>
+        <lastmod>2026-11-05</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/iot-eventos-alarmas/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/iot-eventos-alarmas/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/marketplace-de-plugins/</loc>

@@ -5986,6 +5986,8 @@
       
         
       
+        
+      
     
     
     
@@ -7148,6 +7150,34 @@
     
   
     Integración REST (Invernadero y SEMA)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iot-eventos-alarmas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eventos y alarmas IoT
   
 
     
@@ -9247,6 +9277,10 @@ actúa como colector y consolidador central:</p>
 <li>La lógica compartida vive en el paquete <code>@webs/iot</code> (<code>createIotDeviceClient</code>,
   <code>createIotPool</code>, <code>startCollector</code>, <code>registerIotDeviceRoutes</code>); cada plugin solo
   aporta el <strong>mapeo de payload</strong> y la lista de <code>kinds</code>.</li>
+<li>Además de métricas, el plugin levanta un <strong>colector de eventos y alarmas</strong>
+  (<code>startEventCollector</code> de <code>@webs/iot</code>) que sondea <code>GET /events</code> y <code>GET /alarms</code>
+  del dispositivo y las guarda en <code>IotDeviceEvent</code> (dedupe por fingerprint,
+  retención 90 días). Ver <a href="../iot-eventos-alarmas/">Eventos y alarmas IoT</a>.</li>
 </ul>
 <h3 id="invernadero">Invernadero</h3>
 <ul>

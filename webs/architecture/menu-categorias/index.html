@@ -4855,10 +4855,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#items-core-corenav-featurenav" class="md-nav__link">
+  <a href="#items-core-navitems-37-items" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ítems core (coreNav + featureNav)
+        Ítems core (navItems, 37 ítems)
       
     </span>
   </a>
@@ -6125,6 +6125,8 @@
       
         
       
+        
+      
     
     
     
@@ -7170,6 +7172,34 @@
     
   
     Integración REST (Invernadero y SEMA)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/iot-eventos-alarmas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eventos y alarmas IoT
   
 
     
@@ -9224,15 +9254,13 @@ Integraciones, etc.). Define el contrato de metadatos para que el frontend
 manifiestos de plugins) trabajen en paralelo.</p>
 </blockquote>
 <h2 id="objetivo">Objetivo</h2>
-<p>Hoy el menú de <code>/admin</code> es una <strong>lista plana</strong> de tres fuentes concatenadas sin
-agrupación visual:</p>
-<ul>
-<li><code>coreNav</code> (21 ítems fijos, <code>apps/web/src/layouts/AdminLayout.tsx:87-109</code>).</li>
-<li><code>featureNav</code> (12 ítems de módulos core, <code>:112-125</code>).</li>
-<li><code>pluginNav</code> (ítems declarados por plugins instalados, vía <code>GET /menu</code> →
-  <code>collectPluginMenuItems('admin')</code>, con <code>id</code>, <code>section</code>, <code>icon</code>, <code>order</code>,
-  <code>parent</code>, <code>permissions</code>).</li>
-</ul>
+<p>Hoy el menú de <code>/admin</code> ya está <strong>agrupado por secciones</strong> con submenús e iconos.
+El frontend (<code>apps/web/src/layouts/AdminLayout.tsx</code>) declara una lista única
+<code>navItems</code> de <strong>37 ítems core</strong> (líneas 251-297) y le suma los ítems declarados
+por plugins instalados (vía <code>GET /api/v1/menu</code>, con <code>id</code>, <code>section</code>, <code>icon</code>,
+<code>order</code>, <code>parent</code>, <code>permissions</code>). <code>buildTree</code> anida los ítems por <code>parent</code>
+(submenús) y <code>iconClass</code> normaliza los iconos a bootstrap-icons (<code>bi bi-*</code>);
+además hay búsqueda con <code>/</code> y drawer móvil.</p>
 <p>El objetivo es agruparlos en <strong>secciones</strong> con orden estable y <strong>un criterio de
 clasificación explícito</strong>, reutilizando el campo <code>section</code> que ya existe en
 <code>AdminMenuItem</code> y en el tipo <code>PluginMenuItem</code> del SDK
@@ -9305,13 +9333,15 @@ clasificación explícito</strong>, reutilizando el campo <code>section</code> q
 </tbody>
 </table>
 <h2 id="clasificacion-de-los-items-actuales">Clasificación de los ítems actuales</h2>
-<h3 id="items-core-corenav-featurenav">Ítems core (<code>coreNav</code> + <code>featureNav</code>)</h3>
+<h3 id="items-core-navitems-37-items">Ítems core (<code>navItems</code>, 37 ítems)</h3>
 <table>
 <thead>
 <tr>
 <th>Ítem (<code>to</code>)</th>
 <th>Permiso</th>
 <th>Sección</th>
+<th>Icono</th>
+<th>Padre (submenú)</th>
 </tr>
 </thead>
 <tbody>
@@ -9319,169 +9349,267 @@ clasificación explícito</strong>, reutilizando el campo <code>section</code> q
 <td><code>/admin</code></td>
 <td>—</td>
 <td><code>panel</code></td>
+<td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/analytics</code></td>
 <td>—</td>
 <td><code>panel</code></td>
+<td><code>graph-up</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/content</code></td>
 <td><code>content.read</code></td>
 <td><code>contenido</code></td>
+<td><code>collection</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/pages</code></td>
 <td><code>content.read</code></td>
 <td><code>contenido</code></td>
+<td><code>file-earmark-text</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/editor</code></td>
 <td><code>content.write</code></td>
 <td><code>contenido</code></td>
+<td><code>pencil-square</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/blog</code></td>
 <td>—</td>
 <td><code>contenido</code></td>
+<td><code>journal-text</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/forms</code></td>
 <td>—</td>
 <td><code>contenido</code></td>
+<td><code>input-cursor-text</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/payments</code></td>
 <td><code>user.read</code></td>
 <td><code>ventas</code></td>
+<td><code>credit-card</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/commerce</code></td>
 <td>—</td>
 <td><code>ventas</code></td>
+<td><code>bag</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/invoices</code></td>
 <td>—</td>
 <td><code>ventas</code></td>
+<td><code>receipt</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>/admin/invoices/template</code></td>
+<td>—</td>
+<td><code>ventas</code></td>
+<td><code>layout-text-window-reverse</code></td>
+<td><code>/admin/invoices</code></td>
 </tr>
 <tr>
 <td><code>/admin/inventory</code></td>
 <td>—</td>
 <td><code>ventas</code></td>
+<td><code>box-seam</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/email</code></td>
 <td><code>email.read</code></td>
 <td><code>comunicacion</code></td>
+<td><code>envelope</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/notifications</code></td>
 <td>—</td>
 <td><code>comunicacion</code></td>
-</tr>
-<tr>
-<td><code>/admin/chat</code></td>
+<td><code>bell</code></td>
 <td>—</td>
-<td><code>comunicacion</code></td>
 </tr>
 <tr>
 <td><code>/admin/support</code></td>
 <td><code>support.read</code></td>
 <td><code>comunicacion</code></td>
+<td><code>headset</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/social</code></td>
 <td>—</td>
 <td><code>comunidad</code></td>
+<td><code>people</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/calendar</code></td>
 <td>—</td>
 <td><code>comunidad</code></td>
+<td><code>calendar3</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/appearance</code></td>
 <td><code>theme.read</code></td>
 <td><code>apariencia</code></td>
+<td><code>palette</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/translations</code></td>
 <td><code>translation.read</code></td>
 <td><code>apariencia</code></td>
+<td><code>translate</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/menu</code></td>
 <td><code>setting.read</code></td>
 <td><code>apariencia</code></td>
+<td><code>list-nested</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/plugins</code></td>
 <td><code>plugin.read</code></td>
 <td><code>integraciones</code></td>
+<td><code>puzzle</code></td>
+<td>—</td>
 </tr>
 <tr>
-<td><code>/admin/plugin-settings</code></td>
-<td><code>plugin.read</code></td>
+<td><code>/admin/generated</code></td>
+<td><code>generated.read</code></td>
 <td><code>integraciones</code></td>
+<td><code>lightning</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>/admin/invernadero</code></td>
+<td><code>iot.read</code></td>
+<td><code>integraciones</code></td>
+<td><code>flower1</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>/admin/sema</code></td>
+<td><code>iot.read</code></td>
+<td><code>integraciones</code></td>
+<td><code>broadcast</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/api-tokens</code></td>
 <td>—</td>
 <td><code>integraciones</code></td>
+<td><code>key</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/auth</code></td>
 <td>—</td>
 <td><code>integraciones</code></td>
+<td><code>shield-lock</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/settings</code></td>
 <td><code>setting.read</code></td>
 <td><code>configuracion</code></td>
+<td><code>gear</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/templates</code></td>
 <td><code>setting.write</code></td>
 <td><code>configuracion</code></td>
+<td><code>files</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/branches</code></td>
 <td>—</td>
 <td><code>configuracion</code></td>
+<td><code>diagram-3</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/organizations</code></td>
 <td>—</td>
 <td><code>configuracion</code></td>
+<td><code>building</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/updates</code></td>
 <td><code>setting.read</code></td>
 <td><code>configuracion</code></td>
+<td><code>arrow-repeat</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>/admin/scaling</code></td>
+<td><code>scaling.read</code></td>
+<td><code>configuracion</code></td>
+<td><code>hdd-stack</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/license</code></td>
 <td><code>license.read</code></td>
 <td><code>configuracion</code></td>
+<td><code>patch-check</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>/admin/license/keys</code></td>
+<td><code>license.read</code></td>
+<td><code>configuracion</code></td>
+<td><code>key-fill</code></td>
+<td><code>/admin/license</code></td>
 </tr>
 <tr>
 <td><code>/admin/users</code></td>
 <td><code>user.read</code></td>
 <td><code>usuarios</code></td>
+<td><code>person</code></td>
+<td>—</td>
 </tr>
 <tr>
 <td><code>/admin/roles</code></td>
 <td><code>role.read</code></td>
 <td><code>usuarios</code></td>
+<td><code>person-badge</code></td>
+<td><code>/admin/users</code></td>
 </tr>
 <tr>
 <td><code>/admin/audit</code></td>
 <td><code>audit.read</code></td>
 <td><code>usuarios</code></td>
+<td><code>shield-check</code></td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
+<p>Submenús: <code>invoices → template</code>, <code>license → keys</code>, <code>users → roles</code>. El ítem
+<code>/admin/generated</code> está gateado por <code>feature: generator</code> (t97); los ítems con
+<code>feature</code> premium se ocultan sin la licencia correspondiente. <code>PLUGIN_MANAGEMENT_PATHS</code>
+(<code>/admin/plugins</code>) se oculta cuando no hay plugins instalados.</p>
 <h2 id="clasificacion-de-plugins-items-nativos-al-menu">Clasificación de plugins (ítems nativos al menú)</h2>
 <p>Un ítem de menú declarado por un plugin (<code>manifest.menu[]</code>) se clasifica en
 este orden de precedencia:</p>
