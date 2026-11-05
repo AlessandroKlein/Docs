@@ -327,6 +327,7 @@ nav:
           - Plugin Mercado Pago: webs/guides/plugin-mercadopago.md
           - Integraciones de terceros: webs/integraciones.md
           - Ecosistema de repos: webs/guides/ecosistema.md
+          - Integración REST (Invernadero y SEMA): webs/guides/integracion-rest.md
           - Archivos y multimedia: webs/guides/archivos.md
           - Notificaciones: webs/guides/notificaciones.md
           - Cookies y persistencia: webs/guides/cookies.md
