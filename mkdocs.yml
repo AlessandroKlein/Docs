@@ -318,6 +318,7 @@ nav:
           - Tickets de soporte: webs/guides/tickets-soporte.md
           - Chat en tiempo real: webs/guides/chat-tiempo-real.md
           - Inventario completo: webs/guides/inventario-completo.md
+          - Terminales y lectores de código (POS): webs/guides/terminales-pos.md
           - Compositor social enriquecido: webs/guides/compositor-social.md
           - Vista RAW de actualizaciones: webs/guides/update-raw-view.md
           - Plantillas: webs/guides/plantillas.md
@@ -325,6 +326,7 @@ nav:
           - Pagos: webs/guides/pagos.md
           - Plugin Mercado Pago: webs/guides/plugin-mercadopago.md
           - Integraciones de terceros: webs/integraciones.md
+          - Ecosistema de repos: webs/guides/ecosistema.md
           - Archivos y multimedia: webs/guides/archivos.md
           - Notificaciones: webs/guides/notificaciones.md
           - Cookies y persistencia: webs/guides/cookies.md
