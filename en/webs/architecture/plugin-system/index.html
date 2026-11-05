@@ -9970,6 +9970,12 @@ exportándose como alias.</p>
 <p>La configuración del plugin vive en <code>PluginInstallation.config</code> (fuente de verdad) y se
 expone/edita vía <code>GET/PUT /api/v1/plugins/:id/settings</code>. El <code>PUT</code> valida contra
 <code>manifest.settings</code> con Ajv antes de persistir.</p>
+<p><strong><code>register()</code> corre dos veces por proceso.</strong> <code>registerPluginRoutes()</code> monta el mismo cuerpo
+también en el alias deprecado <code>/api/v1/blocks/&lt;id&gt;</code> (<code>apps/api/src/plugins/loader.ts:282-283</code>),
+así que hay dos <code>app.register</code> del mismo plugin. Las rutas no chocan (prefijos distintos), pero
+los efectos laterales sí se duplican: <code>setInterval</code>, collectors, listeners de eventos y
+suscripciones. Guardalos con una bandera a nivel de módulo, como hacen
+<code>plugins/sema/src/server.ts</code> y <code>plugins/invernadero/src/server.ts</code> (<code>runtimeStarted</code>).</p>
 </blockquote>
 <h3 id="registro-en-memoria">Registro en memoria</h3>
 <p><code>apps/api/src/plugins/registry.ts</code> mantiene mapas en memoria, incluyendo los ítems de menú:</p>
