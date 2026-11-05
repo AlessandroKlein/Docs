@@ -29,7 +29,7 @@ antes de publicar:
 | 2 | Contraseñas de base de datos | `docker-compose.yml` usa `webs/webs` (Postgres) y `root`/`webs`/`webs` (MySQL) | Cambiarlas y reflejarlas en `DATABASE_URL`; no exponer los puertos 5432/3306 a internet. |
 | 3 | `CORS_ORIGIN` | `http://localhost:5173` (default y en compose) | Poner el(los) origen(es) real(es), separados por coma. **No usar `*`** (la API usa `credentials: true`). |
 | 4 | `ENCRYPTION_KEY` | Opcional (`env.ts`); sin ella los campos secretos se guardan **sin cifrar** | Setearla: `openssl rand -hex 32`. Cifra los campos marcados `x-ui.secret` (p. ej. la **contraseña SMTP**) con AES-256-GCM. |
-| 5 | `POST /api/v1/blocks/organizaciones/attendance/external` | Endpoint **público** y `X-Scanner-Key` **opcional** (`blocks/organizaciones/src/server.ts`) | Exigir `X-Scanner-Key` y validarla (o restringir el acceso por red/firewall) antes de producción. |
+| 5 | `POST /api/v1/plugins/organizaciones/attendance/external` | Endpoint **público** y `X-Scanner-Key` **opcional** (`blocks/organizaciones/src/server.ts`) | Exigir `X-Scanner-Key` y validarla (o restringir el acceso por red/firewall) antes de producción. |
 | 6 | HTTPS | Cookies `Secure` solo si el protocolo es `https` o se fuerza vía ajuste | Servir todo bajo **HTTPS** (reverse proxy/nginx); activar `secureCookies` y HSTS en Ajustes → Seguridad. |
 
 ### Detalle del punto 5 (asistencia externa)

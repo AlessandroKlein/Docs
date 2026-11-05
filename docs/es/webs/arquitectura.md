@@ -1,7 +1,7 @@
 # Arquitectura de Webs (visión general)
 
 Este documento es la **visión general consolidada** de la plataforma **Webs**: su
-estructura de monorepo, el stack tecnológico, el patrón de bloques/plugins, el
+estructura de monorepo, el stack tecnológico, el patrón de plugins, el
 modelo de permisos y el historial de releases. Los detalles por tema están en la
 sección [Arquitectura](architecture/overview.md) de la navegación.
 
@@ -9,7 +9,7 @@ sección [Arquitectura](architecture/overview.md) de la navegación.
 
 Webs es una plataforma web **modular, escalable y multitenant**, de estilo
 WordPress: un núcleo (API + panel de administración + sitio público) que se
-extiende con **bloques** autocontenidos. Combina un backend
+extiende con **plugins** autocontenidos. Combina un backend
 **Node.js + Fastify** con un frontend **React + Vite**, organizados como
 **monorepo pnpm**.
 
@@ -17,7 +17,7 @@ extiende con **bloques** autocontenidos. Combina un backend
 Webs (monorepo pnpm, Node ≥ 22, pnpm 11.7)
 ├── apps/          Aplicaciones (api, web, desktop, mobile)
 ├── packages/      Paquetes compartidos (@webs/*)
-├── blocks/        Bloques de funcionalidad (37 + 1 de ejemplo)
+├── blocks/        Plugins de funcionalidad (37 + 1 de ejemplo; directorio transitorio)
 ├── templates/     Plantillas de sitio (JSON)
 ├── docker/        Dockerfiles + nginx + compose
 ├── scripts/       Helpers (release, backup, docs, setup-finish)
@@ -35,16 +35,16 @@ Webs (monorepo pnpm, Node ≥ 22, pnpm 11.7)
 | `apps/mobile` | App móvil | Aplicación móvil / PWA. |
 | `packages/core` | `@webs/core` | Tipos, errores versionados (`ErrorCode`), constantes y utilidades. |
 | `packages/config` | `@webs/config` | Configuración compartida ESLint + Prettier. |
-| `packages/plugin-sdk` | `@webs/plugin-sdk` | SDK de bloques: manifiesto, hooks, slots, adaptadores de proveedores. |
+| `packages/plugin-sdk` | `@webs/plugin-sdk` | SDK de plugins: manifiesto, hooks, slots, adaptadores de proveedores. |
 | `packages/i18n` | `@webs/i18n` | Recursos base es/en/pt + fábrica i18next. |
 | `packages/ui` | `@webs/ui` | Sistema de temas y tokens CSS. |
-| `blocks/*` | Bloques | 38 paquetes (37 bloques + `example-block` de referencia). |
+| `blocks/*` | Plugins | 38 paquetes (37 plugins + `example-block` de referencia; directorio transitorio). |
 | `templates/*.json` | Plantillas | Presets de sitio: `blog`, `corporativo`, `cursos`, `gym`, `market`, `tienda`. |
 | `docs/` | Documentación fuente | Guías/arquitectura/API propias del monorepo. |
 
 Los workspaces se declaran en `pnpm-workspace.yaml` (`apps/*`, `packages/*`,
 `blocks/*`); las convenciones de paquete son `@webs/<name>` y
-`@webs/block-<id>`.
+`@webs/block-<id>` (nombre npm transitorio durante M1).
 
 ## 3. Stack tecnológico
 
@@ -62,44 +62,44 @@ Los workspaces se declaran en `pnpm-workspace.yaml` (`apps/*`, `packages/*`,
 | Validación | Zod + JSON Schema (Ajv) | 3 / — | Zod para entorno y manifiestos; JSON Schema para API y formularios. |
 | Auth | `@fastify/jwt` + `bcryptjs` | — | JWT de acceso + refresh token opaco (ver [Seguridad](seguridad.md)). |
 
-## 4. Patrón de bloques / plugins
+## 4. Patrón de plugins
 
-Cada bloque es un paquete autocontenido que declara un manifiesto **`block.json`**
+Cada plugin es un paquete autocontenido que declara un manifiesto **`plugin.json`**
 y dos puntos de entrada: uno de servidor (`entry`) y uno de cliente
 (`clientEntry`). No necesita escribir UI de configuración: el panel genera el
 formulario a partir del esquema `settings`.
 
-### 4.1 Manifiesto `block.json`
+### 4.1 Manifiesto `plugin.json`
 
 El contrato se define en `packages/plugin-sdk/src/manifest.ts`
-(`BLOCK_API_VERSION = "1.0.0"`):
+(`PLUGIN_API_VERSION = "1.0.0"`):
 
 | Campo | Descripción |
 | ----- | ----------- |
 | `name` | Nombre de paquete (ej. `@webs/block-suscripciones`). |
 | `id` | Slug único (`^[a-z0-9][a-z0-9-_]*$`). |
-| `version` | SemVer del bloque. |
-| `type` | Reservado a `block`. |
+| `version` | SemVer del plugin. |
+| `type` | `plugin` (se acepta `block` por retrocompatibilidad). |
 | `displayName` / `description` | Textos localizados por locale BCP-47. |
 | `entry` / `clientEntry` | Puntos de entrada server/cliente. |
 | `settings` | JSON Schema que genera el formulario de admin (con extensión `x-ui`). |
-| `permissions` | Permisos que el bloque declara/requiere. |
+| `permissions` | Permisos que el plugin declara/requiere. |
 | `slots` | Regiones donde puede ubicarse (`header`, `content`, `sidebar`, `payment`, `footer`). |
 | `events` | Eventos de negocio que emite (ej. `order.created`). |
-| `translations` | Traducciones propias del bloque. |
-| `blockDependencies` | Bloques de los que depende (se instalan automáticamente). |
+| `translations` | Traducciones propias del plugin. |
+| `pluginDependencies` | Plugins de los que depende (se instalan automáticamente). |
 | `category` | Agrupación en el catálogo (ej. `negocio`, `social`, `soporte`). |
 | `provides` / `requiresProviders` | Grupos de proveedores que registra/necesita (ej. `payment`). |
 | `apiVersion` | Versión del contrato contra la que se escribió. |
 
-### 4.2 `defineBlock` y `defineClientBlock`
+### 4.2 `definePlugin` y `defineClientPlugin`
 
 ```ts
 // blocks/<id>/src/server.ts
-import { defineBlock } from '@webs/plugin-sdk';
+import { definePlugin } from '@webs/plugin-sdk';
 
-export default defineBlock(
-  { /* ...manifesto (block.json) */ },
+export default definePlugin(
+  { /* ...manifesto (plugin.json) */ },
   {
     register: async (fastify) => {
       fastify.get('/', async () => ({ ok: true }));
@@ -116,9 +116,9 @@ export default defineBlock(
 
 ```ts
 // blocks/<id>/src/client.ts
-import { defineClientBlock } from '@webs/plugin-sdk';
+import { defineClientPlugin } from '@webs/plugin-sdk';
 
-export default defineClientBlock(
+export default defineClientPlugin(
   { /* ...manifesto */ },
   ({ container, config, api, i18n, theme, slot, locale }) => {
     container.textContent = config.greeting ?? i18n.t('hello');
@@ -126,23 +126,29 @@ export default defineClientBlock(
 );
 ```
 
-El **loader** (`apps/api/src/blocks/loader.ts`) descubre los bloques disponibles,
+El **loader** (`apps/api/src/plugins/loader.ts`) descubre los plugins disponibles,
 registra sus permisos (upsert en la tabla `Permission`), instala/activa los
 habilitados y resuelve dependencias y proveedores. El contrato de cliente exige
-solo montar un `HTMLElement`, por lo que un bloque puede ser React, Vue o DOM
+solo montar un `HTMLElement`, por lo que un plugin puede ser React, Vue o DOM
 puro.
+
+> **Estado transitorio del rename:** la superficie de usuario usa «Plugin», pero
+> el *naming interno* (Prisma `BlockInstallation`/`BlockPlacement` con `blockId`,
+> permisos `block.read`/`block.manage`, directorio `blocks/`, npm `@webs/block-*`,
+> shim `/api/v1/blocks/*`) se conserva durante M1. Ver
+> [Sistema de plugins](architecture/plugin-system.md).
 
 ## 5. Registros de proveedores (provider registries)
 
 La plataforma separa la *interfaz* de un proveedor de su *implementación*, de modo
-que los bloques puedan enchufar pasarelas, drivers o adaptadores sin tocar el
+que los plugins puedan enchufar pasarelas, drivers o adaptadores sin tocar el
 núcleo. Los registros centrales viven en el core; los adaptadores viven en
-`apps/api/src/integrations/*` o en bloques.
+`apps/api/src/integrations/*` o en plugins.
 
 | Grupo | Registro / adaptador | Detalle |
 | ----- | -------------------- | ------- |
 | **Pagos** | `modules/payments/registry.ts` | `registerPaymentProvider` / `getPaymentProvider` / `listPaymentProviders`; endpoints genéricos de checkout y webhook. Adaptador `PaymentProviderAdapter` (Mercado Pago, Stripe, PayPal, Payway, MODO, EBANX, POS). |
-| **Almacenamiento** | `lib/storage.ts` + `plugins/storage.ts` | `registerStorageDriver` / `getStorageDriver`; driver `local` por defecto; bloques S3/R2/MinIO registran drivers extra (`StorageDriver`). |
+| **Almacenamiento** | `lib/storage.ts` + `plugins/storage.ts` | `registerStorageDriver` / `getStorageDriver`; driver `local` por defecto; plugins S3/R2/MinIO registran drivers extra (`StorageDriver`). |
 | **Notificaciones** | `modules/notifications/registry.ts` | `registerNotificationProvider` / `getNotificationProvider`; SMS/WhatsApp/Push (Twilio, push). |
 | **Envíos** | `integrations/shipping.ts` | `quoteShipping` con `andreani` / `oca` / `dhl` y fallback a tarifas locales. |
 | **IA** | `integrations/ai.ts` | Chat con IA, proveedor conmutable por configuración. |
@@ -150,8 +156,8 @@ núcleo. Los registros centrales viven en el core; los adaptadores viven en
 | **Calendario** | `integrations/calendar.ts` | Google Calendar / CalDAV para eventos externos. |
 | **Fiscal (tax)** | `integrations/tax.ts` | Emisión de factura con CAE: `afip` / `facturante` / `tsd`. |
 
-El catálogo de bloques usa los campos `provides` / `requiresProviders` para saber
-qué bloque cubre cada grupo (`getProviders` en `apps/api/src/blocks/loader.ts`).
+El catálogo de plugins usa los campos `provides` / `requiresProviders` para saber
+qué plugin cubre cada grupo (`getProviders` en `apps/api/src/plugins/loader.ts`).
 
 ## 6. Sistema de permisos y roles
 
@@ -170,7 +176,7 @@ Características:
   `modules/roles`).
 - **Permisos por clave** (ej. `setting.read`, `setting.write`, `content.*`), ligados
   a roles vía `RolePermission`.
-- **Permisos de bloques**: cada bloque declara sus propios permisos en `block.json`
+- **Permisos de plugins**: cada plugin declara sus propios permisos en `plugin.json`
   y el loader los registra automáticamente en `Permission`.
 - **API tokens (JWT)** con `scopes` acotados y revocables, con rate limiting propio
   (`lib/token-rate-limit.ts`).
@@ -186,16 +192,16 @@ Git. La versión actual se expone en `apps/api/src/modules/system.ts`
 | ------- | -------------- |
 | v1.35.0 | Pulido del admin: navegación por categorías, editor Tiptap, cambio de contraseña. |
 | v1.36.0 | Fase 1 de gimnasio multi-tenant (organizaciones, membresías, asistencia QR, inventario). |
-| v1.37.0 | Desarrollo de 20 bloques (blog, social, chat, ecommerce, facturación, analytics…). |
-| v1.38.0 | Panel de administración para los bloques. |
+| v1.37.0 | Desarrollo de 20 plugins (blog, social, chat, ecommerce, facturación, analytics…). |
+| v1.38.0 | Panel de administración para los plugins. |
 | v1.39.0 | Notificaciones con prioridad/caducidad y centro de notificaciones. |
 | v1.40.0 | Fase 2 de gimnasio: rutinas de entrenador/cliente. |
 | v1.41.0 | Diseño de la página de inicio (header + menú + hero). |
 | v1.42.0 | i18n completa **es/en/pt**, integraciones de terceros, app móvil PWA + desktop. |
-| v1.43.0 | Register en login, dashboard, permisos enterprise, sidebar de bloques. |
+| v1.43.0 | Register en login, dashboard, permisos enterprise, sidebar de plugins. |
 | v1.44.0 | Red social, chat DM, tienda completa, blog público, perfil ampliado. |
 | v1.45.0 | Dashboard de usuario, form builder visual, stock por talle + inventario. |
-| v1.46.0 | Configuración de bloques agrupada por categoría. |
+| v1.46.0 | Configuración de plugins agrupada por categoría. |
 | v1.47.0 | Red social completa (historias/feed/direct/follow), blog con paginación. |
 | v1.48.0 | **Suscripciones** (planes/contratar/cancelar), checkout, carrito, facturación PDF, calendario mensual. |
 | v1.49.0 | Tiempo real vía WebSocket (notificaciones y chat sin recargar). |
@@ -207,7 +213,7 @@ Git. La versión actual se expone en `apps/api/src/modules/system.ts`
 
 ## Ver también
 
-- [Sistema de bloques](architecture/block-system.md) — SDK, slots, loader y ciclo de vida en detalle.
+- [Sistema de plugins](architecture/plugin-system.md) — SDK, slots, loader y ciclo de vida en detalle.
 - [Autenticación y RBAC](architecture/auth-rbac.md) — flujo de sesión y permisos por rol.
 - [Monorepo](architecture/monorepo.md) — convenciones `@webs/*` y flujo de trabajo.
 - [Seguridad (hardening)](seguridad.md) — guía de endurecimiento y hallazgos.

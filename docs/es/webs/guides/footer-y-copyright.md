@@ -125,7 +125,7 @@ Facebook   Instagram   X   LinkedIn   YouTube
 
 ## 5. Comportamiento de "solo los completos"
 
-El footer aplica la misma regla a todos sus bloques opcionales: **se filtran y
+El footer aplica la misma regla a todos sus plugins opcionales: **se filtran y
 se muestran únicamente los valores completos**.
 
 - Redes: se descartan las que no tienen URL.

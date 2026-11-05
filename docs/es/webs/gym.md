@@ -1,12 +1,16 @@
 # Gimnasio multi-tenant
 
 La plataforma **Webs** permite montar un **gimnasio (o cadena de gimnasios)**
-multi-tenant usando el bloque `organizaciones` como núcleo y una serie de bloques
+multi-tenant usando el plugin `organizaciones` como núcleo y una serie de plugins
 complementarios. La plantilla `gym` arranca todo de una vez.
+
+> Las rutas se muestran con el prefijo canónico `/api/v1/plugins/<id>`; el shim
+> `/api/v1/blocks/<id>` sigue funcionando durante M1 (ver
+> [Sistema de plugins](./architecture/plugin-system.md)).
 
 ## Qué incluye
 
-| Bloque | Rol en el gimnasio |
+| Plugin | Rol en el gimnasio |
 | ------ | ------------------ |
 | `organizaciones` | Sedes/organizaciones, planes de membresía y asistencia por QR. |
 | `reservas` | Clases y turnos (servicios con duración y precio). |
@@ -22,12 +26,12 @@ complementarios. La plantilla `gym` arranca todo de una vez.
 
 ## 1. Organizaciones (sedes)
 
-El bloque `organizaciones` implementa el **multi-tenancy**: cada sede es una
+El plugin `organizaciones` implementa el **multi-tenancy**: cada sede es una
 fila en `organization` con `name`, `slug`, `plan`, `active`, `shareInventory` y
 `logoUrl`.
 
 ```text
-POST /api/v1/blocks/organizaciones/organizations
+POST /api/v1/plugins/organizaciones/organizations
 { "name": "Sede Palermo", "slug": "palermo", "plan": "pro", "active": true }
 ```
 
@@ -43,7 +47,7 @@ POST /api/v1/blocks/organizaciones/organizations
 ## 2. Planes de membresía
 
 Los planes se definen en `membershipPlan` y se administran con
-`/api/v1/blocks/organizaciones/plans`:
+`/api/v1/plugins/organizaciones/plans`:
 
 ```json
 {
@@ -66,7 +70,7 @@ Una **membresía** vincula un usuario con una sede y un plan. Al crearla se gene
 automáticamente un `qrcode` (UUID) único:
 
 ```json
-POST /api/v1/blocks/organizaciones/memberships
+POST /api/v1/plugins/organizaciones/memberships
 {
   "organizationId": "<sede>",
   "userId": "<usuario>",
@@ -89,11 +93,11 @@ Cada membresía lleva un `qrcode`. El flujo de ingreso es:
 
 1. El socio muestra su QR (generado a partir del `qrcode` de la membresía).
 2. El front de la sede hace `POST /attendance/scan` con `{ qrcode }`.
-3. El bloque valida que la membresía exista, esté `active` y no haya vencido.
+3. El plugin valida que la membresía exista, esté `active` y no haya vencido.
 4. Crea un `attendanceRecord` (`method: "qr"`) y devuelve la organización.
 
 ```json
-POST /api/v1/blocks/organizaciones/attendance/scan
+POST /api/v1/plugins/organizaciones/attendance/scan
 { "qrcode": "6f0e4c5f-..." }
 
 → { "ok": true, "membership": {...}, "organization": "Sede Palermo", "record": {...} }
@@ -119,11 +123,11 @@ GET /attendance/stats       → { total, byDay: {"2026-10-19": 42, ...} }
 
 ## 4. Inventario (por sede)
 
-El bloque `inventario` soporta `organizationId` en cada ítem, lo que permite
+El plugin `inventario` soporta `organizationId` en cada ítem, lo que permite
 separar (o compartir) stock entre sedes:
 
 ```json
-POST /api/v1/blocks/inventario/inventory
+POST /api/v1/plugins/inventario/inventory
 { "sku": "PROT-001", "name": "Proteína 1kg", "quantity": 120,
   "minQuantity": 10, "unitPrice": 18000, "organizationId": "<sede>" }
 ```
@@ -142,7 +146,7 @@ no quede stock negativo**.
 
 ## 5. Aplicar la plantilla `gym`
 
-La plantilla `templates/gym.json` instala y configura todos los bloques del
+La plantilla `templates/gym.json` instala y configura todos los plugins del
 gimnasio, define el nombre/tema y crea el menú:
 
 ```bash
@@ -188,9 +192,9 @@ Contenido resumido de la plantilla:
 }
 ```
 
-> La aplicación es *best-effort*: si algún bloque no está disponible, se omite con
-> una advertencia y el resto se aplica igual. Los cambios de `config` de bloques
-> ya cargados toman efecto al reiniciar la API. Ver [Plantillas](guides/plantillas.md).
+> La aplicación es *best-effort*: si algún plugin no está disponible, se omite con
+> una advertencia y el resto se aplica igual. Los cambios de `config` de plugins
+> ya cargados toman efecto al reiniciar la API. Ver [Plantillas](./guides/plantillas.md).
 
 ---
 

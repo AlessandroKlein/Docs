@@ -1,8 +1,8 @@
-# Bloques de operaciones
+# Plugins de operaciones
 
 Este grupo cubre la operación diaria del negocio: **calendario**, **reservas**,
 **formularios**, **documentos** y **notificaciones**. Las rutas se montan bajo
-`/api/v1/blocks/<id>`.
+`/api/v1/plugins/<id>` (con `/api/v1/blocks/<id>` como shim transitorio).
 
 ---
 
@@ -12,7 +12,7 @@ Calendario de turnos y actividades. Categoría `negocio`, slot `content`. El
 proveedor `local` persiste en la base de datos; `google` y `caldav` están
 modelados como adaptadores futuros (ver [integraciones](../integraciones.md)).
 
-### Rutas (`/api/v1/blocks/calendario`)
+### Rutas (`/api/v1/plugins/calendario`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -39,7 +39,7 @@ Citas y reservas sobre **servicios** definidos en la configuración. Categoría
 `negocio`, slot `content`. Con `provider=local`, cada reserva se refleja además
 como evento del calendario local.
 
-### Rutas (`/api/v1/blocks/reservas`)
+### Rutas (`/api/v1/plugins/reservas`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -68,7 +68,7 @@ Creador de formularios y captura de respuestas. Categoría `contenido`, slot
 mutaciones administrativas (crear/editar/borrar formularios) siempre requieren
 sesión.
 
-### Rutas (`/api/v1/blocks/formularios`)
+### Rutas (`/api/v1/plugins/formularios`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -97,7 +97,7 @@ Documentos con firma electrónica. Categoría `contenido`, slot `content`. Con
 `signatureProvider` distinto de `local`, la firma se delegaría a un proveedor
 externo (DocuSign, etc.); hoy la firma es local.
 
-### Rutas (`/api/v1/blocks/documentos`)
+### Rutas (`/api/v1/plugins/documentos`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -122,7 +122,7 @@ externo (DocuSign, etc.); hoy la firma es local.
 Centro de notificaciones in-app (bandeja de entrada). Categoría `comunicacion`,
 slot `header`. Emite el evento `notification.created` al enviar una.
 
-### Rutas (`/api/v1/blocks/notificaciones`)
+### Rutas (`/api/v1/plugins/notificaciones`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -141,7 +141,7 @@ slot `header`. Emite el evento `notification.created` al enviar una.
 | `providers[]` | array | email/sms/whatsapp/push | Proveedores con `{id, name, enabled}`. |
 
 > Los **proveedores reales de envío** (Twilio para SMS/WhatsApp, push web) se
-> registran en el núcleo `fastify.notifications` mediante bloques que implementan
+> registran en el núcleo `fastify.notifications` mediante plugins que implementan
 > la interfaz `NotificationProvider`. Ver [Integraciones de terceros](../integraciones.md).
 
 ---

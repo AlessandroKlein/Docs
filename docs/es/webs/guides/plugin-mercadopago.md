@@ -1,9 +1,9 @@
-# Bloque Mercado Pago (referencia)
+# Plugin Mercado Pago (referencia)
 
-`blocks/mercadopago` es el **bloque de referencia** de un pago seguro. Demuestra
-todo el modelo de bloques aplicado a una integración real.
+`plugins/mercadopago` es el **plugin de referencia** de un pago seguro. Demuestra
+todo el modelo de plugins aplicado a una integración real.
 
-## Configuración (en **Bloques → Mercado Pago → Configurar**)
+## Configuración (en **Plugins → Mercado Pago → Configurar**)
 
 | Campo | Tipo | Cifrado |
 | ----- | ---- | ------- |
@@ -18,7 +18,7 @@ todo el modelo de bloques aplicado a una integración real.
 Los secretos se cifran en reposo con `ENCRYPTION_KEY` y se descifran solo al
 usarlos; nunca se devuelven al cliente.
 
-## Endpoints (bajo `/api/v1/blocks/mercadopago`)
+## Endpoints (bajo `/api/v1/plugins/mercadopago`)
 
 - `GET /public-config` → config pública (sin secretos) para montar el SDK.
 - `POST /payment` → crea una preferencia; acepta `idempotencyKey` (token único de
@@ -30,7 +30,7 @@ usarlos; nunca se devuelven al cliente.
 ## Seguridad aplicada
 
 - **Tokenización (PCI-DSS)**: la tarjeta se tokeniza con el SDK de Mercado Pago
-  usando la `publicKey`; el bloque **nunca** recibe ni guarda el PAN.
+  usando la `publicKey`; el plugin **nunca** recibe ni guarda el PAN.
 - **Secretos cifrados**: `accessToken` y `webhookSecret` vía `x-ui.secret`.
 - **Idempotencia**: cada pago lleva un `idempotencyKey` único (evita cobros dobles).
 - **Webhook firmado**: se valida `x-signature` con HMAC-SHA256 antes de actuar.
@@ -40,5 +40,5 @@ usarlos; nunca se devuelven al cliente.
 
 ## Activar con una plantilla
 
-La plantilla **Mercado/E-commerce** (`templates/market.json`) instala este bloque
+La plantilla **Mercado/E-commerce** (`templates/market.json`) instala este plugin
 automáticamente y crea el menú con la página de **Pago** (slot `payment`).

@@ -1,8 +1,9 @@
-# Bloques de comercio
+# Plugins de comercio
 
 Este grupo cubre la venta y el crecimiento del negocio: **ecommerce**,
 **carrito**, **facturacion**, **marketing**, **analytics**, **search**,
-**inventario** y **afiliados**. Las rutas se montan bajo `/api/v1/blocks/<id>`.
+**inventario** y **afiliados**. Las rutas se montan bajo `/api/v1/plugins/<id>`
+(con `/api/v1/blocks/<id>` como shim transitorio de retrocompatibilidad).
 
 ---
 
@@ -10,10 +11,10 @@ Este grupo cubre la venta y el crecimiento del negocio: **ecommerce**,
 
 Tienda con productos, pedidos, envíos y cupones. Categoría `negocio`, slot
 `content` y `requiresProviders: ["payment"]` (necesita una pasarela de pago).
-Es el bloque central de comercio: `facturacion` y `marketing` declaran
+Es el plugin central de comercio: `facturacion` y `marketing` declaran
 `blockDependencies: ["ecommerce"]`.
 
-### Rutas (`/api/v1/blocks/ecommerce`)
+### Rutas (`/api/v1/plugins/ecommerce`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -53,7 +54,7 @@ Catálogo de productos con carrito y checkout. Es una vista simplificada de
 ecommerce: expone el catálogo definido en su propia configuración y delega el
 pago a una pasarela (`requiresProviders: ["payment"]`, slot `content`).
 
-### Rutas (`/api/v1/blocks/carrito`)
+### Rutas (`/api/v1/plugins/carrito`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -75,7 +76,7 @@ Generación de facturas con emisión fiscal (CAE). Categoría `negocio`, slot
 la emisión (`/issue`) hoy simula el CAE; el proveedor fiscal real se configura
 con `taxProvider` (ver [integraciones](../integraciones.md)).
 
-### Rutas (`/api/v1/blocks/facturacion`)
+### Rutas (`/api/v1/plugins/facturacion`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -102,7 +103,7 @@ con `taxProvider` (ver [integraciones](../integraciones.md)).
 Cupones de descuento, campañas de email y métricas. Categoría `marketing`, slot
 `content`, depende de `ecommerce`.
 
-### Rutas (`/api/v1/blocks/marketing`)
+### Rutas (`/api/v1/plugins/marketing`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -130,7 +131,7 @@ Cupones de descuento, campañas de email y métricas. Categoría `marketing`, sl
 Métricas de negocio, ingresos y seguimiento de visitas. Categoría `seo`, slot
 `footer`.
 
-### Rutas (`/api/v1/blocks/analytics`)
+### Rutas (`/api/v1/plugins/analytics`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -157,7 +158,7 @@ Métricas de negocio, ingresos y seguimiento de visitas. Categoría `seo`, slot
 Búsqueda unificada en contenido, publicaciones y productos. Categoría `seo`, slot
 `header`.
 
-### Rutas (`/api/v1/blocks/search`)
+### Rutas (`/api/v1/plugins/search`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -180,7 +181,7 @@ Control de inventario con ajustes de stock y alertas de stock bajo. Categoría
 `negocio`, slot `content`, permiso `inventory.manage`. Se vincula al stock de la
 tienda vía `productId` y soporta `organizationId` (multi-tenant).
 
-### Rutas (`/api/v1/blocks/inventario`)
+### Rutas (`/api/v1/plugins/inventario`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -204,7 +205,7 @@ tienda vía `productId` y soporta `organizationId` (multi-tenant).
 
 Programa de afiliados y referidos. Categoría `marketing`, slot `content`.
 
-### Rutas (`/api/v1/blocks/afiliados`)
+### Rutas (`/api/v1/plugins/afiliados`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |

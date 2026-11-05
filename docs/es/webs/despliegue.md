@@ -63,13 +63,13 @@ Endpoints auxiliares del asistente:
 
 ## 3. Plantillas
 
-Al terminar la instalación podés aplicar una plantilla que preconfigura bloques,
+Al terminar la instalación podés aplicar una plantilla que preconfigura plugins,
 menú y apariencia. Las plantillas son JSON en `templates/`:
 
 | Plantilla | Enfoque |
 | --------- | ------- |
 | `gym` | Gimnasio multi-tenant (organizaciones, membresías, asistencia QR, rutinas). |
-| `tienda` | Tienda/ecommerce con bloques reales (carrito, checkout, facturación). |
+| `tienda` | Tienda/ecommerce con plugins reales (carrito, checkout, facturación). |
 | `blog` | Sitio de contenidos. |
 | `corporativo` | Sitio institucional. |
 | `cursos` | Academia / LMS (cursos y lecciones). |
@@ -136,5 +136,8 @@ producción **no** necesita pnpm en runtime: ejecuta la CLI de Prisma y los scri
 ## Ver también
 
 - [Guía de despliegue](guides/despliegue.md) — build, escalado horizontal, reverse proxy y Kubernetes.
+- [Escalabilidad](architecture/scalability.md) — Kubernetes (ADR-0008): manifests, HPA/auto-scaling, stateless y rate-limit global en Redis.
+- [Actualización zero-downtime](architecture/update-system.md) — check/apply/rollback sin cortar el servicio.
+- [Licencias locales (Licensify)](architecture/licensing-integration.md) — activación offline y feature-gating.
 - [Seguridad (hardening)](seguridad.md) — variables y protecciones obligatorias.
 - [Inicio rápido](guides/getting-started.md) — arranque en local.

@@ -1,9 +1,10 @@
-# Bloques de contenido y social
+# Plugins de contenido y social
 
 Este grupo cubre la creación y consumo de contenido, la comunidad y la
 comunicación: **blog**, **comments**, **social**, **chat**, **chat-ia** y
 **academia**. Todos montan sus rutas bajo el prefijo
-`/api/v1/blocks/<id>` y se configuran desde la UI (el `settings` del `block.json`
+`/api/v1/plugins/<id>` (con `/api/v1/blocks/<id>` como shim transitorio) y se
+configuran desde la UI (el `settings` del `plugin.json`
 genera un formulario automático).
 
 ---
@@ -13,7 +14,7 @@ genera un formulario automático).
 Publicaciones (posts) con categorías y etiquetas. Categoría `contenido`, slot
 `content`.
 
-### Rutas (`/api/v1/blocks/blog`)
+### Rutas (`/api/v1/plugins/blog`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -41,7 +42,7 @@ Publicaciones (posts) con categorías y etiquetas. Categoría `contenido`, slot
 Reseñas con estrellas sobre cualquier recurso. Categoría `social`, slot
 `content`.
 
-### Rutas (`/api/v1/blocks/comments`)
+### Rutas (`/api/v1/plugins/comments`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -67,7 +68,7 @@ Reseñas con estrellas sobre cualquier recurso. Categoría `social`, slot
 Mini red social con publicaciones, multimedia y likes. Categoría `social`, slot
 `content`.
 
-### Rutas (`/api/v1/blocks/social`)
+### Rutas (`/api/v1/plugins/social`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -94,7 +95,7 @@ Mensajería entre usuarios organizada en **salas** (`room`). Categoría
 `comunicacion`, slot `content`. Emite el evento `chat.message` (se puede escuchar
 por WebSocket).
 
-### Rutas (`/api/v1/blocks/chat`)
+### Rutas (`/api/v1/plugins/chat`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -120,7 +121,7 @@ slot `content`. Para `ollama` intenta un `POST {ollamaUrl}/api/chat`; para el
 resto de proveedores devuelve una respuesta simulada explícita (la integración
 real se delega al provider registry de IA, ver [integraciones](../integraciones.md)).
 
-### Rutas (`/api/v1/blocks/chat-ia`)
+### Rutas (`/api/v1/plugins/chat-ia`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -144,7 +145,7 @@ real se delega al provider registry de IA, ver [integraciones](../integraciones.
 Cursos, lecciones y progreso de inscripciones. Categoría `educacion`, slot
 `content`.
 
-### Rutas (`/api/v1/blocks/academia`)
+### Rutas (`/api/v1/plugins/academia`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |

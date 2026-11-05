@@ -1,6 +1,6 @@
 # Integraciones de terceros
 
-Guía de integración con proveedores **reales** para los bloques de Webs. Resumen
+Guía de integración con proveedores **reales** para los plugins de Webs. Resumen
 de la investigación `docs/investigacion-apis-terceros.md` del monorepo: cubre
 facturación, envíos, IA, analytics, calendario, login social y notificaciones,
 con foco en el **mercado argentino** y alternativas internacionales.
@@ -177,7 +177,7 @@ intercambiar → `getUser` → mapear/crear usuario local por `(provider, provid
 
 Interfaz `SocialAuthProvider { getAuthUrl(state); exchangeCode(code);
 getUser(accessToken) }` con adaptadores por proveedor + `MockSocialProvider`. El
-bloque `social-login` expone `GET /providers` y `POST /verify` (ver
+El plugin `social-login` expone `GET /providers` y `POST /verify` (ver
 [social-login](./bloques/plataforma.md)).
 
 ---
@@ -202,7 +202,7 @@ Ya existe `fastify.notifications.register`. Interfaz
 `NotificationProvider { sendEmail(); sendSms(); sendWhatsApp(); sendPush() }`
 con adaptadores + `MockNotificationProvider`. Cross-cutting: cola con reintentos,
 plantillas con variables y webhooks de estado (delivered/failed). En Webs, los
-bloques `twilio` y `push` registran sus proveedores en este núcleo.
+plugins `twilio` y `push` registran sus proveedores en este núcleo.
 
 ---
 

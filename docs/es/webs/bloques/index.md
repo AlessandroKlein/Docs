@@ -1,15 +1,20 @@
-# Índice de bloques
+# Índice de plugins
 
-La plataforma **Webs** se extiende con **bloques**: paquetes autocontenidos (con
-`block.json`, servidor y cliente) que agregan funcionalidad al sitio. Cada bloque
-expone su API bajo el prefijo `/api/v1/blocks/<id>` y se configura desde
-**Bloques → Instalar/Configurar** en el panel de administración.
+La plataforma **Webs** se extiende con **plugins**: paquetes autocontenidos (con
+`plugin.json`, servidor y cliente) que agregan funcionalidad al sitio. Cada plugin
+expone su API bajo el prefijo `/api/v1/plugins/<id>` y se configura desde
+**Plugins → Instalar/Configurar** en el panel de administración.
 
-En el monorepo hay **38 paquetes** (`blocks/*`): 37 bloques funcionales y 1 bloque
+En el monorepo hay **38 paquetes** (`blocks/*`): 37 plugins funcionales y 1 plugin
 de ejemplo. La tabla siguiente los lista con
-su `id`, nombre, `category` (campo del manifiesto `block.json`) y una descripción
-de una línea. Los bloques sin `category` declarada se agrupan en la UI bajo
+su `id`, nombre, `category` (campo del manifiesto `plugin.json`) y una descripción
+de una línea. Los plugins sin `category` declarada se agrupan en la UI bajo
 `otros`.
+
+> **Nota de naming:** el directorio físico `blocks/*`, el prefijo de permisos
+> `block.*` y algunos campos internos conservan el nombre «block» de forma
+> transitoria (ver [Sistema de plugins](../architecture/plugin-system.md), sección
+> «Estado transitorio del rename»).
 
 | `id` | Nombre | `category` | Qué hace |
 | ---- | ------ | ---------- | -------- |
@@ -37,7 +42,7 @@ de una línea. Los bloques sin `category` declarada se agrupan en la UI bajo
 | `social-login` | Login social | `auth` | Inicio de sesión con redes sociales. |
 | `register` | Registro | `auth` | Registro público orquestado sobre el núcleo de auth. |
 | `seo` | SEO | `seo` | Sitemap, robots.txt y etiquetas meta. |
-| `mercadopago` | Mercado Pago | — | Pagos con Mercado Pago (bloque de referencia). |
+| `mercadopago` | Mercado Pago | — | Pagos con Mercado Pago (plugin de referencia). |
 | `stripe` | Stripe | — | Pagos con tarjeta vía Stripe. |
 | `paypal` | PayPal | — | Pagos con PayPal. |
 | `payway` | Payway / Decidir | — | Pagos con Payway (Decidir 2.0). |
@@ -50,18 +55,18 @@ de una línea. Los bloques sin `category` declarada se agrupan en la UI bajo
 | `workflows` | Flujos de trabajo | — | Automatizaciones y flujos de trabajo. |
 | `support` | Soporte / Chat en vivo | — | Widget flotante de chat y tickets. |
 | `mapa` | Mapa / Contacto | — | Tarjeta de contacto con enlace al mapa. |
-| `example` | Bloque de ejemplo | — | Bloque de referencia del sistema de bloques. |
+| `example` | Plugin de ejemplo | — | Plugin de referencia del sistema de plugins. |
 
-> Los bloques `carrito`, los pasarelas de pago, `storage-s3`, `twilio`, `push`,
+> Los plugins `carrito`, los pasarelas de pago, `storage-s3`, `twilio`, `push`,
 > `workflows`, `support`, `mapa` y `example` no declaran `category` en su
-> `block.json`; por eso aparecen con `—` y se agrupan como `otros` en el catálogo.
+> `plugin.json`; por eso aparecen con `—` y se agrupan como `otros` en el catálogo.
 
 ## Guías por grupo
 
-La documentación de cada bloque (qué hace, prefijo de API, rutas y configuración)
+La documentación de cada plugin (qué hace, prefijo de API, rutas y configuración)
 está agrupada en cuatro guías:
 
-| Guía | Bloques |
+| Guía | Plugins |
 | ---- | ------- |
 | [Contenido y social](./contenido-social.md) | `blog`, `comments`, `social`, `chat`, `chat-ia`, `academia` |
 | [Operaciones](./operaciones.md) | `calendario`, `reservas`, `formularios`, `documentos`, `notificaciones` |
@@ -70,10 +75,10 @@ está agrupada en cuatro guías:
 
 ## Ver también
 
-- [Categorías de bloques](../guides/bloques-categorias.md) — cómo se agrupa el
+- [Categorías de plugins](../guides/bloques-categorias.md) — cómo se agrupa el
   catálogo por `category`.
-- [Crear un bloque](../guides/crear-un-bloque.md) — referencia del manifiesto
-  `block.json`.
-- [Sistema de bloques](../architecture/block-system.md) — SDK, slots y ciclo de
+- [Crear un plugin](../guides/crear-un-plugin.md) — referencia del manifiesto
+  `plugin.json`.
+- [Sistema de plugins](../architecture/plugin-system.md) — SDK, slots y ciclo de
   vida.
 - [Gimnasio multi-tenant](../gym.md) — guía de la plataforma de gimnasios.

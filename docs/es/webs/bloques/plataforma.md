@@ -1,8 +1,9 @@
-# Bloques de plataforma
+# Plugins de plataforma
 
 Este grupo cubre la infraestructura del sitio: **organizaciones** (multi-tenant),
 **social-login**, **register**, **seo**, las **pasarelas de pago** y el
-**almacenamiento** (`storage-s3`). Las rutas se montan bajo `/api/v1/blocks/<id>`.
+**almacenamiento** (`storage-s3`). Las rutas se montan bajo `/api/v1/plugins/<id>`
+(con `/api/v1/blocks/<id>` como shim transitorio de retrocompatibilidad).
 
 ---
 
@@ -11,10 +12,10 @@ Este grupo cubre la infraestructura del sitio: **organizaciones** (multi-tenant)
 Organizaciones multi-tenant, planes de membresía y **asistencia por QR**.
 Categoría `negocio`, slot `content`, permisos `organization.manage`,
 `membership.manage` y `attendance.manage`. Todas sus rutas requieren sesión
-(`authenticate`). Es el bloque central de la plataforma gimnasio (ver
+(`authenticate`). Es el plugin central de la plataforma gimnasio (ver
 [Gimnasio multi-tenant](../gym.md)).
 
-### Rutas (`/api/v1/blocks/organizaciones`)
+### Rutas (`/api/v1/plugins/organizaciones`)
 
 **Organizaciones**
 
@@ -68,7 +69,7 @@ contrato (proveedores + vínculo de cuentas) sin implementar aún el flujo OAuth
 completo; el flujo `authorize → callback → exchange` se documenta en
 [Integraciones de terceros](../integraciones.md).
 
-### Rutas (`/api/v1/blocks/social-login`)
+### Rutas (`/api/v1/plugins/social-login`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -90,7 +91,7 @@ Registro público **orquestado sobre el núcleo de auth**. Categoría `auth`, sl
 `content`. No duplica el registro real (bcrypt + sesión); valida según su `mode`
 y reenvía al endpoint interno `POST /api/v1/auth/register`.
 
-### Rutas (`/api/v1/blocks/register`)
+### Rutas (`/api/v1/plugins/register`)
 
 | Método | Ruta | Auth | Descripción |
 | ------ | ---- | ---- | ----------- |
@@ -113,7 +114,7 @@ Genera `sitemap.xml`, `robots.txt` y metadatos. Categoría `seo` (sin slot, se
 integra a nivel de servidor). El sitemap es dinámico: incluye páginas, contenido
 publicado, entradas de blog y productos.
 
-### Rutas (`/api/v1/blocks/seo`)
+### Rutas (`/api/v1/plugins/seo`)
 
 | Método | Ruta | Descripción |
 | ------ | ---- | ----------- |
@@ -137,7 +138,7 @@ publicado, entradas de blog y productos.
 
 ## 5. Pagos — pasarelas
 
-Las pasarelas de pago son bloques que **proveen** el servicio `payment`
+Las pasarelas de pago son plugins que **proveen** el servicio `payment`
 (`provides: ["payment"]`, slot `payment`). No exponen rutas de negocio propias:
 se registran en el núcleo `fastify.payments` implementando la interfaz
 `createTransaction()` + `verifyWebhook()`, y publican una **config pública** (sin
@@ -152,19 +153,19 @@ cifran en reposo con `ENCRYPTION_KEY` (`x-ui.secret`, AES-256-GCM) y nunca se
 devuelven al cliente. El webhook se verifica con HMAC-SHA256 sobre la cabecera de
 firma de cada proveedor.
 
-| Bloque | Proveedor | Prefijo | Config relevante |
+| Plugin | Proveedor | Prefijo | Config relevante |
 | ------ | --------- | ------- | ---------------- |
-| `mercadopago` | Mercado Pago | `/api/v1/blocks/mercadopago` | `publicKey`, `accessToken`, `webhookSecret`, `checkoutMode`, `primaryColor` |
-| `stripe` | Stripe | `/api/v1/blocks/stripe` | `publishableKey`, `secretKey`, `webhookSecret`, `primaryColor` |
-| `paypal` | PayPal | `/api/v1/blocks/paypal` | `clientId`, `clientSecret`, `webhookId`, `webhookSecret`, `environment` |
-| `payway` | Payway / Decidir | `/api/v1/blocks/payway` | `siteId`, `apiKey`, `webhookSecret`, `environment` |
-| `modo` | MODO (QR) | `/api/v1/blocks/modo` | `clientId`, `clientSecret`, `webhookSecret`, `environment` |
-| `ebanx` | EBANX (Latam) | `/api/v1/blocks/ebanx` | `integrationKey`, `webhookSecret`, `environment` |
-| `pos` | Contra entrega / POS | `/api/v1/blocks/pos` | `mode` (`cash`/`terminal`), `terminalId`, `apiKey` |
+| `mercadopago` | Mercado Pago | `/api/v1/plugins/mercadopago` | `publicKey`, `accessToken`, `webhookSecret`, `checkoutMode`, `primaryColor` |
+| `stripe` | Stripe | `/api/v1/plugins/stripe` | `publishableKey`, `secretKey`, `webhookSecret`, `primaryColor` |
+| `paypal` | PayPal | `/api/v1/plugins/paypal` | `clientId`, `clientSecret`, `webhookId`, `webhookSecret`, `environment` |
+| `payway` | Payway / Decidir | `/api/v1/plugins/payway` | `siteId`, `apiKey`, `webhookSecret`, `environment` |
+| `modo` | MODO (QR) | `/api/v1/plugins/modo` | `clientId`, `clientSecret`, `webhookSecret`, `environment` |
+| `ebanx` | EBANX (Latam) | `/api/v1/plugins/ebanx` | `integrationKey`, `webhookSecret`, `environment` |
+| `pos` | Contra entrega / POS | `/api/v1/plugins/pos` | `mode` (`cash`/`terminal`), `terminalId`, `apiKey` |
 
-> El bloque **Mercado Pago** es el **bloque de referencia** de un pago seguro
+> El plugin **Mercado Pago** es el **plugin de referencia** de un pago seguro
 > (tokenización de tarjeta en el cliente, idempotencia y webhook firmado). Ver
-> [Bloque Mercado Pago](../guides/bloque-mercadopago.md) y
+> [Plugin Mercado Pago](../guides/plugin-mercadopago.md) y
 > [Pagos](../guides/pagos.md).
 
 ---
@@ -189,19 +190,19 @@ rutas HTTP: registra el driver `s3` en el núcleo `fastify.storage`
 
 ---
 
-## 7. Otros bloques de plataforma
+## 7. Otros plugins de plataforma
 
-Estos bloques no forman parte de los grupos anteriores pero completan la
+Estos plugins no forman parte de los grupos anteriores pero completan la
 plataforma. Están listados en el [índice](./index.md).
 
-| Bloque | Qué hace | Nota |
+| Plugin | Qué hace | Nota |
 | ------ | -------- | ---- |
 | `twilio` | Notificaciones SMS/WhatsApp. | Registra `twilio` en `fastify.notifications` (canales `sms`/`whatsapp`). |
 | `push` | Notificaciones push web. | Provee `notification`; expone `GET /public-key` (clave VAPID pública). |
 | `workflows` | Automatizaciones. | `GET/POST /workflows`, `PATCH /workflows/:id`. |
 | `support` | Soporte / chat en vivo. | `GET/POST /tickets`. |
 | `mapa` | Tarjeta de contacto con mapa. | `GET /public-config` (dirección, teléfono, lat/lng). |
-| `example` | Bloque de referencia. | `GET /` y `POST /order`; demuestra el sistema de bloques. |
+| `example` | Plugin de referencia. | `GET /` y `POST /order`; demuestra el sistema de plugins. |
 
 ---
 
@@ -210,5 +211,5 @@ plataforma. Están listados en el [índice](./index.md).
 - [Gimnasio multi-tenant](../gym.md) — caso de uso completo de `organizaciones`.
 - [Integraciones de terceros](../integraciones.md) — proveedores y patrón de
   provider registry.
-- [Crear un bloque](../guides/crear-un-bloque.md) — cómo se define `provides`,
+- [Crear un plugin](../guides/crear-un-plugin.md) — cómo se define `provides`,
   `requiresProviders` y los secretos `x-ui.secret`.
