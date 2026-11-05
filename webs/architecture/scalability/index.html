@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://alessandroklein.github.io/Docs/webs/architecture/scalability/">
       
       
-        <link rel="prev" href="../i18n/">
+        <link rel="prev" href="../page-builder/">
       
       
-        <link rel="next" href="../../api/overview/">
+        <link rel="next" href="../licensing-integration/">
       
       
         
@@ -3924,6 +3924,8 @@
       
         
       
+        
+      
     
     
     
@@ -3991,6 +3993,58 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -4147,14 +4201,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../block-system/" class="md-nav__link">
+      <a href="../plugin-system/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sistema de bloques
+    Sistema de plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../refactor-global/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Refactorización global
   
 
     
@@ -4239,6 +4321,34 @@
     
   
     Internacionalización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../page-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Builder visual de páginas
   
 
     
@@ -4363,6 +4473,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rate-limiting-global-en-redis-adr-0008" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate limiting global en Redis (ADR-0008)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4380,13 +4501,135 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-futuro" class="md-nav__link">
+  <a href="#kubernetes-adr-0008" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes (futuro)
+        Kubernetes (ADR-0008)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes (ADR-0008)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stateless-garantizado-y-auto-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stateless garantizado y auto-scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-como-dependencia-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis como dependencia de producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalabilidad-selectable-adr-0025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalabilidad selectable (ADR-0025)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escalabilidad selectable (ADR-0025)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selector-por-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selector por workload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modos-verticales-vpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos verticales (VPA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regla-de-exclusion-hpa-vs-vpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regla de exclusión HPA vs VPA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#panel-adminscaling-y-generacion-del-manifiesto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Panel /admin/scaling y generación del manifiesto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contrato-de-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contrato de endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-vpa-generado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template VPA (generado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4482,6 +4725,678 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../licensing-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licencias locales (Licensify)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../claves-de-venta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claves de licencia para la venta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-gating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature-gating por licencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generador de APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-tenant por cadenas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actualización zero-downtime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update-raw-view/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vista RAW de actualizaciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base-universal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base universal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootstrap-selectivo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootstrap selectivo (Tailwind + Shadcn)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../politica-dependencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Política de dependencias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile-desktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Móvil y escritorio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventario completo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compositor-social/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compositor social enriquecido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../menu-categorias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categorización del menú admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../menu-admin-redesign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rediseño del menú admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../facturacion-electronica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facturación electrónica ARCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comprobantes-facturas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comprobantes y facturas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pagos-checkout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pagos y checkout unificado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iot-serie-temporal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serie temporal local IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiencia-publica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiencia pública
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videoteca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videoteca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracking-trakt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tracking tipo Trakt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pulido-profesional-y-visibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pulido profesional y visibilidad condicional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ads-publicidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicidad (ads)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4498,6 +5413,8 @@
   
     
     
+      
+        
       
         
       
@@ -4639,6 +5556,474 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../legal/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/01-terminos-de-servicio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Términos del Servicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/02-aviso-legal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aviso Legal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/03-politica-de-privacidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Política de Privacidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/04-politica-de-cookies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Política de Cookies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/05-cumplimiento-componentes-sin-pago/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cumplimiento (sin pago)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/06-facturacion-electronica-afip-arca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facturación electrónica (AFIP/ARCA)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/07-terminos-suscripcion-pago/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Términos de suscripciones y pagos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/08-checklist-cumplimiento-checkout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checklist de cumplimiento del checkout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/09-referencia-tecnica-facturacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia técnica de facturación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/10-videoteca-derechos-de-autor-y-cumplimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videoteca (derechos de autor)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/11-tracking-historial-y-privacidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tracking (historial y privacidad)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/12-publicidad-ads-consentimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicidad (consentimiento)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4686,7 +6071,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -4697,7 +6082,7 @@
   <span class="md-ellipsis">
     
   
-    Bloques
+    Plugins
   
 
     
@@ -4708,18 +6093,18 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bloques
+    Plugins
   
 
           </label>
@@ -4902,6 +6287,32 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -4920,10 +6331,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
             
   
   
@@ -4941,8 +6352,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5015,14 +6426,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/crear-un-bloque/" class="md-nav__link">
+      <a href="../../guides/crear-un-plugin/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Crear un bloque
+    Crear un plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/patron-crear/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patrón "crear" (botón → página o modal)
   
 
     
@@ -5211,6 +6650,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../guides/mobile-capacitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App nativa (Capacitor)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../guides/email/" class="md-nav__link">
         
   
@@ -5323,14 +6790,154 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/marketplace-de-bloques/" class="md-nav__link">
+      <a href="../../guides/marketplace-de-plugins/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Marketplace de bloques
+    Marketplace de plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/nginx-multi-sucursal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx y multi-sucursal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/claves-de-venta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claves de licencia (venta)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/feature-gating-licencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature-gating por licencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/generador-de-apis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generador de APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/generador-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK del generador de APIs
   
 
     
@@ -5358,7 +6965,175 @@
   <span class="md-ellipsis">
     
   
-    Categorías de bloques
+    Categorías de plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/menu-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categorías del menú de administración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/tickets-soporte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tickets de soporte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/chat-tiempo-real/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chat en tiempo real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/inventario-completo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventario completo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/compositor-social/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compositor social enriquecido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/update-raw-view/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vista RAW de actualizaciones
   
 
     
@@ -5463,14 +7238,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/bloque-mercadopago/" class="md-nav__link">
+      <a href="../../guides/plugin-mercadopago/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bloque Mercado Pago
+    Plugin Mercado Pago
   
 
     
@@ -5619,6 +7394,18 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -5637,10 +7424,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="">
             
   
   
@@ -5658,8 +7445,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5753,6 +7540,174 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/auditoria-2026-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad (auditoría 2026-10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ux/spec-actualizacion-licencia-cadenas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UX/UI (licencias y cadenas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ux/spec-dashboards-checkout-trabajadores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UX/UI (dashboards, pago, trabajadores)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../i18n/audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internacionalización (i18n)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../investigacion-apis-terceros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs y agentes de terceros (investigación)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checklist de plugins (t90)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5769,6 +7724,64 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -5796,10 +7809,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_8" >
         
           
-          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="">
             
   
   
@@ -5817,8 +7830,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5927,6 +7940,818 @@
     
   
     ADR 0004 · Autenticación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0005-plugin-rename/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005 · Plugins (rename + menú nativo)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0006-multi-tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006 · Multi-tenant por cadenas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0007-licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0007 · Licencias local anti-RE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0008-scalability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0008 · Escalabilidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0009-ui-styling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0009 · Tailwind + Shadcn UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0010-update-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0010 · Actualización zero-downtime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0011-page-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0011 · Builder visual de páginas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0012-i18n/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0012 · Internacionalización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0013-arca-facturacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0013 · Plugin ARCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0014-comprobantes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0014 · Sistema de comprobantes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0015-checkout-unificado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0015 · Checkout unificado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0016-plugin-source-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0016 · Fuente de plugins (remoto)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0017-nginx-allowlist-multi-sucursal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0017 · Reverse-proxy + multi-sucursal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0018-roles-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0018 · Permisos y roles completos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0019-feature-gating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0019 · Feature-gating por licencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0020-api-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0020 · Generador de APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0021-tickets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0021 · Tickets de soporte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0022-chat-realtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0022 · Chat en tiempo real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0023-inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0023 · Modelo de inventario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0024-compositor-social-enriquecido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0024 · Compositor social enriquecido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0025-scalable-selectable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0025 · Escalabilidad selectable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0026-update-raw-view/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0026 · Vista RAW de actualizaciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0027-iot-serie-temporal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0027 · Serie temporal local IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0028-iot-plugin-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0028 · Patrón de plugins IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0029-experiencia-publica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0029 · Experiencia pública
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0030-videoteca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0030 · Plugin videoteca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0031-tracking-trakt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0031 · Tracking tipo Trakt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0032-pulido-profesional-visibilidad-condicional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0032 · Pulido + visibilidad condicional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/0033-ads-publicidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0033 · Plugin de publicidad (ads)
   
 
     
@@ -6542,7 +9367,7 @@ instancias.</p>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>El cliente se expone como <code>fastify.redis</code> (<code>apps/api/src/plugins/redis.ts</code>) y también a
-los bloques como <code>services.cache</code> / <code>services.events</code>.</p>
+los plugins como <code>services.cache</code> / <code>services.events</code>.</p>
 <p><code>apps/api/src/plugins/rate-limit.ts</code> usa <code>@fastify/rate-limit</code> con un store <strong>en memoria
 por proceso</strong> (<code>max: 300</code>, <code>timeWindow: '1 minute'</code>, clave por IP). El propio plugin
 documenta que, en cluster, debe conectarse un store Redis para que el límite sea <strong>global</strong>:</p>
@@ -6550,6 +9375,20 @@ documenta que, en cluster, debe conectarse un store Redis para que el límite se
 <p>«En un despliegue en cluster, conectar un store Redis (<code>@fastify/rate-limit</code> acepta
 <code>redis</code> como store) para que el límite sea global y no por instancia.»</p>
 </blockquote>
+<h3 id="rate-limiting-global-en-redis-adr-0008">Rate limiting global en Redis (ADR-0008)</h3>
+<p>El <a href="../../adr/0008-scalability/">ADR-0008</a> decide sustituir el store en memoria por
+<strong><code>rate-limiter-flexible</code></strong> con backend <strong>Redis</strong> (<code>RateLimiterRedis</code>, ventana fija/deslizante,
+clave <code>webs:rl:&lt;ip&gt;</code> con TTL), de modo que el límite sea <strong>global al cluster</strong>
+independientemente del número de réplicas (hoy, con N réplicas, cada una permite 300 req/min →
+límite efectivo N×300).</p>
+<ul>
+<li>Se conserva un fallback <strong>en memoria</strong> solo para ejecución mononodo sin <code>REDIS_URL</code> (dev),
+  documentado como no-global.</li>
+<li>Política base: mantener el contrato actual (300 req/min por IP) con umbrales por endpoint
+  (auth más estricto) y clave por IP + (opcional) tenant en rutas autenticadas.</li>
+<li>Detrás del ingress se respeta <code>X-Forwarded-For</code> (<code>trustProxy: true</code>) para evitar lock-outs por
+  IP compartida (NAT/proxy).</li>
+</ul>
 <h2 id="contenedores">Contenedores</h2>
 <p><code>docker/</code> contiene los artefactos de contenedorización:</p>
 <table>
@@ -6583,47 +9422,292 @@ documenta que, en cluster, debe conectarse un store Redis para que el límite se
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pnpm --filter @webs/api exec prisma db seed
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>node apps/api/dist/index.js
 </span></code></pre></div>
-<h2 id="kubernetes-futuro">Kubernetes (futuro)</h2>
-<p><code>infra/README.md</code> describe el despliegue objetivo para clientes grandes, con manifiestos
-en <code>k8s/</code> (aún no creados):</p>
+<h2 id="kubernetes-adr-0008">Kubernetes (ADR-0008)</h2>
+<p>El <a href="../../adr/0008-scalability/">ADR-0008</a> define el despliegue objetivo reproducible con
+manifiestos en el directorio <code>k8s/</code> (base + overlays <code>dev</code>/<code>prod</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>namespace.yaml</code></td>
+<td>Namespace <code>webs</code>.</td>
+</tr>
+<tr>
+<td><code>configmap.yaml</code></td>
+<td>Config no sensible (URL pública, paginación, feature flags).</td>
+</tr>
+<tr>
+<td><code>secret.yaml</code></td>
+<td>Referencia a secretos (external-secrets/sealed-secrets; <strong>nunca</strong> literales): <code>DATABASE_URL</code>, <code>REDIS_URL</code>, <code>ENCRYPTION_KEY</code>, <code>JWT_*</code>, <code>LICENSE_PUBLIC_KEY</code>, <code>UPDATE_PUBLIC_KEY</code>.</td>
+</tr>
+<tr>
+<td><code>deployment-api.yaml</code></td>
+<td><code>replicas: 3</code>, <code>resources.requests/limits</code>, <code>envFrom</code> configmap/secret, <code>livenessProbe</code>/<code>readinessProbe</code>, <code>terminationGracePeriodSeconds</code>.</td>
+</tr>
+<tr>
+<td><code>service-api.yaml</code></td>
+<td><code>ClusterIP</code> (puerto interno).</td>
+</tr>
+<tr>
+<td><code>deployment-web.yaml</code> + <code>service-web.yaml</code></td>
+<td>nginx sirviendo estáticos de <code>apps/web</code> + reverse-proxy a <code>service-api</code> (reutiliza <code>docker/nginx.conf</code>).</td>
+</tr>
+<tr>
+<td><code>ingress.yaml</code></td>
+<td>Ingress (TLS) hacia <code>service-web</code>.</td>
+</tr>
+<tr>
+<td><code>hpa-api.yaml</code></td>
+<td>HorizontalPodAutoscaler: <code>minReplicas: 2</code>, <code>maxReplicas: 10</code>, CPU/memoria 70 %.</td>
+</tr>
+<tr>
+<td><code>pdb.yaml</code></td>
+<td>PodDisruptionBudget (<code>minAvailable: 1</code>).</td>
+</tr>
+<tr>
+<td><code>migration-job.yaml</code></td>
+<td><code>prisma migrate deploy</code> como <code>initContainer</code>/<code>Job</code> antes de escalar el rollout.</td>
+</tr>
+</tbody>
+</table>
+<p>El estado (Postgres/Redis) vive <strong>fuera del cluster</strong> de aplicación: servicios gestionados
+(RDS/Cloud SQL, ElastiCache/Memorystore) o un operador dedicado; no en los manifests de app.</p>
+<h3 id="stateless-garantizado-y-auto-scaling">Stateless garantizado y auto-scaling</h3>
 <ul>
-<li><strong>api</strong> — <code>Deployment</code> con N réplicas + <code>HorizontalPodAutoscaler</code> + <code>Service</code> + <code>Ingress</code>.</li>
-<li><strong>web</strong> — build estático servido por nginx o CDN.</li>
-<li><strong>postgres</strong> — operador (CloudNativePG) o servicio gestionado.</li>
-<li><strong>redis</strong> — clúster gestionado (o Valkey).</li>
+<li><strong>Ninguna</strong> sesión/estado en proceso: todo estado mutuable en Postgres o Redis; la sesión es
+  el JWT (sin server-side session store). WebSocket no requiere afinidad de sesión (fan-out por
+  pub/sub <code>webs:ws</code>), por lo que <strong><code>sticky sessions</code> no es requerido</strong>.</li>
+<li><strong>Graceful shutdown</strong> (precondición del auto-scaling): ante <code>SIGTERM</code> → dejar de aceptar
+  conexiones, drenar in-flight (grace period) y cerrar Prisma/Redis.</li>
+<li><strong>Probes</strong>: <code>livenessProbe</code> → <code>/health</code>; <code>readinessProbe</code> → <code>/health/ready</code> (que ya hace
+  <code>SELECT 1</code>).</li>
+<li><strong>HPA</strong> por CPU/memoria sobre <code>deployment-api</code>; escalado por eventos/cola (opcional, KEDA)
+  sobre longitud de cola Redis para trabajos asíncronos (email, export, etc.).</li>
+<li>El límite de concurrencia de Prisma/Postgres (pool) y de Redis se dimensiona <strong>por réplica</strong>;
+  el auto-scaling añade réplicas, no hilos dentro de un proceso.</li>
 </ul>
+<h3 id="redis-como-dependencia-de-produccion">Redis como dependencia de producción</h3>
+<p>Con el rate-limit global, el pub/sub de WebSocket y la caché, Redis se vuelve <strong>hard-dependency</strong>
+en producción. Si cae, la app debe degradar de forma controlada (circuit-breaker/fallback
+documentado), no colgar.</p>
+<h2 id="escalabilidad-selectable-adr-0025">Escalabilidad selectable (ADR-0025)</h2>
+<p>El <a href="../../adr/0025-scalable-selectable/">ADR-0025</a> extiende el HPA de M2 para que el usuario
+elija, <strong>desde el panel y por workload</strong> (<code>api</code>, <code>web</code>), entre escalado <strong>horizontal (HPA)</strong> y
+<strong>vertical (VPA)</strong>, con los modos verticales <strong>Auto / Recommender / Initial</strong>.</p>
+<blockquote>
+<p><strong>Estado (M11, implementado)</strong>: módulo <code>apps/api/src/modules/scaling.ts</code> (registrado bajo
+<code>/api/v1</code>), panel <code>/admin/scaling</code> (<code>apps/web</code>), manifiestos <code>deploy/k8s/vpa-api.yaml</code> +
+<code>vpa-web.yaml</code>, y <code>deploy/k8s/configmap.yaml</code> con las 20 claves <code>SCALING_*</code> (10 por workload).</p>
+</blockquote>
+<h3 id="selector-por-workload">Selector por workload</h3>
+<table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>Modo</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api</code></td>
+<td><code>horizontal</code></td>
+<td><code>HorizontalPodAutoscaler</code> (<code>autoscaling/v2</code>, CPU/mem 70 %, 2→10).</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td><code>vertical</code></td>
+<td><code>VerticalPodAutoscaler</code> (<code>autoscaling.k8s.io/v1</code>) con <code>updateMode</code> Auto/Off/Initial.</td>
+</tr>
+<tr>
+<td><code>web</code></td>
+<td><code>horizontal</code> / <code>vertical</code></td>
+<td>Ídem para el deployment de nginx.</td>
+</tr>
+</tbody>
+</table>
+<p>La selección se <strong>persiste en la tabla <code>settings</code></strong> (clave <code>scaling</code>, JSON) vía
+<code>PUT /api/v1/system/scaling</code>, por lo que <strong>sobrevive al reinicio</strong> de la API. Los manifiestos de
+<code>deploy/k8s/configmap.yaml</code> exponen el equivalente como claves <code>SCALING_*</code> (10 por workload) para
+arranques en cluster; el panel y la API son la fuente de verdad en runtime.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  "workloads": [
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    { "name": "api",  "mode": "horizontal", "hpa": { "min": 2, "max": 10, "cpuTargetPct": 70, "memTargetPct": 70 } },
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    { "name": "web",  "mode": "vertical",
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      "vpa": { "updateMode": "Off", "minAllowed": { "cpu": "100m", "memory": "128Mi" },
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>               "maxAllowed": { "cpu": "2", "memory": "4Gi" }, "controlledResources": ["cpu", "memory"] } }
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  ]
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>}
+</span></code></pre></div>
+<h3 id="modos-verticales-vpa">Modos verticales (VPA)</h3>
+<p>El VPA requiere el <strong>operador VPA</strong> (<code>kubernetes/autoscaler</code>: <code>recommender</code>, <code>updater</code>,
+<code>admission-controller</code>) instalado en el cluster.</p>
+<table>
+<thead>
+<tr>
+<th>Modo UI</th>
+<th><code>updateMode</code></th>
+<th>Comportamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Auto</strong></td>
+<td><code>Auto</code></td>
+<td>Aplica recomendaciones y reinicia pods cuando hace falta.</td>
+</tr>
+<tr>
+<td><strong>Recommender</strong></td>
+<td><code>Off</code></td>
+<td>Calcula y publica recomendaciones (visibles), no las aplica.</td>
+</tr>
+<tr>
+<td><strong>Initial</strong></td>
+<td><code>Initial</code></td>
+<td>Aplica recomendaciones solo al crear el pod.</td>
+</tr>
+</tbody>
+</table>
+<p>Parámetros configurables (<code>spec.resourcePolicy.containerPolicies</code>): <code>minAllowed</code>/<code>maxAllowed</code>
+CPU y memoria + <code>controlledResources: ["cpu", "memory"]</code> por contenedor.</p>
+<h3 id="regla-de-exclusion-hpa-vs-vpa">Regla de exclusión HPA vs VPA</h3>
+<p><strong>HPA y VPA no pueden activarse a la vez sobre CPU/memoria del mismo workload</strong> (se pisan: el VPA
+reescribe <code>requests</code>/<code>limits</code> que son la base de la métrica del HPA). El selector impone <strong>uno u
+otro por workload</strong>.</p>
+<ul>
+<li><code>PUT /api/v1/system/scaling</code> valida la guarda y responde <strong>422</strong> si la viola.</li>
+<li><strong>Coexistencia</strong> (cuando se quieren ambos): <code>VPA</code> sobre <strong>CPU/memoria</strong> + <code>HPA</code> sobre
+  <strong>métricas custom</strong> (p. ej. <code>KEDA</code> por longitud de cola Redis <code>webs:queue:*</code>), de modo que el
+  HPA no usa las métricas que el VPA controla.</li>
+</ul>
+<h3 id="panel-adminscaling-y-generacion-del-manifiesto">Panel <code>/admin/scaling</code> y generación del manifiesto</h3>
+<p>La UI (<code>apps/web</code>, ruta <code>/admin/scaling</code>) consume <code>GET/PUT /api/v1/system/scaling</code> y
+<code>GET /api/v1/system/scaling/export?workload=api|web&amp;format=yaml</code>:</p>
+<ol>
+<li>El operador elige <strong>HPA</strong> (modo <code>horizontal</code>, con <code>min</code>/<code>max</code> réplicas y target CPU/mem) o
+   <strong>VPA</strong> (modo <code>vertical</code>, con <code>updateMode</code> Auto/Off/Initial y <code>minAllowed</code>/<code>maxAllowed</code> CPU/mem)
+   por workload.</li>
+<li>Al guardar, el backend valida la regla de exclusión (422 si conflicto) y persiste en <code>settings</code>.</li>
+<li>El botón <strong>Export YAML</strong> descarga el manifiesto <code>HorizontalPodAutoscaler</code> (<code>autoscaling/v2</code>) o
+   <code>VerticalPodAutoscaler</code> (<code>autoscaling.k8s.io/v1</code>) según el modo elegido, listo para <code>kubectl apply</code>.</li>
+</ol>
+<blockquote>
+<p>Aplicar el VPA requiere el <strong>operador VPA</strong> instalado en el cluster (prerrequisito). Sin el CRD,
+<code>kubectl apply -f deploy/k8s/vpa-api.yaml</code> falla — ver §6 de
+<a href="../../guides/despliegue/"><code>docs/guides/despliegue.md</code></a>.</p>
+</blockquote>
+<h3 id="contrato-de-endpoints">Contrato de endpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ruta</th>
+<th>Auth</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/system/scaling</code></td>
+<td>admin (<code>scaling.read</code>)</td>
+<td>Estado persistido + <code>recommendations</code> (si el VPA publica).</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/api/v1/system/scaling</code></td>
+<td>admin (<code>scaling.write</code>)</td>
+<td>Actualiza selección/parámetros; valida exclusión (422 si viola).</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/system/scaling/export?workload=api&amp;format=yaml</code></td>
+<td>admin (<code>scaling.read</code>)</td>
+<td>Exporta el YAML del manifiesto (<code>HPA</code> o <code>VPA</code>) según la selección.</td>
+</tr>
+</tbody>
+</table>
+<p>Respuesta <code>GET /api/v1/system/scaling</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>{
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  "workloads": [
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    { "name": "api", "mode": "horizontal",
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>      "hpa": { "min": 2, "max": 10, "cpuTargetPct": 70, "memTargetPct": 70 },
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>      "vpa": null },
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    { "name": "web", "mode": "vertical", "hpa": null,
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>      "vpa": { "updateMode": "Off", "minAllowed": { "cpu": "100m", "memory": "128Mi" },
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>               "maxAllowed": { "cpu": "2", "memory": "4Gi" }, "controlledResources": ["cpu", "memory"] } }
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  ],
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  "appliedAt": "2026-…",
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  "recommendations": { "web": { "cpu": "300m", "memory": "640Mi" } }
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>}
+</span></code></pre></div>
+<h3 id="template-vpa-generado">Template VPA (generado)</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">autoscaling.k8s.io/v1</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VerticalPodAutoscaler</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webs</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">targetRef</span><span class="p">:</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nt">updatePolicy</span><span class="p">:</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="nt">updateMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Off</span><span class="w">            </span><span class="c1"># Auto | Off | Initial</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nt">resourcePolicy</span><span class="p">:</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="nt">containerPolicies</span><span class="p">:</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="nt">controlledResources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"cpu"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"memory"</span><span class="p p-Indicator">]</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span><span class="nt">minAllowed</span><span class="p">:</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100m</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128Mi</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span><span class="nt">maxAllowed</span><span class="p">:</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"2"</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4Gi</span>
+</span></code></pre></div>
+<p>El HPA generado reutiliza el <code>hpa-api.yaml</code> existente (con los parámetros configurables
+<code>min</code>/<code>max</code>/<code>cpuTargetPct</code>/<code>memTargetPct</code>).</p>
+<h3 id="seguridad">Seguridad</h3>
+<p>Solo <code>role=admin</code>; toda escritura auditable (<code>AuditLog</code>, <code>action = scaling.update</code>). El export YAML
+referencia <code>secretKeyRef</code> a <code>webs-secret</code> (nunca literales). El <code>ServiceAccount</code> del backend tiene
+el menor privilegio (<code>get/list/watch/update</code> solo sobre <code>webs-scaling</code>), sin acceso a <code>Secret</code>.</p>
 <h2 id="observabilidad">Observabilidad</h2>
 <h3 id="logging-estructurado-pino">Logging estructurado (pino)</h3>
 <p><code>apps/api/src/lib/logger.ts</code> crea el logger y Fastify lo reutiliza internamente:</p>
-<div class="language-ts highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">createLogger</span><span class="p">(</span><span class="nx">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'info'</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Logger</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">pino</span><span class="p">({</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nx">level</span><span class="p">,</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">base</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">service</span><span class="o">:</span><span class="w"> </span><span class="s1">'webs-api'</span><span class="w"> </span><span class="p">},</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">pino.stdTimeFunctions.isoTime</span><span class="p">,</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nx">redact</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="nx">paths</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">'req.headers.authorization'</span><span class="p">,</span><span class="w"> </span><span class="s1">'req.headers.cookie'</span><span class="p">,</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">              </span><span class="s1">'password'</span><span class="p">,</span><span class="w"> </span><span class="s1">'passwordHash'</span><span class="p">,</span><span class="w"> </span><span class="s1">'refreshToken'</span><span class="p">],</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">      </span><span class="nx">censor</span><span class="o">:</span><span class="w"> </span><span class="s1">'[REDACTED]'</span><span class="p">,</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">},</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="p">});</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">}</span>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">createLogger</span><span class="p">(</span><span class="nx">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'info'</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Logger</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">pino</span><span class="p">({</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nx">level</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nx">base</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">service</span><span class="o">:</span><span class="w"> </span><span class="s1">'webs-api'</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">pino.stdTimeFunctions.isoTime</span><span class="p">,</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nx">redact</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="nx">paths</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">'req.headers.authorization'</span><span class="p">,</span><span class="w"> </span><span class="s1">'req.headers.cookie'</span><span class="p">,</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">              </span><span class="s1">'password'</span><span class="p">,</span><span class="w"> </span><span class="s1">'passwordHash'</span><span class="p">,</span><span class="w"> </span><span class="s1">'refreshToken'</span><span class="p">],</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="nx">censor</span><span class="o">:</span><span class="w"> </span><span class="s1">'[REDACTED]'</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>El nivel se controla con <code>LOG_LEVEL</code> (<code>apps/api/src/config/env.ts</code>). <code>trustProxy: true</code>
 está habilitado en <code>app.ts</code> para respetar <code>X-Forwarded-*</code> detrás del balanceador/nginx.</p>
 <h3 id="health-checks">Health checks</h3>
 <p><code>apps/api/src/modules/health/index.ts</code> (sin autenticación):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>GET /health        → { status: 'ok', uptime }                       (liveness)
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>GET /health/ready  → 200 { status: 'ready' } o 503 si falla SELECT 1 (readiness, chequea DB)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>GET /health        → { status: 'ok', uptime }                       (liveness)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>GET /health/ready  → 200 { status: 'ready' } o 503 si falla SELECT 1 (readiness, chequea DB)
 </span></code></pre></div>
 <h3 id="auditoria">Auditoría</h3>
 <p><code>apps/api/src/lib/audit.ts</code> registra acciones de forma <strong>no bloqueante</strong>:</p>
-<div class="language-ts highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">audit</span><span class="p">(</span><span class="nx">fastify</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="p">,</span><span class="w"> </span><span class="nx">entry</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="ow">void</span><span class="w"> </span><span class="nx">fastify</span><span class="p">.</span><span class="nx">prisma</span><span class="p">.</span><span class="nx">auditLog</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="p">}).</span><span class="k">catch</span><span class="p">(...);</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">}</span>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">audit</span><span class="p">(</span><span class="nx">fastify</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="p">,</span><span class="w"> </span><span class="nx">entry</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="ow">void</span><span class="w"> </span><span class="nx">fastify</span><span class="p">.</span><span class="nx">prisma</span><span class="p">.</span><span class="nx">auditLog</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="p">}).</span><span class="k">catch</span><span class="p">(...);</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>Cada entrada (<code>AuditLog</code>) captura <code>actorId</code>, <code>action</code>, <code>resource</code>, <code>resourceId</code>,
 <code>metadata</code>, <code>ip</code> y <code>createdAt</code> (índices en <code>actorId</code> y <code>createdAt</code>). Los módulos la usan
-en acciones sensibles (login, cambios de settings, bloques, roles, contenido,
+en acciones sensibles (login, cambios de settings, plugins, roles, contenido,
 traducciones).</p>
 <h3 id="errores-y-request-id">Errores y request-id</h3>
 <p><code>apps/api/src/plugins/error-handler.ts</code> serializa <code>AppError</code> y errores de validación en un
@@ -6635,13 +9719,15 @@ internos en los errores 500. Los códigos de error son estables y versionados
 (<code>DEFAULT_PAGE_SIZE = 20</code>, <code>MAX_PAGE_SIZE = 100</code>), devolviendo un envoltorio <code>Page&lt;T&gt;</code>
 (<code>items</code>, <code>total</code>, <code>page</code>, <code>pageSize</code>, <code>totalPages</code>).</p>
 <h2 id="discrepancias-observadas">Discrepancias observadas</h2>
+<p>Estas discrepancias documentan el estado <strong>actual</strong> del código; el
+<a href="../../adr/0008-scalability/">ADR-0008</a> las resuelve como objetivo de Milestone 2:</p>
 <ol>
 <li><strong>Rate limiting por instancia.</strong> El store actual de <code>@fastify/rate-limit</code> es en memoria;
-   el límite (300 req/min/IP) no es global hasta conectar un store Redis, tal como
-   documenta el propio plugin. En un despliegue multi-réplica sin ese store, cada instancia
-   contaría por separado.</li>
+   el límite (300 req/min/IP) no es global hasta conectar un store Redis. <strong>Resuelto por
+   ADR-0008</strong> (<code>rate-limiter-flexible</code> + Redis).</li>
 <li><strong>Sin manifests de Kubernetes.</strong> <code>infra/README.md</code> describe la estructura <code>k8s/</code> como
-   «futuro»; no hay archivos YAML de Kubernetes en el repo.</li>
+   «futuro»; no hay archivos YAML de Kubernetes en el repo. <strong>Resuelto por ADR-0008</strong> (crear
+   <code>k8s/</code>).</li>
 </ol>
 
 
@@ -6680,7 +9766,7 @@ internos en los errores 500. Los códigos de error son estables y versionados
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../i18n/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Internacionalización">
+          <a href="../page-builder/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Builder visual de páginas">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6690,20 +9776,20 @@ internos en los errores 500. Los códigos de error son estables y versionados
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Internacionalización
+                Builder visual de páginas
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../api/overview/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Resumen">
+          <a href="../licensing-integration/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Licencias locales (Licensify)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Resumen
+                Licencias locales (Licensify)
               </div>
             </div>
             <div class="md-footer__button md-icon">
