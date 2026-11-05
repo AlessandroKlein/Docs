@@ -29,6 +29,26 @@ Base: `http://<IP>/api/v1/` (puerto 80). **48 endpoints** en v3.29.0.
 | GET | `/events` | Últimos eventos |
 | GET | `/logs` | Logs estructurados (nivel, módulo, mensaje) |
 
+## Eventos y alarmas
+
+`GET /events` y `GET /alarms` devuelven un **array plano** de objetos con la
+misma forma:
+
+```json
+[ { "t": 1730000000, "sev": 2, "msg": "Tanque bajo" } ]
+```
+
+- `t`: epoch en **segundos** (`time(nullptr)`). No son milisegundos ni uptime.
+- `sev`: `0` info, `1` warning, `2` error, `3` alarma.
+- `msg`: texto libre del evento.
+
+`/alarms` devuelve el mismo array filtrando `sev >= 2`.
+
+> Procedencia: forma derivada de `Types.hpp` del firmware. **No** es
+> intercambiable con la API-REST de SEMA, que usa otra estructura
+> (`{ "events": [{ "ts", "type", "source", "rule", "severity", "value" }] }`
+> con `ts` = `millis()` — uptime en ms).
+
 ## Configuración
 
 | Método | Endpoint | Descripción |
