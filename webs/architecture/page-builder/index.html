@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#builder-visual-de-paginas-grapesjs" class="md-skip">
+        <a href="#builder-visual-de-paginas-bloques" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -6134,6 +6134,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -7011,6 +7017,90 @@
     
   
     Plantillas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/editor-paginas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor de páginas (bloques)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/crm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM (contactos y pipeline)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/licencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licencias (uso y modo Docker)
   
 
     
@@ -9280,12 +9370,12 @@
   
 
 
-<h1 id="builder-visual-de-paginas-grapesjs">Builder visual de páginas (GrapesJS)</h1>
+<h1 id="builder-visual-de-paginas-bloques">Builder visual de páginas (bloques)</h1>
 <h2 id="resumen">Resumen</h2>
-<p>Webs resuelve el bug histórico «páginas no personalizables» con un <strong>builder visual</strong>
-basado en <strong>GrapesJS</strong> (licencia MIT, autoalojado, sin servicio externo). El editor vive en
-el panel de administración (<code>/admin/editor</code>) y persiste el contenido estructurado de una
-página en <code>Page.layout</code> (Json), que es la <strong>única fuente de verdad</strong> del contenido.</p>
+<p>Webs resuelve «páginas no personalizables» con un <strong>editor de bloques</strong> propio (estilo
+Gutenberg) en <code>/admin/pages</code>, que persiste el contenido estructurado de una página en
+<code>Page.layout</code> (Json), la <strong>única fuente de verdad</strong> del contenido. La guía de uso está en
+<a href="../../guides/editor-paginas/"><code>docs/guides/editor-paginas.md</code></a>.</p>
 <p>Decisión registrada en <a href="../../adr/0011-page-builder/">ADR-0011</a>.</p>
 <h2 id="modelo-de-datos">Modelo de datos</h2>
 <p>Reutiliza el modelo <code>Page</code> existente (sin tabla nueva):</p>
@@ -9326,22 +9416,20 @@ página en <code>Page.layout</code> (Json), que es la <strong>única fuente de v
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  { "size": "half", "blocks": [ /* … */ ] }
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>]
 </span></code></pre></div>
-<p>La serialización real del editor usa atributos <code>data-ws-*</code> en el lienzo para mapear
-elementos ↔ <code>PageSection[]</code>/<code>PageItem</code>.</p>
+<p>El editor manipula directamente <code>PageSection[]</code>/<code>PageElement[]</code> (sin DOM intermedio) y
+renderiza con el mismo <code>PageRenderer</code> que el sitio público.</p>
 <h2 id="editor-visual">Editor visual</h2>
 <ul>
-<li><code>apps/web/src/features/editor/GrapesEditor.tsx</code> — bridge React ↔ GrapesJS
-  (<code>forwardRef</code>), con <code>storageManager: false</code> (no persiste en el navegador; la fuente de
-  verdad es la API).</li>
-<li><code>apps/web/src/features/editor/EditorPage.tsx</code> — listado de páginas, selector de <strong>home</strong>
-  y botón <strong>Guardar</strong> (vista en vivo con <code>PageLayoutView</code>).</li>
-<li>Ruta: <code>/admin/editor</code> (<code>App.tsx</code>), ítem de menú «Editor visual» (permiso
-  <code>content.write</code>).</li>
+<li><code>apps/web/src/features/pages/PagesPage.tsx</code> — listado y editor: top bar, lienzo,
+  inserter de bloques, inspector y previsualización responsive.</li>
+<li><code>apps/web/src/features/pages/{BlockCanvas,BlockInserter,BlockInspector}.tsx</code> y
+  <code>useBlockHistory.ts</code> — lienzo, catálogo, panel de propiedades y undo/redo.</li>
+<li>Ruta: <code>/admin/pages</code> (permiso <code>content.write</code>); <code>/admin/editor</code> redirige allí.</li>
 <li>Bloques disponibles en el lienzo (drag &amp; drop):</li>
 <li><strong>Secciones</strong>: <code>full</code>, <code>half</code>, <code>third</code>.</li>
 <li><strong>Elementos nativos</strong>: heading, text, image, divider, spacer, html.</li>
 <li><strong>Un bloque por plugin instalado</strong> (cada plugin puede aportar su bloque al editor).</li>
-<li>Dependencia: <code>grapesjs ^0.23.8</code>.</li>
+<li>Sin dependencia de builder externo: GrapesJS se retiró del proyecto.</li>
 </ul>
 <h2 id="guardado">Guardado</h2>
 <p>El editor persiste por dos vías, ambas con <strong>saneado</strong> de HTML en la API

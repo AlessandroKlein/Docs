@@ -6129,6 +6129,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -7006,6 +7012,90 @@
     
   
     Plantillas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/editor-paginas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor de páginas (bloques)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/crm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM (contactos y pipeline)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/licencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licencias (uso y modo Docker)
   
 
     
@@ -9357,7 +9447,7 @@ necesitar el filtro <code>item.id !== ''</code> (usa <code>source</code>).</p>
 <ol>
 <li><strong>Seed</strong> — <code>apps/api/prisma/seed.ts:95-125</code> define <code>CORE_MENU_ITEMS</code> (22 ítems core,
    espejo de <code>AdminLayout.tsx</code> <code>navItems</code>): <code>label</code> = <strong>clave i18n</strong> (<code>nav.dashboard</code>,
-   <code>nav.content</code>, …), <code>path</code>, <code>section</code>, <code>order</code> 1-22, <code>feature</code> (<code>core</code> | <code>generator</code> para
+   <code>nav.pages</code>, …), <code>path</code>, <code>section</code>, <code>order</code> 1-22, <code>feature</code> (<code>core</code> | <code>generator</code> para
    <code>/admin/generated</code>) y <code>permissions</code>. Se siembra con
    <code>prisma.menu.upsert({ where: { key: 'main' }, ... })</code> (líneas 307-308).</li>
 <li><strong>API</strong> — <code>apps/api/src/modules/menu/routes.ts</code> (132 líneas):</li>

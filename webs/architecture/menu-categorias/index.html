@@ -4855,10 +4855,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#items-core-navitems-37-items" class="md-nav__link">
+  <a href="#items-core-navitems-35-items" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ítems core (navItems, 37 ítems)
+        Ítems core (navItems, 35 ítems)
       
     </span>
   </a>
@@ -6129,6 +6129,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -7006,6 +7012,90 @@
     
   
     Plantillas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/editor-paginas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor de páginas (bloques)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/crm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM (contactos y pipeline)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/licencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licencias (uso y modo Docker)
   
 
     
@@ -9286,7 +9376,7 @@ manifiestos de plugins) trabajen en paralelo.</p>
 <h2 id="objetivo">Objetivo</h2>
 <p>Hoy el menú de <code>/admin</code> ya está <strong>agrupado por secciones</strong> con submenús e iconos.
 El frontend (<code>apps/web/src/layouts/AdminLayout.tsx</code>) declara una lista única
-<code>navItems</code> de <strong>37 ítems core</strong> (líneas 251-297) y le suma los ítems declarados
+<code>navItems</code> de <strong>35 ítems core</strong> y le suma los ítems declarados
 por plugins instalados (vía <code>GET /api/v1/menu</code>, con <code>id</code>, <code>section</code>, <code>icon</code>,
 <code>order</code>, <code>parent</code>, <code>permissions</code>). <code>buildTree</code> anida los ítems por <code>parent</code>
 (submenús) y <code>iconClass</code> normaliza los iconos a bootstrap-icons (<code>bi bi-*</code>);
@@ -9363,7 +9453,7 @@ clasificación explícito</strong>, reutilizando el campo <code>section</code> q
 </tbody>
 </table>
 <h2 id="clasificacion-de-los-items-actuales">Clasificación de los ítems actuales</h2>
-<h3 id="items-core-navitems-37-items">Ítems core (<code>navItems</code>, 37 ítems)</h3>
+<h3 id="items-core-navitems-35-items">Ítems core (<code>navItems</code>, 35 ítems)</h3>
 <table>
 <thead>
 <tr>
@@ -9390,24 +9480,10 @@ clasificación explícito</strong>, reutilizando el campo <code>section</code> q
 <td>—</td>
 </tr>
 <tr>
-<td><code>/admin/content</code></td>
-<td><code>content.read</code></td>
-<td><code>contenido</code></td>
-<td><code>collection</code></td>
-<td>—</td>
-</tr>
-<tr>
 <td><code>/admin/pages</code></td>
 <td><code>content.read</code></td>
 <td><code>contenido</code></td>
 <td><code>file-earmark-text</code></td>
-<td>—</td>
-</tr>
-<tr>
-<td><code>/admin/editor</code></td>
-<td><code>content.write</code></td>
-<td><code>contenido</code></td>
-<td><code>pencil-square</code></td>
 <td>—</td>
 </tr>
 <tr>
@@ -9454,7 +9530,7 @@ clasificación explícito</strong>, reutilizando el campo <code>section</code> q
 </tr>
 <tr>
 <td><code>/admin/inventory</code></td>
-<td>—</td>
+<td><code>inventory.read</code></td>
 <td><code>ventas</code></td>
 <td><code>box-seam</code></td>
 <td>—</td>
@@ -9567,7 +9643,7 @@ clasificación explícito</strong>, reutilizando el campo <code>section</code> q
 <tr>
 <td><code>/admin/templates</code></td>
 <td><code>setting.write</code></td>
-<td><code>configuracion</code></td>
+<td><code>apariencia</code></td>
 <td><code>files</code></td>
 <td>—</td>
 </tr>
@@ -9636,7 +9712,9 @@ clasificación explícito</strong>, reutilizando el campo <code>section</code> q
 </tr>
 </tbody>
 </table>
-<p>Submenús: <code>invoices → template</code>, <code>license → keys</code>, <code>users → roles</code>. El ítem
+<p>Submenús: <code>invoices → template</code>, <code>license → keys</code>, <code>users → roles</code>. El CMS legado
+(<code>/admin/content</code>) y el editor GrapesJS (<code>/admin/editor</code>) se retiraron: ambas rutas
+redirigen a <code>/admin/pages</code>, que es la única superficie de edición de páginas. El ítem
 <code>/admin/generated</code> está gateado por <code>feature: generator</code> (t97); los ítems con
 <code>feature</code> premium se ocultan sin la licencia correspondiente. <code>PLUGIN_MANAGEMENT_PATHS</code>
 (<code>/admin/plugins</code>) se oculta cuando no hay plugins instalados.</p>
