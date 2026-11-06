@@ -18,7 +18,7 @@
         <link rel="prev" href="../crm/">
       
       
-        <link rel="next" href="../../gym/">
+        <link rel="next" href="../tienda/">
       
       
         
@@ -5996,6 +5996,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -7040,6 +7044,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#venta-por-checkout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Venta por checkout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activar-una-clave-activate-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activar una clave (activate-key)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#limites-conocidos-siguientes-fases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7054,6 +7080,62 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tienda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tienda, carrito y pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -9381,6 +9463,81 @@ envíos y plugins sin emitir una licencia.</p>
 <p>Con <code>NODE_ENV=production</code>, <code>LICENSE_MODE=production</code> y sin clave, la API arranca
 con el núcleo y las rutas premium responden <code>404</code>. El log lista los módulos
 omitidos.</p>
+<p><code>docker-compose.yml</code> trae un <strong>par de desarrollo</strong> (<code>LICENSE_PUBLIC_KEY</code> /
+<code>LICENSE_PRIVATE_KEY</code>, Ed25519 en PEM) para probar la compra y activación de
+una licencia de punta a punta en el stack local. <strong>No va a producción</strong>: la
+privada de ese par es pública (está en el repo) y emite claves que cualquiera
+podría generar; en producción hay que reemplazarlo por el par propio y cargar la
+privada como secreto, nunca embebida en la app del cliente.</p>
+<h2 id="venta-por-checkout">Venta por checkout</h2>
+<p>Una licencia se puede vender como cualquier producto del checkout: al crear el
+pago, el front envía <code>metadata: { kind: 'license', fingerprint: '…' }</code>. Cuando
+llega el evento <code>payment.approved</code>, el módulo de licencias:</p>
+<ol>
+<li>Si <code>metadata.kind === 'license'</code> (o trae <code>licensePlanId</code>), intenta emitir.</li>
+<li>Es <strong>idempotente por <code>paymentId</code></strong>: si ya existe un <code>licenseSale</code> con ese
+   pago, no vuelve a emitir (un webhook repetido no duplica claves).</li>
+<li>Requiere <code>LICENSE_PRIVATE_KEY</code> (la del vendedor) <strong>y</strong> <code>metadata.fingerprint</code>
+   (la máquina destino). Si falta alguno, registra un warning y no emite.</li>
+<li>Emite la clave con <code>createActivationKey</code> de <code>@licensify/core</code> (firma Ed25519</li>
+<li>cifrado atado al fingerprint, node-locked) y crea el <code>licenseSale</code> + la
+   <code>licenseKey</code> (<code>status: active</code>).</li>
+</ol>
+<h2 id="activar-una-clave-activate-key">Activar una clave (<code>activate-key</code>)</h2>
+<p><code>POST /api/v1/license/activate-key</code> (sin sesión), cuerpo
+<code>{ "activationKey": "…", "fingerprint": "…" }</code>. La activación se valida por
+máquina:</p>
+<table>
+<thead>
+<tr>
+<th>Resultado</th>
+<th>Código</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sin <code>LICENSE_PUBLIC_KEY</code></td>
+<td><code>400</code></td>
+<td><code>Licencias no configuradas</code></td>
+</tr>
+<tr>
+<td><code>verifyActivationKey</code> falla</td>
+<td><code>400</code></td>
+<td><code>Clave inválida para esta máquina</code> (firma no corresponde al fingerprint)</td>
+</tr>
+<tr>
+<td>Clave no registrada</td>
+<td><code>404</code></td>
+<td><code>Clave no registrada</code></td>
+</tr>
+<tr>
+<td><code>status !== 'active'</code></td>
+<td><code>409</code></td>
+<td><code>Clave revocada o inactiva</code></td>
+</tr>
+<tr>
+<td><code>activations</code> ya incluye el fingerprint</td>
+<td><code>200</code></td>
+<td><code>{ ok, alreadyActive: true, activationsUsed, max }</code></td>
+</tr>
+<tr>
+<td><code>activations.length &gt;= limits.activations</code></td>
+<td><code>409</code></td>
+<td><code>Límite de activaciones alcanzado</code> + <code>{ activationsUsed, max }</code></td>
+</tr>
+<tr>
+<td>OK</td>
+<td><code>200</code></td>
+<td><code>{ ok, alreadyActive: false, activationsUsed, max }</code> (agrega el fingerprint)</td>
+</tr>
+</tbody>
+</table>
+<p><code>limits.activations</code> vale <code>1</code> por defecto (una máquina por clave); la clave
+queda <code>node-locked</code> al primer fingerprint. Otras rutas: <code>GET/POST /sales</code>,
+<code>POST /keys</code> (emitir o registrar una clave CLI), <code>POST /keys/validate</code>,
+<code>POST /keys/:id/revoke</code>, <code>POST /activate</code>, <code>POST /deactivate</code>, <code>GET /</code>,
+<code>GET /features</code>, <code>GET /fingerprint</code>.</p>
 <h2 id="limites-conocidos-siguientes-fases">Límites conocidos (siguientes fases)</h2>
 <ul>
 <li>La verificación es <strong>offline</strong> con firma; el binario on-prem siempre es
@@ -9444,13 +9601,13 @@ omitidos.</p>
         
         
           
-          <a href="../../gym/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Gimnasio multi-tenant">
+          <a href="../tienda/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Tienda, carrito y pedidos">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Gimnasio multi-tenant
+                Tienda, carrito y pedidos
               </div>
             </div>
             <div class="md-footer__button md-icon">

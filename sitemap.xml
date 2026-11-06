@@ -1450,11 +1450,25 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/api-tokens/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/apps/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/apps/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/apps/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/archivos/</loc>
         <lastmod>2026-11-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/archivos/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/archivos/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/blog/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/blog/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/blog/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/bloques-categorias/</loc>
@@ -1742,6 +1756,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/tickets-soporte/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/tickets-soporte/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/webs/guides/tienda/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/tienda/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/tienda/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/webs/guides/update-raw-view/</loc>
@@ -3319,11 +3340,25 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/api-tokens/"/>
     </url>
     <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/apps/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/apps/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/apps/"/>
+    </url>
+    <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/archivos/</loc>
         <lastmod>2026-11-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/archivos/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/archivos/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/blog/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/blog/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/blog/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/bloques-categorias/</loc>
@@ -3611,6 +3646,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/tickets-soporte/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/tickets-soporte/"/>
+    </url>
+    <url>
+        <loc>https://alessandroklein.github.io/Docs/en/webs/guides/tienda/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://alessandroklein.github.io/Docs/en/webs/guides/tienda/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://alessandroklein.github.io/Docs/webs/guides/tienda/"/>
     </url>
     <url>
         <loc>https://alessandroklein.github.io/Docs/en/webs/guides/update-raw-view/</loc>

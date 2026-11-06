@@ -6246,6 +6246,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -7207,6 +7211,62 @@
     
   
     Licencias (uso y modo Docker)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/tienda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tienda, carrito y pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
   
 
     
@@ -9478,17 +9538,25 @@
 
 <h1 id="movil-y-escritorio-auditoria-y-plan-de-integracion">Móvil y escritorio — auditoría y plan de integración</h1>
 <blockquote>
-<p>Estado: <strong>M3</strong> (app móvil nativa vía <strong>Capacitor</strong> integrada) · Relacionado:
+<p>Estado: <strong>M4</strong> (base ejecutable: Android vía <strong>Capacitor</strong> configurado, shell
+<strong>Electron</strong> para escritorio, web <strong>PWA instalable</strong>) · Relacionado:
 <a href="../plugin-system/">plugin-system.md</a>, <a href="../refactor-global/">refactor-global.md</a>,
 <a href="../../guides/mobile-app/">guides/mobile-app.md</a>,
-<a href="../../guides/mobile-capacitor/">guides/mobile-capacitor.md</a>.
+<a href="../../guides/mobile-capacitor/">guides/mobile-capacitor.md</a>,
+<a href="../../guides/apps/">guides/apps.md</a>.
 ADR de referencia: <a href="../../adr/0005-plugin-rename/">0005-plugin-rename.md</a>.</p>
-<p><strong>M3 — Capacitor integrado:</strong> <code>apps/mobile</code> (<code>@webs/mobile</code>) es ahora un <strong>host
-Capacitor</strong> (Android/iOS, <code>@capacitor/core ^6</code>) que envuelve <code>apps/web</code>, además de la PWA
-de asistencia por QR. Ver la guía operativa
-<a href="../../guides/mobile-capacitor/">guides/mobile-capacitor.md</a> para compilar/empaquetar y
-ejecutar las apps nativas. El companion de escritorio (<code>@webs/desktop</code>) se mantiene como
-puente WebSocket para lectores serial/keyboard-wedge.</p>
+<p><strong>Estado real (M4):</strong> la base de las apps está creada, no terminada:
+- <strong>Android</strong> — <code>apps/mobile</code> es un <strong>host Capacitor</strong> (<code>@capacitor/core ^6</code>) que
+  envuelve <code>apps/web</code>; <code>capacitor.config.json</code> con <code>androidScheme: https</code> y
+  <code>allowMixedContent: false</code>. La carpeta <code>android/</code> (generada) <strong>no está</strong> en el repo.
+- <strong>Escritorio</strong> — <code>apps/desktop</code> ahora incluye un <strong>shell Electron</strong>
+  (<code>electron/main.js</code> + <code>electron/preload.cjs</code>, <code>contextIsolation</code>/<code>sandbox</code>) que envuelve
+  <code>apps/web</code> y arranca el puente de lectores (WS <code>4599</code>) reutilizando <code>src/bridge.js</code>.
+- <strong>PWA instalable</strong> — <code>apps/web/public/{manifest.webmanifest,sw.js}</code> existen; la web admin
+  se puede instalar como PWA.
+- <strong>Pendiente</strong>: firma de código, auto-update, push nativo y <strong>offline/sincronización</strong>.</p>
+<p>Guía operativa: <a href="../../guides/apps/">guides/apps.md</a>. El detalle de la auditoría
+histórica (M1/M3) se mantiene abajo como registro.</p>
 </blockquote>
 <h2 id="resumen-ejecutivo">Resumen ejecutivo</h2>
 <p><code>apps/mobile</code> es una PWA de <strong>asistencia</strong> (vanilla JS + Vite) y <code>apps/desktop</code> un
