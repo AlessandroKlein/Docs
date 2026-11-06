@@ -322,6 +322,9 @@ nav:
           - Compositor social enriquecido: webs/guides/compositor-social.md
           - Vista RAW de actualizaciones: webs/guides/update-raw-view.md
           - Plantillas: webs/guides/plantillas.md
+          - Editor de páginas (bloques): webs/guides/editor-paginas.md
+          - CRM (contactos y pipeline): webs/guides/crm.md
+          - Licencias (uso y modo Docker): webs/guides/licencias.md
           - Gimnasio multi-tenant: webs/gym.md
           - Pagos: webs/guides/pagos.md
           - Plugin Mercado Pago: webs/guides/plugin-mercadopago.md
