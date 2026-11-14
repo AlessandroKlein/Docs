@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad de versiones
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 Qué versiona SEMA, cómo se comporta frente a una configuración, un backup o un
 firmware de otra versión, y qué compatibilidad **no** está implementada. Todo lo

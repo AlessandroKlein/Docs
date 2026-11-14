@@ -7,7 +7,7 @@ tags:
 
 # Referencia de API interna
 
-> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 Interfaces C++ internas del firmware (`include/core/**`, `include/hw/HwProfile.hpp`).
 Las firmas se copiaron literalmente de las cabeceras; cuando un método es `inline`

@@ -7,7 +7,7 @@ tags:
 
 # Decisiones de arquitectura (ADR)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 SEMA registra sus decisiones en dos niveles: el **registro de trabajo**
 `docs/DUDAS-Y-DECISIONES.md` del repo de código (decisiones `D-0001`…`D-0060`, con

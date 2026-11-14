@@ -6,7 +6,7 @@ tags:
 
 # Módulos y ciclo de vida
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 Esta página responde una sola pregunta: **¿qué es un "módulo" en el código de SEMA
 y cómo se activa?** La respuesta corta es que conviven dos definiciones distintas y

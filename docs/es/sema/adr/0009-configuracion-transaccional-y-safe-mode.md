@@ -8,7 +8,7 @@ tags:
 # 0009. Configuración transaccional con rollback y Safe Mode
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.103.0 | **Decisión origen:** D-0023, D-0024, D-0042
+> **Firmware:** v1.106.0 | **Decisión origen:** D-0023, D-0024, D-0042
 
 ## Contexto
 

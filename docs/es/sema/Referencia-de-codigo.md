@@ -7,7 +7,7 @@ tags:
 
 # Referencia de código
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con

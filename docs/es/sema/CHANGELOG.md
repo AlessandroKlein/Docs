@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,41 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.106.0] - 2026-11-14
+
+### Added
+
+- Toggle en runtime de elementos (sensores, buses, Ethernet, Modbus, CAN, LoRa, Zigbee) persistido en NVS, también en la variante PCB.
+- Edición de pines solo en modo AP (`pinsLocked()`); en STA los pines son solo-lectura con nota i18n (es/en).
+- `ap_mode` y `pins_from_file` expuestos en `/api/v1/system`.
+
+## [1.105.0] - 2026-11-14
+
+### Added
+
+- Sensor AHT10 como modelo propio (alias del driver AHT20; auto-detección AHT10/AHT20).
+- `docs/PCB-V1-CORRECCIONES.md` §9: requisitos de firmware del usuario (elementos habilitables por usuario final, edición de pines solo en modo AP, repo base reutilizable).
+
+### Changed
+
+- Mapa de pines v2: veleta WH-SP-WD → GPIO14 (pulsos/reed), anemómetro WH-SP-WS01 → PCNT (3.3V/10k).
+
+### Fixed
+
+- Env `esp32-p4` deshabilitado: el board `esp32-p4-function-ev` no existe en la plataforma `espressif32 7.1.3` instalada (requiere `espressif32 ≥ 7.2`).
+
+## [1.104.0] - 2026-11-14
+
+### Added
+
+- Pronóstico a corto plazo (temperatura/humedad/lluvia) con endpoint `/api/v1/forecast` y sección "Predicción" en el dashboard.
+- Sensores en el catálogo web: CCS811 (eCO₂/TVOC, I²C), HDC1080 (temperatura/humedad, I²C) y S12SD (UV, analógico); direcciones I²C 0x5A/0x5B.
+- Identidad de board `esp32-wroom32u-32mb` (variante 32 MB de la PCB WROOM-32U).
+
+### Fixed
+
+- `EthernetManager`: `g_eth_netif` declarado bajo `#if !SEMA_NATIVE_ETH` (permite compilar ESP32-P4, que usa W5500).
 
 ## [1.103.0] - 2026-10-08
 
@@ -1204,6 +1239,9 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.106.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.106.0
+[1.105.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.105.0
+[1.104.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.104.0
 [1.103.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.103.0
 [1.102.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.102.0
 [1.101.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.101.0

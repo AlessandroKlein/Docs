@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -93,11 +93,11 @@ tablas se monta como **LittleFS**.
 - El histórico de gráficas **no** usa la partición interna: vive en la microSD
   (`HistoryStore::enableSd`). Sin SD, las gráficas quedan vacías a propósito.
 - El nombre del binario lo arma `GET /api/v1/system`: `sema_<versión>_<board_id>.bin`
-  (p. ej. `sema_1.103.0_esp32-s3-8mb.bin`).
+  (p. ej. `sema_1.106.0_esp32-s3-8mb.bin`).
 
 ## 5. Sensores por interfaz
 
-Los 17 modelos de `SensorFactory::create()` (`src/core/sensors/SensorFactory.cpp`), con la
+Los 21 modelos de `SensorFactory::create()` (`src/core/sensors/SensorFactory.cpp`), con la
 cadena que devuelve `Sensor::interface()`:
 
 | Modelo (`sensors[].model`) | Interfaz declarada | Claves de conexión | Librería | Estado |
@@ -107,16 +107,20 @@ cadena que devuelve `Sensor::interface()`:
 | `SHT40` | I2C | `sda`, `scl` (default de la librería) | Adafruit SHT4x | ✅ |
 | `SHT31` | I2C | `sda`, `scl` (0x44) | Adafruit SHT31 | ✅ |
 | `AHT20` | I2C | `sda`, `scl` (default de la librería) | Adafruit AHTx0 | ✅ |
+| `AHT10` | I2C | `sda`, `scl` (default de la librería) | Adafruit AHTx0 (alias AHT20) | ✅ |
 | `BH1750` | I2C | `sda`, `scl` (0x23) | driver propio sobre `Wire` | ✅ |
 | `VEML6075` | I2C | `sda`, `scl` (default de la librería) | Adafruit VEML6075 | ✅ |
 | `SCD30` | I2C | `sda`, `scl` (default de la librería) | Adafruit SCD30 | ✅ |
 | `SGP30` | I2C | `sda`, `scl` (default de la librería) | Adafruit SGP30 | ✅ |
+| `CCS811` | I2C | `sda`, `scl` (0x5A/0x5B) + `address` | Adafruit CCS811 | ✅ |
+| `HDC1080` | I2C | `sda`, `scl` (0x40) | driver propio (sin librería) | ✅ |
 | `AS3935` | I2C | `sda`, `scl` (0x03) | SparkFun AS3935 | ✅ |
 | `ADS1115` | I2C | `sda`, `scl` (0x48) + `pin` = canal 0-3 | Adafruit ADS1X15 | ✅ |
 | `DS18B20` | 1-Wire | `pin` (bus completo) + `rom` | OneWire + DallasTemperature | ✅ |
 | `ADC` | ADC | `pin`, `scale`, `offset` | `analogRead` (12 bits) | ✅ |
 | `CO` | ADC | `pin`, `scale`, `offset` | `analogRead` | ✅ |
 | `SOLAR` | ADC | `pin`, `scale`, `offset` | `analogRead` | ✅ |
+| `S12SD` | ADC | `pin`, `scale`, `offset` | `analogRead` (UV, ~0,1 V por índice) | ✅ |
 | `PCNT` | GPIO | `pin`, `channel`, `scale` | driver `pcnt` (legacy) | ✅ |
 | `PMS5003` | UART | `rx`, `tx` (Serial2, 9600 8N1) | Adafruit PM25 AQI | ✅ |
 
@@ -142,6 +146,8 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 |------|--------|-----------------|
 | ESP32 clásico (WROOM-32, WROVER, D0WD, S0WD, P4) | ✅ soportado por `BOARD_ESP32_WROOM` | Nada: mismo EMAC y mismo VSPI |
 | ESP32-WROOM-32U | ✅ soportado por `BOARD_ESP32_WROOM32U` | Perfil de pines de la PCB |
+| ESP32-WROOM-32U (32 MB) | ✅ identidad `esp32-wroom32u-32mb` | Variante de 32 MB de la PCB WROOM-32U (`partitions_32mb.csv`) |
+| ESP32-P4 (RISC-V) | ⚠️ env `esp32-p4` deshabilitado | Sin WiFi/BT ni EMAC; requiere PlatformIO `espressif32 ≥ 7.2` (no disponible hoy) |
 | ESP32-S3 | ✅ soportado por `BOARD_ESP32_S3` | Reasignar `lora.dio1`/`busy` (26/27 son de la flash) |
 | ESP32-S2 | ❌ | No tiene Bluetooth; `HwProfile.hpp` no tiene rama: habría que agregar `BOARD_*`, el `#elif` de SPI/ETH y revisar particiones |
 | ESP32-C3 / C5 / C6 / H2 | ❌ | RISC-V de un núcleo (o sin Wi-Fi en H2): `Capability::DualCore` se declara igual y el `#error` de `HwProfile.hpp` bloquea la compilación |
@@ -167,7 +173,7 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 
 | Componente | Versión |
 |------------|---------|
-| Firmware SEMA | 1.103.0 · HW `rev0` |
+| Firmware SEMA | 1.106.0 · HW `rev0` |
 | Schema de configuración | 1 (`SEMA_CONFIG_SCHEMA_VERSION`) |
 | Protocolo | 1 (`SEMA_PROTOCOL_VERSION`) |
 | Plataforma (PlatformIO) | `espressif32` con `framework = arduino` |

@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** API | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.103.0
+> **Firmware:** v1.106.0
 
 Referencia **exhaustiva** de la API HTTP local de SEMA. Todo lo que sigue está
 verificado contra `src/core/web/HttpServer.cpp` (2637 líneas) y
@@ -86,6 +86,7 @@ Consecuencias prácticas:
 | GET | `/api/v1/network` | pública | red | — |
 | GET | `/api/v1/energy` | pública | energía | — |
 | GET | `/api/v1/diagnostics` | pública | diagnóstico | — |
+| GET | `/api/v1/forecast` | pública | pronóstico | — |
 | GET | `/api/v1/sensors` | pública | sensores | — |
 | GET | `/api/v1/history` | pública | histórico | — |
 | GET | `/api/v1/events` | pública | eventos | — |
@@ -134,7 +135,7 @@ Las cinco placas de `platformio.ini` compilan con los cuatro flags en `1`.
 Buffer `DynamicJsonDocument(256)`. Es la identidad mínima de la estación.
 
 ```json
-{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.103.0", "uptime_s": 12345 }
+{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.106.0", "uptime_s": 12345 }
 ```
 
 ### 4.2 `GET /api/v1/health`
@@ -167,13 +168,14 @@ Buffer `2048`. Es el endpoint de identidad más completo.
 {
   "id": "SEMA-001",
   "name": "Estación Norte",
-  "firmware": "1.103.0",
+  "firmware": "1.106.0",
   "hw": "rev0",
   "config_schema": 1,
   "protocol": 1,
   "board": "esp32-wroom-4mb",
   "flash_mb": 4,
   "pins_from_file": false,
+  "ap_mode": true,
   "demo": false,
   "native_eth": true,
   "spi_sck": 14,
@@ -191,13 +193,15 @@ Buffer `2048`. Es el endpoint de identidad más completo.
   "wifi_host": "sema-001",
   "wifi_mdns": true,
   "reserved_pins": [14, 12, 15],
-  "firmware_file": "sema_1.103.0_esp32-wroom-4mb.bin"
+  "firmware_file": "sema_1.106.0_esp32-wroom-4mb.bin"
 }
 ```
 
 | Campo | Origen |
 |-------|--------|
 | `board` / `flash_mb` / `native_eth` | `SEMA_BOARD_ID`, `SEMA_FLASH_MB`, `SEMA_NATIVE_ETH` (`include/hw/HwProfile.hpp`) |
+| `pins_from_file` | `(SEMA_PINS_FROM_FILE != 0)` — `true` en la variante PCB (pines fijos), `false` en la modular |
+| `ap_mode` | `core_->wifi().isAp()` — `true` cuando el WiFi está en modo AP (incluido el AP de emergencia) |
 | `spi_sck` / `spi_miso` / `spi_mosi` | `SEMA_SPI_SCK`, `SEMA_SPI_MISO`, `SEMA_SPI_MOSI` (14/12/15 en WROOM; 12/13/11 en S3) |
 | `esp_temp` | `temperatureRead() - 10.0f` (corrección aproximada del sensor interno) |
 | `reset_reason` | `esp_reset_reason()` como entero (0 `UNKNOWN`, 1 `POWERON`, 3 `SW`, 4 `PANIC`, …) |
@@ -253,7 +257,7 @@ Buffer `1024`.
 
 ```json
 {
-  "firmware": "1.103.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
+  "firmware": "1.106.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
   "reset_reason": 1, "health": "HEALTHY",
   "history": { "entries": 1200, "max": 10000 },
   "tasks": 2, "modules": 0, "events": 7,
@@ -319,6 +323,44 @@ El dashboard usa `GET /api/v1/history?limit=3000` y el botón "CSV histórico" u
 `?limit=3000&format=csv`. Si la microSD está deshabilitada, la lista vuelve vacía
 (no se usa memoria interna). En `SEMA_DEMO=1` se devuelven 320 muestras ficticias
 y **se ignoran `limit`, `series` y `format`**.
+
+### 5.3 `GET /api/v1/forecast`
+
+Buffer `1024`. Predicción a corto plazo de **temperature**, **humidity** y **rain**
+a horizontes de 3, 6, 12 y 24 h. Alimentado por la clase `sema::Forecast`
+(`include/core/prediction/Forecast.hpp`): cada medición pasa por
+`addSample()` en `SemaCore.cpp` y el endpoint llama a `predict()`.
+
+```json
+{
+  "predictions": [
+    {
+      "measurement": "temperature",
+      "horizons": [
+        { "hours": 3,  "available": true,  "value": 22.1, "confidence": 0.85 },
+        { "hours": 6,  "available": true,  "value": 22.6, "confidence": 0.70 },
+        { "hours": 12, "available": true,  "value": 21.9, "confidence": 0.55 },
+        { "hours": 24, "available": true,  "value": 21.2, "confidence": 0.40 }
+      ]
+    },
+    { "measurement": "humidity", "horizons": [ … ] },
+    { "measurement": "rain", "horizons": [ … ] }
+  ]
+}
+```
+
+| Campo | Detalle |
+|-------|---------|
+| `measurement` | `temperature` · `humidity` · `rain` (siempre las tres, en ese orden) |
+| `hours` | Horizonte: 3 · 6 · 12 · 24 |
+| `available` | `false` si la magnitud no tiene datos suficientes (< 6 muestras) o es desconocida |
+| `value` | Temperatura/humedad en la unidad de las muestras; `rain` = precipitación adicional esperada (mm) en el horizonte |
+| `confidence` | [0..1], solo válida cuando `available` es `true`; decae con el horizonte y con pocos datos |
+
+El algoritmo combina **regresión lineal** (tendencia sobre una ventana de hasta 64
+muestras), **persistencia** (último valor) y **promedio diurno** (24 bins por hora
+UTC, solo para temperatura/humedad); para la lluvia extrapola la tasa reciente con
+decaimiento. Coste de memoria constante (~2 KB, sin heap).
 
 ## 6. Eventos y alarmas
 
@@ -720,7 +762,7 @@ Buffer `8192`. Config completa + metadatos autodescriptivos:
 ```json
 { "schema_version": 1, "station": { "...": "..." },
   "backup_format": "sema-backup", "backup_version": 1,
-  "firmware": "1.103.0", "timestamp": 12345 }
+  "firmware": "1.106.0", "timestamp": 12345 }
 ```
 
 `timestamp` es `millis()/1000` (uptime, no epoch). Los campos `backup_*`,

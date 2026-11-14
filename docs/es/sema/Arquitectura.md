@@ -6,7 +6,7 @@ tags:
 
 # Arquitectura
 
-> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 Este documento describe la arquitectura **tal como está implementada** en el firmware
 v1.103.0 (rama `main`). Todo lo que figura acá se verificó contra el código en

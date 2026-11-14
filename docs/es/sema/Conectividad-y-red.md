@@ -9,7 +9,7 @@ tags:
 
 > **Tipo:** Concepto | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.103.0
+> **Firmware:** v1.106.0
 
 Cómo SEMA se conecta: **WiFi** (STA/AP), **mDNS**, **Ethernet** (LAN8720A por RMII
 o W5500 por SPI) y **hora/NTP**. Toda la lógica está en
@@ -115,6 +115,14 @@ Hay **dos caminos** elegidos en tiempo de compilación con `SEMA_NATIVE_ETH`
 (`include/hw/HwProfile.hpp:32–45`); ambos terminan integrados a **lwIP**, la misma
 pila que usa el WiFi, por lo que el `WebServer` sirve sobre Ethernet sin cambios
 (`src/core/EthernetManager.cpp`).
+
+> **Nota (v1.106.0, Ethernet/W5500 opcional):** el elemento Ethernet es
+> **habilitable/deshabilitable por el usuario final** desde la web (persistido en
+> NVS), igual que el resto de buses. El W5500 por SPI queda **opcional/planeado**: el
+> perfil de firmware para WROOM aún define `SEMA_NATIVE_ETH 1` (LAN8720A RMII)
+> mientras la placa física de la PCB v2 usa W5500 en VSPI (18/19/23, CS=GPIO5);
+> consolidar W5500 al bus SPI compartido sigue pendiente (ver §8–§9 de
+> `docs/PCB-V1-CORRECCIONES.md` en el repo SEMA).
 
 | Board (`build_flags`) | `SEMA_BOARD_ID` | Flash | Chip Ethernet | Capa física | Driver |
 |-----------------------|-----------------|-------|---------------|-------------|--------|

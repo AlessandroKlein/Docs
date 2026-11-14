@@ -6,7 +6,7 @@ tags:
 
 # Frontend (dashboard web)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.103.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
 
 El dashboard de SEMA es HTML+CSS+JavaScript **embebido en el firmware** (constantes
 `PROGMEM` en `src/core/web/HttpServer.cpp`), sin dependencias externas en tiempo de
@@ -55,8 +55,20 @@ Los assets de Gridstack se sirven comprimidos desde PROGMEM:
 - **Mediciones en vivo**: tabla de canales con valor, unidad y calidad.
 - **Histórico**: últimas mediciones y **gráficos** sobre `<canvas>` (series, ejes y
   rangos; sin librerías externas).
+- **Predicción** (v1.104.0): tarjeta con el pronóstico a corto plazo
+  (`GET /api/v1/forecast`) para temperatura, humedad y lluvia a 3/6/12/24 h.
 - **Configuración**: formularios por sección (red, seguridad, sistema, viento,
   sensores) en lugar de JSON crudo.
+
+### 3.1 Toggle de elementos y bloqueo de pines (v1.105.0–v1.106.0)
+
+- **Elementos habilitables por usuario final**: sensores y buses (Ethernet, Modbus,
+  CAN, LoRa, Zigbee) se habilitan/deshabilitan desde la web, persistido en NVS,
+  también en la variante PCB (`SEMA_PINS_FROM_FILE=1`). El campo `enabled` se aplica
+  siempre.
+- **Edición de pines solo en modo AP**: `pinsLocked()` = `(SEMA_PINS_FROM_FILE != 0)
+  || !isAp()`. En STA los selects de pines quedan solo-lectura y se muestra una nota
+  i18n (es/en); en la variante PCB los pines quedan bloqueados siempre.
 
 ## 4. Tema e idioma
 
