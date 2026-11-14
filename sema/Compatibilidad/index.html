@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -9432,7 +9432,7 @@
 
 <h1 id="compatibilidad">Compatibilidad</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.103.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.106.0</p>
 </blockquote>
 <p>Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -9801,10 +9801,10 @@ tablas se monta como <strong>LittleFS</strong>.</p>
 <li>El histórico de gráficas <strong>no</strong> usa la partición interna: vive en la microSD
   (<code>HistoryStore::enableSd</code>). Sin SD, las gráficas quedan vacías a propósito.</li>
 <li>El nombre del binario lo arma <code>GET /api/v1/system</code>: <code>sema_&lt;versión&gt;_&lt;board_id&gt;.bin</code>
-  (p. ej. <code>sema_1.103.0_esp32-s3-8mb.bin</code>).</li>
+  (p. ej. <code>sema_1.106.0_esp32-s3-8mb.bin</code>).</li>
 </ul>
 <h2 id="5-sensores-por-interfaz">5. Sensores por interfaz</h2>
-<p>Los 17 modelos de <code>SensorFactory::create()</code> (<code>src/core/sensors/SensorFactory.cpp</code>), con la
+<p>Los 21 modelos de <code>SensorFactory::create()</code> (<code>src/core/sensors/SensorFactory.cpp</code>), con la
 cadena que devuelve <code>Sensor::interface()</code>:</p>
 <table>
 <thead>
@@ -9853,6 +9853,13 @@ cadena que devuelve <code>Sensor::interface()</code>:</p>
 <td>✅</td>
 </tr>
 <tr>
+<td><code>AHT10</code></td>
+<td>I2C</td>
+<td><code>sda</code>, <code>scl</code> (default de la librería)</td>
+<td>Adafruit AHTx0 (alias AHT20)</td>
+<td>✅</td>
+</tr>
+<tr>
 <td><code>BH1750</code></td>
 <td>I2C</td>
 <td><code>sda</code>, <code>scl</code> (0x23)</td>
@@ -9878,6 +9885,20 @@ cadena que devuelve <code>Sensor::interface()</code>:</p>
 <td>I2C</td>
 <td><code>sda</code>, <code>scl</code> (default de la librería)</td>
 <td>Adafruit SGP30</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>CCS811</code></td>
+<td>I2C</td>
+<td><code>sda</code>, <code>scl</code> (0x5A/0x5B) + <code>address</code></td>
+<td>Adafruit CCS811</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>HDC1080</code></td>
+<td>I2C</td>
+<td><code>sda</code>, <code>scl</code> (0x40)</td>
+<td>driver propio (sin librería)</td>
 <td>✅</td>
 </tr>
 <tr>
@@ -9920,6 +9941,13 @@ cadena que devuelve <code>Sensor::interface()</code>:</p>
 <td>ADC</td>
 <td><code>pin</code>, <code>scale</code>, <code>offset</code></td>
 <td><code>analogRead</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>S12SD</code></td>
+<td>ADC</td>
+<td><code>pin</code>, <code>scale</code>, <code>offset</code></td>
+<td><code>analogRead</code> (UV, ~0,1 V por índice)</td>
 <td>✅</td>
 </tr>
 <tr>
@@ -10004,6 +10032,16 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <td>ESP32-WROOM-32U</td>
 <td>✅ soportado por <code>BOARD_ESP32_WROOM32U</code></td>
 <td>Perfil de pines de la PCB</td>
+</tr>
+<tr>
+<td>ESP32-WROOM-32U (32 MB)</td>
+<td>✅ identidad <code>esp32-wroom32u-32mb</code></td>
+<td>Variante de 32 MB de la PCB WROOM-32U (<code>partitions_32mb.csv</code>)</td>
+</tr>
+<tr>
+<td>ESP32-P4 (RISC-V)</td>
+<td>⚠️ env <code>esp32-p4</code> deshabilitado</td>
+<td>Sin WiFi/BT ni EMAC; requiere PlatformIO <code>espressif32 ≥ 7.2</code> (no disponible hoy)</td>
 </tr>
 <tr>
 <td>ESP32-S3</td>
@@ -10105,7 +10143,7 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <tbody>
 <tr>
 <td>Firmware SEMA</td>
-<td>1.103.0 · HW <code>rev0</code></td>
+<td>1.106.0 · HW <code>rev0</code></td>
 </tr>
 <tr>
 <td>Schema de configuración</td>
@@ -10326,7 +10364,7 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
       

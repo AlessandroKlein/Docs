@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -3936,6 +3936,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-toggle-de-elementos-y-bloqueo-de-pines-v11050v11060" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Toggle de elementos y bloqueo de pines (v1.105.0–v1.106.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -9403,7 +9420,7 @@
 
 <h1 id="frontend-dashboard-web">Frontend (dashboard web)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.103.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.106.0</p>
 </blockquote>
 <p>El dashboard de SEMA es HTML+CSS+JavaScript <strong>embebido en el firmware</strong> (constantes
 <code>PROGMEM</code> en <code>src/core/web/HttpServer.cpp</code>), sin dependencias externas en tiempo de
@@ -9552,8 +9569,20 @@ ejecución: no hay <code>data/</code>, ni LittleFS para la web, ni CDN (v1.102.0
 <li><strong>Mediciones en vivo</strong>: tabla de canales con valor, unidad y calidad.</li>
 <li><strong>Histórico</strong>: últimas mediciones y <strong>gráficos</strong> sobre <code>&lt;canvas&gt;</code> (series, ejes y
   rangos; sin librerías externas).</li>
+<li><strong>Predicción</strong> (v1.104.0): tarjeta con el pronóstico a corto plazo
+  (<code>GET /api/v1/forecast</code>) para temperatura, humedad y lluvia a 3/6/12/24 h.</li>
 <li><strong>Configuración</strong>: formularios por sección (red, seguridad, sistema, viento,
   sensores) en lugar de JSON crudo.</li>
+</ul>
+<h3 id="31-toggle-de-elementos-y-bloqueo-de-pines-v11050v11060">3.1 Toggle de elementos y bloqueo de pines (v1.105.0–v1.106.0)</h3>
+<ul>
+<li><strong>Elementos habilitables por usuario final</strong>: sensores y buses (Ethernet, Modbus,
+  CAN, LoRa, Zigbee) se habilitan/deshabilitan desde la web, persistido en NVS,
+  también en la variante PCB (<code>SEMA_PINS_FROM_FILE=1</code>). El campo <code>enabled</code> se aplica
+  siempre.</li>
+<li><strong>Edición de pines solo en modo AP</strong>: <code>pinsLocked()</code> = <code>(SEMA_PINS_FROM_FILE != 0)
+  || !isAp()</code>. En STA los selects de pines quedan solo-lectura y se muestra una nota
+  i18n (es/en); en la variante PCB los pines quedan bloqueados siempre.</li>
 </ul>
 <h2 id="4-tema-e-idioma">4. Tema e idioma</h2>
 <table>
@@ -9818,7 +9847,7 @@ una constante.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
       

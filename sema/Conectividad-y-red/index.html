@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -9518,7 +9518,7 @@
 <blockquote>
 <p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.103.0</p>
+<strong>Firmware:</strong> v1.106.0</p>
 </blockquote>
 <p>Cómo SEMA se conecta: <strong>WiFi</strong> (STA/AP), <strong>mDNS</strong>, <strong>Ethernet</strong> (LAN8720A por RMII
 o W5500 por SPI) y <strong>hora/NTP</strong>. Toda la lógica está en
@@ -9669,6 +9669,15 @@ nombre por defecto del core (<code>espressif</code> / <code>ESP-XXXXXX</code>), 
 (<code>include/hw/HwProfile.hpp:32–45</code>); ambos terminan integrados a <strong>lwIP</strong>, la misma
 pila que usa el WiFi, por lo que el <code>WebServer</code> sirve sobre Ethernet sin cambios
 (<code>src/core/EthernetManager.cpp</code>).</p>
+<blockquote>
+<p><strong>Nota (v1.106.0, Ethernet/W5500 opcional):</strong> el elemento Ethernet es
+<strong>habilitable/deshabilitable por el usuario final</strong> desde la web (persistido en
+NVS), igual que el resto de buses. El W5500 por SPI queda <strong>opcional/planeado</strong>: el
+perfil de firmware para WROOM aún define <code>SEMA_NATIVE_ETH 1</code> (LAN8720A RMII)
+mientras la placa física de la PCB v2 usa W5500 en VSPI (18/19/23, CS=GPIO5);
+consolidar W5500 al bus SPI compartido sigue pendiente (ver §8–§9 de
+<code>docs/PCB-V1-CORRECCIONES.md</code> en el repo SEMA).</p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -10409,7 +10418,7 @@ la época local. La web no marca ese cambio de escala.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
       
