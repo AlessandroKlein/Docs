@@ -2811,6 +2811,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#10-expansores-fase-0b-v11100-drivers-en-esp32-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Expansores Fase 0b (v1.110.0) — drivers en ESP32-Base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ver-tambien" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9566,7 +9577,7 @@
 
 <h1 id="expansores-de-entradasalida">Expansores de entrada/salida</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.109.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.110.0</p>
 </blockquote>
 <p>Qué expansores de E/S contempla SEMA, cuáles están <strong>implementados de verdad</strong> y cuáles
 son solo configuración. Verificado contra <code>include/core/ConfigManager.hpp</code>,
@@ -9622,21 +9633,35 @@ fabricante; el repositorio SEMA no los declara.</p>
 <td>I²C</td>
 <td>4 (A0-A3, 16 bits)</td>
 <td><code>sensors[model=ADS1115].{pin,channel,scale,offset}</code></td>
-<td>✅ Implementado, pero como <strong>sensor</strong>, no como GPIO</td>
+<td>✅ Sensor + driver dedicado (<code>SEMA_USE_ADS1115</code>, v1.110.0)</td>
+</tr>
+<tr>
+<td><strong>TCA9548A</strong></td>
+<td>I²C</td>
+<td>8 canales (mux)</td>
+<td>—</td>
+<td>✅ Driver (<code>SEMA_USE_TCA9548A</code>, v1.110.0)</td>
+</tr>
+<tr>
+<td><strong>SC16IS752</strong></td>
+<td>I²C</td>
+<td>2 UART</td>
+<td>—</td>
+<td>✅ Driver (<code>SEMA_USE_SC16IS752</code>, v1.110.0)</td>
 </tr>
 <tr>
 <td><strong>MAX14830</strong></td>
 <td>SPI → 4 UART</td>
 <td>4 puertos serie</td>
 <td><code>spi_expanders[].{type,cs}</code></td>
-<td>❌ Solo configuración: no hay driver</td>
+<td>⬜ Diferido: sin driver (sin librería en registry)</td>
 </tr>
 <tr>
 <td><strong>SC18IS602B</strong></td>
-<td>SPI → I²C</td>
-<td>1 bus I²C puenteado</td>
+<td>I²C → SPI</td>
+<td>1 bus SPI puenteado</td>
 <td><code>spi_expanders[].{type,cs}</code></td>
-<td>❌ Solo configuración: no hay driver</td>
+<td>✅ Driver (<code>SEMA_USE_SC18IS602B</code>, v1.110.0)</td>
 </tr>
 </tbody>
 </table>
@@ -10234,6 +10259,53 @@ perderá la dirección del expansor y los pines caerán a GPIO nativo.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="10-expansores-fase-0b-v11100-drivers-en-esp32-base">10. Expansores Fase 0b (v1.110.0) — drivers en ESP32-Base</h2>
+<p>Desde v1.110.0 estos expansores tienen <strong>driver</strong> en
+<a href="https://github.com/AlessandroKlein/ESP32-Base"><code>ESP32-Base</code></a> v0.5.0. Todos compilan
+detrás de un flag <code>-D SEMA_USE_*=0/1</code> (default <strong>OFF</strong>) y exponen configuración y rutas
+web GET/POST bajo <code>/api/v1/*</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Expansor</th>
+<th>Flag</th>
+<th>Librería</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SC16IS752</strong></td>
+<td><code>SEMA_USE_SC16IS752</code></td>
+<td><code>td-er/SC16IS752@^1.0.2</code></td>
+<td>UART dual por I²C</td>
+</tr>
+<tr>
+<td><strong>SC18IS602B</strong></td>
+<td><code>SEMA_USE_SC18IS602B</code></td>
+<td><code>maxgerhardt/SC18IS602B-arduino@^1.0.0</code></td>
+<td>Puente I²C→SPI</td>
+</tr>
+<tr>
+<td><strong>TCA9548A</strong></td>
+<td><code>SEMA_USE_TCA9548A</code></td>
+<td><code>robtillaart/TCA9548@^0.3.2</code></td>
+<td>Multiplexor I²C de 8 canales</td>
+</tr>
+<tr>
+<td><strong>ADS1115</strong></td>
+<td><code>SEMA_USE_ADS1115</code></td>
+<td><code>robtillaart/ADS1X15@^0.6.2</code></td>
+<td>ADC 16-bit de 4 canales</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota:</strong> <strong>MAX14830</strong> (UART cuádruple por SPI) queda <strong>diferido</strong>: no hay librería
+para él en el registry de PlatformIO (ver §6). El apartado §7 describe el SC18IS602B
+en su estado previo («solo configuración»); desde v1.110.0 ese expansor ya tiene
+driver en <code>ESP32-Base</code> (dirección real del puente: <strong>I²C→SPI</strong>).</p>
+</blockquote>
 <hr />
 <h2 id="ver-tambien">Ver también</h2>
 <ul>
