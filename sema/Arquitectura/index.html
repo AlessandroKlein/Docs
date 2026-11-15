@@ -9436,12 +9436,25 @@
 
 <h1 id="arquitectura">Arquitectura</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.106.0</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
 </blockquote>
 <p>Este documento describe la arquitectura <strong>tal como está implementada</strong> en el firmware
 v1.103.0 (rama <code>main</code>). Todo lo que figura acá se verificó contra el código en
 <code>src/</code> e <code>include/</code>; lo que es diseño aspiracional y todavía no existe se marca
 explícitamente con ⚠️ o ❌.</p>
+<blockquote>
+<p><strong>Nota (v1.107.0, extracción de <code>ESP32-Base</code>):</strong> desde esta versión los 65 módulos
+genéricos (WiFi, Ethernet, web, NVS, runtime, publicadores, alarmas, buses e
+infraestructura) viven en la librería reutilizable
+<a href="https://github.com/AlessandroKlein/ESP32-Base"><code>ESP32-Base</code></a> (namespace <code>base::</code>),
+y SEMA los consume por <code>lib_deps</code>
+<code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.1.0</code>. SEMA conserva solo el
+dominio meteorológico (sensores, derivadas, pronóstico), acoplado a la base mediante
+<code>src/core/SemaGlue.cpp</code>, que implementa los 14 hooks de <code>base::CoreHooks</code>. Las
+secciones siguientes describen el estado previo a la extracción: los módulos
+genéricos listados como <code>sema::</code> o bajo <code>src/core/</code>/<code>include/core/</code> viven ahora en
+<code>ESP32-Base</code> bajo el namespace <code>base::</code>.</p>
+</blockquote>
 <h2 id="1-que-es-sema-y-que-no">1. Qué es SEMA (y qué no)</h2>
 <p>SEMA es un firmware para ESP32 escrito en C++ con el framework <strong>Arduino</strong>
 (<code>platformio.ini</code>, <code>framework = arduino</code>). Usa APIs del ESP-IDF solo donde la capa
