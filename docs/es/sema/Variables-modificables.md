@@ -6,7 +6,7 @@ tags:
 
 # Variables modificables
 
-> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Clasificación **real** (verificada contra el código) de cada grupo de variables
 del JSON de configuración según lo que pasa al guardarlas: se aplican en
@@ -138,8 +138,8 @@ la configuración vigente y modificando solo su sección; `POST
 - `id` + `channel` forman la clave pública `<sensor_id>:<channel_id>` que usan
   las reglas y las calibraciones.
 - Con `sensors[]` vacío se usa el **catálogo fijo** de seis sensores descrito en
-  [Referencia de configuración](Referencia-configuracion.md) §11; con
-  `SEMA_FIXED_HARDWARE=1` el catálogo fijo se usa siempre.
+  [Referencia de configuración](Referencia-configuracion.md) §11; con `sensors[]`
+  vacío, el catálogo por defecto se usa siempre.
 - `model` debe pertenecer al catálogo de 17 modelos; un modelo desconocido no se
   crea y deja un `Sensor desconocido: <id> (modelo <model>)` en el log serie.
 - `scale`/`offset` se aplican al valor crudo (ejemplo: batería 12 V con divisor

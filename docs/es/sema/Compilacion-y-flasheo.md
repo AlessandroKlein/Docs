@@ -6,7 +6,7 @@ tags:
 
 # Compilación y flasheo
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Cómo compilar, flashear, monitorear y actualizar SEMA, con los entornos y las
 particiones reales definidos en `platformio.ini`.
@@ -27,6 +27,7 @@ particiones reales definidos en `platformio.ini`.
 |---------|-------|--------------|-------------|-------|
 | `esp32doit-devkit-v1` (**default**) | DOIT DevKit v1 | ESP32-WROOM, 4 MB | `partitions_4mb.csv` | `BOARD_ESP32_WROOM`; Ethernet nativa LAN8720A (RMII) |
 | `esp32-s3-devkitc-1` | ESP32-S3-DevKitC-1 | ESP32-S3, 8 MB | `partitions_8mb.csv` | `BOARD_ESP32_S3`; Ethernet por W5500 (SPI) |
+| `esp32-c6-devkitc-1` | ESP32-C6-DevKitC-1 | ESP32-C6 (RISC-V), 8 MB | `partitions_8mb.csv` | `BOARD_ESP32_C6`; objetivo Matter/Thread/esclavo; Ethernet/LoRa/Modbus/CAN/Zigbee deshabilitados |
 | `esp32-wroom-32u` | `esp32dev` | ESP32-WROOM-32U, 16 MB | `partitions_16mb.csv` | `BOARD_ESP32_WROOM32U`; PCB futura, **pines fijos** |
 | `demo` | DOIT DevKit v1 | ESP32, 4 MB | `partitions_4mb.csv` | Hereda del default + `-D SEMA_DEMO=1` (valores ficticios) |
 

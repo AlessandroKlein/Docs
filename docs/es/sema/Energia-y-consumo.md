@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** En desarrollo
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.107.0
+> **Firmware:** v1.108.0
 
 Perfiles energéticos, medición de batería, deep sleep, wake reasons y lo que falta para una
 estación autónoma. Fuentes: `include/core/PowerManager.hpp`, `src/core/PowerManager.cpp`,
@@ -89,7 +89,7 @@ Fórmula aplicada en el driver: `value = raw · scale + offset`. Ejemplos
 | 1500 | 13,30 V |
 | 1860 | 16,49 V |
 
-Con `SEMA_FIXED_HARDWARE=0` (default), la batería se configura como cualquier otro sensor
+Por defecto, la batería se configura como cualquier otro sensor
 analógico (`sensors[]` con `"model": "ADC"`, `pin`, `channel: "voltage"`, `unit: "V"` y el
 `scale` del divisor propio). El ejemplo de `scale` que trae el repo es `0.00887`, el mismo
 divisor 11:1 redondeado.

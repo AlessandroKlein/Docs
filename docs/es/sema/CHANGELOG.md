@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,24 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.108.0] - 2026-11-15
+
+### Changed
+
+- Migración a **ESP-IDF core 3.x** (PlatformIO `espressif32` 8.0.0, arduino-esp32 3.x): API de watchdog (`esp_task_wdt_config_t`), Ethernet W5500 (`ETH_W5500_DEFAULT_CONFIG(spi_host, spi_devcfg)`, `ETH.begin(type, ...)`), y FreeRTOS `TaskHandle_t` (puntero a struct, ya no `void*`).
+- `ESP32-Base` v0.1.0 → v0.3.1 (extracción + expansores I²C + detección de chip + compat C6).
+- Detección de placa `SEMA_NATIVE_ETH` ahora por `CONFIG_IDF_TARGET_*` (sdkconfig) en `board_config.h`, no por `__has_include("hw/HwProfile.hpp")` (fallaba en unidades de la librería).
+
+### Added
+
+- Entorno **ESP32-C6** (`esp32-c6-devkitc-1`, RISC-V, 8 MB): objetivo Matter/Thread/esclavo; Ethernet/LoRa/Modbus/CAN/Zigbee deshabilitados por flags.
+- Detección de chip en compilación (`include/base/chip.hpp`: `BASE_CHIP_NAME`, `BASE_HAVE_*`, `BASE_CORE_COUNT`, `BASE_IS_RISCV`) + info en runtime (`base::ChipInfo`: `chipModel/chipRevision/flashSize/psramSize/coreCount`).
+- Expansores I²C: MCP23S17, PCA9685, PCF8574 (drivers + flags `SEMA_USE_*` + configuración + web).
+
+### Fixed
+
+- Compat C6: `PowerManager` deep-sleep GPIO wakeup (`esp_deep_sleep_enable_gpio_wakeup` cuando no hay `SOC_PM_SUPPORT_EXT0_WAKEUP`); guard `#if SEMA_USE_ETHERNET` en `onNetwork()`; OneWire pineado a commit con soporte C6.
 
 ## [1.107.0] - 2026-11-15
 
@@ -1254,6 +1272,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.108.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.108.0
 [1.107.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.107.0
 [1.106.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.106.0
 [1.105.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.105.0

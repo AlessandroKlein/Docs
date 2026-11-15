@@ -7,7 +7,7 @@ tags:
 
 # Referencia de código
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -19,7 +19,7 @@ Cifras globales verificadas: **112 archivos** entre `include/` y `src/`,
 > **Nota (v1.107.0):** los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 > publicadores, alarmas, buses e infraestructura) se extrajeron a
 > [`ESP32-Base`](https://github.com/AlessandroKlein/ESP32-Base) (namespace `base::`),
-> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.1.0`.
+> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.3.1`.
 > El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 > SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 > `src/core/SemaGlue.cpp`.
@@ -149,7 +149,7 @@ Todos los conteos son líneas totales del archivo (incluyen comentarios y blanco
 | Web/API | `web/HttpServer.{hpp,cpp}` | 4 páginas de config, dashboard, API `/api/v1`, `/ws`, OTA, login | 2 742 |
 | Assets web | `web/GridstackAssets.h` | CSS/JS de Gridstack en PROGMEM (gzip), generado por `gen_gridstack.py` | 1 463 |
 | Hardware | `hw/HwProfile.hpp` | Board, features, transceiver RS485, SPI, CS y pines fijos | 176 |
-| Board (PCB) | `core/BoardProfile.hpp` | `SEMA_FIXED_HARDWARE` + pines del catálogo fijo | 39 |
+| Board (PCB) | `core/BoardProfile.hpp` | Pines del catálogo por defecto de sensores | 39 |
 
 ## 4. Flujo de arranque (`SemaCore::setup()`, `src/core/SemaCore.cpp`)
 
@@ -248,7 +248,6 @@ rules_.evaluate(measurements)
 | `SEMA_USE_SHIFT` | `0` (**SEMA_OFF**) | Sin él, `shift_.apply()` no se llama y `/api/v1/config/io` ignora `shift_registers` |
 | `SEMA_MODBUS_ISOLATED` | `1` | Elige `SEMA_MODBUS_TRANSCEIVER`: `TD501D485H` (1) o `SN65HVD75DR` (0) |
 | `SEMA_PINS_FROM_FILE` | `0` | Con `1`, `ConfigManager::applyHwProfile()` sobrescribe pines de CAN/Modbus/Zigbee/LoRa/Ethernet |
-| `SEMA_FIXED_HARDWARE` | `0` | Con `1`, se ignora `config.sensors[]` y se usa el catálogo fijo de `SemaCore.cpp:284-297` |
 | `SEMA_DEMO` | `0` | Valores ficticios en `/api/v1/sensors` y `/api/v1/history`, y MCP23S17 forzado (CS=5, 16 salidas) |
 
 ## 6. Todas las clases

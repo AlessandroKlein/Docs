@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -18,14 +18,14 @@ dashboard. Verificado contra `platformio.ini`, `include/hw/HwProfile.hpp`,
 
 ## 1. Cómo se decide la compatibilidad
 
-1. **Compilación**: `HwProfile.hpp:28-30` aborta con `#error` si no se define
-   `BOARD_ESP32_WROOM`, `BOARD_ESP32_WROOM32U` o `BOARD_ESP32_S3`. No hay rama para S2, C3,
-   C5, C6 ni H2.
+1. **Compilación**: `HwProfile.hpp:28-29` aborta con `#error` si no se define
+   `BOARD_ESP32_WROOM`, `BOARD_ESP32_WROOM32U`, `BOARD_ESP32_S3`, `BOARD_ESP32_C6` o
+   `BOARD_ESP32_P4`. No hay rama para S2, C3, C5 ni H2.
 2. **Identidad**: de la macro `BOARD_*` salen `SEMA_BOARD_ID`, `SEMA_FLASH_MB` y
    `SEMA_NATIVE_ETH`, que `GET /api/v1/system` publica como `board`, `flash_mb` y `native_eth`.
 3. **Features**: `SEMA_USE_ETHERNET`, `SEMA_USE_LORA`, `SEMA_USE_MODBUS`, `SEMA_USE_CAN`,
-   `SEMA_USE_ZIGBEE` valen `1` por defecto (`HwProfile.hpp:50-65`) y los cuatro entornos los
-   activan explícitamente. `SEMA_USE_SHIFT` vale `0` por defecto y **ningún entorno lo activa**.
+   `SEMA_USE_ZIGBEE` valen `1` por defecto (`HwProfile.hpp:68-85`) y los entornos los
+   activan explícitamente (salvo el C6, que los deshabilita con `=0`). `SEMA_USE_SHIFT` vale `0` por defecto y **ningún entorno lo activa**.
 4. **Capacidades en runtime**: `SemaCore.cpp:66-78` declara `WiFi`, `Bluetooth`, `Adc`,
    `Dac`, `Pcnt`, `LedcPwm`, `I2c`, `Spi`, `Uart`, `Can`, `RtcGpio`, `DeepSleep` y `DualCore`
    **siempre**, con independencia de la placa. `GET /api/v1/capabilities` devuelve esa lista.
@@ -34,24 +34,24 @@ dashboard. Verificado contra `platformio.ini`, `include/hw/HwProfile.hpp`,
 
 ## 2. Matriz placa × capacidad
 
-| Capacidad | esp32doit-devkit-v1 (WROOM 4 MB) | esp32-s3-devkitc-1 (S3 8 MB) | esp32-wroom-32u (16 MB, PCB futura) | demo |
-|-----------|:--------------------------------:|:----------------------------:|:-----------------------------------:|:----:|
-| Wi-Fi 2,4 GHz | ✅ `WiFi.h`, STA + AP, escaneo y mDNS | ✅ igual | ✅ igual | ✅ (valores ficticios) |
-| Bluetooth/BLE | ⚠️ `Capability::Bluetooth` declarada, **sin código BLE ni BT Classic** en `src/` | ⚠️ igual (el S3 solo tiene BLE 5.0, sin Classic, datasheet) | ⚠️ igual | ⚠️ igual |
-| Ethernet nativa (LAN8720A RMII) | ✅ `SEMA_NATIVE_ETH 1` | ❌ no tiene EMAC (`SEMA_NATIVE_ETH 0`) | ✅ `SEMA_NATIVE_ETH 1` | ✅ |
-| Ethernet SPI (W5500) | ❌ no se usa | ✅ host SPI3 (18/19/21) + CS 5 | ❌ no se usa | ❌ |
-| 802.15.4 / Zigbee | ⚠️ solo con el módulo externo CC2652P2 por UART | ⚠️ igual | ⚠️ igual | ⚠️ igual |
-| CAN / TWAI | ✅ 1 controlador TWAI | ✅ 1 controlador TWAI | ✅ | ✅ |
-| LoRa (SX1262 por SPI) | ✅ CS 10, bus 14/12/15 | ✅ CS 10, bus 12/13/11 | ✅ CS 10, bus 14/12/15 | ✅ |
-| ADC interno | ✅ ADC1 (32-39) usable con Wi-Fi; ADC2 no | ✅ ADC1 (1-10) usable con Wi-Fi; ADC2 no | ✅ ADC1 | ✅ |
-| DAC | ✅ DAC1 (25), DAC2 (26); sin API en el firmware | ❌ el S3 no tiene DAC, pero `Capability::Dac` se declara igual | ✅ | ✅ |
-| PCNT | ✅ 1 unidad usada (`PCNT_UNIT_0`) | ✅ igual | ✅ igual | ✅ |
-| PSRAM | ❌ no se habilita ni se declara (`Capability::Psram` nunca se marca) | ❌ el entorno es la variante **N8** (sin PSRAM) | ❌ no se habilita | ❌ |
-| Doble núcleo | ✅ `Capability::DualCore` declarada | ✅ declarada | ✅ declarada | ✅ |
-| RTC GPIO / deep sleep | ✅ `ext0` y timer (`PowerManager.cpp`) | ✅ | ✅ | ✅ |
-| microSD (SPI) | ✅ CS 4 (default) | ✅ CS 4 | ✅ CS 4 | ✅ |
-| Registros de desplazamiento | ❌ `SEMA_USE_SHIFT=0` compila fuera el driver | ❌ igual | ❌ igual | ❌ igual |
-| Pines de bus | configurables por web (`SEMA_PINS_FROM_FILE=0`) | configurables por web | **fijos** (`SEMA_PINS_FROM_FILE=1`) | configurables por web |
+| Capacidad | esp32doit-devkit-v1 (WROOM 4 MB) | esp32-s3-devkitc-1 (S3 8 MB) | esp32-wroom-32u (16 MB, PCB futura) | esp32-c6-devkitc-1 (C6 8 MB) | demo |
+|-----------|:--------------------------------:|:----------------------------:|:-----------------------------------:|:----------------------------:|:----:|
+| Wi-Fi 2,4 GHz | ✅ `WiFi.h`, STA + AP, escaneo y mDNS | ✅ igual | ✅ igual | ✅ igual (Wi-Fi 6) | ✅ (valores ficticios) |
+| Bluetooth/BLE | ⚠️ `Capability::Bluetooth` declarada, **sin código BLE ni BT Classic** en `src/` | ⚠️ igual (el S3 solo tiene BLE 5.0, sin Classic, datasheet) | ⚠️ igual | ⚠️ BLE 5.0, sin Classic | ⚠️ igual |
+| Ethernet nativa (LAN8720A RMII) | ✅ `SEMA_NATIVE_ETH 1` | ❌ no tiene EMAC (`SEMA_NATIVE_ETH 0`) | ✅ `SEMA_NATIVE_ETH 1` | ❌ no tiene EMAC | ✅ |
+| Ethernet SPI (W5500) | ❌ no se usa | ✅ host SPI3 (18/19/21) + CS 5 | ❌ no se usa | ❌ no se usa (`SEMA_USE_ETHERNET=0`) | ❌ |
+| 802.15.4 / Zigbee | ⚠️ solo con el módulo externo CC2652P2 por UART | ⚠️ igual | ⚠️ igual | ⚠️ nativo en el SoC (Matter/Thread), sin driver (`SEMA_USE_ZIGBEE=0`) | ⚠️ igual |
+| CAN / TWAI | ✅ 1 controlador TWAI | ✅ 1 controlador TWAI | ✅ | ❌ `SEMA_USE_CAN=0` | ✅ |
+| LoRa (SX1262 por SPI) | ✅ CS 10, bus 14/12/15 | ✅ CS 10, bus 12/13/11 | ✅ CS 10, bus 14/12/15 | ❌ `SEMA_USE_LORA=0` | ✅ |
+| ADC interno | ✅ ADC1 (32-39) usable con Wi-Fi; ADC2 no | ✅ ADC1 (1-10) usable con Wi-Fi; ADC2 no | ✅ ADC1 | ✅ ADC1; ADC2 no | ✅ |
+| DAC | ✅ DAC1 (25), DAC2 (26); sin API en el firmware | ❌ el S3 no tiene DAC, pero `Capability::Dac` se declara igual | ✅ | ❌ no tiene DAC | ✅ |
+| PCNT | ✅ 1 unidad usada (`PCNT_UNIT_0`) | ✅ igual | ✅ igual | ✅ | ✅ |
+| PSRAM | ❌ no se habilita ni se declara (`Capability::Psram` nunca se marca) | ❌ el entorno es la variante **N8** (sin PSRAM) | ❌ no se habilita | ❌ variante N8 (sin PSRAM) | ❌ |
+| Doble núcleo | ✅ `Capability::DualCore` declarada | ✅ declarada | ✅ declarada | ❌ 1 núcleo RISC-V | ✅ |
+| RTC GPIO / deep sleep | ✅ `ext0` y timer (`PowerManager.cpp`) | ✅ | ✅ | ✅ | ✅ |
+| microSD (SPI) | ✅ CS 4 (default) | ✅ CS 4 | ✅ CS 4 | ✅ CS 4 | ✅ |
+| Registros de desplazamiento | ❌ `SEMA_USE_SHIFT=0` compila fuera el driver | ❌ igual | ❌ igual | ❌ `SEMA_USE_SHIFT=0` | ❌ igual |
+| Pines de bus | configurables por web (`SEMA_PINS_FROM_FILE=0`) | configurables por web | **fijos** (`SEMA_PINS_FROM_FILE=1`) | configurables por web (`SEMA_PINS_FROM_FILE=0`) | configurables por web |
 
 ## 3. Matriz placa × periférico y bus
 
@@ -85,15 +85,16 @@ tablas se monta como **LittleFS**.
 |---------|-------|-------|-----------------|--------------------|-------|-----------|
 | esp32doit-devkit-v1 | 4 MB | `partitions_4mb.csv` | 0x1C0000 cada una (1792 KB) | 0x70000 (448 KB) desde 0x390000 | 0x5000 (20 KB) | 0x2000 (8 KB) |
 | esp32-s3-devkitc-1 | 8 MB | `partitions_8mb.csv` | 0x300000 cada una (3072 KB) | 0x1F0000 (1984 KB) desde 0x610000 | 0x5000 | 0x2000 |
+| esp32-c6-devkitc-1 | 8 MB | `partitions_8mb.csv` | 0x300000 cada una (3072 KB) | 0x1F0000 (1984 KB) desde 0x610000 | 0x5000 | 0x2000 |
 | esp32-wroom-32u | 16 MB | `partitions_16mb.csv` | 0x300000 cada una (3072 KB) | 0x9F0000 (10 176 KB) desde 0x610000 | 0x5000 | 0x2000 |
 | demo | 4 MB | `partitions_4mb.csv` | 0x1C0000 cada una | 0x70000 (448 KB) | 0x5000 | 0x2000 |
 
-- OTA con doble ranura (`app0`/`app1`) en las tres placas: alcanza para actualizar sin
+- OTA con doble ranura (`app0`/`app1`) en todas las placas: alcanza para actualizar sin
   quedar sin firmware.
 - El histórico de gráficas **no** usa la partición interna: vive en la microSD
   (`HistoryStore::enableSd`). Sin SD, las gráficas quedan vacías a propósito.
 - El nombre del binario lo arma `GET /api/v1/system`: `sema_<versión>_<board_id>.bin`
-  (p. ej. `sema_1.107.0_esp32-s3-8mb.bin`).
+  (p. ej. `sema_1.108.0_esp32-s3-8mb.bin`).
 
 ## 5. Sensores por interfaz
 
@@ -133,7 +134,7 @@ cadena que devuelve `Sensor::interface()`:
 |----------|--------|---------|
 | MCP23017 (I²C, 16 E/S) | ✅ implementado | Solo se inicializa **una** dirección; no tiene editor en la web |
 | ADS1115 (I²C, 4 ADC) | ✅ implementado como sensor | Dirección fija 0x48 |
-| 74HC595 / 74HC165 | ❌ compilado fuera | `SEMA_USE_SHIFT=0` en los cuatro entornos; sin cascada |
+| 74HC595 / 74HC165 | ❌ compilado fuera | `SEMA_USE_SHIFT=0` en los seis entornos; sin cascada |
 | MCP23S17 (SPI, 16 E/S) | ❌ solo configuración | No hay driver |
 | MAX14830 (4 UART por SPI) | ❌ solo configuración | No hay driver ni campo de IRQ |
 | SC18IS602B (I²C por SPI) | ❌ solo configuración | `sensors[].bus` no lo lee ningún driver |
@@ -149,8 +150,9 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 | ESP32-WROOM-32U (32 MB) | ✅ identidad `esp32-wroom32u-32mb` | Variante de 32 MB de la PCB WROOM-32U (`partitions_32mb.csv`) |
 | ESP32-P4 (RISC-V) | ⚠️ env `esp32-p4` deshabilitado | Sin WiFi/BT ni EMAC; requiere PlatformIO `espressif32 ≥ 7.2` (no disponible hoy) |
 | ESP32-S3 | ✅ soportado por `BOARD_ESP32_S3` | Reasignar `lora.dio1`/`busy` (26/27 son de la flash) |
+| ESP32-C6 | ✅ soportado por `BOARD_ESP32_C6` (env `esp32-c6-devkitc-1`) | RISC-V de 1 núcleo, sin EMAC; Ethernet/LoRa/CAN/Zigbee deshabilitados (`SEMA_USE_*=0`); objetivo Matter/Thread/esclavo |
 | ESP32-S2 | ❌ | No tiene Bluetooth; `HwProfile.hpp` no tiene rama: habría que agregar `BOARD_*`, el `#elif` de SPI/ETH y revisar particiones |
-| ESP32-C3 / C5 / C6 / H2 | ❌ | RISC-V de un núcleo (o sin Wi-Fi en H2): `Capability::DualCore` se declara igual y el `#error` de `HwProfile.hpp` bloquea la compilación |
+| ESP32-C3 / C5 / H2 | ❌ | RISC-V de un núcleo (o sin Wi-Fi en H2): `Capability::DualCore` se declara igual y el `#error` de `HwProfile.hpp` bloquea la compilación |
 
 ## 8. Navegador y dashboard
 
@@ -173,7 +175,7 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 
 | Componente | Versión |
 |------------|---------|
-| Firmware SEMA | 1.107.0 · HW `rev0` |
+| Firmware SEMA | 1.108.0 · HW `rev0` |
 | Schema de configuración | 1 (`SEMA_CONFIG_SCHEMA_VERSION`) |
 | Protocolo | 1 (`SEMA_PROTOCOL_VERSION`) |
 | Plataforma (PlatformIO) | `espressif32` con `framework = arduino` |

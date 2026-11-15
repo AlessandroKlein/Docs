@@ -6,7 +6,7 @@ tags:
 
 # Estadísticas y métricas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Dos familias de métricas: las **del proyecto** (tamaño del código, releases,
 artefactos) y las que el **firmware expone en ejecución** para monitoreo y
@@ -27,7 +27,7 @@ diagnóstico.
 | Líneas de código | 10 952 (10 989 contando `include/README`) |
 | Rutas HTTP registradas | 53 |
 | Modelos de sensor | 17 |
-| Entornos PlatformIO | 4 (`esp32doit-devkit-v1`, `esp32-s3-devkitc-1`, `esp32-wroom-32u`, `demo`) |
+| Entornos PlatformIO | 6 (`esp32doit-devkit-v1`, `esp32-s3-devkitc-1`, `esp32-c6-devkitc-1`, `esp32-wroom-32u`, `esp32-wroom-32u-32mb`, `demo`) |
 
 > El repositorio avanza a un ritmo de un release por incremento lógico: casi cada
 > commit relevante genera versión, tag y release (ver [Versionado](../inicio/Versionado.md)).
@@ -69,7 +69,7 @@ Archivos más grandes (líneas):
 |-------|------|:-----:|---------------:|
 | `esp32-wroom-4mb` | ESP32 | 4 MB | 1.390 MB |
 | `esp32-s3-8mb` | ESP32-S3 | 8 MB | 1.335 MB |
-| `demo` (mismo WROOM, `-D SEMA_DEMO=1`) | ESP32 | 4 MB | 1.391 MB |
+| `esp32-c6-8mb` | ESP32-C6 | 8 MB | — |
 
 Particiones (`partitions_4mb.csv`, 4 MB): `nvs` 0x5000 · `otadata` 0x2000 ·
 `app0` 0x1C0000 · `app1` 0x1C0000 · `spiffs` 0x70000.

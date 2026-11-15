@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** En desarrollo
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.107.0
+> **Firmware:** v1.108.0
 
 Todas las magnitudes que SEMA calcula sin sensor propio, con la fórmula y las constantes
 exactas del código. Fuentes: `include/core/derived/DerivedEngine.hpp`,

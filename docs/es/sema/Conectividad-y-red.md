@@ -9,7 +9,7 @@ tags:
 
 > **Tipo:** Concepto | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.107.0
+> **Firmware:** v1.108.0
 
 Cómo SEMA se conecta: **WiFi** (STA/AP), **mDNS**, **Ethernet** (LAN8720A por RMII
 o W5500 por SPI) y **hora/NTP**. Toda la lógica está en
@@ -209,11 +209,10 @@ firmware no fija explícitamente).
 
 - `SEMA_USE_ETHERNET = 0` saca todo el `EthernetManager` del build: el `#if` envuelve
   el `.cpp` completo y el miembro `ethernet_` + el accesor `ethernet()` de
-  `SemaCore.hpp`. ⚠️ **Pero `HttpServer::onNetwork()` (~línea 2009) usa
-  `core_->ethernet()` sin condicionar por el flag**: con `SEMA_USE_ETHERNET=0` ese
-  símbolo no existe y la compilación fallaría. En la práctica no se nota porque las
-  cuatro placas de `platformio.ini` compilan con `SEMA_USE_ETHERNET=1`; queda como
-  deuda si algún día se quiere un build sin Ethernet.
+  `SemaCore.hpp`. ⚠️ **Hasta v1.107.0, `HttpServer::onNetwork()` usaba `core_->ethernet()` sin
+  condicionar por el flag**: con `SEMA_USE_ETHERNET=0` la compilación fallaba. En
+  v1.108.0 se añadió el guard `#if SEMA_USE_ETHERNET` (ESP32-Base v0.3.1), así que el
+  env C6 compila con `SEMA_USE_ETHERNET=0` sin Ethernet.
 - `connected()`: nativo → `ready_ && ETH.linkUp()`; W5500 → IP de `esp_netif`
   distinta de 0.
 - `loop()` de Ethernet está vacío: **lwIP gestiona el DHCP solo**.

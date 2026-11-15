@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad de versiones
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Qué versiona SEMA, cómo se comporta frente a una configuración, un backup o un
 firmware de otra versión, y qué compatibilidad **no** está implementada. Todo lo
@@ -178,6 +178,7 @@ Lo estrictamente verificable en el código y el manifest:
 |----------------------------|--------------------|------:|----------------------|:---------------:|:-----------------------------------:|--------------------|
 | `esp32-wroom-4mb` | `esp32doit-devkit-v1` (default) | 4 MB | `partitions_4mb.csv` (`app0/app1` 0x1C0000, `spiffs` 0x70000) | Sí (`SEMA_NATIVE_ETH=1`) | ✅ `sema_1.103.0_esp32-wroom-4mb.bin` | `sema_<fw>_esp32-wroom-4mb.bin` |
 | `esp32-s3-8mb` | `esp32-s3-devkitc-1` | 8 MB | `partitions_8mb.csv` (`app0/app1` 0x300000, `spiffs` 0x1F0000) | No (W5500 SPI) | ✅ `sema_1.103.0_esp32-s3-8mb.bin` | `sema_<fw>_esp32-s3-8mb.bin` |
+| `esp32-c6-8mb` | `esp32-c6-devkitc-1` | 8 MB | `partitions_8mb.csv` | No (`SEMA_USE_ETHERNET=0`) | ✅ `sema_1.108.0_esp32-c6-8mb.bin` | `sema_<fw>_esp32-c6-8mb.bin` |
 | `esp32-wroom32u-16mb` | `esp32-wroom-32u` (PCB futura) | 16 MB | `partitions_16mb.csv` (`app0/app1` 0x300000, `spiffs` 0x9F0000) | Sí | ❌ **Sin entrada en el manifest** | No publicado |
 
 Notas verificadas:

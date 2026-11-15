@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.107.0
+> **Firmware:** v1.108.0
 
 Dónde guarda SEMA cada cosa, con qué formato, con qué límites y qué se pierde al
 reiniciar. Fuentes: `include/core/storage/Storage.hpp`, `include/core/storage/NvsStore.hpp`,
@@ -67,7 +67,7 @@ store_.begin("sema");   // src/core/SemaCore.cpp
 | `layout` | string (JSON) | `ConfigManager::saveDashboardLayout()` | Layout Gridstack, en clave aparte para no exceder el tamaño de una entrada NVS |
 
 Partición NVS (`partitions_4mb.csv`, `partitions_8mb.csv`, `partitions_16mb.csv`):
-offset `0x9000`, tamaño `0x5000` = **20 480 bytes (20 KB)** en las tres placas.
+offset `0x9000`, tamaño `0x5000` = **20 480 bytes (20 KB)** en todas las placas.
 
 Fallo de escritura: si `putString("config", …)` falla (NVS lleno o fragmentado),
 `ConfigManager::save()` hace `store_.clear()` y reintenta una vez. Consecuencia

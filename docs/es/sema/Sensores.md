@@ -6,7 +6,7 @@ tags:
 
 # Sensores
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 SEMA soporta **17 modelos de sensor** en **5 interfaces** (I²C, 1-Wire, ADC, PCNT y
 UART). El catálogo es *config-driven*: cada sensor se declara en el array `sensors[]`
@@ -243,8 +243,8 @@ sensor; el valor real depende de la calibración de cada instalación (ver
 
 ## 6. Catálogo por defecto
 
-`SemaCore::applySensors()` registra este catálogo fijo cuando
-`SEMA_FIXED_HARDWARE == 1` **o** cuando `sensors[]` está vacío:
+`SemaCore::applySensors()` registra este catálogo por defecto cuando
+`sensors[]` está vacío:
 
 | `id` | Modelo | Pines | Canales publicados |
 |------|--------|-------|--------------------|
@@ -264,9 +264,8 @@ Pines en `include/core/BoardProfile.hpp`.
 
 | Condición | Comportamiento |
 |-----------|----------------|
-| `SEMA_FIXED_HARDWARE == 1` | Se ignora `sensors[]` por completo; siempre el catálogo por defecto. |
-| `SEMA_FIXED_HARDWARE == 0` y `sensors[]` vacío | Catálogo por defecto. |
-| `SEMA_FIXED_HARDWARE == 0` y `sensors[]` no vacío | **Reemplaza** el catálogo: solo se registran las entradas con `enabled: true`. |
+| `sensors[]` vacío | Catálogo por defecto. |
+| `sensors[]` no vacío | **Reemplaza** el catálogo: solo se registran las entradas con `enabled: true`. |
 | `model` desconocido | `SensorFactory::create()` devuelve `nullptr`; se ignora y se loguea por serie: `Sensor desconocido: <id> (modelo <model>)`. |
 
 `sensors[]` se reemplaza **completo** en cada POST: `HttpServer::onConfigSensors()`

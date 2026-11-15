@@ -6,7 +6,7 @@ tags:
 
 # Guía de inicio
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Documentación para **entender y usar SEMA sin conocer el proyecto ni el código de
 antemano**. Los apartados son progresivos: se puede leer de principio a fin.
@@ -104,20 +104,19 @@ Consecuencias prácticas:
 | Zigbee (RX/TX) | GPIO 18 / 19 | Default de `zigbee.rx`/`zigbee.tx` |
 | Ethernet RMII (MDC/MDIO) | GPIO 23 / 18 | Solo con Ethernet nativo habilitado |
 
-!!! info "Dos mecanismos de pines fijos, no confundir"
+!!! info "Pines fijos de buses (`SEMA_PINS_FROM_FILE`)"
     - **`SEMA_PINS_FROM_FILE`** (`include/hw/HwProfile.hpp`, build flag del entorno):
       fija los pines de **buses y módulos** (CAN, Modbus, Zigbee, LoRa, Ethernet) e
-      impide configurarlos por la web. Vale `0` en WROOM y S3, y `1` en WROOM-32U.
-    - **`SEMA_FIXED_HARDWARE`** (`include/core/BoardProfile.hpp`, default `0`): al
-      ponerlo en `1` se **ignora el catálogo `sensors[]`** y se usa el catálogo fijo de
-      sensores definido en ese archivo (`SemaCore::applySensors()`).
+      impide configurarlos por la web. Vale `0` en WROOM, S3 y C6, y `1` en WROOM-32U.
+      El catálogo de sensores ya no tiene interruptor propio: se usa el catálogo por
+      defecto solo cuando `sensors[]` está vacío (`SemaCore::applySensors()`).
 
     El detalle completo, con restricciones y conflictos, está en
     [Guía de pines](Guia-de-pines.md).
 
 ### 3.3 Catálogo por defecto (sin `sensors[]` configurado)
 
-Si `sensors[]` está vacío (o `SEMA_FIXED_HARDWARE = 1`), `SemaCore` arma este catálogo
+Si `sensors[]` está vacío, `SemaCore` arma este catálogo
 (`src/core/SemaCore.cpp` §282-298):
 
 | ID | Modelo | Magnitudes | Pin / dirección |

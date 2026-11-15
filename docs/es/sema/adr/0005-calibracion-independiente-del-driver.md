@@ -8,7 +8,7 @@ tags:
 # 0005. Calibración independiente del driver
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.107.0 | **Decisión origen:** D-0025, D-0055
+> **Firmware:** v1.108.0 | **Decisión origen:** D-0025, D-0055
 
 ## Contexto
 

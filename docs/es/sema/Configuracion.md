@@ -6,7 +6,7 @@ tags:
 
 # Configuración
 
-> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 SEMA se configura con **un único documento JSON** (`schema_version: 1`) que se
 persiste en la NVS del ESP32 y se aplica de forma **transaccional** (validar →
@@ -25,7 +25,7 @@ está en [Referencia de configuración](Referencia-configuracion.md).
 | Clave de la config | `config` (un string con el JSON completo) | `src/core/ConfigManager.cpp:9` (`kConfigKey`) |
 | Clave del layout | `layout` (JSON del dashboard Gridstack) | `ConfigManager::saveDashboardLayout()` (`ConfigManager.cpp:475`) |
 | Clave del contador | `boots` (`uint32`, contador de reinicios) | `src/core/SemaCore.cpp:57-59` |
-| Partición | `nvs`, `data/nvs`, offset `0x9000`, tamaño `0x5000` (20 KB) en las tres placas | `partitions_4mb.csv`, `partitions_8mb.csv`, `partitions_16mb.csv` |
+| Partición | `nvs`, `data/nvs`, offset `0x9000`, tamaño `0x5000` (20 KB) en todas las placas | `partitions_4mb.csv`, `partitions_8mb.csv`, `partitions_16mb.csv` |
 
 ```text
 NVS (namespace "sema")

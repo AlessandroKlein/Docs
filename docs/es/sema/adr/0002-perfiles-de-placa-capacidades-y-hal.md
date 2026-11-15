@@ -8,7 +8,7 @@ tags:
 # 0002. Compatibilidad por perfiles de placa/chip y HAL, no por `#ifdef`
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.107.0 | **Decisión origen:** D-0015, D-0016, D-0017, D-0038, D-0050, D-0051
+> **Firmware:** v1.108.0 | **Decisión origen:** D-0015, D-0016, D-0017, D-0038, D-0050, D-0051
 
 ## Contexto
 

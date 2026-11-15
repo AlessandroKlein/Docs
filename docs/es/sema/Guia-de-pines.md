@@ -7,9 +7,9 @@ tags:
 
 # Guía de pines
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
-Asignación de pines de SEMA para los **cuatro entornos de PlatformIO**, con la clave JSON
+Asignación de pines de SEMA para los **seis entornos de PlatformIO**, con la clave JSON
 real de configuración, el GPIO por defecto, la función, la dirección eléctrica y las
 restricciones que aplican. Todas las claves fueron verificadas contra
 `include/core/ConfigManager.hpp`, `src/core/ConfigManager.cpp` y
@@ -27,19 +27,17 @@ restricciones que aplican. Todas las claves fueron verificadas contra
 - Los valores eléctricos marcados **(datasheet)** provienen de la hoja de datos del
   fabricante; el repositorio SEMA **no** los declara y no fueron verificados en el código.
 
-### 1.1 Dos interruptores distintos que se confunden
+### 1.1 El interruptor de pines fijos
 
 | Macro | Archivo | Qué fija | Valor en `platformio.ini` |
 |-------|---------|----------|---------------------------|
-| `SEMA_PINS_FROM_FILE` | `include/hw/HwProfile.hpp` | Pines de **buses** (CAN, Modbus, Zigbee, LoRa, Ethernet) tomados de `HwProfile.hpp` e ignorando la web | `0` en devkit-v1 y S3; `1` en `esp32-wroom-32u` |
-| `SEMA_FIXED_HARDWARE` | `include/core/BoardProfile.hpp` | Catálogo de **sensores** fijo (I²C, 1-Wire, ADC batería) e ignorando `sensors[]` | `0` en todos los entornos (no se define por `-D`) |
+| `SEMA_PINS_FROM_FILE` | `include/hw/HwProfile.hpp` | Pines de **buses** (CAN, Modbus, Zigbee, LoRa, Ethernet) tomados de `HwProfile.hpp` e ignorando la web | `0` en devkit-v1, S3 y C6; `1` en `esp32-wroom-32u` |
 
 Con `SEMA_PINS_FROM_FILE=1` se ejecuta `applyHwProfile()` (`src/core/ConfigManager.cpp:13-41`),
 que sobrescribe `can.*`, `modbus.*`, `zigbee.*`, `lora.*` y `ethernet.*` **después** de
 parsear el JSON: lo que llega desde la web se descarta en silencio.
-`SEMA_FIXED_HARDWARE=1` es el único camino que ignora `sensors[]` del todo
-(`src/core/SemaCore.cpp:282`); si `sensors[]` está vacío, también se usa el catálogo fijo
-aunque la macro valga `0`.
+El catálogo de sensores no tiene interruptor propio: si `sensors[]` está vacío, se usa el
+catálogo por defecto (`src/core/SemaCore.cpp` §282-298).
 
 ## 2. Pines del catálogo fijo (`BoardProfile.hpp`)
 
@@ -176,7 +174,7 @@ configurables**. El bus SPI (14/12/15) y los pines RMII son los mismos que en de
 | `ethernet.sck` / `.miso` / `.mosi` | 14 / 12 / 15 | Host SPI del W5500 | — | Se cargan desde `SEMA_SPI_*`; **no se usan** |
 | `sd_cs` | 4 | CS de la microSD | salida | `SEMA_PIN_SD_CS`; `applyHwProfile()` **no** lo toca, así que la web sí puede cambiarlo |
 | `i2c_sda` / `i2c_scl` | 21 / 22 | I²C compartido | bidireccional | `applyHwProfile()` **no** los toca; el arranque usa `SEMA_PIN_I2C_*` |
-| `sensors[model=DS18B20].pin` | 4 (catálogo fijo) | 1-Wire | bidireccional | Solo si `sensors[]` está vacío o `SEMA_FIXED_HARDWARE=1` |
+| `sensors[model=DS18B20].pin` | 4 (catálogo por defecto) | 1-Wire | bidireccional | Solo si `sensors[]` está vacío |
 | `sensors[model=ADC].pin` | 34 (catálogo fijo) | ADC de batería | entrada | Divisor 11:1 |
 | `system.wind_direction_pin` | 0 | Veleta (ADC) | entrada | `0` = sin veleta |
 | `energy.rain_pin` | 0 | Wake por lluvia | entrada | GPIO RTC-capable |

@@ -6,7 +6,7 @@ tags:
 
 # Arquitectura
 
-> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Este documento describe la arquitectura **tal como está implementada** en el firmware
 v1.103.0 (rama `main`). Todo lo que figura acá se verificó contra el código en
@@ -18,7 +18,7 @@ explícitamente con ⚠️ o ❌.
 > infraestructura) viven en la librería reutilizable
 > [`ESP32-Base`](https://github.com/AlessandroKlein/ESP32-Base) (namespace `base::`),
 > y SEMA los consume por `lib_deps`
-> `https://github.com/AlessandroKlein/ESP32-Base.git#v0.1.0`. SEMA conserva solo el
+> `https://github.com/AlessandroKlein/ESP32-Base.git#v0.3.1`. SEMA conserva solo el
 > dominio meteorológico (sensores, derivadas, pronóstico), acoplado a la base mediante
 > `src/core/SemaGlue.cpp`, que implementa los 14 hooks de `base::CoreHooks`. Las
 > secciones siguientes describen el estado previo a la extracción: los módulos
@@ -198,7 +198,7 @@ Hay **dos** archivos que definen el hardware, y cumplen roles distintos:
 | Archivo | Cuándo actúa | Qué define |
 |---------|--------------|------------|
 | `include/hw/HwProfile.hpp` | Compile-time, por `build_flags` de `platformio.ini` | Board (`BOARD_ESP32_WROOM`, `BOARD_ESP32_WROOM32U`, `BOARD_ESP32_S3`), features (`SEMA_USE_ETHERNET/LORA/MODBUS/CAN/ZIGBEE/SHIFT`), variante de transceiver RS485, pines del bus SPI y de los chip-select, `SEMA_PINS_FROM_FILE`, `SEMA_DEMO` |
-| `include/core/BoardProfile.hpp` | Runtime | Pines del **catálogo fijo** de sensores (`SEMA_PIN_I2C_SDA=21`, `SEMA_PIN_I2C_SCL=22`, `SEMA_PIN_ONEWIRE=4`, `SEMA_PIN_BATTERY_ADC=34`) y el interruptor `SEMA_FIXED_HARDWARE` (0 por defecto) |
+| `include/core/BoardProfile.hpp` | Runtime | Pines del **catálogo fijo** de sensores (`SEMA_PIN_I2C_SDA=21`, `SEMA_PIN_I2C_SCL=22`, `SEMA_PIN_ONEWIRE=4`, `SEMA_PIN_BATTERY_ADC=34`) usado cuando `sensors[]` está vacío |
 
 `HwProfile.hpp` aborta la compilación con `#error` si no se definió ninguna board
 (líneas 28-30) y deriva de ella tres datos de identidad que se exponen por API:
@@ -207,29 +207,29 @@ Hay **dos** archivos que definen el hardware, y cumplen roles distintos:
 perfiles se resuelve en `SemaCore::applySensors()` (líneas 280-313):
 
 ```text
-if (SEMA_FIXED_HARDWARE == 1 || config.sensors está vacío):
-      catálogo fijo de BoardProfile.hpp (BME280 "EXT", SHT40 "INT", DS18B20 "SOIL",
+if (config.sensors está vacío):
+      catálogo por defecto de BoardProfile.hpp (BME280 "EXT", SHT40 "INT", DS18B20 "SOIL",
       BH1750 "LUX", AHT20 "AUX", AdcSensor "BATT" con escala 3.3*11/4095 y offset 0)
 else:
       config.sensors[] → SensorFactory::create(spec) por cada entrada habilitada
 ```
 
-Con `SEMA_FIXED_HARDWARE = 1` la configuración `sensors[]` de la web **se ignora
-por completo**; con el valor por defecto (0) los `SEMA_PIN_*` de `BoardProfile.hpp`
-quedan solo como fallback. Los dos interruptores son **independientes y
-complementarios**:
+Cuando `sensors[]` está vacío se usa el catálogo por defecto de `BoardProfile.hpp`
+(`SEMA_PIN_*`); si hay sensores configurados, esos pines quedan solo como fallback.
+`SEMA_PINS_FROM_FILE` fija solo los pines de **buses**; el catálogo de sensores ya no
+tiene interruptor propio:
 
 | Interruptor | Archivo | Qué fija | Qué pisa |
 |-------------|---------|----------|----------|
 | `SEMA_PINS_FROM_FILE=1` | `HwProfile.hpp` | Pines de los **buses**: CAN (TX/RX), Modbus (RX/TX/DE-RE), Zigbee (RX/TX), LoRa (CS/RST/DIO1/BUSY) y Ethernet (MDC/MDIO/PHY/power/CS/RST/IRQ/SCK/MISO/MOSI) | Al final de `ConfigManager::parseInto()` se llama `applyHwProfile(c)` (`ConfigManager.cpp:459`), que sobrescribe esos pines con los de `HwProfile.hpp` e **ignora lo que venga de la web** |
-| `SEMA_FIXED_HARDWARE=1` | `BoardProfile.hpp` | Pines del **catálogo de sensores** (SDA, SCL, 1-Wire, ADC de batería) y qué catálogo se usa | `applySensors()` ignora `config.sensors[]` por completo |
 
-Con ambos en 0 (default de `esp32doit-devkit-v1` y `esp32-s3-devkitc-1`) todos los
-pines son configurables desde la web; el entorno `esp32-wroom-32u` usa
-`SEMA_PINS_FROM_FILE=1` para congelar los pines de bus de la PCB futura.
+Con `SEMA_PINS_FROM_FILE=0` (default de `esp32doit-devkit-v1`, `esp32-s3-devkitc-1`
+y `esp32-c6-devkitc-1`) todos los pines son configurables desde la web; el entorno
+`esp32-wroom-32u` usa `SEMA_PINS_FROM_FILE=1` para congelar los pines de bus de la
+PCB futura.
 ⚠️ `SEMA_PINS_FROM_FILE` **no** fija los pines I²C de los sensores (`i2c_sda` /
-`i2c_scl` siguen tomándose del JSON), y `SEMA_FIXED_HARDWARE` no está definido en
-`platformio.ini`, así que su valor por defecto (0) rige en todos los entornos.
+`i2c_scl` siguen tomándose del JSON); esos vienen del JSON o del catálogo por
+defecto de `BoardProfile.hpp` cuando `sensors[]` está vacío.
 
 ## 7. Grafo de dependencias entre servicios
 

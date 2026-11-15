@@ -8,7 +8,7 @@ tags:
 # 0014. Módulos instalables, selección de drivers y descubrimiento
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.107.0 | **Decisión origen:** D-0029, D-0043, D-0058, D-0060
+> **Firmware:** v1.108.0 | **Decisión origen:** D-0029, D-0043, D-0058, D-0060
 
 ## Contexto
 

@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** Referencia | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.107.0
+> **Firmware:** v1.108.0
 
 Identidad de la estación y **todos** los estados que el firmware expone o maneja:
 salud, calidad de medición, energía, red, sesión web, eventos y capacidades.
@@ -26,7 +26,7 @@ los `#define` de `include/core/Version.hpp` y `include/hw/HwProfile.hpp`.
 | `hw` | `SEMA_HW_VERSION` | `"rev0"` | `system`, `diagnostics` |
 | `config_schema` | `SEMA_CONFIG_SCHEMA_VERSION` | `1` | `system` |
 | `protocol` | `SEMA_PROTOCOL_VERSION` | `1` | `system` (protocolo con el Servidor Central) |
-| `board` | `SEMA_BOARD_ID` | `esp32-wroom-4mb` · `esp32-wroom32u-16mb` · `esp32-s3-8mb` | `system` |
+| `board` | `SEMA_BOARD_ID` | `esp32-wroom-4mb` · `esp32-s3-8mb` · `esp32-c6-8mb` · `esp32-wroom32u-16mb` | `system` |
 | `flash_mb` | `SEMA_FLASH_MB` | `4` · `16` · `8` | `system` |
 | `firmware_file` | construido | `sema_1.103.0_<board>.bin` | `system` |
 | `network.hostname` | config | `"sema-001"` | `system` (`wifi_host`), mDNS `<hostname>.local` |
@@ -54,14 +54,13 @@ webhook.
 
 | Macro | Dónde | Efecto |
 |-------|-------|--------|
-| `BOARD_ESP32_WROOM` / `BOARD_ESP32_WROOM32U` / `BOARD_ESP32_S3` | `platformio.ini` (`build_flags`) | Fija `SEMA_BOARD_ID`, `SEMA_FLASH_MB` y `SEMA_NATIVE_ETH`; si no se define ninguna, `#error` |
+| `BOARD_ESP32_WROOM` / `BOARD_ESP32_S3` / `BOARD_ESP32_C6` / `BOARD_ESP32_WROOM32U` | `platformio.ini` (`build_flags`) | Fija `SEMA_BOARD_ID`, `SEMA_FLASH_MB` y `SEMA_NATIVE_ETH`; si no se define ninguna, `#error` |
 | `SEMA_NATIVE_ETH` | `HwProfile.hpp` | `1` = LAN8720A por RMII; `0` = W5500 por SPI |
 | `SEMA_PINS_FROM_FILE` | `HwProfile.hpp` (default `0`) | `1` = pines fijos de `HwProfile.hpp` y la web los ignora; `0` = pines por web |
-| `SEMA_FIXED_HARDWARE` | `include/core/BoardProfile.hpp` (default `0`) | `1` = se ignora el catálogo `sensors[]` de la config y se usa el catálogo fijo |
 | `SEMA_DEMO` | `HwProfile.hpp` (default `0`) | `1` = valores ficticios en `/api/v1/sensors` y `/api/v1/history` (entorno `demo`) |
 | `SEMA_MODBUS_ISOLATED` | `HwProfile.hpp` (default `1`) | Transceiver RS485: `TD501D485H` (aislado) vs `SN65HVD75DR` |
 
-La placa `esp32-wroom-32u` compila con `SEMA_PINS_FROM_FILE=1`; las otras tres, con
+La placa `esp32-wroom-32u` compila con `SEMA_PINS_FROM_FILE=1`; las demás, con
 `0`. `GET /api/v1/system` informa el estado efectivo en `board`, `flash_mb`,
 `pins_from_file`, `demo` y `native_eth`.
 
@@ -309,7 +308,7 @@ capacidades declaradas y su estado real en v1.103.0:
 | `Spi` | `spi` | ✅ | | | | |
 
 ⚠️ La lista se arma **a mano** en `SemaCore::setup()` con el perfil del ESP32
-clásico: es idéntica en las tres placas (incluida la S3, que tiene W5500 pero
+clásico: es idéntica en todas las placas (incluida la S3, que tiene W5500 pero
 reporta `Ethernet` inactivo, y no reporta `psram` aunque la S3 tenga PSRAM). El
 `Wire.begin()` tampoco usa los pines de la config: usa `SEMA_PIN_I2C_SDA`/`SCL`
 (21/22) del `BoardProfile`.

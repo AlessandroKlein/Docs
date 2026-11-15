@@ -6,7 +6,7 @@ tags:
 
 # SEMA — Sistema de Estación Meteorológica Autónoma
 
-> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 > **Hardware:** `rev0` · **Esquema de configuración:** 1 · **Protocolo:** 1
 
 ## 1. Resumen ejecutivo
@@ -93,9 +93,9 @@ SEMA Core — ConfigManager · EventBus · Scheduler · Storage API · HAL
   configuración (`sensors[]`), no del código.
 - **Modular por dentro**: Core, HAL, Event Bus, Scheduler, Storage API, Web/API y
   diagnóstico como piezas separadas.
-- **Compatible por perfiles**, no por `#ifdef`: 4 entornos de PlatformIO
-  (`esp32doit-devkit-v1` 4 MB, `esp32-s3-devkitc-1` 8 MB, `esp32-wroom-32u` 16 MB y
-  `demo`).
+- **Compatible por perfiles**, no por `#ifdef`: 6 entornos de PlatformIO
+  (`esp32doit-devkit-v1` 4 MB, `esp32-s3-devkitc-1` 8 MB, `esp32-c6-devkitc-1` 8 MB,
+  `esp32-wroom-32u` 16 MB, `esp32-wroom-32u-32mb` 32 MB y `demo`).
 - **Multiprotocolo**: I²C, SPI, UART, 1-Wire, ADC, PCNT, RS485/Modbus RTU, CAN/TWAI,
   Ethernet (LAN8720A por RMII o W5500 por SPI), LoRa SX1262 y Zigbee ZNP.
 - **Configuración transaccional** con rollback y JSON versionado (`schema_version: 1`).

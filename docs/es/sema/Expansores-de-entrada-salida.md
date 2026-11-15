@@ -7,7 +7,7 @@ tags:
 
 # Expansores de entrada/salida
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Qué expansores de E/S contempla SEMA, cuáles están **implementados de verdad** y cuáles
 son solo configuración. Verificado contra `include/core/ConfigManager.hpp`,
@@ -24,7 +24,7 @@ son solo configuración. Verificado contra `include/core/ConfigManager.hpp`,
 |----------|----------|---------|------------|-------------|
 | **MCP23017** | I²C | 16 (A0-A7, B0-B7) | `gpio[].expander_addr` | ✅ Implementado (`GpioManager`), sin editor web |
 | **MCP23S17** | SPI | 16 (A0-A7, B0-B7) | `mcp23s17_cs`, `mcp23s17_pins[16]` | ❌ Solo configuración: no hay driver |
-| **74HC595** | SPI (bit-bang: MOSI+SCK+LATCH) | 8 salidas por chip | `shift_registers[].{type,latch,pins}` | ⚠️ Driver escrito pero **compilado fuera** (`SEMA_USE_SHIFT=0` en los 4 entornos) |
+| **74HC595** | SPI (bit-bang: MOSI+SCK+LATCH) | 8 salidas por chip | `shift_registers[].{type,latch,pins}` | ⚠️ Driver escrito pero **compilado fuera** (`SEMA_USE_SHIFT=0` en los 6 entornos) |
 | **74HC165** | SPI (bit-bang: MOSI+SCK+LATCH) | 8 entradas por chip | `shift_registers[].{type,latch,pins}` | ⚠️ Igual que el 74HC595 |
 | **ADS1115** | I²C | 4 (A0-A3, 16 bits) | `sensors[model=ADS1115].{pin,channel,scale,offset}` | ✅ Implementado, pero como **sensor**, no como GPIO |
 | **MAX14830** | SPI → 4 UART | 4 puertos serie | `spi_expanders[].{type,cs}` | ❌ Solo configuración: no hay driver |
@@ -79,7 +79,7 @@ son solo configuración. Verificado contra `include/core/ConfigManager.hpp`,
 | Clases | `include/core/ShiftRegisterManager.hpp`, `src/core/ShiftRegisterManager.cpp` |
 | Flag | `SEMA_USE_SHIFT`, por defecto **`SEMA_OFF`** (`HwProfile.hpp:68-70`); **ningún entorno de `platformio.ini` lo activa** |
 | Efecto del flag | `SemaCore` solo llama `shift_.apply(...)` bajo `#if SEMA_USE_SHIFT` (`SemaCore.cpp:124-126` y `321-325`), y `POST /api/v1/config/io` solo parsea `shift_registers` bajo el mismo `#if` (`HttpServer.cpp:1595-1610`) |
-| Consecuencia | Con los cuatro entornos actuales, `cfg_` queda vacío: `writeByte()` no hace nada y `readByte()` devuelve `0`. `GET /api/v1/system → shift_enabled` informa `false` y la web **oculta** el editor |
+| Consecuencia | Con los seis entornos actuales, `cfg_` queda vacío: `writeByte()` no hace nada y `readByte()` devuelve `0`. `GET /api/v1/system → shift_enabled` informa `false` y la web **oculta** el editor |
 | Pines usados | `SEMA_SPI_MOSI` (DAT) y `SEMA_SPI_SCK` (CLK) como bit-bang, más un **LATCH propio por chip** (`shift_registers[].latch_pin`) |
 | Sentido | `pinMode(SEMA_SPI_MOSI, tipo == "74HC165" ? INPUT : OUTPUT)` y `pinMode(SEMA_SPI_SCK, OUTPUT)` |
 | Escritura | `writeByte(value)`: por **cada** 74HC595 configurado hace `LATCH=LOW` → `shiftOut(MOSI, SCK, MSBFIRST, value)` → `LATCH=HIGH`. El mismo byte va a todos los chips |

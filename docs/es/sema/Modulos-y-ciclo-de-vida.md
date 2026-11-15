@@ -6,7 +6,7 @@ tags:
 
 # Módulos y ciclo de vida
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Esta página responde una sola pregunta: **¿qué es un "módulo" en el código de SEMA
 y cómo se activa?** La respuesta corta es que conviven dos definiciones distintas y
@@ -200,8 +200,7 @@ opciones en la web. No hay una clase driver que los implemente:
 | `MAX14830` | `SpiExpanderConfig::type` (`ConfigManager.hpp`) y `HttpServer.cpp` | Expansor UART por SPI: se declara tipo y chip-select |
 | `SC18IS602B` | igual que el anterior, más `SensorSpec::bus` y `ModbusConfig::uart` / `ZigbeeConfig::uart` | Expansor I²C por SPI: se declara por su CS |
 | `Mcp23s17Config` | `ConfigManager.hpp` (`csPin`, `pinModes[16]`) | Expansor GPIO por SPI. ⚠️ El único expansor GPIO **con driver** es el MCP23017 por I²C (`GpioManager`); el MCP23S17 solo está modelado en la configuración |
-| `SEMA_PINS_FROM_FILE` | `platformio.ini` y `HwProfile.hpp`; aplicado por `applyHwProfile()` | Fija los pines de los **buses** (CAN, Modbus, Zigbee, LoRa, Ethernet) desde el archivo, pisando lo que venga de la web. **No** fija los pines del catálogo de sensores: eso lo hace `SEMA_FIXED_HARDWARE` (`BoardProfile.hpp`) |
-| `SEMA_FIXED_HARDWARE` | `include/core/BoardProfile.hpp` | Fija los pines del **catálogo de sensores** (SDA, SCL, 1-Wire, ADC de batería) e ignora `config.sensors[]`. Por defecto vale 0 |
+| `SEMA_PINS_FROM_FILE` | `platformio.ini` y `HwProfile.hpp`; aplicado por `applyHwProfile()` | Fija los pines de los **buses** (CAN, Modbus, Zigbee, LoRa, Ethernet) desde el archivo, pisando lo que venga de la web. **No** fija los pines del catálogo de sensores: ese catálogo por defecto se usa cuando `sensors[]` está vacío |
 
 ## 5. Cómo se activa y desactiva de verdad
 

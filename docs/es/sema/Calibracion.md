@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Guía
 > **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.107.0
+> **Firmware:** v1.108.0
 
 Qué tipos de calibración soporta SEMA, dónde se aplican en la cadena de medición y cómo
 calibrar cada sensor en la práctica. Fuentes: `include/core/Calibration.hpp`,
@@ -136,7 +136,7 @@ Puntos finos, todos verificables en el código:
 | `SOLAR` | `solar_radiation` (fijo en el driver) | `PYRA` + `solar_radiation` |
 | `CO` | `co` | `CO` + `co` |
 
-En el catálogo fijo (`SEMA_FIXED_HARDWARE=1`) los ids son `EXT`, `INT`, `SOIL`, `LUX`,
+En el catálogo por defecto (cuando `sensors[]` está vacío) los ids son `EXT`, `INT`, `SOIL`, `LUX`,
 `AUX` y `BATT`.
 
 ---

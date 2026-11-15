@@ -7,7 +7,7 @@ tags:
 
 # Referencia de configuración (JSON)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
 
 Referencia **exhaustiva** de todas las claves que `ConfigManager` lee y escribe
 (`include/core/ConfigManager.hpp` + `src/core/ConfigManager.cpp`). Es el mismo
@@ -329,9 +329,8 @@ escalar y los modos son un array fijo de 16 valores.
 | `shift_registers: []` | Sin shift registers | `SemaCore.cpp:321-325` |
 | `spi_expanders: []` | Sin expansores SPI | (sin consumidor) |
 
-Con `SEMA_FIXED_HARDWARE=1` (`include/core/BoardProfile.hpp:20-21`, hoy `0` en
-los cuatro entornos) el catálogo fijo se usa **aunque** `sensors[]` tenga
-contenido.
+Con `SEMA_PINS_FROM_FILE=1` (variante PCB, `include/hw/HwProfile.hpp`) el catálogo fijo
+se usa **aunque** `sensors[]` tenga contenido.
 
 ## 12. Reglas de validación
 

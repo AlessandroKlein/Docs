@@ -8,7 +8,7 @@ tags:
 # 0013. Perfiles energéticos y wake-up por lluvia
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.107.0 | **Decisión origen:** D-0021, D-0022, D-0054
+> **Firmware:** v1.108.0 | **Decisión origen:** D-0021, D-0022, D-0054
 
 ## Contexto
 
