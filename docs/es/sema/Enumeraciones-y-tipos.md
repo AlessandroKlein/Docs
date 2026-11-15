@@ -7,7 +7,7 @@ tags:
 
 # Enumeraciones y tipos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
 
 Catálogo completo de enumeraciones, structs canónicos y "enums de cadena" de SEMA.
 Todo se verificó contra `include/core/**` y `include/hw/HwProfile.hpp`.

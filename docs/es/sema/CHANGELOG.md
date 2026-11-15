@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,12 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.109.0] - 2026-11-15
+
+### Changed
+
+- **Rediseño visual del dashboard web**: paleta dark OLED (`#0F172A`), acento teal/cyan (`#22d3ee`), valores numéricos en monospace, glow sutil, transición suave de tema y `--warn` ámbar. Vía `ESP32-Base` v0.3.1 → v0.4.0.
 
 ## [1.108.0] - 2026-11-15
 
@@ -1272,6 +1278,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.109.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.109.0
 [1.108.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.108.0
 [1.107.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.107.0
 [1.106.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.106.0

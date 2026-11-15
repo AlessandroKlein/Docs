@@ -6,7 +6,7 @@ tags:
 
 # Frontend (dashboard web)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.108.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
 
 El dashboard de SEMA es HTML+CSS+JavaScript **embebido en el firmware** (constantes
 `PROGMEM` en `src/core/web/HttpServer.cpp`), sin dependencias externas en tiempo de
@@ -74,8 +74,10 @@ Los assets de Gridstack se sirven comprimidos desde PROGMEM:
 
 | Aspecto | Implementación |
 |---------|----------------|
-| Tema oscuro (default) | Clase ausente en `<body>`; paleta estilo GitHub (`#0d1117` fondo, `#e6edf3` texto, `#30363d` bordes, acento `#1f6feb`) |
-| Tema claro | Clase `.light` en `<body>` (`toggleTheme()`) |
+| Tema oscuro (default) | Clase ausente en `<body>`; paleta dark OLED (v1.109.0): `--bg:#0F172A`, `--card:#1B2336`, `--bd:#334155`, `--fg:#F8FAFC`, `--muted:#94A3B8`, acento teal/cyan `#22d3ee`, `--ok` verde, `--err` rojo, `--warn` ámbar |
+| Tema claro | Clase `.light` en `<body>` (`toggleTheme()`); paleta clara (`--bg:#F1F5F9`, `--card:#FFFFFF`, acento `#0e7490`) |
+| Valores numéricos | `ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace` |
+| Detalles visuales | Glow cyan sutil en títulos, focus ring `rgba(34,211,238,.25)`, transición suave de tema |
 | Persistencia del tema | `localStorage["sema_theme"]` |
 | Idiomas | Español (default) e inglés, definidos en el objeto `I18N` |
 | Traducción | Atributos `data-i18n="clave"` en el HTML; `applyLang()` los reemplaza |
