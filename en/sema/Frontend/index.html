@@ -9420,7 +9420,7 @@
 
 <h1 id="frontend-dashboard-web">Frontend (dashboard web)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.109.0</p>
 </blockquote>
 <p>El dashboard de SEMA es HTML+CSS+JavaScript <strong>embebido en el firmware</strong> (constantes
 <code>PROGMEM</code> en <code>src/core/web/HttpServer.cpp</code>), sin dependencias externas en tiempo de
@@ -9595,11 +9595,19 @@ ejecución: no hay <code>data/</code>, ni LittleFS para la web, ni CDN (v1.102.0
 <tbody>
 <tr>
 <td>Tema oscuro (default)</td>
-<td>Clase ausente en <code>&lt;body&gt;</code>; paleta estilo GitHub (<code>#0d1117</code> fondo, <code>#e6edf3</code> texto, <code>#30363d</code> bordes, acento <code>#1f6feb</code>)</td>
+<td>Clase ausente en <code>&lt;body&gt;</code>; paleta dark OLED (v1.109.0): <code>--bg:#0F172A</code>, <code>--card:#1B2336</code>, <code>--bd:#334155</code>, <code>--fg:#F8FAFC</code>, <code>--muted:#94A3B8</code>, acento teal/cyan <code>#22d3ee</code>, <code>--ok</code> verde, <code>--err</code> rojo, <code>--warn</code> ámbar</td>
 </tr>
 <tr>
 <td>Tema claro</td>
-<td>Clase <code>.light</code> en <code>&lt;body&gt;</code> (<code>toggleTheme()</code>)</td>
+<td>Clase <code>.light</code> en <code>&lt;body&gt;</code> (<code>toggleTheme()</code>); paleta clara (<code>--bg:#F1F5F9</code>, <code>--card:#FFFFFF</code>, acento <code>#0e7490</code>)</td>
+</tr>
+<tr>
+<td>Valores numéricos</td>
+<td><code>ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace</code></td>
+</tr>
+<tr>
+<td>Detalles visuales</td>
+<td>Glow cyan sutil en títulos, focus ring <code>rgba(34,211,238,.25)</code>, transición suave de tema</td>
 </tr>
 <tr>
 <td>Persistencia del tema</td>
