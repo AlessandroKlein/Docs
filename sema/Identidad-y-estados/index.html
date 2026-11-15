@@ -9600,7 +9600,7 @@
 <blockquote>
 <p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.107.0</p>
+<strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Identidad de la estación y <strong>todos</strong> los estados que el firmware expone o maneja:
 salud, calidad de medición, energía, red, sesión web, eventos y capacidades.</p>
@@ -9656,7 +9656,7 @@ los <code>#define</code> de <code>include/core/Version.hpp</code> y <code>includ
 <tr>
 <td><code>board</code></td>
 <td><code>SEMA_BOARD_ID</code></td>
-<td><code>esp32-wroom-4mb</code> · <code>esp32-wroom32u-16mb</code> · <code>esp32-s3-8mb</code></td>
+<td><code>esp32-wroom-4mb</code> · <code>esp32-s3-8mb</code> · <code>esp32-c6-8mb</code> · <code>esp32-wroom32u-16mb</code></td>
 <td><code>system</code></td>
 </tr>
 <tr>
@@ -9710,7 +9710,7 @@ webhook.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>BOARD_ESP32_WROOM</code> / <code>BOARD_ESP32_WROOM32U</code> / <code>BOARD_ESP32_S3</code></td>
+<td><code>BOARD_ESP32_WROOM</code> / <code>BOARD_ESP32_S3</code> / <code>BOARD_ESP32_C6</code> / <code>BOARD_ESP32_WROOM32U</code></td>
 <td><code>platformio.ini</code> (<code>build_flags</code>)</td>
 <td>Fija <code>SEMA_BOARD_ID</code>, <code>SEMA_FLASH_MB</code> y <code>SEMA_NATIVE_ETH</code>; si no se define ninguna, <code>#error</code></td>
 </tr>
@@ -9725,11 +9725,6 @@ webhook.</p>
 <td><code>1</code> = pines fijos de <code>HwProfile.hpp</code> y la web los ignora; <code>0</code> = pines por web</td>
 </tr>
 <tr>
-<td><code>SEMA_FIXED_HARDWARE</code></td>
-<td><code>include/core/BoardProfile.hpp</code> (default <code>0</code>)</td>
-<td><code>1</code> = se ignora el catálogo <code>sensors[]</code> de la config y se usa el catálogo fijo</td>
-</tr>
-<tr>
 <td><code>SEMA_DEMO</code></td>
 <td><code>HwProfile.hpp</code> (default <code>0</code>)</td>
 <td><code>1</code> = valores ficticios en <code>/api/v1/sensors</code> y <code>/api/v1/history</code> (entorno <code>demo</code>)</td>
@@ -9741,7 +9736,7 @@ webhook.</p>
 </tr>
 </tbody>
 </table>
-<p>La placa <code>esp32-wroom-32u</code> compila con <code>SEMA_PINS_FROM_FILE=1</code>; las otras tres, con
+<p>La placa <code>esp32-wroom-32u</code> compila con <code>SEMA_PINS_FROM_FILE=1</code>; las demás, con
 <code>0</code>. <code>GET /api/v1/system</code> informa el estado efectivo en <code>board</code>, <code>flash_mb</code>,
 <code>pins_from_file</code>, <code>demo</code> y <code>native_eth</code>.</p>
 <h2 id="2-versiones-y-compatibilidad">2. Versiones y compatibilidad</h2>
@@ -10447,7 +10442,7 @@ capacidades declaradas y su estado real en v1.103.0:</p>
 </tbody>
 </table>
 <p>⚠️ La lista se arma <strong>a mano</strong> en <code>SemaCore::setup()</code> con el perfil del ESP32
-clásico: es idéntica en las tres placas (incluida la S3, que tiene W5500 pero
+clásico: es idéntica en todas las placas (incluida la S3, que tiene W5500 pero
 reporta <code>Ethernet</code> inactivo, y no reporta <code>psram</code> aunque la S3 tenga PSRAM). El
 <code>Wire.begin()</code> tampoco usa los pines de la config: usa <code>SEMA_PIN_I2C_SDA</code>/<code>SCL</code>
 (21/22) del <code>BoardProfile</code>.</p>

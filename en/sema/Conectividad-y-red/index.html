@@ -9518,7 +9518,7 @@
 <blockquote>
 <p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.107.0</p>
+<strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Cómo SEMA se conecta: <strong>WiFi</strong> (STA/AP), <strong>mDNS</strong>, <strong>Ethernet</strong> (LAN8720A por RMII
 o W5500 por SPI) y <strong>hora/NTP</strong>. Toda la lógica está en
@@ -9902,11 +9902,10 @@ firmware no fija explícitamente).</p>
 <ul>
 <li><code>SEMA_USE_ETHERNET = 0</code> saca todo el <code>EthernetManager</code> del build: el <code>#if</code> envuelve
   el <code>.cpp</code> completo y el miembro <code>ethernet_</code> + el accesor <code>ethernet()</code> de
-  <code>SemaCore.hpp</code>. ⚠️ <strong>Pero <code>HttpServer::onNetwork()</code> (~línea 2009) usa
-  <code>core_-&gt;ethernet()</code> sin condicionar por el flag</strong>: con <code>SEMA_USE_ETHERNET=0</code> ese
-  símbolo no existe y la compilación fallaría. En la práctica no se nota porque las
-  cuatro placas de <code>platformio.ini</code> compilan con <code>SEMA_USE_ETHERNET=1</code>; queda como
-  deuda si algún día se quiere un build sin Ethernet.</li>
+  <code>SemaCore.hpp</code>. ⚠️ <strong>Hasta v1.107.0, <code>HttpServer::onNetwork()</code> usaba <code>core_-&gt;ethernet()</code> sin
+  condicionar por el flag</strong>: con <code>SEMA_USE_ETHERNET=0</code> la compilación fallaba. En
+  v1.108.0 se añadió el guard <code>#if SEMA_USE_ETHERNET</code> (ESP32-Base v0.3.1), así que el
+  env C6 compila con <code>SEMA_USE_ETHERNET=0</code> sin Ethernet.</li>
 <li><code>connected()</code>: nativo → <code>ready_ &amp;&amp; ETH.linkUp()</code>; W5500 → IP de <code>esp_netif</code>
   distinta de 0.</li>
 <li><code>loop()</code> de Ethernet está vacío: <strong>lwIP gestiona el DHCP solo</strong>.</li>

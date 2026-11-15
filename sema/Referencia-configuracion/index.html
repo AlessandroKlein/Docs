@@ -9487,7 +9487,7 @@
 
 <h1 id="referencia-de-configuracion-json">Referencia de configuración (JSON)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Referencia <strong>exhaustiva</strong> de todas las claves que <code>ConfigManager</code> lee y escribe
 (<code>include/core/ConfigManager.hpp</code> + <code>src/core/ConfigManager.cpp</code>). Es el mismo
@@ -10552,9 +10552,8 @@ escalar y los modos son un array fijo de 16 valores.</p>
 </tr>
 </tbody>
 </table>
-<p>Con <code>SEMA_FIXED_HARDWARE=1</code> (<code>include/core/BoardProfile.hpp:20-21</code>, hoy <code>0</code> en
-los cuatro entornos) el catálogo fijo se usa <strong>aunque</strong> <code>sensors[]</code> tenga
-contenido.</p>
+<p>Con <code>SEMA_PINS_FROM_FILE=1</code> (variante PCB, <code>include/hw/HwProfile.hpp</code>) el catálogo fijo
+se usa <strong>aunque</strong> <code>sensors[]</code> tenga contenido.</p>
 <h2 id="12-reglas-de-validacion">12. Reglas de validación</h2>
 <p><code>ConfigManager::validate()</code> (<code>ConfigManager.cpp:103-118</code>) acepta o rechaza el
 documento entero con <strong>cuatro</strong> condiciones:</p>

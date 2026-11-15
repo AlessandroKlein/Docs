@@ -9413,7 +9413,7 @@
 <p><strong>Tipo:</strong> Referencia
 <strong>Estado:</strong> En desarrollo
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.107.0</p>
+<strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Perfiles energéticos, medición de batería, deep sleep, wake reasons y lo que falta para una
 estación autónoma. Fuentes: <code>include/core/PowerManager.hpp</code>, <code>src/core/PowerManager.cpp</code>,
@@ -9565,7 +9565,7 @@ deep sleep (§4). Es hoy un valor informativo.</p>
 </tr>
 </tbody>
 </table>
-<p>Con <code>SEMA_FIXED_HARDWARE=0</code> (default), la batería se configura como cualquier otro sensor
+<p>Por defecto, la batería se configura como cualquier otro sensor
 analógico (<code>sensors[]</code> con <code>"model": "ADC"</code>, <code>pin</code>, <code>channel: "voltage"</code>, <code>unit: "V"</code> y el
 <code>scale</code> del divisor propio). El ejemplo de <code>scale</code> que trae el repo es <code>0.00887</code>, el mismo
 divisor 11:1 redondeado.</p>

@@ -2534,10 +2534,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-dos-interruptores-distintos-que-se-confunden" class="md-nav__link">
+  <a href="#11-el-interruptor-de-pines-fijos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 Dos interruptores distintos que se confunden
+        1.1 El interruptor de pines fijos
       
     </span>
   </a>
@@ -9583,9 +9583,9 @@
 
 <h1 id="guia-de-pines">Guía de pines</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
-<p>Asignación de pines de SEMA para los <strong>cuatro entornos de PlatformIO</strong>, con la clave JSON
+<p>Asignación de pines de SEMA para los <strong>seis entornos de PlatformIO</strong>, con la clave JSON
 real de configuración, el GPIO por defecto, la función, la dirección eléctrica y las
 restricciones que aplican. Todas las claves fueron verificadas contra
 <code>include/core/ConfigManager.hpp</code>, <code>src/core/ConfigManager.cpp</code> y
@@ -9602,7 +9602,7 @@ restricciones que aplican. Todas las claves fueron verificadas contra
 <li>Los valores eléctricos marcados <strong>(datasheet)</strong> provienen de la hoja de datos del
   fabricante; el repositorio SEMA <strong>no</strong> los declara y no fueron verificados en el código.</li>
 </ul>
-<h3 id="11-dos-interruptores-distintos-que-se-confunden">1.1 Dos interruptores distintos que se confunden</h3>
+<h3 id="11-el-interruptor-de-pines-fijos">1.1 El interruptor de pines fijos</h3>
 <table>
 <thead>
 <tr>
@@ -9617,22 +9617,15 @@ restricciones que aplican. Todas las claves fueron verificadas contra
 <td><code>SEMA_PINS_FROM_FILE</code></td>
 <td><code>include/hw/HwProfile.hpp</code></td>
 <td>Pines de <strong>buses</strong> (CAN, Modbus, Zigbee, LoRa, Ethernet) tomados de <code>HwProfile.hpp</code> e ignorando la web</td>
-<td><code>0</code> en devkit-v1 y S3; <code>1</code> en <code>esp32-wroom-32u</code></td>
-</tr>
-<tr>
-<td><code>SEMA_FIXED_HARDWARE</code></td>
-<td><code>include/core/BoardProfile.hpp</code></td>
-<td>Catálogo de <strong>sensores</strong> fijo (I²C, 1-Wire, ADC batería) e ignorando <code>sensors[]</code></td>
-<td><code>0</code> en todos los entornos (no se define por <code>-D</code>)</td>
+<td><code>0</code> en devkit-v1, S3 y C6; <code>1</code> en <code>esp32-wroom-32u</code></td>
 </tr>
 </tbody>
 </table>
 <p>Con <code>SEMA_PINS_FROM_FILE=1</code> se ejecuta <code>applyHwProfile()</code> (<code>src/core/ConfigManager.cpp:13-41</code>),
 que sobrescribe <code>can.*</code>, <code>modbus.*</code>, <code>zigbee.*</code>, <code>lora.*</code> y <code>ethernet.*</code> <strong>después</strong> de
 parsear el JSON: lo que llega desde la web se descarta en silencio.
-<code>SEMA_FIXED_HARDWARE=1</code> es el único camino que ignora <code>sensors[]</code> del todo
-(<code>src/core/SemaCore.cpp:282</code>); si <code>sensors[]</code> está vacío, también se usa el catálogo fijo
-aunque la macro valga <code>0</code>.</p>
+El catálogo de sensores no tiene interruptor propio: si <code>sensors[]</code> está vacío, se usa el
+catálogo por defecto (<code>src/core/SemaCore.cpp</code> §282-298).</p>
 <h2 id="2-pines-del-catalogo-fijo-boardprofilehpp">2. Pines del catálogo fijo (<code>BoardProfile.hpp</code>)</h2>
 <table>
 <thead>
@@ -10354,10 +10347,10 @@ configurables</strong>. El bus SPI (14/12/15) y los pines RMII son los mismos qu
 </tr>
 <tr>
 <td><code>sensors[model=DS18B20].pin</code></td>
-<td>4 (catálogo fijo)</td>
+<td>4 (catálogo por defecto)</td>
 <td>1-Wire</td>
 <td>bidireccional</td>
-<td>Solo si <code>sensors[]</code> está vacío o <code>SEMA_FIXED_HARDWARE=1</code></td>
+<td>Solo si <code>sensors[]</code> está vacío</td>
 </tr>
 <tr>
 <td><code>sensors[model=ADC].pin</code></td>

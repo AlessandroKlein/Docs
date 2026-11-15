@@ -9403,7 +9403,7 @@
 
 <h1 id="sema-sistema-de-estacion-meteorologica-autonoma">SEMA — Sistema de Estación Meteorológica Autónoma</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía (portada) | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0
+<p><strong>Tipo:</strong> Guía (portada) | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0
 <strong>Hardware:</strong> <code>rev0</code> · <strong>Esquema de configuración:</strong> 1 · <strong>Protocolo:</strong> 1</p>
 </blockquote>
 <h2 id="1-resumen-ejecutivo">1. Resumen ejecutivo</h2>
@@ -9488,9 +9488,9 @@ si un sensor, el MQTT o la microSD fallan, el resto de la estación sigue midien
   configuración (<code>sensors[]</code>), no del código.</li>
 <li><strong>Modular por dentro</strong>: Core, HAL, Event Bus, Scheduler, Storage API, Web/API y
   diagnóstico como piezas separadas.</li>
-<li><strong>Compatible por perfiles</strong>, no por <code>#ifdef</code>: 4 entornos de PlatformIO
-  (<code>esp32doit-devkit-v1</code> 4 MB, <code>esp32-s3-devkitc-1</code> 8 MB, <code>esp32-wroom-32u</code> 16 MB y
-  <code>demo</code>).</li>
+<li><strong>Compatible por perfiles</strong>, no por <code>#ifdef</code>: 6 entornos de PlatformIO
+  (<code>esp32doit-devkit-v1</code> 4 MB, <code>esp32-s3-devkitc-1</code> 8 MB, <code>esp32-c6-devkitc-1</code> 8 MB,
+  <code>esp32-wroom-32u</code> 16 MB, <code>esp32-wroom-32u-32mb</code> 32 MB y <code>demo</code>).</li>
 <li><strong>Multiprotocolo</strong>: I²C, SPI, UART, 1-Wire, ADC, PCNT, RS485/Modbus RTU, CAN/TWAI,
   Ethernet (LAN8720A por RMII o W5500 por SPI), LoRa SX1262 y Zigbee ZNP.</li>
 <li><strong>Configuración transaccional</strong> con rollback y JSON versionado (<code>schema_version: 1</code>).</li>

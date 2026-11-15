@@ -9566,7 +9566,7 @@
 
 <h1 id="expansores-de-entradasalida">Expansores de entrada/salida</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Qué expansores de E/S contempla SEMA, cuáles están <strong>implementados de verdad</strong> y cuáles
 son solo configuración. Verificado contra <code>include/core/ConfigManager.hpp</code>,
@@ -9608,7 +9608,7 @@ fabricante; el repositorio SEMA no los declara.</p>
 <td>SPI (bit-bang: MOSI+SCK+LATCH)</td>
 <td>8 salidas por chip</td>
 <td><code>shift_registers[].{type,latch,pins}</code></td>
-<td>⚠️ Driver escrito pero <strong>compilado fuera</strong> (<code>SEMA_USE_SHIFT=0</code> en los 4 entornos)</td>
+<td>⚠️ Driver escrito pero <strong>compilado fuera</strong> (<code>SEMA_USE_SHIFT=0</code> en los 6 entornos)</td>
 </tr>
 <tr>
 <td><strong>74HC165</strong></td>
@@ -9764,7 +9764,7 @@ fabricante; el repositorio SEMA no los declara.</p>
 </tr>
 <tr>
 <td>Consecuencia</td>
-<td>Con los cuatro entornos actuales, <code>cfg_</code> queda vacío: <code>writeByte()</code> no hace nada y <code>readByte()</code> devuelve <code>0</code>. <code>GET /api/v1/system → shift_enabled</code> informa <code>false</code> y la web <strong>oculta</strong> el editor</td>
+<td>Con los seis entornos actuales, <code>cfg_</code> queda vacío: <code>writeByte()</code> no hace nada y <code>readByte()</code> devuelve <code>0</code>. <code>GET /api/v1/system → shift_enabled</code> informa <code>false</code> y la web <strong>oculta</strong> el editor</td>
 </tr>
 <tr>
 <td>Pines usados</td>

@@ -9487,7 +9487,7 @@
 
 <h1 id="modulos-y-ciclo-de-vida">Módulos y ciclo de vida</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Esta página responde una sola pregunta: <strong>¿qué es un "módulo" en el código de SEMA
 y cómo se activa?</strong> La respuesta corta es que conviven dos definiciones distintas y
@@ -9962,12 +9962,7 @@ opciones en la web. No hay una clase driver que los implemente:</p>
 <tr>
 <td><code>SEMA_PINS_FROM_FILE</code></td>
 <td><code>platformio.ini</code> y <code>HwProfile.hpp</code>; aplicado por <code>applyHwProfile()</code></td>
-<td>Fija los pines de los <strong>buses</strong> (CAN, Modbus, Zigbee, LoRa, Ethernet) desde el archivo, pisando lo que venga de la web. <strong>No</strong> fija los pines del catálogo de sensores: eso lo hace <code>SEMA_FIXED_HARDWARE</code> (<code>BoardProfile.hpp</code>)</td>
-</tr>
-<tr>
-<td><code>SEMA_FIXED_HARDWARE</code></td>
-<td><code>include/core/BoardProfile.hpp</code></td>
-<td>Fija los pines del <strong>catálogo de sensores</strong> (SDA, SCL, 1-Wire, ADC de batería) e ignora <code>config.sensors[]</code>. Por defecto vale 0</td>
+<td>Fija los pines de los <strong>buses</strong> (CAN, Modbus, Zigbee, LoRa, Ethernet) desde el archivo, pisando lo que venga de la web. <strong>No</strong> fija los pines del catálogo de sensores: ese catálogo por defecto se usa cuando <code>sensors[]</code> está vacío</td>
 </tr>
 </tbody>
 </table>

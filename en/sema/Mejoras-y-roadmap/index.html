@@ -3867,10 +3867,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-regla-de-actualizacion" class="md-nav__link">
+  <a href="#4-roadmap-de-domotica-y-compatibilidad-v11080" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Regla de actualización
+        4. Roadmap de domótica y compatibilidad (v1.108.0)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-regla-de-actualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Regla de actualización
       
     </span>
   </a>
@@ -9409,7 +9420,7 @@
 
 <h1 id="mejoras-y-roadmap">Mejoras y roadmap</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Estado del desarrollo y de la <strong>Definition of Done</strong> (<code>README.md</code> §103), verificado
 contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendiente.</p>
@@ -9719,7 +9730,59 @@ contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendie
 </tbody>
 </table>
 <hr />
-<h2 id="4-regla-de-actualizacion">4. Regla de actualización</h2>
+<h2 id="4-roadmap-de-domotica-y-compatibilidad-v11080">4. Roadmap de domótica y compatibilidad (v1.108.0)</h2>
+<p>Estado de la expansión de SEMA + ESP32-Base hacia un framework de domótica y
+automatización de edificios (BACnet/IP, Modbus TCP, expansores, multi-ESP32, mesh,
+coordinador) y de la compatibilidad multi-SoC (fuente: <code>docs/PENDIENTES.md</code> §2.5/§2.6).</p>
+<p><strong>Roadmap domótica:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Alcance</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Expansores (MCP23S17, PCA9685, PCF8574/8575, TCA9548A, SC16IS752, MAX14830, SC18IS602B, ADS1115) + flags <code>SEMA_USE_*</code></td>
+<td>🔄 en curso: <strong>0a ✅</strong> (GPIO/PWM: MCP23S17, PCA9685, PCF8574/8575); <strong>0b ⬜</strong> (UART/mux/ADC)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Modbus TCP + BACnet/IP + verificar CAN</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mesh ESP-NOW sin central + maestro-esclavo (C3/S2/S3; offload web/Ethernet)</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Coordinador + modelo árbol (Casa→Habitación→Dispositivo→Capacidad)</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Esclavos radio C6/H2 (Zigbee/Thread/Matter) + válvulas/concentradores BLE</td>
+<td>⬜</td>
+</tr>
+</tbody>
+</table>
+<p>Decisiones: mesh = <strong>ESP-NOW primero</strong>; primer entregable = Fase 0. Deuda diferida:
+renombrar flags <code>SEMA_USE_*</code> → <code>BASE_USE_*</code>.</p>
+<p><strong>Compatibilidad multi-SoC + detección de chip:</strong></p>
+<ul>
+<li>✅ <strong>Detección de chip</strong>: compile-time (<code>include/base/chip.hpp</code> → <code>BASE_CHIP_*</code> /
+  <code>BASE_HAVE_*</code>) + runtime (<code>base::ChipInfo</code>: <code>chipModel/chipRevision/flashSize/psramSize/coreCount</code>).</li>
+<li>✅ <strong>ESP32-C6 validado</strong>: env <code>esp32-c6-devkitc-1</code> (RISC-V, 8 MB) añadido y compilando;
+  objetivo Matter/Thread/esclavo.</li>
+<li>⬜ Pendiente: envs <strong>S2/C3</strong> por validar; <strong>H2/C5/C61/P4</strong> sin board en <code>espressif32 8.0.0</code>
+  (esperar PlatformIO más nuevo).</li>
+</ul>
+<h2 id="5-regla-de-actualizacion">5. Regla de actualización</h2>
 <p>Este archivo se actualiza en el mismo ciclo que el código: cada ítem que cambia de
 estado se refleja aquí, en el <a href="../CHANGELOG/">CHANGELOG</a> y en la
 <a href="../Evolucion/">Evolución</a>. Es el equivalente en el repo Docs de

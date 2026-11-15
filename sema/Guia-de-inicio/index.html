@@ -9570,7 +9570,7 @@
 
 <h1 id="guia-de-inicio">Guía de inicio</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Documentación para <strong>entender y usar SEMA sin conocer el proyecto ni el código de
 antemano</strong>. Los apartados son progresivos: se puede leer de principio a fin.</p>
@@ -9715,20 +9715,19 @@ publicadores, almacenamiento, red, web) que el Core orquesta.</p>
 </tbody>
 </table>
 <div class="admonition info">
-<p class="admonition-title">Dos mecanismos de pines fijos, no confundir</p>
+<p class="admonition-title">Pines fijos de buses (<code>SEMA_PINS_FROM_FILE</code>)</p>
 <ul>
 <li><strong><code>SEMA_PINS_FROM_FILE</code></strong> (<code>include/hw/HwProfile.hpp</code>, build flag del entorno):
   fija los pines de <strong>buses y módulos</strong> (CAN, Modbus, Zigbee, LoRa, Ethernet) e
-  impide configurarlos por la web. Vale <code>0</code> en WROOM y S3, y <code>1</code> en WROOM-32U.</li>
-<li><strong><code>SEMA_FIXED_HARDWARE</code></strong> (<code>include/core/BoardProfile.hpp</code>, default <code>0</code>): al
-  ponerlo en <code>1</code> se <strong>ignora el catálogo <code>sensors[]</code></strong> y se usa el catálogo fijo de
-  sensores definido en ese archivo (<code>SemaCore::applySensors()</code>).</li>
+  impide configurarlos por la web. Vale <code>0</code> en WROOM, S3 y C6, y <code>1</code> en WROOM-32U.
+  El catálogo de sensores ya no tiene interruptor propio: se usa el catálogo por
+  defecto solo cuando <code>sensors[]</code> está vacío (<code>SemaCore::applySensors()</code>).</li>
 </ul>
 <p>El detalle completo, con restricciones y conflictos, está en
 <a href="../Guia-de-pines/">Guía de pines</a>.</p>
 </div>
 <h3 id="33-catalogo-por-defecto-sin-sensors-configurado">3.3 Catálogo por defecto (sin <code>sensors[]</code> configurado)</h3>
-<p>Si <code>sensors[]</code> está vacío (o <code>SEMA_FIXED_HARDWARE = 1</code>), <code>SemaCore</code> arma este catálogo
+<p>Si <code>sensors[]</code> está vacío, <code>SemaCore</code> arma este catálogo
 (<code>src/core/SemaCore.cpp</code> §282-298):</p>
 <table>
 <thead>

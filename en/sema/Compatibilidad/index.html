@@ -9432,7 +9432,7 @@
 
 <h1 id="compatibilidad">Compatibilidad</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -9442,14 +9442,14 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <code>src/core/web/HttpServer.cpp</code>.</p>
 <h2 id="1-como-se-decide-la-compatibilidad">1. Cómo se decide la compatibilidad</h2>
 <ol>
-<li><strong>Compilación</strong>: <code>HwProfile.hpp:28-30</code> aborta con <code>#error</code> si no se define
-   <code>BOARD_ESP32_WROOM</code>, <code>BOARD_ESP32_WROOM32U</code> o <code>BOARD_ESP32_S3</code>. No hay rama para S2, C3,
-   C5, C6 ni H2.</li>
+<li><strong>Compilación</strong>: <code>HwProfile.hpp:28-29</code> aborta con <code>#error</code> si no se define
+   <code>BOARD_ESP32_WROOM</code>, <code>BOARD_ESP32_WROOM32U</code>, <code>BOARD_ESP32_S3</code>, <code>BOARD_ESP32_C6</code> o
+   <code>BOARD_ESP32_P4</code>. No hay rama para S2, C3, C5 ni H2.</li>
 <li><strong>Identidad</strong>: de la macro <code>BOARD_*</code> salen <code>SEMA_BOARD_ID</code>, <code>SEMA_FLASH_MB</code> y
    <code>SEMA_NATIVE_ETH</code>, que <code>GET /api/v1/system</code> publica como <code>board</code>, <code>flash_mb</code> y <code>native_eth</code>.</li>
 <li><strong>Features</strong>: <code>SEMA_USE_ETHERNET</code>, <code>SEMA_USE_LORA</code>, <code>SEMA_USE_MODBUS</code>, <code>SEMA_USE_CAN</code>,
-   <code>SEMA_USE_ZIGBEE</code> valen <code>1</code> por defecto (<code>HwProfile.hpp:50-65</code>) y los cuatro entornos los
-   activan explícitamente. <code>SEMA_USE_SHIFT</code> vale <code>0</code> por defecto y <strong>ningún entorno lo activa</strong>.</li>
+   <code>SEMA_USE_ZIGBEE</code> valen <code>1</code> por defecto (<code>HwProfile.hpp:68-85</code>) y los entornos los
+   activan explícitamente (salvo el C6, que los deshabilita con <code>=0</code>). <code>SEMA_USE_SHIFT</code> vale <code>0</code> por defecto y <strong>ningún entorno lo activa</strong>.</li>
 <li><strong>Capacidades en runtime</strong>: <code>SemaCore.cpp:66-78</code> declara <code>WiFi</code>, <code>Bluetooth</code>, <code>Adc</code>,
    <code>Dac</code>, <code>Pcnt</code>, <code>LedcPwm</code>, <code>I2c</code>, <code>Spi</code>, <code>Uart</code>, <code>Can</code>, <code>RtcGpio</code>, <code>DeepSleep</code> y <code>DualCore</code>
    <strong>siempre</strong>, con independencia de la placa. <code>GET /api/v1/capabilities</code> devuelve esa lista.
@@ -9464,6 +9464,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <th style="text-align: center;">esp32doit-devkit-v1 (WROOM 4 MB)</th>
 <th style="text-align: center;">esp32-s3-devkitc-1 (S3 8 MB)</th>
 <th style="text-align: center;">esp32-wroom-32u (16 MB, PCB futura)</th>
+<th style="text-align: center;">esp32-c6-devkitc-1 (C6 8 MB)</th>
 <th style="text-align: center;">demo</th>
 </tr>
 </thead>
@@ -9473,6 +9474,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ <code>WiFi.h</code>, STA + AP, escaneo y mDNS</td>
 <td style="text-align: center;">✅ igual</td>
 <td style="text-align: center;">✅ igual</td>
+<td style="text-align: center;">✅ igual (Wi-Fi 6)</td>
 <td style="text-align: center;">✅ (valores ficticios)</td>
 </tr>
 <tr>
@@ -9480,6 +9482,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">⚠️ <code>Capability::Bluetooth</code> declarada, <strong>sin código BLE ni BT Classic</strong> en <code>src/</code></td>
 <td style="text-align: center;">⚠️ igual (el S3 solo tiene BLE 5.0, sin Classic, datasheet)</td>
 <td style="text-align: center;">⚠️ igual</td>
+<td style="text-align: center;">⚠️ BLE 5.0, sin Classic</td>
 <td style="text-align: center;">⚠️ igual</td>
 </tr>
 <tr>
@@ -9487,6 +9490,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ <code>SEMA_NATIVE_ETH 1</code></td>
 <td style="text-align: center;">❌ no tiene EMAC (<code>SEMA_NATIVE_ETH 0</code>)</td>
 <td style="text-align: center;">✅ <code>SEMA_NATIVE_ETH 1</code></td>
+<td style="text-align: center;">❌ no tiene EMAC</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
@@ -9494,6 +9498,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">❌ no se usa</td>
 <td style="text-align: center;">✅ host SPI3 (18/19/21) + CS 5</td>
 <td style="text-align: center;">❌ no se usa</td>
+<td style="text-align: center;">❌ no se usa (<code>SEMA_USE_ETHERNET=0</code>)</td>
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
@@ -9501,6 +9506,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">⚠️ solo con el módulo externo CC2652P2 por UART</td>
 <td style="text-align: center;">⚠️ igual</td>
 <td style="text-align: center;">⚠️ igual</td>
+<td style="text-align: center;">⚠️ nativo en el SoC (Matter/Thread), sin driver (<code>SEMA_USE_ZIGBEE=0</code>)</td>
 <td style="text-align: center;">⚠️ igual</td>
 </tr>
 <tr>
@@ -9508,6 +9514,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ 1 controlador TWAI</td>
 <td style="text-align: center;">✅ 1 controlador TWAI</td>
 <td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌ <code>SEMA_USE_CAN=0</code></td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
@@ -9515,6 +9522,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ CS 10, bus 14/12/15</td>
 <td style="text-align: center;">✅ CS 10, bus 12/13/11</td>
 <td style="text-align: center;">✅ CS 10, bus 14/12/15</td>
+<td style="text-align: center;">❌ <code>SEMA_USE_LORA=0</code></td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
@@ -9522,6 +9530,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ ADC1 (32-39) usable con Wi-Fi; ADC2 no</td>
 <td style="text-align: center;">✅ ADC1 (1-10) usable con Wi-Fi; ADC2 no</td>
 <td style="text-align: center;">✅ ADC1</td>
+<td style="text-align: center;">✅ ADC1; ADC2 no</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
@@ -9529,6 +9538,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ DAC1 (25), DAC2 (26); sin API en el firmware</td>
 <td style="text-align: center;">❌ el S3 no tiene DAC, pero <code>Capability::Dac</code> se declara igual</td>
 <td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌ no tiene DAC</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
@@ -9537,12 +9547,14 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ igual</td>
 <td style="text-align: center;">✅ igual</td>
 <td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
 </tr>
 <tr>
 <td>PSRAM</td>
 <td style="text-align: center;">❌ no se habilita ni se declara (<code>Capability::Psram</code> nunca se marca)</td>
 <td style="text-align: center;">❌ el entorno es la variante <strong>N8</strong> (sin PSRAM)</td>
 <td style="text-align: center;">❌ no se habilita</td>
+<td style="text-align: center;">❌ variante N8 (sin PSRAM)</td>
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
@@ -9550,11 +9562,13 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ <code>Capability::DualCore</code> declarada</td>
 <td style="text-align: center;">✅ declarada</td>
 <td style="text-align: center;">✅ declarada</td>
+<td style="text-align: center;">❌ 1 núcleo RISC-V</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
 <td>RTC GPIO / deep sleep</td>
 <td style="text-align: center;">✅ <code>ext0</code> y timer (<code>PowerManager.cpp</code>)</td>
+<td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
@@ -9564,6 +9578,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">✅ CS 4 (default)</td>
 <td style="text-align: center;">✅ CS 4</td>
 <td style="text-align: center;">✅ CS 4</td>
+<td style="text-align: center;">✅ CS 4</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
@@ -9571,6 +9586,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">❌ <code>SEMA_USE_SHIFT=0</code> compila fuera el driver</td>
 <td style="text-align: center;">❌ igual</td>
 <td style="text-align: center;">❌ igual</td>
+<td style="text-align: center;">❌ <code>SEMA_USE_SHIFT=0</code></td>
 <td style="text-align: center;">❌ igual</td>
 </tr>
 <tr>
@@ -9578,6 +9594,7 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 <td style="text-align: center;">configurables por web (<code>SEMA_PINS_FROM_FILE=0</code>)</td>
 <td style="text-align: center;">configurables por web</td>
 <td style="text-align: center;"><strong>fijos</strong> (<code>SEMA_PINS_FROM_FILE=1</code>)</td>
+<td style="text-align: center;">configurables por web (<code>SEMA_PINS_FROM_FILE=0</code>)</td>
 <td style="text-align: center;">configurables por web</td>
 </tr>
 </tbody>
@@ -9776,6 +9793,15 @@ tablas se monta como <strong>LittleFS</strong>.</p>
 <td>0x2000</td>
 </tr>
 <tr>
+<td>esp32-c6-devkitc-1</td>
+<td>8 MB</td>
+<td><code>partitions_8mb.csv</code></td>
+<td>0x300000 cada una (3072 KB)</td>
+<td>0x1F0000 (1984 KB) desde 0x610000</td>
+<td>0x5000</td>
+<td>0x2000</td>
+</tr>
+<tr>
 <td>esp32-wroom-32u</td>
 <td>16 MB</td>
 <td><code>partitions_16mb.csv</code></td>
@@ -9796,12 +9822,12 @@ tablas se monta como <strong>LittleFS</strong>.</p>
 </tbody>
 </table>
 <ul>
-<li>OTA con doble ranura (<code>app0</code>/<code>app1</code>) en las tres placas: alcanza para actualizar sin
+<li>OTA con doble ranura (<code>app0</code>/<code>app1</code>) en todas las placas: alcanza para actualizar sin
   quedar sin firmware.</li>
 <li>El histórico de gráficas <strong>no</strong> usa la partición interna: vive en la microSD
   (<code>HistoryStore::enableSd</code>). Sin SD, las gráficas quedan vacías a propósito.</li>
 <li>El nombre del binario lo arma <code>GET /api/v1/system</code>: <code>sema_&lt;versión&gt;_&lt;board_id&gt;.bin</code>
-  (p. ej. <code>sema_1.107.0_esp32-s3-8mb.bin</code>).</li>
+  (p. ej. <code>sema_1.108.0_esp32-s3-8mb.bin</code>).</li>
 </ul>
 <h2 id="5-sensores-por-interfaz">5. Sensores por interfaz</h2>
 <p>Los 21 modelos de <code>SensorFactory::create()</code> (<code>src/core/sensors/SensorFactory.cpp</code>), con la
@@ -9993,7 +10019,7 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <tr>
 <td>74HC595 / 74HC165</td>
 <td>❌ compilado fuera</td>
-<td><code>SEMA_USE_SHIFT=0</code> en los cuatro entornos; sin cascada</td>
+<td><code>SEMA_USE_SHIFT=0</code> en los seis entornos; sin cascada</td>
 </tr>
 <tr>
 <td>MCP23S17 (SPI, 16 E/S)</td>
@@ -10049,12 +10075,17 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <td>Reasignar <code>lora.dio1</code>/<code>busy</code> (26/27 son de la flash)</td>
 </tr>
 <tr>
+<td>ESP32-C6</td>
+<td>✅ soportado por <code>BOARD_ESP32_C6</code> (env <code>esp32-c6-devkitc-1</code>)</td>
+<td>RISC-V de 1 núcleo, sin EMAC; Ethernet/LoRa/CAN/Zigbee deshabilitados (<code>SEMA_USE_*=0</code>); objetivo Matter/Thread/esclavo</td>
+</tr>
+<tr>
 <td>ESP32-S2</td>
 <td>❌</td>
 <td>No tiene Bluetooth; <code>HwProfile.hpp</code> no tiene rama: habría que agregar <code>BOARD_*</code>, el <code>#elif</code> de SPI/ETH y revisar particiones</td>
 </tr>
 <tr>
-<td>ESP32-C3 / C5 / C6 / H2</td>
+<td>ESP32-C3 / C5 / H2</td>
 <td>❌</td>
 <td>RISC-V de un núcleo (o sin Wi-Fi en H2): <code>Capability::DualCore</code> se declara igual y el <code>#error</code> de <code>HwProfile.hpp</code> bloquea la compilación</td>
 </tr>
@@ -10143,7 +10174,7 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <tbody>
 <tr>
 <td>Firmware SEMA</td>
-<td>1.107.0 · HW <code>rev0</code></td>
+<td>1.108.0 · HW <code>rev0</code></td>
 </tr>
 <tr>
 <td>Schema de configuración</td>

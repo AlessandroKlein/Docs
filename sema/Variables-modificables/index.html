@@ -9414,7 +9414,7 @@
 
 <h1 id="variables-modificables">Variables modificables</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Configuración | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Configuración | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Clasificación <strong>real</strong> (verificada contra el código) de cada grupo de variables
 del JSON de configuración según lo que pasa al guardarlas: se aplican en
@@ -9686,8 +9686,8 @@ Es el estado de fábrica pensado para la primera puesta en marcha.</p>
 <li><code>id</code> + <code>channel</code> forman la clave pública <code>&lt;sensor_id&gt;:&lt;channel_id&gt;</code> que usan
   las reglas y las calibraciones.</li>
 <li>Con <code>sensors[]</code> vacío se usa el <strong>catálogo fijo</strong> de seis sensores descrito en
-  <a href="../Referencia-configuracion/">Referencia de configuración</a> §11; con
-  <code>SEMA_FIXED_HARDWARE=1</code> el catálogo fijo se usa siempre.</li>
+  <a href="../Referencia-configuracion/">Referencia de configuración</a> §11; con <code>sensors[]</code>
+  vacío, el catálogo por defecto se usa siempre.</li>
 <li><code>model</code> debe pertenecer al catálogo de 17 modelos; un modelo desconocido no se
   crea y deja un <code>Sensor desconocido: &lt;id&gt; (modelo &lt;model&gt;)</code> en el log serie.</li>
 <li><code>scale</code>/<code>offset</code> se aplican al valor crudo (ejemplo: batería 12 V con divisor

@@ -9444,7 +9444,7 @@
 
 <h1 id="referencia-de-codigo">Referencia de código</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -9455,7 +9455,7 @@ Todos los conteos de líneas de esta página se midieron sobre el repo local con
 <p><strong>Nota (v1.107.0):</strong> los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 publicadores, alarmas, buses e infraestructura) se extrajeron a
 <a href="https://github.com/AlessandroKlein/ESP32-Base"><code>ESP32-Base</code></a> (namespace <code>base::</code>),
-consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.1.0</code>.
+consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.3.1</code>.
 El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 <code>src/core/SemaGlue.cpp</code>.</p>
@@ -9826,7 +9826,7 @@ SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) 
 <tr>
 <td>Board (PCB)</td>
 <td><code>core/BoardProfile.hpp</code></td>
-<td><code>SEMA_FIXED_HARDWARE</code> + pines del catálogo fijo</td>
+<td>Pines del catálogo por defecto de sensores</td>
 <td style="text-align: right;">39</td>
 </tr>
 </tbody>
@@ -10171,11 +10171,6 @@ vive en <code>loop()</code></strong> sino en la tarea del scheduler <code>sensor
 <td><code>SEMA_PINS_FROM_FILE</code></td>
 <td><code>0</code></td>
 <td>Con <code>1</code>, <code>ConfigManager::applyHwProfile()</code> sobrescribe pines de CAN/Modbus/Zigbee/LoRa/Ethernet</td>
-</tr>
-<tr>
-<td><code>SEMA_FIXED_HARDWARE</code></td>
-<td><code>0</code></td>
-<td>Con <code>1</code>, se ignora <code>config.sensors[]</code> y se usa el catálogo fijo de <code>SemaCore.cpp:284-297</code></td>
 </tr>
 <tr>
 <td><code>SEMA_DEMO</code></td>

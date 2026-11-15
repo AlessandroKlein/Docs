@@ -9436,7 +9436,7 @@
 
 <h1 id="arquitectura">Arquitectura</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Este documento describe la arquitectura <strong>tal como está implementada</strong> en el firmware
 v1.103.0 (rama <code>main</code>). Todo lo que figura acá se verificó contra el código en
@@ -9448,7 +9448,7 @@ genéricos (WiFi, Ethernet, web, NVS, runtime, publicadores, alarmas, buses e
 infraestructura) viven en la librería reutilizable
 <a href="https://github.com/AlessandroKlein/ESP32-Base"><code>ESP32-Base</code></a> (namespace <code>base::</code>),
 y SEMA los consume por <code>lib_deps</code>
-<code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.1.0</code>. SEMA conserva solo el
+<code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.3.1</code>. SEMA conserva solo el
 dominio meteorológico (sensores, derivadas, pronóstico), acoplado a la base mediante
 <code>src/core/SemaGlue.cpp</code>, que implementa los 14 hooks de <code>base::CoreHooks</code>. Las
 secciones siguientes describen el estado previo a la extracción: los módulos
@@ -9690,7 +9690,7 @@ lectura de sensores, no al revés.</p>
 <tr>
 <td><code>include/core/BoardProfile.hpp</code></td>
 <td>Runtime</td>
-<td>Pines del <strong>catálogo fijo</strong> de sensores (<code>SEMA_PIN_I2C_SDA=21</code>, <code>SEMA_PIN_I2C_SCL=22</code>, <code>SEMA_PIN_ONEWIRE=4</code>, <code>SEMA_PIN_BATTERY_ADC=34</code>) y el interruptor <code>SEMA_FIXED_HARDWARE</code> (0 por defecto)</td>
+<td>Pines del <strong>catálogo fijo</strong> de sensores (<code>SEMA_PIN_I2C_SDA=21</code>, <code>SEMA_PIN_I2C_SCL=22</code>, <code>SEMA_PIN_ONEWIRE=4</code>, <code>SEMA_PIN_BATTERY_ADC=34</code>) usado cuando <code>sensors[]</code> está vacío</td>
 </tr>
 </tbody>
 </table>
@@ -9699,16 +9699,16 @@ lectura de sensores, no al revés.</p>
 <code>SEMA_BOARD_ID</code> (<code>"esp32-wroom-4mb"</code>, <code>"esp32-wroom32u-16mb"</code>, <code>"esp32-s3-8mb"</code>),
 <code>SEMA_FLASH_MB</code> (4/16/8) y <code>SEMA_NATIVE_ETH</code> (1/1/0). La convivencia entre los dos
 perfiles se resuelve en <code>SemaCore::applySensors()</code> (líneas 280-313):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>if (SEMA_FIXED_HARDWARE == 1 || config.sensors está vacío):
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>      catálogo fijo de BoardProfile.hpp (BME280 "EXT", SHT40 "INT", DS18B20 "SOIL",
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>if (config.sensors está vacío):
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>      catálogo por defecto de BoardProfile.hpp (BME280 "EXT", SHT40 "INT", DS18B20 "SOIL",
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>      BH1750 "LUX", AHT20 "AUX", AdcSensor "BATT" con escala 3.3*11/4095 y offset 0)
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>else:
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>      config.sensors[] → SensorFactory::create(spec) por cada entrada habilitada
 </span></code></pre></div>
-<p>Con <code>SEMA_FIXED_HARDWARE = 1</code> la configuración <code>sensors[]</code> de la web <strong>se ignora
-por completo</strong>; con el valor por defecto (0) los <code>SEMA_PIN_*</code> de <code>BoardProfile.hpp</code>
-quedan solo como fallback. Los dos interruptores son <strong>independientes y
-complementarios</strong>:</p>
+<p>Cuando <code>sensors[]</code> está vacío se usa el catálogo por defecto de <code>BoardProfile.hpp</code>
+(<code>SEMA_PIN_*</code>); si hay sensores configurados, esos pines quedan solo como fallback.
+<code>SEMA_PINS_FROM_FILE</code> fija solo los pines de <strong>buses</strong>; el catálogo de sensores ya no
+tiene interruptor propio:</p>
 <table>
 <thead>
 <tr>
@@ -9725,20 +9725,15 @@ complementarios</strong>:</p>
 <td>Pines de los <strong>buses</strong>: CAN (TX/RX), Modbus (RX/TX/DE-RE), Zigbee (RX/TX), LoRa (CS/RST/DIO1/BUSY) y Ethernet (MDC/MDIO/PHY/power/CS/RST/IRQ/SCK/MISO/MOSI)</td>
 <td>Al final de <code>ConfigManager::parseInto()</code> se llama <code>applyHwProfile(c)</code> (<code>ConfigManager.cpp:459</code>), que sobrescribe esos pines con los de <code>HwProfile.hpp</code> e <strong>ignora lo que venga de la web</strong></td>
 </tr>
-<tr>
-<td><code>SEMA_FIXED_HARDWARE=1</code></td>
-<td><code>BoardProfile.hpp</code></td>
-<td>Pines del <strong>catálogo de sensores</strong> (SDA, SCL, 1-Wire, ADC de batería) y qué catálogo se usa</td>
-<td><code>applySensors()</code> ignora <code>config.sensors[]</code> por completo</td>
-</tr>
 </tbody>
 </table>
-<p>Con ambos en 0 (default de <code>esp32doit-devkit-v1</code> y <code>esp32-s3-devkitc-1</code>) todos los
-pines son configurables desde la web; el entorno <code>esp32-wroom-32u</code> usa
-<code>SEMA_PINS_FROM_FILE=1</code> para congelar los pines de bus de la PCB futura.
+<p>Con <code>SEMA_PINS_FROM_FILE=0</code> (default de <code>esp32doit-devkit-v1</code>, <code>esp32-s3-devkitc-1</code>
+y <code>esp32-c6-devkitc-1</code>) todos los pines son configurables desde la web; el entorno
+<code>esp32-wroom-32u</code> usa <code>SEMA_PINS_FROM_FILE=1</code> para congelar los pines de bus de la
+PCB futura.
 ⚠️ <code>SEMA_PINS_FROM_FILE</code> <strong>no</strong> fija los pines I²C de los sensores (<code>i2c_sda</code> /
-<code>i2c_scl</code> siguen tomándose del JSON), y <code>SEMA_FIXED_HARDWARE</code> no está definido en
-<code>platformio.ini</code>, así que su valor por defecto (0) rige en todos los entornos.</p>
+<code>i2c_scl</code> siguen tomándose del JSON); esos vienen del JSON o del catálogo por
+defecto de <code>BoardProfile.hpp</code> cuando <code>sensors[]</code> está vacío.</p>
 <h2 id="7-grafo-de-dependencias-entre-servicios">7. Grafo de dependencias entre servicios</h2>
 <p>Dependencias verificadas por construcción (<code>include/core/SemaCore.hpp</code>, líneas
 38-44 y 122-158):</p>

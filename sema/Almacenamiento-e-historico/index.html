@@ -9474,7 +9474,7 @@
 <p><strong>Tipo:</strong> Referencia
 <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.107.0</p>
+<strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>Dónde guarda SEMA cada cosa, con qué formato, con qué límites y qué se pierde al
 reiniciar. Fuentes: <code>include/core/storage/Storage.hpp</code>, <code>include/core/storage/NvsStore.hpp</code>,
@@ -9575,7 +9575,7 @@ Arduino-ESP32 y es el único backend que implementa hoy la interfaz <code>KeyVal
 </tbody>
 </table>
 <p>Partición NVS (<code>partitions_4mb.csv</code>, <code>partitions_8mb.csv</code>, <code>partitions_16mb.csv</code>):
-offset <code>0x9000</code>, tamaño <code>0x5000</code> = <strong>20 480 bytes (20 KB)</strong> en las tres placas.</p>
+offset <code>0x9000</code>, tamaño <code>0x5000</code> = <strong>20 480 bytes (20 KB)</strong> en todas las placas.</p>
 <p>Fallo de escritura: si <code>putString("config", …)</code> falla (NVS lleno o fragmentado),
 <code>ConfigManager::save()</code> hace <code>store_.clear()</code> y reintenta una vez. Consecuencia
 documentada en el propio código: <strong>se pierden la config anterior y el layout</strong>, pero se

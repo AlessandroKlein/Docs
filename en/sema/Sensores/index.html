@@ -9537,7 +9537,7 @@
 
 <h1 id="sensores">Sensores</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.107.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.108.0</p>
 </blockquote>
 <p>SEMA soporta <strong>17 modelos de sensor</strong> en <strong>5 interfaces</strong> (I²C, 1-Wire, ADC, PCNT y
 UART). El catálogo es <em>config-driven</em>: cada sensor se declara en el array <code>sensors[]</code>
@@ -10236,8 +10236,8 @@ la librería (2/3×, rango ±6,144 V) y <code>readADC_SingleEnded()</code> devue
 sensor; el valor real depende de la calibración de cada instalación (ver
 <a href="../Calibracion/">Calibración</a>).</p>
 <h2 id="6-catalogo-por-defecto">6. Catálogo por defecto</h2>
-<p><code>SemaCore::applySensors()</code> registra este catálogo fijo cuando
-<code>SEMA_FIXED_HARDWARE == 1</code> <strong>o</strong> cuando <code>sensors[]</code> está vacío:</p>
+<p><code>SemaCore::applySensors()</code> registra este catálogo por defecto cuando
+<code>sensors[]</code> está vacío:</p>
 <table>
 <thead>
 <tr>
@@ -10300,15 +10300,11 @@ Pines en <code>include/core/BoardProfile.hpp</code>.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>SEMA_FIXED_HARDWARE == 1</code></td>
-<td>Se ignora <code>sensors[]</code> por completo; siempre el catálogo por defecto.</td>
-</tr>
-<tr>
-<td><code>SEMA_FIXED_HARDWARE == 0</code> y <code>sensors[]</code> vacío</td>
+<td><code>sensors[]</code> vacío</td>
 <td>Catálogo por defecto.</td>
 </tr>
 <tr>
-<td><code>SEMA_FIXED_HARDWARE == 0</code> y <code>sensors[]</code> no vacío</td>
+<td><code>sensors[]</code> no vacío</td>
 <td><strong>Reemplaza</strong> el catálogo: solo se registran las entradas con <code>enabled: true</code>.</td>
 </tr>
 <tr>
