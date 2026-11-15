@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,22 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.110.0] - 2026-11-15
+
+### Added
+
+- **Fase 0b — expansores UART/SPI/mux/ADC** (vía `ESP32-Base` v0.5.0). Cuatro drivers
+  nuevos, todos con flag de compilación `-D SEMA_USE_*=0/1` (default OFF), configuración
+  y rutas web GET/POST `/api/v1/*`:
+  - **SC16IS752** — UART dual por I²C (`SEMA_USE_SC16IS752`; librería `td-er/SC16IS752@^1.0.2`).
+  - **SC18IS602B** — puente I²C→SPI (`SEMA_USE_SC18IS602B`; librería `maxgerhardt/SC18IS602B-arduino@^1.0.0`).
+  - **TCA9548A** — multiplexor I²C de 8 canales (`SEMA_USE_TCA9548A`; librería `robtillaart/TCA9548@^0.3.2`).
+  - **ADS1115** — ADC 16-bit de 4 canales (`SEMA_USE_ADS1115`; librería `robtillaart/ADS1X15@^0.6.2`).
+- `ESP32-Base` v0.4.0 → v0.5.0.
+
+> **Nota:** **MAX14830** (UART cuádruple por SPI) queda **diferido** — sin librería en
+> el registry de PlatformIO.
 
 ## [1.109.0] - 2026-11-15
 
@@ -1278,6 +1294,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.110.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.110.0
 [1.109.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.109.0
 [1.108.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.108.0
 [1.107.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.107.0

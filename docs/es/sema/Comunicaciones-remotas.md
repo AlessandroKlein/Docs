@@ -11,7 +11,7 @@ tags:
 
 > **Tipo:** Referencia | **Estado:** En desarrollo
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.109.0
+> **Firmware:** v1.110.0
 
 Buses y radios de SEMA más allá del WiFi: **Modbus RTU** (RS485), **CAN/TWAI**,
 **LoRa** (SX1262) y **Zigbee** (CC2652P2), más los **publicadores** salientes

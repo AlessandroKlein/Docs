@@ -6,7 +6,7 @@ tags:
 
 # SEMA — Sistema de Estación Meteorológica Autónoma
 
-> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
+> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
 > **Hardware:** `rev0` · **Esquema de configuración:** 1 · **Protocolo:** 1
 
 ## 1. Resumen ejecutivo

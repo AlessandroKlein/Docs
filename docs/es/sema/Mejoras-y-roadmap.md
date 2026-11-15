@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
 
 Estado del desarrollo y de la **Definition of Done** (`README.md` §103), verificado
 contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendiente.
@@ -104,7 +104,7 @@ coordinador) y de la compatibilidad multi-SoC (fuente: `docs/PENDIENTES.md` §2.
 
 | Fase | Alcance | Estado |
 |------|---------|--------|
-| 0 | Expansores (MCP23S17, PCA9685, PCF8574/8575, TCA9548A, SC16IS752, MAX14830, SC18IS602B, ADS1115) + flags `SEMA_USE_*` | 🔄 en curso: **0a ✅** (GPIO/PWM: MCP23S17, PCA9685, PCF8574/8575); **0b ⬜** (UART/mux/ADC) |
+| 0 | Expansores (MCP23S17, PCA9685, PCF8574/8575, TCA9548A, SC16IS752, SC18IS602B, ADS1115) + flags `SEMA_USE_*` | ✅ **0a** (GPIO/PWM: MCP23S17, PCA9685, PCF8574/8575) · **0b** (UART/mux/ADC: SC16IS752, SC18IS602B, TCA9548A, ADS1115); MAX14830 ⬜ diferido (sin librería en registry) |
 | 1 | Modbus TCP + BACnet/IP + verificar CAN | ⬜ |
 | 2 | Mesh ESP-NOW sin central + maestro-esclavo (C3/S2/S3; offload web/Ethernet) | ⬜ |
 | 3 | Coordinador + modelo árbol (Casa→Habitación→Dispositivo→Capacidad) | ⬜ |

@@ -6,7 +6,7 @@ tags:
 
 # Tareas y concurrencia
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
 
 Esta página documenta el modelo de ejecución real del firmware v1.103.0. La
 conclusión principal, verificada contra el código, es que **SEMA no crea ninguna

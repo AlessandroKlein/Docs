@@ -7,7 +7,7 @@ tags:
 
 # Expansores de entrada/salida
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.109.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
 
 Qué expansores de E/S contempla SEMA, cuáles están **implementados de verdad** y cuáles
 son solo configuración. Verificado contra `include/core/ConfigManager.hpp`,
@@ -26,9 +26,11 @@ son solo configuración. Verificado contra `include/core/ConfigManager.hpp`,
 | **MCP23S17** | SPI | 16 (A0-A7, B0-B7) | `mcp23s17_cs`, `mcp23s17_pins[16]` | ❌ Solo configuración: no hay driver |
 | **74HC595** | SPI (bit-bang: MOSI+SCK+LATCH) | 8 salidas por chip | `shift_registers[].{type,latch,pins}` | ⚠️ Driver escrito pero **compilado fuera** (`SEMA_USE_SHIFT=0` en los 6 entornos) |
 | **74HC165** | SPI (bit-bang: MOSI+SCK+LATCH) | 8 entradas por chip | `shift_registers[].{type,latch,pins}` | ⚠️ Igual que el 74HC595 |
-| **ADS1115** | I²C | 4 (A0-A3, 16 bits) | `sensors[model=ADS1115].{pin,channel,scale,offset}` | ✅ Implementado, pero como **sensor**, no como GPIO |
-| **MAX14830** | SPI → 4 UART | 4 puertos serie | `spi_expanders[].{type,cs}` | ❌ Solo configuración: no hay driver |
-| **SC18IS602B** | SPI → I²C | 1 bus I²C puenteado | `spi_expanders[].{type,cs}` | ❌ Solo configuración: no hay driver |
+| **ADS1115** | I²C | 4 (A0-A3, 16 bits) | `sensors[model=ADS1115].{pin,channel,scale,offset}` | ✅ Sensor + driver dedicado (`SEMA_USE_ADS1115`, v1.110.0) |
+| **TCA9548A** | I²C | 8 canales (mux) | — | ✅ Driver (`SEMA_USE_TCA9548A`, v1.110.0) |
+| **SC16IS752** | I²C | 2 UART | — | ✅ Driver (`SEMA_USE_SC16IS752`, v1.110.0) |
+| **MAX14830** | SPI → 4 UART | 4 puertos serie | `spi_expanders[].{type,cs}` | ⬜ Diferido: sin driver (sin librería en registry) |
+| **SC18IS602B** | I²C → SPI | 1 bus SPI puenteado | `spi_expanders[].{type,cs}` | ✅ Driver (`SEMA_USE_SC18IS602B`, v1.110.0) |
 
 ## 2. MCP23017 (I²C) — implementado
 
@@ -232,6 +234,25 @@ perderá la dirección del expansor y los pines caerán a GPIO nativo.
 | Capacitor | 100 nF entre VDD y GND (datasheet) |
 | Conexión | SI/SO/SCK→bus SPI de SEMA · CS→`spi_expanders[].cs` · SDA/SCL del puente→sensores I²C |
 | Notas | ❌ Sin driver en el firmware: `sensors[].bus` (el CS del puente) se guarda pero ningún driver lo usa |
+
+## 10. Expansores Fase 0b (v1.110.0) — drivers en ESP32-Base
+
+Desde v1.110.0 estos expansores tienen **driver** en
+[`ESP32-Base`](https://github.com/AlessandroKlein/ESP32-Base) v0.5.0. Todos compilan
+detrás de un flag `-D SEMA_USE_*=0/1` (default **OFF**) y exponen configuración y rutas
+web GET/POST bajo `/api/v1/*`.
+
+| Expansor | Flag | Librería | Función |
+|----------|------|----------|---------|
+| **SC16IS752** | `SEMA_USE_SC16IS752` | `td-er/SC16IS752@^1.0.2` | UART dual por I²C |
+| **SC18IS602B** | `SEMA_USE_SC18IS602B` | `maxgerhardt/SC18IS602B-arduino@^1.0.0` | Puente I²C→SPI |
+| **TCA9548A** | `SEMA_USE_TCA9548A` | `robtillaart/TCA9548@^0.3.2` | Multiplexor I²C de 8 canales |
+| **ADS1115** | `SEMA_USE_ADS1115` | `robtillaart/ADS1X15@^0.6.2` | ADC 16-bit de 4 canales |
+
+> **Nota:** **MAX14830** (UART cuádruple por SPI) queda **diferido**: no hay librería
+> para él en el registry de PlatformIO (ver §6). El apartado §7 describe el SC18IS602B
+> en su estado previo («solo configuración»); desde v1.110.0 ese expansor ya tiene
+> driver en `ESP32-Base` (dirección real del puente: **I²C→SPI**).
 
 ---
 

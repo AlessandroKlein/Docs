@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.109.0
+> **Firmware:** v1.110.0
 
 Dónde guarda SEMA cada cosa, con qué formato, con qué límites y qué se pierde al
 reiniciar. Fuentes: `include/core/storage/Storage.hpp`, `include/core/storage/NvsStore.hpp`,
