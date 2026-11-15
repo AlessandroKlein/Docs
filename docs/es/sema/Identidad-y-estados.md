@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** Referencia | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.106.0
+> **Firmware:** v1.107.0
 
 Identidad de la estación y **todos** los estados que el firmware expone o maneja:
 salud, calidad de medición, energía, red, sesión web, eventos y capacidades.

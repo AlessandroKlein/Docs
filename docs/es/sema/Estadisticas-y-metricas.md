@@ -6,7 +6,7 @@ tags:
 
 # Estadísticas y métricas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 Dos familias de métricas: las **del proyecto** (tamaño del código, releases,
 artefactos) y las que el **firmware expone en ejecución** para monitoreo y

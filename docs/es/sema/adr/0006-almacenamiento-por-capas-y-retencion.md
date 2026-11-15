@@ -8,7 +8,7 @@ tags:
 # 0006. Almacenamiento por capas y retención por niveles
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.106.0 | **Decisión origen:** D-0032, D-0046, D-0057
+> **Firmware:** v1.107.0 | **Decisión origen:** D-0032, D-0046, D-0057
 
 ## Contexto
 

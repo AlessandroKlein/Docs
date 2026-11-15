@@ -8,7 +8,7 @@ tags:
 # 0004. Event Bus tipado para desacoplar módulos
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.106.0 | **Decisión origen:** D-0008, D-0045
+> **Firmware:** v1.107.0 | **Decisión origen:** D-0008, D-0045
 
 ## Contexto
 

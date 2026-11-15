@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** En desarrollo
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.106.0
+> **Firmware:** v1.107.0
 
 Perfiles energéticos, medición de batería, deep sleep, wake reasons y lo que falta para una
 estación autónoma. Fuentes: `include/core/PowerManager.hpp`, `src/core/PowerManager.cpp`,

@@ -6,12 +6,24 @@ tags:
 
 # Arquitectura
 
-> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 Este documento describe la arquitectura **tal como está implementada** en el firmware
 v1.103.0 (rama `main`). Todo lo que figura acá se verificó contra el código en
 `src/` e `include/`; lo que es diseño aspiracional y todavía no existe se marca
 explícitamente con ⚠️ o ❌.
+
+> **Nota (v1.107.0, extracción de `ESP32-Base`):** desde esta versión los 65 módulos
+> genéricos (WiFi, Ethernet, web, NVS, runtime, publicadores, alarmas, buses e
+> infraestructura) viven en la librería reutilizable
+> [`ESP32-Base`](https://github.com/AlessandroKlein/ESP32-Base) (namespace `base::`),
+> y SEMA los consume por `lib_deps`
+> `https://github.com/AlessandroKlein/ESP32-Base.git#v0.1.0`. SEMA conserva solo el
+> dominio meteorológico (sensores, derivadas, pronóstico), acoplado a la base mediante
+> `src/core/SemaGlue.cpp`, que implementa los 14 hooks de `base::CoreHooks`. Las
+> secciones siguientes describen el estado previo a la extracción: los módulos
+> genéricos listados como `sema::` o bajo `src/core/`/`include/core/` viven ahora en
+> `ESP32-Base` bajo el namespace `base::`.
 
 ## 1. Qué es SEMA (y qué no)
 

@@ -7,7 +7,7 @@ tags:
 
 # Referencia de configuración (JSON)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 Referencia **exhaustiva** de todas las claves que `ConfigManager` lee y escribe
 (`include/core/ConfigManager.hpp` + `src/core/ConfigManager.cpp`). Es el mismo

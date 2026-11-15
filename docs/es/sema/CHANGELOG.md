@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,21 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.107.0] - 2026-11-15
+
+### Changed
+
+- Extracción de la base reutilizable `ESP32-Base` (librería PlatformIO, `namespace base::`): WiFi, Ethernet, web, NVS, runtime, publicadores, alarmas, buses e infraestructura.
+- SEMA consume la base por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.1.0` (repo `AlessandroKlein/ESP32-Base`, tag `v0.1.0`, commit `b97bc88`).
+- 65 módulos genéricos de `src/core/**`/`include/core/**` se movieron a `ESP32-Base`; SEMA conserva el dominio meteorológico (sensores, derivadas, pronóstico) vía `src/core/SemaGlue.cpp`, que implementa 14 hooks `base::CoreHooks`.
+- Las magnitudes derivadas (punto de rocío, índice de calor, QNH, VPD, humedad absoluta) ahora fluyen a history/publish/rules/forecast además de la web (antes solo bajo demanda en la web).
+
+### Fixed
+
+- Duplicación de magnitudes derivadas en `/api/v1/sensors` (se emitían dos veces).
+- Const-correctness: getters `const` en `SemaCore` y hooks de viento mutables sin `const_cast`.
+- Flag muerto `SEMA_FIXED_HARDWARE` eliminado (consolidado en el único flag `SEMA_PINS_FROM_FILE`).
 
 ## [1.106.0] - 2026-11-14
 
@@ -1239,6 +1254,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.107.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.107.0
 [1.106.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.106.0
 [1.105.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.105.0
 [1.104.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.104.0

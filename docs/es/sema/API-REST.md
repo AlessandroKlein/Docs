@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** API | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.106.0
+> **Firmware:** v1.107.0
 
 Referencia **exhaustiva** de la API HTTP local de SEMA. Todo lo que sigue está
 verificado contra `src/core/web/HttpServer.cpp` (2637 líneas) y
@@ -135,7 +135,7 @@ Las cinco placas de `platformio.ini` compilan con los cuatro flags en `1`.
 Buffer `DynamicJsonDocument(256)`. Es la identidad mínima de la estación.
 
 ```json
-{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.106.0", "uptime_s": 12345 }
+{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.107.0", "uptime_s": 12345 }
 ```
 
 ### 4.2 `GET /api/v1/health`
@@ -168,7 +168,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
 {
   "id": "SEMA-001",
   "name": "Estación Norte",
-  "firmware": "1.106.0",
+  "firmware": "1.107.0",
   "hw": "rev0",
   "config_schema": 1,
   "protocol": 1,
@@ -193,7 +193,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
   "wifi_host": "sema-001",
   "wifi_mdns": true,
   "reserved_pins": [14, 12, 15],
-  "firmware_file": "sema_1.106.0_esp32-wroom-4mb.bin"
+  "firmware_file": "sema_1.107.0_esp32-wroom-4mb.bin"
 }
 ```
 
@@ -257,7 +257,7 @@ Buffer `1024`.
 
 ```json
 {
-  "firmware": "1.106.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
+  "firmware": "1.107.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
   "reset_reason": 1, "health": "HEALTHY",
   "history": { "entries": 1200, "max": 10000 },
   "tasks": 2, "modules": 0, "events": 7,
@@ -762,7 +762,7 @@ Buffer `8192`. Config completa + metadatos autodescriptivos:
 ```json
 { "schema_version": 1, "station": { "...": "..." },
   "backup_format": "sema-backup", "backup_version": 1,
-  "firmware": "1.106.0", "timestamp": 12345 }
+  "firmware": "1.107.0", "timestamp": 12345 }
 ```
 
 `timestamp` es `millis()/1000` (uptime, no epoch). Los campos `backup_*`,

@@ -8,7 +8,7 @@ tags:
 # 0007. Offline-first con publicadores desacoplados
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.106.0 | **Decisión origen:** D-0009, D-0010, D-0011, D-0030, D-0036, D-0037, D-0047
+> **Firmware:** v1.107.0 | **Decisión origen:** D-0009, D-0010, D-0011, D-0030, D-0036, D-0037, D-0047
 
 ## Contexto
 

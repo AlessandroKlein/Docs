@@ -7,7 +7,7 @@ tags:
 
 # Actuadores y salidas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 SEMA controla **salidas digitales** (relés, LEDs, válvulas, sirenas, bombas) con el
 subsistema de **GPIO standalone** (`GpioManager`), que maneja pines nativos del ESP32,

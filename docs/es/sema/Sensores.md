@@ -6,7 +6,7 @@ tags:
 
 # Sensores
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 SEMA soporta **17 modelos de sensor** en **5 interfaces** (I²C, 1-Wire, ADC, PCNT y
 UART). El catálogo es *config-driven*: cada sensor se declara en el array `sensors[]`

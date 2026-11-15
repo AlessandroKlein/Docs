@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -93,7 +93,7 @@ tablas se monta como **LittleFS**.
 - El histórico de gráficas **no** usa la partición interna: vive en la microSD
   (`HistoryStore::enableSd`). Sin SD, las gráficas quedan vacías a propósito.
 - El nombre del binario lo arma `GET /api/v1/system`: `sema_<versión>_<board_id>.bin`
-  (p. ej. `sema_1.106.0_esp32-s3-8mb.bin`).
+  (p. ej. `sema_1.107.0_esp32-s3-8mb.bin`).
 
 ## 5. Sensores por interfaz
 
@@ -173,7 +173,7 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 
 | Componente | Versión |
 |------------|---------|
-| Firmware SEMA | 1.106.0 · HW `rev0` |
+| Firmware SEMA | 1.107.0 · HW `rev0` |
 | Schema de configuración | 1 (`SEMA_CONFIG_SCHEMA_VERSION`) |
 | Protocolo | 1 (`SEMA_PROTOCOL_VERSION`) |
 | Plataforma (PlatformIO) | `espressif32` con `framework = arduino` |

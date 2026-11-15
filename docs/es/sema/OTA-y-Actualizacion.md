@@ -6,7 +6,7 @@ tags:
 
 # OTA y actualización
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 Actualización de firmware por aire (OTA) con particiones A/B, manifiesto con
 SHA-256 y las limitaciones reales del flujo implementado en

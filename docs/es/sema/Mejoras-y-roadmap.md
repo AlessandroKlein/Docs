@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 Estado del desarrollo y de la **Definition of Done** (`README.md` §103), verificado
 contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendiente.

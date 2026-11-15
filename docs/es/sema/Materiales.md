@@ -7,7 +7,7 @@ tags:
 
 # Materiales (BOM)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.106.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.107.0
 
 BOM completa y por bloques para armar una estación SEMA, con referencias reales del
 repositorio. Cada fila indica si el componente es **obligatorio** (mínimo para que un
