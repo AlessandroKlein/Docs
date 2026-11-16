@@ -9444,7 +9444,7 @@
 
 <h1 id="referencia-de-codigo">Referencia de código</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.111.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.112.0</p>
 </blockquote>
 <p>Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -9455,7 +9455,7 @@ Todos los conteos de líneas de esta página se midieron sobre el repo local con
 <p><strong>Nota (v1.107.0):</strong> los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 publicadores, alarmas, buses e infraestructura) se extrajeron a
 <a href="https://github.com/AlessandroKlein/ESP32-Base"><code>ESP32-Base</code></a> (namespace <code>base::</code>),
-consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.7.0</code>.
+consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.8.0</code>.
 El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 <code>src/core/SemaGlue.cpp</code>.</p>
@@ -9463,6 +9463,11 @@ SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) 
 <code>ModbusTcpManager</code> (servidor Modbus TCP, sockets lwIP) y <code>BacnetManager</code> (servidor
 BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se documentan en
 <a href="../Buses-y-perifericos/">Buses y periféricos</a>.</p>
+<p><strong>Nota (v1.112.0):</strong> se suman <code>MeshManager</code> (mesh ESP-NOW maestro/esclavo, flag
+<code>SEMA_USE_MESH_ESPNOW</code>, ruta <code>/api/v1/mesh</code>) y el selector de PHY Ethernet por flag
+(<code>SEMA_ETH_PHY_LAN8720A</code> / <code>SEMA_ETH_PHY_W5500</code>). El mesh se documenta en
+<a href="../Buses-y-perifericos/">Buses y periféricos</a> §15 y el selector de PHY en
+<a href="../Conectividad-y-red/">Conectividad y red</a> §4.</p>
 </blockquote>
 <h2 id="1-raiz-del-repo">1. Raíz del repo</h2>
 <table>
@@ -10170,6 +10175,21 @@ vive en <code>loop()</code></strong> sino en la tarea del scheduler <code>sensor
 <td><code>SEMA_USE_BACNET</code></td>
 <td><code>0</code> (<strong>SEMA_OFF</strong>)</td>
 <td>Compila <code>BacnetManager</code> (servidor BACnet/IP) + ruta <code>/api/v1/bacnet</code></td>
+</tr>
+<tr>
+<td><code>SEMA_USE_MESH_ESPNOW</code></td>
+<td><code>0</code> (<strong>SEMA_OFF</strong>)</td>
+<td>Compila <code>MeshManager</code> (mesh ESP-NOW maestro/esclavo) + ruta <code>/api/v1/mesh</code></td>
+</tr>
+<tr>
+<td><code>SEMA_ETH_PHY_LAN8720A</code></td>
+<td>—</td>
+<td>Fuerza la PHY nativa RMII (LAN8720A) independientemente de la board</td>
+</tr>
+<tr>
+<td><code>SEMA_ETH_PHY_W5500</code></td>
+<td>—</td>
+<td>Fuerza W5500 por SPI (pines <code>SEMA_ETH_SPI_*</code>) independientemente de la board</td>
 </tr>
 <tr>
 <td><code>SEMA_USE_SHIFT</code></td>

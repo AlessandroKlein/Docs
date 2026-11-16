@@ -2777,10 +2777,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#15-recursos-compartidos-y-limites" class="md-nav__link">
+  <a href="#15-mesh-esp-now-fase-2a" class="md-nav__link">
     <span class="md-ellipsis">
       
-        15. Recursos compartidos y límites
+        15. Mesh ESP-NOW (Fase 2a)
       
     </span>
   </a>
@@ -2788,22 +2788,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#16-fichas-de-conexion" class="md-nav__link">
+  <a href="#16-recursos-compartidos-y-limites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16. Fichas de conexión
+        16. Recursos compartidos y límites
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="16. Fichas de conexión">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-fichas-de-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Fichas de conexión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Fichas de conexión">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#161-lan8720a-phy-ethernet-rmii" class="md-nav__link">
+  <a href="#171-lan8720a-phy-ethernet-rmii" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16.1 LAN8720A (PHY Ethernet RMII)
+        17.1 LAN8720A (PHY Ethernet RMII)
       
     </span>
   </a>
@@ -2811,10 +2822,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#162-w5500-ethernet-spi" class="md-nav__link">
+  <a href="#172-w5500-ethernet-spi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16.2 W5500 (Ethernet SPI)
+        17.2 W5500 (Ethernet SPI)
       
     </span>
   </a>
@@ -2822,10 +2833,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#163-sx1262-lora-modulo-sx1262patr8-gc" class="md-nav__link">
+  <a href="#173-sx1262-lora-modulo-sx1262patr8-gc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
+        17.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
       
     </span>
   </a>
@@ -2833,10 +2844,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#164-rf-bm-2652p2-zigbee-znp" class="md-nav__link">
+  <a href="#174-rf-bm-2652p2-zigbee-znp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16.4 RF-BM-2652P2 (Zigbee / ZNP)
+        17.4 RF-BM-2652P2 (Zigbee / ZNP)
       
     </span>
   </a>
@@ -2844,10 +2855,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#165-td501d485h-transceiver-rs485-aislado" class="md-nav__link">
+  <a href="#175-td501d485h-transceiver-rs485-aislado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16.5 TD501D485H (transceiver RS485 aislado)
+        17.5 TD501D485H (transceiver RS485 aislado)
       
     </span>
   </a>
@@ -2855,10 +2866,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#166-sn65hvd75dr-transceiver-rs485-sin-aislar" class="md-nav__link">
+  <a href="#176-sn65hvd75dr-transceiver-rs485-sin-aislar" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16.6 SN65HVD75DR (transceiver RS485 sin aislar)
+        17.6 SN65HVD75DR (transceiver RS485 sin aislar)
       
     </span>
   </a>
@@ -2866,10 +2877,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#167-microsd-spi" class="md-nav__link">
+  <a href="#177-microsd-spi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        16.7 microSD (SPI)
+        17.7 microSD (SPI)
       
     </span>
   </a>
@@ -9665,7 +9676,7 @@
 
 <h1 id="buses-y-perifericos">Buses y periféricos</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.111.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.112.0</p>
 </blockquote>
 <p>Cómo está implementado cada bus de SEMA (I²C, SPI, UART, 1-Wire, ADC, PCNT, RS485/Modbus,
 CAN/TWAI, Ethernet, LoRa y Zigbee), con qué claves JSON se configura, qué recursos del
@@ -10439,7 +10450,66 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h2 id="15-recursos-compartidos-y-limites">15. Recursos compartidos y límites</h2>
+<h2 id="15-mesh-esp-now-fase-2a">15. Mesh ESP-NOW (Fase 2a)</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flag</td>
+<td><code>SEMA_USE_MESH_ESPNOW</code> (default <strong>OFF</strong>, <code>board_config.h</code>; habilitado en <code>esp32doit-devkit-v1</code>)</td>
+</tr>
+<tr>
+<td>Claves JSON</td>
+<td><code>mesh{enabled,role,channel,send_interval,peer_macs[]}</code> (hasta 16 MACs)</td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>enabled=false</code>, <code>role=0</code> (off), canal 1–14 configurable</td>
+</tr>
+<tr>
+<td>Roles</td>
+<td><code>0</code>=off · <code>1</code>=maestro · <code>2</code>=esclavo</td>
+</tr>
+<tr>
+<td>Transporte</td>
+<td>ESP-NOW sobre WiFi 2.4 GHz, sin conexión; peers por MAC + broadcast <code>FF:FF:FF:FF:FF:FF</code></td>
+</tr>
+<tr>
+<td>Frame</td>
+<td>250 B (<code>ESP_NOW_MAX_DATA_LEN</code>)</td>
+</tr>
+<tr>
+<td>Cabecera</td>
+<td>12 B: magic <code>0x53 0x4D</code> ("SM") · version 1 · tipo · MAC origen 6 B · seq 1 B · payloadLen 1 B</td>
+</tr>
+<tr>
+<td>Payload</td>
+<td>máx 238 B</td>
+</tr>
+<tr>
+<td>Tipos</td>
+<td><code>0x01</code> ANNOUNCE (esclavo se anuncia) · <code>0x02</code> SENSOR_DATA · <code>0x03</code> COMMAND · <code>0x04</code> ACK · <code>0x05</code> HEARTBEAT</td>
+</tr>
+<tr>
+<td>Lectura</td>
+<td><code>GET /api/v1/mesh</code> → estado (<code>enabled</code>, <code>role</code>, canal, peers, paquetes enviados/recibidos, errores)</td>
+</tr>
+<tr>
+<td>Config web</td>
+<td><code>POST /api/v1/config/buses</code> acepta <code>mesh{enabled,role,channel,send_interval,peer_macs[]}</code></td>
+</tr>
+<tr>
+<td>Delta</td>
+<td>+26.8 KB flash / +2.6 KB RAM</td>
+</tr>
+</tbody>
+</table>
+<h2 id="16-recursos-compartidos-y-limites">16. Recursos compartidos y límites</h2>
 <table>
 <thead>
 <tr>
@@ -10491,11 +10561,11 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h2 id="16-fichas-de-conexion">16. Fichas de conexión</h2>
+<h2 id="17-fichas-de-conexion">17. Fichas de conexión</h2>
 <p>Los transceivers RS-485 (<code>MAX3485ED</code>, <code>SN65HVD75DR</code>, <code>TD501D485H</code>, <code>ADM2483BRWZ</code>) y CAN
 (<code>SN65HVD233DR</code>, <code>SN65HVD234DR</code>) se eligen con los enums <code>modbus.transceiver</code> / <code>can.transceiver</code>
 (<a href="../Enumeraciones-y-tipos/">Enumeraciones y tipos</a> §11.8). Aquí se fichan los dos RS-485 más comunes.</p>
-<h3 id="161-lan8720a-phy-ethernet-rmii">16.1 LAN8720A (PHY Ethernet RMII)</h3>
+<h3 id="171-lan8720a-phy-ethernet-rmii">17.1 LAN8720A (PHY Ethernet RMII)</h3>
 <table>
 <thead>
 <tr>
@@ -10530,7 +10600,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="162-w5500-ethernet-spi">16.2 W5500 (Ethernet SPI)</h3>
+<h3 id="172-w5500-ethernet-spi">17.2 W5500 (Ethernet SPI)</h3>
 <table>
 <thead>
 <tr>
@@ -10565,7 +10635,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="163-sx1262-lora-modulo-sx1262patr8-gc">16.3 SX1262 (LoRa, módulo SX1262PATR8-GC)</h3>
+<h3 id="173-sx1262-lora-modulo-sx1262patr8-gc">17.3 SX1262 (LoRa, módulo SX1262PATR8-GC)</h3>
 <table>
 <thead>
 <tr>
@@ -10600,7 +10670,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="164-rf-bm-2652p2-zigbee-znp">16.4 RF-BM-2652P2 (Zigbee / ZNP)</h3>
+<h3 id="174-rf-bm-2652p2-zigbee-znp">17.4 RF-BM-2652P2 (Zigbee / ZNP)</h3>
 <table>
 <thead>
 <tr>
@@ -10635,7 +10705,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="165-td501d485h-transceiver-rs485-aislado">16.5 TD501D485H (transceiver RS485 aislado)</h3>
+<h3 id="175-td501d485h-transceiver-rs485-aislado">17.5 TD501D485H (transceiver RS485 aislado)</h3>
 <table>
 <thead>
 <tr>
@@ -10670,7 +10740,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="166-sn65hvd75dr-transceiver-rs485-sin-aislar">16.6 SN65HVD75DR (transceiver RS485 sin aislar)</h3>
+<h3 id="176-sn65hvd75dr-transceiver-rs485-sin-aislar">17.6 SN65HVD75DR (transceiver RS485 sin aislar)</h3>
 <table>
 <thead>
 <tr>
@@ -10705,7 +10775,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="167-microsd-spi">16.7 microSD (SPI)</h3>
+<h3 id="177-microsd-spi">17.7 microSD (SPI)</h3>
 <table>
 <thead>
 <tr>

@@ -9518,7 +9518,7 @@
 <blockquote>
 <p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.111.0</p>
+<strong>Firmware:</strong> v1.112.0</p>
 </blockquote>
 <p>Cómo SEMA se conecta: <strong>WiFi</strong> (STA/AP), <strong>mDNS</strong>, <strong>Ethernet</strong> (LAN8720A por RMII
 o W5500 por SPI) y <strong>hora/NTP</strong>. Toda la lógica está en
@@ -9716,6 +9716,14 @@ consolidar W5500 al bus SPI compartido sigue pendiente (ver §8–§9 de
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Nota (v1.112.0, selector de PHY por flag):</strong> <code>-D SEMA_ETH_PHY_LAN8720A=1</code> fuerza
+la PHY nativa (RMII, <code>ETH.h</code>) y <code>-D SEMA_ETH_PHY_W5500=1</code> fuerza W5500 por SPI
+(<code>esp_eth</code>, pines <code>SEMA_ETH_SPI_*</code>), <strong>independientemente del default de board</strong> de la
+tabla anterior; el flag gana sobre el default. Con W5500, el driver SPI custom honra
+<code>SEMA_ETH_SPI_*</code> (configurables) en lugar de los pines fijos del host — corrige que
+<code>ConfigManager</code> tomara pines del bus Arduino/LoRa (ver §4.2).</p>
+</blockquote>
 <h3 id="41-lan8720a-rmii-mac-nativa">4.1 LAN8720A (RMII, MAC nativa)</h3>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">ETH</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">cfg_</span><span class="p">.</span><span class="n">phyAddr</span><span class="p">,</span><span class="w"> </span><span class="n">cfg_</span><span class="p">.</span><span class="n">powerPin</span><span class="p">,</span><span class="w"> </span><span class="n">cfg_</span><span class="p">.</span><span class="n">mdcPin</span><span class="p">,</span><span class="w"> </span><span class="n">cfg_</span><span class="p">.</span><span class="n">mdioPin</span><span class="p">,</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">          </span><span class="n">ETH_PHY_LAN8720</span><span class="p">,</span><span class="w"> </span><span class="n">ETH_CLOCK_GPIO0_IN</span><span class="p">);</span>
