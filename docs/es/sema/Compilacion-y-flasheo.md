@@ -6,7 +6,7 @@ tags:
 
 # Compilación y flasheo
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
 
 Cómo compilar, flashear, monitorear y actualizar SEMA, con los entornos y las
 particiones reales definidos en `platformio.ini`.

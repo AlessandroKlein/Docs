@@ -6,7 +6,7 @@ tags:
 
 # Control PID (concepto y estado futuro)
 
-> **Tipo:** Concepto | **Estado:** Futuro | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
+> **Tipo:** Concepto | **Estado:** Futuro | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
 
 Explicación de los controladores **PID** (Proporcional-Integral-Derivativo) y su
 aplicación **prevista** en SEMA. **Importante: el PID no está implementado** en

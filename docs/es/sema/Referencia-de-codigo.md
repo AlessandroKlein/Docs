@@ -7,7 +7,7 @@ tags:
 
 # Referencia de código
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
 
 Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -19,7 +19,7 @@ Cifras globales verificadas: **112 archivos** entre `include/` y `src/`,
 > **Nota (v1.107.0):** los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 > publicadores, alarmas, buses e infraestructura) se extrajeron a
 > [`ESP32-Base`](https://github.com/AlessandroKlein/ESP32-Base) (namespace `base::`),
-> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.7.0`.
+> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.8.0`.
 > El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 > SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 > `src/core/SemaGlue.cpp`.
@@ -28,6 +28,12 @@ Cifras globales verificadas: **112 archivos** entre `include/` y `src/`,
 > `ModbusTcpManager` (servidor Modbus TCP, sockets lwIP) y `BacnetManager` (servidor
 > BACnet/IP, UDP lwIP). Ambos con flag `SEMA_USE_*` default OFF; se documentan en
 > [Buses y periféricos](Buses-y-perifericos.md).
+>
+> **Nota (v1.112.0):** se suman `MeshManager` (mesh ESP-NOW maestro/esclavo, flag
+> `SEMA_USE_MESH_ESPNOW`, ruta `/api/v1/mesh`) y el selector de PHY Ethernet por flag
+> (`SEMA_ETH_PHY_LAN8720A` / `SEMA_ETH_PHY_W5500`). El mesh se documenta en
+> [Buses y periféricos](Buses-y-perifericos.md) §15 y el selector de PHY en
+> [Conectividad y red](Conectividad-y-red.md) §4.
 
 ## 1. Raíz del repo
 
@@ -252,6 +258,9 @@ rules_.evaluate(measurements)
 | `SEMA_USE_ZIGBEE` | `1` | Compila `ZigbeeManager` + `zigbee_.loop()` |
 | `SEMA_USE_MODBUS_TCP` | `0` (**SEMA_OFF**) | Compila `ModbusTcpManager` (servidor Modbus TCP) + ruta `/api/v1/modbus_tcp` |
 | `SEMA_USE_BACNET` | `0` (**SEMA_OFF**) | Compila `BacnetManager` (servidor BACnet/IP) + ruta `/api/v1/bacnet` |
+| `SEMA_USE_MESH_ESPNOW` | `0` (**SEMA_OFF**) | Compila `MeshManager` (mesh ESP-NOW maestro/esclavo) + ruta `/api/v1/mesh` |
+| `SEMA_ETH_PHY_LAN8720A` | — | Fuerza la PHY nativa RMII (LAN8720A) independientemente de la board |
+| `SEMA_ETH_PHY_W5500` | — | Fuerza W5500 por SPI (pines `SEMA_ETH_SPI_*`) independientemente de la board |
 | `SEMA_USE_SHIFT` | `0` (**SEMA_OFF**) | Sin él, `shift_.apply()` no se llama y `/api/v1/config/io` ignora `shift_registers` |
 | `SEMA_MODBUS_ISOLATED` | `1` (legacy) | Default de compilación del transceiver RS-485; desde v1.111.0 lo sobrescribe el enum `modbus.transceiver` en runtime |
 | `SEMA_PINS_FROM_FILE` | `0` | Con `1`, `ConfigManager::applyHwProfile()` sobrescribe pines de CAN/Modbus/Zigbee/LoRa/Ethernet |

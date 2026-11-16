@@ -7,7 +7,7 @@ tags:
 
 # Buses y periféricos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
 
 Cómo está implementado cada bus de SEMA (I²C, SPI, UART, 1-Wire, ADC, PCNT, RS485/Modbus,
 CAN/TWAI, Ethernet, LoRa y Zigbee), con qué claves JSON se configura, qué recursos del
@@ -276,7 +276,24 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Config web | `POST /api/v1/config/buses` acepta `bacnet{enabled,device_instance,network_number,udp_port}` |
 | Nota | **Sin dependencia GPL**: la librería `vitaly.ruhl/ESP32 BACnet Stack` es client-only (sin servidor); el servidor se implementó autocontenido sobre UDP lwIP |
 
-## 15. Recursos compartidos y límites
+## 15. Mesh ESP-NOW (Fase 2a)
+
+| Aspecto | Detalle |
+|---------|---------|
+| Flag | `SEMA_USE_MESH_ESPNOW` (default **OFF**, `board_config.h`; habilitado en `esp32doit-devkit-v1`) |
+| Claves JSON | `mesh{enabled,role,channel,send_interval,peer_macs[]}` (hasta 16 MACs) |
+| Defaults | `enabled=false`, `role=0` (off), canal 1–14 configurable |
+| Roles | `0`=off · `1`=maestro · `2`=esclavo |
+| Transporte | ESP-NOW sobre WiFi 2.4 GHz, sin conexión; peers por MAC + broadcast `FF:FF:FF:FF:FF:FF` |
+| Frame | 250 B (`ESP_NOW_MAX_DATA_LEN`) |
+| Cabecera | 12 B: magic `0x53 0x4D` ("SM") · version 1 · tipo · MAC origen 6 B · seq 1 B · payloadLen 1 B |
+| Payload | máx 238 B |
+| Tipos | `0x01` ANNOUNCE (esclavo se anuncia) · `0x02` SENSOR_DATA · `0x03` COMMAND · `0x04` ACK · `0x05` HEARTBEAT |
+| Lectura | `GET /api/v1/mesh` → estado (`enabled`, `role`, canal, peers, paquetes enviados/recibidos, errores) |
+| Config web | `POST /api/v1/config/buses` acepta `mesh{enabled,role,channel,send_interval,peer_macs[]}` |
+| Delta | +26.8 KB flash / +2.6 KB RAM |
+
+## 16. Recursos compartidos y límites
 
 | Recurso | Lo usan | Consecuencia práctica |
 |---------|---------|----------------------|
@@ -289,13 +306,13 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | GPIO4 | 1-Wire por defecto, `sd_cs`, `can.rx`, `ethernet.irq` (S3) | Cuádruple uso: hay que elegir |
 | GPIO5 | `can.tx`, `SEMA_CS_ETHERNET_W5500`, `mcp23s17_cs` en demo | Elegir según el bus activo |
 
-## 16. Fichas de conexión
+## 17. Fichas de conexión
 
 Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`) y CAN
 (`SN65HVD233DR`, `SN65HVD234DR`) se eligen con los enums `modbus.transceiver` / `can.transceiver`
 ([Enumeraciones y tipos](Enumeraciones-y-tipos.md) §11.8). Aquí se fichan los dos RS-485 más comunes.
 
-### 16.1 LAN8720A (PHY Ethernet RMII)
+### 17.1 LAN8720A (PHY Ethernet RMII)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -306,7 +323,7 @@ Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`
 | Conexión | MDC→GPIO23 · MDIO→GPIO18 · TXD0→GPIO19 · TXD1→GPIO22 · TX_EN→GPIO21 · RXD0→GPIO25 · RXD1→GPIO26 · CRS_DV→GPIO27 · RX_ER→GPIO13 · REF_CLK 50 MHz→GPIO0 · `ethernet.power` = -1 (sin control de alimentación) |
 | Notas | El reloj de 50 MHz debe venir de la PHY u oscilador externo; SEMA no controla el reset de la PHY |
 
-### 16.2 W5500 (Ethernet SPI)
+### 17.2 W5500 (Ethernet SPI)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -317,7 +334,7 @@ Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`
 | Conexión | SCK→GPIO18 · MISO→GPIO19 · MOSI→GPIO21 · CS→GPIO5 · IRQ→GPIO4 · RST = -1 |
 | Notas | Solo placas sin MAC nativa (S3). El host SPI3 debe ser distinto del SPI de RadioLib |
 
-### 16.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
+### 17.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -328,7 +345,7 @@ Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`
 | Conexión | SCK→14 · MISO→12 · MOSI→15 · CS→10 · RST→14 (web) / 32 · DIO1→26 · BUSY→27 (WROOM). En S3: SCK→12, MISO→13, MOSI→11 |
 | Notas | `dio1=26` y `busy=27` **no son válidos en ESP32-S3** (flash SPI interna) |
 
-### 16.4 RF-BM-2652P2 (Zigbee / ZNP)
+### 17.4 RF-BM-2652P2 (Zigbee / ZNP)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -339,7 +356,7 @@ Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`
 | Conexión | RX del módulo←TX del ESP32 (GPIO19 por defecto) · TX del módulo→RX del ESP32 (GPIO18 por defecto) · GND común |
 | Notas | 802.15.4 **no** lo aporta el ESP32: lo aporta este módulo externo. `Capability::Ieee802154` nunca se declara en el firmware |
 
-### 16.5 TD501D485H (transceiver RS485 aislado)
+### 17.5 TD501D485H (transceiver RS485 aislado)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -350,7 +367,7 @@ Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`
 | Conexión | RXD del módulo←GPIO17 (TX del ESP32) · TXD del módulo→GPIO16 (RX del ESP32) · DE/RE→`modbus.de_re` (0 = sin control) |
 | Notas | Aislamiento galvánico ≥ 2,5 kV (datasheet); con `de_re = 0` el módulo debe autodirigirse o quedar siempre en TX |
 
-### 16.6 SN65HVD75DR (transceiver RS485 sin aislar)
+### 17.6 SN65HVD75DR (transceiver RS485 sin aislar)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -361,7 +378,7 @@ Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`
 | Conexión | RO→GPIO16 · DI→GPIO17 · DE y /RE unidos a `modbus.de_re` (o a VCC si no se controla) |
 | Notas | Seleccionable con el enum `modbus.transceiver`; comparte el mismo código de conmutación DE/RE que el aislado |
 
-### 16.7 microSD (SPI)
+### 17.7 microSD (SPI)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|

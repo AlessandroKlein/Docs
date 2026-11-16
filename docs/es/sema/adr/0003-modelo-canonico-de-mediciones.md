@@ -8,7 +8,7 @@ tags:
 # 0003. Modelo canónico de mediciones con quality flags
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.111.0 | **Decisión origen:** D-0007, D-0026, D-0028, D-0044, D-0056
+> **Firmware:** v1.112.0 | **Decisión origen:** D-0007, D-0026, D-0028, D-0044, D-0056
 
 ## Contexto
 

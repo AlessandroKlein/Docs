@@ -9,7 +9,7 @@ tags:
 
 > **Tipo:** Concepto | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.111.0
+> **Firmware:** v1.112.0
 
 Cómo SEMA se conecta: **WiFi** (STA/AP), **mDNS**, **Ethernet** (LAN8720A por RMII
 o W5500 por SPI) y **hora/NTP**. Toda la lógica está en
@@ -129,6 +129,13 @@ pila que usa el WiFi, por lo que el `WebServer` sirve sobre Ethernet sin cambios
 | `BOARD_ESP32_WROOM` | `esp32-wroom-4mb` | 4 MB | MAC **nativa** EMAC | **LAN8720A** RMII | `ETH.h` (Arduino core) |
 | `BOARD_ESP32_WROOM32U` | `esp32-wroom32u-16mb` | 16 MB | MAC nativa EMAC | LAN8720A RMII | `ETH.h` |
 | `BOARD_ESP32_S3` | `esp32-s3-8mb` | 8 MB | sin MAC nativa | **W5500** SPI | `esp_eth` (ESP-IDF) + lwIP |
+
+> **Nota (v1.112.0, selector de PHY por flag):** `-D SEMA_ETH_PHY_LAN8720A=1` fuerza
+> la PHY nativa (RMII, `ETH.h`) y `-D SEMA_ETH_PHY_W5500=1` fuerza W5500 por SPI
+> (`esp_eth`, pines `SEMA_ETH_SPI_*`), **independientemente del default de board** de la
+> tabla anterior; el flag gana sobre el default. Con W5500, el driver SPI custom honra
+> `SEMA_ETH_SPI_*` (configurables) en lugar de los pines fijos del host — corrige que
+> `ConfigManager` tomara pines del bus Arduino/LoRa (ver §4.2).
 
 ### 4.1 LAN8720A (RMII, MAC nativa)
 

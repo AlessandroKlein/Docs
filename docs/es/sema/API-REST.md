@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** API | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.111.0
+> **Firmware:** v1.112.0
 
 Referencia **exhaustiva** de la API HTTP local de SEMA. Todo lo que sigue está
 verificado contra `src/core/web/HttpServer.cpp` (2637 líneas) y
@@ -116,6 +116,7 @@ Consecuencias prácticas:
 | GET | `/api/v1/modbus` | pública | bus Modbus | `SEMA_USE_MODBUS` |
 | GET | `/api/v1/modbus_tcp` | pública | Modbus TCP | `SEMA_USE_MODBUS_TCP` |
 | GET | `/api/v1/bacnet` | pública | BACnet/IP | `SEMA_USE_BACNET` |
+| GET | `/api/v1/mesh` | pública | mesh ESP-NOW | `SEMA_USE_MESH_ESPNOW` |
 | GET | `/api/v1/can` | pública | bus CAN | `SEMA_USE_CAN` |
 | POST | `/api/v1/can` | web | bus CAN | `SEMA_USE_CAN` |
 | GET | `/api/v1/lora` | pública | radio LoRa | `SEMA_USE_LORA` |
@@ -125,11 +126,12 @@ Consecuencias prácticas:
 | GET | `/gridstack.min.css` | pública | assets | gzip |
 | GET | `/gridstack-all.min.js` | pública | assets | gzip |
 
-Las seis rutas de bus están envueltas en `#if SEMA_USE_MODBUS|CAN|LORA|ZIGBEE|MODBUS_TCP|BACNET`
+Las siete rutas de bus están envueltas en `#if SEMA_USE_MODBUS|CAN|LORA|ZIGBEE|MODBUS_TCP|BACNET|MESH_ESPNOW`
 (`HttpServer.cpp`): si el flag vale `0`, la ruta **no existe** y responde
 `404 {"error":"not found"}`. `SEMA_USE_SHIFT` **no** condiciona `/api/v1/shift`.
 Las cinco placas de `platformio.ini` compilan con los cuatro flags clásicos en `1`;
-`SEMA_USE_MODBUS_TCP` y `SEMA_USE_BACNET` quedan en `0` (OFF) por defecto.
+`SEMA_USE_MODBUS_TCP` y `SEMA_USE_BACNET` quedan en `0` (OFF) por defecto;
+`SEMA_USE_MESH_ESPNOW` queda en `1` (ON) en `esp32doit-devkit-v1`.
 
 ## 4. Estado y sistema
 
@@ -138,7 +140,7 @@ Las cinco placas de `platformio.ini` compilan con los cuatro flags clásicos en 
 Buffer `DynamicJsonDocument(256)`. Es la identidad mínima de la estación.
 
 ```json
-{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.111.0", "uptime_s": 12345 }
+{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.112.0", "uptime_s": 12345 }
 ```
 
 ### 4.2 `GET /api/v1/health`
@@ -171,7 +173,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
 {
   "id": "SEMA-001",
   "name": "Estación Norte",
-  "firmware": "1.111.0",
+  "firmware": "1.112.0",
   "hw": "rev0",
   "config_schema": 1,
   "protocol": 1,
@@ -198,7 +200,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
   "wifi_host": "sema-001",
   "wifi_mdns": true,
   "reserved_pins": [14, 12, 15],
-  "firmware_file": "sema_1.111.0_esp32-wroom-4mb.bin"
+  "firmware_file": "sema_1.112.0_esp32-wroom-4mb.bin"
 }
 ```
 
@@ -213,6 +215,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
 | `history_available` | `core_->history().sdEnabled()` |
 | `reserved_pins` | Siempre SCK/MISO/MOSI; además los 10 pines RMII **solo** si `SEMA_NATIVE_ETH && SEMA_USE_ETHERNET` y `ethernet.enabled` |
 | `modbus_tcp_enabled` / `bacnet_enabled` | `(SEMA_USE_MODBUS_TCP != 0)` / `(SEMA_USE_BACNET != 0)` — `false` por defecto |
+| `mesh_enabled` | `(SEMA_USE_MESH_ESPNOW != 0)` — `true` en `esp32doit-devkit-v1` |
 | `firmware_file` | `"sema_" + SEMA_FW_VERSION + "_" + SEMA_BOARD_ID + ".bin"` |
 
 ### 4.4 `GET /api/v1/capabilities`
@@ -263,7 +266,7 @@ Buffer `1024`.
 
 ```json
 {
-  "firmware": "1.111.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
+  "firmware": "1.112.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
   "reset_reason": 1, "health": "HEALTHY",
   "history": { "entries": 1200, "max": 10000 },
   "tasks": 2, "modules": 0, "events": 7,
@@ -808,7 +811,7 @@ Buffer `8192`. Config completa + metadatos autodescriptivos:
 ```json
 { "schema_version": 1, "station": { "...": "..." },
   "backup_format": "sema-backup", "backup_version": 1,
-  "firmware": "1.111.0", "timestamp": 12345 }
+  "firmware": "1.112.0", "timestamp": 12345 }
 ```
 
 `timestamp` es `millis()/1000` (uptime, no epoch). Los campos `backup_*`,

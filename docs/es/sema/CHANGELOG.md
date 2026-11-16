@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,27 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.112.0] - 2026-11-16
+
+### Added
+
+- **Mesh ESP-NOW (Fase 2a)** (vía `ESP32-Base` v0.8.0): capa `base::MeshManager`
+  maestro/esclavo con flag `SEMA_USE_MESH_ESPNOW` (habilitado en el env
+  `esp32doit-devkit-v1`) y ruta `GET /api/v1/mesh`. Protocolo binario versionado:
+  cabecera 12 B (magic `0x53 0x4D` "SM", version 1, tipo, MAC origen 6 B, seq 1 B,
+  payloadLen 1 B) + payload máx 238 B (frame 250 B = `ESP_NOW_MAX_DATA_LEN`). Tipos:
+  `0x01` ANNOUNCE, `0x02` SENSOR_DATA, `0x03` COMMAND, `0x04` ACK, `0x05` HEARTBEAT.
+  Roles `0`=off / `1`=maestro / `2`=esclavo. Delta +26.8 KB flash / +2.6 KB RAM.
+- **Selector de PHY Ethernet por flag**: `-D SEMA_ETH_PHY_LAN8720A=1` fuerza la PHY
+  nativa RMII y `-D SEMA_ETH_PHY_W5500=1` fuerza W5500 por SPI (pines `SEMA_ETH_SPI_*`),
+  independientemente de la board; el flag gana sobre el default de board.
+- `ESP32-Base` v0.7.0 → v0.8.0 (commit `1eb91eb`).
+
+### Fixed
+
+- **Driver SPI custom para W5500**: honra `SEMA_ETH_SPI_*` (configurables); corrige que
+  `ConfigManager` tomara pines del bus Arduino/LoRa.
 
 ## [1.111.0] - 2026-11-15
 
@@ -1316,6 +1337,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.112.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.112.0
 [1.111.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.111.0
 [1.110.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.110.0
 [1.109.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.109.0

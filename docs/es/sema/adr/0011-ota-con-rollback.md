@@ -8,7 +8,7 @@ tags:
 # 0011. OTA con particiones redundantes y rollback
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.111.0 | **Decisión origen:** D-0031, D-0049
+> **Firmware:** v1.112.0 | **Decisión origen:** D-0031, D-0049
 
 ## Contexto
 

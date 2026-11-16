@@ -9,7 +9,7 @@ tags:
 # 0010. API REST `/api/v1` en el Core y seguridad por claves
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.111.0 | **Decisión origen:** D-0006, D-0027, D-0035, D-0041, D-0048
+> **Firmware:** v1.112.0 | **Decisión origen:** D-0006, D-0027, D-0035, D-0041, D-0048
 
 ## Contexto
 

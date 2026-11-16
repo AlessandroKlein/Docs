@@ -7,7 +7,7 @@ tags:
 
 # Guía de pines
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
 
 Asignación de pines de SEMA para los **seis entornos de PlatformIO**, con la clave JSON
 real de configuración, el GPIO por defecto, la función, la dirección eléctrica y las

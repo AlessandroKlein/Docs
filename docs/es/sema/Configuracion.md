@@ -6,7 +6,7 @@ tags:
 
 # Configuración
 
-> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
+> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
 
 SEMA se configura con **un único documento JSON** (`schema_version: 1`) que se
 persiste en la NVS del ESP32 y se aplica de forma **transaccional** (validar →

@@ -9,7 +9,7 @@ tags:
 
 > **Tipo:** Referencia | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.111.0
+> **Firmware:** v1.112.0
 
 Salidas en tiempo real de SEMA: **MQTT** y el **webhook HTTP** (publicadores hacia
 afuera, `src/core/publishers/`) y el **WebSocket** que sirve el propio firmware
