@@ -7,7 +7,7 @@ tags:
 
 # Hardware y conexiones
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Ficha de conexión de **cada componente** que el firmware sabe manejar: interfaz,
 tensión, resistencias, capacitores, cableado pin a pin y notas. Todos los pines y

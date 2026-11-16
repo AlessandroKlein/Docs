@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** Referencia | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.112.0
+> **Firmware:** v1.113.0
 
 Identidad de la estación y **todos** los estados que el firmware expone o maneja:
 salud, calidad de medición, energía, red, sesión web, eventos y capacidades.
@@ -26,7 +26,7 @@ los `#define` de `include/core/Version.hpp` y `include/hw/HwProfile.hpp`.
 | `hw` | `SEMA_HW_VERSION` | `"rev0"` | `system`, `diagnostics` |
 | `config_schema` | `SEMA_CONFIG_SCHEMA_VERSION` | `1` | `system` |
 | `protocol` | `SEMA_PROTOCOL_VERSION` | `1` | `system` (protocolo con el Servidor Central) |
-| `board` | `SEMA_BOARD_ID` | `esp32-wroom-4mb` · `esp32-s3-8mb` · `esp32-c6-8mb` · `esp32-wroom32u-16mb` | `system` |
+| `board` | `SEMA_BOARD_ID` | `esp32-wroom-4mb` · `esp32-s3-8mb` · `esp32-c6-8mb` · `esp32-c3-4mb` · `esp32-s2-4mb` · `esp32-wroom32u-16mb` | `system` |
 | `flash_mb` | `SEMA_FLASH_MB` | `4` · `16` · `8` | `system` |
 | `firmware_file` | construido | `sema_1.103.0_<board>.bin` | `system` |
 | `network.hostname` | config | `"sema-001"` | `system` (`wifi_host`), mDNS `<hostname>.local` |

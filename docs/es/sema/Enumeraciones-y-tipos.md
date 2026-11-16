@@ -7,7 +7,7 @@ tags:
 
 # Enumeraciones y tipos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Catálogo completo de enumeraciones, structs canónicos y "enums de cadena" de SEMA.
 Todo se verificó contra `include/core/**` y `include/hw/HwProfile.hpp`.
@@ -323,6 +323,8 @@ declaran y se muestran en la web).
 | `BOARD_ESP32_WROOM32U` | `esp32-wroom32u-16mb` | 16 | 1 |
 | `BOARD_ESP32_S3` | `esp32-s3-8mb` | 8 | 0 |
 | `BOARD_ESP32_C6` | `esp32-c6-8mb` | 8 | 0 |
+| `BOARD_ESP32_C3` | `esp32-c3-4mb` | 4 | 0 |
+| `BOARD_ESP32_S2` | `esp32-s2-4mb` | 4 | 0 |
 
 **Transceivers RS-485** (enum `ModbusTransceiver`, runtime `modbus.transceiver`; default `AUTO`):
 

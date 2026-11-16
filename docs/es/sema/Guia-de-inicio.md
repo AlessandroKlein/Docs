@@ -6,7 +6,7 @@ tags:
 
 # Guía de inicio
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Documentación para **entender y usar SEMA sin conocer el proyecto ni el código de
 antemano**. Los apartados son progresivos: se puede leer de principio a fin.

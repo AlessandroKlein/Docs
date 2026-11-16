@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -53,6 +53,10 @@ dashboard. Verificado contra `platformio.ini`, `include/hw/HwProfile.hpp`,
 | Registros de desplazamiento | ❌ `SEMA_USE_SHIFT=0` compila fuera el driver | ❌ igual | ❌ igual | ❌ `SEMA_USE_SHIFT=0` | ❌ igual |
 | Pines de bus | configurables por web (`SEMA_PINS_FROM_FILE=0`) | configurables por web | **fijos** (`SEMA_PINS_FROM_FILE=1`) | configurables por web (`SEMA_PINS_FROM_FILE=0`) | configurables por web |
 
+> Los envs esclavos `esp32-c3-devkitm-1` / `esp32-s2-saola-1` (v1.113.0) no figuran en la
+> matriz de arriba: perfil ligero con web/Ethernet/LoRa/Modbus/CAN/Zigbee deshabilitados
+> (`SEMA_USE_*`=0) y solo mesh ESP-NOW + sensores + WiFi.
+
 ## 3. Matriz placa × periférico y bus
 
 | Periférico / bus | WROOM 4 MB | S3 8 MB | WROOM-32U 16 MB | Claves JSON | Requiere |
@@ -94,7 +98,7 @@ tablas se monta como **LittleFS**.
 - El histórico de gráficas **no** usa la partición interna: vive en la microSD
   (`HistoryStore::enableSd`). Sin SD, las gráficas quedan vacías a propósito.
 - El nombre del binario lo arma `GET /api/v1/system`: `sema_<versión>_<board_id>.bin`
-  (p. ej. `sema_1.112.0_esp32-s3-8mb.bin`).
+  (p. ej. `sema_1.113.0_esp32-s3-8mb.bin`).
 
 ## 5. Sensores por interfaz
 
@@ -151,8 +155,9 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 | ESP32-P4 (RISC-V) | ⚠️ env `esp32-p4` deshabilitado | Sin WiFi/BT ni EMAC; requiere PlatformIO `espressif32 ≥ 7.2` (no disponible hoy) |
 | ESP32-S3 | ✅ soportado por `BOARD_ESP32_S3` | Reasignar `lora.dio1`/`busy` (26/27 son de la flash) |
 | ESP32-C6 | ✅ soportado por `BOARD_ESP32_C6` (env `esp32-c6-devkitc-1`) | RISC-V de 1 núcleo, sin EMAC; Ethernet/LoRa/CAN/Zigbee deshabilitados (`SEMA_USE_*=0`); objetivo Matter/Thread/esclavo |
-| ESP32-S2 | ❌ | No tiene Bluetooth; `HwProfile.hpp` no tiene rama: habría que agregar `BOARD_*`, el `#elif` de SPI/ETH y revisar particiones |
-| ESP32-C3 / C5 / H2 | ❌ | RISC-V de un núcleo (o sin Wi-Fi en H2): `Capability::DualCore` se declara igual y el `#error` de `HwProfile.hpp` bloquea la compilación |
+| ESP32-S2 | ✅ soportado por `BOARD_ESP32_S2` (env `esp32-s2-saola-1`) | Xtensa single-core, sin Bluetooth Classic; esclavo ligero mesh ESP-NOW (web/Ethernet off) |
+| ESP32-C3 | ✅ soportado por `BOARD_ESP32_C3` (env `esp32-c3-devkitm-1`) | RISC-V de 1 núcleo; esclavo ligero mesh ESP-NOW (web/Ethernet off); sin periférico PCNT (`SEMA_USE_SENSOR_PCNT=0`) |
+| ESP32-C5 / H2 | ❌ | Sin board en `espressif32 8.0.0`; `HwProfile.hpp` no tiene rama (bloquea la compilación) |
 
 ## 8. Navegador y dashboard
 
@@ -175,7 +180,7 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 
 | Componente | Versión |
 |------------|---------|
-| Firmware SEMA | 1.112.0 · HW `rev0` |
+| Firmware SEMA | 1.113.0 · HW `rev0` |
 | Schema de configuración | 1 (`SEMA_CONFIG_SCHEMA_VERSION`) |
 | Protocolo | 1 (`SEMA_PROTOCOL_VERSION`) |
 | Plataforma (PlatformIO) | `espressif32` con `framework = arduino` |

@@ -7,7 +7,7 @@ tags:
 
 # Diagnóstico y salud
 
-> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Esta página documenta qué mide SEMA sobre su propia salud, qué endpoints lo exponen
 y cómo interpretar cada campo. El foco está en cuatro endpoints:
@@ -209,7 +209,7 @@ Identidad, versiones y topología de hardware tal como quedó compilada.
 | `hw` | `SEMA_HW_VERSION` | `"rev0"` |
 | `config_schema` | `SEMA_CONFIG_SCHEMA_VERSION` | `1` |
 | `protocol` | `SEMA_PROTOCOL_VERSION` | `1` |
-| `board` | `SEMA_BOARD_ID` | `"esp32-wroom-4mb"` / `"esp32-s3-8mb"` / `"esp32-c6-8mb"` / `"esp32-wroom32u-16mb"` |
+| `board` | `SEMA_BOARD_ID` | `"esp32-wroom-4mb"` / `"esp32-s3-8mb"` / `"esp32-c6-8mb"` / `"esp32-c3-4mb"` / `"esp32-s2-4mb"` / `"esp32-wroom32u-16mb"` |
 | `flash_mb` | `SEMA_FLASH_MB` | 4 / 8 / 16 |
 | `pins_from_file` | `SEMA_PINS_FROM_FILE != 0` | Origen de pines por archivo |
 | `demo` | `SEMA_DEMO != 0` | Modo demo activo |

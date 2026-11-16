@@ -8,7 +8,7 @@ tags:
 # 0008. Runtime sobre FreeRTOS con SMP adaptativo y afinidad `AUTO`
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.112.0 | **Decisión origen:** D-0012, D-0013, D-0014, D-0039, D-0052, D-0053
+> **Firmware:** v1.113.0 | **Decisión origen:** D-0012, D-0013, D-0014, D-0039, D-0052, D-0053
 
 ## Contexto
 

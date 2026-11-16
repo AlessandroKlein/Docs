@@ -6,7 +6,7 @@ tags:
 
 # Solución de problemas
 
-> **Tipo:** Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Cada caso sigue el mismo formato: **síntoma → causa probable → cómo confirmarlo →
 solución**. Todos los comandos y endpoints citados existen en el firmware v1.103.0.

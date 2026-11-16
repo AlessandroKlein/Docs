@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,33 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.113.0] - 2026-11-16
+
+### Added
+
+- **Firmware esclavo ligero (Fase 2b)**: flag `SEMA_USE_WEB` (default `SEMA_ON`) en
+  `ESP32-Base` v0.9.0 que permite compilar fuera el servidor web completo + sus assets
+  PROGMEM (**−211 KB flash, −2.2 KB RAM**). Combinado con `SEMA_USE_ETHERNET=0` habilita
+  un nodo que solo publica mediciones por ESP-NOW al maestro.
+- **Envs esclavos**: `esp32-c3-devkitm-1` (ESP32-C3, RISC-V, 4 MB) y `esp32-s2-saola-1`
+  (ESP32-S2, Xtensa single-core, 4 MB). Perfil esclavo: web/Ethernet/LoRa/Modbus/CAN/Zigbee
+  deshabilitados y mesh ESP-NOW activo.
+- Identidades de board nuevas: `esp32-c3-4mb` y `esp32-s2-4mb`.
+
+### Changed
+
+- `ESP32-Base` v0.8.0 → v0.9.0 (commit `a812872`; flag `SEMA_USE_WEB`).
+
+### Fixed
+
+- **Portabilidad PMS5003**: `Serial2` solo existe en chips con `SOC_UART_NUM > 2`
+  (ESP32/S3/C6); los envs C3/S2 usan `Serial1`.
+- **PCNT deshabilitado en ESP32-C3**: el C3 no tiene periférico PCNT →
+  `SEMA_USE_SENSOR_PCNT=0` en ese env.
+- **Versión de banner stale**: `SEMA_FW_VERSION` en `platformio.ini` había quedado en
+  `1.111.0` al liberar v1.112.0 (banner de arranque y OTA mostraban la versión vieja);
+  ahora se sincroniza con `Version.hpp` en `1.113.0`.
 
 ## [1.112.0] - 2026-11-16
 
@@ -1337,6 +1364,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.113.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.113.0
 [1.112.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.112.0
 [1.111.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.111.0
 [1.110.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.110.0

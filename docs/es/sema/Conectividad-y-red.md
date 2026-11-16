@@ -9,7 +9,7 @@ tags:
 
 > **Tipo:** Concepto | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.112.0
+> **Firmware:** v1.113.0
 
 Cómo SEMA se conecta: **WiFi** (STA/AP), **mDNS**, **Ethernet** (LAN8720A por RMII
 o W5500 por SPI) y **hora/NTP**. Toda la lógica está en

@@ -7,7 +7,7 @@ tags:
 
 # Referencia de código
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -19,7 +19,7 @@ Cifras globales verificadas: **112 archivos** entre `include/` y `src/`,
 > **Nota (v1.107.0):** los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 > publicadores, alarmas, buses e infraestructura) se extrajeron a
 > [`ESP32-Base`](https://github.com/AlessandroKlein/ESP32-Base) (namespace `base::`),
-> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.8.0`.
+> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.9.0`.
 > El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 > SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 > `src/core/SemaGlue.cpp`.
@@ -252,6 +252,7 @@ rules_.evaluate(measurements)
 |------|---------|--------------------------|
 | `BOARD_ESP32_WROOM` / `_S3` / `_WROOM32U` | obligatorio | `#error` si falta; fija `SEMA_BOARD_ID`, `SEMA_FLASH_MB`, `SEMA_NATIVE_ETH` |
 | `SEMA_USE_ETHERNET` | `1` (`SEMA_ON`) | Compila `EthernetManager` |
+| `SEMA_USE_WEB` | `1` (`SEMA_ON`) | Compila el servidor web completo + assets PROGMEM; con `0` (esclavo ligero) los saca (−211 KB flash, −2.2 KB RAM) |
 | `SEMA_USE_LORA` | `1` | Compila `LoraManager` + `SPI.begin()` |
 | `SEMA_USE_MODBUS` | `1` | Compila `ModbusManager` |
 | `SEMA_USE_CAN` | `1` | Compila `CanManager` |

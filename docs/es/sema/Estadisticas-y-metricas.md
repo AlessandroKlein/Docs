@@ -6,7 +6,7 @@ tags:
 
 # Estadísticas y métricas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Dos familias de métricas: las **del proyecto** (tamaño del código, releases,
 artefactos) y las que el **firmware expone en ejecución** para monitoreo y
@@ -70,6 +70,8 @@ Archivos más grandes (líneas):
 | `esp32-wroom-4mb` | ESP32 | 4 MB | 1.390 MB |
 | `esp32-s3-8mb` | ESP32-S3 | 8 MB | 1.335 MB |
 | `esp32-c6-8mb` | ESP32-C6 | 8 MB | — |
+| `esp32-c3-4mb` | ESP32-C3 | 4 MB | — |
+| `esp32-s2-4mb` | ESP32-S2 | 4 MB | — |
 
 Particiones (`partitions_4mb.csv`, 4 MB): `nvs` 0x5000 · `otadata` 0x2000 ·
 `app0` 0x1C0000 · `app1` 0x1C0000 · `spiffs` 0x70000.

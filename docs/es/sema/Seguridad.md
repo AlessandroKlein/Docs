@@ -6,7 +6,7 @@ tags:
 
 # Seguridad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Modelo de seguridad de SEMA tal como está **implementado** en
 `src/core/web/HttpServer.cpp`: dos credenciales por header (`X-API-Key`), una

@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.112.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
 
 Estado del desarrollo y de la **Definition of Done** (`README.md` §103), verificado
 contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendiente.
@@ -106,7 +106,7 @@ coordinador) y de la compatibilidad multi-SoC (fuente: `docs/PENDIENTES.md` §2.
 |------|---------|--------|
 | 0 | Expansores (MCP23S17, PCA9685, PCF8574/8575, TCA9548A, SC16IS752, SC18IS602B, ADS1115) + flags `SEMA_USE_*` | ✅ **0a** (GPIO/PWM: MCP23S17, PCA9685, PCF8574/8575) · **0b** (UART/mux/ADC: SC16IS752, SC18IS602B, TCA9548A, ADS1115); MAX14830 ⬜ diferido (sin librería en registry) |
 | 1 | Modbus TCP + BACnet/IP + transceivers (RS-485/CAN) | ✅ Modbus TCP (servidor) + BACnet/IP (servidor) + enums de transceiver en `ConfigManager` (v1.111.0) |
-| 2 | Mesh ESP-NOW sin central + maestro-esclavo (C3/S2/S3; offload web/Ethernet) | ✅ **2a** (MeshManager maestro/esclavo, `SEMA_USE_MESH_ESPNOW`, v1.112.0) · **2b** (esclavos C3/S2/S3 + offload web/Ethernet) ⬜ |
+| 2 | Mesh ESP-NOW sin central + maestro-esclavo (C3/S2/S3; offload web/Ethernet) | ✅ **2a** (MeshManager maestro/esclavo, `SEMA_USE_MESH_ESPNOW`, v1.112.0) · **2b** (esclavos ligeros C3/S2 + `SEMA_USE_WEB=0`, v1.113.0) ✅ |
 | 3 | Coordinador + modelo árbol (Casa→Habitación→Dispositivo→Capacidad) | ⬜ |
 | 4 | Esclavos radio C6/H2 (Zigbee/Thread/Matter) + válvulas/concentradores BLE | ⬜ |
 
@@ -119,7 +119,7 @@ renombrar flags `SEMA_USE_*` → `BASE_USE_*`.
   `BASE_HAVE_*`) + runtime (`base::ChipInfo`: `chipModel/chipRevision/flashSize/psramSize/coreCount`).
 - ✅ **ESP32-C6 validado**: env `esp32-c6-devkitc-1` (RISC-V, 8 MB) añadido y compilando;
   objetivo Matter/Thread/esclavo.
-- ⬜ Pendiente: envs **S2/C3** por validar; **H2/C5/C61/P4** sin board en `espressif32 8.0.0`
+- ✅ **ESP32-C3 y ESP32-S2 validados** (esclavos ligeros `esp32-c3-devkitm-1` / `esp32-s2-saola-1`); ⬜ Pendiente: **H2/C5/C61/P4** sin board en `espressif32 8.0.0`
   (esperar PlatformIO más nuevo).
 
 ## 5. Regla de actualización
