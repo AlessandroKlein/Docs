@@ -6,7 +6,7 @@ tags:
 
 # Compilación y flasheo
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Cómo compilar, flashear, monitorear y actualizar SEMA, con los entornos y las
 particiones reales definidos en `platformio.ini`.
@@ -77,7 +77,7 @@ particiones reales definidos en `platformio.ini`.
 | `adafruit/Adafruit PM25 AQI Sensor@^1.0.6` | PMS5003 |
 
 No se usa ninguna librería para el dashboard: el HTML/CSS/JS va embebido en el
-firmware (`PROGMEM`) y Gridstack se sirve comprimido desde flash.
+firmware (`PROGMEM`).
 
 ## 4. Compilar
 
@@ -103,7 +103,7 @@ pio run -e esp32doit-devkit-v1 -t upload
 # puerto explícito
 pio run -e esp32doit-devkit-v1 -t upload --upload-port COM3
 
-# borrar toda la flash (¡pierde configuración NVS y LittleFS!)
+# borrar toda la flash (¡pierde configuración y eventos en LittleFS!)
 pio run -e esp32doit-devkit-v1 -t erase
 ```
 

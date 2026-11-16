@@ -8,7 +8,7 @@ tags:
 # 0003. Modelo canónico de mediciones con quality flags
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.113.0 | **Decisión origen:** D-0007, D-0026, D-0028, D-0044, D-0056
+> **Firmware:** v1.114.0 | **Decisión origen:** D-0007, D-0026, D-0028, D-0044, D-0056
 
 ## Contexto
 
@@ -54,9 +54,9 @@ struct Measurement {
   (ver ADR 0005).
 - ⚠️ Costo en RAM/CPU: 5 `String` por medición y copias por valor
   (`std::vector<Measurement>`), sensible en un ESP32 de 4 MB.
-- ⚠️ `timestamp` no es epoch UTC real: `nowEpoch()` (`include/core/Time.hpp`) usa
-  `time()` si NTP sincronizó y cae a `millis()/1000` si no; los eventos usan
-  `timestampMs` (millis monotónico) y no epoch.
+- ⚠️ `timestamp` es epoch **UTC** real desde v1.114.0: `nowEpoch()`
+  (`include/core/Time.hpp`) usa `time()` si NTP sincronizó y cae a `millis()/1000`
+  si no; los eventos usan `timestampMs` (millis monotónico) y no epoch.
 - ⚠️ De los 8 flags, hoy solo se generan **3**: `VALID`, `COMMUNICATION_ERROR`
   (BMP280, SHT31, BH1750 con lectura inválida) y `SENSOR_DISCONNECTED` (BH1750 y
   DS18B20 desconectados). `INVALID`, `STALE`, `TIMEOUT`, `OUT_OF_RANGE` y

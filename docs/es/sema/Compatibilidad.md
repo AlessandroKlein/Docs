@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -98,7 +98,7 @@ tablas se monta como **LittleFS**.
 - El histórico de gráficas **no** usa la partición interna: vive en la microSD
   (`HistoryStore::enableSd`). Sin SD, las gráficas quedan vacías a propósito.
 - El nombre del binario lo arma `GET /api/v1/system`: `sema_<versión>_<board_id>.bin`
-  (p. ej. `sema_1.113.0_esp32-s3-8mb.bin`).
+  (p. ej. `sema_1.114.0_esp32-s3-8mb.bin`).
 
 ## 5. Sensores por interfaz
 
@@ -165,12 +165,10 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 |-----------|--------|---------|
 | Servidor | ✅ embebido | `WebServer` de Arduino en el puerto 80, sobre Wi-Fi o Ethernet (lwIP) |
 | HTML/JS/CSS | ✅ embebido | Todo servido por el firmware; sin CDN externo |
-| GridStack | ✅ | `/gridstack-all.min.js` y `/gridstack.min.css` embebidos gzip; grilla de **12 columnas**, `cellHeight: 72`, `margin: 6` |
 | Canvas 2D | ✅ | Gráficos propios con `getContext('2d')`, escala por `devicePixelRatio`, series por sensor |
 | WebSocket | ⚠️ a medias | Hay `WebSocketsServer ws_{81}` y `broadcastMeasurements()` emite las mediciones por `broadcastTXT`, pero **la página no abre ningún WebSocket**: `HttpServer.hpp:15` lo marca como pendiente |
 | Datos en vivo | ✅ por polling | `/api/v1/sensors` cada **5 s** (`setInterval(refresh,5000)`) |
 | Gráficos | ✅ por polling | `/api/v1/history?limit=3000`, redibujo cada **60 s** |
-| Layout persistente | ✅ | `POST/GET /api/v1/dashboard/layout`, guardado en NVS en una clave aparte |
 | Login | ✅ | `/login` (formulario) + `X-API-Key`; sin claves configuradas todo queda abierto |
 | Traducción | ✅ | Atributos `data-i18n` con `system.lang` (`es`/`en`) |
 | Modales | ✅ propios | `uiModal()` / `uiAlert()` en JS: no dependen de librerías |
@@ -180,7 +178,7 @@ Detalle completo en [Expansores de entrada/salida](Expansores-de-entrada-salida.
 
 | Componente | Versión |
 |------------|---------|
-| Firmware SEMA | 1.113.0 · HW `rev0` |
+| Firmware SEMA | 1.114.0 · HW `rev0` |
 | Schema de configuración | 1 (`SEMA_CONFIG_SCHEMA_VERSION`) |
 | Protocolo | 1 (`SEMA_PROTOCOL_VERSION`) |
 | Plataforma (PlatformIO) | `espressif32` con `framework = arduino` |

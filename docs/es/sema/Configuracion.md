@@ -6,11 +6,11 @@ tags:
 
 # Configuración
 
-> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 SEMA se configura con **un único documento JSON** (`schema_version: 1`) que se
-persiste en la NVS del ESP32 y se aplica de forma **transaccional** (validar →
-aplicar → persistir → rollback). Esta página explica dónde vive, cómo se edita,
+persiste en **LittleFS** (`/config.json`) y se aplica de forma **transaccional**
+(validar → aplicar → persistir → rollback). Esta página explica dónde vive, cómo se edita,
 qué se aplica en caliente y qué necesita reinicio. La lista completa de claves
 está en [Referencia de configuración](Referencia-configuracion.md).
 
@@ -20,26 +20,26 @@ está en [Referencia de configuración](Referencia-configuracion.md).
 
 | Aspecto | Valor real | Código |
 |---------|------------|--------|
-| Backend | NVS (`Preferences` de arduino-esp32) vía `NvsStore` | `src/core/storage/NvsStore.cpp`, `include/core/storage/Storage.hpp` |
-| Namespace NVS | `sema` | `src/core/SemaCore.cpp:50` (`store_.begin("sema")`) |
-| Clave de la config | `config` (un string con el JSON completo) | `src/core/ConfigManager.cpp:9` (`kConfigKey`) |
-| Clave del layout | `layout` (JSON del dashboard Gridstack) | `ConfigManager::saveDashboardLayout()` (`ConfigManager.cpp:475`) |
-| Clave del contador | `boots` (`uint32`, contador de reinicios) | `src/core/SemaCore.cpp:57-59` |
-| Partición | `nvs`, `data/nvs`, offset `0x9000`, tamaño `0x5000` (20 KB) en todas las placas | `partitions_4mb.csv`, `partitions_8mb.csv`, `partitions_16mb.csv` |
+| Backend | LittleFS (archivo `/config.json`) | `src/core/ConfigManager.cpp:11` (`kConfigFile`) |
+| Namespace NVS | `sema` (solo `boots`) | `src/core/SemaCore.cpp:50` (`store_.begin("sema")`) |
+| Clave de la config | — (la config va a `/config.json`, no a NVS) | `ConfigManager::save()` (`ConfigManager.cpp`) |
+| Clave del contador | `boots` (`uint32`, contador de reinicios, sigue en NVS) | `src/core/SemaCore.cpp:49-53` |
+| Partición | `spiffs` (LittleFS), 448 KB en 4 MB | `partitions_4mb.csv` (y equivalentes 8/16/32 MB) |
 
 ```text
+LittleFS (/config.json)
+└── config   → JSON de configuración (schema_version = 1)
+
 NVS (namespace "sema")
-├── config   → JSON de configuración (schema_version = 1)
-├── layout   → layout del dashboard (clave aparte, ver §2)
 └── boots    → uint32 con la cantidad de arranques
 ```
 
 !!! warning "`storage.backend` no elige dónde se guarda la config"
     La clave `storage.backend` (`"littlefs"` · `"flash"` · `"sd"`) **solo se
     valida y se persiste**: ningún módulo la lee para decidir el medio. La
-    configuración **siempre** va a NVS. El histórico va a la microSD (`SD.begin`
-    en `src/core/storage/HistoryStore.cpp:40`) y los eventos a LittleFS
-    (`src/core/events/EventLog.cpp:18`).
+    configuración **siempre** va a LittleFS `/config.json` (desde v1.114.0, D-0046).
+    El histórico va a la microSD (`SD.begin` en `src/core/storage/HistoryStore.cpp:40`)
+    y los eventos a LittleFS (`src/core/events/EventLog.cpp:18`).
 
 ## 2. Formato y tamaño
 
@@ -47,9 +47,6 @@ NVS (namespace "sema")
   `DynamicJsonDocument` de **16 384 bytes** (`ConfigManager::serialize()` y
   `parseInto()`), así que el documento debe quedar cómodamente por debajo de ese
   tamaño.
-- El layout del dashboard **no** está dentro del JSON de config: se guarda en la
-  clave NVS `layout` para no exceder el límite de tamaño de una entrada NVS
-  (comentario en `include/core/ConfigManager.hpp:252-254`).
 - `schema_version` debe ser `1` (`SEMA_CONFIG_SCHEMA_VERSION` en
   `include/core/Version.hpp:17`). Si la clave falta, el parser asume `1`.
 - **Todas las claves son opcionales al parsear**: la que falta toma su default
@@ -69,7 +66,7 @@ NVS (namespace "sema")
 | API (parcial) | `POST /api/v1/config/buses` | Sesión o `X-API-Key` | `i2c_sda`, `i2c_scl`, `sd_cs`, `modbus.*`, `can.*`, `lora.*`, `zigbee.*`, `ethernet.*` |
 | API (lectura) | `GET /api/v1/config` | Sesión o `X-API-Key` | Devuelve el JSON completo (incluye claves) |
 | Restauración | `POST /api/v1/backup` | Sesión o `X-API-Key` | Mismo handler que `PUT /api/v1/config` |
-| Escrituras indirectas | `POST /api/v1/security/keys`, `POST /api/v1/wind/north`, `POST /api/v1/wind/resistors`, `GET`/`POST /api/v1/dashboard/layout` | Sesión o `X-API-Key` | `security.extra_keys`, `system.wind_north_offset`, `system.wind_rpull`, `system.wind_resistors`, clave `layout` |
+| Escrituras indirectas | `POST /api/v1/security/keys`, `POST /api/v1/wind/north`, `POST /api/v1/wind/resistors` | Sesión o `X-API-Key` | `security.extra_keys`, `system.wind_north_offset`, `system.wind_rpull`, `system.wind_resistors` |
 
 > La diferencia entre «sesión» y `X-API-Key` no es cosmética: `POST /api/v1/ota`
 > **solo** acepta `X-API-Key` (ver [Seguridad](Seguridad.md) §3 y
@@ -91,8 +88,7 @@ POST/PUT (JSON)
    ├─ config_  = next
    │
    └─ save()
-        ├─ serialize() + NVS putString("config")
-        │     └─ si NVS está lleno → store_.clear() + un reintento
+        ├─ serialize() + escritura en LittleFS (/config.json)
         ├─ OK   → valid_ = true      → HTTP 200 {"ok":true}
         └─ FALLA→ config_ = backup_  → rollback → HTTP 500
 ```
@@ -102,14 +98,11 @@ Detalles verificados:
 - **Parseo**: `parseInto()` devuelve `false` si `deserializeJson` falla
   (`ConfigManager.cpp:284-287`).
 - **Validación**: ver §6.
-- **Persistencia**: `save()` serializa y escribe la clave `config`. Si la
-  escritura falla, asume NVS lleno/fragmentado, ejecuta `store_.clear()`
-  (**borra `config`, `layout` y `boots`**) y reintenta **una sola vez**
-  (`ConfigManager.cpp:78-85`).
-- **Rollback**: si el segundo intento también falla, `config_` vuelve a la copia
-  previa en RAM y la operación devuelve `false`. Ojo: si el `clear()` ya se
-  ejecutó, la configuración anterior **ya no está en NVS**; el rollback solo
-  protege la copia en RAM hasta el próximo reinicio.
+- **Persistencia**: `save()` serializa y escribe `/config.json` en LittleFS
+  (desde v1.114.0, D-0046). El `boots` (contador de reinicios) sigue en NVS.
+- **Rollback**: si la escritura falla, `config_` vuelve a la copia previa en RAM
+  y la operación devuelve `false`; el rollback protege la copia en RAM hasta el
+  próximo reinicio.
 - **Respuestas HTTP**: `PUT /api/v1/config` y `POST /api/v1/backup` devuelven
   `400 {"error":"invalid config"}` si el JSON no parsea o no valida; los
   endpoints parciales devuelven `400 {"error":"invalid json"}` o
@@ -183,7 +176,6 @@ firmware las lee (❌ no implementado):
 | `shift_registers[]` | `SEMA_USE_SHIFT=0` por defecto (`include/hw/HwProfile.hpp:68-69`); sin driver activo |
 | `spi_expanders[]` | No hay driver MAX14830 ni SC18IS602B en `src/` (solo config + UI) |
 | `i2c_sda`, `i2c_scl` | El bus se abre con `SEMA_PIN_I2C_SDA`/`SEMA_PIN_I2C_SCL` (`SemaCore.cpp:112`) |
-| `system.dashboard_layout` | Campo del struct `SystemConfig` que nunca se serializa ni se parsea |
 
 ## 6. Validación y recuperación
 
@@ -204,7 +196,7 @@ se acepta tal cual.
 `ConfigManager::load()` (`ConfigManager.cpp:45-69`):
 
 ```text
-NVS "config"
+LittleFS "/config.json" (si no hay, fallback a NVS "config" como backward-compat)
 ├── no existe / vacío ──────────────► defaults
 ├── deserialize() falla ────────────► defaults
 ├── validate() falla ───────────────► defaults
@@ -219,8 +211,8 @@ fijados en `load()`: `station.id = "SEMA-001"`, `station.name = "Estación Norte
 
 Puntos clave:
 
-- La NVS **no se sobrescribe** al cargar defaults: el equipo arranca con
-  defaults en RAM y el JSON inválido sigue en NVS hasta el próximo `save()`.
+- LittleFS **no se sobrescribe** al cargar defaults: el equipo arranca con
+  defaults en RAM y el JSON inválido sigue en disco hasta el próximo `save()`.
 - El único indicador es el log serie `Config válida: no`
   (`SemaCore.cpp:100`) y `GET /api/v1/system` → `config_schema`.
 - ❌ **No hay migración de esquema**: no existe `ConfigManager::migrate()` en el
@@ -228,7 +220,7 @@ Puntos clave:
   defaults (⚠️ contradice a `docs/VERSIONADO.md`, que menciona `migrate()`).
 - Recuperación práctica: guardar de nuevo la config desde la web o `PUT
   /api/v1/config` con un JSON válido; para volver a fábrica, guardar los
-  defaults o borrar la partición NVS por serie.
+  defaults o borrar `/config.json` (o la partición LittleFS).
 
 ## 7. Diagnóstico de la configuración
 

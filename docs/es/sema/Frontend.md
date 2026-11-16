@@ -6,7 +6,7 @@ tags:
 
 # Frontend (dashboard web)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 El dashboard de SEMA es HTML+CSS+JavaScript **embebido en el firmware** (constantes
 `PROGMEM` en `src/core/web/HttpServer.cpp`), sin dependencias externas en tiempo de
@@ -16,22 +16,13 @@ ejecución: no hay `data/`, ni LittleFS para la web, ni CDN (v1.102.0).
 
 | Componente | Ubicación | Detalle |
 |------------|-----------|---------|
-| HTML del dashboard | `HttpServer.cpp:171` (`kIndexHtml`) | Estructura del panel + tarjetas Gridstack |
-| HTML de login | `HttpServer.cpp:21` (`kLoginHtml`) | Formulario de una contraseña |
-| CSS base | `HttpServer.cpp:589` (`kBaseCss`) | Tema oscuro/claro y componentes |
-| Navegación | `HttpServer.cpp:646` (`kNav`) | Barra de navegación común entre páginas |
-| JS de tema | `HttpServer.cpp:666` (`kThemeJs`) | `toggleTheme()` + persistencia |
-| JS de idioma | `HttpServer.cpp:673` (`kI18nJs`) | `applyLang()` / `toggleLang()` |
-| Cuerpos de páginas de config | `HttpServer.cpp:715+` (`const String body = R"html(…)`) | Un cuerpo por página |
-| Gridstack (CSS/JS) | `src/core/web/GridstackAssets.h` | Gzip embebido: **1 009 B** (CSS) y **22 243 B** (JS) |
-
-Los assets de Gridstack se sirven comprimidos desde PROGMEM:
-
-| Ruta | Contenido | Headers |
-|------|-----------|---------|
-| `/gridstack.min.css` | CSS gzip | `Content-Encoding: gzip`, `Cache-Control: max-age=3600` |
-| `/gridstack-all.min.js` | JS gzip | `Content-Encoding: gzip`, `Cache-Control: max-age=3600` |
-
+| HTML del dashboard | `HttpServer.cpp:215` (`kIndexHtml`) | Portada: tarjetas de sensores conectados + predicciones |
+| HTML de login | `HttpServer.cpp:23` (`kLoginHtml`) | Formulario de una contraseña |
+| CSS base | `HttpServer.cpp:385` (`kBaseCss`) | Tema oscuro/claro y componentes |
+| Navegación | `HttpServer.cpp:449` (`kNav`) | Barra de navegación común entre páginas |
+| JS de tema | `HttpServer.cpp:469` (`kThemeJs`) | `toggleTheme()` + persistencia |
+| JS de idioma | `HttpServer.cpp:476` (`kI18nJs`) | `applyLang()` / `toggleLang()` |
+| Cuerpos de páginas de config | `HttpServer.cpp` (`const String body = R"html(…)`) | Un cuerpo por página |
 ## 2. Páginas
 
 | Ruta | Handler | Contenido |
@@ -49,21 +40,29 @@ Los assets de Gridstack se sirven comprimidos desde PROGMEM:
 
 ## 3. Dashboard
 
-- **Tarjetas Gridstack** arrastrables y redimensionables; el layout se guarda en
-  `system.dashboard_layout` y se sincroniza con `GET/POST /api/v1/dashboard/layout`.
+Desde v1.114.0 la portada (`/`) es una página **limpia, sin tablero editable**:
+
+- **Sensores conectados**: tarjetas con nombre, valor + unidad y estado; se muestran
+  solo los sensores del catálogo con estado `healthy` y las magnitudes derivadas
+  (`sensor_id = "DERIVED"`). El catálogo completo sigue en `/config/sensors`.
 - **Estado**: nombre de estación, firmware, `hw`, uptime.
-- **Mediciones en vivo**: tabla de canales con valor, unidad y calidad.
-- **Histórico**: últimas mediciones y **gráficos** sobre `<canvas>` (series, ejes y
-  rangos; sin librerías externas).
-- **Predicción** (v1.104.0): tarjeta con el pronóstico a corto plazo
-  (`GET /api/v1/forecast`) para temperatura, humedad y lluvia a 3/6/12/24 h.
+- **Predicción** (v1.104.0): sección con el pronóstico a corto plazo
+  (`GET /api/v1/forecast`) para temperatura, humedad y lluvia, con filas por
+  horizonte (+3h / +6h / +12h / +24h) que muestran valor y % de confianza.
 - **Configuración**: formularios por sección (red, seguridad, sistema, viento,
   sensores) en lugar de JSON crudo.
+
+> Hasta v1.113.0 el dashboard usaba un tablero **Gridstack** (tarjetas arrastrables
+> y redimensionables) con layout persistido en `system.dashboard_layout` y
+> `GET/POST /api/v1/dashboard/layout`. Todo eso se eliminó: la librería
+> `GridstackAssets.h` (~1463 líneas) y sus rutas `/gridstack.min.css` /
+> `/gridstack-all.min.js` ya no existen, y el layout no se guarda. Ahorro de ~40 KB
+> de flash.
 
 ### 3.1 Toggle de elementos y bloqueo de pines (v1.105.0–v1.106.0)
 
 - **Elementos habilitables por usuario final**: sensores y buses (Ethernet, Modbus,
-  CAN, LoRa, Zigbee) se habilitan/deshabilitan desde la web, persistido en NVS,
+  CAN, LoRa, Zigbee) se habilitan/deshabilitan desde la web, persistido en la config (LittleFS),
   también en la variante PCB (`SEMA_PINS_FROM_FILE=1`). El campo `enabled` se aplica
   siempre.
 - **Edición de pines solo en modo AP**: `pinsLocked()` = `(SEMA_PINS_FROM_FILE != 0)
@@ -108,12 +107,9 @@ Los assets de Gridstack se sirven comprimidos desde PROGMEM:
 
 ## 7. Cómo modificarlo
 
-1. Editar las constantes `PROGMEM` en `src/core/web/HttpServer.cpp` (HTML, CSS, JS) o
-   `GridstackAssets.h` si se actualiza la librería.
-2. Si hay que regenerar los assets gzip, el repo incluye `gen_gridstack.py`.
-3. Compilar y flashear (`pio run -e esp32doit-devkit-v1 -t upload`).
-4. Los assets se sirven con `Cache-Control: max-age=3600`: al probar cambios de CSS/JS
-   hay que forzar recarga (Ctrl+F5).
+1. Editar las constantes `PROGMEM` en `src/core/web/HttpServer.cpp` (HTML, CSS, JS).
+2. Compilar y flashear (`pio run -e esp32doit-devkit-v1 -t upload`).
+3. Al probar cambios de CSS/JS hay que forzar recarga (Ctrl+F5).
 
 > **Regla del proyecto**: la interfaz no debe requerir cambiar el firmware para
 > configurar la estación. Si algo es configurable, va a un formulario y a la API, no a

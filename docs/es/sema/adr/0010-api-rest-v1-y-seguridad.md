@@ -9,7 +9,7 @@ tags:
 # 0010. API REST `/api/v1` en el Core y seguridad por claves
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.113.0 | **Decisión origen:** D-0006, D-0027, D-0035, D-0041, D-0048
+> **Firmware:** v1.114.0 | **Decisión origen:** D-0006, D-0027, D-0035, D-0041, D-0048
 
 ## Contexto
 
@@ -23,7 +23,7 @@ servidor para configurarla contradice el offline-first (ADR 0007).
 1. **D-0006 / D-0041** — REST + WebSocket forman parte del Core: API HTTP versionada
    en **`/api/v1`** con `status`, `health`, `system`, `config`, `sensors`, `events`,
    `alarms`, `diagnostics`, `network`, `capabilities`, `energy`, `history`, `backup`,
-   `restart`, `ota`, `gpio`, `shift`, `wind/*`, `dashboard/layout`, `wifi/scan`,
+   `restart`, `ota`, `gpio`, `shift`, `wind/*`, `wifi/scan`,
    `update/check`, `security/keys` y los buses (`modbus`, `can`, `lora`, `zigbee`).
    El **WebSocket** va por el puerto **81** (`/ws`, `ws_` en `HttpServer.hpp`) y
    difunde `{"type":"measurements","data":[…]}`.

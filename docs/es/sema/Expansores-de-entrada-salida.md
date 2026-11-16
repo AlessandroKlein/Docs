@@ -7,7 +7,7 @@ tags:
 
 # Expansores de entrada/salida
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Qué expansores de E/S contempla SEMA, cuáles están **implementados de verdad** y cuáles
 son solo configuración. Verificado contra `include/core/ConfigManager.hpp`,

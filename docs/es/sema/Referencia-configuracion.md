@@ -7,11 +7,11 @@ tags:
 
 # Referencia de configuración (JSON)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Referencia **exhaustiva** de todas las claves que `ConfigManager` lee y escribe
 (`include/core/ConfigManager.hpp` + `src/core/ConfigManager.cpp`). Es el mismo
-documento que se persiste en NVS (clave `config`) y el que se intercambia por
+documento que se persiste en LittleFS (`/config.json`) y el que se intercambia por
 `GET`/`PUT /api/v1/config` y por `GET`/`POST /api/v1/backup`.
 
 !!! info "Cómo leer las tablas"

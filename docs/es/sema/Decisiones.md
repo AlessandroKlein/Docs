@@ -7,7 +7,7 @@ tags:
 
 # Decisiones de arquitectura (ADR)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 SEMA registra sus decisiones en dos niveles: el **registro de trabajo**
 `docs/DUDAS-Y-DECISIONES.md` del repo de código (decisiones `D-0001`…`D-0060`, con
@@ -114,7 +114,7 @@ documenta en la página temática indicada en «Área».
 | Runtime | D-0012, D-0013, D-0014, D-0018, D-0019, D-0020, D-0039, D-0052, D-0053 | 🔄 `Scheduler` cooperativo y abstracción `Task` presentes; el firmware es **mono-hilo** (sin tareas FreeRTOS en uso). Watchdog TWDT + Health Monitor activos (ver ADR 0008 y 0012). |
 | Configuración | D-0023, D-0024, D-0042 | 🔄 Transaccional con rollback y `schema_version = 1` operativos. `migrate()` y Safe Mode **pendientes** (ver ADR 0009). |
 | Datos y sensores | D-0007, D-0025, D-0026, D-0028, D-0044, D-0055, D-0056, D-0057, D-0058 | ✅ Modelo canónico, calibración por canal y 8 quality flags definidos. 🔄 Solo se emiten `VALID`, `COMMUNICATION_ERROR` y `SENSOR_DISCONNECTED`. ⚠️ Retención por niveles solo sobre microSD (ver ADR 0003, 0005 y 0006). |
-| Almacenamiento | D-0032, D-0046, D-0057 | 🔄 NVS para configuración, LittleFS para eventos, microSD para histórico. `storage.backend` no selecciona backend (ver ADR 0006). |
+| Almacenamiento | D-0032, D-0046, D-0057 | 🔄 LittleFS para configuración y eventos, microSD para histórico, NVS para el contador de reinicios. `storage.backend` no selecciona backend (ver ADR 0006). |
 | Comunicación | D-0006, D-0009, D-0010, D-0011, D-0030, D-0036, D-0037, D-0047 | 🔄 API/web local, WebSocket, webhook y MQTT implementados. Store & Forward y Servidor Central **pendientes/fuera de alcance** (ver ADR 0007). |
 | API y seguridad | D-0027, D-0035, D-0048 | 🔄 `api_key` + `server_key` + `extra_keys` + login web con rate limiting. Sin TLS, sin RBAC por roles y sin OpenAPI generado (ver ADR 0010). |
 | OTA | D-0031, D-0049 | ✅ Particiones A/B + verificación SHA-256 opcional + `update/check` contra el manifiesto. ⚠️ Sin firma de binario (ver ADR 0011). |

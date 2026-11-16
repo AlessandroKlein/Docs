@@ -6,7 +6,7 @@ tags:
 
 # OTA y actualización
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Actualización de firmware por aire (OTA) con particiones A/B, manifiesto con
 SHA-256 y las limitaciones reales del flujo implementado en
@@ -59,18 +59,18 @@ partición llamada `spiffs` contenga **LittleFS**.
 | `spiffs` | data / spiffs (LittleFS) | `0x610000` | `0x9F0000` | 10 420 224 (9,94 MiB) |
 
 ```text
-0x009000 ┌──────── nvs (config, layout, boots) ────────┐ 20 KB
+0x009000 ┌──────── nvs (boots) ────────────────────────┐ 20 KB
 0x00E000 ├──────── otadata (índice A/B) ──────────────┤ 8 KB
 0x010000 ├──────── app0  (OTA_0, activa) ─────────────┤ 1,75 MB (4 MB) / 3 MB (8-16 MB)
          ├──────── app1  (OTA_1, la nueva) ───────────┤ igual tamaño
-0x390000 ├──────── spiffs → LittleFS (eventos) ───────┤ 448 KB (solo en 4 MB)
+0x390000 ├──────── spiffs → LittleFS (config+eventos) ┤ 448 KB (solo en 4 MB)
 ```
 
 - `otadata` es lo que decide qué partición arranca; `Update.end(true)` deja la
   nueva imagen como próxima a bootear.
 - El **histórico en microSD** no es una partición: si no hay SD, no hay histórico.
-- La OTA escribe **solo** la partición de app: la NVS (config) y la partición
-  LittleFS (eventos) no se tocan.
+- La OTA escribe **solo** la partición de app: la partición LittleFS (config +
+  eventos) y la NVS (`boots`) no se tocan.
 
 ## 2. Flujo de subida (`POST /api/v1/ota`)
 
@@ -159,7 +159,7 @@ curl -X POST http://sema-001.local/api/v1/ota \
 | `GET /api/v1/system` | `firmware_file`, `board`, `config_schema`, `reset_reason` (`SOFTWARE` si reinició la OTA) |
 | `GET /api/v1/health` | `status`, `free_heap`, sensores online |
 | `GET /api/v1/diagnostics` | Tareas, módulos, dispositivos I²C detectados |
-| `GET /api/v1/config` | La configuración sigue igual (la OTA no toca la NVS) |
+| `GET /api/v1/config` | La configuración sigue igual (la OTA no toca LittleFS) |
 | `GET /api/v1/history?limit=10` | El histórico sigue disponible (si hay microSD) |
 
 No hay endpoint de historial de versiones ni de último resultado de OTA: la única

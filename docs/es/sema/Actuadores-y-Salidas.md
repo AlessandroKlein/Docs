@@ -7,7 +7,7 @@ tags:
 
 # Actuadores y salidas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 SEMA controla **salidas digitales** (relés, LEDs, válvulas, sirenas, bombas) con el
 subsistema de **GPIO standalone** (`GpioManager`), que maneja pines nativos del ESP32,
@@ -123,7 +123,7 @@ Content-Type: application/json
 
 > ⚠️ **Discrepancia de claves:** en `POST /api/v1/config/io` el campo del expansor se
 > llama **`expander`**, mientras que el JSON que devuelve `GET /api/v1/config` y el
-> que se guarda en NVS lo llaman **`expander_addr`**. Si mandás `expander_addr` por
+> que se guarda (en la config de LittleFS) lo llaman **`expander_addr`**. Si mandás `expander_addr` por
 > este endpoint, se guarda como `0` (pin nativo).
 > Además, la página web `/config/sensors` **siempre envía `gpio: []`** en
 > `saveIo()`: guardar desde esa página **borra todas las salidas configuradas**.

@@ -9,7 +9,7 @@ tags:
 
 > **Tipo:** Concepto | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Cómo SEMA se conecta: **WiFi** (STA/AP), **mDNS**, **Ethernet** (LAN8720A por RMII
 o W5500 por SPI) y **hora/NTP**. Toda la lógica está en
@@ -255,21 +255,17 @@ configTzTime(posixTz(config_.get().system.timezone),
 `/config/system` (etiquetados +9 y +10/+11) pero **`posixTz()` no los mapea**: caen
 al `return "UTC0"` y la hora queda en UTC. Son opciones de UI sin soporte real.
 
-### 5.1 `nowEpoch()`: época **local**, no UTC
+### 5.1 `nowEpoch()`: época **UTC**
 
 `include/core/Time.hpp` define el reloj que usa todo el firmware:
 
 | Función | Comportamiento |
 |---------|----------------|
-| `nowEpoch()` | Si `time(nullptr) <= 1000000000` (antes de 2001-09-09 = sin NTP) → devuelve **`millis()/1000`** (uptime). Si hay reloj → devuelve `t + timezoneOffsetSeconds()` |
-| `timezoneOffsetSeconds()` | `t - mktime(gmtime(t))`; devuelve `0` si todavía no hay NTP |
+| `nowEpoch()` | Si `time(nullptr) <= 1000000000` (antes de 2001-09-09 = sin NTP) → devuelve **`millis()/1000`** (uptime). Si hay reloj → devuelve `time()` (epoch **UTC**, sin offset) |
 
-Es decir, `nowEpoch()` devuelve la **hora local con el offset ya sumado**, no un
-timestamp UTC. ⚠️ El comentario de `Measurement.hpp:37` dice
-`uint32_t timestamp = 0; // epoch seconds UTC`, pero el valor real es
-`UTC + offset`. Con zona -3, un `timestamp` de 1760000000 corresponde a las
-22:13 UTC del día anterior en términos UTC. Cualquier integración que asuma UTC
-debe restar el offset.
+Desde v1.114.0 `nowEpoch()` devuelve la **época UTC** (antes devolvía la hora local
+con el offset sumado, lo que corría la hora −3 h en Buenos Aires). El JS de la web
+hace `new Date(ts*1000)` y convierte UTC a la hora local del navegador.
 
 Este mismo reloj alimenta: el histórico (`ts` en `/api/v1/history`), el `timestamp`
 del payload MQTT/webhook, la entrada `clock` de `/api/v1/sensors` y la retención por
@@ -296,7 +292,7 @@ SEMA está diseñado para funcionar **sin nube**: todo el núcleo es local.
 
 Consecuencia observable del NTP caído: los `ts` del histórico arrancan en valores
 chicos (segundos de uptime) y crecen hasta el próximo reinicio; con NTP, saltan a
-la época local. La web no marca ese cambio de escala.
+la época UTC. La web no marca ese cambio de escala.
 
 ## 7. Servicios y puertos expuestos
 

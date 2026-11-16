@@ -7,7 +7,7 @@ tags:
 
 # Limitaciones y bugs conocidos
 
-> **Tipo:** Referencia / Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia / Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Consolidado de **limitaciones reales** de `v1.103.0`, verificadas leyendo el código
 (archivo y línea indicados). No es una lista de deseos: son comportamientos que hoy
@@ -47,7 +47,7 @@ sorprenden o que directamente no funcionan como la interfaz sugiere.
 | C1 | 🟠 | `i2c_sda` / `i2c_scl` | El bus se abre con los pines fijos del perfil (21/22): cambiarlos por web no afecta al I²C compartido | `SemaCore.cpp:112` usa `Wire.begin(SEMA_PIN_I2C_SDA, SEMA_PIN_I2C_SCL)` |
 | C2 | 🟠 | `sensors[].address` (selector «ID») | Ningún driver lo lee: las direcciones están fijas en código (BMP280 0x76, SHT40/SHT31 0x44, VEML6075 0x10, SCD30 0x61, SGP30 0x58, AS3935 0x03, ADS1115 0x48) | `src/core/sensors/*.cpp` |
 | C3 | 🟠 | `sensors[].bus` / `uart` / `uart_port` | Ningún driver los usa; **y `POST /api/v1/config/sensors` los descarta** (solo `PUT /api/v1/config` los conserva) | `HttpServer.cpp` (`onConfigSensors`) |
-| C4 | 🟠 | `sensors[].dashboard_layout` en el backup | `serialize()` no emite `dashboard_layout` (vive en la clave NVS `layout`): restaurar un backup **no** restaura el dashboard | `ConfigManager.cpp` (`serialize`) |
+| C4 | 🟠 | `dashboard_layout` | Campo eliminado en v1.114.0 (junto con Gridstack): ya no existe ni se serializa | `ConfigManager.cpp` |
 | C5 | 🟠 | `POST /api/v1/config/io` | La UI envía `gpio: []` → **borra los GPIO standalone**; además usa `latch`/`expander` mientras el JSON completo usa `latch_pin`/`expander_addr` | `HttpServer.cpp` (`onConfigIo`) |
 | C6 | 🟡 | `POST /api/v1/config/buses` | No aplica varios campos (baud/slave_id/register/count y parámetros de radio) que sí acepta `PUT /config` | `HttpServer.cpp` (`onConfigBuses`) |
 | C7 | 🟡 | `storage.backend` | Solo se valida como cadena: **no selecciona backend** (el histórico siempre va a SD) | `ConfigManager.cpp`, `HistoryStore.cpp` |
@@ -99,10 +99,9 @@ sorprenden o que directamente no funcionan como la interfaz sugiere.
 | D1 | 🔴 | El histórico escribe **solo en microSD**; sin SD, `append()` devuelve `false` y no hay histórico ni gráficas | `HistoryStore.cpp` (`<SD.h>`); el comentario de `HistoryStore.hpp` dice "backend LittleFS" y **contradice** al `.cpp` |
 | D2 | 🟡 | El `EventLog` se evalúa contra la cola RAM (100 entradas) y su `ts` es `millis()`, no época | `EventLog.cpp` |
 | D3 | 🟡 | La página `/events` formatea `ts` como epoch → en un equipo real sin NTP muestra fechas de 1970 | `HttpServer.cpp` (JS embebido) |
-| D4 | 🟡 | El backup no incluye el layout del dashboard y `backup.timestamp` es `millis()/1000` (uptime), no fecha | `HttpServer.cpp` (`onBackup`), `ConfigManager.cpp` |
+| D4 | 🟡 | El `backup.timestamp` es `millis()/1000` (uptime), no fecha | `HttpServer.cpp` (`onBackup`), `ConfigManager.cpp` |
 | D5 | 🟠 | Las reglas **no accionan salidas**: el `RuleEngine` solo publica el evento; la automatización es externa | `RuleEngine.cpp` |
 | D6 | 🟠 | `station_id` viaja **siempre vacío**: `Measurement::stationId` no se asigna en ningún punto del firmware (se publica así por MQTT/webhook) | `Measurement.hpp`, `SemaCore.cpp` |
-| D7 | 🟡 | `nowEpoch()` devuelve hora **local** (UTC + offset), aunque el comentario de `Measurement.hpp` diga "epoch seconds UTC" | `Time.hpp` |
 | D8 | 🟡 | El dashboard **no consume el WebSocket** (no hay `new WebSocket` en el firmware): refresca por polling cada 5 s; el WS del puerto 81 queda como interfaz para clientes externos | `HttpServer.cpp` |
 | D9 | 🟠 | Las reglas se evalúan **por lote cada 10 s y sin detección de flanco**: mientras la condición siga siendo verdadera se emite una alarma nueva en cada ciclo (sin histéresis ni cooldown) | `RuleEngine.cpp`, `SemaCore.cpp` |
 

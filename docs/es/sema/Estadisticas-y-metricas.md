@@ -6,7 +6,7 @@ tags:
 
 # Estadísticas y métricas
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Dos familias de métricas: las **del proyecto** (tamaño del código, releases,
 artefactos) y las que el **firmware expone en ejecución** para monitoreo y
@@ -59,7 +59,6 @@ Archivos más grandes (líneas):
 | `src/core/storage/HistoryStore.cpp` | 304 | Histórico JSONL, rotación, retención y agregados |
 | `include/core/ConfigManager.hpp` | 269 | Estructuras de configuración (fuente de las claves JSON) |
 | `src/core/derived/DerivedCalculator.cpp` | 224 | Fórmulas de magnitudes derivadas |
-| `src/core/web/GridstackAssets.h` | ~1 460 | Gridstack CSS/JS embebidos en PROGMEM (gzip) |
 
 ## 3. Artefactos de firmware
 

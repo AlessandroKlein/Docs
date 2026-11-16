@@ -6,7 +6,7 @@ tags:
 
 # Guía de desarrollo (extender SEMA)
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Cómo extender SEMA **de verdad**: agregar un sensor, un publicador, una regla, una
 magnitud derivada, un endpoint REST o un módulo, con las rutas reales del repositorio,
@@ -48,7 +48,7 @@ Toda la lógica va en módulos.
    (por ejemplo `// D-0056`, `// README.md §173`). Un `TODO`/`FIXME` lleva motivo.
 3. **No inventar APIs, librerías, flags ni comandos**: se verifica contra el código o
    la documentación oficial. Ante la duda, preguntar.
-4. **No hardcodear secretos** (claves, tokens): van a la configuración (NVS).
+4. **No hardcodear secretos** (claves, tokens): van a la configuración (LittleFS).
 5. **No refactorizar** código que no se está tocando (salvo limpieza local < 10 líneas).
 6. **Un commit por cambio lógico**, en inglés y con Conventional Commits
    (`feat(sensors): …`, `fix(web): …`, `docs: …`, `refactor: …`).
@@ -378,8 +378,8 @@ Límites y avisos:
   Una configuración que no parsea suele ser una que se pasó de tamaño.
 - La ventana de configuración es **transaccional**: `apply()` respalda, guarda y
   revierte si falla. Si tu clave depende de hardware, validala antes.
-- `saveDashboardLayout()` usa una **clave NVS separada** (`layout`) para no exceder el
-  tamaño de una entrada.
+- Desde v1.114.0 (D-0046) la config se guarda en LittleFS `/config.json` (antes
+  en NVS, donde superaba el límite de 4 KB de una entrada).
 - Cambiar el significado de una clave existente es un cambio **MAJOR** de versión
   (ver [Versionado](../inicio/Versionado.md)); agregar una clave con default es
   MINOR.

@@ -7,7 +7,7 @@ tags:
 
 # Compatibilidad de versiones
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Qué versiona SEMA, cómo se comporta frente a una configuración, un backup o un
 firmware de otra versión, y qué compatibilidad **no** está implementada. Todo lo
@@ -59,9 +59,9 @@ bool ConfigManager::validate(const Config& c) const {
 
 | Escenario | Camino del código | Resultado real |
 |-----------|-------------------|----------------|
-| Arranque con NVS de esquema 1 | `load()` → `deserialize()` → `validate()` OK | Config cargada, `valid_ = true` |
-| Arranque con NVS de esquema ≠ 1 | `load()` → `deserialize()` OK pero `validate()` falla | **Se descarta la config guardada y se aplican los defaults** (no se avisa al usuario más que por serie: `Config válida: no` antes de los defaults) |
-| Arranque sin NVS | `load()` → defaults | `SEMA-001`, `Estación Norte`, STA, `sema-001`, mDNS, Buenos Aires, INFO, littlefs, 30 días |
+| Arranque con config (LittleFS) de esquema 1 | `load()` → `deserialize()` → `validate()` OK | Config cargada, `valid_ = true` |
+| Arranque con config de esquema ≠ 1 | `load()` → `deserialize()` OK pero `validate()` falla | **Se descarta la config guardada y se aplican los defaults** (no se avisa al usuario más que por serie: `Config válida: no` antes de los defaults) |
+| Arranque sin `/config.json` | `load()` → defaults | `SEMA-001`, `Estación Norte`, STA, `sema-001`, mDNS, Buenos Aires, INFO, littlefs, 30 días |
 | `PUT /api/v1/config` con `schema_version` ≠ 1 | `applyJson` → `parseInto` → `apply` → `validate` falla | HTTP 400 `{"error":"invalid config"}`; la config vigente **no** cambia |
 | Config de esquema 1 a la que le faltan claves | `parseInto` aplica `doc["x"] \| default` a **cada** campo | Se completa con defaults: es un lector tolerante hacia adelante |
 
@@ -109,7 +109,7 @@ cuatro claves de metadatos (`HttpServer.cpp:1375-1399`):
 | `schema_version` ≠ 1 dentro del backup | Rechazado con HTTP 400: un backup de otro esquema **no migra** |
 | Claves nuevas que el firmware no conoce | Ignoradas en silencio (restauración parcial) |
 | Claves ausentes en el backup | Se completan con los defaults del código |
-| `system.dashboard_layout` | ❌ **No viaja en el backup**: `serialize()` no emite `dashboard_layout` y el layout vive en la clave NVS separada `layout` (`saveDashboardLayout`). Restaurar un backup **no** restaura el dashboard |
+| `system.dashboard_layout` | ❌ **Eliminado en v1.114.0**: el campo ya no existe y no hay layout de dashboard que respaldar |
 | Claves `security.*` | Viajan en claro (JSON sin cifrar) |
 | Efecto inmediato | Tras aplicar, `onConfigPut` re-aplica todo sin reiniciar: `applySensors`, `applyRules`, `applyCalibrations`, `applyGpio`, `applyPublishers`, `applyShift`, `applyModbus`, `applyCan`, `applyLora`, `applyZigbee`, `applyEthernet` |
 
@@ -178,7 +178,7 @@ Lo estrictamente verificable en el código y el manifest:
 |----------------------------|--------------------|------:|----------------------|:---------------:|:-----------------------------------:|--------------------|
 | `esp32-wroom-4mb` | `esp32doit-devkit-v1` (default) | 4 MB | `partitions_4mb.csv` (`app0/app1` 0x1C0000, `spiffs` 0x70000) | Sí (`SEMA_NATIVE_ETH=1`) | ✅ `sema_1.103.0_esp32-wroom-4mb.bin` | `sema_<fw>_esp32-wroom-4mb.bin` |
 | `esp32-s3-8mb` | `esp32-s3-devkitc-1` | 8 MB | `partitions_8mb.csv` (`app0/app1` 0x300000, `spiffs` 0x1F0000) | No (W5500 SPI) | ✅ `sema_1.103.0_esp32-s3-8mb.bin` | `sema_<fw>_esp32-s3-8mb.bin` |
-| `esp32-c6-8mb` | `esp32-c6-devkitc-1` | 8 MB | `partitions_8mb.csv` | No (`SEMA_USE_ETHERNET=0`) | ✅ `sema_1.113.0_esp32-c6-8mb.bin` | `sema_<fw>_esp32-c6-8mb.bin` |
+| `esp32-c6-8mb` | `esp32-c6-devkitc-1` | 8 MB | `partitions_8mb.csv` | No (`SEMA_USE_ETHERNET=0`) | ✅ `sema_1.114.0_esp32-c6-8mb.bin` | `sema_<fw>_esp32-c6-8mb.bin` |
 | `esp32-c3-4mb` | `esp32-c3-devkitm-1` | 4 MB | `partitions_4mb.csv` | No (`SEMA_USE_ETHERNET=0`) | ❌ **Sin entrada en el manifest** | `sema_<fw>_esp32-c3-4mb.bin` |
 | `esp32-s2-4mb` | `esp32-s2-saola-1` | 4 MB | `partitions_4mb.csv` | No (`SEMA_USE_ETHERNET=0`) | ❌ **Sin entrada en el manifest** | `sema_<fw>_esp32-s2-4mb.bin` |
 | `esp32-wroom32u-16mb` | `esp32-wroom-32u` (PCB futura) | 16 MB | `partitions_16mb.csv` (`app0/app1` 0x300000, `spiffs` 0x9F0000) | Sí | ❌ **Sin entrada en el manifest** | No publicado |

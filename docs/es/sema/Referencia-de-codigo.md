@@ -7,7 +7,7 @@ tags:
 
 # Referencia de código
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -19,7 +19,7 @@ Cifras globales verificadas: **112 archivos** entre `include/` y `src/`,
 > **Nota (v1.107.0):** los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 > publicadores, alarmas, buses e infraestructura) se extrajeron a
 > [`ESP32-Base`](https://github.com/AlessandroKlein/ESP32-Base) (namespace `base::`),
-> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.9.0`.
+> consumidos por `lib_deps` `https://github.com/AlessandroKlein/ESP32-Base.git#v0.10.0`.
 > El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 > SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 > `src/core/SemaGlue.cpp`.
@@ -48,7 +48,6 @@ Cifras globales verificadas: **112 archivos** entre `include/` y `src/`,
 | `README.md` | especificación | Spec completa del proyecto (fuente original de la arquitectura) |
 | `DESIGN-SYSTEM.md` | documento | Referencia de diseño (§102, §105, §224 citados en el código) |
 | `SECURITY.md` | documento | Política de seguridad |
-| `gen_gridstack.py` | script | Genera `src/core/web/GridstackAssets.h` (assets gzip en PROGMEM) |
 | `include/` | 2 979 líneas · 69 archivos | Cabeceras (interfaces) del Core y del perfil de hardware |
 | `src/` | 8 010 líneas · 43 archivos | Implementaciones |
 | `lib/` | solo `README` | Sin librerías privadas: las dependencias son de `lib_deps` |
@@ -76,7 +75,7 @@ include/                                69 archivos · 2 979 líneas
 │   ├── GpioManager.hpp                  33   GPIO nativo + MCP23017
 │   ├── ShiftRegisterManager.hpp         28   74HC595 / 74HC165
 │   ├── Calibration.hpp                  26   gain/offset + rango
-│   ├── Time.hpp                         37   nowEpoch() / offset de zona
+│   ├── Time.hpp                         37   nowEpoch() (UTC)
 │   ├── Version.hpp                      18   FW / HW / schema / protocol
 │   ├── EthernetManager.hpp              30
 │   ├── ModbusManager.hpp                30
@@ -119,7 +118,7 @@ src/                                    43 archivos · 8 010 líneas
     ├── core/publishers/                HttpPublisher 41 · MqttPublisher 62 · PublisherManager 17
     ├── core/runtime/Task.cpp            31
     ├── core/sensors/                  20 archivos · 1 220 líneas
-    └── core/web/                      HttpServer.cpp 2 637 · GridstackAssets.h 1 463
+    └── core/web/                      HttpServer.cpp 2 637
 ```
 
 ## 3. Módulos: archivos, responsabilidad y tamaño
@@ -130,7 +129,7 @@ Todos los conteos son líneas totales del archivo (incluyen comentarios y blanco
 |--------|----------|-----------------|-------:|
 | Arranque | `src/main.cpp` | Enlaza `setup()`/`loop()` con `SemaCore::instance()` | 18 |
 | Núcleo | `SemaCore.{hpp,cpp}` | Inicializa y conduce todos los servicios; accesores; `apply*()` | 553 |
-| Configuración | `ConfigManager.{hpp,cpp}` | Structs de spec + config schema=1; validación, persistencia NVS, rollback, JSON | 752 |
+| Configuración | `ConfigManager.{hpp,cpp}` | Structs de spec + config schema=1; validación, persistencia LittleFS, rollback, JSON | 752 |
 | Capacidades | `Capability.{hpp}`, `CapabilityManager.{hpp,cpp}` | Máscara de 16 capacidades consultables | 109 |
 | Módulos | `Module.hpp`, `ModuleRegistry.{hpp,cpp}` | Contrato y ciclo de vida de módulos | 134 |
 | Eventos | `EventBus.{hpp,cpp}` | Pub/sub tipado por `EventType` | 143 |
@@ -140,7 +139,7 @@ Todos los conteos son líneas totales del archivo (incluyen comentarios y blanco
 | Derivadas (motor activo) | `derived/DerivedCalculator.{hpp,cpp}` | VPD, QNH, AQI, altitud, lluvia, veleta + conversión de unidades | 265 |
 | Calibración | `Calibration.{hpp,cpp}` | `applyCalibration()`: gain/offset + `OUT_OF_RANGE` | 42 |
 | Sensores | `sensors/*.hpp` (21), `sensors/*.cpp` (20) | Interfaz `Sensor`, 17 drivers, manager, factoría, escáner I²C | 1 955 |
-| Sensores (tiempo) | `Time.hpp` | `nowEpoch()`, `timezoneOffsetSeconds()` (header-only) | 37 |
+| Sensores (tiempo) | `Time.hpp` | `nowEpoch()` (epoch UTC, header-only) | 37 |
 | Almacenamiento | `storage/Storage.hpp`, `NvsStore.{hpp,cpp}` | `KeyValueStore` (interfaz) + backend NVS/Preferences | 107 |
 | Histórico | `storage/HistoryStore.{hpp,cpp}` | JSONL en microSD, rotación, poda, agregación por niveles | 355 |
 | Red WiFi | `network/WiFiManager.{hpp,cpp}` | STA/AP, IP estática, mDNS, backoff de reconexión | 124 |
@@ -158,7 +157,6 @@ Todos los conteos son líneas totales del archivo (incluyen comentarios y blanco
 | Salud | `HealthMonitor.{hpp,cpp}` | Heartbeat, estado `HEALTHY/DEGRADED/ERROR`, watchdog por tarea | 143 |
 | Energía | `PowerManager.{hpp,cpp}` | `EnergyProfile`, deep sleep, wake por GPIO de lluvia | 75 |
 | Web/API | `web/HttpServer.{hpp,cpp}` | 4 páginas de config, dashboard, API `/api/v1`, `/ws`, OTA, login | 2 742 |
-| Assets web | `web/GridstackAssets.h` | CSS/JS de Gridstack en PROGMEM (gzip), generado por `gen_gridstack.py` | 1 463 |
 | Hardware | `hw/HwProfile.hpp` | Board, features, transceiver RS485, SPI, CS y pines fijos | 176 |
 | Board (PCB) | `core/BoardProfile.hpp` | Pines del catálogo por defecto de sensores | 39 |
 
@@ -171,7 +169,7 @@ Todos los conteos son líneas totales del archivo (incluyen comentarios y blanco
 | 3 | Histórico y eventos | 51–52 | `history_.begin()` (`/history.jsonl`), `eventLog_.begin()` (`/events.jsonl`) |
 | 4 | Contador de reinicios | 55–61 | Lee/incrementa/persiste `boots` en NVS → `restartCount_` |
 | 5 | Capacidades | 65–78 | Declara 13 capacidades: WiFi, Bluetooth, ADC, DAC, PCNT, LEDC, I²C, SPI, UART, CAN, RTC GPIO, DeepSleep, DualCore (**no** declara `Ethernet`, `Psram` ni `Ieee802154`) |
-| 6 | Configuración | 80 | `config_.load()` (NVS o defaults) |
+| 6 | Configuración | 80 | `config_.load()` (LittleFS `/config.json`, fallback NVS, o defaults) |
 | 7 | Retención del histórico | 81 | `retentionDays * 86400` segundos |
 | 8 | microSD | 84–89 | Si `storage.sdEnabled`: `history_.enableSd(sdCsPin)` |
 | 9 | Banner | 92–100 | Versión, HW, schema, protocol, estación, validez de config |

@@ -6,7 +6,7 @@ tags:
 
 # Seguridad
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Modelo de seguridad de SEMA tal como está **implementado** en
 `src/core/web/HttpServer.cpp`: dos credenciales por header (`X-API-Key`), una
@@ -90,7 +90,6 @@ caracteres hex** (16 bytes de `esp_random()`, `HttpServer.cpp:1758-1765`).
 | `GET /api/v1/zigbee` | Estado Zigbee (si `SEMA_USE_ZIGBEE=1`) |
 | `GET /login`, `POST /login` | Formulario de acceso (con rate limiting, §4) |
 | `GET /logout` | Cierra la sesión |
-| `GET /gridstack.min.css`, `GET /gridstack-all.min.js` | Assets gzip embebidos |
 
 ### 3.2 Protegidos por `webAuthed()` (sesión **o** `X-API-Key`)
 
@@ -105,7 +104,6 @@ caracteres hex** (16 bytes de `esp_random()`, `HttpServer.cpp:1758-1765`).
 | `GET /api/v1/backup`, `POST /api/v1/backup` | Backup/restauración de la config |
 | `POST /api/v1/restart` | Reinicia el equipo |
 | `POST /api/v1/wind/north`, `POST /api/v1/wind/resistors` | Calibración de la veleta |
-| `GET`/`POST /api/v1/dashboard/layout` | Layout del dashboard |
 | `POST /api/v1/gpio`, `/shift`, `/can`, `/lora`, `/zigbee` | Escritura sobre actuadores y buses |
 
 ### 3.3 Protegidos **solo** por `authorized()` (`X-API-Key`, no acepta cookie)
@@ -119,8 +117,7 @@ caracteres hex** (16 bytes de `esp_random()`, `HttpServer.cpp:1758-1765`).
 `/`, `/sensors`, `/events` y las cinco páginas `/config/*` llaman a
 `webAuthed()` y, sin credenciales, devuelven el formulario de login con HTTP
 `200` (`serveAuthedPage()`, `HttpServer.cpp:701-710`). No hay listado de
-directorios ni contenido estático adicional: los únicos archivos servidos son
-los dos assets de Gridstack.
+directorios ni contenido estático adicional.
 
 ### 3.5 WebSocket
 

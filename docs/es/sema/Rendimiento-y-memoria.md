@@ -7,7 +7,7 @@ tags:
 
 # Rendimiento y memoria
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Todos los números de esta página salen de una compilación real del firmware y de la
 lectura directa del código. Donde un dato no se pudo medir, se dice.
@@ -92,7 +92,6 @@ función. Los grandes son la fuente principal de picos de heap:
 | Update check | **8 192** | `HttpServer.cpp:1836` | Manifiesto remoto de firmware |
 | Modo demo (`SEMA_DEMO`) | **8 192** | `HttpServer.cpp:2061` | Catálogo y mediciones ficticias |
 | System (`/api/v1/system`) | **2 048** | `HttpServer.cpp:1402` | Identidad, pines reservados, reset reason |
-| Dashboard layout GET | **2 048** | `HttpServer.cpp:2278` | JSON del layout Gridstack |
 | Capabilities | **1 024** | `HttpServer.cpp:1989` | Lista de capacidades |
 | Diagnostics | **1 024** | `HttpServer.cpp:2027` | Salud, heap, I²C, contadores |
 | GPIO | **1 024** | `HttpServer.cpp:2405` | Especificaciones y valores |
@@ -136,13 +135,10 @@ serialización para guardar en NVS).
 | Tokens de sesión web | 24 chars | `HttpServer.cpp:126` | `%08lx%08lx` de dos `esp_random()` |
 | Claves de encabezado colectadas | 2 | `HttpServer.cpp:131-132` | `X-API-Key` y `Cookie` |
 
-### 2.3 Assets web embebidos en flash
+### 2.3 Assets web embebidos
 
-`HttpServer` sirve dos assets comprimidos con gzip embebidos en el binario
-(`include/core/web/GridstackAssets.h`, arrays `gridstack_css_gz` y
-`gridstack_js_gz`), expuestos como `/gridstack.min.css` y `/gridstack-all.min.js`
-con `Content-Encoding: gzip` y `Cache-Control: max-age=3600`. No se cargan en RAM
-salvo al servirlos. Su tamaño no se midió en esta verificación (⚠️ no verificado).
+Desde v1.114.0 no hay assets web embebidos en flash: el dashboard es una página
+HTML/CSS/JS servida directamente por `HttpServer` (sin Gridstack ni assets gzip).
 
 ## 3. Límites del sistema
 

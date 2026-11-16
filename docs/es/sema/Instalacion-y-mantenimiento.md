@@ -7,7 +7,7 @@ tags:
 
 # Instalación y mantenimiento
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Puesta en marcha de una estación SEMA **en el campo** y plan de mantenimiento: cómo
 alimentarla, cómo protegerla, dónde poner cada sensor, cómo dejarla configurada y qué
@@ -222,7 +222,7 @@ curl -X POST http://<ip>/api/v1/ota \
 !!! danger "No actualices sin respaldo"
     Antes de cada OTA: `GET /api/v1/backup` y, si hay microSD, copiá
     `/history.jsonl` y `/history.jsonl.agg`. Una actualización no borra la
-    configuración (vive en NVS), pero el respaldo cuesta un minuto y ahorra una visita.
+    configuración (vive en LittleFS), pero el respaldo cuesta un minuto y ahorra una visita.
 
 ## 10. Checklists
 

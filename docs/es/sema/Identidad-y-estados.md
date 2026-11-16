@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** Referencia | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Identidad de la estación y **todos** los estados que el firmware expone o maneja:
 salud, calidad de medición, energía, red, sesión web, eventos y capacidades.
@@ -319,7 +319,6 @@ reporta `Ethernet` inactivo, y no reporta `psram` aunque la S3 tenga PSRAM). El
 |----------|----------------|
 | `window.SEMA_AUTH` | Inyectado por `onRoot()`: `true` con sesión (o sin login configurado), `false` sin sesión |
 | `SEMA_AUTH === false` | Oculta la barra de navegación y la de edición; muestra solo tema + botón de login |
-| Layout | Se guarda en NVS aparte (`saveDashboardLayout`); si no existe, el JS arma uno por defecto con la primera lectura y lo guarda |
 | Auto-refresco | `/api/v1/status`, `/api/v1/system` y `/api/v1/sensors` cada **5 s**; gráficos cada **60 s** |
 | Tema e idioma | `localStorage`: `sema_theme` (`light`/`dark`) y `sema_lang` (`es`/`en`) — del lado del cliente |
 

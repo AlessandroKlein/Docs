@@ -8,7 +8,7 @@ tags:
 # 0006. Almacenamiento por capas y retención por niveles
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.113.0 | **Decisión origen:** D-0032, D-0046, D-0057
+> **Firmware:** v1.114.0 | **Decisión origen:** D-0032, D-0046, D-0057
 
 ## Contexto
 
@@ -25,13 +25,15 @@ estación tiene que funcionar sin ella.
 
 ```text
 Storage API (include/core/storage/Storage.hpp)
- ├── NVS (Preferences)        → configuración, contadores de arranque, layout del dashboard
- ├── LittleFS (flash)         → eventos/alarmas persistentes (/events.jsonl)
+ ├── NVS (Preferences)        → contadores de arranque
+ ├── LittleFS (flash)         → configuración (/config.json) + eventos/alarmas (/events.jsonl)
  └── microSD (SPI, opcional)  → histórico de mediciones (/history.jsonl + .agg)
 ```
 
 - `KeyValueStore` es la frontera abstracta (`begin`, `getString/putString`,
-  `getUInt/putUInt`, `clear`); su única implementación hoy es `NvsStore`.
+  `getUInt/putUInt`, `clear`); su única implementación hoy es `NvsStore` (usada
+  para `boots` y como fallback de lectura de config). Desde v1.114.0 la config se
+  escribe en LittleFS `/config.json` (D-0046).
 - Retención: se conserva alta resolución reciente y lo viejo se agrega a promedios
   horarios en el archivo `.agg` en lugar de descartarse
   (`HistoryStore::aggregate()`, invocado cada hora desde `SemaCore::loop()`).
@@ -47,9 +49,8 @@ Storage API (include/core/storage/Storage.hpp)
 - ⚠️ `storage.backend` (`"littlefs" | "flash" | "sd"`) se parsea y valida, pero **no
   selecciona** el backend en runtime: el histórico va a SD y los eventos a LittleFS,
   sin importar su valor.
-- ⚠️ Si NVS se queda sin espacio, `ConfigManager::save()` limpia el namespace y
-  reintenta una vez: se pierden config anterior y layout, pero se evita reflashear
-  (`src/core/ConfigManager.cpp` §71-87).
+- ⚠️ La config ya no se guarda en NVS (D-0046): `ConfigManager::save()` escribe
+  `/config.json` en LittleFS. La NVS solo conserva `boots`.
 
 ## Ver también
 

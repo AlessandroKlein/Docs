@@ -7,7 +7,7 @@ tags:
 
 # Referencia de API interna
 
-> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Interfaces C++ internas del firmware (`include/core/**`, `include/hw/HwProfile.hpp`).
 Las firmas se copiaron literalmente de las cabeceras; cuando un método es `inline`
@@ -182,15 +182,13 @@ Funciones libres `inline` (mismo header):
 | Método | Firma real | Descripción |
 |--------|-----------|-------------|
 | ctor | `explicit ConfigManager(KeyValueStore& store)` | Recibe el backend clave-valor |
-| `load` | `bool load()` | Lee la clave NVS `config`; si no deserializa o no valida, aplica defaults (schema=1, `SEMA-001`, `Estación Norte`, STA, `sema-001`, mDNS, Buenos Aires, INFO, littlefs, 30 días) |
-| `save` | `bool save()` | Serializa y guarda; si NVS falla, `store_.clear()` y reintenta **una vez** (se pierde la config anterior) |
+| `load` | `bool load()` | Lee `/config.json` (LittleFS), con fallback a la clave NVS `config`; si no deserializa o no valida, aplica defaults (schema=1, `SEMA-001`, `Estación Norte`, STA, `sema-001`, mDNS, Buenos Aires, INFO, littlefs, 30 días) |
+| `save` | `bool save()` | Serializa y escribe `/config.json` en LittleFS |
 | `apply` | `bool apply(const Config& next)` | Valida → guarda backup → persiste; si falla hace rollback y devuelve `false` |
 | `get` | `const Config& get() const` | Config vigente |
 | `valid` | `bool valid() const` | Bandera de validez |
 | `toJson` | `bool toJson(String& out) const` | Alias `inline` de `serialize` |
 | `applyJson` | `bool applyJson(const String& json)` | `parseInto` sobre una `Config` temporal + `apply` |
-| `saveDashboardLayout` | `bool saveDashboardLayout(const String& layout)` | Clave NVS separada `layout` (no va en el JSON de config) |
-| `loadDashboardLayout` | `bool loadDashboardLayout(String& out)` | Lee la clave `layout` |
 | `validate` | `bool validate(const Config& c) const` (privado) | Ver §4.1 |
 | `serialize` | `bool serialize(String& out) const` (privado) | `DynamicJsonDocument(16384)` con todas las claves |
 | `parseInto` | `bool parseInto(const String& in, Config& c)` (privado) | Deserializa con defaults por campo y luego `applyHwProfile(c)` |

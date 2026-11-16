@@ -7,7 +7,7 @@ tags:
 
 # Backup y restauración
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 SEMA expone un respaldo **autodescriptivo** de la configuración en
 `GET /api/v1/backup` y lo restaura con `POST /api/v1/backup` (que usa el mismo
@@ -65,7 +65,6 @@ es la API (`GET`/`POST /api/v1/backup`).
 |----------|-----------|------------------|
 | Histórico de mediciones | MicroSD (`HistoryStore`, `SD.open`) | Copiar el CSV/agregados de la SD |
 | Eventos y alarmas | LittleFS, partición `spiffs` (`EventLog`) | Flashear/leer la partición, o exportar por `/api/v1/events` |
-| Layout del dashboard | NVS, clave `layout` (separada de `config`) | `GET /api/v1/dashboard/layout` |
 | Contador de reinicios | NVS, clave `boots` | No aplica |
 | Mediciones en curso y estado de buses | RAM | No aplica |
 | Perfil energético (`EnergyProfile`) | RAM (`PowerManager`), no se persiste | No aplica |

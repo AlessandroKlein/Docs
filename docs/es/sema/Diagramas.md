@@ -6,7 +6,7 @@ tags:
 
 # Diagramas
 
-> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Diagramas de la implementación **real** de SEMA. Todos los nodos usan los nombres
 de clase, archivo o clave que existen en el código de v1.103.0; no hay nodos
@@ -119,7 +119,7 @@ sequenceDiagram
     autonumber
     participant BOOT as main.cpp setup()
     participant SC as SemaCore
-    participant NVS as NvsStore / ConfigManager
+    participant NVS as NvsStore
     participant FS as LittleFS / EventLog
     participant I2C as Wire + I2cScanner
     participant SEN as SensorManager
@@ -135,7 +135,7 @@ sequenceDiagram
     SC->>FS: eventLog_.begin() → LittleFS.begin(true)
     SC->>NVS: leer/incrementar "boots" → restartCount_
     SC->>SC: CapabilityManager::set(...) × 13
-    SC->>NVS: config_.load()
+    SC->>FS: config_.load() (Lee /config.json; fallback NVS "config")
     SC->>SC: history_.setRetentionSeconds(retentionDays×86400)
     SC->>I2C: Wire.begin(21,22) + I2cScanner::scan()
     SC->>SEN: applySensors() → registerSensor + beginAll()
@@ -243,11 +243,10 @@ con los `SemaCore::applyX()` en caliente. Ver
 ```mermaid
 flowchart TB
     subgraph NVS["NVS — namespace 'sema' (Preferences)"]
-        K1["clave 'config'<br/>JSON de configuración (schema 1)<br/>DynamicJsonDocument 16 384 B"]
         K2["clave 'boots'<br/>contador de reinicios (uint32)"]
-        K3["clave del layout del dashboard<br/>(separada, para no exceder el límite de entrada NVS)"]
     end
     subgraph LFS["LittleFS (partición spiffs, 0x70000 = 448 KB)"]
+        K1["/config.json<br/>JSON de configuración (schema 1)<br/>DynamicJsonDocument 16 384 B"]
         F1["/events.jsonl<br/>máx. 100 eventos en RAM<br/>rotación al llegar a 200 líneas"]
     end
     subgraph SDC["microSD (SPI, opcional)"]

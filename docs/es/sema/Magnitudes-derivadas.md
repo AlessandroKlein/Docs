@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** En desarrollo
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Todas las magnitudes que SEMA calcula sin sensor propio, con la fórmula y las constantes
 exactas del código. Fuentes: `include/core/derived/DerivedEngine.hpp`,
@@ -301,7 +301,7 @@ El nombre de la salida se devuelve en el campo `unit` de la respuesta.
 | Constantes unificadas de Magnus | Fijar `a`/`b` en un único `constexpr` compartido |
 | Banderas de validez por fórmula | Marcar `Quality::Invalid` (o una magnitud aparte) cuando T/RH/viento están fuera del rango de la regresión |
 | Derivadas en el ciclo (VPD, QNH, AQI) | Moverlas a `DerivedEngine` para que se guarden en el histórico |
-| Persistencia del acumulado de lluvia | Guardarlo en NVS o derivarlo del histórico |
+| Persistencia del acumulado de lluvia | Guardarlo en LittleFS o derivarlo del histórico |
 | Derivadas de PM10, UV, CO₂ | Hoy solo hay AQI sobre PM2.5 |
 | `pm10` extraído y no usado | Eliminarlo o usarlo (`aqi_pm10`) |
 | Índice de calor «de sombra»/medio | `heat_index` es el de Rothfusz completo; no hay variante con radiación |

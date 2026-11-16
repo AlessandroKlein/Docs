@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Guía
 > **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Qué tipos de calibración soporta SEMA, dónde se aplican en la cadena de medición y cómo
 calibrar cada sensor en la práctica. Fuentes: `include/core/Calibration.hpp`,
@@ -322,7 +322,7 @@ marcada como `OUT_OF_RANGE` en lugar de ensuciar el histórico.
    `PUT` reemplaza la config entera; el `parseInto()` reconstruye el vector desde cero).
 5. **Verificar** sin reiniciar: `onConfigPut()` re-aplica calibraciones al vuelo
    (`applyCalibrations()`), así que el siguiente ciclo ya sale calibrado.
-6. **Persistir**: la config queda en NVS (`config`); un backup (`GET /api/v1/backup`) la
+6. **Persistir**: la config queda en LittleFS (`/config.json`); un backup (`GET /api/v1/backup`) la
    incluye y `POST /api/v1/backup` la restaura.
 
 ```bash

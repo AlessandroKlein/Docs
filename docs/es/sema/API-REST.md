@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** API | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Referencia **exhaustiva** de la API HTTP local de SEMA. Todo lo que sigue está
 verificado contra `src/core/web/HttpServer.cpp` (2637 líneas) y
@@ -30,8 +30,8 @@ verificado contra `src/core/web/HttpServer.cpp` (2637 líneas) y
 | Modo demo | `-D SEMA_DEMO=1` reemplaza `/api/v1/sensors` y `/api/v1/history` por datos ficticios |
 
 El dashboard embebido es HTML servido por el mismo servidor (ver §14). Todo el
-frontend (JS/CSS de Gridstack) está **embebido en el firmware**: no hay assets
-externos ni filesystem web.
+frontend (HTML/CSS/JS) está **embebido en el firmware**: no hay assets externos
+ni filesystem web.
 
 ## 2. Autenticación
 
@@ -111,8 +111,6 @@ Consecuencias prácticas:
 | POST | `/api/v1/ota` | key | OTA | — |
 | POST | `/api/v1/wind/north` | web | veleta | — |
 | POST | `/api/v1/wind/resistors` | web | veleta | — |
-| GET | `/api/v1/dashboard/layout` | web | dashboard | — |
-| POST | `/api/v1/dashboard/layout` | web | dashboard | — |
 | GET | `/api/v1/modbus` | pública | bus Modbus | `SEMA_USE_MODBUS` |
 | GET | `/api/v1/modbus_tcp` | pública | Modbus TCP | `SEMA_USE_MODBUS_TCP` |
 | GET | `/api/v1/bacnet` | pública | BACnet/IP | `SEMA_USE_BACNET` |
@@ -123,8 +121,6 @@ Consecuencias prácticas:
 | POST | `/api/v1/lora` | web | radio LoRa | `SEMA_USE_LORA` |
 | GET | `/api/v1/zigbee` | pública | radio Zigbee | `SEMA_USE_ZIGBEE` |
 | POST | `/api/v1/zigbee` | web | radio Zigbee | `SEMA_USE_ZIGBEE` |
-| GET | `/gridstack.min.css` | pública | assets | gzip |
-| GET | `/gridstack-all.min.js` | pública | assets | gzip |
 
 Las siete rutas de bus están envueltas en `#if SEMA_USE_MODBUS|CAN|LORA|ZIGBEE|MODBUS_TCP|BACNET|MESH_ESPNOW`
 (`HttpServer.cpp`): si el flag vale `0`, la ruta **no existe** y responde
@@ -140,7 +136,7 @@ Las cinco placas de `platformio.ini` compilan con los cuatro flags clásicos en 
 Buffer `DynamicJsonDocument(256)`. Es la identidad mínima de la estación.
 
 ```json
-{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.113.0", "uptime_s": 12345 }
+{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.114.0", "uptime_s": 12345 }
 ```
 
 ### 4.2 `GET /api/v1/health`
@@ -173,7 +169,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
 {
   "id": "SEMA-001",
   "name": "Estación Norte",
-  "firmware": "1.113.0",
+  "firmware": "1.114.0",
   "hw": "rev0",
   "config_schema": 1,
   "protocol": 1,
@@ -200,7 +196,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
   "wifi_host": "sema-001",
   "wifi_mdns": true,
   "reserved_pins": [14, 12, 15],
-  "firmware_file": "sema_1.113.0_esp32-wroom-4mb.bin"
+  "firmware_file": "sema_1.114.0_esp32-wroom-4mb.bin"
 }
 ```
 
@@ -266,7 +262,7 @@ Buffer `1024`.
 
 ```json
 {
-  "firmware": "1.113.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
+  "firmware": "1.114.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
   "reset_reason": 1, "health": "HEALTHY",
   "history": { "entries": 1200, "max": 10000 },
   "tasks": 2, "modules": 0, "events": 7,
@@ -455,8 +451,6 @@ runtime: sin reglas configuradas el núcleo carga en memoria
 (`SemaCore::applyRules` / `applyCalibrations`); esos defaults **no** se reflejan en
 este JSON hasta que se guardan.
 
-El layout del dashboard **no** está en este JSON: vive en una clave NVS aparte
-(§13).
 
 ### 7.2 `PUT /api/v1/config` (web)
 
@@ -811,7 +805,7 @@ Buffer `8192`. Config completa + metadatos autodescriptivos:
 ```json
 { "schema_version": 1, "station": { "...": "..." },
   "backup_format": "sema-backup", "backup_version": 1,
-  "firmware": "1.113.0", "timestamp": 12345 }
+  "firmware": "1.114.0", "timestamp": 12345 }
 ```
 
 `timestamp` es `millis()/1000` (uptime, no epoch). Los campos `backup_*`,
@@ -847,25 +841,11 @@ con `WiFiClientSecure::setInsecure()` y timeout de 8 s.
 
 ## 13. Dashboard
 
-| Ruta | Cuerpo | Respuesta |
-|------|--------|-----------|
-| `GET /api/v1/dashboard/layout` (web) | — | `{"layout":"[{\"x\":0,…}]"}`; si no hay layout guardado, `"[]"` |
-| `POST /api/v1/dashboard/layout` (web) | JSON de Gridstack (array crudo) | `200 {"ok":true}` · `400 {"error":"missing body"}` · `500 {"error":"layout save failed"}` |
-
-El layout se guarda en una clave NVS propia (no dentro del JSON de config) para no
-exceder el tamaño de una entrada NVS. El `GET` devuelve el layout como **string**
-dentro del JSON, no como array.
-
-Los assets del dashboard están embebidos y comprimidos en el firmware
-(`src/core/web/GridstackAssets.h`):
-
-| Ruta | Estado | Cabeceras |
-|------|--------|-----------|
-| `GET /gridstack.min.css` | `200` | `Content-Encoding: gzip`, `Cache-Control: max-age=3600`, `text/css` |
-| `GET /gridstack-all.min.js` | `200` | `Content-Encoding: gzip`, `Cache-Control: max-age=3600`, `application/javascript` |
-
-Ambas rutas son públicas y usan `send_P` (contenido en flash). No hay `/favicon.ico`
-ni ningún otro asset: cualquier otra ruta cae en `onNotFound` → `404` JSON.
+El dashboard de la portada (`GET /`) es una página HTML embebida (sin Gridstack desde
+v1.114.0): tarjetas de sensores conectados y sección de predicciones. No hay rutas de
+assets externos: el HTML/CSS/JS va embebido en PROGMEM (`HttpServer.cpp`), así que
+no existe `/favicon.ico` ni ningún otro asset; cualquier otra ruta cae en `onNotFound`
+→ `404` JSON.
 
 ## 14. Páginas HTML
 
@@ -874,7 +854,7 @@ Todas devuelven `200 text/html`. Salvo `/login`, sirven la **pantalla de login**
 
 | Ruta | Contenido |
 |------|-----------|
-| `GET /` | Dashboard Gridstack. Inyecta `window.SEMA_AUTH=<true\|false>`; sin sesión oculta el menú y los controles de edición. Refresca `/api/v1/sensors` cada **5 s** y redibuja gráficos cada **60 s** |
+| `GET /` | Portada (dashboard limpio): tarjetas de sensores conectados + predicciones. Inyecta `window.SEMA_AUTH=<true\|false>`; sin sesión oculta el menú y los controles de edición. Refresca `/api/v1/sensors` cada **5 s** |
 | `GET /sensors` | Vista de sensores (refresco cada 5 s) |
 | `GET /events` | Vista de eventos y alarmas (refresco cada 5 s) |
 | `GET /config/network` | WiFi (STA/AP), IP estática, mDNS, escaneo |
@@ -905,7 +885,6 @@ claro/oscuro (`sema_theme`).
 | `429` | `text/plain` | Login bloqueado 60 s por 5 fallos |
 | `500` | `{"error":"config apply failed"}` | Falló la persistencia de la config |
 | `500` | `{"error":"serialization failed"}` / `internal` | `/config` o `/backup` |
-| `500` | `{"error":"layout save failed"}` | NVS rechazó el layout |
 | `500` | `{"error":"send failed"}` | Transmisión CAN/LoRa/Zigbee fallida |
 
 ## 16. Límites de implementación

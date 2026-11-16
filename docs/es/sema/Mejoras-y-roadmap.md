@@ -6,7 +6,7 @@ tags:
 
 # Mejoras y roadmap
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Estado del desarrollo y de la **Definition of Done** (`README.md` §103), verificado
 contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendiente.
@@ -16,10 +16,10 @@ contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendie
 | Requisito (§103) | Estado | Nota |
 |------------------|:------:|------|
 | Core funcionando | ✅ | `SemaCore`, registry, event bus, scheduler |
-| Configuración persistente | ✅ | NVS, schema versionado, transaccional |
+| Configuración persistente | ✅ | LittleFS (`/config.json`), schema versionado, transaccional |
 | Web local | ✅ | Dashboard + páginas `/config/*`, `/sensors`, `/events` |
 | API | ✅ | 53 rutas HTTP registradas (`HttpServer::begin`) |
-| Dashboard modular | ✅ | Tarjetas Gridstack, histórico, gráficos, edición |
+| Dashboard | ✅ | Portada limpia: tarjetas de sensores conectados + predicciones (sin Gridstack desde v1.114.0) |
 | Sistema de módulos | 🔄 | Interfaz + registro; sin módulos instalables/desinstalables |
 | Sistema de sensores | ✅ | `Sensor`/`SensorManager`/`SensorFactory` |
 | Catálogo de sensores | ✅ | 17 modelos configurables vía `sensors[]` |
@@ -32,7 +32,7 @@ contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendie
 | LoRa / Zigbee | ✅ | v1.22.0 / v1.23.0 |
 | Ethernet | ✅ | LAN8720A (RMII) y W5500 (SPI), v1.24–v1.25 |
 | Medición energética | 🔄 | Batería por ADC; falta corriente/consumo |
-| Almacenamiento | ✅ | NVS (config) + LittleFS (eventos) + microSD (histórico; sin SD no hay histórico) |
+| Almacenamiento | ✅ | LittleFS (config + eventos) + microSD (histórico; sin SD no hay histórico) + NVS (boots) |
 | Histórico | ✅ | JSONL, rotación, retención, agregados por hora, CSV |
 | Alarmas | ✅ | `RuleEngine` + `EventLog` persistente |
 | Diagnóstico | 🔄 | Health monitor + endpoints; falta detalle por sensor |

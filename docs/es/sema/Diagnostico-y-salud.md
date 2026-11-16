@@ -7,7 +7,7 @@ tags:
 
 # Diagnóstico y salud
 
-> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** API | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Esta página documenta qué mide SEMA sobre su propia salud, qué endpoints lo exponen
 y cómo interpretar cada campo. El foco está en cuatro endpoints:

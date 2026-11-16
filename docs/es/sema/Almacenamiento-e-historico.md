@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Dónde guarda SEMA cada cosa, con qué formato, con qué límites y qué se pierde al
 reiniciar. Fuentes: `include/core/storage/Storage.hpp`, `include/core/storage/NvsStore.hpp`,
@@ -24,16 +24,17 @@ reiniciar. Fuentes: `include/core/storage/Storage.hpp`, `include/core/storage/Nv
 
 | Medio | Qué guarda | Archivo / namespace | Sobrevive al reinicio |
 |-------|-----------|---------------------|------------------------|
-| **NVS** (`Preferences`) | Configuración, contador de reinicios, layout del dashboard | namespace `sema`, claves `config`, `boots`, `layout` | Sí |
-| **LittleFS** (flash, partición `spiffs`) | Registro de eventos/alarmas | `/events.jsonl` | Sí |
+| **NVS** (`Preferences`) | Contador de reinicios | namespace `sema`, clave `boots` | Sí |
+| **LittleFS** (flash, partición `spiffs`) | Configuración + registro de eventos/alarmas | `/config.json`, `/events.jsonl` | Sí |
 | **microSD** (SPI, opcional) | Histórico de mediciones | `/history.jsonl` y `/history.jsonl.agg` | Sí (si la SD está presente) |
 | RAM | Mediciones del ciclo, cola de eventos, acumulado de lluvia | — | No |
 
 ```text
                  ┌──────────────────────── NVS (Preferences, namespace "sema") ──────────┐
-   config  ──────┤ config · boots · layout                                                │
+   boots ────────┤ boots                                                                  │
                  └───────────────────────────────────────────────────────────────────────┘
                  ┌──────────────────────── LittleFS (partición datos) ───────────────────┐
+   config ───────┤ /config.json                          (ConfigManager, desde v1.114.0) │
    eventos ──────┤ /events.jsonl                        (EventLog, máx. 100 en RAM)       │
                  └───────────────────────────────────────────────────────────────────────┘
                  ┌──────────────────────── microSD (SPI, CS configurable) ───────────────┐
@@ -62,21 +63,18 @@ store_.begin("sema");   // src/core/SemaCore.cpp
 
 | Clave | Tipo | Quién la escribe | Contenido |
 |-------|------|------------------|-----------|
-| `config` | string (JSON) | `ConfigManager::save()` | Config completa, `schema_version: 1` |
 | `boots` | uint32 | `SemaCore::setup()` | Contador de reinicios (se lee, se incrementa y se reescribe en cada arranque) |
-| `layout` | string (JSON) | `ConfigManager::saveDashboardLayout()` | Layout Gridstack, en clave aparte para no exceder el tamaño de una entrada NVS |
 
 Partición NVS (`partitions_4mb.csv`, `partitions_8mb.csv`, `partitions_16mb.csv`):
 offset `0x9000`, tamaño `0x5000` = **20 480 bytes (20 KB)** en todas las placas.
 
-Fallo de escritura: si `putString("config", …)` falla (NVS lleno o fragmentado),
-`ConfigManager::save()` hace `store_.clear()` y reintenta una vez. Consecuencia
-documentada en el propio código: **se pierden la config anterior y el layout**, pero se
-recupera el guardado sin reflashear.
+Desde v1.114.0 (D-0046) la config **no** se guarda en NVS: `ConfigManager::save()`
+escribe `/config.json` en LittleFS. La NVS solo conserva `boots` (contador de
+reinicios).
 
 ---
 
-## 3. LittleFS (solo para el registro de eventos)
+## 3. LittleFS (config + registro de eventos)
 
 `EventLog::begin()` monta LittleFS con formato automático si la partición está corrupta:
 
@@ -94,8 +92,9 @@ if (!LittleFS.begin(true)) { return; }   // src/core/events/EventLog.cpp
 | `esp32-s3-devkitc-1` (8 MB) | `partitions_8mb.csv` | `0x1F0000` = 1,94 MB |
 | `esp32-wroom-32u` (16 MB) | `partitions_16mb.csv` | `0x9F0000` = 9,94 MB |
 
-En todo `src/`, LittleFS se usa **únicamente** en `EventLog.cpp`. El servidor web ya no
-depende de LittleFS (los assets Gridstack van embebidos en PROGMEM).
+Desde v1.114.0 LittleFS lo usan `ConfigManager` (config en `/config.json`) y
+`EventLog.cpp` (eventos). El servidor web no depende de LittleFS: el HTML/CSS/JS va
+embebido en PROGMEM.
 
 ---
 
@@ -142,7 +141,7 @@ Un objeto JSON por línea, sin array contenedor ni cabecera (JSONL). Lo escribe
 
 | Campo | Origen | Descripción |
 |-------|--------|-------------|
-| `ts` | `Measurement::timestamp` | Época local en **segundos** (`nowEpoch()`); cae a `millis()/1000` hasta que sincronice NTP |
+| `ts` | `Measurement::timestamp` | Época **UTC** en segundos (`nowEpoch()`); cae a `millis()/1000` hasta que sincronice NTP |
 | `sensor` | `sensorId` | Id lógico (`EXT`, `INT`, `SOIL`, `BATT`, `DERIVED`, …) |
 | `channel` | `channelId` | Canal lógico (`temperature`, `humidity`, `voltage`, …) |
 | `measurement` | `measurement` | Magnitud canónica (`temperature`, `dew_point`, …) |
@@ -260,7 +259,7 @@ Detalles de implementación a tener en cuenta:
 
 | Dato | Persistencia | Al reiniciar |
 |------|--------------|--------------|
-| Config, contador de reinicios, layout | NVS | Se conserva |
+| Config (`/config.json`) y contador de reinicios (`boots`) | LittleFS + NVS | Se conserva |
 | Eventos y alarmas (últimos 100) | LittleFS + RAM | Se recargan del archivo |
 | Histórico de mediciones | microSD | Se conserva (si la SD sigue puesta) |
 | Mediciones del último ciclo | RAM | Se pierden |
@@ -274,9 +273,9 @@ Detalles de implementación a tener en cuenta:
 
 **Escrituras y desgaste**
 
-- NVS tiene *wear leveling* propio del IDF, pero la config se **reescribe completa** en
-  cada `apply()` (cada guardado desde la web o cada `PUT /api/v1/config`). En el peor
-  caso, `save()` limpia el namespace antes de reintentar.
+- La config se **reescribe completa** en LittleFS `/config.json` en cada `apply()`
+  (cada guardado desde la web o cada `PUT /api/v1/config`). La NVS solo lleva el
+  contador `boots` (poca escritura).
 - `EventLog::rotate()` reescribe `/events.jsonl` entero (hasta ~200 líneas): una
   reescritura completa cada 200 eventos, más un `append` por evento.
 - `HistoryStore::rotate()` reescribe el archivo completo (hasta ~10 000 líneas ≈ 1 MB)

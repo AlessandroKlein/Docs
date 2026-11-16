@@ -6,7 +6,7 @@ tags:
 
 # Guía de inicio
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Documentación para **entender y usar SEMA sin conocer el proyecto ni el código de
 antemano**. Los apartados son progresivos: se puede leer de principio a fin.
@@ -209,7 +209,7 @@ Módulos registrados: 0
 
 ## 6. Configuración
 
-La configuración es un **JSON versionado** (`schema_version: 1`) que se guarda en NVS
+La configuración es un **JSON versionado** (`schema_version: 1`) que se guarda en LittleFS (`/config.json`)
 y se edita desde la web (`/config/network`, `/config/security`, `/config/system`,
 `/config/wind`, `/config/sensors`) o por la API. Ejemplo mínimo:
 
@@ -290,7 +290,6 @@ Resumen de rutas (la tabla completa, con payloads, está en [API REST](API-REST.
 | GET | `/wifi/scan` · `/update/check` | Escaneo WiFi / versión publicada | ✔ |
 | GET/POST | `/gpio` · `/shift` | Leer/escribir GPIO y shift registers | POST ✔ |
 | GET/POST | `/wind/north` · `/wind/resistors` | Calibración de la veleta | ✔ |
-| GET/POST | `/dashboard/layout` | Layout del dashboard | ✔ |
 | POST | `/restart` · `/ota` | Reinicio / actualización de firmware | ✔ |
 | GET/POST | `/modbus` · `/can` · `/lora` · `/zigbee` | Buses y módulos (según build flags) | POST ✔ |
 
@@ -315,10 +314,10 @@ curl -X PUT http://sema-001.local/api/v1/config \
 
 ## 8. Dashboard y WebSocket
 
-- **Dashboard**: página servida en `/`. Consume la API y muestra estado, mediciones,
-  histórico y gráficos; el layout es configurable con Gridstack y se guarda en NVS
-  (`/api/v1/dashboard/layout`). Si el login está configurado y no hay sesión, el menú
-  de edición queda oculto hasta entrar por `/login`.
+- **Dashboard**: página servida en `/`. Consume la API y muestra tarjetas con los
+  sensores conectados y la sección de predicciones (sin Gridstack desde v1.114.0).
+  Si el login está configurado y no hay sesión, el menú de edición queda oculto
+  hasta entrar por `/login`.
 - **WebSocket**: `ws://<host>:81`. Cada ciclo de lectura difunde:
 
 ```json
@@ -383,7 +382,7 @@ SEMA/
 | Componente | Responsabilidad |
 |------------|-----------------|
 | `SemaCore` | Inicializa y conecta todos los servicios; conduce el `loop()` |
-| `ConfigManager` | Carga, valida, aplica y persiste la configuración (NVS, transaccional) |
+| `ConfigManager` | Carga, valida, aplica y persiste la configuración (LittleFS, transaccional) |
 | `SensorManager` | Registra sensores, lee todos y aplica calibración |
 | `SensorFactory` | Crea el driver según `model` (catálogo configurable) |
 | `EventBus` / `EventLog` | Publica/suscribe eventos y los persiste en LittleFS |
@@ -440,7 +439,7 @@ código → pio run (SUCCESS) → bump SemVer en include/core/Version.hpp → CH
 | **Quality flag** | Estado de la medición (`VALID`, `STALE`, …) |
 | **Derivada** | Magnitud calculada a partir de otras (punto de rocío, VPD…) |
 | **Schema version** | Versión del formato de configuración (hoy `1`) |
-| **NVS / LittleFS / microSD** | Config, eventos e histórico, respectivamente |
+| **NVS / LittleFS / microSD** | Boots / config + eventos / histórico, respectivamente |
 | **mDNS** | Nombre local `.local` sin necesidad de IP |
 | **OTA** | Actualización de firmware por red, con rollback |
 | **Deep sleep** | Modo de bajo consumo; en SEMA solo hay primitivas, sin uso automático |

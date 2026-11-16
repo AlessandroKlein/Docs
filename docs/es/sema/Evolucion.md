@@ -6,7 +6,7 @@ tags:
 
 # Evolución
 
-> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Roadmap | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Desarrollo incremental de SEMA en las **9 fases** definidas en `README.md` §104 y
 verificadas contra el código y el [CHANGELOG](CHANGELOG.md).

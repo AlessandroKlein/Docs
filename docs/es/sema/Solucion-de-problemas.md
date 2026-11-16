@@ -6,7 +6,7 @@ tags:
 
 # Solución de problemas
 
-> **Tipo:** Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Cada caso sigue el mismo formato: **síntoma → causa probable → cómo confirmarlo →
 solución**. Todos los comandos y endpoints citados existen en el firmware v1.103.0.
@@ -81,7 +81,7 @@ Si tenés que pedir ayuda, adjuntá la salida de `/api/v1/diagnostics` + las pri
 
 | | |
 |---|---|
-| **Causa probable** | La config guardada en NVS no se pudo deserializar o no pasó la validación → `ConfigManager` carga los defaults de schema 1 |
+| **Causa probable** | La config guardada en LittleFS (`/config.json`) no se pudo deserializar o no pasó la validación → `ConfigManager` carga los defaults de schema 1 |
 | **Confirmar** | Valores en `GET /api/v1/config` distintos de los configurados; líneas de error en el monitor serial |
 | **Solución** | Restaurar desde `GET /api/v1/backup` guardado previamente (`POST /api/v1/backup`) |
 
@@ -90,7 +90,7 @@ Si tenés que pedir ayuda, adjuntá la salida de `/api/v1/diagnostics` + las pri
 | | |
 |---|---|
 | **Causa probable** | `security.api_key`, `security.password` o `security.extra_keys` desconocidos |
-| **Solución** | Conservar el backup; si no hay acceso, recuperar por USB (borrado de NVS con `pio run -t erase` → **se pierde toda la configuración**) y volver a configurar. Ver [Seguridad](Seguridad.md) |
+| **Solución** | Conservar el backup; si no hay acceso, recuperar por USB (borrado de flash con `pio run -t erase` → **se pierde toda la configuración**) y volver a configurar. Ver [Seguridad](Seguridad.md) |
 
 ---
 
@@ -198,7 +198,6 @@ Ver [OTA y actualización](OTA-y-Actualizacion.md).
 |---------|----------------|----------|
 | Pantalla de login en bucle | Cookie bloqueada por el navegador | Permitir cookies para la IP; la cookie es `HttpOnly; SameSite=Strict` |
 | Los datos no se actualizan | WebSocket bloqueado por proxy/VPN | Probar en la red local; el dashboard también refresca por `fetch` |
-| El layout se ve desarmado | Gridstack no cargó (assets gzip en PROGMEM, v1.102.0) | Recargar con caché limpia; verificar `GET /gridstack-all.min.js` |
 | La página de config no guarda | Falta `X-API-Key` o sesión vencida | Volver a iniciar sesión |
 
 ---

@@ -8,12 +8,12 @@ tags:
 # 0009. Configuración transaccional con rollback y Safe Mode
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.113.0 | **Decisión origen:** D-0023, D-0024, D-0042
+> **Firmware:** v1.114.0 | **Decisión origen:** D-0023, D-0024, D-0042
 
 ## Contexto
 
 La configuración se edita desde el navegador, muchas veces a distancia. Un JSON
-inválido, un pin equivocado o un NVS lleno pueden dejar la estación inaccesible. Hace
+inválido, un pin equivocado o un fallo de escritura pueden dejar la estación inaccesible. Hace
 falta que aplicar configuración sea una operación **atómica**: o queda aplicada y
 persistida, o no cambia nada.
 
@@ -23,7 +23,7 @@ persistida, o no cambia nada.
 versionado `schema_version = 1` (D-0042):
 
 ```text
-validar → aplicar en memoria → persistir en NVS → verificar
+validar → aplicar en memoria → persistir en LittleFS → verificar
                                    │
                                    └── si falla: restaurar el estado anterior
 ```

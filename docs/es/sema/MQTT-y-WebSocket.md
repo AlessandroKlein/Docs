@@ -9,7 +9,7 @@ tags:
 
 > **Tipo:** Referencia | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Salidas en tiempo real de SEMA: **MQTT** y el **webhook HTTP** (publicadores hacia
 afuera, `src/core/publishers/`) y el **WebSocket** que sirve el propio firmware
@@ -110,7 +110,7 @@ Un mensaje por medición, JSON serializado con ArduinoJson en un buffer de **256
 | `unit` | unidad base | `°C`, `%`, `hPa`, `lux`, `ppm`, `µg/m³`, `m/s`, `mm`, `V`, `W/m²` |
 | `quality` | `qualityName(Quality)` | `VALID`, `INVALID`, `STALE`, `TIMEOUT`, `OUT_OF_RANGE`, `CALIBRATION_ERROR`, `COMMUNICATION_ERROR`, `SENSOR_DISCONNECTED` |
 | `sequence` | contador monotónico por sensor | `0` en magnitudes derivadas y en la entrada `clock` |
-| `timestamp` | `Measurement::timestamp` | Segundos de `nowEpoch()` — **época local** (UTC + offset de zona), no UTC puro. Sin NTP sincronizado cae a `millis()/1000` |
+| `timestamp` | `Measurement::timestamp` | Segundos de `nowEpoch()` — **época UTC**, no local. Sin NTP sincronizado cae a `millis()/1000` |
 
 El mismo objeto JSON —campo por campo— lo emite también la medición que se guarda
 en el histórico, lo que permite correlacionar MQTT con `/api/v1/history`.

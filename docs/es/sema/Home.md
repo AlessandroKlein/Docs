@@ -6,7 +6,7 @@ tags:
 
 # SEMA — Sistema de Estación Meteorológica Autónoma
 
-> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Guía (portada) | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 > **Hardware:** `rev0` · **Esquema de configuración:** 1 · **Protocolo:** 1
 
 ## 1. Resumen ejecutivo
@@ -43,7 +43,7 @@ Sensores (I²C · SPI · UART · 1-Wire · ADC · PCNT)
         ▼
 SEMA Core — ConfigManager · EventBus · Scheduler · Storage API · HAL
         │
-        ├── Storage   → NVS (config) · LittleFS (eventos) · microSD (histórico)
+        ├── Storage   → LittleFS (config + eventos) · microSD (histórico) · NVS (boots)
         ├── Servicios → API REST /api/v1 · dashboard · WebSocket :81 · OTA
         └── Salidas   → webhook HTTP · MQTT · reglas y alarmas
 ```

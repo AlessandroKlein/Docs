@@ -6,7 +6,7 @@ tags:
 
 # Mejoras opcionales y futuras
 
-> **Tipo:** Catálogo de ideas opcionales | **Estado:** Catálogo vivo | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Catálogo de ideas opcionales | **Estado:** Catálogo vivo | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Registro de ítems **opcionales**: no forman parte de la Definition of Done (§103) ni
 bloquean un release. Cada ítem es una idea, no un compromiso. Los ítems que ya se
@@ -33,7 +33,7 @@ implementaron se retiran del catálogo y pasan al [CHANGELOG](CHANGELOG.md).
 
 | Ítem | Nota | Estado |
 |------|------|:------:|
-| Vistas guardadas del dashboard | Hoy el layout Gridstack es global, no por usuario | ⬜ |
+| Vistas guardadas del dashboard | Hoy no hay layout guardable (sin Gridstack desde v1.114.0) | ⬜ |
 | Exportar imágenes/PDF del panel | Reporte visual de la estación | ⬜ |
 | Modo kiosco / pantalla completa | Panel permanente en un display | ⬜ |
 | Accesibilidad (contraste, teclado) | Cumplimiento WCAG básico | ⬜ |
@@ -122,7 +122,6 @@ implementaron se retiran del catálogo y pasan al [CHANGELOG](CHANGELOG.md).
 | Soporte de microSD | `storage.sd_enabled` + `HistoryStore::enableSd()` |
 | Health por sensor | Campo `healthy` en el catálogo de `/api/v1/sensors` |
 | Dashboard multi-idioma (es/en) | `system.lang` + `data-i18n` con `toggleLang()` en `HttpServer.cpp` |
-| Layout del dashboard persistente | `system.dashboard_layout` + `/api/v1/dashboard/layout` |
 
 ---
 

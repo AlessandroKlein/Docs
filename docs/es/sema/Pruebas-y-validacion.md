@@ -7,7 +7,7 @@ tags:
 
 # Pruebas y validación
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Cómo se comprueba hoy que SEMA funciona, qué **no** existe todavía y cómo se
 implementaría la cobertura automatizada. Todo lo afirmado como existente se
@@ -102,7 +102,7 @@ Sirve para validar la web completa sin sensores conectados:
 | Validación | Implementación | Qué hace ante el fallo |
 |------------|----------------|------------------------|
 | Esquema y campos de config | `ConfigManager::validate()` (`schemaVersion == 1`, `station.id` no vacío, `network.mode ∈ {STA, AP}`, `storage.backend ∈ {littlefs, flash, sd}`) | `apply()` devuelve `false`, **rollback** a la config previa; `applyJson()` → HTTP 400 `invalid config` |
-| Escritura en NVS | `ConfigManager::save()` | Ante `NOT_ENOUGH_SPACE`: `store_.clear()` y reintento único (se pierde la config y el layout) |
+| Escritura en LittleFS | `ConfigManager::save()` | Escribe `/config.json`; si falla, `apply()` hace rollback a la config previa en RAM |
 | Rango de calibración | `applyCalibration()` | Marca la medición como `Quality::OutOfRange` |
 | Salud del sistema | `HealthMonitor::status()` | `ERROR` si hay sensores y ninguno responde; `DEGRADED` si falta alguno, el heartbeat supera 30 s o una tarea venció |
 | Loop bloqueado | `Watchdog::begin(10)` (`esp_task_wdt`) | Reinicia el SoC (panic handler del TWDT) |

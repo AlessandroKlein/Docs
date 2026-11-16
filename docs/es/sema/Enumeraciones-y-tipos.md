@@ -7,7 +7,7 @@ tags:
 
 # Enumeraciones y tipos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Catálogo completo de enumeraciones, structs canónicos y "enums de cadena" de SEMA.
 Todo se verificó contra `include/core/**` y `include/hw/HwProfile.hpp`.
@@ -181,7 +181,7 @@ lo consulta (`/api/v1/energy` lo expone como `profile`).
 | `unit` | `String` | `""` | Unidad canónica (`"degC"`, `"percent"`, `"hPa"`, …) |
 | `quality` | `Quality` | `Quality::Valid` | Calidad de la medición |
 | `sequence` | `uint32_t` | `0` | Secuencia monotónica por sensor |
-| `timestamp` | `uint32_t` | `0` | Epoch (segundos). `Time.hpp` documenta "UTC", pero `nowEpoch()` suma el **offset local** |
+| `timestamp` | `uint32_t` | `0` | Epoch **UTC** en segundos (`nowEpoch()`); cae a `millis()/1000` sin NTP |
 
 ### 9.2 `Event` — `include/core/EventBus.hpp`
 

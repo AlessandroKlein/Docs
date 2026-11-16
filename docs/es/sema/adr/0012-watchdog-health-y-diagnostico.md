@@ -8,7 +8,7 @@ tags:
 # 0012. Watchdog jerárquico, Health Monitor y diagnóstico
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.113.0 | **Decisión origen:** D-0019, D-0020, D-0034
+> **Firmware:** v1.114.0 | **Decisión origen:** D-0019, D-0020, D-0034
 
 ## Contexto
 

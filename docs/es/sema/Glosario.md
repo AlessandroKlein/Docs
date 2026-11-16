@@ -6,7 +6,7 @@ tags:
 
 # Glosario
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.113.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
 
 Todos los términos que aparecen en la documentación de SEMA, en lenguaje simple. Los
 que describen algo **no implementado** en v1.103.0 están marcados con ⚠️ y se indica
@@ -114,11 +114,11 @@ qué existe hoy.
 | **Rotación** | Cuando el archivo crece demasiado, se conserva la parte reciente y se descarta la vieja (histórico: la mitad; eventos: las últimas 100 líneas). |
 | **Retención** | Cuánto tiempo se conservan los datos. `storage.retention_days`, default 30. |
 | **Agregación** | Bajar la resolución de lo viejo: se guardan promedios por hora en el archivo `.agg` en lugar de descartarlos. |
-| **NVS** | *Non-Volatile Storage*: memoria clave-valor de ESP-IDF. SEMA guarda ahí la configuración (namespace `sema`), el contador `boots` y el layout del dashboard. |
-| **LittleFS** | Sistema de archivos en la partición `spiffs` del flash; SEMA lo usa para los eventos. |
+| **NVS** | *Non-Volatile Storage*: memoria clave-valor de ESP-IDF. SEMA guarda ahí el contador `boots` (namespace `sema`). |
+| **LittleFS** | Sistema de archivos en la partición `spiffs` del flash; SEMA lo usa para la config (`/config.json`) y los eventos. |
 | **microSD** | Tarjeta por SPI (CS configurable, default GPIO 4) donde vive el histórico. Es **opcional**. |
 | **SPIFFS** | Sistema de archivos antecesor de LittleFS; la partición conserva ese nombre en `partitions_*.csv` aunque se monte LittleFS. |
-| **Gridstack** | Biblioteca web del dashboard que permite acomodar y arrastrar tarjetas; su layout se guarda en NVS y se sirve embebida en flash comprimida (gzip). |
+| **Gridstack** | Biblioteca web de tarjetas arrastrables usada por el dashboard hasta v1.113.0; eliminada en v1.114.0 (dashboard limpio, sin tablero editable). |
 | **mDNS** | Resolución de nombres `<hostname>.local` sin servidor DNS. Por defecto `http://sema-001.local/`. |
 | **WebSocket** | Canal bidireccional persistente. SEMA difunde las mediciones en el puerto **81**. |
 | **OTA** | *Over-The-Air*: actualización de firmware por red, sin cable. |

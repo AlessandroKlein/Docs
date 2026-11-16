@@ -8,7 +8,7 @@ tags:
 # 0001. SEMA es una plataforma configurable, no una estación fija
 
 > **Tipo:** Convención (ADR) | **Estado:** Aceptada | **Fecha:** 2026-10-03
-> **Firmware:** v1.113.0 | **Decisión origen:** D-0001, D-0002, D-0003
+> **Firmware:** v1.114.0 | **Decisión origen:** D-0001, D-0002, D-0003
 
 ## Contexto
 

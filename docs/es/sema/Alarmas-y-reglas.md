@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** En desarrollo
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.113.0
+> **Firmware:** v1.114.0
 
 Cómo se definen, evalúan y registran las alarmas de SEMA. Fuentes:
 `include/core/alarms/Rule.hpp`, `include/core/alarms/RuleEngine.hpp`,
@@ -78,7 +78,7 @@ Notas de comportamiento:
   valores literales del código: `id = "high_temp"`, `sensorId = "EXT"`,
   `channelId = "temperature"`, `op = RuleOp::Gt`, `threshold = 40.0f`.
 - Las reglas no tienen campo `enabled`: para desactivar una hay que borrarla del array.
-- Las reglas viven en la config (clave NVS `config`) y se re-aplican sin reiniciar cuando
+- Las reglas viven en la config (`/config.json`) y se re-aplican sin reiniciar cuando
   se guarda desde `PUT /api/v1/config` o `POST /api/v1/backup`
   (`onConfigPut()` llama a `core_->applyRules()`).
 
@@ -279,7 +279,7 @@ amplía a condiciones por *cambio, ausencia, duración y combinación lógica* c
 | Requisito | Estado |
 |-----------|--------|
 | Umbral con `>`, `<`, `>=`, `<=` | ✅ |
-| Configurable por NVS/HTTP | ✅ |
+| Configurable por HTTP (config en LittleFS) | ✅ |
 | Registro persistente del evento | ✅ |
 | Múltiples sensores y reglas | ✅ |
 | Habilitar/deshabilitar por regla | ❌ (borrar del array) |
