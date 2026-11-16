@@ -9420,7 +9420,7 @@
 
 <h1 id="mejoras-y-roadmap">Mejoras y roadmap</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Roadmap | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Estado del desarrollo y de la <strong>Definition of Done</strong> (<code>README.md</code> §103), verificado
 contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendiente.</p>
@@ -9442,7 +9442,7 @@ contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendie
 <tr>
 <td>Configuración persistente</td>
 <td style="text-align: center;">✅</td>
-<td>NVS, schema versionado, transaccional</td>
+<td>LittleFS (<code>/config.json</code>), schema versionado, transaccional</td>
 </tr>
 <tr>
 <td>Web local</td>
@@ -9455,9 +9455,9 @@ contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendie
 <td>53 rutas HTTP registradas (<code>HttpServer::begin</code>)</td>
 </tr>
 <tr>
-<td>Dashboard modular</td>
+<td>Dashboard</td>
 <td style="text-align: center;">✅</td>
-<td>Tarjetas Gridstack, histórico, gráficos, edición</td>
+<td>Portada limpia: tarjetas de sensores conectados + predicciones (sin Gridstack desde v1.114.0)</td>
 </tr>
 <tr>
 <td>Sistema de módulos</td>
@@ -9522,7 +9522,7 @@ contra el código. Estado de cada ítem: ✅ hecho · 🔄 parcial · ⬜ pendie
 <tr>
 <td>Almacenamiento</td>
 <td style="text-align: center;">✅</td>
-<td>NVS (config) + LittleFS (eventos) + microSD (histórico; sin SD no hay histórico)</td>
+<td>LittleFS (config + eventos) + microSD (histórico; sin SD no hay histórico) + NVS (boots)</td>
 </tr>
 <tr>
 <td>Histórico</td>

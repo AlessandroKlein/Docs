@@ -9392,7 +9392,7 @@
 
 <h1 id="glosario">Glosario</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Todos los términos que aparecen en la documentación de SEMA, en lenguaje simple. Los
 que describen algo <strong>no implementado</strong> en v1.103.0 están marcados con ⚠️ y se indica
@@ -9782,11 +9782,11 @@ qué existe hoy.</p>
 </tr>
 <tr>
 <td><strong>NVS</strong></td>
-<td><em>Non-Volatile Storage</em>: memoria clave-valor de ESP-IDF. SEMA guarda ahí la configuración (namespace <code>sema</code>), el contador <code>boots</code> y el layout del dashboard.</td>
+<td><em>Non-Volatile Storage</em>: memoria clave-valor de ESP-IDF. SEMA guarda ahí el contador <code>boots</code> (namespace <code>sema</code>).</td>
 </tr>
 <tr>
 <td><strong>LittleFS</strong></td>
-<td>Sistema de archivos en la partición <code>spiffs</code> del flash; SEMA lo usa para los eventos.</td>
+<td>Sistema de archivos en la partición <code>spiffs</code> del flash; SEMA lo usa para la config (<code>/config.json</code>) y los eventos.</td>
 </tr>
 <tr>
 <td><strong>microSD</strong></td>
@@ -9798,7 +9798,7 @@ qué existe hoy.</p>
 </tr>
 <tr>
 <td><strong>Gridstack</strong></td>
-<td>Biblioteca web del dashboard que permite acomodar y arrastrar tarjetas; su layout se guarda en NVS y se sirve embebida en flash comprimida (gzip).</td>
+<td>Biblioteca web de tarjetas arrastrables usada por el dashboard hasta v1.113.0; eliminada en v1.114.0 (dashboard limpio, sin tablero editable).</td>
 </tr>
 <tr>
 <td><strong>mDNS</strong></td>

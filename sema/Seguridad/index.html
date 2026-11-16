@@ -9486,7 +9486,7 @@
 
 <h1 id="seguridad">Seguridad</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Modelo de seguridad de SEMA tal como está <strong>implementado</strong> en
 <code>src/core/web/HttpServer.cpp</code>: dos credenciales por header (<code>X-API-Key</code>), una
@@ -9660,10 +9660,6 @@ caracteres hex</strong> (16 bytes de <code>esp_random()</code>, <code>HttpServer
 <td><code>GET /logout</code></td>
 <td>Cierra la sesión</td>
 </tr>
-<tr>
-<td><code>GET /gridstack.min.css</code>, <code>GET /gridstack-all.min.js</code></td>
-<td>Assets gzip embebidos</td>
-</tr>
 </tbody>
 </table>
 <h3 id="32-protegidos-por-webauthed-sesion-o-x-api-key">3.2 Protegidos por <code>webAuthed()</code> (sesión <strong>o</strong> <code>X-API-Key</code>)</h3>
@@ -9712,10 +9708,6 @@ caracteres hex</strong> (16 bytes de <code>esp_random()</code>, <code>HttpServer
 <td>Calibración de la veleta</td>
 </tr>
 <tr>
-<td><code>GET</code>/<code>POST /api/v1/dashboard/layout</code></td>
-<td>Layout del dashboard</td>
-</tr>
-<tr>
 <td><code>POST /api/v1/gpio</code>, <code>/shift</code>, <code>/can</code>, <code>/lora</code>, <code>/zigbee</code></td>
 <td>Escritura sobre actuadores y buses</td>
 </tr>
@@ -9740,8 +9732,7 @@ caracteres hex</strong> (16 bytes de <code>esp_random()</code>, <code>HttpServer
 <p><code>/</code>, <code>/sensors</code>, <code>/events</code> y las cinco páginas <code>/config/*</code> llaman a
 <code>webAuthed()</code> y, sin credenciales, devuelven el formulario de login con HTTP
 <code>200</code> (<code>serveAuthedPage()</code>, <code>HttpServer.cpp:701-710</code>). No hay listado de
-directorios ni contenido estático adicional: los únicos archivos servidos son
-los dos assets de Gridstack.</p>
+directorios ni contenido estático adicional.</p>
 <h3 id="35-websocket">3.5 WebSocket</h3>
 <p><code>ws_.begin()</code> abre el servidor WebSocket en el <strong>puerto 81</strong> y
 <code>broadcastMeasurements()</code> emite cada medición a todos los clientes conectados

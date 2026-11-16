@@ -2908,10 +2908,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-littlefs-solo-para-el-registro-de-eventos" class="md-nav__link">
+  <a href="#3-littlefs-config-registro-de-eventos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. LittleFS (solo para el registro de eventos)
+        3. LittleFS (config + registro de eventos)
       
     </span>
   </a>
@@ -9474,7 +9474,7 @@
 <p><strong>Tipo:</strong> Referencia
 <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.113.0</p>
+<strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Dónde guarda SEMA cada cosa, con qué formato, con qué límites y qué se pierde al
 reiniciar. Fuentes: <code>include/core/storage/Storage.hpp</code>, <code>include/core/storage/NvsStore.hpp</code>,
@@ -9495,14 +9495,14 @@ reiniciar. Fuentes: <code>include/core/storage/Storage.hpp</code>, <code>include
 <tbody>
 <tr>
 <td><strong>NVS</strong> (<code>Preferences</code>)</td>
-<td>Configuración, contador de reinicios, layout del dashboard</td>
-<td>namespace <code>sema</code>, claves <code>config</code>, <code>boots</code>, <code>layout</code></td>
+<td>Contador de reinicios</td>
+<td>namespace <code>sema</code>, clave <code>boots</code></td>
 <td>Sí</td>
 </tr>
 <tr>
 <td><strong>LittleFS</strong> (flash, partición <code>spiffs</code>)</td>
-<td>Registro de eventos/alarmas</td>
-<td><code>/events.jsonl</code></td>
+<td>Configuración + registro de eventos/alarmas</td>
+<td><code>/config.json</code>, <code>/events.jsonl</code></td>
 <td>Sí</td>
 </tr>
 <tr>
@@ -9520,15 +9520,16 @@ reiniciar. Fuentes: <code>include/core/storage/Storage.hpp</code>, <code>include
 </tbody>
 </table>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                 ┌──────────────────────── NVS (Preferences, namespace "sema") ──────────┐
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   config  ──────┤ config · boots · layout                                                │
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   boots ────────┤ boots                                                                  │
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                 └───────────────────────────────────────────────────────────────────────┘
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                 ┌──────────────────────── LittleFS (partición datos) ───────────────────┐
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   eventos ──────┤ /events.jsonl                        (EventLog, máx. 100 en RAM)       │
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                 └───────────────────────────────────────────────────────────────────────┘
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                 ┌──────────────────────── microSD (SPI, CS configurable) ───────────────┐
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   mediciones ───┤ /history.jsonl      (alta resolución, tope 10 000 líneas)             │
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                 │ /history.jsonl.agg  (promedios horarios de lo viejo)                  │
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                 └───────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   config ───────┤ /config.json                          (ConfigManager, desde v1.114.0) │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   eventos ──────┤ /events.jsonl                        (EventLog, máx. 100 en RAM)       │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                 └───────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                 ┌──────────────────────── microSD (SPI, CS configurable) ───────────────┐
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   mediciones ───┤ /history.jsonl      (alta resolución, tope 10 000 líneas)             │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                 │ /history.jsonl.agg  (promedios horarios de lo viejo)                  │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                 └───────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">El histórico NO vive en la flash interna</p>
@@ -9555,33 +9556,20 @@ Arduino-ESP32 y es el único backend que implementa hoy la interfaz <code>KeyVal
 </thead>
 <tbody>
 <tr>
-<td><code>config</code></td>
-<td>string (JSON)</td>
-<td><code>ConfigManager::save()</code></td>
-<td>Config completa, <code>schema_version: 1</code></td>
-</tr>
-<tr>
 <td><code>boots</code></td>
 <td>uint32</td>
 <td><code>SemaCore::setup()</code></td>
 <td>Contador de reinicios (se lee, se incrementa y se reescribe en cada arranque)</td>
 </tr>
-<tr>
-<td><code>layout</code></td>
-<td>string (JSON)</td>
-<td><code>ConfigManager::saveDashboardLayout()</code></td>
-<td>Layout Gridstack, en clave aparte para no exceder el tamaño de una entrada NVS</td>
-</tr>
 </tbody>
 </table>
 <p>Partición NVS (<code>partitions_4mb.csv</code>, <code>partitions_8mb.csv</code>, <code>partitions_16mb.csv</code>):
 offset <code>0x9000</code>, tamaño <code>0x5000</code> = <strong>20 480 bytes (20 KB)</strong> en todas las placas.</p>
-<p>Fallo de escritura: si <code>putString("config", …)</code> falla (NVS lleno o fragmentado),
-<code>ConfigManager::save()</code> hace <code>store_.clear()</code> y reintenta una vez. Consecuencia
-documentada en el propio código: <strong>se pierden la config anterior y el layout</strong>, pero se
-recupera el guardado sin reflashear.</p>
+<p>Desde v1.114.0 (D-0046) la config <strong>no</strong> se guarda en NVS: <code>ConfigManager::save()</code>
+escribe <code>/config.json</code> en LittleFS. La NVS solo conserva <code>boots</code> (contador de
+reinicios).</p>
 <hr />
-<h2 id="3-littlefs-solo-para-el-registro-de-eventos">3. LittleFS (solo para el registro de eventos)</h2>
+<h2 id="3-littlefs-config-registro-de-eventos">3. LittleFS (config + registro de eventos)</h2>
 <p><code>EventLog::begin()</code> monta LittleFS con formato automático si la partición está corrupta:</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LittleFS</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="nb">true</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// src/core/events/EventLog.cpp</span>
 </span></code></pre></div>
@@ -9616,8 +9604,9 @@ recupera el guardado sin reflashear.</p>
 </tr>
 </tbody>
 </table>
-<p>En todo <code>src/</code>, LittleFS se usa <strong>únicamente</strong> en <code>EventLog.cpp</code>. El servidor web ya no
-depende de LittleFS (los assets Gridstack van embebidos en PROGMEM).</p>
+<p>Desde v1.114.0 LittleFS lo usan <code>ConfigManager</code> (config en <code>/config.json</code>) y
+<code>EventLog.cpp</code> (eventos). El servidor web no depende de LittleFS: el HTML/CSS/JS va
+embebido en PROGMEM.</p>
 <hr />
 <h2 id="4-microsd-activacion-y-cs">4. microSD: activación y CS</h2>
 <p>El histórico se habilita desde configuración:</p>
@@ -9679,7 +9668,7 @@ depende de LittleFS (los assets Gridstack van embebidos en PROGMEM).</p>
 <tr>
 <td><code>ts</code></td>
 <td><code>Measurement::timestamp</code></td>
-<td>Época local en <strong>segundos</strong> (<code>nowEpoch()</code>); cae a <code>millis()/1000</code> hasta que sincronice NTP</td>
+<td>Época <strong>UTC</strong> en segundos (<code>nowEpoch()</code>); cae a <code>millis()/1000</code> hasta que sincronice NTP</td>
 </tr>
 <tr>
 <td><code>sensor</code></td>
@@ -9880,8 +9869,8 @@ valor formateado a 4 decimales.</p>
 </thead>
 <tbody>
 <tr>
-<td>Config, contador de reinicios, layout</td>
-<td>NVS</td>
+<td>Config (<code>/config.json</code>) y contador de reinicios (<code>boots</code>)</td>
+<td>LittleFS + NVS</td>
 <td>Se conserva</td>
 </tr>
 <tr>
@@ -9920,9 +9909,9 @@ valor formateado a 4 decimales.</p>
 <h2 id="10-uso-de-flash-desgaste-y-lo-que-falta">10. Uso de flash, desgaste y lo que falta</h2>
 <p><strong>Escrituras y desgaste</strong></p>
 <ul>
-<li>NVS tiene <em>wear leveling</em> propio del IDF, pero la config se <strong>reescribe completa</strong> en
-  cada <code>apply()</code> (cada guardado desde la web o cada <code>PUT /api/v1/config</code>). En el peor
-  caso, <code>save()</code> limpia el namespace antes de reintentar.</li>
+<li>La config se <strong>reescribe completa</strong> en LittleFS <code>/config.json</code> en cada <code>apply()</code>
+  (cada guardado desde la web o cada <code>PUT /api/v1/config</code>). La NVS solo lleva el
+  contador <code>boots</code> (poca escritura).</li>
 <li><code>EventLog::rotate()</code> reescribe <code>/events.jsonl</code> entero (hasta ~200 líneas): una
   reescritura completa cada 200 eventos, más un <code>append</code> por evento.</li>
 <li><code>HistoryStore::rotate()</code> reescribe el archivo completo (hasta ~10 000 líneas ≈ 1 MB)

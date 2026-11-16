@@ -9726,7 +9726,7 @@
 
 <h1 id="referencia-de-api-interna">Referencia de API interna</h1>
 <blockquote>
-<p><strong>Tipo:</strong> API | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> API | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Interfaces C++ internas del firmware (<code>include/core/**</code>, <code>include/hw/HwProfile.hpp</code>).
 Las firmas se copiaron literalmente de las cabeceras; cuando un método es <code>inline</code>
@@ -10326,12 +10326,12 @@ queda vacío (ver §7 de <a href="../Referencia-de-codigo/">Referencia de códig
 <tr>
 <td><code>load</code></td>
 <td><code>bool load()</code></td>
-<td>Lee la clave NVS <code>config</code>; si no deserializa o no valida, aplica defaults (schema=1, <code>SEMA-001</code>, <code>Estación Norte</code>, STA, <code>sema-001</code>, mDNS, Buenos Aires, INFO, littlefs, 30 días)</td>
+<td>Lee <code>/config.json</code> (LittleFS), con fallback a la clave NVS <code>config</code>; si no deserializa o no valida, aplica defaults (schema=1, <code>SEMA-001</code>, <code>Estación Norte</code>, STA, <code>sema-001</code>, mDNS, Buenos Aires, INFO, littlefs, 30 días)</td>
 </tr>
 <tr>
 <td><code>save</code></td>
 <td><code>bool save()</code></td>
-<td>Serializa y guarda; si NVS falla, <code>store_.clear()</code> y reintenta <strong>una vez</strong> (se pierde la config anterior)</td>
+<td>Serializa y escribe <code>/config.json</code> en LittleFS</td>
 </tr>
 <tr>
 <td><code>apply</code></td>
@@ -10357,16 +10357,6 @@ queda vacío (ver §7 de <a href="../Referencia-de-codigo/">Referencia de códig
 <td><code>applyJson</code></td>
 <td><code>bool applyJson(const String&amp; json)</code></td>
 <td><code>parseInto</code> sobre una <code>Config</code> temporal + <code>apply</code></td>
-</tr>
-<tr>
-<td><code>saveDashboardLayout</code></td>
-<td><code>bool saveDashboardLayout(const String&amp; layout)</code></td>
-<td>Clave NVS separada <code>layout</code> (no va en el JSON de config)</td>
-</tr>
-<tr>
-<td><code>loadDashboardLayout</code></td>
-<td><code>bool loadDashboardLayout(String&amp; out)</code></td>
-<td>Lee la clave <code>layout</code></td>
 </tr>
 <tr>
 <td><code>validate</code></td>

@@ -9498,7 +9498,7 @@
 
 <h1 id="ota-y-actualizacion">OTA y actualización</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Actualización de firmware por aire (OTA) con particiones A/B, manifiesto con
 SHA-256 y las limitaciones reales del flujo implementado en
@@ -9687,18 +9687,18 @@ partición llamada <code>spiffs</code> contenga <strong>LittleFS</strong>.</p>
 </tr>
 </tbody>
 </table>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>0x009000 ┌──────── nvs (config, layout, boots) ────────┐ 20 KB
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>0x009000 ┌──────── nvs (boots) ────────────────────────┐ 20 KB
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>0x00E000 ├──────── otadata (índice A/B) ──────────────┤ 8 KB
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>0x010000 ├──────── app0  (OTA_0, activa) ─────────────┤ 1,75 MB (4 MB) / 3 MB (8-16 MB)
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>         ├──────── app1  (OTA_1, la nueva) ───────────┤ igual tamaño
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>0x390000 ├──────── spiffs → LittleFS (eventos) ───────┤ 448 KB (solo en 4 MB)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>0x390000 ├──────── spiffs → LittleFS (config+eventos) ┤ 448 KB (solo en 4 MB)
 </span></code></pre></div>
 <ul>
 <li><code>otadata</code> es lo que decide qué partición arranca; <code>Update.end(true)</code> deja la
   nueva imagen como próxima a bootear.</li>
 <li>El <strong>histórico en microSD</strong> no es una partición: si no hay SD, no hay histórico.</li>
-<li>La OTA escribe <strong>solo</strong> la partición de app: la NVS (config) y la partición
-  LittleFS (eventos) no se tocan.</li>
+<li>La OTA escribe <strong>solo</strong> la partición de app: la partición LittleFS (config +
+  eventos) y la NVS (<code>boots</code>) no se tocan.</li>
 </ul>
 <h2 id="2-flujo-de-subida-post-apiv1ota">2. Flujo de subida (<code>POST /api/v1/ota</code>)</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>POST /api/v1/ota            multipart/form-data, campo "firmware"
@@ -9824,7 +9824,7 @@ redirige a <code>/</code> a los 12 s.</p>
 </tr>
 <tr>
 <td><code>GET /api/v1/config</code></td>
-<td>La configuración sigue igual (la OTA no toca la NVS)</td>
+<td>La configuración sigue igual (la OTA no toca LittleFS)</td>
 </tr>
 <tr>
 <td><code>GET /api/v1/history?limit=10</code></td>

@@ -9443,7 +9443,7 @@
 
 <h1 id="limitaciones-y-bugs-conocidos">Limitaciones y bugs conocidos</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia / Soporte | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia / Soporte | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Consolidado de <strong>limitaciones reales</strong> de <code>v1.103.0</code>, verificadas leyendo el código
 (archivo y línea indicados). No es una lista de deseos: son comportamientos que hoy
@@ -9583,9 +9583,9 @@ surge de la lectura, no de una ejecución.</p>
 <tr>
 <td style="text-align: center;">C4</td>
 <td style="text-align: center;">🟠</td>
-<td><code>sensors[].dashboard_layout</code> en el backup</td>
-<td><code>serialize()</code> no emite <code>dashboard_layout</code> (vive en la clave NVS <code>layout</code>): restaurar un backup <strong>no</strong> restaura el dashboard</td>
-<td><code>ConfigManager.cpp</code> (<code>serialize</code>)</td>
+<td><code>dashboard_layout</code></td>
+<td>Campo eliminado en v1.114.0 (junto con Gridstack): ya no existe ni se serializa</td>
+<td><code>ConfigManager.cpp</code></td>
 </tr>
 <tr>
 <td style="text-align: center;">C5</td>
@@ -9850,7 +9850,7 @@ surge de la lectura, no de una ejecución.</p>
 <tr>
 <td style="text-align: center;">D4</td>
 <td style="text-align: center;">🟡</td>
-<td>El backup no incluye el layout del dashboard y <code>backup.timestamp</code> es <code>millis()/1000</code> (uptime), no fecha</td>
+<td>El <code>backup.timestamp</code> es <code>millis()/1000</code> (uptime), no fecha</td>
 <td><code>HttpServer.cpp</code> (<code>onBackup</code>), <code>ConfigManager.cpp</code></td>
 </tr>
 <tr>
@@ -9864,12 +9864,6 @@ surge de la lectura, no de una ejecución.</p>
 <td style="text-align: center;">🟠</td>
 <td><code>station_id</code> viaja <strong>siempre vacío</strong>: <code>Measurement::stationId</code> no se asigna en ningún punto del firmware (se publica así por MQTT/webhook)</td>
 <td><code>Measurement.hpp</code>, <code>SemaCore.cpp</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">D7</td>
-<td style="text-align: center;">🟡</td>
-<td><code>nowEpoch()</code> devuelve hora <strong>local</strong> (UTC + offset), aunque el comentario de <code>Measurement.hpp</code> diga "epoch seconds UTC"</td>
-<td><code>Time.hpp</code></td>
 </tr>
 <tr>
 <td style="text-align: center;">D8</td>

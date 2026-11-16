@@ -9536,7 +9536,7 @@
 
 <h1 id="guia-de-desarrollo-extender-sema">Guía de desarrollo (extender SEMA)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Cómo extender SEMA <strong>de verdad</strong>: agregar un sensor, un publicador, una regla, una
 magnitud derivada, un endpoint REST o un módulo, con las rutas reales del repositorio,
@@ -9654,7 +9654,7 @@ Toda la lógica va en módulos.</p>
    (por ejemplo <code>// D-0056</code>, <code>// README.md §173</code>). Un <code>TODO</code>/<code>FIXME</code> lleva motivo.</li>
 <li><strong>No inventar APIs, librerías, flags ni comandos</strong>: se verifica contra el código o
    la documentación oficial. Ante la duda, preguntar.</li>
-<li><strong>No hardcodear secretos</strong> (claves, tokens): van a la configuración (NVS).</li>
+<li><strong>No hardcodear secretos</strong> (claves, tokens): van a la configuración (LittleFS).</li>
 <li><strong>No refactorizar</strong> código que no se está tocando (salvo limpieza local &lt; 10 líneas).</li>
 <li><strong>Un commit por cambio lógico</strong>, en inglés y con Conventional Commits
    (<code>feat(sensors): …</code>, <code>fix(web): …</code>, <code>docs: …</code>, <code>refactor: …</code>).</li>
@@ -9986,8 +9986,8 @@ todos al arrancar. Un módulo con <code>id</code> repetido no se registra
   Una configuración que no parsea suele ser una que se pasó de tamaño.</li>
 <li>La ventana de configuración es <strong>transaccional</strong>: <code>apply()</code> respalda, guarda y
   revierte si falla. Si tu clave depende de hardware, validala antes.</li>
-<li><code>saveDashboardLayout()</code> usa una <strong>clave NVS separada</strong> (<code>layout</code>) para no exceder el
-  tamaño de una entrada.</li>
+<li>Desde v1.114.0 (D-0046) la config se guarda en LittleFS <code>/config.json</code> (antes
+  en NVS, donde superaba el límite de 4 KB de una entrada).</li>
 <li>Cambiar el significado de una clave existente es un cambio <strong>MAJOR</strong> de versión
   (ver <a href="../../inicio/Versionado/">Versionado</a>); agregar una clave con default es
   MINOR.</li>

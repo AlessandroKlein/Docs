@@ -9477,7 +9477,7 @@
 
 <h1 id="backup-y-restauracion">Backup y restauración</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>SEMA expone un respaldo <strong>autodescriptivo</strong> de la configuración en
 <code>GET /api/v1/backup</code> y lo restaura con <code>POST /api/v1/backup</code> (que usa el mismo
@@ -9584,11 +9584,6 @@ es la API (<code>GET</code>/<code>POST /api/v1/backup</code>).</p>
 <td>Eventos y alarmas</td>
 <td>LittleFS, partición <code>spiffs</code> (<code>EventLog</code>)</td>
 <td>Flashear/leer la partición, o exportar por <code>/api/v1/events</code></td>
-</tr>
-<tr>
-<td>Layout del dashboard</td>
-<td>NVS, clave <code>layout</code> (separada de <code>config</code>)</td>
-<td><code>GET /api/v1/dashboard/layout</code></td>
 </tr>
 <tr>
 <td>Contador de reinicios</td>

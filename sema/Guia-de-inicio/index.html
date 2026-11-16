@@ -9570,7 +9570,7 @@
 
 <h1 id="guia-de-inicio">Guía de inicio</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Documentación para <strong>entender y usar SEMA sin conocer el proyecto ni el código de
 antemano</strong>. Los apartados son progresivos: se puede leer de principio a fin.</p>
@@ -9944,7 +9944,7 @@ endpoint informa la IP del punto de acceso.</p>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>Módulos registrados: 0
 </span></code></pre></div>
 <h2 id="6-configuracion">6. Configuración</h2>
-<p>La configuración es un <strong>JSON versionado</strong> (<code>schema_version: 1</code>) que se guarda en NVS
+<p>La configuración es un <strong>JSON versionado</strong> (<code>schema_version: 1</code>) que se guarda en LittleFS (<code>/config.json</code>)
 y se edita desde la web (<code>/config/network</code>, <code>/config/security</code>, <code>/config/system</code>,
 <code>/config/wind</code>, <code>/config/sensors</code>) o por la API. Ejemplo mínimo:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
@@ -10173,12 +10173,6 @@ Resumen de rutas (la tabla completa, con payloads, está en <a href="../API-REST
 <td style="text-align: center;">✔</td>
 </tr>
 <tr>
-<td>GET/POST</td>
-<td><code>/dashboard/layout</code></td>
-<td>Layout del dashboard</td>
-<td style="text-align: center;">✔</td>
-</tr>
-<tr>
 <td>POST</td>
 <td><code>/restart</code> · <code>/ota</code></td>
 <td>Reinicio / actualización de firmware</td>
@@ -10210,10 +10204,10 @@ Resumen de rutas (la tabla completa, con payloads, está en <a href="../API-REST
 </span></code></pre></div>
 <h2 id="8-dashboard-y-websocket">8. Dashboard y WebSocket</h2>
 <ul>
-<li><strong>Dashboard</strong>: página servida en <code>/</code>. Consume la API y muestra estado, mediciones,
-  histórico y gráficos; el layout es configurable con Gridstack y se guarda en NVS
-  (<code>/api/v1/dashboard/layout</code>). Si el login está configurado y no hay sesión, el menú
-  de edición queda oculto hasta entrar por <code>/login</code>.</li>
+<li><strong>Dashboard</strong>: página servida en <code>/</code>. Consume la API y muestra tarjetas con los
+  sensores conectados y la sección de predicciones (sin Gridstack desde v1.114.0).
+  Si el login está configurado y no hay sesión, el menú de edición queda oculto
+  hasta entrar por <code>/login</code>.</li>
 <li><strong>WebSocket</strong>: <code>ws://&lt;host&gt;:81</code>. Cada ciclo de lectura difunde:</li>
 </ul>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"measurements"</span><span class="p">,</span>
@@ -10280,7 +10274,7 @@ si la microSD está activa.</p>
 </tr>
 <tr>
 <td><code>ConfigManager</code></td>
-<td>Carga, valida, aplica y persiste la configuración (NVS, transaccional)</td>
+<td>Carga, valida, aplica y persiste la configuración (LittleFS, transaccional)</td>
 </tr>
 <tr>
 <td><code>SensorManager</code></td>
@@ -10397,7 +10391,7 @@ está en <a href="../Guia-de-desarrollo/">Guía de desarrollo</a>.</p>
 </tr>
 <tr>
 <td><strong>NVS / LittleFS / microSD</strong></td>
-<td>Config, eventos e histórico, respectivamente</td>
+<td>Boots / config + eventos / histórico, respectivamente</td>
 </tr>
 <tr>
 <td><strong>mDNS</strong></td>

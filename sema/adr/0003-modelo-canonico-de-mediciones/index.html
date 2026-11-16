@@ -9385,7 +9385,7 @@
 <h1 id="0003-modelo-canonico-de-mediciones-con-quality-flags">0003. Modelo canónico de mediciones con quality flags</h1>
 <blockquote>
 <p><strong>Tipo:</strong> Convención (ADR) | <strong>Estado:</strong> Aceptada | <strong>Fecha:</strong> 2026-10-03
-<strong>Firmware:</strong> v1.113.0 | <strong>Decisión origen:</strong> D-0007, D-0026, D-0028, D-0044, D-0056</p>
+<strong>Firmware:</strong> v1.114.0 | <strong>Decisión origen:</strong> D-0007, D-0026, D-0028, D-0044, D-0056</p>
 </blockquote>
 <h2 id="contexto">Contexto</h2>
 <p>Cada sensor entrega datos con forma propia (un float de temperatura, tres partículas
@@ -9424,9 +9424,9 @@ compartida por adquisición, calibración, storage, API y publishers:</p>
   (ver ADR 0005).</li>
 <li>⚠️ Costo en RAM/CPU: 5 <code>String</code> por medición y copias por valor
   (<code>std::vector&lt;Measurement&gt;</code>), sensible en un ESP32 de 4 MB.</li>
-<li>⚠️ <code>timestamp</code> no es epoch UTC real: <code>nowEpoch()</code> (<code>include/core/Time.hpp</code>) usa
-  <code>time()</code> si NTP sincronizó y cae a <code>millis()/1000</code> si no; los eventos usan
-  <code>timestampMs</code> (millis monotónico) y no epoch.</li>
+<li>⚠️ <code>timestamp</code> es epoch <strong>UTC</strong> real desde v1.114.0: <code>nowEpoch()</code>
+  (<code>include/core/Time.hpp</code>) usa <code>time()</code> si NTP sincronizó y cae a <code>millis()/1000</code>
+  si no; los eventos usan <code>timestampMs</code> (millis monotónico) y no epoch.</li>
 <li>⚠️ De los 8 flags, hoy solo se generan <strong>3</strong>: <code>VALID</code>, <code>COMMUNICATION_ERROR</code>
   (BMP280, SHT31, BH1750 con lectura inválida) y <code>SENSOR_DISCONNECTED</code> (BH1750 y
   DS18B20 desconectados). <code>INVALID</code>, <code>STALE</code>, <code>TIMEOUT</code>, <code>OUT_OF_RANGE</code> y

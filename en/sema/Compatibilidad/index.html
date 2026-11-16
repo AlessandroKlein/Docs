@@ -9432,7 +9432,7 @@
 
 <h1 id="compatibilidad">Compatibilidad</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -9832,7 +9832,7 @@ tablas se monta como <strong>LittleFS</strong>.</p>
 <li>El histórico de gráficas <strong>no</strong> usa la partición interna: vive en la microSD
   (<code>HistoryStore::enableSd</code>). Sin SD, las gráficas quedan vacías a propósito.</li>
 <li>El nombre del binario lo arma <code>GET /api/v1/system</code>: <code>sema_&lt;versión&gt;_&lt;board_id&gt;.bin</code>
-  (p. ej. <code>sema_1.113.0_esp32-s3-8mb.bin</code>).</li>
+  (p. ej. <code>sema_1.114.0_esp32-s3-8mb.bin</code>).</li>
 </ul>
 <h2 id="5-sensores-por-interfaz">5. Sensores por interfaz</h2>
 <p>Los 21 modelos de <code>SensorFactory::create()</code> (<code>src/core/sensors/SensorFactory.cpp</code>), con la
@@ -10122,11 +10122,6 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <td>Todo servido por el firmware; sin CDN externo</td>
 </tr>
 <tr>
-<td>GridStack</td>
-<td>✅</td>
-<td><code>/gridstack-all.min.js</code> y <code>/gridstack.min.css</code> embebidos gzip; grilla de <strong>12 columnas</strong>, <code>cellHeight: 72</code>, <code>margin: 6</code></td>
-</tr>
-<tr>
 <td>Canvas 2D</td>
 <td>✅</td>
 <td>Gráficos propios con <code>getContext('2d')</code>, escala por <code>devicePixelRatio</code>, series por sensor</td>
@@ -10145,11 +10140,6 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <td>Gráficos</td>
 <td>✅ por polling</td>
 <td><code>/api/v1/history?limit=3000</code>, redibujo cada <strong>60 s</strong></td>
-</tr>
-<tr>
-<td>Layout persistente</td>
-<td>✅</td>
-<td><code>POST/GET /api/v1/dashboard/layout</code>, guardado en NVS en una clave aparte</td>
 </tr>
 <tr>
 <td>Login</td>
@@ -10184,7 +10174,7 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <tbody>
 <tr>
 <td>Firmware SEMA</td>
-<td>1.113.0 · HW <code>rev0</code></td>
+<td>1.114.0 · HW <code>rev0</code></td>
 </tr>
 <tr>
 <td>Schema de configuración</td>

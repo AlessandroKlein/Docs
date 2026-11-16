@@ -9392,7 +9392,7 @@
 <h1 id="0010-api-rest-apiv1-en-el-core-y-seguridad-por-claves">0010. API REST <code>/api/v1</code> en el Core y seguridad por claves</h1>
 <blockquote>
 <p><strong>Tipo:</strong> Convención (ADR) | <strong>Estado:</strong> Aceptada | <strong>Fecha:</strong> 2026-10-03
-<strong>Firmware:</strong> v1.113.0 | <strong>Decisión origen:</strong> D-0006, D-0027, D-0035, D-0041, D-0048</p>
+<strong>Firmware:</strong> v1.114.0 | <strong>Decisión origen:</strong> D-0006, D-0027, D-0035, D-0041, D-0048</p>
 </blockquote>
 <h2 id="contexto">Contexto</h2>
 <p>La estación tiene que ser operada desde un navegador y, a la vez, consumida por
@@ -9404,7 +9404,7 @@ servidor para configurarla contradice el offline-first (ADR 0007).</p>
 <li><strong>D-0006 / D-0041</strong> — REST + WebSocket forman parte del Core: API HTTP versionada
    en <strong><code>/api/v1</code></strong> con <code>status</code>, <code>health</code>, <code>system</code>, <code>config</code>, <code>sensors</code>, <code>events</code>,
    <code>alarms</code>, <code>diagnostics</code>, <code>network</code>, <code>capabilities</code>, <code>energy</code>, <code>history</code>, <code>backup</code>,
-   <code>restart</code>, <code>ota</code>, <code>gpio</code>, <code>shift</code>, <code>wind/*</code>, <code>dashboard/layout</code>, <code>wifi/scan</code>,
+   <code>restart</code>, <code>ota</code>, <code>gpio</code>, <code>shift</code>, <code>wind/*</code>, <code>wifi/scan</code>,
    <code>update/check</code>, <code>security/keys</code> y los buses (<code>modbus</code>, <code>can</code>, <code>lora</code>, <code>zigbee</code>).
    El <strong>WebSocket</strong> va por el puerto <strong>81</strong> (<code>/ws</code>, <code>ws_</code> en <code>HttpServer.hpp</code>) y
    difunde <code>{"type":"measurements","data":[…]}</code>.</li>

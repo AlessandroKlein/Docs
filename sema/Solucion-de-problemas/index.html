@@ -9597,7 +9597,7 @@
 
 <h1 id="solucion-de-problemas">Solución de problemas</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Soporte | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Soporte | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Cada caso sigue el mismo formato: <strong>síntoma → causa probable → cómo confirmarlo →
 solución</strong>. Todos los comandos y endpoints citados existen en el firmware v1.103.0.</p>
@@ -9744,7 +9744,7 @@ solución</strong>. Todos los comandos y endpoints citados existen en el firmwar
 <tbody>
 <tr>
 <td><strong>Causa probable</strong></td>
-<td>La config guardada en NVS no se pudo deserializar o no pasó la validación → <code>ConfigManager</code> carga los defaults de schema 1</td>
+<td>La config guardada en LittleFS (<code>/config.json</code>) no se pudo deserializar o no pasó la validación → <code>ConfigManager</code> carga los defaults de schema 1</td>
 </tr>
 <tr>
 <td><strong>Confirmar</strong></td>
@@ -9771,7 +9771,7 @@ solución</strong>. Todos los comandos y endpoints citados existen en el firmwar
 </tr>
 <tr>
 <td><strong>Solución</strong></td>
-<td>Conservar el backup; si no hay acceso, recuperar por USB (borrado de NVS con <code>pio run -t erase</code> → <strong>se pierde toda la configuración</strong>) y volver a configurar. Ver <a href="../Seguridad/">Seguridad</a></td>
+<td>Conservar el backup; si no hay acceso, recuperar por USB (borrado de flash con <code>pio run -t erase</code> → <strong>se pierde toda la configuración</strong>) y volver a configurar. Ver <a href="../Seguridad/">Seguridad</a></td>
 </tr>
 </tbody>
 </table>
@@ -10080,11 +10080,6 @@ solución</strong>. Todos los comandos y endpoints citados existen en el firmwar
 <td>Los datos no se actualizan</td>
 <td>WebSocket bloqueado por proxy/VPN</td>
 <td>Probar en la red local; el dashboard también refresca por <code>fetch</code></td>
-</tr>
-<tr>
-<td>El layout se ve desarmado</td>
-<td>Gridstack no cargó (assets gzip en PROGMEM, v1.102.0)</td>
-<td>Recargar con caché limpia; verificar <code>GET /gridstack-all.min.js</code></td>
 </tr>
 <tr>
 <td>La página de config no guarda</td>

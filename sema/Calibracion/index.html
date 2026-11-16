@@ -9474,7 +9474,7 @@
 <p><strong>Tipo:</strong> Guía
 <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.113.0</p>
+<strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Qué tipos de calibración soporta SEMA, dónde se aplican en la cadena de medición y cómo
 calibrar cada sensor en la práctica. Fuentes: <code>include/core/Calibration.hpp</code>,
@@ -10064,7 +10064,7 @@ marcada como <code>OUT_OF_RANGE</code> en lugar de ensuciar el histórico.</p>
    <code>PUT</code> reemplaza la config entera; el <code>parseInto()</code> reconstruye el vector desde cero).</li>
 <li><strong>Verificar</strong> sin reiniciar: <code>onConfigPut()</code> re-aplica calibraciones al vuelo
    (<code>applyCalibrations()</code>), así que el siguiente ciclo ya sale calibrado.</li>
-<li><strong>Persistir</strong>: la config queda en NVS (<code>config</code>); un backup (<code>GET /api/v1/backup</code>) la
+<li><strong>Persistir</strong>: la config queda en LittleFS (<code>/config.json</code>); un backup (<code>GET /api/v1/backup</code>) la
    incluye y <code>POST /api/v1/backup</code> la restaura.</li>
 </ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 1) ver el valor actual</span>

@@ -9494,7 +9494,7 @@
 
 <h1 id="compatibilidad-de-versiones">Compatibilidad de versiones</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Qué versiona SEMA, cómo se comporta frente a una configuración, un backup o un
 firmware de otra versión, y qué compatibilidad <strong>no</strong> está implementada. Todo lo
@@ -9571,17 +9571,17 @@ canal y siempre compara contra la rama <code>main</code>.</p>
 </thead>
 <tbody>
 <tr>
-<td>Arranque con NVS de esquema 1</td>
+<td>Arranque con config (LittleFS) de esquema 1</td>
 <td><code>load()</code> → <code>deserialize()</code> → <code>validate()</code> OK</td>
 <td>Config cargada, <code>valid_ = true</code></td>
 </tr>
 <tr>
-<td>Arranque con NVS de esquema ≠ 1</td>
+<td>Arranque con config de esquema ≠ 1</td>
 <td><code>load()</code> → <code>deserialize()</code> OK pero <code>validate()</code> falla</td>
 <td><strong>Se descarta la config guardada y se aplican los defaults</strong> (no se avisa al usuario más que por serie: <code>Config válida: no</code> antes de los defaults)</td>
 </tr>
 <tr>
-<td>Arranque sin NVS</td>
+<td>Arranque sin <code>/config.json</code></td>
 <td><code>load()</code> → defaults</td>
 <td><code>SEMA-001</code>, <code>Estación Norte</code>, STA, <code>sema-001</code>, mDNS, Buenos Aires, INFO, littlefs, 30 días</td>
 </tr>
@@ -9682,7 +9682,7 @@ cuatro claves de metadatos (<code>HttpServer.cpp:1375-1399</code>):</p>
 </tr>
 <tr>
 <td><code>system.dashboard_layout</code></td>
-<td>❌ <strong>No viaja en el backup</strong>: <code>serialize()</code> no emite <code>dashboard_layout</code> y el layout vive en la clave NVS separada <code>layout</code> (<code>saveDashboardLayout</code>). Restaurar un backup <strong>no</strong> restaura el dashboard</td>
+<td>❌ <strong>Eliminado en v1.114.0</strong>: el campo ya no existe y no hay layout de dashboard que respaldar</td>
 </tr>
 <tr>
 <td>Claves <code>security.*</code></td>
@@ -9850,7 +9850,7 @@ equipo real antes de automatizar un despliegue.</p>
 <td style="text-align: right;">8 MB</td>
 <td><code>partitions_8mb.csv</code></td>
 <td style="text-align: center;">No (<code>SEMA_USE_ETHERNET=0</code>)</td>
-<td style="text-align: center;">✅ <code>sema_1.113.0_esp32-c6-8mb.bin</code></td>
+<td style="text-align: center;">✅ <code>sema_1.114.0_esp32-c6-8mb.bin</code></td>
 <td><code>sema_&lt;fw&gt;_esp32-c6-8mb.bin</code></td>
 </tr>
 <tr>

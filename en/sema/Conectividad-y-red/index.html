@@ -3121,10 +3121,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-nowepoch-epoca-local-no-utc" class="md-nav__link">
+  <a href="#51-nowepoch-epoca-utc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 nowEpoch(): época local, no UTC
+        5.1 nowEpoch(): época UTC
       
     </span>
   </a>
@@ -9518,7 +9518,7 @@
 <blockquote>
 <p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.113.0</p>
+<strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Cómo SEMA se conecta: <strong>WiFi</strong> (STA/AP), <strong>mDNS</strong>, <strong>Ethernet</strong> (LAN8720A por RMII
 o W5500 por SPI) y <strong>hora/NTP</strong>. Toda la lógica está en
@@ -9993,7 +9993,7 @@ firmware no fija explícitamente).</p>
 <p>⚠️ <code>Asia/Tokyo</code> y <code>Australia/Sydney</code> aparecen en el <code>&lt;select&gt;</code> de
 <code>/config/system</code> (etiquetados +9 y +10/+11) pero <strong><code>posixTz()</code> no los mapea</strong>: caen
 al <code>return "UTC0"</code> y la hora queda en UTC. Son opciones de UI sin soporte real.</p>
-<h3 id="51-nowepoch-epoca-local-no-utc">5.1 <code>nowEpoch()</code>: época <strong>local</strong>, no UTC</h3>
+<h3 id="51-nowepoch-epoca-utc">5.1 <code>nowEpoch()</code>: época <strong>UTC</strong></h3>
 <p><code>include/core/Time.hpp</code> define el reloj que usa todo el firmware:</p>
 <table>
 <thead>
@@ -10005,20 +10005,13 @@ al <code>return "UTC0"</code> y la hora queda en UTC. Son opciones de UI sin sop
 <tbody>
 <tr>
 <td><code>nowEpoch()</code></td>
-<td>Si <code>time(nullptr) &lt;= 1000000000</code> (antes de 2001-09-09 = sin NTP) → devuelve <strong><code>millis()/1000</code></strong> (uptime). Si hay reloj → devuelve <code>t + timezoneOffsetSeconds()</code></td>
-</tr>
-<tr>
-<td><code>timezoneOffsetSeconds()</code></td>
-<td><code>t - mktime(gmtime(t))</code>; devuelve <code>0</code> si todavía no hay NTP</td>
+<td>Si <code>time(nullptr) &lt;= 1000000000</code> (antes de 2001-09-09 = sin NTP) → devuelve <strong><code>millis()/1000</code></strong> (uptime). Si hay reloj → devuelve <code>time()</code> (epoch <strong>UTC</strong>, sin offset)</td>
 </tr>
 </tbody>
 </table>
-<p>Es decir, <code>nowEpoch()</code> devuelve la <strong>hora local con el offset ya sumado</strong>, no un
-timestamp UTC. ⚠️ El comentario de <code>Measurement.hpp:37</code> dice
-<code>uint32_t timestamp = 0; // epoch seconds UTC</code>, pero el valor real es
-<code>UTC + offset</code>. Con zona -3, un <code>timestamp</code> de 1760000000 corresponde a las
-22:13 UTC del día anterior en términos UTC. Cualquier integración que asuma UTC
-debe restar el offset.</p>
+<p>Desde v1.114.0 <code>nowEpoch()</code> devuelve la <strong>época UTC</strong> (antes devolvía la hora local
+con el offset sumado, lo que corría la hora −3 h en Buenos Aires). El JS de la web
+hace <code>new Date(ts*1000)</code> y convierte UTC a la hora local del navegador.</p>
 <p>Este mismo reloj alimenta: el histórico (<code>ts</code> en <code>/api/v1/history</code>), el <code>timestamp</code>
 del payload MQTT/webhook, la entrada <code>clock</code> de <code>/api/v1/sensors</code> y la retención por
 tiempo (<code>retentionDays * 86400</code>).</p>
@@ -10084,7 +10077,7 @@ tiempo (<code>retentionDays * 86400</code>).</p>
 </table>
 <p>Consecuencia observable del NTP caído: los <code>ts</code> del histórico arrancan en valores
 chicos (segundos de uptime) y crecen hasta el próximo reinicio; con NTP, saltan a
-la época local. La web no marca ese cambio de escala.</p>
+la época UTC. La web no marca ese cambio de escala.</p>
 <h2 id="7-servicios-y-puertos-expuestos">7. Servicios y puertos expuestos</h2>
 <table>
 <thead>

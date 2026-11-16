@@ -9424,7 +9424,7 @@
 <p><strong>Tipo:</strong> Referencia
 <strong>Estado:</strong> En desarrollo
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.113.0</p>
+<strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Cómo se definen, evalúan y registran las alarmas de SEMA. Fuentes:
 <code>include/core/alarms/Rule.hpp</code>, <code>include/core/alarms/RuleEngine.hpp</code>,
@@ -9573,7 +9573,7 @@
   valores literales del código: <code>id = "high_temp"</code>, <code>sensorId = "EXT"</code>,
   <code>channelId = "temperature"</code>, <code>op = RuleOp::Gt</code>, <code>threshold = 40.0f</code>.</li>
 <li>Las reglas no tienen campo <code>enabled</code>: para desactivar una hay que borrarla del array.</li>
-<li>Las reglas viven en la config (clave NVS <code>config</code>) y se re-aplican sin reiniciar cuando
+<li>Las reglas viven en la config (<code>/config.json</code>) y se re-aplican sin reiniciar cuando
   se guarda desde <code>PUT /api/v1/config</code> o <code>POST /api/v1/backup</code>
   (<code>onConfigPut()</code> llama a <code>core_-&gt;applyRules()</code>).</li>
 </ul>
@@ -9842,7 +9842,7 @@ amplía a condiciones por <em>cambio, ausencia, duración y combinación lógica
 <td>✅</td>
 </tr>
 <tr>
-<td>Configurable por NVS/HTTP</td>
+<td>Configurable por HTTP (config en LittleFS)</td>
 <td>✅</td>
 </tr>
 <tr>

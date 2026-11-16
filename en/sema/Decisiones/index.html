@@ -9406,7 +9406,7 @@
 
 <h1 id="decisiones-de-arquitectura-adr">Decisiones de arquitectura (ADR)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>SEMA registra sus decisiones en dos niveles: el <strong>registro de trabajo</strong>
 <code>docs/DUDAS-Y-DECISIONES.md</code> del repo de código (decisiones <code>D-0001</code>…<code>D-0060</code>, con
@@ -9927,7 +9927,7 @@ documenta en la página temática indicada en «Área».</p>
 <tr>
 <td>Almacenamiento</td>
 <td>D-0032, D-0046, D-0057</td>
-<td>🔄 NVS para configuración, LittleFS para eventos, microSD para histórico. <code>storage.backend</code> no selecciona backend (ver ADR 0006).</td>
+<td>🔄 LittleFS para configuración y eventos, microSD para histórico, NVS para el contador de reinicios. <code>storage.backend</code> no selecciona backend (ver ADR 0006).</td>
 </tr>
 <tr>
 <td>Comunicación</td>

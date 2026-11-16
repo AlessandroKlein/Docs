@@ -9459,11 +9459,11 @@
 
 <h1 id="configuracion">Configuración</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Configuración | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Configuración | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>SEMA se configura con <strong>un único documento JSON</strong> (<code>schema_version: 1</code>) que se
-persiste en la NVS del ESP32 y se aplica de forma <strong>transaccional</strong> (validar →
-aplicar → persistir → rollback). Esta página explica dónde vive, cómo se edita,
+persiste en <strong>LittleFS</strong> (<code>/config.json</code>) y se aplica de forma <strong>transaccional</strong>
+(validar → aplicar → persistir → rollback). Esta página explica dónde vive, cómo se edita,
 qué se aplica en caliente y qué necesita reinicio. La lista completa de claves
 está en <a href="../Referencia-configuracion/">Referencia de configuración</a>.</p>
 <hr />
@@ -9479,48 +9479,44 @@ está en <a href="../Referencia-configuracion/">Referencia de configuración</a>
 <tbody>
 <tr>
 <td>Backend</td>
-<td>NVS (<code>Preferences</code> de arduino-esp32) vía <code>NvsStore</code></td>
-<td><code>src/core/storage/NvsStore.cpp</code>, <code>include/core/storage/Storage.hpp</code></td>
+<td>LittleFS (archivo <code>/config.json</code>)</td>
+<td><code>src/core/ConfigManager.cpp:11</code> (<code>kConfigFile</code>)</td>
 </tr>
 <tr>
 <td>Namespace NVS</td>
-<td><code>sema</code></td>
+<td><code>sema</code> (solo <code>boots</code>)</td>
 <td><code>src/core/SemaCore.cpp:50</code> (<code>store_.begin("sema")</code>)</td>
 </tr>
 <tr>
 <td>Clave de la config</td>
-<td><code>config</code> (un string con el JSON completo)</td>
-<td><code>src/core/ConfigManager.cpp:9</code> (<code>kConfigKey</code>)</td>
-</tr>
-<tr>
-<td>Clave del layout</td>
-<td><code>layout</code> (JSON del dashboard Gridstack)</td>
-<td><code>ConfigManager::saveDashboardLayout()</code> (<code>ConfigManager.cpp:475</code>)</td>
+<td>— (la config va a <code>/config.json</code>, no a NVS)</td>
+<td><code>ConfigManager::save()</code> (<code>ConfigManager.cpp</code>)</td>
 </tr>
 <tr>
 <td>Clave del contador</td>
-<td><code>boots</code> (<code>uint32</code>, contador de reinicios)</td>
-<td><code>src/core/SemaCore.cpp:57-59</code></td>
+<td><code>boots</code> (<code>uint32</code>, contador de reinicios, sigue en NVS)</td>
+<td><code>src/core/SemaCore.cpp:49-53</code></td>
 </tr>
 <tr>
 <td>Partición</td>
-<td><code>nvs</code>, <code>data/nvs</code>, offset <code>0x9000</code>, tamaño <code>0x5000</code> (20 KB) en todas las placas</td>
-<td><code>partitions_4mb.csv</code>, <code>partitions_8mb.csv</code>, <code>partitions_16mb.csv</code></td>
+<td><code>spiffs</code> (LittleFS), 448 KB en 4 MB</td>
+<td><code>partitions_4mb.csv</code> (y equivalentes 8/16/32 MB)</td>
 </tr>
 </tbody>
 </table>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>NVS (namespace "sema")
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── config   → JSON de configuración (schema_version = 1)
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── layout   → layout del dashboard (clave aparte, ver §2)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└── boots    → uint32 con la cantidad de arranques
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>LittleFS (/config.json)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── config   → JSON de configuración (schema_version = 1)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>NVS (namespace "sema")
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>└── boots    → uint32 con la cantidad de arranques
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title"><code>storage.backend</code> no elige dónde se guarda la config</p>
 <p>La clave <code>storage.backend</code> (<code>"littlefs"</code> · <code>"flash"</code> · <code>"sd"</code>) <strong>solo se
 valida y se persiste</strong>: ningún módulo la lee para decidir el medio. La
-configuración <strong>siempre</strong> va a NVS. El histórico va a la microSD (<code>SD.begin</code>
-en <code>src/core/storage/HistoryStore.cpp:40</code>) y los eventos a LittleFS
-(<code>src/core/events/EventLog.cpp:18</code>).</p>
+configuración <strong>siempre</strong> va a LittleFS <code>/config.json</code> (desde v1.114.0, D-0046).
+El histórico va a la microSD (<code>SD.begin</code> en <code>src/core/storage/HistoryStore.cpp:40</code>)
+y los eventos a LittleFS (<code>src/core/events/EventLog.cpp:18</code>).</p>
 </div>
 <h2 id="2-formato-y-tamano">2. Formato y tamaño</h2>
 <ul>
@@ -9528,9 +9524,6 @@ en <code>src/core/storage/HistoryStore.cpp:40</code>) y los eventos a LittleFS
   <code>DynamicJsonDocument</code> de <strong>16 384 bytes</strong> (<code>ConfigManager::serialize()</code> y
   <code>parseInto()</code>), así que el documento debe quedar cómodamente por debajo de ese
   tamaño.</li>
-<li>El layout del dashboard <strong>no</strong> está dentro del JSON de config: se guarda en la
-  clave NVS <code>layout</code> para no exceder el límite de tamaño de una entrada NVS
-  (comentario en <code>include/core/ConfigManager.hpp:252-254</code>).</li>
 <li><code>schema_version</code> debe ser <code>1</code> (<code>SEMA_CONFIG_SCHEMA_VERSION</code> en
   <code>include/core/Version.hpp:17</code>). Si la clave falta, el parser asume <code>1</code>.</li>
 <li><strong>Todas las claves son opcionales al parsear</strong>: la que falta toma su default
@@ -9604,9 +9597,9 @@ en <code>src/core/storage/HistoryStore.cpp:40</code>) y los eventos a LittleFS
 </tr>
 <tr>
 <td>Escrituras indirectas</td>
-<td><code>POST /api/v1/security/keys</code>, <code>POST /api/v1/wind/north</code>, <code>POST /api/v1/wind/resistors</code>, <code>GET</code>/<code>POST /api/v1/dashboard/layout</code></td>
+<td><code>POST /api/v1/security/keys</code>, <code>POST /api/v1/wind/north</code>, <code>POST /api/v1/wind/resistors</code></td>
 <td>Sesión o <code>X-API-Key</code></td>
-<td><code>security.extra_keys</code>, <code>system.wind_north_offset</code>, <code>system.wind_rpull</code>, <code>system.wind_resistors</code>, clave <code>layout</code></td>
+<td><code>security.extra_keys</code>, <code>system.wind_north_offset</code>, <code>system.wind_rpull</code>, <code>system.wind_resistors</code></td>
 </tr>
 </tbody>
 </table>
@@ -9628,24 +9621,20 @@ ciclo completo:</p>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>   ├─ config_  = next
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>   │
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   └─ save()
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        ├─ serialize() + NVS putString("config")
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        │     └─ si NVS está lleno → store_.clear() + un reintento
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        ├─ OK   → valid_ = true      → HTTP 200 {"ok":true}
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        └─ FALLA→ config_ = backup_  → rollback → HTTP 500
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        ├─ serialize() + escritura en LittleFS (/config.json)
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        ├─ OK   → valid_ = true      → HTTP 200 {"ok":true}
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        └─ FALLA→ config_ = backup_  → rollback → HTTP 500
 </span></code></pre></div>
 <p>Detalles verificados:</p>
 <ul>
 <li><strong>Parseo</strong>: <code>parseInto()</code> devuelve <code>false</code> si <code>deserializeJson</code> falla
   (<code>ConfigManager.cpp:284-287</code>).</li>
 <li><strong>Validación</strong>: ver §6.</li>
-<li><strong>Persistencia</strong>: <code>save()</code> serializa y escribe la clave <code>config</code>. Si la
-  escritura falla, asume NVS lleno/fragmentado, ejecuta <code>store_.clear()</code>
-  (<strong>borra <code>config</code>, <code>layout</code> y <code>boots</code></strong>) y reintenta <strong>una sola vez</strong>
-  (<code>ConfigManager.cpp:78-85</code>).</li>
-<li><strong>Rollback</strong>: si el segundo intento también falla, <code>config_</code> vuelve a la copia
-  previa en RAM y la operación devuelve <code>false</code>. Ojo: si el <code>clear()</code> ya se
-  ejecutó, la configuración anterior <strong>ya no está en NVS</strong>; el rollback solo
-  protege la copia en RAM hasta el próximo reinicio.</li>
+<li><strong>Persistencia</strong>: <code>save()</code> serializa y escribe <code>/config.json</code> en LittleFS
+  (desde v1.114.0, D-0046). El <code>boots</code> (contador de reinicios) sigue en NVS.</li>
+<li><strong>Rollback</strong>: si la escritura falla, <code>config_</code> vuelve a la copia previa en RAM
+  y la operación devuelve <code>false</code>; el rollback protege la copia en RAM hasta el
+  próximo reinicio.</li>
 <li><strong>Respuestas HTTP</strong>: <code>PUT /api/v1/config</code> y <code>POST /api/v1/backup</code> devuelven
   <code>400 {"error":"invalid config"}</code> si el JSON no parsea o no valida; los
   endpoints parciales devuelven <code>400 {"error":"invalid json"}</code> o
@@ -9846,10 +9835,6 @@ firmware las lee (❌ no implementado):</p>
 <td><code>i2c_sda</code>, <code>i2c_scl</code></td>
 <td>El bus se abre con <code>SEMA_PIN_I2C_SDA</code>/<code>SEMA_PIN_I2C_SCL</code> (<code>SemaCore.cpp:112</code>)</td>
 </tr>
-<tr>
-<td><code>system.dashboard_layout</code></td>
-<td>Campo del struct <code>SystemConfig</code> que nunca se serializa ni se parsea</td>
-</tr>
 </tbody>
 </table>
 <h2 id="6-validacion-y-recuperacion">6. Validación y recuperación</h2>
@@ -9866,7 +9851,7 @@ duplicados de <code>id</code>: un JSON sintácticamente válido y con esas cuatr
 se acepta tal cual.</p>
 <h3 id="config-corrupta-o-invalida">Config corrupta o inválida</h3>
 <p><code>ConfigManager::load()</code> (<code>ConfigManager.cpp:45-69</code>):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NVS "config"
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>LittleFS "/config.json" (si no hay, fallback a NVS "config" como backward-compat)
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── no existe / vacío ──────────────► defaults
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── deserialize() falla ────────────► defaults
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>├── validate() falla ───────────────► defaults
@@ -9879,8 +9864,8 @@ fijados en <code>load()</code>: <code>station.id = "SEMA-001"</code>, <code>stat
 <code>storage.backend = "littlefs"</code>, <code>storage.retention_days = 30</code>.</p>
 <p>Puntos clave:</p>
 <ul>
-<li>La NVS <strong>no se sobrescribe</strong> al cargar defaults: el equipo arranca con
-  defaults en RAM y el JSON inválido sigue en NVS hasta el próximo <code>save()</code>.</li>
+<li>LittleFS <strong>no se sobrescribe</strong> al cargar defaults: el equipo arranca con
+  defaults en RAM y el JSON inválido sigue en disco hasta el próximo <code>save()</code>.</li>
 <li>El único indicador es el log serie <code>Config válida: no</code>
   (<code>SemaCore.cpp:100</code>) y <code>GET /api/v1/system</code> → <code>config_schema</code>.</li>
 <li>❌ <strong>No hay migración de esquema</strong>: no existe <code>ConfigManager::migrate()</code> en el
@@ -9888,7 +9873,7 @@ fijados en <code>load()</code>: <code>station.id = "SEMA-001"</code>, <code>stat
   defaults (⚠️ contradice a <code>docs/VERSIONADO.md</code>, que menciona <code>migrate()</code>).</li>
 <li>Recuperación práctica: guardar de nuevo la config desde la web o <code>PUT
   /api/v1/config</code> con un JSON válido; para volver a fábrica, guardar los
-  defaults o borrar la partición NVS por serie.</li>
+  defaults o borrar <code>/config.json</code> (o la partición LittleFS).</li>
 </ul>
 <h2 id="7-diagnostico-de-la-configuracion">7. Diagnóstico de la configuración</h2>
 <table>

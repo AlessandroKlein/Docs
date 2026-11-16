@@ -9444,7 +9444,7 @@
 
 <h1 id="referencia-de-codigo">Referencia de código</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -9455,7 +9455,7 @@ Todos los conteos de líneas de esta página se midieron sobre el repo local con
 <p><strong>Nota (v1.107.0):</strong> los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 publicadores, alarmas, buses e infraestructura) se extrajeron a
 <a href="https://github.com/AlessandroKlein/ESP32-Base"><code>ESP32-Base</code></a> (namespace <code>base::</code>),
-consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.9.0</code>.
+consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.10.0</code>.
 El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 <code>src/core/SemaGlue.cpp</code>.</p>
@@ -9525,11 +9525,6 @@ BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se doc
 <td>Política de seguridad</td>
 </tr>
 <tr>
-<td><code>gen_gridstack.py</code></td>
-<td>script</td>
-<td>Genera <code>src/core/web/GridstackAssets.h</code> (assets gzip en PROGMEM)</td>
-</tr>
-<tr>
 <td><code>include/</code></td>
 <td>2 979 líneas · 69 archivos</td>
 <td>Cabeceras (interfaces) del Core y del perfil de hardware</td>
@@ -9583,7 +9578,7 @@ BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se doc
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   ├── GpioManager.hpp                  33   GPIO nativo + MCP23017
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   ├── ShiftRegisterManager.hpp         28   74HC595 / 74HC165
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   ├── Calibration.hpp                  26   gain/offset + rango
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   ├── Time.hpp                         37   nowEpoch() / offset de zona
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   ├── Time.hpp                         37   nowEpoch() (UTC)
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   ├── Version.hpp                      18   FW / HW / schema / protocol
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│   ├── EthernetManager.hpp              30
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   ├── ModbusManager.hpp                30
@@ -9626,7 +9621,7 @@ BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se doc
 </span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    ├── core/publishers/                HttpPublisher 41 · MqttPublisher 62 · PublisherManager 17
 </span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    ├── core/runtime/Task.cpp            31
 </span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    ├── core/sensors/                  20 archivos · 1 220 líneas
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    └── core/web/                      HttpServer.cpp 2 637 · GridstackAssets.h 1 463
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    └── core/web/                      HttpServer.cpp 2 637
 </span></code></pre></div>
 <h2 id="3-modulos-archivos-responsabilidad-y-tamano">3. Módulos: archivos, responsabilidad y tamaño</h2>
 <p>Todos los conteos son líneas totales del archivo (incluyen comentarios y blancos).</p>
@@ -9655,7 +9650,7 @@ BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se doc
 <tr>
 <td>Configuración</td>
 <td><code>ConfigManager.{hpp,cpp}</code></td>
-<td>Structs de spec + config schema=1; validación, persistencia NVS, rollback, JSON</td>
+<td>Structs de spec + config schema=1; validación, persistencia LittleFS, rollback, JSON</td>
 <td style="text-align: right;">752</td>
 </tr>
 <tr>
@@ -9715,7 +9710,7 @@ BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se doc
 <tr>
 <td>Sensores (tiempo)</td>
 <td><code>Time.hpp</code></td>
-<td><code>nowEpoch()</code>, <code>timezoneOffsetSeconds()</code> (header-only)</td>
+<td><code>nowEpoch()</code> (epoch UTC, header-only)</td>
 <td style="text-align: right;">37</td>
 </tr>
 <tr>
@@ -9821,12 +9816,6 @@ BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se doc
 <td style="text-align: right;">2 742</td>
 </tr>
 <tr>
-<td>Assets web</td>
-<td><code>web/GridstackAssets.h</code></td>
-<td>CSS/JS de Gridstack en PROGMEM (gzip), generado por <code>gen_gridstack.py</code></td>
-<td style="text-align: right;">1 463</td>
-</tr>
-<tr>
 <td>Hardware</td>
 <td><code>hw/HwProfile.hpp</code></td>
 <td>Board, features, transceiver RS485, SPI, CS y pines fijos</td>
@@ -9885,7 +9874,7 @@ BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se doc
 <td style="text-align: right;">6</td>
 <td>Configuración</td>
 <td style="text-align: right;">80</td>
-<td><code>config_.load()</code> (NVS o defaults)</td>
+<td><code>config_.load()</code> (LittleFS <code>/config.json</code>, fallback NVS, o defaults)</td>
 </tr>
 <tr>
 <td style="text-align: right;">7</td>

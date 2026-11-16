@@ -9487,11 +9487,11 @@
 
 <h1 id="referencia-de-configuracion-json">Referencia de configuración (JSON)</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Referencia <strong>exhaustiva</strong> de todas las claves que <code>ConfigManager</code> lee y escribe
 (<code>include/core/ConfigManager.hpp</code> + <code>src/core/ConfigManager.cpp</code>). Es el mismo
-documento que se persiste en NVS (clave <code>config</code>) y el que se intercambia por
+documento que se persiste en LittleFS (<code>/config.json</code>) y el que se intercambia por
 <code>GET</code>/<code>PUT /api/v1/config</code> y por <code>GET</code>/<code>POST /api/v1/backup</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Cómo leer las tablas</p>

@@ -9499,7 +9499,7 @@
 
 <h1 id="pruebas-y-validacion">Pruebas y validación</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> En desarrollo | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Cómo se comprueba hoy que SEMA funciona, qué <strong>no</strong> existe todavía y cómo se
 implementaría la cobertura automatizada. Todo lo afirmado como existente se
@@ -9697,9 +9697,9 @@ Si <code>storage.sdEnabled</code> está activo, también se ve <code>MicroSD: co
 <td><code>apply()</code> devuelve <code>false</code>, <strong>rollback</strong> a la config previa; <code>applyJson()</code> → HTTP 400 <code>invalid config</code></td>
 </tr>
 <tr>
-<td>Escritura en NVS</td>
+<td>Escritura en LittleFS</td>
 <td><code>ConfigManager::save()</code></td>
-<td>Ante <code>NOT_ENOUGH_SPACE</code>: <code>store_.clear()</code> y reintento único (se pierde la config y el layout)</td>
+<td>Escribe <code>/config.json</code>; si falla, <code>apply()</code> hace rollback a la config previa en RAM</td>
 </tr>
 <tr>
 <td>Rango de calibración</td>

@@ -9385,7 +9385,7 @@
 <h1 id="0006-almacenamiento-por-capas-y-retencion-por-niveles">0006. Almacenamiento por capas y retención por niveles</h1>
 <blockquote>
 <p><strong>Tipo:</strong> Convención (ADR) | <strong>Estado:</strong> Aceptada | <strong>Fecha:</strong> 2026-10-03
-<strong>Firmware:</strong> v1.113.0 | <strong>Decisión origen:</strong> D-0032, D-0046, D-0057</p>
+<strong>Firmware:</strong> v1.114.0 | <strong>Decisión origen:</strong> D-0032, D-0046, D-0057</p>
 </blockquote>
 <h2 id="contexto">Contexto</h2>
 <p>La estación guarda cosas de naturaleza muy distinta: configuración crítica (no puede
@@ -9397,13 +9397,15 @@ estación tiene que funcionar sin ella.</p>
 <p><strong>Almacenamiento por capas</strong> (D-0032, D-0046) detrás de una abstracción del Core, con
 <strong>retención por niveles</strong> (D-0057):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Storage API (include/core/storage/Storage.hpp)
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> ├── NVS (Preferences)        → configuración, contadores de arranque, layout del dashboard
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> ├── LittleFS (flash)         → eventos/alarmas persistentes (/events.jsonl)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> ├── NVS (Preferences)        → contadores de arranque
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> ├── LittleFS (flash)         → configuración (/config.json) + eventos/alarmas (/events.jsonl)
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> └── microSD (SPI, opcional)  → histórico de mediciones (/history.jsonl + .agg)
 </span></code></pre></div>
 <ul>
 <li><code>KeyValueStore</code> es la frontera abstracta (<code>begin</code>, <code>getString/putString</code>,
-  <code>getUInt/putUInt</code>, <code>clear</code>); su única implementación hoy es <code>NvsStore</code>.</li>
+  <code>getUInt/putUInt</code>, <code>clear</code>); su única implementación hoy es <code>NvsStore</code> (usada
+  para <code>boots</code> y como fallback de lectura de config). Desde v1.114.0 la config se
+  escribe en LittleFS <code>/config.json</code> (D-0046).</li>
 <li>Retención: se conserva alta resolución reciente y lo viejo se agrega a promedios
   horarios en el archivo <code>.agg</code> en lugar de descartarse
   (<code>HistoryStore::aggregate()</code>, invocado cada hora desde <code>SemaCore::loop()</code>).</li>
@@ -9419,9 +9421,8 @@ estación tiene que funcionar sin ella.</p>
 <li>⚠️ <code>storage.backend</code> (<code>"littlefs" | "flash" | "sd"</code>) se parsea y valida, pero <strong>no
   selecciona</strong> el backend en runtime: el histórico va a SD y los eventos a LittleFS,
   sin importar su valor.</li>
-<li>⚠️ Si NVS se queda sin espacio, <code>ConfigManager::save()</code> limpia el namespace y
-  reintenta una vez: se pierden config anterior y layout, pero se evita reflashear
-  (<code>src/core/ConfigManager.cpp</code> §71-87).</li>
+<li>⚠️ La config ya no se guarda en NVS (D-0046): <code>ConfigManager::save()</code> escribe
+  <code>/config.json</code> en LittleFS. La NVS solo conserva <code>boots</code>.</li>
 </ul>
 <h2 id="ver-tambien">Ver también</h2>
 <ul>

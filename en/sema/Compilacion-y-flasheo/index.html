@@ -9447,7 +9447,7 @@
 
 <h1 id="compilacion-y-flasheo">Compilación y flasheo</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Guía | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Cómo compilar, flashear, monitorear y actualizar SEMA, con los entornos y las
 particiones reales definidos en <code>platformio.ini</code>.</p>
@@ -9656,7 +9656,7 @@ existe pero no se habilita por defecto. Ver
 </tbody>
 </table>
 <p>No se usa ninguna librería para el dashboard: el HTML/CSS/JS va embebido en el
-firmware (<code>PROGMEM</code>) y Gridstack se sirve comprimido desde flash.</p>
+firmware (<code>PROGMEM</code>).</p>
 <h2 id="4-compilar">4. Compilar</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># entorno por defecto</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pio<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>esp32doit-devkit-v1
@@ -9675,7 +9675,7 @@ firmware (<code>PROGMEM</code>) y Gridstack se sirve comprimido desde flash.</p>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># puerto explícito</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>pio<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>esp32doit-devkit-v1<span class="w"> </span>-t<span class="w"> </span>upload<span class="w"> </span>--upload-port<span class="w"> </span>COM3
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># borrar toda la flash (¡pierde configuración NVS y LittleFS!)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># borrar toda la flash (¡pierde configuración y eventos en LittleFS!)</span>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>pio<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>esp32doit-devkit-v1<span class="w"> </span>-t<span class="w"> </span>erase
 </span></code></pre></div>
 <h2 id="6-monitor-serial">6. Monitor serial</h2>

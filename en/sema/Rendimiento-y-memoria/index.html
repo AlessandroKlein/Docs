@@ -2343,10 +2343,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-assets-web-embebidos-en-flash" class="md-nav__link">
+  <a href="#23-assets-web-embebidos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3 Assets web embebidos en flash
+        2.3 Assets web embebidos
       
     </span>
   </a>
@@ -9494,7 +9494,7 @@
 
 <h1 id="rendimiento-y-memoria">Rendimiento y memoria</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Todos los números de esta página salen de una compilación real del firmware y de la
 lectura directa del código. Donde un dato no se pudo medir, se dice.</p>
@@ -9748,12 +9748,6 @@ función. Los grandes son la fuente principal de picos de heap:</p>
 <td>Identidad, pines reservados, reset reason</td>
 </tr>
 <tr>
-<td>Dashboard layout GET</td>
-<td><strong>2 048</strong></td>
-<td><code>HttpServer.cpp:2278</code></td>
-<td>JSON del layout Gridstack</td>
-</tr>
-<tr>
 <td>Capabilities</td>
 <td><strong>1 024</strong></td>
 <td><code>HttpServer.cpp:1989</code></td>
@@ -9930,12 +9924,9 @@ serialización para guardar en NVS).</p>
 </tr>
 </tbody>
 </table>
-<h3 id="23-assets-web-embebidos-en-flash">2.3 Assets web embebidos en flash</h3>
-<p><code>HttpServer</code> sirve dos assets comprimidos con gzip embebidos en el binario
-(<code>include/core/web/GridstackAssets.h</code>, arrays <code>gridstack_css_gz</code> y
-<code>gridstack_js_gz</code>), expuestos como <code>/gridstack.min.css</code> y <code>/gridstack-all.min.js</code>
-con <code>Content-Encoding: gzip</code> y <code>Cache-Control: max-age=3600</code>. No se cargan en RAM
-salvo al servirlos. Su tamaño no se midió en esta verificación (⚠️ no verificado).</p>
+<h3 id="23-assets-web-embebidos">2.3 Assets web embebidos</h3>
+<p>Desde v1.114.0 no hay assets web embebidos en flash: el dashboard es una página
+HTML/CSS/JS servida directamente por <code>HttpServer</code> (sin Gridstack ni assets gzip).</p>
 <h2 id="3-limites-del-sistema">3. Límites del sistema</h2>
 <table>
 <thead>

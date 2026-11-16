@@ -9587,7 +9587,7 @@
 
 <h1 id="enumeraciones-y-tipos">Enumeraciones y tipos</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Catálogo completo de enumeraciones, structs canónicos y "enums de cadena" de SEMA.
 Todo se verificó contra <code>include/core/**</code> y <code>include/hw/HwProfile.hpp</code>.</p>
@@ -10197,7 +10197,7 @@ lo consulta (<code>/api/v1/energy</code> lo expone como <code>profile</code>).</
 <td><code>timestamp</code></td>
 <td><code>uint32_t</code></td>
 <td><code>0</code></td>
-<td>Epoch (segundos). <code>Time.hpp</code> documenta "UTC", pero <code>nowEpoch()</code> suma el <strong>offset local</strong></td>
+<td>Epoch <strong>UTC</strong> en segundos (<code>nowEpoch()</code>); cae a <code>millis()/1000</code> sin NTP</td>
 </tr>
 </tbody>
 </table>

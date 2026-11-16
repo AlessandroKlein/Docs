@@ -9414,7 +9414,7 @@
 
 <h1 id="diagramas">Diagramas</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
+<p><strong>Tipo:</strong> Concepto | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Diagramas de la implementación <strong>real</strong> de SEMA. Todos los nodos usan los nombres
 de clase, archivo o clave que existen en el código de v1.103.0; no hay nodos
@@ -9514,7 +9514,7 @@ opcionales son <strong>miembros de <code>SemaCore</code></strong>, no módulos r
     autonumber
     participant BOOT as main.cpp setup()
     participant SC as SemaCore
-    participant NVS as NvsStore / ConfigManager
+    participant NVS as NvsStore
     participant FS as LittleFS / EventLog
     participant I2C as Wire + I2cScanner
     participant SEN as SensorManager
@@ -9530,7 +9530,7 @@ opcionales son <strong>miembros de <code>SemaCore</code></strong>, no módulos r
     SC-&gt;&gt;FS: eventLog_.begin() → LittleFS.begin(true)
     SC-&gt;&gt;NVS: leer/incrementar "boots" → restartCount_
     SC-&gt;&gt;SC: CapabilityManager::set(...) × 13
-    SC-&gt;&gt;NVS: config_.load()
+    SC-&gt;&gt;FS: config_.load() (Lee /config.json; fallback NVS "config")
     SC-&gt;&gt;SC: history_.setRetentionSeconds(retentionDays×86400)
     SC-&gt;&gt;I2C: Wire.begin(21,22) + I2cScanner::scan()
     SC-&gt;&gt;SEN: applySensors() → registerSensor + beginAll()
@@ -9618,11 +9618,10 @@ con los <code>SemaCore::applyX()</code> en caliente. Ver
 <h2 id="7-almacenamiento">7. Almacenamiento</h2>
 <pre class="mermaid"><code>flowchart TB
     subgraph NVS["NVS — namespace 'sema' (Preferences)"]
-        K1["clave 'config'&lt;br/&gt;JSON de configuración (schema 1)&lt;br/&gt;DynamicJsonDocument 16 384 B"]
         K2["clave 'boots'&lt;br/&gt;contador de reinicios (uint32)"]
-        K3["clave del layout del dashboard&lt;br/&gt;(separada, para no exceder el límite de entrada NVS)"]
     end
     subgraph LFS["LittleFS (partición spiffs, 0x70000 = 448 KB)"]
+        K1["/config.json&lt;br/&gt;JSON de configuración (schema 1)&lt;br/&gt;DynamicJsonDocument 16 384 B"]
         F1["/events.jsonl&lt;br/&gt;máx. 100 eventos en RAM&lt;br/&gt;rotación al llegar a 200 líneas"]
     end
     subgraph SDC["microSD (SPI, opcional)"]

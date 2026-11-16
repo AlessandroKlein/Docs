@@ -9446,7 +9446,7 @@
 <blockquote>
 <p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable
 <strong>Fecha:</strong> 2026-10-08
-<strong>Firmware:</strong> v1.113.0</p>
+<strong>Firmware:</strong> v1.114.0</p>
 </blockquote>
 <p>Salidas en tiempo real de SEMA: <strong>MQTT</strong> y el <strong>webhook HTTP</strong> (publicadores hacia
 afuera, <code>src/core/publishers/</code>) y el <strong>WebSocket</strong> que sirve el propio firmware
@@ -9621,7 +9621,7 @@ PubSubClient es <code>publish(topic, payload, /*retained=*/false)</code>. Por lo
 <tr>
 <td><code>timestamp</code></td>
 <td><code>Measurement::timestamp</code></td>
-<td>Segundos de <code>nowEpoch()</code> — <strong>época local</strong> (UTC + offset de zona), no UTC puro. Sin NTP sincronizado cae a <code>millis()/1000</code></td>
+<td>Segundos de <code>nowEpoch()</code> — <strong>época UTC</strong>, no local. Sin NTP sincronizado cae a <code>millis()/1000</code></td>
 </tr>
 </tbody>
 </table>
