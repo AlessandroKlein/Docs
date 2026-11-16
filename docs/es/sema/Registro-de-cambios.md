@@ -6,7 +6,7 @@ tags:
 
 # Registro de cambios por archivo
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 Qué archivos cambió cada release y **por qué** (mensaje de commit que lo motivó). Es el
 complemento por archivo del [CHANGELOG](CHANGELOG.md): el CHANGELOG resume *qué cambió*

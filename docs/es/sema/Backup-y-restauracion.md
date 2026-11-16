@@ -7,7 +7,7 @@ tags:
 
 # Backup y restauración
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 SEMA expone un respaldo **autodescriptivo** de la configuración en
 `GET /api/v1/backup` y lo restaura con `POST /api/v1/backup` (que usa el mismo

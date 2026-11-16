@@ -6,7 +6,7 @@ tags:
 
 # Guía de desarrollo (extender SEMA)
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 Cómo extender SEMA **de verdad**: agregar un sensor, un publicador, una regla, una
 magnitud derivada, un endpoint REST o un módulo, con las rutas reales del repositorio,

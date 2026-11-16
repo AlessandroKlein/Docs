@@ -6,7 +6,7 @@ tags:
 
 # Variables modificables
 
-> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 Clasificación **real** (verificada contra el código) de cada grupo de variables
 del JSON de configuración según lo que pasa al guardarlas: se aplican en

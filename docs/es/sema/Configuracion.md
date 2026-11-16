@@ -6,7 +6,7 @@ tags:
 
 # Configuración
 
-> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Configuración | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 SEMA se configura con **un único documento JSON** (`schema_version: 1`) que se
 persiste en **LittleFS** (`/config.json`) y se aplica de forma **transaccional**

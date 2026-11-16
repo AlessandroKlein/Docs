@@ -7,7 +7,7 @@ tags:
 
 # Rendimiento y memoria
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 Todos los números de esta página salen de una compilación real del firmware y de la
 lectura directa del código. Donde un dato no se pudo medir, se dice.

@@ -7,7 +7,7 @@ tags:
 
 # Instalación y mantenimiento
 
-> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Guía | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 Puesta en marcha de una estación SEMA **en el campo** y plan de mantenimiento: cómo
 alimentarla, cómo protegerla, dónde poner cada sensor, cómo dejarla configurada y qué

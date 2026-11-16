@@ -6,7 +6,7 @@ tags:
 
 # Frontend (dashboard web)
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 El dashboard de SEMA es HTML+CSS+JavaScript **embebido en el firmware** (constantes
 `PROGMEM` en `src/core/web/HttpServer.cpp`), sin dependencias externas en tiempo de

@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,12 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.114.1] - 2026-11-16
+
+### Fixed
+
+- **Watchdog TWDT con timeout incorrecto**: si el core de Arduino ya había inicializado el task watchdog (5 s), `Watchdog::begin()` ignoraba el timeout configurado (10 s) y el firmware se reiniciaba por watchdog a los 5 s. Ahora se reconfigura el timeout (`esp_task_wdt_reconfigure`). Vía ESP32-Base v0.10.1.
 
 ## [1.114.0] - 2026-11-16
 
@@ -1380,6 +1386,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.114.1]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.114.1
 [1.114.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.114.0
 [1.113.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.113.0
 [1.112.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.112.0

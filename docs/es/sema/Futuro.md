@@ -6,7 +6,7 @@ tags:
 
 # Mejoras opcionales y futuras
 
-> **Tipo:** Catálogo de ideas opcionales | **Estado:** Catálogo vivo | **Fecha:** 2026-10-08 | **Firmware:** v1.114.0
+> **Tipo:** Catálogo de ideas opcionales | **Estado:** Catálogo vivo | **Fecha:** 2026-10-08 | **Firmware:** v1.114.1
 
 Registro de ítems **opcionales**: no forman parte de la Definition of Done (§103) ni
 bloquean un release. Cada ítem es una idea, no un compromiso. Los ítems que ya se
