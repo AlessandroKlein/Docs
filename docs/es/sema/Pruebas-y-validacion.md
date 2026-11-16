@@ -7,7 +7,7 @@ tags:
 
 # Pruebas y validación
 
-> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Referencia | **Estado:** En desarrollo | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Cómo se comprueba hoy que SEMA funciona, qué **no** existe todavía y cómo se
 implementaría la cobertura automatizada. Todo lo afirmado como existente se

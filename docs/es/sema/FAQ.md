@@ -6,7 +6,7 @@ tags:
 
 # Preguntas frecuentes (FAQ)
 
-> **Tipo:** Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Respuestas verificadas contra el código de `v1.103.0`. Lo que no está implementado se
 dice explícitamente.

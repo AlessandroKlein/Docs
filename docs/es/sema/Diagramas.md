@@ -6,7 +6,7 @@ tags:
 
 # Diagramas
 
-> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Concepto | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Diagramas de la implementación **real** de SEMA. Todos los nodos usan los nombres
 de clase, archivo o clave que existen en el código de v1.103.0; no hay nodos

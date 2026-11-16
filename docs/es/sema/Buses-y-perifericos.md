@@ -7,7 +7,7 @@ tags:
 
 # Buses y periféricos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Cómo está implementado cada bus de SEMA (I²C, SPI, UART, 1-Wire, ADC, PCNT, RS485/Modbus,
 CAN/TWAI, Ethernet, LoRa y Zigbee), con qué claves JSON se configura, qué recursos del
@@ -36,6 +36,8 @@ ESP32
 ├── ADC1 ............ veleta, batería, CO, solar (ADC2 no convive con Wi-Fi)
 ├── PCNT ............ anemómetro, pluviómetro (una sola unidad: PCNT_UNIT_0)
 ├── TWAI ............ CAN 2.0 (125k/250k/500k/1M)
+├── TCP :502 ........ Modbus TCP (servidor, sockets lwIP)
+├── UDP :47808 ...... BACnet/IP (servidor, sockets lwIP)
 └── EMAC + RMII ..... LAN8720A (solo ESP32 clásico y WROOM-32U)
 ```
 
@@ -165,11 +167,11 @@ SEMA usa **dos hosts SPI distintos** a propósito (`HwProfile.hpp:93-137`):
 
 | Aspecto | Detalle |
 |---------|---------|
-| Claves JSON | `modbus{enabled,rx,tx,de_re,uart,uart_port,baud,slave_id,register,count}` |
-| Defaults | `rx=16`, `tx=17`, `de_re=0`, `baud=9600`, `slave_id=1`, `register=0`, `count=4` |
+| Claves JSON | `modbus{enabled,rx,tx,de_re,uart,uart_port,baud,slave_id,register,count,transceiver}` |
+| Defaults | `rx=16`, `tx=17`, `de_re=0`, `baud=9600`, `slave_id=1`, `register=0`, `count=4`, `transceiver=auto` |
 | Rol | **Maestro** de un único esclavo: `readHoldingRegisters(register, count)` (`ModbusManager.cpp:55`) |
 | Librería | `4-20ma/ModbusMaster@^2.0.1` |
-| Transceiver | `SEMA_MODBUS_ISOLATED=1` → **TD501D485H** (aislado); `=0` → **SN65HVD75DR** |
+| Transceiver | Enum `modbus.transceiver`: `MAX3485ED` · `SN65HVD75DR` · `TD501D485H` · `ADM2483BRWZ` (ver [Enumeraciones y tipos](Enumeraciones-y-tipos.md) §11.8). Informativo: mismo control DE/RE, solo difiere el aislamiento galvánico |
 | Control DE/RE | Si `de_re != 0` se marca OUTPUT y se conmuta LOW→HIGH antes de transmitir y HIGH→LOW después (`preTransmission`/`postTransmission`) |
 | Lectura | `GET /api/v1/modbus` → `{ready, result, values[]}` (sin autenticación); `result` es el código crudo de ModbusMaster |
 | Config web | Página `/config/sensors`, bloque «Pines de buses»; `POST /api/v1/config/buses` acepta `enabled/rx/tx/de_re/uart/uart_port`; `baud/slave_id/register/count` solo por `PUT /api/v1/config` |
@@ -179,12 +181,13 @@ SEMA usa **dos hosts SPI distintos** a propósito (`HwProfile.hpp:93-137`):
 
 | Aspecto | Detalle |
 |---------|---------|
-| Claves JSON | `can{enabled,tx,rx,speed}` |
-| Defaults | `tx=5`, `rx=4`, `speed=500000` |
+| Claves JSON | `can{enabled,tx,rx,speed,transceiver,rs}` |
+| Defaults | `tx=5`, `rx=4`, `speed=500000`, `transceiver=auto`, `rs=0` |
 | Velocidades soportadas | 125 000 · 250 000 · 500 000 · 1 000 000 bps (`CanManager.cpp:12-19`); cualquier otro valor cae a 500 kbps |
 | Modo | `TWAI_MODE_NORMAL`, filtro `ACCEPT_ALL`, sin modo escucha ni filtros por ID |
+| Pin RS | Si `rs != 0` se marca `OUTPUT` y se deja en `HIGH` (modo normal, standby desactivado) en `CanManager::apply()`; `0` = sin control |
 | Endpoints | `GET /api/v1/can` (recibe una trama, timeout 0), `POST /api/v1/can` (`{id,extd,data[]}`, máx. 8 bytes, timeout 1000 ms) |
-| Requiere | Transceiver externo (p. ej. SN65HVD230/TCAN332) a 3,3 V + terminación de 120 Ω en los extremos del bus (datasheet) |
+| Requiere | Transceiver externo a 3,3 V — enum `can.transceiver`: `SN65HVD233DR` / `SN65HVD234DR` (RS = standby) — + terminación de 120 Ω en los extremos del bus (datasheet) |
 | Config web | `POST /api/v1/config/buses` acepta `can{enabled,tx,rx}`; `speed` solo por `PUT /api/v1/config` |
 
 ## 10. Ethernet
@@ -242,7 +245,38 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Límites | Envío a un solo endpoint/cluster fijos (src/dst endpoint 1, cluster 0x0001), sin coordinador propio: el módulo debe estar ya en una red |
 | Reservas | 18/19 son MDIO/TXD0 del RMII en WROOM y el host SPI del W5500 en S3: Zigbee y Ethernet son excluyentes con los defaults |
 
-## 13. Recursos compartidos y límites
+## 13. Modbus TCP (servidor)
+
+| Aspecto | Detalle |
+|---------|---------|
+| Flag | `SEMA_USE_MODBUS_TCP` (default **OFF**, `board_config.h`) |
+| Claves JSON | `modbus_tcp{enabled,port,unit_id}` |
+| Defaults | `enabled=false`, `port=502`, `unit_id=1` |
+| Rol | **Servidor** Modbus TCP (esclavo), a diferencia de `modbus` que es maestro RTU |
+| Transporte | Sockets lwIP crudos en `INADDR_ANY:502`, no bloqueante; transporte-agnóstico (Ethernet y WiFi, sin acoplarse a `WiFiServer`/`EthernetServer`) |
+| Registros | **64 holding registers** (`kHoldingCount`) mapeados a las mediciones: `uint16` big-endian ×100, con clamp a `[-32768, 32767]`; **64 coils** (`kCoilCount`) desde los GPIO en modo entrada |
+| Funciones | `0x01` Read Coils · `0x03` Read Holding · `0x05` Write Single Coil · `0x06` Write Single Register |
+| Lectura | `GET /api/v1/modbus_tcp` → `{ready,enabled,port,unit_id,holding_count,coil_count}` |
+| Config web | `POST /api/v1/config/buses` acepta `modbus_tcp{enabled,port,unit_id}` |
+
+## 14. BACnet/IP (servidor)
+
+| Aspecto | Detalle |
+|---------|---------|
+| Flag | `SEMA_USE_BACNET` (default **OFF**, `board_config.h`) |
+| Claves JSON | `bacnet{enabled,device_instance,network_number,udp_port}` |
+| Defaults | `enabled=false`, `device_instance=1000`, `network_number=0`, `udp_port=47808` |
+| Rol | Dispositivo BACnet **servidor**, mínimo y autocontenido |
+| Transporte | UDP lwIP crudo, puerto **47808** (BAC0) |
+| Objetos | **Device** (instance configurable), **Analog Input** (mediciones → unidades BACnet estándar), **Binary Input** (GPIO de entrada, `GPIO%u`) |
+| Límites | Hasta 32 analog inputs y 32 binary inputs (`kMaxAnalog`/`kMaxBinary`); APDU ≤ 1476 bytes (`kMaxApdu`) |
+| Servicios | Who-Is → I-Am y ReadProperty → ComplexAck |
+| Unidades | Mapeo a unidades BACnet: °C=62, °F=64, hPa=57, W/m²=50, lux=36, mm=32, m/s=66, °=60, V=5, km=35, ppm=96, ppb=97, %=29 (humedad) / 98; sin unidad obvia → 95 (No Units) |
+| Lectura | `GET /api/v1/bacnet` → `{ready,enabled,device_instance,network_number,udp_port,analog_count,binary_count}` |
+| Config web | `POST /api/v1/config/buses` acepta `bacnet{enabled,device_instance,network_number,udp_port}` |
+| Nota | **Sin dependencia GPL**: la librería `vitaly.ruhl/ESP32 BACnet Stack` es client-only (sin servidor); el servidor se implementó autocontenido sobre UDP lwIP |
+
+## 15. Recursos compartidos y límites
 
 | Recurso | Lo usan | Consecuencia práctica |
 |---------|---------|----------------------|
@@ -255,9 +289,13 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | GPIO4 | 1-Wire por defecto, `sd_cs`, `can.rx`, `ethernet.irq` (S3) | Cuádruple uso: hay que elegir |
 | GPIO5 | `can.tx`, `SEMA_CS_ETHERNET_W5500`, `mcp23s17_cs` en demo | Elegir según el bus activo |
 
-## 14. Fichas de conexión
+## 16. Fichas de conexión
 
-### 14.1 LAN8720A (PHY Ethernet RMII)
+Los transceivers RS-485 (`MAX3485ED`, `SN65HVD75DR`, `TD501D485H`, `ADM2483BRWZ`) y CAN
+(`SN65HVD233DR`, `SN65HVD234DR`) se eligen con los enums `modbus.transceiver` / `can.transceiver`
+([Enumeraciones y tipos](Enumeraciones-y-tipos.md) §11.8). Aquí se fichan los dos RS-485 más comunes.
+
+### 16.1 LAN8720A (PHY Ethernet RMII)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -268,7 +306,7 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Conexión | MDC→GPIO23 · MDIO→GPIO18 · TXD0→GPIO19 · TXD1→GPIO22 · TX_EN→GPIO21 · RXD0→GPIO25 · RXD1→GPIO26 · CRS_DV→GPIO27 · RX_ER→GPIO13 · REF_CLK 50 MHz→GPIO0 · `ethernet.power` = -1 (sin control de alimentación) |
 | Notas | El reloj de 50 MHz debe venir de la PHY u oscilador externo; SEMA no controla el reset de la PHY |
 
-### 14.2 W5500 (Ethernet SPI)
+### 16.2 W5500 (Ethernet SPI)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -279,7 +317,7 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Conexión | SCK→GPIO18 · MISO→GPIO19 · MOSI→GPIO21 · CS→GPIO5 · IRQ→GPIO4 · RST = -1 |
 | Notas | Solo placas sin MAC nativa (S3). El host SPI3 debe ser distinto del SPI de RadioLib |
 
-### 14.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
+### 16.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -290,7 +328,7 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Conexión | SCK→14 · MISO→12 · MOSI→15 · CS→10 · RST→14 (web) / 32 · DIO1→26 · BUSY→27 (WROOM). En S3: SCK→12, MISO→13, MOSI→11 |
 | Notas | `dio1=26` y `busy=27` **no son válidos en ESP32-S3** (flash SPI interna) |
 
-### 14.4 RF-BM-2652P2 (Zigbee / ZNP)
+### 16.4 RF-BM-2652P2 (Zigbee / ZNP)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -301,7 +339,7 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Conexión | RX del módulo←TX del ESP32 (GPIO19 por defecto) · TX del módulo→RX del ESP32 (GPIO18 por defecto) · GND común |
 | Notas | 802.15.4 **no** lo aporta el ESP32: lo aporta este módulo externo. `Capability::Ieee802154` nunca se declara en el firmware |
 
-### 14.5 TD501D485H (transceiver RS485 aislado) — default
+### 16.5 TD501D485H (transceiver RS485 aislado)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -312,7 +350,7 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Conexión | RXD del módulo←GPIO17 (TX del ESP32) · TXD del módulo→GPIO16 (RX del ESP32) · DE/RE→`modbus.de_re` (0 = sin control) |
 | Notas | Aislamiento galvánico ≥ 2,5 kV (datasheet); con `de_re = 0` el módulo debe autodirigirse o quedar siempre en TX |
 
-### 14.6 SN65HVD75DR (transceiver RS485 sin aislar)
+### 16.6 SN65HVD75DR (transceiver RS485 sin aislar)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|
@@ -321,9 +359,9 @@ Dos caminos excluyentes por compilación (`EthernetManager.cpp:13-22`):
 | Resistencia | 120 Ω de terminación en los extremos; pull-up/pull-down de polarización (datasheet) |
 | Capacitor | 100 nF de desacople (datasheet) |
 | Conexión | RO→GPIO16 · DI→GPIO17 · DE y /RE unidos a `modbus.de_re` (o a VCC si no se controla) |
-| Notas | Se selecciona con `-D SEMA_MODBUS_ISOLATED=0`; comparte el mismo código de conmutación que el aislado |
+| Notas | Seleccionable con el enum `modbus.transceiver`; comparte el mismo código de conmutación DE/RE que el aislado |
 
-### 14.7 microSD (SPI)
+### 16.7 microSD (SPI)
 
 | Elemento | Valor / Detalle |
 |----------|-----------------|

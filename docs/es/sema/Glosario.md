@@ -6,7 +6,7 @@ tags:
 
 # Glosario
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Todos los términos que aparecen en la documentación de SEMA, en lenguaje simple. Los
 que describen algo **no implementado** en v1.103.0 están marcados con ⚠️ y se indica

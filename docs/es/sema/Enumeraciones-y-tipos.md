@@ -7,7 +7,7 @@ tags:
 
 # Enumeraciones y tipos
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Catálogo completo de enumeraciones, structs canónicos y "enums de cadena" de SEMA.
 Todo se verificó contra `include/core/**` y `include/hw/HwProfile.hpp`.
@@ -324,8 +324,30 @@ declaran y se muestran en la web).
 | `BOARD_ESP32_S3` | `esp32-s3-8mb` | 8 | 0 |
 | `BOARD_ESP32_C6` | `esp32-c6-8mb` | 8 | 0 |
 
-Transceiver RS485: `SEMA_MODBUS_ISOLATED=1` → `"TD501D485H"` (aislado);
-`=0` → `"SN65HVD75DR"`.
+**Transceivers RS-485** (enum `ModbusTransceiver`, runtime `modbus.transceiver`; default `AUTO`):
+
+| Valor | Enum | Descripción |
+|-------|------|-------------|
+| 0 | `NONE` | Sin transceiver |
+| 1 | `AUTO` | Auto (default) |
+| 2 | `MAX3485ED` | Half-duplex 3,3 V, sin aislar |
+| 3 | `SN65HVD75DR` | Half-duplex 3,3 V, sin aislar (slew-rate limitado) |
+| 4 | `TD501D485H` | Aislado galvánico, pin-compatible ADM2483 |
+| 5 | `ADM2483BRWZ` | Aislado half-duplex, hasta 500 kbps |
+
+Todos half-duplex con DE/RE activo-alto y el mismo control DE/RE; la única diferencia
+práctica es el aislamiento galvánico. La selección es **informativa** (no cambia el código del bus).
+
+**Transceivers CAN** (enum `CanTransceiver`, runtime `can.transceiver`; default `AUTO`):
+
+| Valor | Enum | Descripción |
+|-------|------|-------------|
+| 0 | `NONE` | Sin transceiver |
+| 1 | `AUTO` | Auto (default) |
+| 2 | `SN65HVD233DR` | 3,3 V, pin RS (standby) |
+| 3 | `SN65HVD234DR` | 3,3 V, bus tolerante a 5 V, pin RS (standby) |
+
+El pin `can.rs` (si no es `0`) se deja en `HIGH` = modo normal (standby desactivado).
 
 ---
 

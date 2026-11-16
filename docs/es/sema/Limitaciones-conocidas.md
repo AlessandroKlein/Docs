@@ -7,7 +7,7 @@ tags:
 
 # Limitaciones y bugs conocidos
 
-> **Tipo:** Referencia / Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Referencia / Soporte | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Consolidado de **limitaciones reales** de `v1.103.0`, verificadas leyendo el código
 (archivo y línea indicados). No es una lista de deseos: son comportamientos que hoy

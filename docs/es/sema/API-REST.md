@@ -8,7 +8,7 @@ tags:
 
 > **Tipo:** API | **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.110.0
+> **Firmware:** v1.111.0
 
 Referencia **exhaustiva** de la API HTTP local de SEMA. Todo lo que sigue está
 verificado contra `src/core/web/HttpServer.cpp` (2637 líneas) y
@@ -114,6 +114,8 @@ Consecuencias prácticas:
 | GET | `/api/v1/dashboard/layout` | web | dashboard | — |
 | POST | `/api/v1/dashboard/layout` | web | dashboard | — |
 | GET | `/api/v1/modbus` | pública | bus Modbus | `SEMA_USE_MODBUS` |
+| GET | `/api/v1/modbus_tcp` | pública | Modbus TCP | `SEMA_USE_MODBUS_TCP` |
+| GET | `/api/v1/bacnet` | pública | BACnet/IP | `SEMA_USE_BACNET` |
 | GET | `/api/v1/can` | pública | bus CAN | `SEMA_USE_CAN` |
 | POST | `/api/v1/can` | web | bus CAN | `SEMA_USE_CAN` |
 | GET | `/api/v1/lora` | pública | radio LoRa | `SEMA_USE_LORA` |
@@ -123,10 +125,11 @@ Consecuencias prácticas:
 | GET | `/gridstack.min.css` | pública | assets | gzip |
 | GET | `/gridstack-all.min.js` | pública | assets | gzip |
 
-Las cuatro rutas de bus están envueltas en `#if SEMA_USE_MODBUS|CAN|LORA|ZIGBEE`
-(`HttpServer.cpp:106–120`): si el flag vale `0`, la ruta **no existe** y responde
+Las seis rutas de bus están envueltas en `#if SEMA_USE_MODBUS|CAN|LORA|ZIGBEE|MODBUS_TCP|BACNET`
+(`HttpServer.cpp`): si el flag vale `0`, la ruta **no existe** y responde
 `404 {"error":"not found"}`. `SEMA_USE_SHIFT` **no** condiciona `/api/v1/shift`.
-Las cinco placas de `platformio.ini` compilan con los cuatro flags en `1`.
+Las cinco placas de `platformio.ini` compilan con los cuatro flags clásicos en `1`;
+`SEMA_USE_MODBUS_TCP` y `SEMA_USE_BACNET` quedan en `0` (OFF) por defecto.
 
 ## 4. Estado y sistema
 
@@ -135,7 +138,7 @@ Las cinco placas de `platformio.ini` compilan con los cuatro flags en `1`.
 Buffer `DynamicJsonDocument(256)`. Es la identidad mínima de la estación.
 
 ```json
-{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.110.0", "uptime_s": 12345 }
+{ "station": "SEMA-001", "name": "Estación Norte", "firmware": "1.111.0", "uptime_s": 12345 }
 ```
 
 ### 4.2 `GET /api/v1/health`
@@ -168,7 +171,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
 {
   "id": "SEMA-001",
   "name": "Estación Norte",
-  "firmware": "1.110.0",
+  "firmware": "1.111.0",
   "hw": "rev0",
   "config_schema": 1,
   "protocol": 1,
@@ -185,6 +188,8 @@ Buffer `2048`. Es el endpoint de identidad más completo.
   "sd_enabled": false,
   "history_available": false,
   "shift_enabled": false,
+  "modbus_tcp_enabled": false,
+  "bacnet_enabled": false,
   "esp_temp": 41.2,
   "restart_count": 12,
   "reset_reason": 1,
@@ -193,7 +198,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
   "wifi_host": "sema-001",
   "wifi_mdns": true,
   "reserved_pins": [14, 12, 15],
-  "firmware_file": "sema_1.110.0_esp32-wroom-4mb.bin"
+  "firmware_file": "sema_1.111.0_esp32-wroom-4mb.bin"
 }
 ```
 
@@ -207,6 +212,7 @@ Buffer `2048`. Es el endpoint de identidad más completo.
 | `reset_reason` | `esp_reset_reason()` como entero (0 `UNKNOWN`, 1 `POWERON`, 3 `SW`, 4 `PANIC`, …) |
 | `history_available` | `core_->history().sdEnabled()` |
 | `reserved_pins` | Siempre SCK/MISO/MOSI; además los 10 pines RMII **solo** si `SEMA_NATIVE_ETH && SEMA_USE_ETHERNET` y `ethernet.enabled` |
+| `modbus_tcp_enabled` / `bacnet_enabled` | `(SEMA_USE_MODBUS_TCP != 0)` / `(SEMA_USE_BACNET != 0)` — `false` por defecto |
 | `firmware_file` | `"sema_" + SEMA_FW_VERSION + "_" + SEMA_BOARD_ID + ".bin"` |
 
 ### 4.4 `GET /api/v1/capabilities`
@@ -257,7 +263,7 @@ Buffer `1024`.
 
 ```json
 {
-  "firmware": "1.110.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
+  "firmware": "1.111.0", "hw": "rev0", "uptime_s": 3600, "free_heap": 198432,
   "reset_reason": 1, "health": "HEALTHY",
   "history": { "entries": 1200, "max": 10000 },
   "tasks": 2, "modules": 0, "events": 7,
@@ -403,7 +409,7 @@ está en [Referencia-configuracion](Referencia-configuracion.md)):
 `schema_version` · `station` · `network` · `system` · `storage` · `security` ·
 `energy` · `publishers` · `rules` · `calibrations` · `sensors` · `gpio` ·
 `mcp23s17_cs` · `mcp23s17_pins` · `shift_registers` · `spi_expanders` · `modbus` ·
-`can` · `lora` · `zigbee` · `ethernet` · `i2c_sda` · `i2c_scl`.
+`can` · `modbus_tcp` · `bacnet` · `lora` · `zigbee` · `ethernet` · `i2c_sda` · `i2c_scl`.
 
 Esqueleto de la respuesta (valores = defaults de fábrica):
 
@@ -426,8 +432,10 @@ Esqueleto de la respuesta (valores = defaults de fábrica):
   "mcp23s17_cs": 0, "mcp23s17_pins": [16 valores],
   "shift_registers": [], "spi_expanders": [],
   "modbus": { "enabled": false, "rx": 16, "tx": 17, "de_re": 0, "uart": 0, "uart_port": 0,
-              "baud": 9600, "slave_id": 1, "register": 0, "count": 4 },
-  "can": { "enabled": false, "tx": 5, "rx": 4, "speed": 500000 },
+              "baud": 9600, "slave_id": 1, "register": 0, "count": 4, "transceiver": 1 },
+  "can": { "enabled": false, "tx": 5, "rx": 4, "speed": 500000, "transceiver": 1, "rs": 0 },
+  "modbus_tcp": { "enabled": false, "port": 502, "unit_id": 1 },
+  "bacnet": { "enabled": false, "device_instance": 1000, "network_number": 0, "udp_port": 47808 },
   "lora": { "enabled": false, "cs": 5, "rst": 14, "dio1": 26, "busy": 27,
             "frequency": 915, "bandwidth": 125, "spreading": 7, "coding_rate": 5, "tx_power": 14 },
   "zigbee": { "enabled": false, "rx": 16, "tx": 17, "uart": 0, "uart_port": 0, "baud": 115200 },
@@ -557,8 +565,10 @@ Buffer `4096`. Sub-objetos y claves (con defaults):
 | Bloque | Claves |
 |--------|--------|
 | raíz | `i2c_sda` (21), `i2c_scl` (22), `sd_cs` (4) |
-| `modbus` | `enabled` (false), `rx` (16), `tx` (17), `de_re` (0), `uart` (0), `uart_port` (0) |
-| `can` | `enabled` (false), `tx` (5), `rx` (4) |
+| `modbus` | `enabled` (false), `rx` (16), `tx` (17), `de_re` (0), `uart` (0), `uart_port` (0), `transceiver` (1) |
+| `can` | `enabled` (false), `tx` (5), `rx` (4), `transceiver` (1), `rs` (0) |
+| `modbus_tcp` | `enabled` (false), `port` (502), `unit_id` (1) |
+| `bacnet` | `enabled` (false), `device_instance` (1000), `network_number` (0), `udp_port` (47808) |
 | `lora` | `enabled` (false), `cs` (10), `rst` (14), `dio1` (26), `busy` (27) |
 | `zigbee` | `enabled` (false), `rx` (18), `tx` (19), `uart` (0), `uart_port` (0) |
 | `ethernet` | `enabled` (false), `mdc` (23), `mdio` (18), `cs` (5) |
@@ -567,13 +577,16 @@ Buffer `4096`. Sub-objetos y claves (con defaults):
 { "i2c_sda": 21, "i2c_scl": 22, "sd_cs": 4,
   "modbus": { "enabled": true, "rx": 16, "tx": 17, "de_re": 4, "uart": 0, "uart_port": 0 },
   "can": { "enabled": false, "tx": 5, "rx": 4 },
+  "modbus_tcp": { "enabled": false, "port": 502, "unit_id": 1 },
+  "bacnet": { "enabled": false, "device_instance": 1000, "network_number": 0, "udp_port": 47808 },
   "lora": { "enabled": false, "cs": 10, "rst": 14, "dio1": 26, "busy": 27 },
   "zigbee": { "enabled": false, "rx": 18, "tx": 19, "uart": 0, "uart_port": 0 },
   "ethernet": { "enabled": false, "mdc": 23, "mdio": 18, "cs": 5 } }
 ```
 
 ⚠️ Este handler **solo persiste**: no llama a `applyModbus()`, `applyCan()`,
-`applyLora()`, `applyZigbee()` ni `applyEthernet()`. Los buses no se configuran
+`applyModbusTcp()`, `applyBacnet()`, `applyLora()`, `applyZigbee()` ni
+`applyEthernet()`. Los buses no se configuran
 por esta vía: la web guarda y después dispara `POST /api/v1/restart`. Además
 **no** expone `baud`, `slave_id`, `register`, `count` (Modbus), `speed` (CAN),
 `frequency`/`bandwidth`/`spreading`/`coding_rate`/`tx_power` (LoRa), `baud`
@@ -721,6 +734,39 @@ hay mensaje.
 fijos en `0x01`, cluster `0x0001`). Respuestas `200 {"ok":true}` /
 `500 {"error":"send failed"}` / `400` / `401`.
 
+### 11.5 `GET /api/v1/modbus_tcp` (`SEMA_USE_MODBUS_TCP`)
+
+`GET` (público, buffer `256`) devuelve el estado del servidor Modbus TCP (sin
+disparar lecturas):
+
+```json
+{ "ready": true, "enabled": false, "port": 502, "unit_id": 1, "holding_count": 64, "coil_count": 64 }
+```
+
+- `ready`: `apply()` se ejecutó con `enabled: true` y el socket quedó escuchando en
+  `INADDR_ANY:502`.
+- Los 64 holding registers se mapean a las mediciones (×100, big-endian) y los 64
+  coils a los GPIO de entrada. Solo existen cuando `SEMA_USE_MODBUS_TCP` compila en `1`.
+
+Configuración por `POST /api/v1/config/buses` → `modbus_tcp{enabled,port,unit_id}`.
+
+### 11.6 `GET /api/v1/bacnet` (`SEMA_USE_BACNET`)
+
+`GET` (público, buffer `256`) devuelve el estado del dispositivo BACnet/IP:
+
+```json
+{ "ready": true, "enabled": false, "device_instance": 1000, "network_number": 0,
+  "udp_port": 47808, "analog_count": 0, "binary_count": 0 }
+```
+
+- `ready`: `apply()` se ejecutó con `enabled: true` y el socket UDP quedó en el
+  puerto BAC0 (47808).
+- `analog_count` / `binary_count`: cantidad de objetos Analog/Binary Input mapeados
+  desde las mediciones y los GPIO (≤ 32 cada uno).
+- Servicios: Who-Is→I-Am y ReadProperty→ComplexAck. Sin COV, alarmas ni BBMD.
+
+Configuración por `POST /api/v1/config/buses` → `bacnet{enabled,device_instance,network_number,udp_port}`.
+
 ## 12. OTA, backup, reinicio y actualización
 
 ### 12.1 `POST /api/v1/ota` (solo `X-API-Key`)
@@ -762,7 +808,7 @@ Buffer `8192`. Config completa + metadatos autodescriptivos:
 ```json
 { "schema_version": 1, "station": { "...": "..." },
   "backup_format": "sema-backup", "backup_version": 1,
-  "firmware": "1.110.0", "timestamp": 12345 }
+  "firmware": "1.111.0", "timestamp": 12345 }
 ```
 
 `timestamp` es `millis()/1000` (uptime, no epoch). Los campos `backup_*`,

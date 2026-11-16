@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Referencia
 > **Estado:** En desarrollo
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.110.0
+> **Firmware:** v1.111.0
 
 Cómo se definen, evalúan y registran las alarmas de SEMA. Fuentes:
 `include/core/alarms/Rule.hpp`, `include/core/alarms/RuleEngine.hpp`,

@@ -4,7 +4,7 @@ tags:
   - changelog
 ---
 
-> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.110.0
+> **Tipo:** Referencia | **Estado:** Estable | **Fecha:** 2026-10-08 | **Firmware:** v1.111.0
 
 Historial **completo** de versiones del firmware SEMA, espejado del repositorio de
 código ([CHANGELOG.md](https://github.com/AlessandroKlein/SEMA/blob/main/CHANGELOG.md)).
@@ -21,6 +21,28 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 Ver también [Versionado](../inicio/Versionado.md).
+
+## [1.111.0] - 2026-11-15
+
+### Added
+
+- **Fase 1 — protocolos industriales** (vía `ESP32-Base` v0.5.0 → v0.7.0):
+  - **Servidor Modbus TCP** (`SEMA_USE_MODBUS_TCP`, default OFF): 64 holding registers
+    (mediciones → `uint16` big-endian ×100) + 64 coils (GPIO de entrada), sobre sockets
+    lwIP crudos (`INADDR_ANY:502`, no bloqueante), transporte-agnóstico (Ethernet y WiFi).
+    Funciones 0x01 / 0x03 / 0x05 / 0x06.
+  - **Servidor BACnet/IP** (`SEMA_USE_BACNET`, default OFF): Who-Is→I-Am +
+    ReadProperty→ComplexAck para objetos Device / Analog Input / Binary Input, sobre
+    UDP lwIP (puerto 47808/BAC0), mínimo y autocontenido.
+  - **Transceivers** (enums en `ConfigManager`): RS-485 = `MAX3485ED` / `SN65HVD75DR` /
+    `TD501D485H` / `ADM2483BRWZ`; CAN = `SN65HVD234DR` / `SN65HVD233DR` (+ pin RS standby opcional).
+  - Rutas web nuevas: `/api/v1/modbus_tcp` y `/api/v1/bacnet` (GET de estado; configuración
+    por `POST /api/v1/config/buses`).
+- `ESP32-Base` v0.5.0 → v0.7.0 (tags intermedios v0.6.0 = Modbus TCP, v0.7.0 = BACnet).
+
+> **Nota:** la librería `vitaly.ruhl/ESP32 BACnet Stack` resultó **client-only** (sin
+> servidor), por lo que **no** se agregó ninguna dependencia GPL: el servidor BACnet/IP
+> se implementó autocontenido sobre UDP lwIP crudo.
 
 ## [1.110.0] - 2026-11-15
 
@@ -1294,6 +1316,7 @@ Base completa de SEMA, lista para su alcance principal:
   - `DESIGN-SYSTEM.md`
   - `SECURITY.md`
 
+[1.111.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.111.0
 [1.110.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.110.0
 [1.109.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.109.0
 [1.108.0]: https://github.com/AlessandroKlein/SEMA/releases/tag/v1.108.0

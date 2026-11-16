@@ -10,7 +10,7 @@ tags:
 > **Tipo:** Guía
 > **Estado:** Estable
 > **Fecha:** 2026-10-08
-> **Firmware:** v1.110.0
+> **Firmware:** v1.111.0
 
 Qué tipos de calibración soporta SEMA, dónde se aplican en la cadena de medición y cómo
 calibrar cada sensor en la práctica. Fuentes: `include/core/Calibration.hpp`,
