@@ -9432,7 +9432,7 @@
 
 <h1 id="compatibilidad">Compatibilidad</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.112.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.113.0</p>
 </blockquote>
 <p>Matriz real de compatibilidad: entornos de compilación soportados, capacidades de cada
 placa, periféricos disponibles, sensores por interfaz y qué necesita el navegador para el
@@ -9599,6 +9599,11 @@ dashboard. Verificado contra <code>platformio.ini</code>, <code>include/hw/HwPro
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>Los envs esclavos <code>esp32-c3-devkitm-1</code> / <code>esp32-s2-saola-1</code> (v1.113.0) no figuran en la
+matriz de arriba: perfil ligero con web/Ethernet/LoRa/Modbus/CAN/Zigbee deshabilitados
+(<code>SEMA_USE_*</code>=0) y solo mesh ESP-NOW + sensores + WiFi.</p>
+</blockquote>
 <h2 id="3-matriz-placa-periferico-y-bus">3. Matriz placa × periférico y bus</h2>
 <table>
 <thead>
@@ -9827,7 +9832,7 @@ tablas se monta como <strong>LittleFS</strong>.</p>
 <li>El histórico de gráficas <strong>no</strong> usa la partición interna: vive en la microSD
   (<code>HistoryStore::enableSd</code>). Sin SD, las gráficas quedan vacías a propósito.</li>
 <li>El nombre del binario lo arma <code>GET /api/v1/system</code>: <code>sema_&lt;versión&gt;_&lt;board_id&gt;.bin</code>
-  (p. ej. <code>sema_1.112.0_esp32-s3-8mb.bin</code>).</li>
+  (p. ej. <code>sema_1.113.0_esp32-s3-8mb.bin</code>).</li>
 </ul>
 <h2 id="5-sensores-por-interfaz">5. Sensores por interfaz</h2>
 <p>Los 21 modelos de <code>SensorFactory::create()</code> (<code>src/core/sensors/SensorFactory.cpp</code>), con la
@@ -10081,13 +10086,18 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 </tr>
 <tr>
 <td>ESP32-S2</td>
-<td>❌</td>
-<td>No tiene Bluetooth; <code>HwProfile.hpp</code> no tiene rama: habría que agregar <code>BOARD_*</code>, el <code>#elif</code> de SPI/ETH y revisar particiones</td>
+<td>✅ soportado por <code>BOARD_ESP32_S2</code> (env <code>esp32-s2-saola-1</code>)</td>
+<td>Xtensa single-core, sin Bluetooth Classic; esclavo ligero mesh ESP-NOW (web/Ethernet off)</td>
 </tr>
 <tr>
-<td>ESP32-C3 / C5 / H2</td>
+<td>ESP32-C3</td>
+<td>✅ soportado por <code>BOARD_ESP32_C3</code> (env <code>esp32-c3-devkitm-1</code>)</td>
+<td>RISC-V de 1 núcleo; esclavo ligero mesh ESP-NOW (web/Ethernet off); sin periférico PCNT (<code>SEMA_USE_SENSOR_PCNT=0</code>)</td>
+</tr>
+<tr>
+<td>ESP32-C5 / H2</td>
 <td>❌</td>
-<td>RISC-V de un núcleo (o sin Wi-Fi en H2): <code>Capability::DualCore</code> se declara igual y el <code>#error</code> de <code>HwProfile.hpp</code> bloquea la compilación</td>
+<td>Sin board en <code>espressif32 8.0.0</code>; <code>HwProfile.hpp</code> no tiene rama (bloquea la compilación)</td>
 </tr>
 </tbody>
 </table>
@@ -10174,7 +10184,7 @@ queda fija en el código (ver <a href="../Buses-y-perifericos/">Buses y perifér
 <tbody>
 <tr>
 <td>Firmware SEMA</td>
-<td>1.112.0 · HW <code>rev0</code></td>
+<td>1.113.0 · HW <code>rev0</code></td>
 </tr>
 <tr>
 <td>Schema de configuración</td>
