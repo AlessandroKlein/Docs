@@ -9587,7 +9587,7 @@
 
 <h1 id="enumeraciones-y-tipos">Enumeraciones y tipos</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.110.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.111.0</p>
 </blockquote>
 <p>Catálogo completo de enumeraciones, structs canónicos y "enums de cadena" de SEMA.
 Todo se verificó contra <code>include/core/**</code> y <code>include/hw/HwProfile.hpp</code>.</p>
@@ -10686,8 +10686,83 @@ declaran y se muestran en la web).</p>
 </tr>
 </tbody>
 </table>
-<p>Transceiver RS485: <code>SEMA_MODBUS_ISOLATED=1</code> → <code>"TD501D485H"</code> (aislado);
-<code>=0</code> → <code>"SN65HVD75DR"</code>.</p>
+<p><strong>Transceivers RS-485</strong> (enum <code>ModbusTransceiver</code>, runtime <code>modbus.transceiver</code>; default <code>AUTO</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Enum</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>NONE</code></td>
+<td>Sin transceiver</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>AUTO</code></td>
+<td>Auto (default)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>MAX3485ED</code></td>
+<td>Half-duplex 3,3 V, sin aislar</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>SN65HVD75DR</code></td>
+<td>Half-duplex 3,3 V, sin aislar (slew-rate limitado)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>TD501D485H</code></td>
+<td>Aislado galvánico, pin-compatible ADM2483</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>ADM2483BRWZ</code></td>
+<td>Aislado half-duplex, hasta 500 kbps</td>
+</tr>
+</tbody>
+</table>
+<p>Todos half-duplex con DE/RE activo-alto y el mismo control DE/RE; la única diferencia
+práctica es el aislamiento galvánico. La selección es <strong>informativa</strong> (no cambia el código del bus).</p>
+<p><strong>Transceivers CAN</strong> (enum <code>CanTransceiver</code>, runtime <code>can.transceiver</code>; default <code>AUTO</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Enum</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>NONE</code></td>
+<td>Sin transceiver</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>AUTO</code></td>
+<td>Auto (default)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>SN65HVD233DR</code></td>
+<td>3,3 V, pin RS (standby)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>SN65HVD234DR</code></td>
+<td>3,3 V, bus tolerante a 5 V, pin RS (standby)</td>
+</tr>
+</tbody>
+</table>
+<p>El pin <code>can.rs</code> (si no es <code>0</code>) se deja en <code>HIGH</code> = modo normal (standby desactivado).</p>
 <hr />
 <h2 id="ver-tambien">Ver también</h2>
 <ul>

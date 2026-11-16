@@ -9444,7 +9444,7 @@
 
 <h1 id="referencia-de-codigo">Referencia de código</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.110.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.111.0</p>
 </blockquote>
 <p>Mapa del código fuente real de SEMA (PlatformIO + framework Arduino, ESP32/ESP32-S3).
 Todos los conteos de líneas de esta página se midieron sobre el repo local con
@@ -9455,10 +9455,14 @@ Todos los conteos de líneas de esta página se midieron sobre el repo local con
 <p><strong>Nota (v1.107.0):</strong> los 65 módulos genéricos (WiFi, Ethernet, web, NVS, runtime,
 publicadores, alarmas, buses e infraestructura) se extrajeron a
 <a href="https://github.com/AlessandroKlein/ESP32-Base"><code>ESP32-Base</code></a> (namespace <code>base::</code>),
-consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.5.0</code>.
+consumidos por <code>lib_deps</code> <code>https://github.com/AlessandroKlein/ESP32-Base.git#v0.7.0</code>.
 El árbol y los conteos de esta página corresponden al estado previo a la extracción;
 SEMA conserva solo el dominio meteorológico (sensores, derivadas, pronóstico) vía
 <code>src/core/SemaGlue.cpp</code>.</p>
+<p><strong>Nota (v1.111.0):</strong> se suman dos módulos nuevos en <code>ESP32-Base</code> (namespace <code>base::</code>):
+<code>ModbusTcpManager</code> (servidor Modbus TCP, sockets lwIP) y <code>BacnetManager</code> (servidor
+BACnet/IP, UDP lwIP). Ambos con flag <code>SEMA_USE_*</code> default OFF; se documentan en
+<a href="../Buses-y-perifericos/">Buses y periféricos</a>.</p>
 </blockquote>
 <h2 id="1-raiz-del-repo">1. Raíz del repo</h2>
 <table>
@@ -10158,14 +10162,24 @@ vive en <code>loop()</code></strong> sino en la tarea del scheduler <code>sensor
 <td>Compila <code>ZigbeeManager</code> + <code>zigbee_.loop()</code></td>
 </tr>
 <tr>
+<td><code>SEMA_USE_MODBUS_TCP</code></td>
+<td><code>0</code> (<strong>SEMA_OFF</strong>)</td>
+<td>Compila <code>ModbusTcpManager</code> (servidor Modbus TCP) + ruta <code>/api/v1/modbus_tcp</code></td>
+</tr>
+<tr>
+<td><code>SEMA_USE_BACNET</code></td>
+<td><code>0</code> (<strong>SEMA_OFF</strong>)</td>
+<td>Compila <code>BacnetManager</code> (servidor BACnet/IP) + ruta <code>/api/v1/bacnet</code></td>
+</tr>
+<tr>
 <td><code>SEMA_USE_SHIFT</code></td>
 <td><code>0</code> (<strong>SEMA_OFF</strong>)</td>
 <td>Sin él, <code>shift_.apply()</code> no se llama y <code>/api/v1/config/io</code> ignora <code>shift_registers</code></td>
 </tr>
 <tr>
 <td><code>SEMA_MODBUS_ISOLATED</code></td>
-<td><code>1</code></td>
-<td>Elige <code>SEMA_MODBUS_TRANSCEIVER</code>: <code>TD501D485H</code> (1) o <code>SN65HVD75DR</code> (0)</td>
+<td><code>1</code> (legacy)</td>
+<td>Default de compilación del transceiver RS-485; desde v1.111.0 lo sobrescribe el enum <code>modbus.transceiver</code> en runtime</td>
 </tr>
 <tr>
 <td><code>SEMA_PINS_FROM_FILE</code></td>

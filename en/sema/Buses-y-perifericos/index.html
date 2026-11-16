@@ -2755,10 +2755,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#13-recursos-compartidos-y-limites" class="md-nav__link">
+  <a href="#13-modbus-tcp-servidor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        13. Recursos compartidos y límites
+        13. Modbus TCP (servidor)
       
     </span>
   </a>
@@ -2766,22 +2766,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#14-fichas-de-conexion" class="md-nav__link">
+  <a href="#14-bacnetip-servidor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14. Fichas de conexión
+        14. BACnet/IP (servidor)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="14. Fichas de conexión">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-recursos-compartidos-y-limites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Recursos compartidos y límites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-fichas-de-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Fichas de conexión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Fichas de conexión">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#141-lan8720a-phy-ethernet-rmii" class="md-nav__link">
+  <a href="#161-lan8720a-phy-ethernet-rmii" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14.1 LAN8720A (PHY Ethernet RMII)
+        16.1 LAN8720A (PHY Ethernet RMII)
       
     </span>
   </a>
@@ -2789,10 +2811,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#142-w5500-ethernet-spi" class="md-nav__link">
+  <a href="#162-w5500-ethernet-spi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14.2 W5500 (Ethernet SPI)
+        16.2 W5500 (Ethernet SPI)
       
     </span>
   </a>
@@ -2800,10 +2822,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#143-sx1262-lora-modulo-sx1262patr8-gc" class="md-nav__link">
+  <a href="#163-sx1262-lora-modulo-sx1262patr8-gc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
+        16.3 SX1262 (LoRa, módulo SX1262PATR8-GC)
       
     </span>
   </a>
@@ -2811,10 +2833,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#144-rf-bm-2652p2-zigbee-znp" class="md-nav__link">
+  <a href="#164-rf-bm-2652p2-zigbee-znp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14.4 RF-BM-2652P2 (Zigbee / ZNP)
+        16.4 RF-BM-2652P2 (Zigbee / ZNP)
       
     </span>
   </a>
@@ -2822,10 +2844,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#145-td501d485h-transceiver-rs485-aislado-default" class="md-nav__link">
+  <a href="#165-td501d485h-transceiver-rs485-aislado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14.5 TD501D485H (transceiver RS485 aislado) — default
+        16.5 TD501D485H (transceiver RS485 aislado)
       
     </span>
   </a>
@@ -2833,10 +2855,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#146-sn65hvd75dr-transceiver-rs485-sin-aislar" class="md-nav__link">
+  <a href="#166-sn65hvd75dr-transceiver-rs485-sin-aislar" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14.6 SN65HVD75DR (transceiver RS485 sin aislar)
+        16.6 SN65HVD75DR (transceiver RS485 sin aislar)
       
     </span>
   </a>
@@ -2844,10 +2866,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#147-microsd-spi" class="md-nav__link">
+  <a href="#167-microsd-spi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        14.7 microSD (SPI)
+        16.7 microSD (SPI)
       
     </span>
   </a>
@@ -9643,7 +9665,7 @@
 
 <h1 id="buses-y-perifericos">Buses y periféricos</h1>
 <blockquote>
-<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.110.0</p>
+<p><strong>Tipo:</strong> Referencia | <strong>Estado:</strong> Estable | <strong>Fecha:</strong> 2026-10-08 | <strong>Firmware:</strong> v1.111.0</p>
 </blockquote>
 <p>Cómo está implementado cada bus de SEMA (I²C, SPI, UART, 1-Wire, ADC, PCNT, RS485/Modbus,
 CAN/TWAI, Ethernet, LoRa y Zigbee), con qué claves JSON se configura, qué recursos del
@@ -9670,7 +9692,9 @@ fabricante; el repositorio SEMA no los declara. Todo lo demás sale del código.
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── ADC1 ............ veleta, batería, CO, solar (ADC2 no convive con Wi-Fi)
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── PCNT ............ anemómetro, pluviómetro (una sola unidad: PCNT_UNIT_0)
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── TWAI ............ CAN 2.0 (125k/250k/500k/1M)
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>└── EMAC + RMII ..... LAN8720A (solo ESP32 clásico y WROOM-32U)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── TCP :502 ........ Modbus TCP (servidor, sockets lwIP)
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>├── UDP :47808 ...... BACnet/IP (servidor, sockets lwIP)
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└── EMAC + RMII ..... LAN8720A (solo ESP32 clásico y WROOM-32U)
 </span></code></pre></div>
 <h2 id="2-i2c">2. I²C</h2>
 <table>
@@ -10053,11 +10077,11 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 <tbody>
 <tr>
 <td>Claves JSON</td>
-<td><code>modbus{enabled,rx,tx,de_re,uart,uart_port,baud,slave_id,register,count}</code></td>
+<td><code>modbus{enabled,rx,tx,de_re,uart,uart_port,baud,slave_id,register,count,transceiver}</code></td>
 </tr>
 <tr>
 <td>Defaults</td>
-<td><code>rx=16</code>, <code>tx=17</code>, <code>de_re=0</code>, <code>baud=9600</code>, <code>slave_id=1</code>, <code>register=0</code>, <code>count=4</code></td>
+<td><code>rx=16</code>, <code>tx=17</code>, <code>de_re=0</code>, <code>baud=9600</code>, <code>slave_id=1</code>, <code>register=0</code>, <code>count=4</code>, <code>transceiver=auto</code></td>
 </tr>
 <tr>
 <td>Rol</td>
@@ -10069,7 +10093,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 <tr>
 <td>Transceiver</td>
-<td><code>SEMA_MODBUS_ISOLATED=1</code> → <strong>TD501D485H</strong> (aislado); <code>=0</code> → <strong>SN65HVD75DR</strong></td>
+<td>Enum <code>modbus.transceiver</code>: <code>MAX3485ED</code> · <code>SN65HVD75DR</code> · <code>TD501D485H</code> · <code>ADM2483BRWZ</code> (ver <a href="../Enumeraciones-y-tipos/">Enumeraciones y tipos</a> §11.8). Informativo: mismo control DE/RE, solo difiere el aislamiento galvánico</td>
 </tr>
 <tr>
 <td>Control DE/RE</td>
@@ -10100,11 +10124,11 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 <tbody>
 <tr>
 <td>Claves JSON</td>
-<td><code>can{enabled,tx,rx,speed}</code></td>
+<td><code>can{enabled,tx,rx,speed,transceiver,rs}</code></td>
 </tr>
 <tr>
 <td>Defaults</td>
-<td><code>tx=5</code>, <code>rx=4</code>, <code>speed=500000</code></td>
+<td><code>tx=5</code>, <code>rx=4</code>, <code>speed=500000</code>, <code>transceiver=auto</code>, <code>rs=0</code></td>
 </tr>
 <tr>
 <td>Velocidades soportadas</td>
@@ -10115,12 +10139,16 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 <td><code>TWAI_MODE_NORMAL</code>, filtro <code>ACCEPT_ALL</code>, sin modo escucha ni filtros por ID</td>
 </tr>
 <tr>
+<td>Pin RS</td>
+<td>Si <code>rs != 0</code> se marca <code>OUTPUT</code> y se deja en <code>HIGH</code> (modo normal, standby desactivado) en <code>CanManager::apply()</code>; <code>0</code> = sin control</td>
+</tr>
+<tr>
 <td>Endpoints</td>
 <td><code>GET /api/v1/can</code> (recibe una trama, timeout 0), <code>POST /api/v1/can</code> (<code>{id,extd,data[]}</code>, máx. 8 bytes, timeout 1000 ms)</td>
 </tr>
 <tr>
 <td>Requiere</td>
-<td>Transceiver externo (p. ej. SN65HVD230/TCAN332) a 3,3 V + terminación de 120 Ω en los extremos del bus (datasheet)</td>
+<td>Transceiver externo a 3,3 V — enum <code>can.transceiver</code>: <code>SN65HVD233DR</code> / <code>SN65HVD234DR</code> (RS = standby) — + terminación de 120 Ω en los extremos del bus (datasheet)</td>
 </tr>
 <tr>
 <td>Config web</td>
@@ -10305,7 +10333,113 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h2 id="13-recursos-compartidos-y-limites">13. Recursos compartidos y límites</h2>
+<h2 id="13-modbus-tcp-servidor">13. Modbus TCP (servidor)</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flag</td>
+<td><code>SEMA_USE_MODBUS_TCP</code> (default <strong>OFF</strong>, <code>board_config.h</code>)</td>
+</tr>
+<tr>
+<td>Claves JSON</td>
+<td><code>modbus_tcp{enabled,port,unit_id}</code></td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>enabled=false</code>, <code>port=502</code>, <code>unit_id=1</code></td>
+</tr>
+<tr>
+<td>Rol</td>
+<td><strong>Servidor</strong> Modbus TCP (esclavo), a diferencia de <code>modbus</code> que es maestro RTU</td>
+</tr>
+<tr>
+<td>Transporte</td>
+<td>Sockets lwIP crudos en <code>INADDR_ANY:502</code>, no bloqueante; transporte-agnóstico (Ethernet y WiFi, sin acoplarse a <code>WiFiServer</code>/<code>EthernetServer</code>)</td>
+</tr>
+<tr>
+<td>Registros</td>
+<td><strong>64 holding registers</strong> (<code>kHoldingCount</code>) mapeados a las mediciones: <code>uint16</code> big-endian ×100, con clamp a <code>[-32768, 32767]</code>; <strong>64 coils</strong> (<code>kCoilCount</code>) desde los GPIO en modo entrada</td>
+</tr>
+<tr>
+<td>Funciones</td>
+<td><code>0x01</code> Read Coils · <code>0x03</code> Read Holding · <code>0x05</code> Write Single Coil · <code>0x06</code> Write Single Register</td>
+</tr>
+<tr>
+<td>Lectura</td>
+<td><code>GET /api/v1/modbus_tcp</code> → <code>{ready,enabled,port,unit_id,holding_count,coil_count}</code></td>
+</tr>
+<tr>
+<td>Config web</td>
+<td><code>POST /api/v1/config/buses</code> acepta <code>modbus_tcp{enabled,port,unit_id}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="14-bacnetip-servidor">14. BACnet/IP (servidor)</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flag</td>
+<td><code>SEMA_USE_BACNET</code> (default <strong>OFF</strong>, <code>board_config.h</code>)</td>
+</tr>
+<tr>
+<td>Claves JSON</td>
+<td><code>bacnet{enabled,device_instance,network_number,udp_port}</code></td>
+</tr>
+<tr>
+<td>Defaults</td>
+<td><code>enabled=false</code>, <code>device_instance=1000</code>, <code>network_number=0</code>, <code>udp_port=47808</code></td>
+</tr>
+<tr>
+<td>Rol</td>
+<td>Dispositivo BACnet <strong>servidor</strong>, mínimo y autocontenido</td>
+</tr>
+<tr>
+<td>Transporte</td>
+<td>UDP lwIP crudo, puerto <strong>47808</strong> (BAC0)</td>
+</tr>
+<tr>
+<td>Objetos</td>
+<td><strong>Device</strong> (instance configurable), <strong>Analog Input</strong> (mediciones → unidades BACnet estándar), <strong>Binary Input</strong> (GPIO de entrada, <code>GPIO%u</code>)</td>
+</tr>
+<tr>
+<td>Límites</td>
+<td>Hasta 32 analog inputs y 32 binary inputs (<code>kMaxAnalog</code>/<code>kMaxBinary</code>); APDU ≤ 1476 bytes (<code>kMaxApdu</code>)</td>
+</tr>
+<tr>
+<td>Servicios</td>
+<td>Who-Is → I-Am y ReadProperty → ComplexAck</td>
+</tr>
+<tr>
+<td>Unidades</td>
+<td>Mapeo a unidades BACnet: °C=62, °F=64, hPa=57, W/m²=50, lux=36, mm=32, m/s=66, °=60, V=5, km=35, ppm=96, ppb=97, %=29 (humedad) / 98; sin unidad obvia → 95 (No Units)</td>
+</tr>
+<tr>
+<td>Lectura</td>
+<td><code>GET /api/v1/bacnet</code> → <code>{ready,enabled,device_instance,network_number,udp_port,analog_count,binary_count}</code></td>
+</tr>
+<tr>
+<td>Config web</td>
+<td><code>POST /api/v1/config/buses</code> acepta <code>bacnet{enabled,device_instance,network_number,udp_port}</code></td>
+</tr>
+<tr>
+<td>Nota</td>
+<td><strong>Sin dependencia GPL</strong>: la librería <code>vitaly.ruhl/ESP32 BACnet Stack</code> es client-only (sin servidor); el servidor se implementó autocontenido sobre UDP lwIP</td>
+</tr>
+</tbody>
+</table>
+<h2 id="15-recursos-compartidos-y-limites">15. Recursos compartidos y límites</h2>
 <table>
 <thead>
 <tr>
@@ -10357,8 +10491,11 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h2 id="14-fichas-de-conexion">14. Fichas de conexión</h2>
-<h3 id="141-lan8720a-phy-ethernet-rmii">14.1 LAN8720A (PHY Ethernet RMII)</h3>
+<h2 id="16-fichas-de-conexion">16. Fichas de conexión</h2>
+<p>Los transceivers RS-485 (<code>MAX3485ED</code>, <code>SN65HVD75DR</code>, <code>TD501D485H</code>, <code>ADM2483BRWZ</code>) y CAN
+(<code>SN65HVD233DR</code>, <code>SN65HVD234DR</code>) se eligen con los enums <code>modbus.transceiver</code> / <code>can.transceiver</code>
+(<a href="../Enumeraciones-y-tipos/">Enumeraciones y tipos</a> §11.8). Aquí se fichan los dos RS-485 más comunes.</p>
+<h3 id="161-lan8720a-phy-ethernet-rmii">16.1 LAN8720A (PHY Ethernet RMII)</h3>
 <table>
 <thead>
 <tr>
@@ -10393,7 +10530,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="142-w5500-ethernet-spi">14.2 W5500 (Ethernet SPI)</h3>
+<h3 id="162-w5500-ethernet-spi">16.2 W5500 (Ethernet SPI)</h3>
 <table>
 <thead>
 <tr>
@@ -10428,7 +10565,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="143-sx1262-lora-modulo-sx1262patr8-gc">14.3 SX1262 (LoRa, módulo SX1262PATR8-GC)</h3>
+<h3 id="163-sx1262-lora-modulo-sx1262patr8-gc">16.3 SX1262 (LoRa, módulo SX1262PATR8-GC)</h3>
 <table>
 <thead>
 <tr>
@@ -10463,7 +10600,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="144-rf-bm-2652p2-zigbee-znp">14.4 RF-BM-2652P2 (Zigbee / ZNP)</h3>
+<h3 id="164-rf-bm-2652p2-zigbee-znp">16.4 RF-BM-2652P2 (Zigbee / ZNP)</h3>
 <table>
 <thead>
 <tr>
@@ -10498,7 +10635,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="145-td501d485h-transceiver-rs485-aislado-default">14.5 TD501D485H (transceiver RS485 aislado) — default</h3>
+<h3 id="165-td501d485h-transceiver-rs485-aislado">16.5 TD501D485H (transceiver RS485 aislado)</h3>
 <table>
 <thead>
 <tr>
@@ -10533,7 +10670,7 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 </tbody>
 </table>
-<h3 id="146-sn65hvd75dr-transceiver-rs485-sin-aislar">14.6 SN65HVD75DR (transceiver RS485 sin aislar)</h3>
+<h3 id="166-sn65hvd75dr-transceiver-rs485-sin-aislar">16.6 SN65HVD75DR (transceiver RS485 sin aislar)</h3>
 <table>
 <thead>
 <tr>
@@ -10564,11 +10701,11 @@ sensores iguales en el mismo bus (p. ej. dos SHT31) no hay forma de distinguirlo
 </tr>
 <tr>
 <td>Notas</td>
-<td>Se selecciona con <code>-D SEMA_MODBUS_ISOLATED=0</code>; comparte el mismo código de conmutación que el aislado</td>
+<td>Seleccionable con el enum <code>modbus.transceiver</code>; comparte el mismo código de conmutación DE/RE que el aislado</td>
 </tr>
 </tbody>
 </table>
-<h3 id="147-microsd-spi">14.7 microSD (SPI)</h3>
+<h3 id="167-microsd-spi">16.7 microSD (SPI)</h3>
 <table>
 <thead>
 <tr>
